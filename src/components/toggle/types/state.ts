@@ -1,0 +1,14 @@
+import { STATES } from '@/types/states';
+
+/**
+ * @name ToggleStateType
+ * @description
+ * Toggle state type
+ */
+export enum ToggleStateType {
+  DEFAULT_SELECTED = STATES.DEFAULT_SELECTED,
+  DEFAULT_UNSELECTED = STATES.DEFAULT_UNSELECTED,
+  DISABLED_SELECTED = STATES.DISABLED_SELECTED,
+  DISABLED_UNSELECTED = STATES.DISABLED_UNSELECTED,
+  DEFAULT = STATES.DEFAULT,
+}

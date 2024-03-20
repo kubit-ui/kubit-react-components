@@ -1,0 +1,5 @@
+export enum SummaryDetailsVariantType {
+  SIDE_MENU = 'SIDE_MENU',
+  ACCORDION = 'ACCORDION',
+  ACCORDION_NO_PADDING = 'ACCORDION_NO_PADDING',
+}

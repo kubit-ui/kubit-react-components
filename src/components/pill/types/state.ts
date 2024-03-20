@@ -1,0 +1,8 @@
+import { STATES } from '@/types/states';
+
+export enum PillStateType {
+  DEFAULT = STATES.DEFAULT,
+  SELECTED = STATES.SELECTED,
+  DISABLED = STATES.DISABLED,
+  DISABLED_SELECTED = STATES.DISABLED_SELECTED,
+}

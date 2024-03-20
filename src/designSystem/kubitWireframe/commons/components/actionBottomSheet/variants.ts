@@ -1,0 +1,4 @@
+export enum ActionBottomSheetVariantType {
+  DEFAULT = 'DEFAULT',
+  FUNCTIONALITIES_MODULE = 'FUNCTIONALITIES_MODULE',
+}

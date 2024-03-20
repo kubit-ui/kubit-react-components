@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'GT-America-Expanded Font';
+  font-weight: 700;
+  src: url('../fonts/GT-America-Expanded-Medium.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GT-America-Expanded Font';
+  font-weight: 400;
+  src: url('../fonts/GT-America-Expanded-Regular.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GT-America-Expanded Font';
+  font-weight: 300;
+  src: url('../fonts/GT-America-ExpandedLight.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GT-America-Extended Font';
+  font-weight: 700;
+  src: url('../fonts/GT-America-Extended-Medium.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GT-America-Extended Font';
+  font-weight: 400;
+  src: url('../fonts/GT-America-Extended-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GT-America-Extended Font';
+  font-weight: 300;
+  src: url('../fonts/GT-America-Extended-Light.otf') format('truetype');
+}

@@ -1,0 +1,17 @@
+import { CommonStyleType } from '@/types';
+
+export type HeaderPropsStyles = {
+  styles?: HeaderPropsStylesType;
+};
+
+export type HeaderPropsStylesType = {
+  container?: CommonStyleType;
+  breadcrumbs?: CommonStyleType;
+  content?: CommonStyleType;
+  leftContent?: CommonStyleType;
+  rightContent?: CommonStyleType;
+};
+
+export type HeaderStylesType<P extends string | number | symbol> = {
+  [variant in P]?: HeaderPropsStylesType;
+};

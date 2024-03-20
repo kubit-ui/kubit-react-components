@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'myFirstFont';
+  src: url('../font/gtamericaregular.woff');
+}
+
+.welcome__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.welcome-text-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 6rem;
+  gap: 2rem;
+  font-family: 'myFirstFont';
+}
+
+.welcome_title {
+  color: #ffffff;
+  font-weight: 200;
+  margin: 0;
+  font-size: 2rem;
+}
+
+.welcome_version {
+  color: #ffffff;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.75rem;
+}

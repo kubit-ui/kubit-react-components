@@ -1,0 +1,7 @@
+//mandatory
+export enum DrawerVariantPositionTypes {
+  DRAWER_LEFT = 'DRAWER_LEFT',
+  DRAWER_RIGHT = 'DRAWER_RIGHT',
+  DRAWER_BOTTOM = 'DRAWER_BOTTOM',
+  DRAWER_NO_ANIMATION = 'DRAWER_NO_ANIMATION',
+}

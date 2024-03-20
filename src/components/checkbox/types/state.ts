@@ -1,0 +1,11 @@
+/**
+ * Checkbox state types
+ * @enum {string}
+ */
+export enum CheckboxStateType {
+  DEFAULT_UNSELECTED = 'DEFAULT_UNSELECTED',
+  DEFAULT_SELECTED = 'DEFAULT_SELECTED',
+  DISABLED_UNSELECTED = 'DISABLED_UNSELECTED',
+  DISABLED_SELECTED = 'DISABLED_SELECTED',
+  ERROR = 'ERROR',
+}

@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig-build",
+  "compilerOptions": {
+    "module": "es2020" /* Specify what module code is generated. */,
+    "outDir": "./dist/esm",
+    "declaration": true,
+    "declarationDir": "./dist/esm"
+  },
+  "exclude": [
+    "./vite.config.ts",
+    "./src/**/*stories.tsx",
+    "./src/**/*test.tsx",
+    "./src/**/*test.ts",
+    "./src/**/assets"
+  ]
+}

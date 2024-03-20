@@ -1,0 +1,8 @@
+export enum TextAreaStateType {
+  EMPTY = 'EMPTY',
+  ACTIVE = 'ACTIVE',
+  FILLED = 'FILLED',
+  ERROR = 'ERROR',
+  DISABLED_FILLED = 'DISABLED_FILLED',
+  DISABLED_EMPTY = 'DISABLED_EMPTY',
+}

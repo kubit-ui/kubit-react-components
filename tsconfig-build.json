@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig",
+  "exclude": [
+    "src/**/*.test.*",
+    "src/**/__mocks__",
+    "src/**/__fixtures__",
+    "src/**/__tests__",
+    "src/**/stories",
+    "src/**/assets",
+    "dist"
+  ],
+  "compilerOptions": {
+    "noEmit": false,
+    "sourceMap": true,
+    "rootDir": "./src"
+  }
+}

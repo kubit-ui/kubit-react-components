@@ -1,0 +1,65 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
+import { ICONS } from '@/assets';
+import { STYLES_NAME } from '@/constants';
+import { themesObject, variantsObject } from '@/designSystem/themesObject';
+
+import { FunctionalitiesModuleUnControlled as Story } from '../functionalitiesModuleUnControlled';
+import { IFunctionalitiesModuleUnControlled } from '../types';
+import { argtypes } from './argtypes';
+import { SECTIONS } from './fixture';
+
+const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
+
+const meta = {
+  title: 'Components/Navigation/FunctionalitiesModule',
+  component: Story,
+  tags: ['autodocs'],
+  argTypes: argtypes(variantsObject, themeSelected),
+} satisfies Meta<typeof Story>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
+
+const commonArgs: IFunctionalitiesModuleUnControlled = {
+  variant: Object.values(
+    variantsObject[themeSelected].FunctionalitiesModuleVariantType || {}
+  )[0] as string,
+  tabsContainerAriaLabel: 'options',
+  tabsConfig: {
+    variant: Object.values(variantsObject[themeSelected].TabsVariantType || {})[0] as string,
+  },
+  sections: SECTIONS,
+  hasTitleSection: true,
+  defaultSelectedValue: '2',
+  trigger: {
+    variant: Object.values(variantsObject[themeSelected].ButtonVariantType || {})[0] as string,
+    size: Object.values(variantsObject[themeSelected].ButtonSizeType || {})[0] as string,
+    content: 'Options',
+    icon: { icon: ICONS.ICON_PLACEHOLDER },
+  },
+  actionBottomSheet: {
+    title: { content: 'Options' },
+    closeIcon: { icon: ICONS.ICON_CLOSE, ['aria-label']: 'ariaLabelCloseIcon' },
+  },
+};
+
+export const FunctionalitiesModule: Story = {
+  args: {
+    ...commonArgs,
+    themeArgs: themesObject[themeSelected][STYLES_NAME.FUNCTIONALITIES_MODULE],
+  },
+};
+
+export const FunctionalitiesModuleWithCtv: Story = {
+  args: {
+    ...commonArgs,
+    ctv: {
+      contentContainer: {
+        padding: '2rem',
+        background_color: 'pink',
+      },
+    },
+  },
+};
