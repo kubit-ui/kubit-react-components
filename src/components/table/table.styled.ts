@@ -5,7 +5,7 @@ import {
   LineSeparatorPositionType,
 } from '@/components/lineSeparator';
 import { srOnlyMixin } from '@/styles/mixins/srOnly.mixin';
-import { CommonStyleType } from '@/types';
+import { CommonStyleType, DeviceBreakpointsType } from '@/types';
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
 import {
@@ -59,6 +59,7 @@ export const TableRowGroupHeaderStyled = styled.thead<{
   lineSeparatorLineStyles?: LineSeparatorLinePropsStylesType;
   lineSeparatorTopOnHeader?: boolean;
   lineSeparatorBottomOnHeader?: boolean;
+  $scrolling?: boolean;
 }>`
   ${({ styles }) => getStyles(styles?.container)}
   ${({ styles }) => getTypographyStyles(styles?.typography)}
@@ -77,6 +78,27 @@ export const TableRowGroupHeaderStyled = styled.thead<{
     }
     return lineSeparator;
   }}
+  ${() =>
+    ({
+      theme: {
+        MEDIA_QUERIES: { onlyDesktop },
+      },
+      styles,
+      $scrolling,
+    }) => {
+      return css`
+        ${onlyDesktop} {
+          ${$scrolling
+            ? css`
+                box-shadow: ${styles?.container?.[DeviceBreakpointsType.DESKTOP]?.box_shadow ??
+                'none'};
+              `
+            : css`
+                box-shadow: none;
+              `}
+        }
+      `;
+    }}
 `;
 
 export const TableRowHeaderStyled = styled.tr<{

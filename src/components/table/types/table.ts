@@ -138,6 +138,7 @@ type TableAriaAttributes = Pick<
  */
 export interface ITableStandAlone extends TableAriaAttributes {
   styles: TableRowHeaderTypes<string, string>;
+  refTableBody?: React.Ref<HTMLTableSectionElement>;
   lineSeparatorLineStyles: LineSeparatorLinePropsStylesType;
   lineSeparatorTopOnHeader?: boolean;
   lineSeparatorBottomOnHeader?: boolean;
@@ -152,6 +153,7 @@ export interface ITableStandAlone extends TableAriaAttributes {
   dataTestId?: string;
   hiddenHeaderOn?: HiddenType;
   device: DeviceBreakpointsType;
+  scrolling: boolean;
   headerVariant?: string;
   expandedContentHelpMessage?: string;
   formatListInMobile?: boolean;
@@ -169,7 +171,10 @@ export interface ITableStandAlone extends TableAriaAttributes {
  * @interface ITable
  */
 export interface ITable<V = undefined extends string ? unknown : string>
-  extends Omit<ITableStandAlone, 'styles' | 'lineSeparatorLineStyles' | 'device'>,
+  extends Omit<
+      ITableStandAlone,
+      'styles' | 'lineSeparatorLineStyles' | 'device' | 'scrolling' | 'refTableBody'
+    >,
     Omit<CustomTokenTypes<TableRowHeaderTypes<string, string>>, 'cts' | 'extraCt'> {
   variant: V;
   lineSeparatorLineVariant?: string;

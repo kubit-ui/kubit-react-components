@@ -52,6 +52,7 @@ export const TableComponent = (
       >
         <TableCaptionStyled id={uniqueId}>{props.captionDescription}</TableCaptionStyled>
         <TableRowGroupHeaderStyled
+          $scrolling={props.scrolling}
           hidden={props.hiddenHeaderOn?.[props.device]}
           lineSeparatorBottomOnHeader={props.lineSeparatorBottomOnHeader}
           lineSeparatorLineStyles={props.lineSeparatorLineStyles}
