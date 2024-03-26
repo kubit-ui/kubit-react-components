@@ -1,5 +1,5 @@
 import { FunctionalitiesModuleStylesType } from '@/components/functionalitiesModule/types';
-import { DeviceBreakpointsType, POSITIONS } from '@/types';
+import { POSITIONS } from '@/types';
 
 import { RADIUS } from '../../foundations';
 import {
@@ -18,27 +18,12 @@ export const getFunctionalitiesModuleStyles = (COLORS: {
       tabsContainer: {
         display: 'block',
         border_radius: RADIUS.radius_25,
-        [DeviceBreakpointsType.TABLET]: {
-          display: 'none',
-        },
-        [DeviceBreakpointsType.MOBILE]: {
-          display: 'none',
-        },
       },
       buttonContainer: {
         display: 'inline-block',
-        [DeviceBreakpointsType.DESKTOP]: {
-          display: 'none',
-        },
       },
       actionBottomSheetContainer: {
-        display: 'none',
-        [DeviceBreakpointsType.TABLET]: {
-          display: 'block',
-        },
-        [DeviceBreakpointsType.MOBILE]: {
-          display: 'block',
-        },
+        display: 'block',
       },
       listOptions: {
         variant: ListOptionsVariantType.FUNCTIONALITIES_MODULE,

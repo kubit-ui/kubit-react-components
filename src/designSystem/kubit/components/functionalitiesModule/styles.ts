@@ -16,27 +16,12 @@ export const FUNCTIONALITIES_MODULE_STYLES: FunctionalitiesModuleStylesType<Func
       tabsContainer: {
         display: 'block',
         border_radius: RADIUS.radius_25,
-        [DeviceBreakpointsType.TABLET]: {
-          display: 'none',
-        },
-        [DeviceBreakpointsType.MOBILE]: {
-          display: 'none',
-        },
       },
       buttonContainer: {
         display: 'inline-block',
-        [DeviceBreakpointsType.DESKTOP]: {
-          display: 'none',
-        },
       },
       actionBottomSheetContainer: {
-        display: 'none',
-        [DeviceBreakpointsType.TABLET]: {
-          display: 'block',
-        },
-        [DeviceBreakpointsType.MOBILE]: {
-          display: 'block',
-        },
+        display: 'block',
       },
       contentContainer: {
         [DeviceBreakpointsType.DESKTOP]: {
@@ -65,27 +50,12 @@ export const FUNCTIONALITIES_MODULE_STYLES: FunctionalitiesModuleStylesType<Func
       tabsContainer: {
         display: 'block',
         border_radius: RADIUS.radius_25,
-        [DeviceBreakpointsType.TABLET]: {
-          display: 'none',
-        },
-        [DeviceBreakpointsType.MOBILE]: {
-          display: 'none',
-        },
       },
       buttonContainer: {
         display: 'inline-block',
-        [DeviceBreakpointsType.DESKTOP]: {
-          display: 'none',
-        },
       },
       actionBottomSheetContainer: {
-        display: 'none',
-        [DeviceBreakpointsType.TABLET]: {
-          display: 'block',
-        },
-        [DeviceBreakpointsType.MOBILE]: {
-          display: 'block',
-        },
+        display: 'block',
       },
       contentContainer: {
         [DeviceBreakpointsType.DESKTOP]: {
