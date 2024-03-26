@@ -54,7 +54,7 @@ export const CarouselContentStyled = styled.div<{
   left: 0;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   > * {
     flex-shrink: 0;
   }
