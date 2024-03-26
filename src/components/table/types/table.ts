@@ -51,6 +51,19 @@ export type TableDividerType = Omit<IDivider, 'variant'> & {
   variant?: string;
 };
 
+export type ValueConfigType = {
+  value?:
+    | string
+    | JSX.Element
+    | undefined
+    | ExpandedContentType
+    | TableDividerType
+    | object
+    | number
+    | boolean;
+  backgroundColor?: string;
+};
+
 /**
  * @description
  * Table value props
