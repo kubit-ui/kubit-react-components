@@ -14,47 +14,36 @@ const IconBasicComponent = (
   ref: React.ForwardedRef<HTMLSpanElement>
 ): JSX.Element | null => {
   const device = useMediaDevice();
+  const ariaProps = pickAriaProps(props);
+  const { disabled, altText, onClick, screenReaderText, ...iconProps } = props;
 
   const isLinearIcon =
     !!props.color || !!props.customIconStyles?.color || !!props.customIconStyles?.[device]?.color;
 
-  const iconWithTitle = (
-    <IconStandAlone {...props} ref={ref} altText="" icon={props.icon} linearIcon={isLinearIcon} />
-  );
+  if (!props.icon) {
+    return <></>;
+  }
 
-  const buildButton = (): JSX.Element => {
-    const ariaProps = pickAriaProps(props);
-    let iconElement = <></>;
-    if (props.icon) {
-      if (props.onClick) {
-        iconElement = (
-          <IconButtonStyled
-            {...ariaProps}
-            $customIconStyles={props.customIconStyles}
-            $height={props.height}
-            $width={props.width}
-            aria-disabled={props.disabled}
-            aria-label={props['aria-label'] || props.altText}
-            disabled={props.disabled}
-            tabIndex={tabIndex}
-            type={ButtonType.BUTTON}
-            onClick={props.onClick}
-          >
-            <ScreenReaderOnly>{props.screenReaderText}</ScreenReaderOnly>
-            {iconWithTitle}
-          </IconButtonStyled>
-        );
-      } else {
-        iconElement = (
-          <IconStandAlone {...props} ref={ref} icon={props.icon} linearIcon={isLinearIcon} />
-        );
-      }
-      return iconElement;
-    }
-    return iconElement;
-  };
+  if (props.onClick) {
+    return (
+      <IconButtonStyled
+        {...ariaProps}
+        $customIconStyles={props.customIconStyles}
+        $height={props.height}
+        $width={props.width}
+        aria-disabled={disabled}
+        aria-label={props['aria-label'] || altText}
+        disabled={disabled}
+        type={ButtonType.BUTTON}
+        onClick={onClick}
+      >
+        <ScreenReaderOnly>{screenReaderText}</ScreenReaderOnly>
+        <IconStandAlone {...iconProps} ref={ref} linearIcon={isLinearIcon} />
+      </IconButtonStyled>
+    );
+  }
 
-  return buildButton();
+  return <IconStandAlone {...iconProps} ref={ref} altText={altText} linearIcon={isLinearIcon} />;
 };
 
 export const IconBasic = React.forwardRef(IconBasicComponent);
