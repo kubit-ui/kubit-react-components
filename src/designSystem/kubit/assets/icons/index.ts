@@ -1,10 +1,24 @@
 import ICON_ALERT from './icon_alert.svg';
+import ICON_ARROW_BACK from './icon_arrow_back.svg';
+import ICON_ARROW_FROM_BOTTOM from './icon_arrow_from_bottom.svg';
+import ICON_ARROW_FROM_LEFT from './icon_arrow_from_left.svg';
+import ICON_ARROW_FROM_RIGHT from './icon_arrow_from_right.svg';
+import ICON_ARROW_FROM_TOP from './icon_arrow_from_top.svg';
+import ICON_ARROW_NEXT from './icon_arrow_next.svg';
+import ICON_ARROW_TO_BOTTOM from './icon_arrow_to_bottom.svg';
+import ICON_ARROW_TO_LEFT from './icon_arrow_to_left.svg';
+import ICON_ARROW_TO_RIGHT from './icon_arrow_to_right.svg';
+import ICON_ARROW_TO_TOP from './icon_arrow_to_top.svg';
 import ICON_ASPECT_RADIO from './icon_aspect_radio.svg';
+import ICON_ATOM from './icon_atom.svg';
 import ICON_AUTOFILL_HEIGHT from './icon_autofill-height.svg';
 import ICON_AUTOFILL_WIDTH from './icon_autofill-width.svg';
 import ICON_AUTOFIT_HEIGHT from './icon_autofit-height.svg';
 import ICON_AUTOFIT_WIDTH from './icon_autofit-width.svg';
+import ICON_BAND_AID from './icon_band_aid.svg';
+import ICON_BLOCK from './icon_block.svg';
 import ICON_BLUR from './icon_blur.svg';
+import ICON_BODY from './icon_body.svg';
 import ICON_BORDER_BOTTOM from './icon_border-bottom.svg';
 import ICON_BORDER_LEFT from './icon_border-left.svg';
 import ICON_BORDER_RADIUS_BOTTOM_LEFT_1 from './icon_border-radius-bottom-left-1.svg';
@@ -16,16 +30,125 @@ import ICON_BORDER_RIGHT from './icon_border-right.svg';
 import ICON_BORDER_SIDES from './icon_border-sides.svg';
 import ICON_BORDER_TOP from './icon_border-top.svg';
 import ICON_CALENDAR from './icon_calendar.svg';
+import ICON_CAPSULE from './icon_capsule.svg';
+import ICON_CARET_DOWN from './icon_caret_down.svg';
+import ICON_CARET_DOWN_CIRCLE from './icon_caret_down_circle.svg';
+import ICON_CARET_DOWN_SQUARE from './icon_caret_down_square.svg';
+import ICON_CARET_LEFT from './icon_caret_left.svg';
+import ICON_CARET_LEFT_CIRCLE from './icon_caret_left_circle.svg';
+import ICON_CARET_LEFT_SQUARE from './icon_caret_left_square.svg';
+import ICON_CARET_RIGHT from './icon_caret_right.svg';
+import ICON_CARET_RIGHT_CIRCLE from './icon_caret_right_circle.svg';
+import ICON_CARET_RIGHT_SQUARE from './icon_caret_right_square.svg';
+import ICON_CARET_UP from './icon_caret_up.svg';
+import ICON_CARET_UP_CIRCLE from './icon_caret_up_circle.svg';
+import ICON_CARET_UP_SQUARE from './icon_caret_up_square.svg';
+import ICON_CAROUSEL from './icon_carousel.svg';
 import ICON_CATEGORY from './icon_category.svg';
+import ICON_CHAT from './icon_chat.svg';
+import ICON_CHECK from './icon_check.svg';
+import ICON_CHECK_CIRCLE from './icon_check_circle.svg';
+import ICON_CHECK_DOUBLE from './icon_check_double.svg';
+import ICON_CHECK_SHIELD from './icon_check_shield.svg';
+import ICON_CHEVRON_DOWN from './icon_chevron_down.svg';
+import ICON_CHEVRON_DOWN_CIRCLE from './icon_chevron_down_circle.svg';
+import ICON_CHEVRON_DOWN_SQUARE from './icon_chevron_down_square.svg';
+import ICON_CHEVRON_LEFT from './icon_chevron_left.svg';
+import ICON_CHEVRON_LEFT_CIRCLE from './icon_chevron_left_circle.svg';
+import ICON_CHEVRON_LEFT_SQUARE from './icon_chevron_left_square.svg';
+import ICON_CHEVRON_RIGHT from './icon_chevron_right.svg';
+import ICON_CHEVRON_RIGHT_CIRCLE from './icon_chevron_right_circle.svg';
+import ICON_CHEVRON_RIGHT_SQUARE from './icon_chevron_right_square.svg';
+import ICON_CHEVRON_UP from './icon_chevron_up.svg';
+import ICON_CHEVRON_UP_CIRCLE from './icon_chevron_up_circle.svg';
+import ICON_CHEVRON_UP_SQUARE from './icon_chevron_up_square.svg';
+import ICON_CHEVRONS_DOWN from './icon_chevrons_down.svg';
+import ICON_CHEVRONS_LEFT from './icon_chevrons_left.svg';
+import ICON_CHEVRONS_RIGHT from './icon_chevrons_right.svg';
+import ICON_CHEVRONS_UP from './icon_chevrons_up.svg';
+import ICON_CLOUD from './icon_cloud.svg';
+import ICON_CLOUD_UPLOAD from './icon_cloud_upload.svg';
+import ICON_CODE from './icon_code.svg';
+import ICON_CODE_ALT from './icon_code_alt.svg';
+import ICON_CODE_BLOCK from './icon_code_block.svg';
+import ICON_CODE_CURLY from './icon_code_curly.svg';
+import ICON_COG from './icon_cog.svg';
+import ICON_COIN from './icon_coin.svg';
+import ICON_COLUMNS from './icon_columns.svg';
 import ICON_COMPONENTS from './icon_components.svg';
+import ICON_CONVERSATION from './icon_conversation.svg';
+import ICON_COOKIE from './icon_cookie.svg';
+import ICON_COPY from './icon_copy.svg';
+import ICON_COPY_ALT from './icon_copy_alt.svg';
+import ICON_CUBE_ALT from './icon_cube_alt.svg';
+import ICON_CUSTOMIZE from './icon_customize.svg';
+import ICON_CUT from './icon_cut.svg';
+import ICON_DESKTOP from './icon_desktop.svg';
+import ICON_DEVICES from './icon_devices.svg';
 import ICON_DIAMOND from './icon_diamond.svg';
 import ICON_DIMENSIONS from './icon_dimensions.svg';
 import ICON_DISLIKE from './icon_dislike.svg';
+import ICON_DOCK_BOTTOM from './icon_dock_bottom.svg';
+import ICON_DOCK_LEFT from './icon_dock_left.svg';
+import ICON_DOCK_RIGHT from './icon_dock_right.svg';
+import ICON_DOCK_TOP from './icon_dock_top.svg';
+import ICON_DOLLAR from './icon_dollar.svg';
+import ICON_DOLLAR_CIRCLE from './icon_dollar_circle.svg';
+import ICON_DOTS_HORIZONTAL from './icon_dots_horizontal.svg';
+import ICON_DOTS_HORIZONTAL_ROUNDED from './icon_dots_horizontal_rounded.svg';
+import ICON_DOTS_VERTICAL from './icon_dots_vertical.svg';
+import ICON_DOTS_VERTICAL_ROUNDED from './icon_dots_vertical_rounded.svg';
+import ICON_DOWN_ARROW_ALT from './icon_down_arrow_alt.svg';
+import ICON_DOWN_ARROW_CIRCLE from './icon_down_arrow_circle.svg';
+import ICON_DUPLICATE from './icon_duplicate.svg';
+import ICON_EDIT from './icon_edit.svg';
+import ICON_EDIT_ALT from './icon_edit_alt.svg';
+import ICON_ENVELOPE from './icon_envelope.svg';
+import ICON_ENVELOPE_OPEN from './icon_envelope_open.svg';
+import ICON_ERASER from './icon_eraser.svg';
+import ICON_ERROR from './icon_error.svg';
+import ICON_ERROR_ALT from './icon_error_alt.svg';
+import ICON_ERROR_CIRCLE from './icon_error_circle.svg';
+import ICON_EURO from './icon_euro.svg';
+import ICON_FAST_FORWARD from './icon_fast_forward.svg';
+import ICON_FAST_FORWARD_CIRCLE from './icon_fast_forward_circle.svg';
+import ICON_FIGMA from './icon_figma.svg';
+import ICON_FILE_BLANK from './icon_file_blank.svg';
+import ICON_FILTER from './icon_filter.svg';
+import ICON_FILTER_ALT from './icon_filter_alt.svg';
+import ICON_FIRST_AID from './icon_first_aid.svg';
+import ICON_FIRST_PAGE from './icon_first_page.svg';
+import ICON_FOLDER from './icon_folder.svg';
+import ICON_FOLDER_MINUS from './icon_folder_minus.svg';
+import ICON_FOLDER_OPEN from './icon_folder_open.svg';
+import ICON_FOLDER_PLUS from './icon_folder_plus.svg';
 import ICON_GHOST from './icon_ghost.svg';
+import ICON_GIFT from './icon_gift.svg';
 import ICON_GITHUB from './icon_github.svg';
+import ICON_GLASSES from './icon_glasses.svg';
+import ICON_GLASSES_ALT from './icon_glasses_alt.svg';
+import ICON_GLOBE from './icon_globe.svg';
+import ICON_GRID from './icon_grid.svg';
+import ICON_GRID_SMALL from './icon_grid_small.svg';
+import ICON_GRID_VERTICAL from './icon_grid_vertical.svg';
+import ICON_GROUP from './icon_group.svg';
+import ICON_HEART from './icon_heart.svg';
+import ICON_HELP_CIRCLE from './icon_help_circle.svg';
+import ICON_HIDE from './icon_hide.svg';
+import ICON_HIGHLIGHT from './icon_highlight.svg';
+import ICON_HOME from './icon_home.svg';
+import ICON_HOME_ALT from './icon_home_alt.svg';
+import ICON_IMAGE from './icon_image.svg';
+import ICON_IMAGE_ALT from './icon_image_alt.svg';
 import ICON_IN_PROGRESS from './icon_in_progress.svg';
+import ICON_INFO_CIRCLE from './icon_info_circle.svg';
 import ICON_INNER_SHADOW from './icon_inner-shadow.svg';
+import ICON_KEY from './icon_key.svg';
 import ICON_KUBIT from './icon_kubit.svg';
+import ICON_LAPTOP from './icon_laptop.svg';
+import ICON_LAST_PAGE from './icon_last_page.svg';
+import ICON_LAYOUT from './icon_layout.svg';
+import ICON_LEFT_ARROW_ALT from './icon_left_arrow_alt.svg';
 import ICON_LEFT_ARROW_CIRCLE from './icon_left_arrow_circle.svg';
 import ICON_LEFT_DOWN_ARROW_CIRCLE from './icon_left_down_arrow_circle.svg';
 import ICON_LEFT_TOP_ARROW_CIRCLE from './icon_left_top_arrow_circle.svg';
@@ -177,6 +300,129 @@ import WIREFRAME_ICON_SIMPLE from './wireframe_icon_simple.svg';
 import WIREFRAME_LOGO_ICON from './wireframe_logo_icon.svg';
 
 export const ICONS = {
+  ICON_FIGMA,
+  ICON_ARROW_BACK,
+  ICON_ARROW_FROM_BOTTOM,
+  ICON_ARROW_FROM_LEFT,
+  ICON_ARROW_FROM_RIGHT,
+  ICON_ARROW_FROM_TOP,
+  ICON_ARROW_NEXT,
+  ICON_ARROW_TO_BOTTOM,
+  ICON_ARROW_TO_LEFT,
+  ICON_ARROW_TO_RIGHT,
+  ICON_ARROW_TO_TOP,
+  ICON_ATOM,
+  ICON_BAND_AID,
+  ICON_BLOCK,
+  ICON_BODY,
+  ICON_CAPSULE,
+  ICON_CARET_DOWN_CIRCLE,
+  ICON_CARET_DOWN_SQUARE,
+  ICON_CARET_DOWN,
+  ICON_CARET_LEFT_CIRCLE,
+  ICON_CARET_LEFT_SQUARE,
+  ICON_CARET_LEFT,
+  ICON_CARET_RIGHT_CIRCLE,
+  ICON_CARET_RIGHT_SQUARE,
+  ICON_CARET_RIGHT,
+  ICON_CARET_UP_CIRCLE,
+  ICON_CARET_UP_SQUARE,
+  ICON_CARET_UP,
+  ICON_CAROUSEL,
+  ICON_CHAT,
+  ICON_CHECK_CIRCLE,
+  ICON_CHECK_DOUBLE,
+  ICON_CHECK_SHIELD,
+  ICON_CHECK,
+  ICON_CHEVRON_DOWN_CIRCLE,
+  ICON_CHEVRON_DOWN_SQUARE,
+  ICON_CHEVRON_DOWN,
+  ICON_CHEVRON_LEFT_CIRCLE,
+  ICON_CHEVRON_LEFT_SQUARE,
+  ICON_CHEVRON_LEFT,
+  ICON_CHEVRON_RIGHT_CIRCLE,
+  ICON_CHEVRON_RIGHT_SQUARE,
+  ICON_CHEVRON_RIGHT,
+  ICON_CHEVRON_UP_CIRCLE,
+  ICON_CHEVRON_UP_SQUARE,
+  ICON_CHEVRON_UP,
+  ICON_CHEVRONS_DOWN,
+  ICON_CHEVRONS_LEFT,
+  ICON_CHEVRONS_RIGHT,
+  ICON_CHEVRONS_UP,
+  ICON_CLOUD_UPLOAD,
+  ICON_CLOUD,
+  ICON_CODE_ALT,
+  ICON_CODE_BLOCK,
+  ICON_CODE_CURLY,
+  ICON_CODE,
+  ICON_COG,
+  ICON_COIN,
+  ICON_COLUMNS,
+  ICON_CONVERSATION,
+  ICON_COOKIE,
+  ICON_COPY_ALT,
+  ICON_COPY,
+  ICON_CUBE_ALT,
+  ICON_CUSTOMIZE,
+  ICON_CUT,
+  ICON_DESKTOP,
+  ICON_DEVICES,
+  ICON_DOCK_BOTTOM,
+  ICON_DOCK_LEFT,
+  ICON_DOCK_RIGHT,
+  ICON_DOCK_TOP,
+  ICON_DOLLAR_CIRCLE,
+  ICON_DOLLAR,
+  ICON_DOTS_HORIZONTAL_ROUNDED,
+  ICON_DOTS_HORIZONTAL,
+  ICON_DOTS_VERTICAL_ROUNDED,
+  ICON_DOTS_VERTICAL,
+  ICON_DOWN_ARROW_ALT,
+  ICON_DOWN_ARROW_CIRCLE,
+  ICON_DUPLICATE,
+  ICON_EDIT_ALT,
+  ICON_EDIT,
+  ICON_ENVELOPE_OPEN,
+  ICON_ENVELOPE,
+  ICON_ERASER,
+  ICON_ERROR_ALT,
+  ICON_ERROR_CIRCLE,
+  ICON_ERROR,
+  ICON_EURO,
+  ICON_FAST_FORWARD_CIRCLE,
+  ICON_FAST_FORWARD,
+  ICON_FILE_BLANK,
+  ICON_FILTER_ALT,
+  ICON_FILTER,
+  ICON_FIRST_AID,
+  ICON_FIRST_PAGE,
+  ICON_FOLDER_MINUS,
+  ICON_FOLDER_OPEN,
+  ICON_FOLDER_PLUS,
+  ICON_FOLDER,
+  ICON_GIFT,
+  ICON_GLASSES_ALT,
+  ICON_GLASSES,
+  ICON_GLOBE,
+  ICON_GRID_SMALL,
+  ICON_GRID_VERTICAL,
+  ICON_GRID,
+  ICON_GROUP,
+  ICON_HEART,
+  ICON_HELP_CIRCLE,
+  ICON_HIDE,
+  ICON_HIGHLIGHT,
+  ICON_HOME_ALT,
+  ICON_HOME,
+  ICON_IMAGE_ALT,
+  ICON_IMAGE,
+  ICON_INFO_CIRCLE,
+  ICON_KEY,
+  ICON_LAPTOP,
+  ICON_LAST_PAGE,
+  ICON_LAYOUT,
+  ICON_LEFT_ARROW_ALT,
   ICON_LEFT_ARROW_CIRCLE,
   ICON_LEFT_DOWN_ARROW_CIRCLE,
   ICON_LEFT_TOP_ARROW_CIRCLE,
