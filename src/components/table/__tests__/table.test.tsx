@@ -129,6 +129,84 @@ const mockBase = {
   ],
 };
 
+const mockBaseCustomizable = {
+  variant: 'DEFAULT',
+  headerVariant: 'PRIMARY',
+  footer: { content: <div>Footer</div> },
+  headers: [
+    {
+      id: 'date',
+      label: 'Date',
+      config: { hasDivider: true },
+    },
+    {
+      id: 'name',
+      label: 'Recipient name',
+      config: { alignHeader: 'left', alignValue: 'left' },
+      value: value =>
+        value.surname ? (
+          <div>
+            <div>{value.name}</div>
+            <div>{value.surname}</div>
+          </div>
+        ) : (
+          value.name
+        ),
+    },
+    {
+      id: 'routingNumber',
+      label: 'Routing number',
+      config: { alignHeader: 'left', alignValue: 'left' },
+    },
+    {
+      id: 'accountNumber',
+      label: 'Account number',
+      config: { alignHeader: 'left', alignValue: 'left' },
+    },
+    {
+      id: 'transferMoney',
+      label: 'Transfer money',
+      config: { alignHeader: 'center', alignValue: 'center' },
+      value: () => (
+        <Button size="LARGE" variant="PRIMARY">
+          Transfer money
+        </Button>
+      ),
+    },
+    {
+      id: 'edit',
+      label: 'Edit',
+      config: { alignHeader: 'center', alignValue: 'center' },
+      value: () => 'plug',
+    },
+    {
+      id: 'delete',
+      label: 'Delete',
+      config: { alignHeader: 'right' },
+      value: () => 'edit active',
+    },
+  ],
+  values: [
+    {
+      date: '18 DIC',
+      name: 'Michael',
+      surname: 'Scott',
+      routingNumber: { value: '113456789', backgroundColor: 'red' },
+      accountNumber: '****999999',
+      transactionNumber: '0000',
+    },
+    {
+      date: '18 DIC',
+      name: 'Dwight',
+      surname: 'Schrute',
+      routingNumber: '777456789',
+      accountNumber: '****999777',
+      transactionNumber: '7777',
+      backgroundColor: 'blue',
+    },
+  ],
+};
+
 const mockExpanded = {
   variant: 'DEFAULT',
   headerVariant: 'PRIMARY',
@@ -301,6 +379,22 @@ describe('Table component', () => {
         aria-label={'aria table label'}
         captionDescription={'caption description'}
         {...mockBase}
+      />
+    );
+    const results = await axe(container);
+    const table = screen.getByRole('table');
+
+    expect(table).toBeDefined();
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Renders with a valid HTML structure as customizableTable', async () => {
+    const { container } = renderProvider(
+      <Table
+        aria-label={'aria table label'}
+        captionDescription={'caption description'}
+        {...mockBaseCustomizable}
       />
     );
     const results = await axe(container);

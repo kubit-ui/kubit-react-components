@@ -479,11 +479,11 @@ export const mockCustomizableTable = {
       value: (value): string | JSX.Element =>
         value.surname ? (
           <div>
-            <div>{value.name}</div>
+            <div>{value.name.value ?? value.name}</div>
             <div>{value.surname}</div>
           </div>
         ) : (
-          value.name
+          value.name.value ?? value.name
         ),
     },
     {
@@ -538,7 +538,7 @@ export const mockCustomizableTable = {
   values: [
     {
       date: '18 DIC',
-      name: 'Kevin',
+      name: { value: 'Kevin' },
       surname: 'Malone',
       routingNumber: '123456789',
       accountNumber: '****999999',
@@ -547,7 +547,7 @@ export const mockCustomizableTable = {
     },
     {
       date: '18 DIC',
-      name: 'Kevin',
+      name: { value: 'Dwight', backgroundColor: 'green' },
       surname: 'Malone',
       routingNumber: '123456789',
       accountNumber: '****999999',
@@ -575,6 +575,7 @@ export const mockCustomizableTable = {
       routingNumber: '9876132224',
       accountNumber: '****5986756',
       rowVariant: 'CUSTOMIZABLE_ROW',
+      delete: { backgroundColor: 'pink' },
     },
   ],
 };
