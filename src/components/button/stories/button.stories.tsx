@@ -15,6 +15,9 @@ const meta = {
   component: ButtonStory,
   parameters: {
     layout: 'centered',
+    githubUrl: 'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/button',
+    figmaUrl:
+      'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3922-9829',
   },
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),

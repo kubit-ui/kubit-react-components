@@ -15,6 +15,10 @@ const meta = {
   component: Story,
   parameters: {
     layout: 'centered',
+    githubUrl:
+      'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/calendar',
+    figmaUrl:
+      'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3922-29766',
   },
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),

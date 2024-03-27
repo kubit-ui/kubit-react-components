@@ -104,7 +104,8 @@ type PropsToOmitIInputStandAlone =
   | 'aria-controls'
   | 'aria-expanded'
   | 'aria-haspopup'
-  | 'formatNumber';
+  | 'formatNumber'
+  | 'locale';
 
 export interface IInputDropdownStandAlone
   extends Omit<IInputStandAlone, PropsToOmitIInputStandAlone> {
