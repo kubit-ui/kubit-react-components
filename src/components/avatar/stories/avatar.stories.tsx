@@ -15,6 +15,9 @@ const meta = {
   component: AvatarStory,
   parameters: {
     layout: 'centered',
+    githubUrl: 'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/avatar',
+    figmaUrl:
+      'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3928-34082&mode=dev',
   },
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),

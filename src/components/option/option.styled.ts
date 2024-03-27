@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { getStyles } from '@/utils/getStyles/getStyles';
+import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
 import { OptionPropsStateStylesType, OptionPropsStylesType } from './types';
 
@@ -13,6 +13,7 @@ export const OptionStyled = styled.div.withConfig({
   $stateStyles?: OptionPropsStateStylesType;
 }>`
   ${props => getStyles(props.$stateStyles?.container)}
+  ${props => getTypographyStyles(props.$stateStyles?.container)}
   &:before {
     content: '';
     ${props => getStyles(props.$stateStyles?.containerBefore)}

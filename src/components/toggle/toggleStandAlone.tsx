@@ -173,7 +173,7 @@ const ToggleStandAloneComponent = (
       hasThreePositions={props.hasThreePositions}
       id={props.id}
       styles={props.styles}
-      tabIndex={0}
+      tabIndex={!props.disabled ? 0 : undefined}
       togglePosition={props.togglePosition}
       onKeyDown={e => {
         e.persist();

@@ -14,6 +14,12 @@ const meta = {
   component: Story,
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
+  parameters: {
+    githubUrl:
+      'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/oliveMenu',
+    figmaUrl:
+      'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3942-37751&mode=dev',
+  },
 } as Meta<typeof Story>;
 
 export default meta;

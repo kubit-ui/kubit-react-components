@@ -14,7 +14,9 @@ import { ERROR_EXECUTION, FormatNumber } from '@/components/input/types/input';
 import { InputTypeType } from '@/components/input/types/inputType';
 import {
   checkValidFormattedNumber,
+  convertDecimalSeparator,
   formatNumber,
+  getDecimalSeparator,
   getState,
   removeThousandSeparator,
 } from '@/components/input/utils';
@@ -28,7 +30,6 @@ import {
   getPosition,
   isArrowDownPressed,
   isArrowUpPressed,
-  isKeyEnterPressed,
   maxCountBetweenChars,
 } from '@/utils';
 import { matchInputValue } from '@/utils/maskUtility/mask.utility';
@@ -82,7 +83,7 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
     if (props.currentValue !== undefined) {
       let newValue = props.currentValue;
       // format with formatNumber configuration
-      if (firstRender.current && props.formatNumber) {
+      if (firstRender.current && props.formatNumber && !focus) {
         // add thousand separator to the value
         newValue = addThousandSeparator(String(props.currentValue), props.formatNumber);
       }
@@ -118,7 +119,7 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
 
     // truncate the value with maximun of decimals
     const truncateValue =
-      props.truncate && props.maxDecimals
+      props.truncate && props.maxDecimals !== null && props.maxDecimals !== undefined
         ? truncatedValue(String(limitedValue), props.maxDecimals)
         : limitedValue;
     handleSetValue(truncateValue);
@@ -127,9 +128,9 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
 
   // add thousand separator to the value
   const addThousandSeparator = (value: string, format: FormatNumber) => {
-    if (checkValidFormattedNumber(value, format.locale)) {
+    if (checkValidFormattedNumber(value, props.locale || format.locale)) {
       // remove existing thousand separator
-      const newValue = removeThousandSeparator(value, format.locale);
+      const newValue = removeThousandSeparator(value, props.locale || format.locale);
       // format value
       const formattedValue = formatNumber(Number(newValue), format);
       return formattedValue;
@@ -149,8 +150,12 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
       const newMaskedValue = matchInputValue(String(value), event.target.value, props.regex);
       event.target.value = newMaskedValue;
     }
-    if (props.truncate && props.maxDecimals) {
-      event.target.value = truncatedValue(String(event.target.value), props.maxDecimals);
+    if (props.truncate && props.maxDecimals !== null && props.maxDecimals !== undefined) {
+      event.target.value = truncatedValue(
+        String(event.target.value),
+        props.maxDecimals,
+        props.locale || props.formatNumber?.locale
+      );
     }
 
     // key validation
@@ -186,6 +191,20 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
   };
 
   const handleFocusInternal: FocusEventHandler<HTMLInputElement> = event => {
+    if (props.formatNumber) {
+      // remove thousand separator to the value
+      event.target.value = removeThousandSeparator(
+        event.target.value,
+        props.locale || props.formatNumber?.locale,
+        false
+      );
+      handleSetValue(event.target.value);
+    }
+    // transform the string value to a number format with dot as decimal separator to avoid errors
+    event.target.value = convertDecimalSeparator(
+      event.target.value,
+      getDecimalSeparator(props.locale || props.formatNumber?.locale)
+    );
     props.onFocus?.(event);
   };
 
@@ -206,12 +225,6 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
       (isArrowUpPressed(event.key) || isArrowDownPressed(event.key))
     ) {
       event.preventDefault();
-    }
-    // Check if the input has a formatNumber ans press the enter key
-    if (props.formatNumber && isKeyEnterPressed(event.key) && inputRef.current) {
-      // add thousand separator to the value
-      const newValue = addThousandSeparator(String(value), props.formatNumber);
-      handleSetValue(newValue);
     }
 
     const {

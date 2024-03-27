@@ -29,6 +29,7 @@ export type ParamsTypeInputHook = {
   informationAssociated?: string;
   ignoreKeys?: string[];
   formatNumber?: FormatNumber;
+  locale?: string;
   onBlur?: FocusEventHandler<HTMLInputElement>;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onFocus?: FocusEventHandler<HTMLInputElement>;

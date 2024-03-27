@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import { ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 
 import * as validationsProvider from '@/provider/validations/validationsProvider';
 
@@ -9,7 +9,12 @@ describe('useInput Hook', () => {
   it('useInput - on internal change should call parent onChange', () => {
     const onChange = jest.fn();
     const formatNumber = { style: 'decimal' };
-    const { result } = renderHook(() => useInput({ onChange, formatNumber }));
+    const ref = React.createRef<HTMLInputElement | undefined>();
+    const currentValue = '123234';
+    const regex = new RegExp('^[0-9]*$');
+    const { result } = renderHook(() =>
+      useInput({ onChange, formatNumber, ref, currentValue, regex })
+    );
 
     act(() => {
       result.current.handleChangeInternal({
@@ -38,17 +43,19 @@ describe('useInput Hook', () => {
   });
   it('useInput - on internal blur should call parent onBlur', () => {
     const onBlur = jest.fn();
-    const { result } = renderHook(() => useInput({ onBlur }));
+    const formatNumber = { style: 'decimal' };
+    const { result } = renderHook(() => useInput({ onBlur, formatNumber }));
 
     act(() => {
       result.current.handleBlurInternal({
         target: {
-          value: 'value',
+          value: '12323',
         },
       } as React.FocusEvent<HTMLInputElement>);
     });
 
     expect(onBlur).toHaveBeenCalled();
+    expect(result.current.value).toBe('12,323');
   });
   it('useInput - on internal blur, if onError, errorExecution === onBlur and keyValidation should call parent onError', () => {
     jest.spyOn(validationsProvider, 'useValidations').mockImplementation(() => ({

@@ -35,12 +35,13 @@ describe('BackToTop component', () => {
 
   test('When scrollY is >= visibilityScrollOffset the button will be shown', () => {
     const scrollToMock = jest.fn();
+    const ref = React.createRef<HTMLButtonElement>();
     jest.spyOn(window, 'scrollTo').mockImplementation(scrollToMock);
     window.scrollY = 2;
-
+    const ref = React.createRef<HTMLButtonElement>();
     renderProvider(
       <div>
-        <BackToTop {...mockProps} />
+        <BackToTop {...mockProps} ref={ref} />
         <footer>footer</footer>
       </div>
     );

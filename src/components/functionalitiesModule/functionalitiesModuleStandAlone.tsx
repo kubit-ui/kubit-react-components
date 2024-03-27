@@ -85,48 +85,53 @@ const FunctionalitiesModuleStandAloneComponent = (
 
   return (
     <div ref={ref}>
-      <TabsContainerStyled
-        ref={ref}
-        aria-label={props.tabsContainerAriaLabel}
-        data-testid={`${props.dataTestId}Tabs`}
-        styles={props.styles}
-      >
-        <Tabs
-          allowFocusTabPanel={false}
-          content={content}
-          tabs={props.sections?.map(({ tab }) => tab)}
-          variant={props.styles.tabsVariant}
-          {...props.tabsConfig}
-        />
-      </TabsContainerStyled>
-      {props.trigger?.content && (
-        <ButtonContainerStyled styles={props.styles}>
-          <Button dataTestId={`${props.dataTestId}Button`} {...props.trigger}>
-            {props.trigger?.content}
-          </Button>
-        </ButtonContainerStyled>
+      {props.device === DeviceBreakpointsType.DESKTOP ? (
+        <TabsContainerStyled
+          ref={ref}
+          aria-label={props.tabsContainerAriaLabel}
+          data-testid={`${props.dataTestId}Tabs`}
+          styles={props.styles}
+        >
+          <Tabs
+            allowFocusTabPanel={false}
+            content={content}
+            tabs={props.sections?.map(({ tab }) => tab)}
+            variant={props.styles.tabsVariant}
+            {...props.tabsConfig}
+          />
+        </TabsContainerStyled>
+      ) : (
+        <>
+          {props.trigger?.content && (
+            <ButtonContainerStyled styles={props.styles}>
+              <Button dataTestId={`${props.dataTestId}Button`} {...props.trigger}>
+                {props.trigger?.content}
+              </Button>
+            </ButtonContainerStyled>
+          )}
+          <ActionBottomSheetContainerStyled styles={props.styles}>
+            {props.styles.actionBottomSheet?.variant && (
+              <ActionBottomSheet
+                open={props.open ?? false}
+                popover={{
+                  preventScrollOnCloseFocus: true,
+                  blockBack: true,
+                  ...actionBottomSheetPopover,
+                }}
+                title={{
+                  align: props.styles.actionBottomSheet.alignTitle ?? POSITIONS.CENTER,
+                  component: TextComponentType.H5,
+                  ...actionBottomSheetTitle,
+                }}
+                variant={props.styles.actionBottomSheet.variant}
+                {...actionBottomSheet}
+              >
+                {content}
+              </ActionBottomSheet>
+            )}
+          </ActionBottomSheetContainerStyled>
+        </>
       )}
-      <ActionBottomSheetContainerStyled styles={props.styles}>
-        {props.styles.actionBottomSheet?.variant && (
-          <ActionBottomSheet
-            open={props.open ?? false}
-            popover={{
-              preventScrollOnCloseFocus: true,
-              blockBack: true,
-              ...actionBottomSheetPopover,
-            }}
-            title={{
-              align: props.styles.actionBottomSheet.alignTitle ?? POSITIONS.CENTER,
-              component: TextComponentType.H5,
-              ...actionBottomSheetTitle,
-            }}
-            variant={props.styles.actionBottomSheet.variant}
-            {...actionBottomSheet}
-          >
-            {content}
-          </ActionBottomSheet>
-        )}
-      </ActionBottomSheetContainerStyled>
     </div>
   );
 };

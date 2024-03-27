@@ -1,7 +1,15 @@
 /* eslint-disable complexity */
 import * as React from 'react';
 
-import { DividerContent, ITableHeader, ITableStandAlone, IValue, TableDividerType } from '../types';
+import {
+  DividerContent,
+  ITableHeader,
+  ITableRowHeader,
+  ITableStandAlone,
+  IValue,
+  TableDividerType,
+  ValueConfigType,
+} from '../types';
 
 interface IUseContent extends Omit<ITableStandAlone, 'values' | 'headerVariant'> {
   hasSomeExpandedContent?: boolean;
@@ -12,9 +20,11 @@ interface IUseContent extends Omit<ITableStandAlone, 'values' | 'headerVariant'>
 
 interface IUseContentResponse {
   divider?: ITableHeader;
+  rowHeader?: ITableRowHeader;
   dividerValue: () => null | TableDividerType | unknown;
   getExpandedAria: () => string | undefined;
   getValue: (headerValue: ITableHeader) => string | JSX.Element | DividerContent;
+  getBackgroundColorCellValue: (headerValue: ITableHeader) => string | undefined;
   handleShowExpandedContent: (value: boolean) => void;
   hasExpandedContentRow: boolean;
   hasFooter: boolean;
@@ -24,7 +34,7 @@ interface IUseContentResponse {
 
 export const useContent = (props: IUseContent): IUseContentResponse => {
   const [showExpandedContent, setShowExpandedContent] = React.useState(props.initialExpanded);
-  const divider = props.headers.find(header => header.config.hasDivider);
+  const divider = props.headers.find(header => header?.config?.hasDivider);
   const rowVariant = props.value.rowVariant || 'DEFAULT';
 
   const handleShowExpandedContent = (value: boolean) => {
@@ -73,18 +83,36 @@ export const useContent = (props: IUseContent): IUseContentResponse => {
       return headerValue.value(props.value);
     }
 
-    return props.value[headerValue.id]
-      ? (props.value[headerValue.id] as string | JSX.Element)
+    const cellValue = props.value[headerValue.id]
+      ? (props.value[headerValue.id] as string | JSX.Element | ValueConfigType)
       : '-';
+    if (React.isValidElement(cellValue) || typeof cellValue === 'string') {
+      return cellValue;
+    }
+    return (cellValue as ValueConfigType).value as string | JSX.Element;
+  };
+
+  const getBackgroundColorCellValue = (headerValue: ITableHeader): string | undefined => {
+    const cellValue = props.value[headerValue.id]
+      ? (props.value[headerValue.id] as string | JSX.Element | ValueConfigType)
+      : '-';
+    if (React.isValidElement(cellValue) || typeof cellValue === 'string') {
+      return;
+    }
+    return (cellValue as ValueConfigType).backgroundColor;
   };
 
   const hasExpandedContentRow = !!Object.getOwnPropertyDescriptor(props.value, 'expandedContent');
 
+  const rowHeader = props.value.rowHeader;
+
   return {
     divider,
+    rowHeader,
     dividerValue,
     getExpandedAria,
     getValue,
+    getBackgroundColorCellValue,
     handleShowExpandedContent,
     hasExpandedContentRow,
     hasFooter,

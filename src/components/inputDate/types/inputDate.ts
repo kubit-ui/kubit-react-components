@@ -66,7 +66,8 @@ type propsToOmitInputBasic =
   | 'aria-controls'
   | 'aria-expanded'
   | 'aria-haspopup'
-  | 'formatNumber';
+  | 'formatNumber'
+  | 'locale';
 
 export interface IInputDateStandAlone extends Omit<IInputStandAlone, propsToOmitInputBasic> {
   styles: InputDateStylesProps;

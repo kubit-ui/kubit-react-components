@@ -15,7 +15,8 @@ type propsToOmitInputBasic =
   | 'error'
   | 'disabled'
   | 'maxLength'
-  | 'formatNumber';
+  | 'formatNumber'
+  | 'locale';
 
 export interface IInputCounterStandAlone<V = undefined extends string ? unknown : string>
   extends Omit<IInputStandAlone, propsToOmitInputBasic> {

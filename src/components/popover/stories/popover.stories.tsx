@@ -16,11 +16,13 @@ const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 const meta = {
   title: 'Components/Resources/Popover',
   component: Story,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
+  parameters: {
+    layout: 'centered',
+    githubUrl:
+      'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/popover',
+  },
 } satisfies Meta<typeof Story>;
 
 export default meta;

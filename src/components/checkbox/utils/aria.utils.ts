@@ -17,6 +17,7 @@ export const buildAriaDescribedBy = ({
   errorText,
   hasError,
   checkBoxErrorId,
+  screenReaderText,
   screenReaderId,
 }: {
   extraAriaDescribedBy: string;
@@ -25,10 +26,11 @@ export const buildAriaDescribedBy = ({
   hasError: boolean;
   errorText?: string;
   checkBoxErrorId: string;
-  screenReaderId?: string;
+  screenReaderText?: string;
+  screenReaderId: string;
 }): string => {
   let res = extraAriaDescribedBy;
-  if (screenReaderId) {
+  if (screenReaderText) {
     res += ` ${screenReaderId}`;
   }
   if (helpContent) {

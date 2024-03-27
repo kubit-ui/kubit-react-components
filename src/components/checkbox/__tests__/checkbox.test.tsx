@@ -28,210 +28,229 @@ const mockWithOutProps = {
   label: { content: 'Accept terms and conditions' },
 };
 
-test('Checkbox component', async () => {
-  const { container } = renderProvider(<Checkbox {...mockProps} />);
+describe('Checkbox component', () => {
+  it('Checkbox component', async () => {
+    const { container } = renderProvider(<Checkbox {...mockProps} />);
 
-  const checkbox = screen.getByRole('checkbox');
+    const checkbox = screen.getByRole('checkbox');
 
-  expect(checkbox).toBeInTheDocument();
+    expect(checkbox).toBeInTheDocument();
 
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
-
-test('Checkbox component with label as Element', async () => {
-  const labelElement = <label htmlFor="checkboxid">This is an element</label>;
-  const { container, getByText } = renderProvider(
-    <Checkbox {...mockProps} id="checkboxid" label={{ content: labelElement }} />
-  );
-
-  const labelAsElement = getByText('This is an element');
-
-  expect(labelAsElement).toBeInTheDocument();
-
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
-
-test('Checkbox component uncontrolled', async () => {
-  const { container } = renderProvider(<CheckboxUnControlled {...mockProps} />);
-
-  const checkbox = screen.getByRole('checkbox');
-
-  expect(checkbox).toBeInTheDocument();
-
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
-
-test('Checkbox component without props', async () => {
-  const { container } = renderProvider(<Checkbox {...mockWithOutProps} />);
-
-  const checkbox = screen.getByRole('checkbox');
-
-  expect(checkbox).toBeInTheDocument();
-
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
-
-it('Should disallow user interaction when disabled', async () => {
-  const { container } = renderProvider(
-    <Checkbox
-      {...mockProps}
-      disabled={true}
-      name="conditions"
-      variant="DEFAULT"
-      onChange={jest.fn()}
-    />
-  );
-
-  const checkbox = screen.getByRole('checkbox');
-
-  expect(checkbox).toBeDisabled();
-
-  await userEvent.click(checkbox);
-
-  expect(checkbox).not.toBeChecked();
-
-  const results = await axe(container);
-  expect(container).toHTMLValidate({
-    rules: {
-      'attribute-boolean-style': 'off',
-    },
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
   });
-  expect(results).toHaveNoViolations();
-});
 
-it('Should allow user interaction when its not disabled', async () => {
-  const { container } = renderProvider(
-    <CheckboxUnControlled label={{ content: 'label' }} name="conditions" variant="DEFAULT" />
-  );
+  it('Checkbox component with label as Element', async () => {
+    const labelElement = <label htmlFor="checkboxid">This is an element</label>;
+    const { container, getByText } = renderProvider(
+      <Checkbox {...mockProps} id="checkboxid" label={{ content: labelElement }} />
+    );
 
-  const checkbox = screen.getByRole('checkbox');
+    const labelAsElement = getByText('This is an element');
 
-  expect(checkbox).toBeEnabled();
+    expect(labelAsElement).toBeInTheDocument();
 
-  await userEvent.click(checkbox);
-
-  expect(checkbox).toBeChecked();
-
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
-
-it('When user interacts, on Change should be called', async () => {
-  const onChange = jest.fn();
-  const { container } = renderProvider(
-    <CheckboxUnControlled
-      label={{ content: 'label' }}
-      name="conditions"
-      variant="DEFAULT"
-      onChange={onChange}
-    />
-  );
-
-  const checkbox = screen.getByRole('checkbox');
-
-  expect(checkbox).toBeEnabled();
-
-  await userEvent.click(checkbox);
-
-  expect(checkbox).toBeChecked();
-  expect(onChange).toHaveBeenCalled();
-
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
-
-it('Should be required when required prop is true', async () => {
-  const { container } = renderProvider(
-    <Checkbox
-      label={{ content: 'label' }}
-      name="conditions"
-      required={true}
-      variant="DEFAULT"
-      onChange={jest.fn()}
-    />
-  );
-  const checkbox = screen.getByRole('checkbox');
-
-  expect(checkbox).toBeRequired();
-
-  const results = await axe(container);
-  expect(container).toHTMLValidate({
-    rules: {
-      'attribute-boolean-style': 'off',
-    },
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
   });
-  expect(results).toHaveNoViolations();
-});
 
-it('Should show message error when the status is error', async () => {
-  const { container } = renderProvider(<Checkbox {...mockProps} error />);
+  it('Checkbox component uncontrolled', async () => {
+    const { container } = renderProvider(<CheckboxUnControlled {...mockProps} />);
 
-  const textErrorMessage = screen.getByText(mockProps.errorMessage.content);
+    const checkbox = screen.getByRole('checkbox');
 
-  expect(textErrorMessage).toBeInTheDocument();
+    expect(checkbox).toBeInTheDocument();
 
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
-
-it('Should allow to be checked and disabled at the same time', async () => {
-  const { container } = renderProvider(<Checkbox {...mockProps} checked disabled />);
-
-  const checkbox = screen.getByRole('checkbox');
-
-  expect(checkbox).toBeDisabled();
-  expect(checkbox).toBeChecked();
-
-  const results = await axe(container);
-  expect(container).toHTMLValidate({
-    rules: {
-      'attribute-boolean-style': 'off',
-    },
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
   });
-  expect(results).toHaveNoViolations();
-});
 
-test('Checkbox component with helpContent as Element and without helperText', async () => {
-  const helpContent = <div>This is an element</div>;
-  const { container, getByText, queryByText } = renderProvider(
-    <Checkbox {...mockProps} helperContent={{ content: helpContent }} id="checkboxid" />
-  );
+  it('Checkbox component without props', async () => {
+    const { container } = renderProvider(<Checkbox {...mockWithOutProps} />);
 
-  const helpContentAsElement = getByText('This is an element');
-  const helperTextAsString = queryByText(mockProps.helperText.content as string);
+    const checkbox = screen.getByRole('checkbox');
 
-  expect(helpContentAsElement).toBeInTheDocument();
-  expect(helperTextAsString).not.toBeInTheDocument();
+    expect(checkbox).toBeInTheDocument();
 
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
 
-test('Checkbox component with helperText', async () => {
-  const helpContent = 'This is a description';
-  const { container, getByText } = renderProvider(
-    <Checkbox {...mockProps} helperContent={{ content: helpContent }} id="checkboxid" />
-  );
+  it('Should disallow user interaction when disabled', async () => {
+    const { container } = renderProvider(
+      <Checkbox
+        {...mockProps}
+        disabled={true}
+        name="conditions"
+        variant="DEFAULT"
+        onChange={jest.fn()}
+      />
+    );
 
-  const helperTextAsString = getByText('Helper text');
-  const helpContentAsElement = getByText('This is a description');
+    const checkbox = screen.getByRole('checkbox');
 
-  expect(helperTextAsString).toBeInTheDocument();
-  expect(helpContentAsElement).toBeInTheDocument();
+    expect(checkbox).toBeDisabled();
 
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
+    await userEvent.click(checkbox);
+
+    expect(checkbox).not.toBeChecked();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate({
+      rules: {
+        'attribute-boolean-style': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Should allow user interaction when its not disabled', async () => {
+    const { container } = renderProvider(
+      <CheckboxUnControlled label={{ content: 'label' }} name="conditions" variant="DEFAULT" />
+    );
+
+    const checkbox = screen.getByRole('checkbox');
+
+    expect(checkbox).toBeEnabled();
+
+    await userEvent.click(checkbox);
+
+    expect(checkbox).toBeChecked();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('When user interacts, on Change should be called', async () => {
+    const onChange = jest.fn();
+    const { container } = renderProvider(
+      <CheckboxUnControlled
+        label={{ content: 'label' }}
+        name="conditions"
+        variant="DEFAULT"
+        onChange={onChange}
+      />
+    );
+
+    const checkbox = screen.getByRole('checkbox');
+
+    expect(checkbox).toBeEnabled();
+
+    await userEvent.click(checkbox);
+
+    expect(checkbox).toBeChecked();
+    expect(onChange).toHaveBeenCalled();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Should be required when required prop is true', async () => {
+    const { container } = renderProvider(
+      <Checkbox
+        label={{ content: 'label' }}
+        name="conditions"
+        required={true}
+        variant="DEFAULT"
+        onChange={jest.fn()}
+      />
+    );
+    const checkbox = screen.getByRole('checkbox');
+
+    expect(checkbox).toBeRequired();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate({
+      rules: {
+        'attribute-boolean-style': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Should show message error when the status is error', async () => {
+    const { container } = renderProvider(<Checkbox {...mockProps} error />);
+
+    const textErrorMessage = screen.getByText(mockProps.errorMessage.content);
+
+    expect(textErrorMessage).toBeInTheDocument();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Should allow to be checked and disabled at the same time', async () => {
+    const { container } = renderProvider(<Checkbox {...mockProps} checked disabled />);
+
+    const checkbox = screen.getByRole('checkbox');
+
+    expect(checkbox).toBeDisabled();
+    expect(checkbox).toBeChecked();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate({
+      rules: {
+        'attribute-boolean-style': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Checkbox component with helpContent as Element and without helperText', async () => {
+    const helpContent = <div>This is an element</div>;
+    const { container, getByText, queryByText } = renderProvider(
+      <Checkbox {...mockProps} helperContent={{ content: helpContent }} id="checkboxid" />
+    );
+
+    const helpContentAsElement = getByText('This is an element');
+    const helperTextAsString = queryByText(mockProps.helperText.content as string);
+
+    expect(helpContentAsElement).toBeInTheDocument();
+    expect(helperTextAsString).not.toBeInTheDocument();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Checkbox component with helperText', async () => {
+    const helpContent = 'This is a description';
+    const { container, getByText } = renderProvider(
+      <Checkbox {...mockProps} helperContent={{ content: helpContent }} id="checkboxid" />
+    );
+
+    const helperTextAsString = getByText('Helper text');
+    const helpContentAsElement = getByText('This is a description');
+
+    expect(helperTextAsString).toBeInTheDocument();
+    expect(helpContentAsElement).toBeInTheDocument();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('When Screen Reader Text, it appears as aria-describedBy', async () => {
+    const checkboxId = 'checkboxid';
+    const screenReaderText = 'This is a screen reader text';
+    const { container } = renderProvider(
+      <Checkbox {...mockProps} id={checkboxId} screenReaderText={screenReaderText} />
+    );
+
+    const checkbox = screen.getByRole('checkbox');
+
+    expect(checkbox).toBeInTheDocument();
+    expect(checkbox).toHaveAttribute('aria-describedby', `${checkboxId}ScreenReader`);
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
 });

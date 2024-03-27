@@ -16,6 +16,12 @@ const meta = {
   component: Story,
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
+  parameters: {
+    githubUrl:
+      'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/pageControl',
+    figmaUrl:
+      'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3942-37764&mode=dev',
+  },
   render: ({ ...args }) => <StoryWithHooks {...args} />,
 } satisfies Meta<typeof Story>;
 

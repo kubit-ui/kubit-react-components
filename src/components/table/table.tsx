@@ -27,12 +27,28 @@ const TableComponent = React.forwardRef(
     );
     const device = useMediaDevice();
 
+    // Indicates if there is scrolling behind the table body to add shadow to column headers.
+    const [scrollPosition, setScrollPosition] = React.useState(0);
+    const refTableBody = React.useRef<HTMLTableSectionElement>(null);
+
+    React.useEffect(() => {
+      const updatePosition = () => {
+        setScrollPosition(refTableBody?.current?.scrollTop ?? 0);
+      };
+
+      refTableBody?.current?.addEventListener('scroll', updatePosition);
+
+      return () => refTableBody?.current?.removeEventListener('scroll', updatePosition);
+    }, []);
+
     return (
       <TableStandAlone
         {...props}
         ref={ref}
         device={device}
         lineSeparatorLineStyles={lineSeparatorLineStyles}
+        refTableBody={refTableBody}
+        scrolling={scrollPosition > 0}
         styles={styles}
       />
     );
@@ -47,7 +63,7 @@ const TableBoundary = <V extends string | unknown>(
   <ErrorBoundary
     fallBackComponent={
       <FallbackComponent>
-        <TableStandAlone {...(props as unknown as ITableStandAlone)} />
+        <TableStandAlone {...(props as unknown as ITableStandAlone)} ref={ref} scrolling={false} />
       </FallbackComponent>
     }
   >
