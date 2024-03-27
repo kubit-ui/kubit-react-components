@@ -4,6 +4,7 @@ import * as React from 'react';
 import {
   DividerContent,
   ITableHeader,
+  ITableRowHeader,
   ITableStandAlone,
   IValue,
   TableDividerType,
@@ -19,6 +20,7 @@ interface IUseContent extends Omit<ITableStandAlone, 'values' | 'headerVariant'>
 
 interface IUseContentResponse {
   divider?: ITableHeader;
+  rowHeader?: ITableRowHeader;
   dividerValue: () => null | TableDividerType | unknown;
   getExpandedAria: () => string | undefined;
   getValue: (headerValue: ITableHeader) => string | JSX.Element | DividerContent;
@@ -32,7 +34,7 @@ interface IUseContentResponse {
 
 export const useContent = (props: IUseContent): IUseContentResponse => {
   const [showExpandedContent, setShowExpandedContent] = React.useState(props.initialExpanded);
-  const divider = props.headers.find(header => header.config.hasDivider);
+  const divider = props.headers.find(header => header?.config?.hasDivider);
   const rowVariant = props.value.rowVariant || 'DEFAULT';
 
   const handleShowExpandedContent = (value: boolean) => {
@@ -102,8 +104,11 @@ export const useContent = (props: IUseContent): IUseContentResponse => {
 
   const hasExpandedContentRow = !!Object.getOwnPropertyDescriptor(props.value, 'expandedContent');
 
+  const rowHeader = props.value.rowHeader;
+
   return {
     divider,
+    rowHeader,
     dividerValue,
     getExpandedAria,
     getValue,

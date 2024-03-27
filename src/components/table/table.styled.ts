@@ -316,3 +316,7 @@ export const ListEmptyExpandedContentItem = styled.div`
   width: 0;
   height: 0;
 `;
+
+export const EmptyRowHeader = styled.td<{ styles?: TableHeaderStylesTypes }>`
+  ${({ styles }) => getStyles(styles?.column)}
+`;

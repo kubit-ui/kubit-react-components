@@ -7,6 +7,7 @@ import { useId } from '@/hooks';
 import { pickAriaProps } from '@/utils/aria/aria';
 
 import {
+  EmptyRowHeader,
   TableCaptionStyled,
   TableColumnHeaderStyled,
   TableRowGroupBodyStyled,
@@ -31,16 +32,20 @@ export const TableComponent = (
   const footerVariant = props.footer?.variant ?? props.styles?.footerVariant;
   const uniqueId = useId('tableCaption');
   const DIVIDER_CONTENT = 'DividerContent';
-  const hasSomeDivider = props.headers.some(h => h.config.hasDivider);
+  const hasSomeDivider = props.headers.some(h => h.config?.hasDivider);
   const hasSomeDividerContent = props.values.some(o => {
     return !!Object.getOwnPropertyDescriptor(o, 'dividerContent');
   });
   const headersElement = props.headers.filter(
-    ({ config }: { config: ConfigType }) => !config.hidden?.[props.device]
+    ({ config }: { config?: ConfigType }) => !config?.hidden?.[props.device]
   );
   const headersElementWithoutDivider = headersElement.filter(
-    element => !element.config.hasDivider || !hasSomeDividerContent
+    element => !element.config?.hasDivider || !hasSomeDividerContent
   );
+  const hasRowHeader = props.values.some(o => {
+    return !!Object.getOwnPropertyDescriptor(o, 'rowHeader');
+  });
+
   return (
     <>
       <TableStyled
@@ -66,6 +71,7 @@ export const TableComponent = (
             numberOfCells={headersElement.length}
             styles={props.styles.header?.[props.headerVariant]}
           >
+            <EmptyRowHeader styles={props.styles.header?.[props.headerVariant]} />
             {hasSomeDividerContent && (
               <TableColumnHeaderStyled
                 key={'dividerContent'}
@@ -93,7 +99,7 @@ export const TableComponent = (
                   customBackgroundColor={headerValue?.config?.backgroundColor}
                   customWidth={headerValue?.config?.width}
                   flexWidth={headerValue?.config?.flexWidth}
-                  hasDivider={headerValue.config.hasDivider}
+                  hasDivider={headerValue?.config?.hasDivider}
                   scope="col"
                   styles={props.styles.header?.[props.headerVariant]}
                 >
@@ -131,6 +137,7 @@ export const TableComponent = (
               <TableRow
                 {...props}
                 key={indexValue}
+                hasRowHeader={hasRowHeader}
                 hasSomeDivider={hasSomeDivider}
                 hasSomeDividerContent={hasSomeDividerContent}
                 hasSomeExpandedContent={props.hasSomeExpandedContent}

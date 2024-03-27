@@ -75,6 +75,7 @@ export type IValue = {
   accordionIconCollapsedAriaLabel?: string;
   accordionIconExpandedAriaLabel?: string;
   rowVariant?: string;
+  rowHeader?: ITableRowHeader;
   rowBorderPosition?: LineSeparatorPositionType;
   backgroundColor?: string;
 } & {
@@ -117,8 +118,12 @@ export type DividerContent = { dividerContent?: TableDividerType };
 export interface ITableHeader {
   label: React.ReactNode;
   id: string;
-  config: ConfigType;
+  config?: ConfigType;
   value?: ValueFunctionType & DividerContent;
+}
+
+export interface ITableRowHeader extends Omit<ITableHeader, 'id'> {
+  variant: string;
 }
 
 export type TableFooterType = Omit<IFooter, 'children' | 'variant'> & {

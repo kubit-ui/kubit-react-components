@@ -3,10 +3,12 @@ import * as React from 'react';
 
 import { ButtonType } from '@/components/button';
 import { ElementOrIcon } from '@/components/elementOrIcon';
+import { Text, TextComponentType } from '@/components/text';
 
 import { useContent } from '../hooks/useContent';
 import {
   TableColumnBodyStyled,
+  TableColumnHeaderStyled,
   TableEmptyExpandedContentRow,
   TableExpandedButton,
   TableExpandedCellStyled,
@@ -22,6 +24,7 @@ export interface ITableRow extends Omit<ITableStandAlone, 'values' | 'headerVari
   indexRow: number;
   hasSomeDivider: boolean;
   hasSomeDividerContent: boolean;
+  hasRowHeader: boolean;
 }
 
 /**
@@ -31,6 +34,7 @@ export interface ITableRow extends Omit<ITableStandAlone, 'values' | 'headerVari
 export const TableRow = (props: ITableRow): JSX.Element => {
   const {
     divider,
+    rowHeader,
     dividerValue,
     getExpandedAria,
     getValue,
@@ -57,6 +61,17 @@ export const TableRow = (props: ITableRow): JSX.Element => {
         styles={props.styles.bodyRows?.[rowVariant]}
       >
         <TableDivider divider={dividerValue()} styles={props.styles.divider} />
+        {rowHeader && (
+          <TableColumnHeaderStyled scope="row" styles={props.styles.header?.[rowHeader.variant]}>
+            <Text
+              component={TextComponentType.SPAN}
+              customTypography={props.styles.header?.[rowHeader.variant]?.typography}
+              dataTestId={`${props.dataTestId}RowHeader${props.indexRow}`}
+            >
+              {rowHeader.label}
+            </Text>
+          </TableColumnHeaderStyled>
+        )}
         {props.headers
           .filter(headerValue => headerValue.id !== divider?.id)
           .map((headerValue, indexHeader) => {
@@ -65,17 +80,17 @@ export const TableRow = (props: ITableRow): JSX.Element => {
               <TableColumnBodyStyled
                 key={indexHeader}
                 customAlign={
-                  headerValue.config?.alignValue?.[props.device] ||
+                  headerValue?.config?.alignValue?.[props.device] ||
                   headerValue?.config?.alignValue ||
-                  headerValue.config?.alignHeader?.[props.device] ||
+                  headerValue?.config?.alignHeader?.[props.device] ||
                   headerValue?.config?.alignHeader
                 }
                 customBackgroundColor={
                   getBackgroundColorCellValue(headerValue) ?? props.value.backgroundColor
                 }
-                customWidth={headerValue.config?.width}
+                customWidth={headerValue?.config?.width}
                 data-testid={`${props.dataTestId}Row${props.indexRow}Content${indexHeader}`}
-                flexWidth={headerValue.config?.flexWidth}
+                flexWidth={headerValue?.config?.flexWidth}
                 hasSomeExpandedContent={props.hasSomeExpandedContent && hasExpandedIcon}
                 styles={props.styles.bodyRows?.[rowVariant]}
               >
