@@ -1,4 +1,4 @@
-import { BACKSPACE } from '@/constants';
+import { BACKSPACE, DELETE } from '@/constants';
 import { CursorType } from '@/types/type';
 
 import { getPosition } from './cursor.utility';
@@ -11,7 +11,10 @@ describe('Cursor', () => {
     const position = getPosition(BACKSPACE.key, VALUE, CURSOR);
     expect(position).toBe(-1);
   });
-
+  it('getPosition - should return 0', () => {
+    const position = getPosition(DELETE.key, VALUE, CURSOR);
+    expect(position).toBe(0);
+  });
   it('getPosition - should return 1', () => {
     const position = getPosition('t', VALUE, CURSOR);
     expect(position).toBe(1);
