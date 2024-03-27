@@ -12,11 +12,14 @@ const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 const meta = {
   title: 'Components/Status/Tag',
   component: Story,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
+  parameters: {
+    layout: 'centered',
+    githubUrl: 'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/tag',
+    figmaUrl:
+      'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3928-35886&mode=dev',
+  },
 } satisfies Meta<typeof Story>;
 
 export default meta;
