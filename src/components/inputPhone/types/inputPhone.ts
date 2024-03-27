@@ -11,7 +11,8 @@ type propsToOmitInputBasic =
   | 'variant'
   | 'error'
   | 'disabled'
-  | 'formatNumber';
+  | 'formatNumber'
+  | 'locale';
 
 export type InputPhoneFlagType = Omit<IIconHighlighted, 'variant' | 'size'> & {
   variant?: string;

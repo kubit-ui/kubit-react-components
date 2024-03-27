@@ -4,7 +4,14 @@ import { CustomTokenTypes } from '@/types';
 
 import { InputPasswordStylesProps } from './inputPasswordTheme';
 
-type propsToOmitInputBasic = 'styles' | 'inputId' | 'variant' | 'error' | 'disabled';
+type propsToOmitInputBasic =
+  | 'styles'
+  | 'inputId'
+  | 'variant'
+  | 'error'
+  | 'disabled'
+  | 'formatNumber'
+  | 'locale';
 
 export type IInputPasswordStandAlone = Omit<IInputStandAlone, propsToOmitInputBasic> & {
   styles: InputPasswordStylesProps;

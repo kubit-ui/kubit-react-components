@@ -13,6 +13,10 @@ const meta = {
   component: Story,
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
+  parameters: {
+    githubUrl:
+      'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/thirdPartyAnimation',
+  },
 } satisfies Meta<typeof Story>;
 
 export default meta;

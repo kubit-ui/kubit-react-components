@@ -18,6 +18,12 @@ const meta = {
   component: Story,
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
+  parameters: {
+    layout: 'centered',
+    githubUrl: 'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/modal',
+    figmaUrl:
+      'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3922-22906&mode=dev',
+  },
 } satisfies Meta<typeof Story>;
 
 export default meta;

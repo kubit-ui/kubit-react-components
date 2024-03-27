@@ -51,6 +51,19 @@ export type TableDividerType = Omit<IDivider, 'variant'> & {
   variant?: string;
 };
 
+export type ValueConfigType = {
+  value?:
+    | string
+    | JSX.Element
+    | undefined
+    | ExpandedContentType
+    | TableDividerType
+    | object
+    | number
+    | boolean;
+  backgroundColor?: string;
+};
+
 /**
  * @description
  * Table value props
@@ -62,6 +75,7 @@ export type IValue = {
   accordionIconCollapsedAriaLabel?: string;
   accordionIconExpandedAriaLabel?: string;
   rowVariant?: string;
+  rowHeader?: ITableRowHeader;
   rowBorderPosition?: LineSeparatorPositionType;
   backgroundColor?: string;
 } & {
@@ -104,8 +118,12 @@ export type DividerContent = { dividerContent?: TableDividerType };
 export interface ITableHeader {
   label: React.ReactNode;
   id: string;
-  config: ConfigType;
+  config?: ConfigType;
   value?: ValueFunctionType & DividerContent;
+}
+
+export interface ITableRowHeader extends Omit<ITableHeader, 'id'> {
+  variant: string;
 }
 
 export type TableFooterType = Omit<IFooter, 'children' | 'variant'> & {
@@ -125,6 +143,7 @@ type TableAriaAttributes = Pick<
  */
 export interface ITableStandAlone extends TableAriaAttributes {
   styles: TableRowHeaderTypes<string, string>;
+  refTableBody?: React.Ref<HTMLTableSectionElement>;
   lineSeparatorLineStyles: LineSeparatorLinePropsStylesType;
   lineSeparatorTopOnHeader?: boolean;
   lineSeparatorBottomOnHeader?: boolean;
@@ -139,6 +158,7 @@ export interface ITableStandAlone extends TableAriaAttributes {
   dataTestId?: string;
   hiddenHeaderOn?: HiddenType;
   device: DeviceBreakpointsType;
+  scrolling: boolean;
   headerVariant?: string;
   expandedContentHelpMessage?: string;
   formatListInMobile?: boolean;
@@ -156,7 +176,10 @@ export interface ITableStandAlone extends TableAriaAttributes {
  * @interface ITable
  */
 export interface ITable<V = undefined extends string ? unknown : string>
-  extends Omit<ITableStandAlone, 'styles' | 'lineSeparatorLineStyles' | 'device'>,
+  extends Omit<
+      ITableStandAlone,
+      'styles' | 'lineSeparatorLineStyles' | 'device' | 'scrolling' | 'refTableBody'
+    >,
     Omit<CustomTokenTypes<TableRowHeaderTypes<string, string>>, 'cts' | 'extraCt'> {
   variant: V;
   lineSeparatorLineVariant?: string;

@@ -13,6 +13,8 @@ const meta = {
   component: Story,
   parameters: {
     layout: 'centered',
+    githubUrl:
+      'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/overlay',
   },
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),

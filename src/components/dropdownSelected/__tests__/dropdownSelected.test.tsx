@@ -100,7 +100,7 @@ describe('DropdownSelected component', () => {
 
   it('Use key tab and check new focus', async () => {
     const mockOnClickOption = jest.fn();
-    const { getByRole, getAllByRole, debug, container } = renderProvider(
+    const { getByRole, getAllByRole, container } = renderProvider(
       <DropdownSelected {...mockProps} defaultOpen={true} onOptionClick={mockOnClickOption} />
     );
 
@@ -127,10 +127,9 @@ describe('DropdownSelected component', () => {
   });
 
   it('Should execute onCloseInternally when Esc key is pressed', async () => {
-    const { getAllByRole, container, debug } = renderProvider(
-      <DropdownSelected {...mockProps} defaultOpen={true} />
+    const { getAllByRole, container } = renderProvider(
+      <DropdownSelected {...mockProps} defaultOpen={true} url="#" />
     );
-    debug();
     const option1 = getAllByRole('option')[0];
     option1.focus();
 

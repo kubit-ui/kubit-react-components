@@ -6,18 +6,6 @@ import { AriaLiveOptionType } from '@/types/ariaLiveOption';
 import { AUTOCAPITALIZE_TYPE, ERROR_EXECUTION, MASK_TYPE } from '../types/input';
 import { InputIconPosition } from '../types/inputTheme';
 import { InputTypeType } from '../types/inputType';
-import { InputTitleComponentType } from '../types/titleComponent';
-
-// When use Object.values is duplicating the values
-const optionsTitleComponent = [
-  InputTitleComponentType.PARAGRAPH,
-  InputTitleComponentType.H1,
-  InputTitleComponentType.H2,
-  InputTitleComponentType.H3,
-  InputTitleComponentType.H4,
-  InputTitleComponentType.H5,
-  InputTitleComponentType.H6,
-];
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {
@@ -742,6 +730,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
           detail: Object.keys(ROLES).join(', '),
         },
         category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    locale: {
+      description: 'Language of the specified date in the user agents timezone',
+      control: { type: 'text' },
+      type: { name: 'string' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
     formatNumber: {

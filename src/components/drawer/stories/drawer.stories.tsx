@@ -20,6 +20,12 @@ const meta = {
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
   render: ({ ...args }) => <StoryWithHooks {...args} />,
+  parameters: {
+    layout: 'centered',
+    githubUrl: 'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/drawer',
+    figmaUrl:
+      'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3922-22903&mode=dev',
+  },
 } satisfies Meta<typeof Story>;
 
 export default meta;

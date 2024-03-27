@@ -131,6 +131,7 @@ const CheckboxStandAloneComponent = (
               hasError,
               errorText: errorMessage?.content,
               checkBoxErrorId,
+              screenReaderText,
               screenReaderId,
             })}
             aria-invalid={hasError}

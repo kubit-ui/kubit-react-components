@@ -134,7 +134,8 @@ type propsToOmitInputStandalone =
   | 'aria-controls'
   | 'aria-expanded'
   | 'aria-haspopup'
-  | 'formatNumber';
+  | 'formatNumber'
+  | 'locale';
 
 export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOmitInputStandalone> {
   device: DeviceBreakpointsType;

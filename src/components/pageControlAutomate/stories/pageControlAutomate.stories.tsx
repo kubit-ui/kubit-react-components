@@ -14,6 +14,8 @@ const meta = {
   component: Story,
   parameters: {
     layout: 'fullscreen',
+    githubUrl:
+      'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/pageControlAutomate',
   },
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),

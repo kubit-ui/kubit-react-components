@@ -323,6 +323,9 @@ export interface MultipleRef {
 }
 
 export type FormatNumber = Intl.NumberFormatOptions & {
+  /**
+   * @deprecated `locale` in `formatNumber` is deprecated. Please use `locale` instead.
+   */
   locale?: string;
 };
 
@@ -371,6 +374,7 @@ export type IInputStandAlone = IInputComponents & {
   role?: ROLES;
   mask?: string;
   maskType?: MASK_TYPE;
+  locale?: string;
   // functions
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;

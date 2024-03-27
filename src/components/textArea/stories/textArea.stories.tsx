@@ -18,6 +18,11 @@ const meta = {
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
   render: ({ ...args }) => <StoryWithHooks {...args} />,
+  parameters: {
+    layout: 'centered',
+    githubUrl:
+      'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/textArea',
+  },
 } satisfies Meta<typeof Story>;
 
 export default meta;

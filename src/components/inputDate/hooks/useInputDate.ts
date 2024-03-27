@@ -173,9 +173,9 @@ export const useInputDate = ({
 
     if (dateRangeFormatted && dateRangeFormatted?.length >= 2) {
       if (isValidDateRange) {
-        removeInternalError(InternalErrorType.INVALID_DATE);
+        removeInternalError(InternalErrorType.INVALID_DATE_RANGE);
       } else {
-        addInternalError(InternalErrorType.INVALID_DATE);
+        addInternalError(InternalErrorType.INVALID_DATE_RANGE);
       }
     }
     handleChangeDate(
@@ -258,13 +258,48 @@ export const useInputDate = ({
     const hasError = internalErrors.length > 0;
 
     props.onDateError?.(hasError);
-    onBlur?.(event);
+
+    let adaptEvent;
+    const dateValue = event.target.value;
+    if (props.hasRange) {
+      const hasSeparator = props.dateSeparator && dateValue.includes(props.dateSeparator);
+      const secondDateExists = dateValue.length > props.format.length;
+      const dates = hasSeparator
+        ? dateValue.split(props.dateSeparator as string)
+        : dateValue.split(' ');
+
+      const firstDate = formatDateToNative(dates[0], props.format);
+      const secondDate = secondDateExists ? formatDateToNative(dates[1], props.format) : '';
+
+      const firstValueAsNumber = firstDate.length && new Date(firstDate).getTime();
+      const secondValueAsNumber = secondDate.length && new Date(secondDate).getTime();
+
+      const firstValueAsDate = firstDate.length && new Date(firstDate);
+      const secondValueAsDate = secondDate.length && new Date(secondDate);
+
+      adaptEvent = {
+        target: {
+          value: `${firstDate} ${secondDate}`,
+          valueAsNumber: `${firstValueAsNumber} ${secondValueAsNumber}`.trim(),
+          valueAsDate: `${firstValueAsDate} - ${secondValueAsDate}`,
+        },
+      };
+    } else {
+      adaptEvent = setDate(dateValue, props.format);
+    }
+    onBlur?.(adaptEvent);
   };
 
   // validate formatted dates
   // eslint-disable-next-line complexity
   const handleChangeInternalValidate: ChangeEventHandler<HTMLInputElement> = event => {
     const dateValue = event?.target?.value;
+    // reset the internal errors for new verify
+    if (internalErrors.includes(InternalErrorType.INVALID_DATE)) {
+      removeInternalError(InternalErrorType.INVALID_DATE);
+    } else if (internalErrors.includes(InternalErrorType.INVALID_DATE_RANGE)) {
+      removeInternalError(InternalErrorType.INVALID_DATE_RANGE);
+    }
 
     // date range
     if (dateValue?.length === props.format?.length * 2 + 1) {

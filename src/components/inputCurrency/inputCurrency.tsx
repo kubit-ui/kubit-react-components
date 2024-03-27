@@ -32,6 +32,7 @@ const InputCurrencyComponent = React.forwardRef(
       ignoreKeys = ['+', '-', 'e'],
       regex,
       formatNumber,
+      locale,
       onBlur,
       onChange,
       onFocus,
@@ -50,7 +51,9 @@ const InputCurrencyComponent = React.forwardRef(
       ctv
     );
     const inputCurrencyType = formatNumber ? InputTypeType.TEXT : type;
+    // if formatNumber is true (input element of type text), min and maxDecimals should be undefined because it will be handled by the formatNumber function
     const inputCurrencyMin = formatNumber ? undefined : min;
+    const inputCurrencyMaxDecimals = formatNumber ? undefined : maxDecimals;
 
     const {
       value,
@@ -77,12 +80,13 @@ const InputCurrencyComponent = React.forwardRef(
       error,
       currentValue,
       type: inputCurrencyType,
-      maxDecimals,
+      maxDecimals: inputCurrencyMaxDecimals,
       truncate,
       informationAssociated: informationAssociatedValue?.content,
       ignoreKeys,
       regex,
       formatNumber,
+      locale,
       onBlur,
       onChange,
       onFocus,

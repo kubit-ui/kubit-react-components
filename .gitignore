@@ -8,6 +8,8 @@
 junit.xml
 
 /dist
+/yarn-error.log
+/yarn.lock
 /sample
 /__reports__
 /node_modules/

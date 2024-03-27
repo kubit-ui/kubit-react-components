@@ -17,6 +17,12 @@ const meta = {
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
   render: ({ ...args }) => <StoryWithHooks {...args} />,
+  parameters: {
+    githubUrl:
+      'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/snackbar',
+    figmaUrl:
+      'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3922-25667&mode=dev',
+  },
 } satisfies MetaSR<typeof Story>;
 
 const StoryWithHooks = args => {
