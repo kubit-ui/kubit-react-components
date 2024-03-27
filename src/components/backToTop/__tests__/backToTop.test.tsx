@@ -38,7 +38,6 @@ describe('BackToTop component', () => {
     const ref = React.createRef<HTMLButtonElement>();
     jest.spyOn(window, 'scrollTo').mockImplementation(scrollToMock);
     window.scrollY = 2;
-    const ref = React.createRef<HTMLButtonElement>();
     renderProvider(
       <div>
         <BackToTop {...mockProps} ref={ref} />

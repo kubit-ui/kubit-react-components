@@ -13,9 +13,6 @@ const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 const meta = {
   title: 'Components/Forms/Checkbox',
   component: CheckboxStory,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
   parameters: {
