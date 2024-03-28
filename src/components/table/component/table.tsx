@@ -71,7 +71,7 @@ export const TableComponent = (
             numberOfCells={headersElement.length}
             styles={props.styles.header?.[props.headerVariant]}
           >
-            <EmptyRowHeader styles={props.styles.header?.[props.headerVariant]} />
+            {hasRowHeader && <EmptyRowHeader styles={props.styles.header?.[props.headerVariant]} />}
             {hasSomeDividerContent && (
               <TableColumnHeaderStyled
                 key={'dividerContent'}
