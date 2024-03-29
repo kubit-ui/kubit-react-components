@@ -30,8 +30,8 @@ import ICON_BORDER_RIGHT from './icon_border-right.svg';
 import ICON_BORDER_SIDES from './icon_border-sides.svg';
 import ICON_BORDER_TOP from './icon_border-top.svg';
 import ICON_CALENDAR from './icon_calendar.svg';
-import CAMERA_OFF from './icon_camera-off.svg';
-import CAMERA from './icon_camera.svg';
+import ICON_CAMERA_OFF from './icon_camera-off.svg';
+import ICON_CAMERA from './icon_camera.svg';
 import ICON_CAPSULE from './icon_capsule.svg';
 import ICON_CARET_DOWN from './icon_caret_down.svg';
 import ICON_CARET_DOWN_CIRCLE from './icon_caret_down_circle.svg';
@@ -112,7 +112,7 @@ import ICON_ERROR from './icon_error.svg';
 import ICON_ERROR_ALT from './icon_error_alt.svg';
 import ICON_ERROR_CIRCLE from './icon_error_circle.svg';
 import ICON_EURO from './icon_euro.svg';
-import EXCLUDE from './icon_exclude.svg';
+import ICON_EXCLUDE from './icon_exclude.svg';
 import ICON_FAST_FORWARD from './icon_fast_forward.svg';
 import ICON_FAST_FORWARD_CIRCLE from './icon_fast_forward_circle.svg';
 import ICON_FIGMA from './icon_figma.svg';
@@ -139,7 +139,7 @@ import ICON_HEART from './icon_heart.svg';
 import ICON_HELP_CIRCLE from './icon_help_circle.svg';
 import ICON_HIDE from './icon_hide.svg';
 import ICON_HIGHLIGHT from './icon_highlight.svg';
-import HISTORY from './icon_history.svg';
+import ICON_HISTORY from './icon_history.svg';
 import ICON_HOME from './icon_home.svg';
 import ICON_HOME_ALT from './icon_home_alt.svg';
 import ICON_IMAGE from './icon_image.svg';
@@ -147,7 +147,7 @@ import ICON_IMAGE_ALT from './icon_image_alt.svg';
 import ICON_IN_PROGRESS from './icon_in_progress.svg';
 import ICON_INFO_CIRCLE from './icon_info_circle.svg';
 import ICON_INNER_SHADOW from './icon_inner-shadow.svg';
-import INTERSECT from './icon_intersect.svg';
+import ICON_INTERSECT from './icon_intersect.svg';
 import ICON_KEY from './icon_key.svg';
 import ICON_KUBIT from './icon_kubit.svg';
 import ICON_LAPTOP from './icon_laptop.svg';
@@ -161,9 +161,9 @@ import ICON_LIBRARY from './icon_library.svg';
 import ICON_LIKE from './icon_like.svg';
 import ICON_LINK from './icon_link.svg';
 import ICON_LINK_EXTERNAL from './icon_link_external.svg';
-import LOADER_ALT from './icon_loader-alt.svg';
-import LOADER_CIRCLE from './icon_loader-circle.svg';
-import LOADER from './icon_loader.svg';
+import ICON_LOADER_ALT from './icon_loader-alt.svg';
+import ICON_LOADER_CIRCLE from './icon_loader-circle.svg';
+import ICON_LOADER from './icon_loader.svg';
 import ICON_LOCK from './icon_lock.svg';
 import ICON_LOCK_ALT from './icon_lock_alt.svg';
 import ICON_LOCK_OPEN from './icon_lock_open.svg';
@@ -173,24 +173,24 @@ import ICON_LOG_OUT from './icon_log_out.svg';
 import ICON_MAIL_SEND from './icon_mail_send.svg';
 import ICON_MAP_ALT from './icon_map_alt.svg';
 import ICON_MENU from './icon_menu.svg';
-import MERGE from './icon_merge.svg';
-import MESSAGE_ADD from './icon_message-add.svg';
-import MESSAGE_ALT_ADD from './icon_message-alt-add.svg';
-import MESSAGE_ALT_CHECK from './icon_message-alt-check.svg';
-import MESSAGE_ALT_DETAIL from './icon_message-alt-detail.svg';
-import MESSAGE_ALT_DOTS from './icon_message-alt-dots.svg';
-import MESSAGE_ALT_EDIT from './icon_message-alt-edit.svg';
-import MESSAGE_ALT_ERROR from './icon_message-alt-error.svg';
-import MESSAGE_ALT_MINUS from './icon_message-alt-minus.svg';
-import MESSAGE_ALT_X from './icon_message-alt-x.svg';
-import MESSAGE_ALT from './icon_message-alt.svg';
-import MESSAGE_ROUNDED from './icon_message-rounded.svg';
-import MESSAGE_SQUARE_ADD from './icon_message-square-add.svg';
-import MESSAGE_SQUARE_CHECK from './icon_message-square-check.svg';
-import MICROPHONE_OFF from './icon_microphone-off.svg';
-import MICROPHONE from './icon_microphone.svg';
-import MINUS_BACK from './icon_minus-back.svg';
-import MINUS_FRONT from './icon_minus-front.svg';
+import ICON_MERGE from './icon_merge.svg';
+import ICON_MESSAGE_ADD from './icon_message-add.svg';
+import ICON_MESSAGE_ALT_ADD from './icon_message-alt-add.svg';
+import ICON_MESSAGE_ALT_CHECK from './icon_message-alt-check.svg';
+import ICON_MESSAGE_ALT_DETAIL from './icon_message-alt-detail.svg';
+import ICON_MESSAGE_ALT_DOTS from './icon_message-alt-dots.svg';
+import ICON_MESSAGE_ALT_EDIT from './icon_message-alt-edit.svg';
+import ICON_MESSAGE_ALT_ERROR from './icon_message-alt-error.svg';
+import ICON_MESSAGE_ALT_MINUS from './icon_message-alt-minus.svg';
+import ICON_MESSAGE_ALT_X from './icon_message-alt-x.svg';
+import ICON_MESSAGE_ALT from './icon_message-alt.svg';
+import ICON_MESSAGE_ROUNDED from './icon_message-rounded.svg';
+import ICON_MESSAGE_SQUARE_ADD from './icon_message-square-add.svg';
+import ICON_MESSAGE_SQUARE_CHECK from './icon_message-square-check.svg';
+import ICON_MICROPHONE_OFF from './icon_microphone-off.svg';
+import ICON_MICROPHONE from './icon_microphone.svg';
+import ICON_MINUS_BACK from './icon_minus-back.svg';
+import ICON_MINUS_FRONT from './icon_minus-front.svg';
 import ICON_MINUS_CIRCLE from './icon_minus_circle.svg';
 import ICON_MOBILE from './icon_mobile.svg';
 import ICON_MOBILE_ALT from './icon_mobile_alt.svg';
@@ -211,7 +211,7 @@ import ICON_NOTIFICATION from './icon_notification.svg';
 import ICON_NOTIFICATION_OFF from './icon_notification_off.svg';
 import ICON_OPACITY from './icon_opacity.svg';
 import ICON_OPENBANK from './icon_openbank.svg';
-import OUTLINE from './icon_outline.svg';
+import ICON_OUTLINE from './icon_outline.svg';
 import ICON_PACKAGE from './icon_package.svg';
 import ICON_PAINT from './icon_paint.svg';
 import ICON_PALETTE from './icon_palette.svg';
@@ -231,7 +231,7 @@ import ICON_PLUS_CIRCLE from './icon_plus_circle.svg';
 import ICON_POINTER from './icon_pointer.svg';
 import ICON_POLYGON from './icon_polygon.svg';
 import ICON_POWER_OFF from './icon_power_off.svg';
-import PROFILE_LOGIN from './icon_profile-login.svg';
+import ICON_PROFILE_LOGIN from './icon_profile-login.svg';
 import ICON_PROFILE_LOGOUT from './icon_profile_logout.svg';
 import ICON_PURCHASE_TAG from './icon_purchase_tag.svg';
 import ICON_PURCHASE_TAG_ALT from './icon_purchase_tag_alt.svg';
@@ -272,7 +272,7 @@ import ICON_SLIDESHOW from './icon_slideshow.svg';
 import ICON_STAR from './icon_star.svg';
 import ICON_STOP from './icon_stop.svg';
 import ICON_STOP_CIRCLE from './icon_stop_circle.svg';
-import STOPWATCH from './icon_stopwatch.svg';
+import ICON_STOPWATCH from './icon_stopwatch.svg';
 import ICON_STORE from './icon_store.svg';
 import ICON_STORE_ALT from './icon_store_alt.svg';
 import ICON_STORYBOOK from './icon_storybook.svg';
@@ -282,13 +282,13 @@ import ICON_TAB from './icon_tab.svg';
 import ICON_TABLE from './icon_table.svg';
 import ICON_TAG from './icon_tag.svg';
 import ICON_TAG_ALT from './icon_tag_alt.svg';
-import TIME_FIVE from './icon_time-five.svg';
-import TIME from './icon_time.svg';
-import TIMER from './icon_timer.svg';
+import ICON_TIME_FIVE from './icon_time-five.svg';
+import ICON_TIME from './icon_time.svg';
+import ICON_TIMER from './icon_timer.svg';
 import ICON_TRAFFIC_CONE from './icon_traffic_cone.svg';
 import ICON_TRASH from './icon_trash.svg';
 import ICON_TRASH_ALT from './icon_trash_alt.svg';
-import UNITE from './icon_unite.svg';
+import ICON_UNITE from './icon_unite.svg';
 import ICON_UP_ARROW_ALT from './icon_up_arrow_alt.svg';
 import ICON_UP_ARROW_CIRCLE from './icon_up_arrow_circle.svg';
 import ICON_USER from './icon_user.svg';
@@ -300,10 +300,10 @@ import ICON_USER_PLUS from './icon_user_plus.svg';
 import ICON_USER_VOICE from './icon_user_voice.svg';
 import ICON_USER_X from './icon_user_x.svg';
 import ICON_VECTOR from './icon_vector.svg';
-import VIDEO_OFF from './icon_video-off.svg';
-import VIDEO_PLUS from './icon_video-plus.svg';
-import VIDEO_RECORDING from './icon_video-recording.svg';
-import VIDEO from './icon_video.svg';
+import ICON_VIDEO_OFF from './icon_video-off.svg';
+import ICON_VIDEO_PLUS from './icon_video-plus.svg';
+import ICON_VIDEO_RECORDING from './icon_video-recording.svg';
+import ICON_VIDEO from './icon_video.svg';
 import ICON_VOLUME from './icon_volume.svg';
 import ICON_VOLUME_FULL from './icon_volume_full.svg';
 import ICON_VOLUME_LOW from './icon_volume_low.svg';
@@ -637,43 +637,43 @@ export const ICONS = {
   WIREFRAME_ICON_RED,
   WIREFRAME_ICON_SIMPLE,
   WIREFRAME_LOGO_ICON,
-  LOADER_ALT,
-  PROFILE_LOGIN,
-  VIDEO_OFF,
-  VIDEO_PLUS,
-  VIDEO_RECORDING,
-  VIDEO,
-  CAMERA_OFF,
-  CAMERA,
-  MICROPHONE_OFF,
-  MICROPHONE,
-  INTERSECT,
-  MINUS_FRONT,
-  UNITE,
-  MINUS_BACK,
-  OUTLINE,
-  EXCLUDE,
-  MERGE,
-  MESSAGE_ALT_MINUS,
-  MESSAGE_ALT_X,
-  MESSAGE_ALT,
-  MESSAGE_ADD,
-  MESSAGE_ALT_ADD,
-  MESSAGE_ALT_CHECK,
-  MESSAGE_ALT_DETAIL,
-  MESSAGE_ROUNDED,
-  MESSAGE_SQUARE_ADD,
-  MESSAGE_SQUARE_CHECK,
-  MESSAGE_ALT_DOTS,
-  MESSAGE_ALT_EDIT,
-  MESSAGE_ALT_ERROR,
-  LOADER_CIRCLE,
-  LOADER,
-  STOPWATCH,
-  TIME_FIVE,
-  TIME,
-  TIMER,
-  HISTORY,
+  ICON_LOADER_ALT,
+  ICON_PROFILE_LOGIN,
+  ICON_VIDEO_OFF,
+  ICON_VIDEO_PLUS,
+  ICON_VIDEO_RECORDING,
+  ICON_VIDEO,
+  ICON_CAMERA_OFF,
+  ICON_CAMERA,
+  ICON_MICROPHONE_OFF,
+  ICON_MICROPHONE,
+  ICON_INTERSECT,
+  ICON_MINUS_FRONT,
+  ICON_UNITE,
+  ICON_MINUS_BACK,
+  ICON_OUTLINE,
+  ICON_EXCLUDE,
+  ICON_MERGE,
+  ICON_MESSAGE_ALT_MINUS,
+  ICON_MESSAGE_ALT_X,
+  ICON_MESSAGE_ALT,
+  ICON_MESSAGE_ADD,
+  ICON_MESSAGE_ALT_ADD,
+  ICON_MESSAGE_ALT_CHECK,
+  ICON_MESSAGE_ALT_DETAIL,
+  ICON_MESSAGE_ROUNDED,
+  ICON_MESSAGE_SQUARE_ADD,
+  ICON_MESSAGE_SQUARE_CHECK,
+  ICON_MESSAGE_ALT_DOTS,
+  ICON_MESSAGE_ALT_EDIT,
+  ICON_MESSAGE_ALT_ERROR,
+  ICON_LOADER_CIRCLE,
+  ICON_LOADER,
+  ICON_STOPWATCH,
+  ICON_TIME_FIVE,
+  ICON_TIME,
+  ICON_TIMER,
+  ICON_HISTORY,
 } as const;
 
 export type IconsType = typeof ICONS;
