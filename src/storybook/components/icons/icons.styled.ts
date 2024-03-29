@@ -13,7 +13,7 @@ export const IconsDataStyled = styled.div`
   gap: 10px;
   align-items: center;
   flex-wrap: wrap;
-  width: calc(100% / 5);
+  width: calc(100% / 4);
 `;
 
 export const IconsInputStyled = styled.input`
