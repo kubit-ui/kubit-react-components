@@ -26,6 +26,7 @@ const InputUnControlledComponent = <V extends string | unknown>(
     ignoreKeys,
     formatNumber,
     locale,
+    disabledWheelMouse = true,
     onBlur,
     onChange,
     onFocus,
@@ -46,8 +47,6 @@ const InputUnControlledComponent = <V extends string | unknown>(
     handleBlurInternal,
     handleFocusInternal,
     handleKeyDownInternal,
-    handleBlurStructure,
-    handleFocusStructure,
   } = useInput({
     ref,
     errorExecution,
@@ -69,6 +68,7 @@ const InputUnControlledComponent = <V extends string | unknown>(
     ignoreKeys,
     formatNumber,
     locale,
+    disabledWheelMouse,
     onBlur,
     onChange,
     onFocus,
@@ -92,10 +92,8 @@ const InputUnControlledComponent = <V extends string | unknown>(
       type={inputType}
       value={value}
       onBlur={handleBlurInternal}
-      onBlurStructure={handleBlurStructure}
       onChange={handleChangeInternal}
       onFocus={handleFocusInternal}
-      onFocusStructure={handleFocusStructure}
       onKeyDown={handleKeyDownInternal}
     />
   );

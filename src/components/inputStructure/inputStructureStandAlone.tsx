@@ -22,14 +22,8 @@ import { IInputStructure } from './types/inputStructure';
 export const InputStructureStandAlone = (props: IInputStructure): JSX.Element => (
   <InputStructureContainerStyled
     data-testid={props.dataTestIdParentContainer}
-    onBlur={event => {
-      if (!event.currentTarget.contains(event.relatedTarget)) {
-        props.onBlurStructure?.(event);
-      }
-    }}
-    onFocus={event => {
-      props.onFocusStructure?.(event);
-    }}
+    onBlur={props.onBlurStructure}
+    onFocus={props.onFocusStructure}
   >
     <VerticalContentStyled>
       <InputStructureContentTopStyled extraStyles={props.topExtraStyles}>

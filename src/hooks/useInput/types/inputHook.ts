@@ -13,6 +13,7 @@ export type ParamsTypeInputHook = {
   errorExecution?: string;
   keyValidation?: string;
   disabledArrowUpDownInputNumber?: boolean;
+  disabledWheelMouse?: boolean;
   max?: number;
   min?: number;
   maxLength?: number;
@@ -47,6 +48,4 @@ export type ReturnTypeInputHook = {
   handleFocusInternal: FocusEventHandler<HTMLInputElement>;
   handleKeyDownInternal: KeyboardEventHandler<HTMLInputElement>;
   handleSetValue: React.Dispatch<React.SetStateAction<string | number>>;
-  handleBlurStructure: FocusEventHandler<HTMLDivElement>;
-  handleFocusStructure: FocusEventHandler<HTMLDivElement>;
 };

@@ -1,4 +1,8 @@
-import { CarouselAlignType } from '../types';
+import {
+  CAROUSEL_BUILD_SCREEN_READER_CURRENT_PAGE_KEY,
+  CAROUSEL_BUILD_SCREEN_READER_NUM_PAGES_KEY,
+  CarouselAlignType,
+} from '../types';
 
 export const calcXDistanceBetween2Elements = (
   el1: HTMLElement | null,
@@ -211,4 +215,19 @@ export const hideArrowsAndPagination = ({
   if (pagination) {
     pagination.style.display = 'none';
   }
+};
+
+export const buildScreenReaderText = (
+  currentPage: number,
+  numPages: number,
+  screenReaderContentPosition?: string
+): string | undefined => {
+  if (!screenReaderContentPosition) {
+    return screenReaderContentPosition;
+  }
+  const currentPageRegExp = new RegExp(CAROUSEL_BUILD_SCREEN_READER_CURRENT_PAGE_KEY, 'g');
+  const numPagesRegExp = new RegExp(CAROUSEL_BUILD_SCREEN_READER_NUM_PAGES_KEY, 'g');
+  return screenReaderContentPosition
+    .replace(currentPageRegExp, String(currentPage + 1))
+    .replace(numPagesRegExp, String(numPages));
 };

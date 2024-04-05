@@ -15,7 +15,7 @@ const mockProps = {
   dataTestIdBar: 'testIdBar',
   dataTestIdProgressBar: 'testIdProgressBar',
   onBarChange: jest.fn(),
-  barsAriaLabels: ['aria-label-0'],
+  barAriaLabel: 'bar-aria-label',
 };
 
 describe('MediaProgressBar Component', () => {

@@ -101,13 +101,14 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
-    barsAriaLabels: {
+    barAriaLabel: {
       control: { type: 'object' },
-      type: { name: 'array' },
-      description: 'aria labels for each bar',
+      type: { name: 'string' },
+      description:
+        'Aria label for each bar. Can be build using the current bar and the bars length using the keywords "{{currentBar}}" and "{{barsNum}}"',
       table: {
         type: {
-          summary: 'string[]',
+          summary: 'string',
         },
         category: CATEGORY_CONTROL.ACCESIBILITY,
       },

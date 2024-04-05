@@ -41,7 +41,11 @@ const TooltipStandAlone = ({
 
   if (props.disabled) {
     return (
-      <TooltipStyled data-testid={`${props.dataTestId}Tooltip`}>{props.children}</TooltipStyled>
+      <TooltipStyled data-testid={`${props.dataTestId}Tooltip`}>
+        <TooltipTrigger disabled childrenAsButton={childrenAsButton}>
+          {props.children}
+        </TooltipTrigger>
+      </TooltipStyled>
     );
   }
 

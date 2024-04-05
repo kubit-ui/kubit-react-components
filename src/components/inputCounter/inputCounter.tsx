@@ -53,8 +53,6 @@ const InputCounterComponent = React.forwardRef(
       handleBlurInternal,
       handleFocusInternal,
       handleKeyDownInternal,
-      handleBlurStructure,
-      handleFocusStructure,
     } = useInput({
       ref,
       errorExecution,
@@ -96,10 +94,8 @@ const InputCounterComponent = React.forwardRef(
         type={type}
         value={value}
         onBlur={handleBlurInternal}
-        onBlurStructure={handleBlurStructure}
         onChange={handleChangeInternal}
         onFocus={handleFocusInternal}
-        onFocusStructure={handleFocusStructure}
         onKeyDown={handleKeyDownInternal}
       />
     );

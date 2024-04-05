@@ -73,8 +73,6 @@ const InputSearchComponent = React.forwardRef(
       handleInputPopoverChange,
       handleInputPopoverKeyDown,
       handleOptionsListKeyDown,
-      handleBlurStructure,
-      handleFocusStructure,
     } = useInputSearch({
       open,
       type,
@@ -131,11 +129,9 @@ const InputSearchComponent = React.forwardRef(
         type={type}
         value={valueSearchSelected}
         onBlur={handleBlurInternal}
-        onBlurStructure={handleBlurStructure}
         onChange={handleChangeInputSearch}
         onClick={handleClickInputSearch}
         onFocus={handleFocusInternal}
-        onFocusStructure={handleFocusStructure}
         onInputPopoverChange={handleInputPopoverChange}
         onInputPopoverIconClick={handleInputPopoverIconClick}
         onInputPopoverKeyDown={handleInputPopoverKeyDown}

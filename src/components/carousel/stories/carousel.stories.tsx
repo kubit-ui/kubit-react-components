@@ -5,7 +5,7 @@ import { ICONS } from '@/assets';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType, ROLES } from '@/types';
 
 import { CarouselUnControlled as Story } from '../carouselUnControlled';
 import { CarouselAlignType } from '../types';
@@ -30,145 +30,163 @@ export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
-export const Carousel: Story = {
-  args: {
-    variant: Object.values(variantsObject[themeSelected].CarouselVariantType || {})[0] as string,
-    elements: [
-      <ReplaceContent key={0} id="test0">
-        0
-      </ReplaceContent>,
-      <ReplaceContent key={1} id="test1">
-        1
-      </ReplaceContent>,
-      <ReplaceContent key={2} id="test2">
-        2
-      </ReplaceContent>,
-      <ReplaceContent key={3} id="test3">
-        3
-      </ReplaceContent>,
-      <ReplaceContent key={4} id="test4">
-        4
-      </ReplaceContent>,
-      <ReplaceContent key={5} id="test5">
-        5
-      </ReplaceContent>,
-    ],
-    leftArrow: {
-      icon: ICONS.ICON_CHEVRON_LEFT,
-      ['aria-label']: 'Left arrow aria label',
-    },
-    rightArrow: {
-      icon: ICONS.ICON_CHEVRON_RIGHT,
-      ['aria-label']: 'Right arrow aria label',
-    },
-    circular: true,
-    pageControlVariant: Object.values(
-      variantsObject[themeSelected].PageControlVariant || {}
-    )[0] as string,
-    pageControlArrowsControlVariant: Object.values(
+const storyArgs = {
+  variant: Object.values(variantsObject[themeSelected].CarouselVariantType || {})[0] as string,
+  elements: [
+    <ReplaceContent
+      key={0}
+      aria-label="1 of 10"
+      aria-roledescription="slide"
+      id="carousel-item-1"
+      role={ROLES.GROUP}
+    >
+      First Slide
+    </ReplaceContent>,
+    <ReplaceContent
+      key={1}
+      aria-label="2 of 10"
+      aria-roledescription="slide"
+      id="carousel-item-2"
+      role={ROLES.GROUP}
+    >
+      Second Slide
+    </ReplaceContent>,
+    <ReplaceContent
+      key={2}
+      aria-label="3 of 10"
+      aria-roledescription="slide"
+      id="carousel-item-3"
+      role={ROLES.GROUP}
+    >
+      Third Slide
+    </ReplaceContent>,
+    <ReplaceContent
+      key={3}
+      aria-label="4 of 10"
+      aria-roledescription="slide"
+      id="carousel-item-4"
+      role={ROLES.GROUP}
+    >
+      Fourth Slide
+    </ReplaceContent>,
+    <ReplaceContent
+      key={4}
+      aria-label="5 of 10"
+      aria-roledescription="slide"
+      id="carousel-item-5"
+      role={ROLES.GROUP}
+    >
+      Fifth Slice
+    </ReplaceContent>,
+    <ReplaceContent
+      key={5}
+      aria-label="6 of 10"
+      aria-roledescription="slide"
+      id="carousel-item-6"
+      role={ROLES.GROUP}
+    >
+      Sixth Slide
+    </ReplaceContent>,
+    <ReplaceContent
+      key={6}
+      aria-label="7 of 10"
+      aria-roledescription="slide"
+      id="carousel-item-7"
+      role={ROLES.GROUP}
+    >
+      Seventh Slide
+    </ReplaceContent>,
+    <ReplaceContent
+      key={7}
+      aria-label="8 of 10"
+      aria-roledescription="slide"
+      id="carousel-item-8"
+      role={ROLES.GROUP}
+    >
+      Eighth Slide
+    </ReplaceContent>,
+    <ReplaceContent
+      key={8}
+      aria-label="9 of 10"
+      aria-roledescription="slide"
+      id="carousel-item-9"
+      role={ROLES.GROUP}
+    >
+      Ninth Slide
+    </ReplaceContent>,
+    <ReplaceContent
+      key={9}
+      aria-label="10 of 10"
+      aria-roledescription="slide"
+      id="carousel-item-10"
+      role={ROLES.GROUP}
+    >
+      Tenth Slide
+    </ReplaceContent>,
+  ],
+  leftArrow: {
+    icon: ICONS.ICON_CHEVRON_LEFT,
+    ['aria-label']: 'Left arrow aria label',
+  },
+  rightArrow: {
+    icon: ICONS.ICON_CHEVRON_RIGHT,
+    ['aria-label']: 'Right arrow aria label',
+  },
+  circular: true,
+  pageControlVariant: Object.values(
+    variantsObject[themeSelected].PageControlVariant || {}
+  )[0] as string,
+  pageControlArrowsControlVariant: Object.values(
+    variantsObject[themeSelected].ArrowsControlVariant || {}
+  )[0] as string,
+  extraPadding: 0,
+  disableSwipe: false,
+  extraPaddingAsArrow: true,
+  allowModifySliceWidth: true,
+  centerMode: false,
+  numElementsPerPage: 3,
+  numElementsToSlide: 3,
+  displayArrowsOnCarousel: true,
+  onePageAlign: CarouselAlignType.CENTER,
+  screenReaderText: '{{currentPage}} of {{numPages}}',
+  pageControlAutomateConfig: {
+    variant: Object.values(
       variantsObject[themeSelected].PageControlAutomateVariant || {}
     )[0] as string,
-    extraPadding: 0,
-    disableSwipe: false,
-    extraPaddingAsArrow: true,
-    allowModifySliceWidth: true,
-    centerMode: false,
-    numElementsPerPage: 3,
-    numElementsToSlide: 3,
-    displayArrowsOnCarousel: true,
-    onePageAlign: CarouselAlignType.CENTER,
-    pageControlAutomateConfig: {
-      variant: Object.values(
-        variantsObject[themeSelected].PageControlAutomateVariant || {}
-      )[0] as string,
-      playStop: {
-        icon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'alt text play' },
-        twistedIcon: { icon: ICONS.ICON_CLOSE, altText: 'alt text stop' },
-      },
-      leftArrow: {
-        icon: { icon: ICONS.ICON_CHEVRON_LEFT, altText: 'alt text left arrow' },
-      },
-      rightArrow: {
-        icon: { icon: ICONS.ICON_CHEVRON_RIGHT, altText: 'alt text right arrow' },
-      },
-      mediaProgressBar: {
-        barsAriaLabels: ['aria-label-0', 'aria-label-1', 'aria-label-2', 'aria-label-3'],
-        barProgressDuration: 2000,
-        maxBars: {
-          default: 5,
-          [DeviceBreakpointsType.DESKTOP]: 5,
-          [DeviceBreakpointsType.TABLET]: 4,
-          [DeviceBreakpointsType.MOBILE]: 3,
-        },
-      },
-      playingInitially: false,
+    playStop: {
+      icon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'alt text play' },
+      twistedIcon: { icon: ICONS.ICON_CLOSE, altText: 'alt text stop' },
     },
+    leftArrow: {
+      icon: { icon: ICONS.ICON_CHEVRON_LEFT, altText: 'alt text left arrow' },
+    },
+    rightArrow: {
+      icon: { icon: ICONS.ICON_CHEVRON_RIGHT, altText: 'alt text right arrow' },
+    },
+    mediaProgressBar: {
+      barAriaLabel: 'Bar {{currentBar}} of {{barsNum}}',
+      barProgressDuration: 2000,
+      maxBars: {
+        default: 5,
+        [DeviceBreakpointsType.DESKTOP]: 5,
+        [DeviceBreakpointsType.TABLET]: 4,
+        [DeviceBreakpointsType.MOBILE]: 3,
+      },
+    },
+    playingInitially: false,
+  },
+};
+
+export const Carousel: Story = {
+  args: {
+    ...storyArgs,
     themeArgs: themesObject[themeSelected][STYLES_NAME.CAROUSEL],
   },
 };
 
 export const CarouselWithCtv: Story = {
   args: {
-    variant: Object.values(variantsObject[themeSelected].CarouselVariantType || {})[0] as string,
-    elements: [
-      <ReplaceContent key={0} id="test0">
-        0
-      </ReplaceContent>,
-      <ReplaceContent key={1} id="test1">
-        1
-      </ReplaceContent>,
-      <ReplaceContent key={2} id="test2">
-        2
-      </ReplaceContent>,
-      <ReplaceContent key={3} id="test3">
-        3
-      </ReplaceContent>,
-      <ReplaceContent key={4} id="test4">
-        4
-      </ReplaceContent>,
-      <ReplaceContent key={5} id="test5">
-        5
-      </ReplaceContent>,
-      <ReplaceContent key={6} id="test6">
-        6
-      </ReplaceContent>,
-      <ReplaceContent key={7} id="test7">
-        7
-      </ReplaceContent>,
-      <ReplaceContent key={8} id="test8">
-        8
-      </ReplaceContent>,
-      <ReplaceContent key={9} id="test9">
-        9
-      </ReplaceContent>,
-      <ReplaceContent key={10} id="test10">
-        10
-      </ReplaceContent>,
-    ],
-    circular: true,
-    leftArrow: {
-      icon: ICONS.ICON_CHEVRON_LEFT,
-      ['aria-label']: 'Left arrow aria label',
-    },
-    rightArrow: {
-      icon: ICONS.ICON_CHEVRON_RIGHT,
-      ['aria-label']: 'Right arrow aria label',
-    },
-    pageControlVariant: Object.values(
-      variantsObject[themeSelected].PageControlVariant || {}
-    )[0] as string,
-    pageControlArrowsControlVariant: Object.values(
-      variantsObject[themeSelected].PageControlAutomateVariant || {}
-    )[0] as string,
-    disableSwipe: false,
-    extraPadding: 0,
-    extraPaddingAsArrow: true,
-    allowModifySliceWidth: true,
-    centerMode: false,
-    numElementsPerPage: 3,
-    numElementsToSlide: 3,
-    displayArrowsOnCarousel: true,
-    onePageAlign: CarouselAlignType.CENTER,
+    ...storyArgs,
     ctv: {
       carouselContainer: {
         background_color: 'green',

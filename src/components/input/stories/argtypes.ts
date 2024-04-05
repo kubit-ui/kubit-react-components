@@ -153,6 +153,18 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    disabledWheelMouse: {
+      description: 'Disable wheel mouse',
+      control: { type: 'boolean' },
+      type: { name: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: { summary: true },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     autoCapitalize: {
       description: 'Specifies whether the value of the input should be automatically capitalized',
       control: { type: 'select' },

@@ -10,7 +10,10 @@ import {
   ProgressBarStyled,
 } from './mediaProgressBar.styled';
 import { IMediaProgressBarStandAlone } from './types';
-import { mediaProgressBarIndex } from './utils/mediaProgressBarIndex';
+import {
+  buildMediaProgessBarAriaLabel,
+  mediaProgressBarIndex,
+} from './utils/mediaProgressBarUtils';
 
 const MediaProgressBarStandaloneComponent = (
   { barsNum, ...props }: IMediaProgressBarStandAlone,
@@ -32,7 +35,8 @@ const MediaProgressBarStandaloneComponent = (
       <BarContainerStyled
         key={newIndex}
         ref={props.barRef}
-        aria-label={props.barsAriaLabels?.[newIndex]}
+        aria-current={newIndex === props.currentBar}
+        aria-label={buildMediaProgessBarAriaLabel(newIndex, barsNum, props.barAriaLabel)}
         barFocused={newIndex === props.currentBar}
         clickableBars={props.clickableBars}
         role={ROLES.BUTTON}

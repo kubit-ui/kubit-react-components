@@ -149,6 +149,14 @@ const AccordionStandAloneComponent = (
             <AccordionHeaderTitleHeadlineStyled as={props.triggerComponent}>
               {renderTitle()}
             </AccordionHeaderTitleHeadlineStyled>
+            {props.headerRightContent && (
+              <AccordionHeaderRightContentStyled
+                data-testid={`${props.dataTestId}RightContent`}
+                styles={props.styles.headerRightContentContainer}
+              >
+                {props.headerRightContent}
+              </AccordionHeaderRightContentStyled>
+            )}
           </AccordionHeaderMainContainerStyled>
           {props.subHeaderContent && (
             <AccordionSubHeaderContainerStyled
@@ -159,14 +167,6 @@ const AccordionStandAloneComponent = (
             </AccordionSubHeaderContainerStyled>
           )}
         </AccordionHeaderInternalContainerStyled>
-        {props.headerRightContent && (
-          <AccordionHeaderRightContentStyled
-            data-testid={`${props.dataTestId}RightContent`}
-            styles={props.styles.headerRightContentContainer}
-          >
-            {props.headerRightContent}
-          </AccordionHeaderRightContentStyled>
-        )}
       </AccordionHeaderExternalContainerStyled>
       <AccordionContentStyled
         aria-labelledby={TRIGGER_ID}

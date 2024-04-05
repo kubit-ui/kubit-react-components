@@ -75,7 +75,7 @@ const commonArgs: IMediaProgressBar = {
   )[0] as string,
   barsNum: 1,
   barProgressDuration: 5000,
-  barsAriaLabels: ['aria-label-0'],
+  barAriaLabel: 'Bar {{currentBar}} of {{barsNum}}',
   clickableBars: true,
 };
 

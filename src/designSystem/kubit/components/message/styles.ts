@@ -33,6 +33,7 @@ const commonProps = {
     font_variant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED,
     color: COLORS.NEUTRAL.color_neutral_font_50,
     font_weight: FONT_WEIGHT.font_weight_500,
+    word_break: 'break-word',
   },
   contentContainerLargeMessage: {
     [DeviceBreakpointsType.MOBILE]: {
@@ -43,6 +44,7 @@ const commonProps = {
     font_variant: TextVariantType.PARAGRAPH_SMALL_EXTENDED,
     color: COLORS.NEUTRAL.color_neutral_font_150,
     font_weight: FONT_WEIGHT.font_weight_400,
+    word_break: 'break-word',
   },
   infoIcon: {
     width: SIZES.size_250,

@@ -107,4 +107,7 @@ export const TooltipTriggerWrapperStyled = styled.button`
   padding: 0;
   border: none;
   background: none;
+
+  min-height: 1.5rem; // accessible min-size
+  min-width: 1.5rem; // accessible min-size
 `;

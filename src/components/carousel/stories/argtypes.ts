@@ -190,7 +190,7 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
     },
     pageControlVariant: {
       description: 'PageControl variant',
-      type: { name: 'string', required: true },
+      type: { name: 'string' },
       control: { type: 'select' },
       options: Object.keys(variants[themeSelected].PageControlVariant || {}),
       table: {
@@ -202,9 +202,9 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
     },
     pageControlArrowsControlVariant: {
       description: 'PageControl arrows control variant',
-      type: { name: 'string', required: true },
+      type: { name: 'string' },
       control: { type: 'select' },
-      options: Object.keys(variants[themeSelected].PageControlAutomateVariant || {}),
+      options: Object.keys(variants[themeSelected].ArrowsControlVariant || {}),
       table: {
         type: {
           summary: 'string',
@@ -300,6 +300,18 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
           summary: false,
         },
         category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    screenReaderText: {
+      description:
+        'Screen reader carousel text. Can be build using the current bar and the bars length using the keywords "{{currentPage}}" and "{{numPages}}"',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
     dataTestId: {

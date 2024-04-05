@@ -108,7 +108,9 @@ export const mapLabelTypeStyles = (props: LabelStyledProps): CSSProp => {
           InputState.FILLED,
           InputState.ERROR_FILLED,
           InputState.DISABLED_FILLED,
+          InputState.DISABLED_FILLED_WITH_INFO,
           InputState.ERROR_ACTIVE,
+          InputState.ERROR_FILLED_WITH_INFO,
         ].includes(state as InputState))
     ) {
       return css`

@@ -64,8 +64,6 @@ const InputDropdownComponent = React.forwardRef(
       handleFocusInternal,
       handleInputPopoverChange,
       handleInputPopoverKeyDown,
-      handleBlurStructure,
-      handleFocusStructure,
     } = useInputDropdown({
       open,
       optionList,
@@ -106,11 +104,9 @@ const InputDropdownComponent = React.forwardRef(
         type={type}
         value={valueSearchSelected}
         onBlur={handleInputBlur}
-        onBlurStructure={handleBlurStructure}
         onChange={handleChangeInputDropdown}
         onClick={handleClickInputDropdown}
         onFocus={handleFocusInternal}
-        onFocusStructure={handleFocusStructure}
         onInputPopoverChange={handleInputPopoverChange}
         onInputPopoverIconClick={handleInputPopoverIconClick}
         onInputPopoverKeyDown={handleInputPopoverKeyDown}

@@ -207,8 +207,6 @@ const InputStandAloneComponent = (
       rightExtraStyles={props.rightExtraStyles}
       topContent={buildTopContent()}
       topExtraStyles={props.topExtraStyles}
-      onBlurStructure={props.onBlurStructure}
-      onFocusStructure={props.onFocusStructure}
     />
   );
 };

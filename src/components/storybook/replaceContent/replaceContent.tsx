@@ -1,20 +1,20 @@
 import React from 'react';
 
+import { AriaType, ROLES } from '@/types';
+
 import { ReplaceContentStyled } from './replaceContent.styled';
 
-export const ReplaceContent = ({
-  children,
-  width,
-  height,
-  id,
-}: {
+interface IReplaceContent extends AriaType {
   children?: React.ReactNode;
   width?: string;
   height?: string;
   id?: string;
-}): JSX.Element => {
+  role?: ROLES;
+}
+
+export const ReplaceContent = ({ children, ...props }: IReplaceContent): JSX.Element => {
   return (
-    <ReplaceContentStyled height={height} id={id} width={width}>
+    <ReplaceContentStyled {...props}>
       {!children ? <span>Replace here your Content</span> : children}
     </ReplaceContentStyled>
   );

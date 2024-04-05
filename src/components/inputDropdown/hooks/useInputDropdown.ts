@@ -84,8 +84,6 @@ type ReturnHookType = {
   state: InputState;
   handleFocusInternal: FocusEventHandler<HTMLInputElement>;
   handleInputPopoverChange: ChangeEventHandler<HTMLInputElement>;
-  handleBlurStructure: FocusEventHandler<HTMLDivElement>;
-  handleFocusStructure: FocusEventHandler<HTMLDivElement>;
 };
 
 export const useInputDropdown = (props: ParamsType): ReturnHookType => {
@@ -141,17 +139,16 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
   };
 
   // Input Basic hook
-  const { state, inputRef, handleFocusInternal, handleBlurStructure, handleFocusStructure } =
-    useInput({
-      disabled: props.disabled,
-      error: props.error || internalErrors.length > 0,
-      // need for update the state
-      currentValue: searchText,
-      informationAssociated: props.informationAssociated,
-      onFocus: props.onFocus,
-      onBlur: handleInputBlur,
-      onInternalErrors: props.onInternalErrors,
-    });
+  const { state, inputRef, handleFocusInternal } = useInput({
+    disabled: props.disabled,
+    error: props.error || internalErrors.length > 0,
+    // need for update the state
+    currentValue: searchText,
+    informationAssociated: props.informationAssociated,
+    onFocus: props.onFocus,
+    onBlur: handleInputBlur,
+    onInternalErrors: props.onInternalErrors,
+  });
 
   const useActionBottomSheet = useMemo(
     () => props.styles?.[state]?.useActionBottomSheet?.[device],
@@ -382,7 +379,5 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
     listOptionsHeight,
     handleFocusInternal,
     handleInputPopoverChange,
-    handleBlurStructure,
-    handleFocusStructure,
   };
 };

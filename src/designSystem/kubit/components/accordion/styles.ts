@@ -36,6 +36,7 @@ export const ACCORDION_STYLES: AccordionStylesType<AccordionVariantType> = {
     },
     headerMainContainer: {
       width: '100%',
+      display: 'flex',
     },
     subHeader: {
       margin_top: SPACINGS.spacing_150,
