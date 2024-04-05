@@ -33,12 +33,13 @@ const IconBasicComponent = (
         $width={props.width}
         aria-disabled={disabled}
         aria-label={props['aria-label'] || altText}
+        data-testid={iconProps.dataTestId}
         disabled={disabled}
         type={ButtonType.BUTTON}
         onClick={onClick}
       >
         <ScreenReaderOnly>{screenReaderText}</ScreenReaderOnly>
-        <IconStandAlone {...iconProps} ref={ref} linearIcon={isLinearIcon} />
+        <IconStandAlone {...iconProps} ref={ref} dataTestId={undefined} linearIcon={isLinearIcon} />
       </IconButtonStyled>
     );
   }
