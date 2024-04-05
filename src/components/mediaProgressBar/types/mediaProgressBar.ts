@@ -2,10 +2,13 @@ import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
 
 import { MediaProgressBarVariantStylesType } from './mediaProgressBarTheme';
 
+export const BUILD_SCREEN_READER_CURRENT_PAGE_KEY = '{{currentBar}}';
+export const BUILD_SCREEN_READER_NUM_PAGES_KEY = '{{barsNum}}';
+
 export interface IMediaProgressBarStandAlone {
   styles: MediaProgressBarVariantStylesType;
   barsNum: number;
-  barsAriaLabels?: string[];
+  barAriaLabel?: string;
   barProgressDuration: number;
   dataTestIdBar?: string;
   dataTestIdProgressBar?: string;

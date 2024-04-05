@@ -30,7 +30,7 @@ const StoryWithHooks = args => {
   const mediaProgressBar = {
     barsNum: 3,
     barProgressDuration: 2000,
-    barsAriaLabels: ['aria-label-0', 'aria-label-1', 'aria-label-2'],
+    barAriaLabel: 'Bar {{currentBar}} of {{barsNum}}',
     clickableBars: true,
   };
 

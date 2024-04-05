@@ -1,6 +1,6 @@
 import { DeviceBreakpointsType } from '@/types';
 
-import { mediaProgressBarIndex } from '../mediaProgressBarIndex';
+import { buildMediaProgessBarAriaLabel, mediaProgressBarIndex } from '../mediaProgressBarUtils';
 
 const mock_props = {
   barsNum: 5,
@@ -72,5 +72,23 @@ describe('mediaProgressBarIndex', () => {
     const result = mediaProgressBarIndex(props);
 
     expect(result).toBeUndefined();
+  });
+  it('should return undefined when barAriaLabel is undefined', () => {
+    const currentBar = 2;
+    const barsNum = 5;
+    const barAriaLabel = undefined;
+
+    const result = buildMediaProgessBarAriaLabel(currentBar, barsNum, barAriaLabel);
+
+    expect(result).toBeUndefined();
+  });
+  it('should return the correct aria label when barAriaLabel is defined', () => {
+    const currentBar = 2;
+    const barsNum = 5;
+    const barAriaLabel = 'Page {{currentBar}} of {{barsNum}}';
+
+    const result = buildMediaProgessBarAriaLabel(currentBar, barsNum, barAriaLabel);
+
+    expect(result).toBe('Page 3 of 5');
   });
 });
