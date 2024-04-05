@@ -206,10 +206,6 @@ export const INPUT_STYLES: InputStylesType<InputVariantType> = {
   [InputVariantType.DEFAULT]: {
     [InputState.EMPTY]: {
       ...commonProps,
-      inputIcon: {
-        ...commonProps.inputIcon,
-        color: COLORS.NEUTRAL.color_neutral_icon_50,
-      },
     },
     [InputState.ACTIVE]: {
       ...commonProps,
@@ -220,10 +216,6 @@ export const INPUT_STYLES: InputStylesType<InputVariantType> = {
     },
     [InputState.FILLED]: {
       ...commonProps,
-      inputIcon: {
-        ...commonProps.inputIcon,
-        color: COLORS.NEUTRAL.color_neutral_icon_50,
-      },
       ...informationAssociatedProps,
     },
     [InputState.ERROR_EMPTY]: {
