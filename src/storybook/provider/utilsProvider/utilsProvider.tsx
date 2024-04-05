@@ -19,16 +19,6 @@ import {
   transformDate,
 } from '@/utils/date';
 
-//delete on kubit
-const folder = {
-  santander: 'santander',
-  modelbank: 'mb',
-  santander_black: 'santander',
-  modelbank_cc: 'mb',
-  santander_cc: 'santander',
-};
-//delete on kubit
-
 export const UtilsProviderDocStorybook = ({
   children,
   theme,
