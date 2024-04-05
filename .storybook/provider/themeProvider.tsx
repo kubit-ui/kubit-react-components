@@ -28,71 +28,6 @@ import {
   transformDate,
 } from '../../src/utils/date';
 
-const orderDate = (
-  date: string,
-  format: string,
-  isRange?: boolean
-): { formatSeparator: string | undefined; formattedDate: string } => {
-  const formatRegex = /[^\p{L}]+/gu;
-  const dateRegex = /[^\d]+/g;
-
-  const formatValueDate = (value: string): string =>
-    value.replace(/[a-zA-Z,]+/, '').replace(/\s/g, '');
-
-  const formattedValue = formatValueDate(date);
-
-  // we want always this YYYY-MM-DD format
-  const formatToOrderDate = 'YYYY-MM-DD';
-
-  const correctOrder = formatToOrderDate.split('-');
-
-  const newFormat =
-    format.length > 8
-      ? format
-      : `${format.slice(0, 2)}-${format.slice(2, 4)}-${format.slice(4)}`;
-
-  // to get separator
-  const formatSeparator = newFormat.match(formatRegex)?.[0];
-
-  const formatSplit = newFormat.split(formatRegex);
-
-  let dateToCheck: string[] = [];
-
-  let formattedDate = '';
-
-  // Transform date into YYYY-MM-DD format
-  const splitDate = (date) => {
-    return correctOrder.map((element: string) => {
-      if (element.includes('Y')) {
-        return date[formatSplit.findIndex((x: string) => x.includes('Y'))];
-      } else if (element.includes('M')) {
-        return date[formatSplit.findIndex((x: string) => x.includes('M'))];
-      } else if (element.includes('D')) {
-        return date[formatSplit.findIndex((x: string) => x.includes('D'))];
-      }
-    });
-  };
-
-  if (formattedValue.length === newFormat.length) {
-    const dateSplit = formattedValue.split(dateRegex);
-
-    dateToCheck = splitDate(dateSplit);
-
-    formattedDate = dateToCheck.join('-');
-  } else if (isRange && date.length > newFormat.length) {
-    const dateRangeSplit = date.split(dateRegex);
-    //just take the second date to check
-    const secondDate = dateRangeSplit.splice(3, 5);
-    dateToCheck = splitDate(secondDate);
-    formattedDate = dateToCheck.join('-');
-  }
-
-  return {
-    formatSeparator,
-    formattedDate,
-  };
-};
-
 const link = React.forwardRef((props: IGenericLink, ref: unknown) => {
   return (
     <a
@@ -136,10 +71,7 @@ export const ThemeProvider = ({ children, theme, themeName = 'kubit' }) => {
         isBefore: (date1: Date, date2: Date) => {
           return isBefore(date1, date2);
         },
-        isDatesEqual: (
-          firsDate: string | number | Date,
-          secondDate: string | number | Date
-        ) => {
+        isDatesEqual: (firsDate: string | number | Date, secondDate: string | number | Date) => {
           return isDatesEqual(firsDate, secondDate);
         },
         getAddDays: (date: Date, days: number) => {
