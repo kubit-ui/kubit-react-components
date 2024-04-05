@@ -419,8 +419,6 @@ export const useInputDate = ({
     handleFocusInternal,
     handleKeyDownInternal,
     handleSetValue,
-    handleBlurStructure,
-    handleFocusStructure,
   } = useInput({
     ref,
     errorExecution,
@@ -505,7 +503,5 @@ export const useInputDate = ({
     handleFocusInternal,
     handleKeyDownInternal,
     handleSetValue,
-    handleBlurStructure,
-    handleFocusStructure,
   };
 };

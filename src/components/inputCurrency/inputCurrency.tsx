@@ -33,6 +33,7 @@ const InputCurrencyComponent = React.forwardRef(
       regex,
       formatNumber,
       locale,
+      disabledWheelMouse = true,
       onBlur,
       onChange,
       onFocus,
@@ -63,8 +64,6 @@ const InputCurrencyComponent = React.forwardRef(
       handleBlurInternal,
       handleFocusInternal,
       handleKeyDownInternal,
-      handleBlurStructure,
-      handleFocusStructure,
     } = useInput({
       ref,
       errorExecution,
@@ -87,6 +86,7 @@ const InputCurrencyComponent = React.forwardRef(
       regex,
       formatNumber,
       locale,
+      disabledWheelMouse,
       onBlur,
       onChange,
       onFocus,
@@ -111,10 +111,8 @@ const InputCurrencyComponent = React.forwardRef(
         type={inputCurrencyType}
         value={value}
         onBlur={handleBlurInternal}
-        onBlurStructure={handleBlurStructure}
         onChange={handleChangeInternal}
         onFocus={handleFocusInternal}
-        onFocusStructure={handleFocusStructure}
         onKeyDown={handleKeyDownInternal}
       />
     );

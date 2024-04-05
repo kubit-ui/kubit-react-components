@@ -72,8 +72,6 @@ const InputDateComponent = React.forwardRef(
       handleFocusInternal,
       handleKeyDownInternal,
       handleChangeInternal,
-      handleBlurStructure,
-      handleFocusStructure,
     } = useInputDate({
       ref,
       format,
@@ -136,13 +134,11 @@ const InputDateComponent = React.forwardRef(
         type={type}
         value={value}
         onBlur={handleBlurInternal}
-        onBlurStructure={handleBlurStructure}
         onCalendarOpen={handleOpenCalendar}
         onChange={handleChangeInternal}
         onClick={handleClickInput}
         onDateChange={handlePickCalendarDate}
         onFocus={handleFocusInternal}
-        onFocusStructure={handleFocusStructure}
         onKeyDown={handleKeyDownInternal}
       />
     );

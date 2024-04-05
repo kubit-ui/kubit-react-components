@@ -98,6 +98,21 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
   }, []);
 
   useEffect(() => {
+    //avoid change value on input number using wheel mouse
+    const input = inputRef.current;
+    if (props.disabledWheelMouse && input) {
+      const handleWheel = e => {
+        e.preventDefault();
+      };
+      input.addEventListener('wheel', handleWheel);
+      return () => {
+        input.removeEventListener('wheel', handleWheel);
+      };
+    }
+    return undefined;
+  }, []);
+
+  useEffect(() => {
     if (eventKeyPressRef.current && props.mask && inputRef?.current && value) {
       const position = getPosition(
         eventKeyPressRef.current.key,
@@ -171,6 +186,12 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
       checkInternalValidations(event.target.value);
     }
 
+    // value = previous value
+    // valueControlled = current value
+    if (value === valueControlled) {
+      return;
+    }
+
     if (props.type === InputTypeType.NUMBER) {
       event.target.value = valueControlled;
     }
@@ -188,6 +209,7 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
     if (props.errorExecution === ERROR_EXECUTION.ON_BLUR && props.keyValidation) {
       props.onError?.(!validationValue(props.keyValidation, event.target.value));
     }
+    setFocus(false);
   };
 
   const handleFocusInternal: FocusEventHandler<HTMLInputElement> = event => {
@@ -206,13 +228,6 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
       getDecimalSeparator(props.locale || props.formatNumber?.locale)
     );
     props.onFocus?.(event);
-  };
-
-  const handleBlurStructure: FocusEventHandler<HTMLDivElement> = () => {
-    setFocus(false);
-  };
-
-  const handleFocusStructure: FocusEventHandler<HTMLDivElement> = () => {
     setFocus(true);
   };
 
@@ -286,7 +301,5 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
     handleFocusInternal,
     handleKeyDownInternal,
     handleSetValue,
-    handleBlurStructure,
-    handleFocusStructure,
   };
 };

@@ -351,6 +351,7 @@ export type IInputStandAlone = IInputComponents & {
     | 'characters'
     | AUTOCAPITALIZE_TYPE;
   disabledCopyAndPaste?: boolean;
+  disabledWheelMouse?: boolean;
   maxLength?: number;
   minLength?: number;
   min?: number;
@@ -381,8 +382,6 @@ export type IInputStandAlone = IInputComponents & {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   onClick?: React.MouseEventHandler<HTMLInputElement>;
-  onFocusStructure?: React.FocusEventHandler<HTMLDivElement>;
-  onBlurStructure?: React.FocusEventHandler<HTMLDivElement>;
 };
 
 type propsToOmit =
@@ -404,7 +403,7 @@ export interface IInputControlled<V = undefined extends string ? unknown : strin
 
 export type IInputUnControlled<V = undefined extends string ? unknown : string> = Omit<
   IInputControlled<V>,
-  'value' | 'state' | 'onFocusStructure' | 'onBlurStructure'
+  'value' | 'state'
 > & {
   // modifiers
   error?: boolean;

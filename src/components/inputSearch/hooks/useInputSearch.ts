@@ -90,8 +90,6 @@ type ReturnType = {
   handleFocusInternal: FocusEventHandler<HTMLInputElement>;
   handleInputPopoverChange: ChangeEventHandler<HTMLInputElement>;
   handleOptionsListKeyDown: KeyboardEventHandler<HTMLDivElement>;
-  handleBlurStructure: FocusEventHandler<HTMLDivElement>;
-  handleFocusStructure: FocusEventHandler<HTMLDivElement>;
 };
 
 export const useInputSearch = ({
@@ -241,14 +239,7 @@ export const useInputSearch = ({
   };
 
   // Input Basic hook
-  const {
-    state,
-    inputRef,
-    handleBlurInternal,
-    handleFocusInternal,
-    handleBlurStructure,
-    handleFocusStructure,
-  } = useInput({
+  const { state, inputRef, handleBlurInternal, handleFocusInternal } = useInput({
     ref: props.ref,
     disabled: props.disabled,
     error: props.error || internalErrors.length > 0,
@@ -327,7 +318,5 @@ export const useInputSearch = ({
     handleFocusInternal,
     handleInputPopoverChange,
     handleOptionsListKeyDown,
-    handleBlurStructure,
-    handleFocusStructure,
   };
 };
