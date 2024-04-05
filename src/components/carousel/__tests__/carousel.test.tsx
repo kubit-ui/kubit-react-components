@@ -57,6 +57,8 @@ const mockProps: ICarouselUnControlled = {
   pageControlArrowsControlVariant: 'DEFAULT',
 };
 
+const numPages = Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number));
+
 describe('Carousel component', () => {
   it('Carousel', async () => {
     const { container, getByTestId } = renderProvider(<CarouselUnControlled {...mockProps} />);
@@ -390,7 +392,7 @@ describe('Carousel component', () => {
       allowShift: {
         current: true,
       },
-      numPages: Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)),
+      numPages,
       innerCurrentPage: { current: 0 },
     });
     jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
@@ -434,7 +436,7 @@ describe('Carousel component', () => {
       allowShift: {
         current: true,
       },
-      numPages: Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)),
+      numPages,
       innerCurrentPage: { current: 0 },
     });
     jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
@@ -449,11 +451,14 @@ describe('Carousel component', () => {
 
     const rightArrow = getByLabelText(pageControlAutomateConfig.rightArrow.icon.altText);
     const leftArrow = getByLabelText(pageControlAutomateConfig.leftArrow.icon.altText);
+    const indicator1 = getByLabelText(`Bar 1 of ${numPages}`);
 
     fireEvent.click(rightArrow);
     expect(mockHandlePageChange).toHaveBeenCalledWith(1);
 
     fireEvent.click(leftArrow);
     expect(mockHandlePageChange).toHaveBeenCalledWith(-1);
+
+    expect(indicator1).toBeInTheDocument();
   });
 });

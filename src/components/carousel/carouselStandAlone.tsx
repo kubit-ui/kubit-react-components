@@ -4,9 +4,11 @@ import * as React from 'react';
 import { ElementOrIcon } from '@/components/elementOrIcon';
 import { PageControl } from '@/components/pageControl';
 import { useId } from '@/hooks';
+import { AriaLiveOptionType } from '@/types';
 
 import { PageControlArrowControlType } from '../pageControl/types';
 import { PageControlAutomate } from '../pageControlAutomate';
+import { ScreenReaderOnly } from '../screenReaderOnly';
 import {
   ArrowAndCarouselWrapperStyled,
   ArrowLeftIconContainer,
@@ -19,6 +21,7 @@ import {
 } from './carousel.styled';
 import { ExtraPaddingArrowStandAlone } from './components';
 import { ICarouselStandAlone } from './types';
+import { buildScreenReaderText } from './utils';
 
 const CarouselStandAloneComponent = (
   {
@@ -47,6 +50,7 @@ const CarouselStandAloneComponent = (
     onMouseOut,
     onMouseOver,
     playing,
+    screenReaderText,
     ...props
   }: ICarouselStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
@@ -78,6 +82,7 @@ const CarouselStandAloneComponent = (
       ref={ref}
       allowModifySliceWidth={allowModifySliceWidth}
       aria-labelledby={props['aria-labelledby']}
+      aria-roledescription="carousel"
       data-testid={`${dataTestId}Wrapper`}
       styles={styles}
       onKeyDown={onKeyDown}
@@ -107,6 +112,7 @@ const CarouselStandAloneComponent = (
         >
           <CarouselContentStyled
             ref={carouselContentRef}
+            aria-live={playing ? AriaLiveOptionType.OFF : AriaLiveOptionType.POLITE}
             centerMode={centerMode}
             data-testid={`${dataTestId}Content`}
             disableSwipe={disableSwipe}
@@ -135,7 +141,6 @@ const CarouselStandAloneComponent = (
             onClick={onRightArrowClick}
           />
         </CarouselContainerStyled>
-
         {displayArrowsOnCarousel && numPages > 1 && (
           <ArrowRightIconContainer data-disabled={rightArrowDisabled} styles={styles}>
             <ElementOrIcon
@@ -151,7 +156,7 @@ const CarouselStandAloneComponent = (
           </ArrowRightIconContainer>
         )}
       </ArrowAndCarouselWrapperStyled>
-      {hasPagination && numPages > 1 && (
+      {hasPagination && pageControlArrowsControlVariant && pageControlVariant && numPages > 1 && (
         <PageControlContainerStyled styles={styles}>
           <PageControl
             arrowsControlVariant={pageControlArrowsControlVariant}
@@ -180,6 +185,12 @@ const CarouselStandAloneComponent = (
           />
         </PageControlAutomateContainerStyled>
       )}
+      <ScreenReaderOnly
+        ariaLive={playing ? AriaLiveOptionType.OFF : AriaLiveOptionType.POLITE}
+        dataTestId={`${dataTestId}CarouselScreenReader`}
+      >
+        {buildScreenReaderText(currentPage, numPages, screenReaderText)}
+      </ScreenReaderOnly>
     </RootStyled>
   );
 };

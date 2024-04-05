@@ -6,6 +6,9 @@ import { CustomTokenTypes } from '@/types';
 import { CarouselAlignType } from './carouselAlign';
 import { CarouselPropsStylesType } from './carouselTheme';
 
+export const CAROUSEL_BUILD_SCREEN_READER_CURRENT_PAGE_KEY = '{{currentPage}}';
+export const CAROUSEL_BUILD_SCREEN_READER_NUM_PAGES_KEY = '{{numPages}}';
+
 export type CarouselMediaProgressBarType = Omit<
   IMediaProgressBar,
   'variant' | 'currentBar' | 'barsNum' | 'circular'
@@ -37,8 +40,8 @@ export interface ICarouselStandAlone {
   onLeftArrowClick?: React.MouseEventHandler<HTMLButtonElement>;
   onRightArrowClick?: React.MouseEventHandler<HTMLButtonElement>;
   hasPagination?: boolean;
-  pageControlVariant: string;
-  pageControlArrowsControlVariant: string;
+  pageControlVariant?: string;
+  pageControlArrowsControlVariant?: string;
   onKeyDown: React.KeyboardEventHandler<HTMLDivElement>;
   onTransition?: (active: boolean) => void;
   dataTestId?: string;
@@ -55,6 +58,7 @@ export interface ICarouselStandAlone {
   onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
   playing?: boolean;
   centerExtremesWhenExtraPadding?: boolean;
+  screenReaderText?: string;
 }
 
 export interface ICarouselControlled<V = undefined extends string ? unknown : string>
