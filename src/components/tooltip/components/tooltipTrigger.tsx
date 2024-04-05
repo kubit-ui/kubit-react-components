@@ -4,6 +4,7 @@ import { ButtonType } from '../../button';
 import { TooltipTriggerWrapperStyled } from '../tooltip.styled';
 
 interface ITooltipTrigger {
+  disabled?: boolean;
   childrenAsButton: boolean;
 }
 
@@ -12,7 +13,7 @@ export const TooltipTrigger = (
 ): React.ReactNode => {
   if (props.childrenAsButton) {
     return (
-      <TooltipTriggerWrapperStyled type={ButtonType.BUTTON}>
+      <TooltipTriggerWrapperStyled disabled={props.disabled} type={ButtonType.BUTTON}>
         {props.children}
       </TooltipTriggerWrapperStyled>
     );
