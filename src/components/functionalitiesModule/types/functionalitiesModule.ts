@@ -23,6 +23,7 @@ export type FunctionalitiesModuleSectionType = {
   tab: PrimaryTabTabType;
   options: Omit<ListOptionsOptionType, 'highlighted'>[];
   optionsTitle?: ListOptionsTitleType;
+  optionsContent?: ReactNode;
 };
 
 export type FunctionalitiesModuleTabsConfig = Omit<
