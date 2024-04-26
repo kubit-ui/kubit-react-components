@@ -7,7 +7,7 @@ import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { ROLES } from '@/types';
 
 import { RadioButtonGroupUnControlled } from '../radioButtonGroupUnControlled';
-import { IRadioButtonGroupUncontrolled, RadioButtonStateType } from '../types';
+import { IRadioButtonGroupUncontrolled } from '../types';
 
 const user = userEvent.setup();
 
@@ -94,7 +94,7 @@ describe('RadioButtonGroup component', () => {
     });
 
     const radioButtonWithScreenReaderAndDescription = screen.getByRole('radio', {
-      description: `${mockProps.options[5].description} ${mockProps.screenReaderText}`,
+      description: `${mockProps.options[5].description} ${mockProps.screenReaderText} Error text`,
     });
 
     expect(radioButtonWithScreenReader).toBeInTheDocument();

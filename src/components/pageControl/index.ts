@@ -9,6 +9,7 @@ export type {
   PageControlType,
   ArrowsControlCommonProps,
   ArrowsControlVariantStylesType,
+  PageControlArrowControlType,
 } from './types';
 
 // enums
