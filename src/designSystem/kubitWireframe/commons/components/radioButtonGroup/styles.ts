@@ -90,6 +90,7 @@ export const getRadioButtonGroupStyles = (COLORS: {
         ...commonVariantsTokens(COLORS),
         radioButton: {
           ...commonVariantsTokens(COLORS).radioButton,
+          cursor: 'not-allowed',
           background_color: COLORS.DISABLED.color_accentDisabled_bg_150,
           border_color: COLORS.DISABLED.color_accentDisabled_border_50,
         },
@@ -98,6 +99,7 @@ export const getRadioButtonGroupStyles = (COLORS: {
         ...commonVariantsTokens(COLORS),
         radioButton: {
           ...commonVariantsTokens(COLORS).radioButton,
+          cursor: 'not-allowed',
           background_color: COLORS.DISABLED.color_accentDisabled_bg_150,
           border_color: COLORS.DISABLED.color_accentDisabled_border_50,
         },

@@ -1,4 +1,4 @@
-import { InputHelpMessagePosition, InputState } from '@/components/input/types';
+import { InputHelpMessagePosition, InputState, LABEL_TYPE } from '@/components/input/types';
 import { InputDateStylesType } from '@/components/inputDate/types';
 import { DeviceBreakpointsType } from '@/types';
 
@@ -23,6 +23,9 @@ const commonProps = {
     [DeviceBreakpointsType.DESKTOP]: false,
     [DeviceBreakpointsType.TABLET]: true,
     [DeviceBreakpointsType.MOBILE]: true,
+  },
+  label: {
+    type: LABEL_TYPE.STANDARD,
   },
 };
 

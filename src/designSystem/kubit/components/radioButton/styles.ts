@@ -89,6 +89,7 @@ const radioButtonDefaultTokens = {
     ...commonVariantsTokens,
     radioButton: {
       ...commonVariantsTokens.radioButton,
+      cursor: 'not-allowed',
       background_color: COLORS.DISABLED.color_accentDisabled_bg_150,
       border_color: COLORS.DISABLED.color_accentDisabled_border_50,
     },
@@ -97,6 +98,7 @@ const radioButtonDefaultTokens = {
     ...commonVariantsTokens,
     radioButton: {
       ...commonVariantsTokens.radioButton,
+      cursor: 'not-allowed',
       background_color: COLORS.DISABLED.color_accentDisabled_bg_150,
       border_color: COLORS.DISABLED.color_accentDisabled_border_50,
     },

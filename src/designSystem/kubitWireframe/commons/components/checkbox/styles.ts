@@ -105,6 +105,7 @@ export const getCheckboxStyles = (COLORS: {
           color: COLORS.DISABLED.color_accentDisabled_icon_50,
         },
       },
+      // deprecated - This `error` state will be deprecated in the future
       [CheckboxStateType.ERROR]: {
         ...commonProps(COLORS),
         checkbox: {
