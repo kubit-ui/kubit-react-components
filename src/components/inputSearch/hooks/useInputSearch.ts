@@ -54,6 +54,7 @@ type ParamsType = {
   informationAssociated?: string;
   maxLength?: number;
   searchFilterConfig?: SearchFilterConfig;
+  caseSensitive?: boolean;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   onIconClick?: React.MouseEventHandler<HTMLButtonElement>;
   executeInternalOpenOptions?: boolean;
@@ -75,7 +76,6 @@ type ReturnType = {
   searchText: string;
   inputPopoverText: string;
   optionsFiltered: IOptionGroup[];
-  recommendedOption: string | undefined;
   handleOpenOptions: (open: boolean) => void;
   handleClickInputSearch: React.MouseEventHandler<HTMLInputElement>;
   handleIconClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -185,7 +185,7 @@ export const useInputSearch = ({
   const handleInputBlur = event => {
     props.onBlur?.(event);
     const allOptions = props.options.map(option => option.options).flat();
-    const hasMatch = hasMatchWithOptions(searchText, allOptions);
+    const hasMatch = hasMatchWithOptions(searchText, allOptions, props.caseSensitive);
     // if the input loses focus and there is no valid option in the input value, show an error message
     if (!hasMatch && !props.hasResultTextWrittenByUser && !props.disableErrorInvalidOption) {
       addInternalError(InternalErrorType.INVALID_OPTION);
@@ -289,7 +289,7 @@ export const useInputSearch = ({
   };
 
   // Filter options
-  const { optionsFiltered, recommendedOption } = filterOptions(
+  const { optionsFiltered } = filterOptions(
     useActionBottomSheet ? inputPopoverText : searchText,
     props.options,
     props.searchFilterConfig?.wordSeparator,
@@ -301,7 +301,6 @@ export const useInputSearch = ({
     searchText,
     inputPopoverText,
     optionsFiltered,
-    recommendedOption,
     showHighlightedOption,
     handleOpenOptions,
     handleClickInputSearch,

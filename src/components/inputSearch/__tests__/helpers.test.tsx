@@ -1,11 +1,4 @@
-import {
-  filterOptions,
-  findBestMatch,
-  getAriaControls,
-  getLength,
-  hasMatchWithOptions,
-} from '../helpers';
-import { InputSearchBestMatch } from '../types/inputSearch';
+import { filterOptions, getAriaControls, getLength, hasMatchWithOptions } from '../helpers';
 
 const optionsToFilter = [
   {
@@ -35,20 +28,11 @@ describe('Input Search Helpers', () => {
     ];
     expect(filterOptions('st', optionsToFilter)).toEqual({
       optionsFiltered: filteredOptions,
-      recomemededOption: undefined,
     });
   });
 
   test('Should filter options without value', async () => {
     expect(filterOptions(undefined, optionsToFilter)).toEqual({ optionsFiltered: optionsToFilter });
-  });
-
-  test('Should filter options with no options filtered', async () => {
-    const filteredOptions = {
-      optionsFiltered: [{ options: [] }],
-      recommendedOption: undefined,
-    };
-    expect(filterOptions('ra', optionsToFilter)).toStrictEqual(filteredOptions);
   });
 
   test('Should get options lenght', async () => {
@@ -58,38 +42,30 @@ describe('Input Search Helpers', () => {
   test('Should get ariaControls', async () => {
     expect(getAriaControls(options, 'ariaControls')).toStrictEqual('ariaControls0 ariaControls1');
   });
-  test('findBestMatch function should return 1', () => {
-    const objA = { list: 1, bestMatch: { key1: 5 }, bestMatchkey: 'key1' };
-    const objB = { list: 1, bestMatch: { key1: 10 }, bestMatchkey: 'key1' };
 
-    expect(findBestMatch(objA, objB)).toBe(1);
+  test('should return empty array when options is empty', () => {
+    const result = filterOptions('test', []);
+    expect(result.optionsFiltered).toEqual([]);
   });
-  test('findBestMatch function should return -1', async () => {
-    const objA: InputSearchBestMatch = {
-      list: 1,
-      bestMatch: { label: 'label1', value: '2' },
-      bestMatchkey: 'value',
-    };
-    const objB: InputSearchBestMatch = {
-      list: 1,
-      bestMatch: { label: 'label2', value: '1' },
-      bestMatchkey: 'value',
-    };
-    expect(findBestMatch(objA, objB)).toBe(-1);
+
+  test('should return original options when value is undefined', () => {
+    const options = [{ options: ['test1', 'test2'] }];
+    const result = filterOptions(undefined, options);
+    expect(result.optionsFiltered).toEqual(options);
   });
-  test('findBestMatch function should return 0', async () => {
-    const objA: InputSearchBestMatch = {
-      list: 1,
-      bestMatch: { label: 'label1', value: '2' },
-      bestMatchkey: 'value',
-    };
-    const objB: InputSearchBestMatch = {
-      list: 1,
-      bestMatch: { label: 'label2', value: '2' },
-      bestMatchkey: 'value',
-    };
-    expect(findBestMatch(objA, objB)).toBe(0);
+
+  test('should filter options based on value', () => {
+    const options = [{ options: ['test1', 'test2', 'test3'] }];
+    const result = filterOptions('test1', options);
+    expect(result.optionsFiltered).toEqual([{ options: ['test1'] }]);
   });
+
+  test('should return original options when no match is found', () => {
+    const options = [{ options: ['test1', 'test2', 'test3'] }];
+    const result = filterOptions('test4', options);
+    expect(result.optionsFiltered).toEqual(options);
+  });
+
   test('check match', () => {
     const options = ['first', 'second', 'thrid'];
     const correctValue = 'first';

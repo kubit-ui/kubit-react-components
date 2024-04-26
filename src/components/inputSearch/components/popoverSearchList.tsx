@@ -30,7 +30,7 @@ export const PopoverSearchListComponent = (
   const useActionBottomSheet = props.styles?.[props.state]?.useActionBottomSheet?.[props.device];
   const labelInResultTextWrittenByUser = useActionBottomSheet
     ? props.inputConfiguration?.value?.toString()
-    : props.recommendedOption?.toString() ?? props.searchText?.toString();
+    : props.searchText?.toString();
   // Behavior with "use this" option
   const showTextWritten: InputSearchOptionType | undefined = useMemo(
     () =>
@@ -63,6 +63,7 @@ export const PopoverSearchListComponent = (
       key={index}
       ref={ref}
       aria-controls={`${props['aria-controls']}${index}`}
+      caseSensitive={props.caseSensitive}
       dataTestId={`${props.dataTestId}OptionsList${index}`}
       hightlightedOption={showTextWritten || showHighlightedOption}
       index={index}

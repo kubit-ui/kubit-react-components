@@ -46,6 +46,7 @@ export const OptionsListComponent = (
       {props.stylesListOption?.optionVariant && props.stylesListOption?.variant && (
         <ListOptions
           ref={sendRef}
+          caseSensitive={props.caseSensitive}
           charsHighlighted={props.searchText?.toString()}
           dataTestId={props.dataTestId}
           hightlightedOptionVariant={props.stylesListOption?.hightlightedOptionVariant}

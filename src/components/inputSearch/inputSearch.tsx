@@ -43,6 +43,7 @@ const InputSearchComponent = React.forwardRef(
       ctv,
       blockBackPopover = false,
       searchFilterConfig,
+      caseSensitive,
       ...props
     }: IInputSearch<V>,
     ref: React.ForwardedRef<HTMLInputElement | undefined>
@@ -53,7 +54,6 @@ const InputSearchComponent = React.forwardRef(
     const {
       openOptions,
       optionsFiltered,
-      recommendedOption,
       searchText,
       inputPopoverText,
       valueSearchSelected,
@@ -102,6 +102,7 @@ const InputSearchComponent = React.forwardRef(
       onOptionClick,
       onInternalErrors,
       searchFilterConfig,
+      caseSensitive,
     });
 
     return (
@@ -111,6 +112,7 @@ const InputSearchComponent = React.forwardRef(
           innerRef as unknown as React.ForwardedRef<HTMLInputElement | undefined | null> | undefined
         }
         blockBackPopover={blockBackPopover}
+        caseSensitive={caseSensitive}
         device={device}
         hasHighlightedOption={showHighlightedOption}
         hasResultTextWrittenByUser={hasResultTextWrittenByUser}
@@ -122,7 +124,6 @@ const InputSearchComponent = React.forwardRef(
         maxLength={maxLength}
         open={openOptions}
         optionList={optionsFiltered}
-        recommendedOption={recommendedOption}
         searchText={searchText}
         state={state}
         styles={styles}
