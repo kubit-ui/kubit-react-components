@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 
 import { keyDownMove, keyUpMove } from '@/components/listOptions/utils';
 import { useId } from '@/hooks/useId/useId';
+import { ROLES } from '@/types';
 
 import { ButtonType } from '../button';
 import { ElementOrIcon } from '../elementOrIcon';
@@ -76,6 +77,8 @@ const DropdownSelectedStandAloneComponent = (props: IDropdownSelectedStandAlone)
         ref={props.buttonOrLinkRef}
         $rotate={props.open}
         aria-controls={ariaControls}
+        aria-expanded={props.open}
+        aria-haspopup={ROLES.LISTBOX}
         as={props.component}
         styles={props.styles}
         target={!props.url ? undefined : props.urlTarget}
