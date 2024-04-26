@@ -20,6 +20,7 @@ export enum LineSeparatorPositionType {
 
 export type LineSeparatorLinePropsStylesType = {
   buildLineStyles?: (position?: LineSeparatorPositionType) => CSSProp;
+  lineSeparatorRootWrapper?: CommonStyleType;
 };
 
 export type LineSeparatorLineStylesType<P extends string | number | symbol> = {
