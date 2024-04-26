@@ -1,12 +1,21 @@
-import { CheckboxStateType } from '../types';
+import { CheckboxPropsStateStylesType, CheckboxStateType } from '../types';
 
 // eslint-disable-next-line complexity
 const getCheckBoxState = (
   checked = false,
   disabled = false,
-  isError = false
+  error = false,
+  // deprecated - Remove style from de method when the deprecated ERROR state is removed
+  styles?: CheckboxPropsStateStylesType
 ): CheckboxStateType => {
-  if (isError) {
+  if (error && !checked && styles?.[CheckboxStateType.ERROR_UNSELECTED]) {
+    return CheckboxStateType.ERROR_UNSELECTED;
+  }
+  if (error && checked && styles?.[CheckboxStateType.ERROR_SELECTED]) {
+    return CheckboxStateType.ERROR_SELECTED;
+  }
+  // deprecated - This `error` state will be deprecated in the future
+  if (error) {
     return CheckboxStateType.ERROR;
   }
   if (disabled && !checked) {
@@ -36,11 +45,17 @@ export const checkboxState = (
   hasError: boolean;
 } => {
   const isChecked =
-    state === CheckboxStateType.DEFAULT_SELECTED || state === CheckboxStateType.DISABLED_SELECTED;
+    state === CheckboxStateType.DEFAULT_SELECTED ||
+    state === CheckboxStateType.DISABLED_SELECTED ||
+    state === CheckboxStateType.ERROR_SELECTED;
   const isDisabled =
     state === CheckboxStateType.DISABLED_UNSELECTED ||
     state === CheckboxStateType.DISABLED_SELECTED;
-  const hasError = state === CheckboxStateType.ERROR;
+  const hasError =
+    state === CheckboxStateType.ERROR_SELECTED ||
+    state === CheckboxStateType.ERROR_UNSELECTED ||
+    // deprecated - This `error` state will be deprecated in the future
+    state === CheckboxStateType.ERROR;
   return { isChecked, isDisabled, hasError };
 };
 
