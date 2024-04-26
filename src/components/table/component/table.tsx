@@ -7,9 +7,9 @@ import { useId } from '@/hooks';
 import { pickAriaProps } from '@/utils/aria/aria';
 
 import {
-  EmptyRowHeader,
   TableCaptionStyled,
   TableColumnHeaderStyled,
+  TableEmptyColumnHeaderStyled,
   TableRowGroupBodyStyled,
   TableRowGroupHeaderStyled,
   TableRowHeaderStyled,
@@ -71,7 +71,9 @@ export const TableComponent = (
             numberOfCells={headersElement.length}
             styles={props.styles.header?.[props.headerVariant]}
           >
-            {hasRowHeader && <EmptyRowHeader styles={props.styles.header?.[props.headerVariant]} />}
+            {hasRowHeader && (
+              <TableEmptyColumnHeaderStyled styles={props.styles.header?.[props.headerVariant]} />
+            )}
             {hasSomeDividerContent && (
               <TableColumnHeaderStyled
                 key={'dividerContent'}
@@ -137,7 +139,6 @@ export const TableComponent = (
               <TableRow
                 {...props}
                 key={indexValue}
-                hasRowHeader={hasRowHeader}
                 hasSomeDivider={hasSomeDivider}
                 hasSomeDividerContent={hasSomeDividerContent}
                 hasSomeExpandedContent={props.hasSomeExpandedContent}

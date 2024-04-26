@@ -13,6 +13,7 @@ import { windowMatchMedia } from '@/tests/windowMatchMedia';
 import { DeviceBreakpointsType, ROLES } from '@/types';
 
 import { Table } from '../table';
+import { FormatListHeaderPriorityType } from '../types';
 
 const mockBaseNoOneExpanded = {
   variant: 'DEFAULT',
@@ -291,6 +292,10 @@ const mockExpanded = {
           </div>
         ),
       },
+      rowHeader: {
+        label: 'Row header 1',
+        variant: 'CUSTOMIZABLE_SECONDARY',
+      },
     },
   ],
   accordionIcon: { icon: 'UNICORN' },
@@ -498,6 +503,72 @@ describe('Table component', () => {
       .mockImplementation(() => DeviceBreakpointsType.MOBILE);
     const { container } = renderProvider(
       <Table formatListInMobile captionDescription={'caption description'} {...mockBase} />
+    );
+    const results = await axe(container);
+    const uls = screen.getAllByRole(ROLES.LIST);
+
+    expect(uls.length).not.toBe(0);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+  it('When formatListHeaderPriority has ROW_HEADER', async () => {
+    window.matchMedia = windowMatchMedia('onlyMobile');
+    jest
+      .spyOn(useMediaDevice, 'useMediaDevice')
+      .mockImplementation(() => DeviceBreakpointsType.MOBILE);
+    const { container } = renderProvider(
+      <Table
+        captionDescription={'caption description'}
+        formatList={{
+          [DeviceBreakpointsType.TABLET]: true,
+          [DeviceBreakpointsType.MOBILE]: true,
+        }}
+        formatListHeaderPriority={FormatListHeaderPriorityType.ROW_HEADER}
+        {...mockBase}
+      />
+    );
+    const results = await axe(container);
+    const uls = screen.getAllByRole(ROLES.LIST);
+
+    expect(uls.length).not.toBe(0);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('ROW_HEADER can have expansible content', async () => {
+    renderProvider(
+      <Table
+        captionDescription={'caption description'}
+        formatList={{
+          [DeviceBreakpointsType.TABLET]: true,
+          [DeviceBreakpointsType.MOBILE]: true,
+        }}
+        formatListHeaderPriority={FormatListHeaderPriorityType.ROW_HEADER}
+        {...mockExpanded}
+      />
+    );
+
+    const buttonToExpand = screen.getByLabelText('Expand current last cell');
+    await userEvent.click(buttonToExpand);
+    const expantedContent = screen.getByText('113456789');
+    expect(expantedContent).toBeDefined();
+  });
+
+  it('When formatListHeaderPriority has COLUMN_HEADER', async () => {
+    window.matchMedia = windowMatchMedia('onlyMobile');
+    jest
+      .spyOn(useMediaDevice, 'useMediaDevice')
+      .mockImplementation(() => DeviceBreakpointsType.MOBILE);
+    const { container } = renderProvider(
+      <Table
+        captionDescription={'caption description'}
+        formatList={{
+          [DeviceBreakpointsType.TABLET]: true,
+          [DeviceBreakpointsType.MOBILE]: true,
+        }}
+        formatListHeaderPriority={FormatListHeaderPriorityType.COLUMN_HEADER}
+        {...mockBase}
+      />
     );
     const results = await axe(container);
     const uls = screen.getAllByRole(ROLES.LIST);

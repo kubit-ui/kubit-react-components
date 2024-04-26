@@ -24,7 +24,6 @@ export interface ITableRow extends Omit<ITableStandAlone, 'values' | 'headerVari
   indexRow: number;
   hasSomeDivider: boolean;
   hasSomeDividerContent: boolean;
-  hasRowHeader: boolean;
 }
 
 /**
@@ -44,7 +43,7 @@ export const TableRow = (props: ITableRow): JSX.Element => {
     hasFooter,
     showExpandedContent,
     rowVariant,
-  } = useContent({ ...props, index: props.indexRow });
+  } = useContent({ ...props });
   return (
     <>
       <TableRowBodyStyled
@@ -62,7 +61,16 @@ export const TableRow = (props: ITableRow): JSX.Element => {
       >
         <TableDivider divider={dividerValue()} styles={props.styles.divider} />
         {rowHeader && (
-          <TableColumnHeaderStyled scope="row" styles={props.styles.header?.[rowHeader.variant]}>
+          <TableColumnHeaderStyled
+            customAlign={
+              rowHeader?.config?.alignHeader?.[props.device] || rowHeader?.config?.alignHeader
+            }
+            customBackgroundColor={rowHeader?.config?.backgroundColor}
+            customWidth={rowHeader?.config?.width}
+            flexWidth={rowHeader?.config?.flexWidth}
+            scope="row"
+            styles={props.styles.header?.[rowHeader.variant]}
+          >
             <Text
               component={TextComponentType.SPAN}
               customTypography={props.styles.header?.[rowHeader.variant]?.typography}

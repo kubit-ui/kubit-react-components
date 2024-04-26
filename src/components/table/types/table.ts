@@ -9,18 +9,11 @@ import {
 } from '@/components/lineSeparator';
 import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
 
+import { FormatListHeaderPriorityType } from './formatListHeaderPriority';
 import { TableRowHeaderTypes } from './tableTheme';
 
 /**
  * @description
- * IListRow
- * @interface IListRow
- */
-export interface IListRow extends IListComponent {
-  value: IValue;
-  index: number;
-}
-
 /**
  * @description
  * List props
@@ -29,6 +22,23 @@ export interface IListRow extends IListComponent {
 export interface IListComponent extends Omit<ITableStandAlone, 'headerVariant'> {
   hasSomeExpandedContent: boolean;
   initialExpanded: boolean;
+  headerVariant: string;
+}
+
+// Should be deprecated, it does not appears in the new designs ?
+export interface IListRowPriority extends IListComponent {
+  value: IValue;
+  index: number;
+}
+
+/**
+ * @description
+ * IListRowHeaderPriority
+ * @interface IListRowHeaderPriority
+ */
+export interface IListRowHeaderPriority extends IListComponent {
+  value: IValue;
+  index: number;
 }
 
 type AlignType = {
@@ -64,12 +74,7 @@ export type ValueConfigType = {
   backgroundColor?: string;
 };
 
-/**
- * @description
- * Table value props
- * @interface IValue
- */
-export type IValue = {
+export type IValueConfigPropsType = {
   expandedContent?: ExpandedContentType;
   dividerContent?: TableDividerType;
   accordionIconCollapsedAriaLabel?: string;
@@ -78,7 +83,14 @@ export type IValue = {
   rowHeader?: ITableRowHeader;
   rowBorderPosition?: LineSeparatorPositionType;
   backgroundColor?: string;
-} & {
+};
+
+/**
+ * @description
+ * Table value props
+ * @interface IValue
+ */
+export type IValue = IValueConfigPropsType & {
   [key: string]:
     | string
     | JSX.Element
@@ -161,6 +173,9 @@ export interface ITableStandAlone extends TableAriaAttributes {
   scrolling: boolean;
   headerVariant?: string;
   expandedContentHelpMessage?: string;
+  formatList?: { [key in DeviceBreakpointsType]?: boolean };
+  formatListHeaderPriority?: FormatListHeaderPriorityType;
+  /** @deprecated Use instead hasFormatList */
   formatListInMobile?: boolean;
   formatSideBySideInList?: boolean;
   onExpandedContentOpen?: (

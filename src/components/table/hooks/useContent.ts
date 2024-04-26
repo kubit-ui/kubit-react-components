@@ -15,7 +15,6 @@ interface IUseContent extends Omit<ITableStandAlone, 'values' | 'headerVariant'>
   hasSomeExpandedContent?: boolean;
   initialExpanded: boolean;
   value: IValue;
-  index: number;
 }
 
 interface IUseContentResponse {

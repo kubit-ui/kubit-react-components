@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useActiveBreakpoints } from '@/hooks';
+import { DeviceBreakpointsType } from '@/types';
 
 import { List } from './component/list';
 import { Table } from './component/table';
@@ -13,6 +13,7 @@ const TableStandAloneComponent = (
     initialExpanded = false,
     dataTestId = 'tableDataTestId',
     headerVariant = 'PRIMARY',
+    // deprecated - use formatList instead
     formatListInMobile = false,
     formatSideBySideInList = false,
     ...props
@@ -23,8 +24,9 @@ const TableStandAloneComponent = (
     return !!Object.getOwnPropertyDescriptor(o, 'expandedContent');
   });
 
-  const { isMobile } = useActiveBreakpoints();
-  const isList = isMobile && formatListInMobile;
+  const isList =
+    (props.formatList && props.formatList[props.device]) ||
+    (props.device === DeviceBreakpointsType.MOBILE && formatListInMobile);
 
   return isList ? (
     <List
@@ -34,6 +36,7 @@ const TableStandAloneComponent = (
       dataTestId={dataTestId}
       formatSideBySideInList={formatSideBySideInList}
       hasSomeExpandedContent={hasSomeExpandedContent}
+      headerVariant={headerVariant}
       initialExpanded={initialExpanded}
     />
   ) : (

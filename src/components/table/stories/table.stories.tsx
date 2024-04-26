@@ -74,7 +74,6 @@ export const TableBasic: Story = {
 export const TableCustomizable: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].TableVariantType || {})[0] as string,
-    headerVariant: 'CUSTOMIZABLE_HEADER',
     captionDescription: 'Table caption',
     ['aria-label']: 'ariaLabel table',
     lineSeparatorTopOnHeader: true,

@@ -6,6 +6,8 @@ import { FooterPositionType } from '@/components/footer';
 import { Icon } from '@/components/icon';
 import { DeviceBreakpointsType } from '@/types';
 
+import { FormatListHeaderPriorityType } from '../types';
+
 export const mockTableWithLineSeparatorAndCenterFooter = {
   expandedContentHelpMessage: 'Need to expand to show the content',
   headers: [
@@ -457,6 +459,18 @@ export const mockBasicTable = {
 };
 
 export const mockCustomizableTable = {
+  headerVariant: 'CUSTOMIZABLE_HEADER',
+  hiddenHeaderOn: {
+    [DeviceBreakpointsType.LARGE_DESKTOP]: false,
+    [DeviceBreakpointsType.DESKTOP]: false,
+    [DeviceBreakpointsType.TABLET]: true,
+    [DeviceBreakpointsType.MOBILE]: true,
+  },
+  formatList: {
+    [DeviceBreakpointsType.TABLET]: true,
+    [DeviceBreakpointsType.MOBILE]: true,
+  },
+  formatListHeaderPriority: FormatListHeaderPriorityType.ROW_HEADER,
   headers: [
     {
       id: 'date',
@@ -469,12 +483,7 @@ export const mockCustomizableTable = {
       config: {
         alignHeader: 'left',
         alignValue: 'left',
-        hidden: {
-          [DeviceBreakpointsType.LARGE_DESKTOP]: false,
-          [DeviceBreakpointsType.DESKTOP]: false,
-          [DeviceBreakpointsType.TABLET]: false,
-          [DeviceBreakpointsType.MOBILE]: false,
-        },
+        // width: '100px',
       },
       value: (value): string | JSX.Element =>
         value.surname ? (
@@ -544,6 +553,16 @@ export const mockCustomizableTable = {
       accountNumber: '****999999',
       transactionNumber: '0000',
       rowVariant: 'CUSTOMIZABLE_ROW',
+      rowHeader: {
+        label: 'Row header 1',
+        variant: 'CUSTOMIZABLE_HEADER',
+        // config: {
+        // alignHeader: 'center',
+        // alignValue: 'center',
+        // width: '100px',
+        // backgroundColor: 'green',
+        // },
+      },
     },
     {
       date: '18 DIC',
@@ -554,6 +573,10 @@ export const mockCustomizableTable = {
       transactionNumber: '0000',
       rowVariant: 'CUSTOMIZABLE_ROW',
       backgroundColor: 'aqua',
+      rowHeader: {
+        label: 'Row header 1',
+        variant: 'CUSTOMIZABLE_HEADER',
+      },
     },
     {
       date: '19 DIC',
@@ -561,6 +584,10 @@ export const mockCustomizableTable = {
       routingNumber: '987654321',
       accountNumber: '****333333',
       rowVariant: 'CUSTOMIZABLE_ROW',
+      rowHeader: {
+        label: 'Row header 1',
+        variant: 'CUSTOMIZABLE_HEADER',
+      },
     },
     {
       date: '19 DIC',
@@ -568,6 +595,10 @@ export const mockCustomizableTable = {
       routingNumber: '9876234234',
       accountNumber: '****5234234',
       rowVariant: 'CUSTOMIZABLE_ROW',
+      rowHeader: {
+        label: 'Row header 1',
+        variant: 'CUSTOMIZABLE_HEADER',
+      },
     },
     {
       date: '19 DIC',
@@ -576,6 +607,10 @@ export const mockCustomizableTable = {
       accountNumber: '****5986756',
       rowVariant: 'CUSTOMIZABLE_ROW',
       delete: { backgroundColor: 'pink' },
+      rowHeader: {
+        label: 'Row header 1',
+        variant: 'CUSTOMIZABLE_HEADER',
+      },
     },
   ],
 };
