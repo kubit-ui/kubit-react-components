@@ -411,7 +411,7 @@ export type IInputUnControlled<V = undefined extends string ? unknown : string> 
   value?: string | number;
   errorExecution?: ERROR_EXECUTION;
   keyValidation?: string;
-  regex?: string;
+  regex?: string | RegExp;
   // functions
   onInternalErrors?: (errors: string[]) => void;
   onError?: (error: boolean) => void;
