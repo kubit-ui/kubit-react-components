@@ -79,3 +79,4 @@ export * from './screenReaderOnly';
 export * from './textCount';
 export * from './dropdownSelected';
 export * from './portal';
+export * from './tagV2';

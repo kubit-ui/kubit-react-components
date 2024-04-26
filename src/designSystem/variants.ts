@@ -114,4 +114,5 @@ export type Variants = {
   VideoVariantType?: object;
   DropdownSelectedVariantType?: object;
   TextCountVariantType?: object;
+  TagVariantTypeV2?: object;
 };
