@@ -11,6 +11,7 @@ export type PillStateStylesType = {
     box_shadow?: string;
   };
   input?: CommonStyleType;
+  decorativeIconContainer?: CommonStyleType;
   decorativeIcon?: IconTypes;
   selectedIcon?: IconTypes;
   label?: TypographyTypes;

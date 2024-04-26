@@ -5,7 +5,7 @@ import { InputTypeType } from '@/components/input';
 import { useId } from '@/hooks';
 import { pickAriaProps } from '@/utils/aria/aria';
 
-import { PillInputStyled, PillLabelStyled, PillStyled } from './pill.styled';
+import { IconContainerStyled, PillInputStyled, PillLabelStyled, PillStyled } from './pill.styled';
 import { IPillStandAlone } from './types';
 import { getPillState } from './utils';
 
@@ -60,13 +60,15 @@ const PillStandAloneComponent = (
         onFocus={onFocus}
       />
       {decorativeIcon && (
-        <ElementOrIcon
-          color={stateStyles?.decorativeIcon?.color}
-          dataTestId={dataTestId + 'DecorativeIcon'}
-          height={stateStyles?.decorativeIcon?.height}
-          width={stateStyles?.decorativeIcon?.width}
-          {...decorativeIcon}
-        />
+        <IconContainerStyled styles={stateStyles}>
+          <ElementOrIcon
+            color={stateStyles?.decorativeIcon?.color}
+            dataTestId={dataTestId + 'DecorativeIcon'}
+            height={stateStyles?.decorativeIcon?.height}
+            width={stateStyles?.decorativeIcon?.width}
+            {...decorativeIcon}
+          />
+        </IconContainerStyled>
       )}
       <PillLabelStyled htmlFor={id} styles={stateStyles}>
         {children}
