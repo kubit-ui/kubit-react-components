@@ -27,11 +27,23 @@ export enum CssAnimationTimingFunction {
  * Interface for the CssAnimationOptions
  */
 export interface ICssAnimationOptions {
-  duration?: number;
-  enterDuration?: number;
-  exitDuration?: number;
+  /**
+   * @deprecated This property will be of type string (the duration should come with the units)
+   */
+  duration?: number | string;
+  /**
+   * @deprecated This property will be of type string (the duration should come with the units)
+   */
+  enterDuration?: number | string;
+  /**
+   * @deprecated This property will be of type string (the duration should come with the units)
+   */
+  exitDuration?: number | string;
   timingFunction: CssAnimationTimingFunction;
-  delay: number;
+  /**
+   * @deprecated This property will be of type string (the duration should come with the units)
+   */
+  delay: number | string;
   iterationCount: number;
   animationDistanceInPx?: number;
   animationRotationInDeg?: number;
