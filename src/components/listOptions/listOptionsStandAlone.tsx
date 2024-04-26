@@ -65,6 +65,7 @@ export const ListOptionsStandAlone = React.forwardRef(
             </Text>
           </TitleWrapperStyled>
         )}
+        {props.content}
         <OptionsWrapperStyled
           ref={listEl as React.RefObject<HTMLUListElement>}
           as={'ul'}
@@ -73,7 +74,12 @@ export const ListOptionsStandAlone = React.forwardRef(
           styles={props.styles}
         >
           {props.options.map((option, index) => {
-            const selected = isSelected(option, props.selectedValue, props.multiSelect);
+            const selected = isSelected(
+              option,
+              props.selectedValue,
+              props.multiSelect,
+              props.caseSensitive
+            );
             const optionComponent = (
               <Option
                 key={`${id}Option${index}`}

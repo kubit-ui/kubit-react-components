@@ -31,6 +31,7 @@ const MOCK = {
       value: 2,
     },
   ],
+  content: <div>Content</div>,
   onOptionClick: jest.fn(),
 };
 
