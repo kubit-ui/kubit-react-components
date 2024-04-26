@@ -132,6 +132,10 @@ export const TableRowHeaderStyled = styled.tr<{
     `}
 `;
 
+export const TableEmptyColumnHeaderStyled = styled.td<{ styles?: TableHeaderStylesTypes }>`
+  ${({ styles }) => getStyles(styles?.column)}
+`;
+
 export const TableColumnHeaderStyled = styled.th<{
   styles?: TableHeaderStylesTypes;
   hasDivider?: boolean;
@@ -265,12 +269,35 @@ export const ListContainerStyled = styled.ul<{
     hasFormatSideBySideInList && getStyles(styles?.listContainerSydeBySyde)}
 `;
 
+export const ListContainerHeaderPriorityStyled = styled.ul<{
+  styles?: TableRowHeaderTypes;
+}>`
+  ${({ styles }) => getStyles(styles?.listContainerHeaderPriority)};
+`;
+
 export const ListRowContainerStyled = styled.li<{
   styles?: TableRowHeaderTypes;
   lineSeparatorLineStyles: LineSeparatorLinePropsStylesType;
   hasDivider: boolean;
 }>`
   ${({ styles }) => getStyles(styles?.listRowContainer)};
+  // styles?.listRowContainerBorder check is done because in some themes the line separtor may not be wanted
+  // If is required in all themes, listRowContainerBorder token should be deleted
+  ${({ lineSeparatorLineStyles, hasDivider, styles }) => {
+    return (
+      styles?.listRowContainerBorder &&
+      !hasDivider &&
+      lineSeparatorLineStyles.buildLineStyles?.(LineSeparatorPositionType.BOTTOM)
+    );
+  }}
+`;
+
+export const ListRowContainerHeaderPriorityStyled = styled.li<{
+  styles?: TableRowHeaderTypes;
+  lineSeparatorLineStyles: LineSeparatorLinePropsStylesType;
+  hasDivider: boolean;
+}>`
+  ${({ styles }) => getStyles(styles?.listRowContainerHeaderPriority)};
   // styles?.listRowContainerBorder check is done because in some themes the line separtor may not be wanted
   // If is required in all themes, listRowContainerBorder token should be deleted
   ${({ lineSeparatorLineStyles, hasDivider, styles }) => {
@@ -291,6 +318,45 @@ export const ListRowStyled = styled.ul<{
     formatSideBySideInList && getStyles(styles?.listRowSideBySide)}
 `;
 
+export const ListRowHeaderPriorityStyled = styled.ul<{
+  styles?: TableRowHeaderTypes;
+}>`
+  ${({ styles }) => getStyles(styles?.listRowHeaderPriority)};
+`;
+
+export const ListHeaderItemStylesStyled = styled.span<{
+  hasSomeExpandedContent?: boolean;
+  lineSeparatorLineStyles?: LineSeparatorLinePropsStylesType;
+  lineSeparatorTopOnHeader?: boolean;
+  lineSeparatorBottomOnHeader?: boolean;
+  styles?: TableHeaderStylesTypes;
+  customWidth?: string;
+  customAlign?: string;
+  flexWidth?: string | number | FlexWidthType;
+  customBackgroundColor?: string;
+}>`
+  ${({ lineSeparatorLineStyles, lineSeparatorTopOnHeader, lineSeparatorBottomOnHeader }) => {
+    const lineSeparator: (CSSProp | undefined)[] = [];
+    if (lineSeparatorTopOnHeader) {
+      lineSeparator.push(lineSeparatorLineStyles?.buildLineStyles?.(LineSeparatorPositionType.TOP));
+    }
+    if (lineSeparatorBottomOnHeader) {
+      lineSeparator.push(
+        lineSeparatorLineStyles?.buildLineStyles?.(LineSeparatorPositionType.BOTTOM)
+      );
+    }
+    return lineSeparator;
+  }}
+  ${({ styles }) => getStyles(styles?.column)};
+  // Apply custom styles
+  ${({ customWidth, customAlign, flexWidth, customBackgroundColor }) =>
+    applyCustomCellStyles({ customWidth, customAlign, flexWidth, customBackgroundColor })}
+  &[hidden] {
+    ${srOnlyMixin}
+  }
+`;
+
+// Should be deprecated, it does not appears in the new designs ?
 export const ListItemStyled = styled.li<{
   hasSomeExpandedContent?: boolean;
   styles?: TableRowHeaderTypes;
@@ -304,7 +370,35 @@ export const ListItemStyled = styled.li<{
   ${({ styles }) => getStyles(styles?.listItem)};
 `;
 
-export const ListItemExpandedStyled = styled.li<{
+export const ListItemHeaderPriorityStyled = styled.li<{
+  hasSomeExpandedContent?: boolean;
+  lineSeparatorLineStyles: LineSeparatorLinePropsStylesType;
+  borderPosition?: LineSeparatorPositionType;
+  styles?: TableRowStylesTypes;
+  customBackgroundColor?: string;
+  customWidth?: string;
+  customAlign?: string;
+  flexWidth?: string | number | FlexWidthType;
+}>`
+  ${({ hasSomeExpandedContent }) =>
+    hasSomeExpandedContent &&
+    css`
+      display: flex;
+      align-items: baseline;
+    `}
+  ${({ styles }) => css`
+    ${getStyles(styles?.column)}
+    ${getTypographyStyles(styles?.typography)}
+  `}
+  ${({ lineSeparatorLineStyles, borderPosition = LineSeparatorPositionType.BOTTOM }) => {
+    return lineSeparatorLineStyles.buildLineStyles?.(borderPosition);
+  }}
+  // Apply custom styles
+  ${({ customWidth, customAlign, flexWidth, customBackgroundColor }) =>
+    applyCustomCellStyles({ customWidth, customAlign, flexWidth, customBackgroundColor })}
+`;
+
+export const ListItemExpandedStyled = styled.div<{
   styles?: TableRowStylesTypes;
   showExpandedContent: boolean;
 }>`
@@ -312,11 +406,8 @@ export const ListItemExpandedStyled = styled.li<{
   ${props => !props.showExpandedContent && applySrOnlyStyles()}
 `;
 
+// Should be deprecated, it does not appears in the new designs ?
 export const ListEmptyExpandedContentItem = styled.div`
   width: 0;
   height: 0;
-`;
-
-export const EmptyRowHeader = styled.td<{ styles?: TableHeaderStylesTypes }>`
-  ${({ styles }) => getStyles(styles?.column)}
 `;

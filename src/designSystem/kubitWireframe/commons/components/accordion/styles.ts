@@ -43,6 +43,15 @@ export const getAccordionStyles = (COLORS: {
         width: SPACINGS.spacing_100_percent,
         gap: SPACINGS.spacing_300,
       },
+      link: {
+        cursor: 'pointer',
+        display: 'flex',
+        justify_content: 'flex-start',
+        margin: SPACINGS.spacing_0,
+        padding: SPACINGS.spacing_0,
+        width: SPACINGS.spacing_100_percent,
+        gap: SPACINGS.spacing_300,
+      },
       triggerIconContainer: {
         align_items: 'center',
         display: 'inline-flex',

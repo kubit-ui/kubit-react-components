@@ -44,14 +44,18 @@ export type TableRowHeaderTypes<
   footerVariant?: string;
   // List structure
   listContainer?: CommonStyleType;
+  listContainerHeaderPriority?: CommonStyleType;
   listContainerSydeBySyde?: CommonStyleType;
   listRowContainer?: CommonStyleType;
+  listRowContainerHeaderPriority?: CommonStyleType;
   // listRowContainerBorder check is done because in some themes the line separtor may not be wanted
   // If is required in all themes, should be deleted
   listRowContainerBorder?: boolean;
   listRow?: CommonStyleType;
+  listRowHeaderPriority?: CommonStyleType;
   listRowSideBySide?: CommonStyleType;
   listItem?: CommonStyleType;
+  // Not need listItemHeaderPriority becaouse it takes the styles from the row
 };
 
 /**

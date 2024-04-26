@@ -3,7 +3,7 @@ import { CommonStyleType, DeviceBreakpointsType, POSITIONS } from '@/types';
 export type OliveMenuGlobalStylesType = {
   container?: CommonStyleType;
   buttonContainer?: CommonStyleType;
-  button?: {
+  button?: CommonStyleType & {
     [key in DeviceBreakpointsType]?: {
       size?: string;
     };

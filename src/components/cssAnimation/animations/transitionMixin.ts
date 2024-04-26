@@ -10,24 +10,51 @@ import { ICssAnimationStyled } from '../types/cssAnimation';
  * @returns {CSSProp} - The animation
  *
  */
+// deprecated - props duration, enterDuration, exitDuration and delay should be of type string (props should come with the units)
 export const transitionMixin = (props: ICssAnimationStyled): CSSProp => css`
   transition:
-    opacity ${props.options?.duration}s,
-    transform ${props.options?.duration}s;
+    opacity
+      ${typeof props.options?.duration === 'number'
+        ? props.options?.duration + 's'
+        : props.options?.duration},
+    transform
+      ${typeof props.options?.duration === 'number'
+        ? props.options?.duration + 's'
+        : props.options?.duration};
   transition-timing-function: ${props.options?.timingFunction};
-  transition-delay: ${props.options?.delay}s;
+  transition-delay: ${typeof props.options?.delay === 'number'
+    ? props.options?.delay + 's'
+    : props.options?.delay};
 `;
+// deprecated - props duration, enterDuration, exitDuration and delay should be of type string (props should come with the units)
 export const transitionMixinEnter = (props: ICssAnimationStyled): CSSProp => css`
   transition:
-    opacity ${props.options?.enterDuration}s,
-    transform ${props.options?.enterDuration}s;
+    opacity
+      ${typeof props.options?.enterDuration === 'number'
+        ? props.options?.enterDuration + 's'
+        : props.options?.enterDuration},
+    transform
+      ${typeof props.options?.enterDuration === 'number'
+        ? props.options?.enterDuration + 's'
+        : props.options?.enterDuration};
   transition-timing-function: ${props.options?.timingFunction};
-  transition-delay: ${props.options?.delay}s;
+  transition-delay: ${typeof props.options?.delay === 'number'
+    ? props.options?.delay + 's'
+    : props.options?.delay};
 `;
+// deprecated - props duration, enterDuration, exitDuration and delay should be of type string (props should come with the units)
 export const transitionMixinExit = (props: ICssAnimationStyled): CSSProp => css`
   transition:
-    opacity ${props.options?.exitDuration}s,
-    transform ${props.options?.exitDuration}s;
+    opacity
+      ${typeof props.options?.exitDuration === 'number'
+        ? props.options?.exitDuration + 's'
+        : props.options?.exitDuration},
+    transform
+      ${typeof props.options?.exitDuration === 'number'
+        ? props.options?.exitDuration + 's'
+        : props.options?.exitDuration};
   transition-timing-function: ${props.options?.timingFunction};
-  transition-delay: ${props.options?.delay}s;
+  transition-delay: ${typeof props.options?.delay === 'number'
+    ? props.options?.delay + 's'
+    : props.options?.delay};
 `;

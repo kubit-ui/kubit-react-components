@@ -23,3 +23,7 @@ export const PillLabelStyled = styled.label<IPillStyled>`
   align-items: center;
   ${props => getTypographyStyles(props.styles?.label)}
 `;
+
+export const IconContainerStyled = styled.div<IPillStyled>`
+  ${props => getStyles(props.styles?.decorativeIconContainer)}
+`;

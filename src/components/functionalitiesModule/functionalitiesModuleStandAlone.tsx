@@ -58,6 +58,7 @@ const FunctionalitiesModuleStandAloneComponent = (
         >
           {props.styles.listOptions?.optionVariant && props.styles.listOptions.variant && (
             <ListOptions
+              content={section.optionsContent}
               dataTestId={`${props.dataTestId}ListOptions`}
               optionVariant={props.styles.listOptions.optionVariant}
               options={section.options}

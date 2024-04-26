@@ -42,7 +42,12 @@ export interface IRadioButtonGroupStandAlone
   requiredSymbol?: React.ReactNode;
   requiredScreenReaderText?: string;
   selectedOption?: RadioButtonOptionType;
+  /**
+   * @deprecated `state` is deprecated. Please use `error` or `disabled` instead.
+   */
   state?: RadioButtonGroupStateType;
+  error?: boolean;
+  disabled?: boolean;
   legendComponent?: TextComponentType;
 }
 

@@ -1,0 +1,8 @@
+export enum TagVariantTypeV2 {
+  HEALTHY = 'HEALTHY',
+  DORMANT = 'DORMANT',
+  ISSUE = 'ISSUE',
+  CODE = 'CODE',
+  DEPRECATED = 'DEPRECATED',
+  INFORMATIVE = 'INFORMATIVE',
+}

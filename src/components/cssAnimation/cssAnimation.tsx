@@ -10,6 +10,8 @@ import {
 } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
+import { convertDurationToNumber } from '@/utils/stringUtility/string.utility';
+
 import { CssAnimationContainer } from './cssAnimation.styled';
 import { CssAnimationExecuteOption, ICssAnimation } from './types';
 
@@ -26,19 +28,33 @@ const CssAnimationComponent = (
   const nodeRef = useRef<HTMLDivElement>();
   const [execute, setExecute] = useState(CssAnimationExecuteOption.HIDDEN);
 
+  // deprecated - Remove the condition when `enterDuration` and `duration` are type string
   const enterDuration = () => {
     if (options?.enterDuration) {
+      if (typeof options?.enterDuration === 'string') {
+        return convertDurationToNumber(options?.enterDuration);
+      }
       return options.enterDuration * 1000;
     } else if (options?.duration) {
+      if (typeof options?.duration === 'string') {
+        return convertDurationToNumber(options?.duration);
+      }
       return options.duration * 1000;
     }
     return 0;
   };
 
+  // deprecated - Remove the condition when `exitDuration` and `duration` are type string
   const exitDuration = () => {
     if (options?.exitDuration) {
+      if (typeof options?.exitDuration === 'string') {
+        return convertDurationToNumber(options?.exitDuration);
+      }
       return options.exitDuration * 1000;
     } else if (options?.duration) {
+      if (typeof options?.duration === 'string') {
+        return convertDurationToNumber(options?.duration);
+      }
       return options.duration * 1000;
     }
     return 0;

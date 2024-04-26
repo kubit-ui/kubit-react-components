@@ -19,9 +19,7 @@ import {
   AccordionSubHeaderContainerStyled,
   AccordionTitleIconWrapper,
   AccordionTitleStyled,
-  AccordionTriggerIconLinkStyled,
-  AccordionTriggerIconStyled,
-  AccordionTriggerLinkStyled,
+  AccordionTriggerIconContainerStyled,
   AccordionTriggerStyled,
   LineSeparatorContainerStyled,
 } from './accordion.styled';
@@ -44,93 +42,6 @@ const AccordionStandAloneComponent = (
 
   const getDataTestId = (uniqueId = ''): string => `${props.dataTestId}${uniqueId}`;
 
-  const renderTitle = () => {
-    if (!props.title) return null;
-    return typeof props.title?.content === 'string' ? (
-      <AccordionTriggerStyled
-        aria-controls={PANEL_ID}
-        aria-expanded={open}
-        data-testid={getDataTestId('TriggerButton')}
-        id={TRIGGER_ID}
-        styles={props.styles.trigger}
-        type={ButtonType.BUTTON}
-        {...props.triggerButton}
-      >
-        <AccordionTriggerIconStyled
-          $rotate={open}
-          data-testid={`${props.dataTestId}TriggerIconWrapper`}
-          styles={props.styles.triggerIconContainer}
-        >
-          <ElementOrIcon
-            customIconStyles={props.styles.triggerIcon}
-            dataTestId={getDataTestId('TriggerIcon')}
-            {...props.triggerIcon}
-          />
-        </AccordionTriggerIconStyled>
-        <AccordionTitleStyled styles={props.styles.titleContainer}>
-          {props.titleIcon && (
-            <AccordionTitleIconWrapper styles={props.styles.titleIconContainer}>
-              <ElementOrIcon
-                customIconStyles={props.styles.titleIcon}
-                dataTestId={getDataTestId('TitleIcon')}
-                {...props.titleIcon}
-              />
-            </AccordionTitleIconWrapper>
-          )}
-          <Text
-            component={TextComponentType.SPAN}
-            customTypography={props.styles.title}
-            dataTestId={getDataTestId('TriggerText')}
-            {...props.title}
-          >
-            {props.title.content}
-          </Text>
-        </AccordionTitleStyled>
-      </AccordionTriggerStyled>
-    ) : (
-      <AccordionTriggerLinkStyled
-        data-testid={getDataTestId('TriggerButton')}
-        styles={props.styles.link}
-      >
-        <AccordionTriggerIconLinkStyled
-          $rotate={open}
-          aria-controls={PANEL_ID}
-          aria-expanded={open}
-          data-testid={`${props.dataTestId}TriggerIconWrapper`}
-          id={TRIGGER_ID}
-          styles={props.styles.triggerIconContainer}
-          type={ButtonType.BUTTON}
-          {...props.triggerButton}
-        >
-          <ElementOrIcon
-            customIconStyles={props.styles.triggerIcon}
-            dataTestId={getDataTestId('TriggerIcon')}
-            {...props.triggerIcon}
-          />
-        </AccordionTriggerIconLinkStyled>
-        <AccordionTitleStyled styles={props.styles.titleContainer}>
-          {props.titleIcon && (
-            <AccordionTitleIconWrapper styles={props.styles.titleIconContainer}>
-              <ElementOrIcon
-                customIconStyles={props.styles.titleIcon}
-                dataTestId={getDataTestId('TitleIcon')}
-                {...props.titleIcon}
-              />
-            </AccordionTitleIconWrapper>
-          )}
-          <Text
-            component={TextComponentType.SPAN}
-            customTypography={props.styles.title}
-            dataTestId={getDataTestId('TriggerText')}
-            {...props.title}
-          >
-            {props.title?.content}
-          </Text>
-        </AccordionTitleStyled>
-      </AccordionTriggerLinkStyled>
-    );
-  };
-
   return (
     <AccordionContainerStyled
       ref={ref}
@@ -147,7 +58,46 @@ const AccordionStandAloneComponent = (
         >
           <AccordionHeaderMainContainerStyled styles={props.styles.headerMainContainer}>
             <AccordionHeaderTitleHeadlineStyled as={props.triggerComponent}>
-              {renderTitle()}
+              <AccordionTriggerStyled
+                aria-controls={PANEL_ID}
+                aria-expanded={open}
+                data-testid={getDataTestId('TriggerButton')}
+                id={TRIGGER_ID}
+                styles={props.styles[typeof props.title?.content !== 'string' ? 'link' : 'trigger']}
+                type={ButtonType.BUTTON}
+                {...props.triggerButton}
+              >
+                <AccordionTriggerIconContainerStyled
+                  $rotate={open}
+                  data-testid={`${props.dataTestId}TriggerIconWrapper`}
+                  styles={props.styles.triggerIconContainer}
+                >
+                  <ElementOrIcon
+                    customIconStyles={props.styles.triggerIcon}
+                    dataTestId={getDataTestId('TriggerIcon')}
+                    {...props.triggerIcon}
+                  />
+                </AccordionTriggerIconContainerStyled>
+                <AccordionTitleStyled styles={props.styles.titleContainer}>
+                  {props.titleIcon && (
+                    <AccordionTitleIconWrapper styles={props.styles.titleIconContainer}>
+                      <ElementOrIcon
+                        customIconStyles={props.styles.titleIcon}
+                        dataTestId={getDataTestId('TitleIcon')}
+                        {...props.titleIcon}
+                      />
+                    </AccordionTitleIconWrapper>
+                  )}
+                  <Text
+                    component={TextComponentType.SPAN}
+                    customTypography={props.styles.title}
+                    dataTestId={getDataTestId('TriggerText')}
+                    {...props.title}
+                  >
+                    {props.title?.content}
+                  </Text>
+                </AccordionTitleStyled>
+              </AccordionTriggerStyled>
             </AccordionHeaderTitleHeadlineStyled>
             {props.headerRightContent && (
               <AccordionHeaderRightContentStyled

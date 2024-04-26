@@ -24,3 +24,24 @@ export const maxCountBetweenChars = (charCount: string, value?: string): number 
   });
   return max;
 };
+
+// The function is designed to convert a duration value, which could be a string or a number, into a numeric value representing milliseconds
+// If duration is already a number, it simply returns the number.
+export const convertDurationToNumber = (duration?: string | number): number => {
+  if (!duration) {
+    return 0;
+  }
+  if (typeof duration === 'number') {
+    return duration;
+  }
+
+  // Remove "ms" or "s" from the duration and convert it to a number
+  const value = Number(duration.replace('ms', '').replace('s', ''));
+
+  // If the duration was in seconds, convert it to milliseconds
+  if (duration.includes('s') && !duration.includes('ms')) {
+    return value * 1000;
+  }
+
+  return value;
+};

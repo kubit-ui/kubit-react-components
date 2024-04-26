@@ -10,6 +10,10 @@ export type RadioButtonBaseStyles = {
   label?: TypographyTypes;
   specialLabel?: TypographyTypes;
   sublabel?: TypographyTypes;
+  errorMessage?: TypographyTypes;
+  errorMessageContainer?: CommonStyleType;
+  errorMessageIcon?: IconTypes;
+  errorMessageIconContainer?: CommonStyleType;
   radioButtonContainer?: CommonStyleType;
   radioButton?: CommonStyleType;
   tooltip?: {

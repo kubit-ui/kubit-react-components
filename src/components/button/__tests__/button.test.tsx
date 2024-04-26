@@ -137,3 +137,16 @@ test('Button without children and icon', async () => {
   expect(container).toHTMLValidate();
   expect(results).toHaveNoViolations();
 });
+
+test('should render an SVG if icon prop is provided', async () => {
+  const { container } = renderProvider(
+    <Button icon={{ icon: 'icon', altText: 'altIcon' }} size="LARGE" variant="PRIMARY" />
+  );
+
+  const svg = screen.getByRole('img', { name: /altIcon/i });
+
+  expect(svg).toBeInTheDocument();
+  const results = await axe(container);
+  expect(container).toHTMLValidate();
+  expect(results).toHaveNoViolations();
+});

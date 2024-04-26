@@ -33,6 +33,7 @@ const mockProps: IFunctionalitiesModuleUnControlled = {
           value: 2,
         },
       ],
+      optionsContent: <div>Content example</div>,
     },
     {
       tab: { content: 'label2' },

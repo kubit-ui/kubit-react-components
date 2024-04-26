@@ -62,4 +62,20 @@ describe('Avatar component', () => {
     expect(container).toHTMLValidate();
     expect(results).toHaveNoViolations();
   });
+
+  test('Should render Avatar like link', async () => {
+    const { container } = renderProvider(
+      <Avatar
+        image="url"
+        {...mockProps}
+        link={{ content: 'content', variant: 'PRIMARY', url: '/' }}
+      />
+    );
+
+    const linkElement = screen.getByRole(ROLES.LINK);
+    expect(linkElement).toBeInTheDocument();
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
 });

@@ -1,6 +1,9 @@
 import { truncatedValue } from '../truncatedValue';
 
 describe('Utils truncatedValue', () => {
+  it('truncatedValue default 1', () => {
+    expect(truncatedValue('10000.00', 0)).toBe('10000');
+  });
   it('truncatedValue default', () => {
     expect(truncatedValue('10000', 3)).toBe('10000');
   });

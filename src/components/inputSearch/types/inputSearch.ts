@@ -73,13 +73,13 @@ export interface IPopoverSearchList {
   optionList: IOptionGroup[];
   preventCloseOnClickElements?: (HTMLElement | null | undefined)[];
   searchText?: string;
-  recommendedOption?: string;
   hasResultTextWrittenByUser?: boolean;
   state: InputState;
   styles: InputSearchStylesProps;
   sublabel?: string;
   titleActionBottomSheet?: string;
   value?: string;
+  caseSensitive?: boolean;
   // Functions
   onOpenOptions: (value: boolean) => void;
   onValueSelected: (value: string) => void;
@@ -87,6 +87,7 @@ export interface IPopoverSearchList {
 }
 
 export interface IOptionsListSearchList {
+  caseSensitive?: boolean;
   index?: number;
   stylesListOption?: InputSearchListOptionsProps;
   stylesState?: InputSearchStateProps;
@@ -147,6 +148,7 @@ export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOm
   value?: string;
   titleActionBottomSheet?: string;
   // listOptions
+  caseSensitive?: boolean;
   listOptionsHeight: string;
   optionList: IOptionGroup[];
   loadingList?: boolean;
@@ -156,7 +158,6 @@ export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOm
   highlightedOption?: string;
   hasResultTextWrittenByUser?: boolean;
   hasHighlightedOption?: boolean;
-  recommendedOption?: string;
   // actionBottomSheet
   sublabel?: string;
   closeIcon?: IElementOrIcon;
@@ -185,7 +186,6 @@ type propsToOmit =
   | 'listOptionsHeight'
   | 'hasHighlightedOption'
   | 'onOpenOptions'
-  | 'recommendedOption'
   | 'onChange'
   | 'onInputPopoverChange'
   | 'onInputPopoverKeyDown'
@@ -193,15 +193,8 @@ type propsToOmit =
   | 'onValueSelected'
   | 'onClick';
 
-export interface InputSearchBestMatch {
-  list: number;
-  bestMatchkey: string;
-  bestMatch: object | undefined;
-}
-
 export interface InputSearchFilterOptionReturnValue {
   optionsFiltered: IOptionGroup[];
-  recommendedOption?: string;
 }
 
 export interface SearchFilterConfig {

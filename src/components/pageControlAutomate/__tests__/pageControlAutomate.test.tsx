@@ -22,7 +22,7 @@ const mockProps = {
   mediaProgressBar: {
     barsNum: 3,
     barProgressDuration: 2000,
-    barsAriaLabels: ['aria-label-0', 'aria-label-1', 'aria-label-2'],
+    barAriaLabel: 'aria-label',
     clickableBars: true,
   },
   currentBar: 0,

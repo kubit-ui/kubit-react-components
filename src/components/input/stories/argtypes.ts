@@ -396,7 +396,7 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
       control: { type: 'text' },
       table: {
         type: {
-          summary: 'string',
+          summary: 'string | RegExp',
         },
         category: CATEGORY_CONTROL.MODIFIERS,
       },

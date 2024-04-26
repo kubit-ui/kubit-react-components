@@ -29,7 +29,7 @@ const RadioButtonGroupStandAloneComponent = (
       ref={ref}
       aria-errormessage={props.errorMessageId}
       data-testid={`${dataTestId}RadioGroup`}
-      disabled={state === RadioButtonGroupStateType.DISABLED}
+      disabled={state === RadioButtonGroupStateType.DISABLED || props.disabled}
       name={props.name}
       styles={props.styles}
     >
@@ -57,6 +57,11 @@ const RadioButtonGroupStandAloneComponent = (
           key={o.value}
           checked={props.selectedOption?.value === o.value}
           dataTestId={`${dataTestId}RadioButton${index}`}
+          disabled={o.disabled}
+          error={o.error}
+          errorAriaLiveType={o.errorAriaLiveType}
+          errorIcon={o.errorIcon}
+          errorMessage={o.errorMessage}
           label={{ content: o.label }}
           name={props.name}
           screenReaderId={o.screenReader ? screenReaderId : undefined}

@@ -14,6 +14,9 @@ export const OliveMenuStyled = styled.div<OliveMenuStylesProps>`
 
 export const ButtonContainer = styled.div<OliveMenuStylesProps>`
   ${({ styles }) => getStyles(styles.buttonContainer)};
+  > button {
+    ${({ styles }) => getStyles(styles.button)};
+  }
 `;
 
 export const ListboxStyled = styled.div<OliveMenuStylesProps>`

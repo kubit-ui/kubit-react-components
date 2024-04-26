@@ -320,6 +320,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.FUNCTIONS,
       },
     },
+    caseSensitive: {
+      description: 'Indicates if the search is case sensitive',
+      control: { type: 'boolean' },
+      type: { name: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     ['aria-controls']: {
       table: {
         disable: true,

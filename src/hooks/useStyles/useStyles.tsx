@@ -2,6 +2,9 @@ import { useTheme } from 'styled-components';
 
 import { mergeObjects } from '@/utils/mergeObjects/mergeObjects';
 
+/**
+ * @version This hook has a upper version, please use useStylesV2
+ */
 export const useStyles = <T, V = undefined | string>(
   styleName: string,
   typeName?: V,

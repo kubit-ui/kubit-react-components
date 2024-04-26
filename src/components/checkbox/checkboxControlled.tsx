@@ -18,7 +18,7 @@ const CheckboxControlledComponent = React.forwardRef(
       props.variant,
       props.ctv
     );
-    const state = getCheckBoxState(props.checked, props.disabled, props.error);
+    const state = getCheckBoxState(props.checked, props.disabled, props.error, styles);
 
     return <CheckboxStandAlone ref={ref} state={state} styles={styles[state]} {...props} />;
   }

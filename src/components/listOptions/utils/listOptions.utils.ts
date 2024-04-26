@@ -3,13 +3,20 @@ import { ListOptionsOptionType } from '../types';
 export const isSelected = (
   option: ListOptionsOptionType,
   selectedValue?: string | number | (string | number)[] | null,
-  isMultiSelect?: boolean
+  isMultiSelect?: boolean,
+  caseSensitive?: boolean
 ): boolean => {
   if (selectedValue !== null && selectedValue !== undefined && option.value !== undefined) {
     if (isMultiSelect) {
       return Boolean(Array.isArray(selectedValue) && selectedValue.includes(option.value));
     }
-    return Boolean(selectedValue === option.value);
+    if (caseSensitive) {
+      return Boolean(selectedValue === option.value);
+    }
+    return Boolean(
+      selectedValue.toLocaleString().toLocaleLowerCase() ===
+        option.value.toLocaleString().toLocaleLowerCase()
+    );
   }
   return false;
 };

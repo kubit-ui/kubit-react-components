@@ -54,7 +54,6 @@ export const ButtonStyled = styled.button<IButtonStyled>`
   flex-direction: ${props =>
     props.$iconPosition === IconPositionType.LEFT ? 'row' : 'row-reverse'};
   position: relative;
-  white-space: nowrap;
 
   ${({ $state, $styles, $sizeStyles }) => setTokens($state, $styles, $sizeStyles)}
 

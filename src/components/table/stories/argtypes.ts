@@ -2,6 +2,8 @@ import { CATEGORY_CONTROL } from '@/constants';
 import { IThemeObjectVariants } from '@/designSystem/themesObject';
 import { ArgTypesReturn } from '@/types';
 
+import { FormatListHeaderPriorityType } from '../types';
+
 export const argtypes = (
   variantsObject: IThemeObjectVariants,
   themeSelected: string
@@ -192,8 +194,34 @@ export const argtypes = (
       },
     },
     hiddenHeaderOn: {
-      description: 'Allow to hide the header attending to the DeviceBreakPointType',
+      description:
+        'Allow to hide the column headers attending to the DeviceBreakPointType (but screen readers will read it)',
       type: { name: 'hiddenType' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: '{ [keys in DeviceBreakpointsType]?: boolean; }',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    formatListHeaderPriority: {
+      description: 'When format list format, allows to select the list direction (from the table)',
+      type: { name: 'string' },
+      control: { type: 'select' },
+      options: Object.values(FormatListHeaderPriorityType),
+      table: {
+        type: {
+          summary: 'FormatListHeaderPriorityType',
+          detail: Object.keys(FormatListHeaderPriorityType).join(', '),
+        },
+        defaultValue: { summary: FormatListHeaderPriorityType.ROW },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    formatList: {
+      description: 'Indicates attending to the DeviceBreakPointType, if the table has format list',
+      type: { name: 'object' },
       control: { type: 'object' },
       table: {
         type: {
@@ -216,7 +244,7 @@ export const argtypes = (
     },
     formatSideBySideInList: {
       description:
-        'Indicates if in mobile view and the table has format list, them numberof elements per row',
+        'Indicates if in mobile view and the table has format list, the number of elements per row. This props only apply when with formatListHeaderPriority is ROW',
       type: { name: 'boolean' },
       control: { type: 'boolean' },
       table: {

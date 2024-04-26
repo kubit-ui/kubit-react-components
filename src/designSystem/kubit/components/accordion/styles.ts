@@ -67,6 +67,16 @@ export const ACCORDION_STYLES: AccordionStylesType<AccordionVariantType> = {
       align_items: 'center',
       width: SPACINGS.spacing_100_percent,
     },
+    link: {
+      cursor: 'pointer',
+      display: 'flex',
+      justify_content: 'flex-start',
+      margin: SPACINGS.spacing_0,
+      padding: SPACINGS.spacing_0,
+      z_index: Z_INDEX.INTERN_1,
+      align_items: 'center',
+      width: SPACINGS.spacing_100_percent,
+    },
     triggerIconContainer: {
       align_items: 'center',
       display: 'flex',

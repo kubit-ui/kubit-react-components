@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
 import { ICONS } from '@/assets';
+import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
+import { SummaryDetails } from '@/components/summaryDetails';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
@@ -55,6 +58,33 @@ export const FunctionalitiesModule: Story = {
   args: {
     ...commonArgs,
     themeArgs: themesObject[themeSelected][STYLES_NAME.FUNCTIONALITIES_MODULE],
+  },
+};
+
+export const FunctionalitiesModuleWithContent: Story = {
+  args: {
+    ...commonArgs,
+    sections: [
+      {
+        ...SECTIONS[0],
+        optionsTitle: { content: 'Options Title' },
+        optionsContent: (
+          <div style={{ backgroundColor: 'red', padding: '3px' }}>
+            <SummaryDetails
+              description={{ content: 'description' }}
+              icon={{ icon: ICONS.ICON_PLACEHOLDER }}
+              title={{ content: 'Summary Details' }}
+              variant="SMALL"
+            >
+              <ReplaceContent width="100%" />
+            </SummaryDetails>
+          </div>
+        ),
+      },
+      {
+        ...SECTIONS[1],
+      },
+    ],
   },
 };
 

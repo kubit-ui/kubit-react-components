@@ -25,9 +25,11 @@ export interface IListOptionsStandAlone {
   styles: ListOptionsPropsStylesType;
   type?: ListOptionsType;
   options: ListOptionsOptionType[];
+  caseSensitive?: boolean;
   charsHighlighted?: string;
   selectedValue?: string | number | string[] | number[] | null;
   title?: ListOptionsTitleType;
+  content?: React.ReactNode;
   onOptionClick?: (
     value,
     event: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>

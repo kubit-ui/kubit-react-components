@@ -425,7 +425,7 @@ describe('Carousel component', () => {
         icon: { icon: 'ARROW_RIGHT', altText: 'alt text right arrow' },
       },
       mediaProgressBar: {
-        barsAriaLabels: ['aria-label-0', 'aria-label-1', 'aria-label-2', 'aria-label-3'],
+        barAriaLabel: 'Bar {{currentBar}} of {{barsNum}}',
         barProgressDuration: 2000,
       },
     };

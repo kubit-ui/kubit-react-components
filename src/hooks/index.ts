@@ -1,4 +1,5 @@
 export { useStyles } from './useStyles/useStyles';
+export { useStylesV2 } from './useStyles/useStylesV2';
 export * from './useMediaDevice/useMediaDevice';
 export * from './useMediaDevice/useActiveBreakpoints';
 export * from './useId/useId';

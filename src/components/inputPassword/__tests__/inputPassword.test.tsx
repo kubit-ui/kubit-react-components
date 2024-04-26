@@ -1,8 +1,9 @@
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import * as React from 'react';
 
 import { axe } from 'jest-axe';
 
+import { InputTypeType } from '@/components/input/types';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
 import { InputPassword } from '../inputPassword';
@@ -26,6 +27,18 @@ describe('New Input Password Component', () => {
     const { container, getByTestId } = renderProvider(<InputPassword {...mockProps} />);
 
     expect(getByTestId(mockProps.dataTestId + 'Input')).toBeInTheDocument();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Should get activeIcon', async () => {
+    const { container } = renderProvider(
+      <InputPassword {...mockProps} type={InputTypeType.NUMBER} />
+    );
+
+    expect(screen.getByLabelText('icon show password alt text')).toBeInTheDocument();
 
     const results = await axe(container);
     expect(container).toHTMLValidate();

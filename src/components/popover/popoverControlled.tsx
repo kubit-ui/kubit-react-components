@@ -9,6 +9,7 @@ import { useScrollBlock } from '@/hooks/useScrollBlock/useScrollBlock';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 import { focusFirstDescendant, trapFocus } from '@/utils';
+import { convertDurationToNumber } from '@/utils/stringUtility/string.utility';
 
 import { PopoverStandAlone } from './popoverStandAlone';
 import { PopoverComponentType, PopoverVariantStylesType } from './types';
@@ -146,18 +147,35 @@ const PopoverControlledComponent = React.forwardRef(
       }
     }, [props.open]);
 
+    // deprecated - Remove the condition when `exitDuration`, `duration` and `delay' are type string
+    const animationExitDuration = () => {
+      if (
+        typeof animationConfig?.animationOptions?.exitDuration === 'string' ||
+        typeof animationConfig?.animationOptions?.duration === 'string' ||
+        typeof animationConfig?.animationOptions?.delay === 'string'
+      ) {
+        const exitDuration = convertDurationToNumber(
+          animationConfig?.animationOptions?.exitDuration
+        );
+        const duration = convertDurationToNumber(animationConfig?.animationOptions?.duration);
+        const delay = convertDurationToNumber(animationConfig?.animationOptions?.delay);
+
+        return (exitDuration || duration || 0) + (delay || 0);
+      }
+      return (
+        ((animationConfig?.animationOptions?.exitDuration ||
+          animationConfig?.animationOptions?.duration ||
+          0) +
+          (animationConfig?.animationOptions?.delay || 0)) *
+        MILISECONDS
+      );
+    };
+
     const waitForAnimation = () => {
       return new Promise<void>(resolve => {
-        setTimeout(
-          () => {
-            resolve();
-          },
-          ((animationConfig.animationOptions?.exitDuration ||
-            animationConfig.animationOptions?.duration ||
-            0) +
-            (animationConfig.animationOptions?.delay || 0)) *
-            MILISECONDS
-        );
+        setTimeout(() => {
+          resolve();
+        }, animationExitDuration());
       });
     };
 

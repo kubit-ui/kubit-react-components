@@ -58,6 +58,9 @@ const TagBoundary = <
   </ErrorBoundary>
 );
 
+/**
+ * @deprecated Try TagV2 component that will override this component in the next major
+ */
 const Tag = React.forwardRef(TagBoundary) as <V, S>(
   p: ITag<V, S> & {
     ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;

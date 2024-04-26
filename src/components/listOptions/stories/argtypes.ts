@@ -62,6 +62,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    content: {
+      description: 'Content to show before the options',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'React.ReactNode',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     options: {
       description: 'List of options',
       type: { name: 'array', required: true },
@@ -186,6 +197,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
           summary: 'object',
         },
         category: CATEGORY_CONTROL.CUSTOMIZATION,
+      },
+    },
+    caseSensitive: {
+      description: 'Indicates if the search is case sensitive',
+      control: { type: 'boolean' },
+      type: { name: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
   };

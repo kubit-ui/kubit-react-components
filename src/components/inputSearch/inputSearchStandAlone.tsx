@@ -60,6 +60,7 @@ export const InputSearchStandAloneComponent = (
         ref={ref}
         aria-controls={ariaControls}
         blockBackPopover={props.blockBackPopover}
+        caseSensitive={props.caseSensitive}
         closeIcon={props.closeIcon}
         dataTestId={props.dataTestId}
         device={props.device}
@@ -94,7 +95,6 @@ export const InputSearchStandAloneComponent = (
           (refInput as MutableRefObject<HTMLInputElement | null | undefined>)?.current,
           (refIcon as MutableRefObject<HTMLSpanElement | null | undefined>)?.current,
         ]}
-        recommendedOption={props.recommendedOption}
         searchText={props.searchText}
         state={props.state}
         styles={props.styles}

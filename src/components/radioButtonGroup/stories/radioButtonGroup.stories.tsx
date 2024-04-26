@@ -42,7 +42,7 @@ export const RadioButtongroup: Story = {
         description: 'Mangoes have a lot of potassium',
         screenReader: true,
       },
-      { label: 'Kiwis', value: 'K', state: RadioButtonStateType.DISABLED },
+      { label: 'Kiwis', value: 'K', disabled: true },
       { label: 'Coconut', value: 'C' },
     ],
     themeArgs: themesObject[themeSelected][STYLES_NAME.RADIO_BUTTON_GROUP],
