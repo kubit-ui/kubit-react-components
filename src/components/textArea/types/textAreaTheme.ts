@@ -12,6 +12,11 @@ export type TextAreaPropsThemeType = {
   required?: TypographyTypes;
   textArea?: CommonStyleType & TypographyTypes & { resize?: string };
   placeholder?: TypographyTypes;
+  leftIcon?: IconTypes;
+  leftIconContainer?: CommonStyleType;
+  clearIcon?: IconTypes;
+  clearIconContainer?: CommonStyleType;
+  paddingBetweenIconAndText?: string;
   bottomContainer?: CommonStyleType;
   helpMessageErrorContainer?: CommonStyleType;
   helpMessage?: TypographyTypes;
