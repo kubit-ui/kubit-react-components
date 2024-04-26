@@ -32,26 +32,6 @@ export const AccordionHeaderMainContainerStyled = styled.div<IAccordionStyles>`
   ${props => getStyles(props.styles)}
 `;
 
-export const AccordionHeaderMainStyled = styled.div`
-  ${({ theme: { MEDIA_QUERIES } }) => css`
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    ${MEDIA_QUERIES?.onlyMobile} {
-      flex-direction: column;
-      justify-content: left;
-      align-items: flex-start;
-    }
-  `}
-  ${({ theme: { MEDIA_QUERIES } }) => css`
-    ${MEDIA_QUERIES?.onlyMobile} {
-      flex-direction: row;
-      align-items: center;
-    }
-  `}
-`;
-
 export const AccordionHeaderTitleHeadlineStyled = styled.span`
   display: flex;
   width: 100%;
@@ -73,23 +53,7 @@ export const AccordionTriggerStyled = styled.button<IAccordionStyles>`
   ${props => getStyles(props.styles)}
 `;
 
-export const AccordionTriggerLinkStyled = styled.div<IAccordionStyles>`
-  ${props => getStyles(props.styles)}
-`;
-
-export const AccordionTriggerIconStyled = styled.span<IAccordionStyles>`
-  ${({ $rotate }) =>
-    $rotate &&
-    css`
-      svg {
-        transform: rotate(180deg);
-      }
-    `};
-  ${props => getStyles(props.styles)}
-`;
-
-export const AccordionTriggerIconLinkStyled = styled.button<IAccordionStyles>`
-  cursor: pointer;
+export const AccordionTriggerIconContainerStyled = styled.span<IAccordionStyles>`
   ${({ $rotate }) =>
     $rotate &&
     css`
