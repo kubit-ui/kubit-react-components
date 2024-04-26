@@ -1,94 +1,116 @@
 /* eslint-disable complexity */
 import * as React from 'react';
 
+import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Label } from '@/components/label';
 import { Text } from '@/components/text';
 import { useId } from '@/hooks';
 
+import { buildAriaLabelledBy } from '../../utils';
 import {
+  ErrorIconWrapperStyled,
   RadioButtonContainerInput,
   RadioButtonContentStyled,
+  RadioButtonErrorStyled,
   RadioButtonInputStyled,
   RadioButtonLabelStyled,
   RadioButtonStyled,
 } from './radioButton.styled';
-import { IRadioButtonStandAlone, RadioButtonStateType } from './types';
+import { IRadioButtonStandAlone } from './types/radioButton';
 
 const CURSOR_POINTER = 'pointer';
 const CURSOR_DEFAULT = 'default';
 
-export const RadioButtonStandAlone = ({
-  checked,
-  label,
-  name,
-  id,
-  onBlur,
-  onChange,
-  state = RadioButtonStateType.DEFAULT,
-  styles,
-  subTitle,
-  value,
-  dataTestId,
-  screenReaderId,
-}: IRadioButtonStandAlone): JSX.Element => {
+export const RadioButtonStandAlone = (props: IRadioButtonStandAlone): JSX.Element => {
   let inputId = useId('RadioButton');
-  inputId = id ?? inputId;
-  const descriptionId = subTitle?.content && `${inputId}__description`;
-  const isDisabled = state === RadioButtonStateType.DISABLED;
-
-  const getAriaDescribedBy = () => {
-    if (descriptionId) {
-      return `${descriptionId} ${screenReaderId}`;
-    }
-    return screenReaderId;
-  };
+  inputId = props.id ?? inputId;
+  const descriptionId = props.subTitle?.content && `${inputId}__description`;
+  const errorMessageId = props.errorMessage && `${inputId}__error`;
 
   const getLabelFontWeight = () =>
-    subTitle?.content
-      ? styles?.[state]?.specialLabel?.font_weight
-      : styles?.[state]?.label?.font_weight;
+    props.subTitle?.content
+      ? props.styles?.[props.state]?.specialLabel?.font_weight
+      : props.styles?.[props.state]?.label?.font_weight;
 
   return (
-    <RadioButtonStyled hasLabel={!!label} state={state} styles={styles}>
-      <RadioButtonContainerInput styles={styles}>
+    <RadioButtonStyled hasLabel={!!props.label} state={props.state} styles={props.styles}>
+      <RadioButtonContainerInput styles={props.styles}>
         <RadioButtonInputStyled
-          aria-describedby={screenReaderId && getAriaDescribedBy()}
-          checked={checked}
-          data-testid={`${dataTestId}Input`}
-          disabled={isDisabled}
+          aria-describedby={
+            props.screenReaderId &&
+            buildAriaLabelledBy({
+              descriptionId,
+              screenReaderId: props.screenReaderId,
+              errorMessage: props.errorMessage,
+              errorMessageId,
+              error: props.error,
+            })
+          }
+          checked={props.checked}
+          data-testid={`${props.dataTestId}Input`}
+          disabled={props.disabled}
           id={inputId}
-          name={name}
-          styles={styles}
+          name={props.name}
+          state={props.state}
+          styles={props.styles}
           type="radio"
-          value={value}
-          onBlur={onBlur}
-          onChange={onChange}
+          value={props.value}
+          onBlur={props.onBlur}
+          onChange={props.onChange}
         />
       </RadioButtonContainerInput>
-      {label?.content && (
+      {props.label?.content && (
         <RadioButtonLabelStyled>
           <Label
-            color={styles?.[state]?.label?.color}
-            cursor={isDisabled ? CURSOR_DEFAULT : CURSOR_POINTER}
-            data-testid={`${dataTestId}Label`}
+            color={props.styles?.[props.state]?.label?.color}
+            cursor={props.disabled ? CURSOR_DEFAULT : CURSOR_POINTER}
+            data-testid={`${props.dataTestId}Label`}
             inputId={inputId}
-            textVariant={styles?.[state]?.label?.font_variant}
+            textVariant={props.styles?.[props.state]?.label?.font_variant}
             weight={getLabelFontWeight()}
-            {...label}
+            {...props.label}
           >
-            {label.content}
+            {props.label.content}
           </Label>
         </RadioButtonLabelStyled>
       )}
 
-      {subTitle?.content &&
-        (typeof subTitle.content === 'string' ? (
-          <Text customTypography={styles?.[state]?.sublabel} {...subTitle} id={descriptionId}>
-            {subTitle.content}
+      {props.subTitle?.content &&
+        (typeof props.subTitle.content === 'string' ? (
+          <Text
+            customTypography={props.styles?.[props.state]?.sublabel}
+            {...props.subTitle}
+            id={descriptionId}
+          >
+            {props.subTitle.content}
           </Text>
         ) : (
-          <RadioButtonContentStyled id={descriptionId}>{subTitle.content}</RadioButtonContentStyled>
+          <RadioButtonContentStyled id={descriptionId}>
+            {props.subTitle.content}
+          </RadioButtonContentStyled>
         ))}
+      {props.error && props.errorMessage && (
+        <RadioButtonErrorStyled
+          aria-live={props.errorAriaLiveType}
+          id={errorMessageId}
+          styles={props.styles?.[props.state]}
+        >
+          <Text
+            customTypography={props.styles?.[props.state]?.errorMessage}
+            dataTestId={`${props.dataTestId}ErrorMessage`}
+          >
+            {props.errorIcon && (
+              <ErrorIconWrapperStyled styles={props.styles?.[props.state]}>
+                <ElementOrIcon
+                  customIconStyles={props.styles?.[props.state]?.errorMessageIcon}
+                  {...props.errorIcon}
+                />
+              </ErrorIconWrapperStyled>
+            )}
+            {props.errorMessage}
+          </Text>
+        </RadioButtonErrorStyled>
+      )}
     </RadioButtonStyled>
   );
 };

@@ -17,10 +17,19 @@ interface IRadioButtonContentStyled {
   hasLabel?: boolean;
 }
 
+interface IRadioButtonErrorStyled {
+  styles?: RadioButtonBaseStyles;
+}
+
 const getDynamicStyles = (styles?: RadioButtonBaseStyles) => css`
   ${getStyles(styles?.radioButton)}
 
   &:before {
+    content: '';
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
     ${getStyles(styles?.icon)}
   }
 `;
@@ -28,6 +37,7 @@ const getDynamicStyles = (styles?: RadioButtonBaseStyles) => css`
 export const RadioButtonContainerInput = styled.div<IRadioButtonStyled>`
   ${props => getStyles(props.styles[RadioButtonStateType.DEFAULT]?.radioButtonContainer)}
 `;
+
 export const RadioButtonInputStyled = styled.input<IRadioButtonStyled>`
   appearance: none;
   cursor: pointer;
@@ -35,29 +45,7 @@ export const RadioButtonInputStyled = styled.input<IRadioButtonStyled>`
   vertical-align: bottom;
   position: relative;
 
-  ${({ styles }) => getDynamicStyles(styles[RadioButtonStateType.DEFAULT])}
-
-  // Check - Centering & sizing
-  &:before {
-    content: '';
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  &:checked:not(:disabled) {
-    ${({ styles }) => getDynamicStyles(styles[RadioButtonStateType.SELECTED])}
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    ${({ styles }) => getDynamicStyles(styles[RadioButtonStateType.DISABLED])}
-
-    :checked {
-      ${({ styles }) => getDynamicStyles(styles[RadioButtonStateType.DISABLED_SELECTED])}
-    }
-  }
+  ${({ styles, state }) => state && getDynamicStyles(styles?.[state])}
 
   &:focus-visible {
     border-radius: 100%;
@@ -81,4 +69,15 @@ export const RadioButtonContentStyled = styled.div``;
 export const RadioButtonLabelStyled = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const RadioButtonErrorStyled = styled.div<IRadioButtonErrorStyled>`
+  ${({ styles }) => getStyles(styles?.errorMessageContainer)};
+  p {
+    display: flex;
+  }
+`;
+
+export const ErrorIconWrapperStyled = styled.span<IRadioButtonErrorStyled>`
+  ${({ styles }) => getStyles(styles?.errorMessageIconContainer)};
 `;

@@ -26,7 +26,7 @@ const mockProps: IRadioButtonGroupUncontrolled = {
     {
       label: 'Secret Fruit',
       value: '?',
-      state: RadioButtonStateType.DISABLED,
+      disabled: true,
     },
     {
       label: 'Kiwis',
@@ -42,6 +42,8 @@ const mockProps: IRadioButtonGroupUncontrolled = {
       label: 'Apple',
       value: 'A',
       description: 'An apple a day keeps the doctor await',
+      errorMessage: 'Error text',
+      error: true,
       screenReader: true,
     },
   ],
