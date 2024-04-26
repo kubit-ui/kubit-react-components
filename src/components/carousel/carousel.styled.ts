@@ -116,20 +116,6 @@ export const PageControlAutomateContainerStyled = styled.div<{
 export const ArrowLeftIconContainer = styled.div<{
   styles: CarouselPropsStylesType;
 }>`
-  ${({ styles }) => getStyles(styles[CarouselArrowStateType.DEFAULT]?.arrowLeftIconContainer)};
-  &:hover {
-    ${props => getStyles(props.styles[CarouselArrowStateType.HOVER]?.arrowLeftIconContainer)}
-  }
-  &:active {
-    ${props => getStyles(props.styles[CarouselArrowStateType.PRESSED]?.arrowLeftIconContainer)}
-  }
-  &[data-disabled='true'] {
-    ${({ styles }) => getStyles(styles[CarouselArrowStateType.DISABLED]?.arrowLeftIconContainer)};
-    > button {
-      ${({ styles }) =>
-        getStyles(styles[CarouselArrowStateType.DISABLED]?.arrowLeftIconButtonContainer)};
-    }
-  }
   > button {
     position: absolute;
     top: 0;
@@ -146,6 +132,20 @@ export const ArrowLeftIconContainer = styled.div<{
     &:active {
       ${props =>
         getStyles(props.styles[CarouselArrowStateType.PRESSED]?.arrowLeftIconButtonContainer)}
+    }
+  }
+  ${({ styles }) => getStyles(styles[CarouselArrowStateType.DEFAULT]?.arrowLeftIconContainer)};
+  &:hover {
+    ${props => getStyles(props.styles[CarouselArrowStateType.HOVER]?.arrowLeftIconContainer)}
+  }
+  &:active {
+    ${props => getStyles(props.styles[CarouselArrowStateType.PRESSED]?.arrowLeftIconContainer)}
+  }
+  &[data-disabled='true'] {
+    ${({ styles }) => getStyles(styles[CarouselArrowStateType.DISABLED]?.arrowLeftIconContainer)};
+    > button {
+      ${({ styles }) =>
+        getStyles(styles[CarouselArrowStateType.DISABLED]?.arrowLeftIconButtonContainer)};
     }
   }
 `;
