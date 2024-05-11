@@ -4,12 +4,45 @@ import styled, { css } from 'styled-components';
 import { focusVisibleAlt } from '@/styles/mixins';
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
+import { TextPropsStylesType } from '../text/types';
 import { LinkPositionType, LinkPropsStylesType, LinkPropsType, LinkStateType } from './types';
 
 type LinkPropsExtended = {
   linkStyles: LinkPropsStylesType;
   alignCenter: boolean;
 };
+const applyDevicePropsTextStyles = (props: TextPropsStylesType) => {
+  return css`
+    color: ${props.color};
+    display: ${props.display};
+    text-decoration: ${props.decoration};
+    text-align: ${props.align};
+    font-weight: ${props.weight};
+    ${props.isDisabled &&
+    css`
+      pointer-events: none;
+    `}
+  `;
+};
+
+const applyPropsTextStyles = (props: TextPropsStylesType) => css`
+  ${applyDevicePropsTextStyles(props)}
+  ${({
+    theme: {
+      MEDIA_QUERIES: { onlyDesktop, onlyTablet, onlyMobile },
+    },
+  }) => css`
+    ${onlyDesktop} {
+      ${applyDevicePropsTextStyles(props)}
+    }
+    ${onlyTablet} {
+      ${applyDevicePropsTextStyles(props)}
+    }
+    ${onlyMobile} {
+      ${applyDevicePropsTextStyles(props)}
+    }
+  `}
+`;
 
 export const TextStyledExtended = styled.p.withConfig({
   shouldForwardProp: () => true,
@@ -51,6 +84,9 @@ export const TextStyledExtended = styled.p.withConfig({
     // In alternative variants, the focus colors must be change
     ${({ linkStyles }) => linkStyles?.[LinkStateType.VISITED]?.altVariant && focusVisibleAlt()}
   }
+
+  // Apply props tokens
+  ${props => applyPropsTextStyles(props)}
 `;
 
 export const LabelIconWrapper = styled.span<LinkPropsType>`
