@@ -28,7 +28,7 @@ const actionCommonProps = {
 const commonPropsDefault = {
   border_radius: BORDERS.border_00,
   text_align: TEXT_ALIGN.center,
-  font_family: FONT_FAMILY.font_family_gt_america_extended,
+  font_family: FONT_FAMILY.font_family_nunito_sans,
   font_size: '1rem',
 };
 

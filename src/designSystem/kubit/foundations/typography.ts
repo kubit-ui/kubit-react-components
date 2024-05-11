@@ -4,6 +4,7 @@ export const FONT_FAMILY = {
   font_family_gt_america_expanded: '"GT-America-Expanded Font", sans-serif',
   font_family_gt_america_extended: '"GT-America-Extended Font", sans-serif',
   font_family_roboto_condensed: '"Roboto-Mono Font", sans-serif',
+  font_family_nunito_sans: '"Nunito-Sans Font", sans-serif',
 } as const;
 
 const FONT_SIZE = {
