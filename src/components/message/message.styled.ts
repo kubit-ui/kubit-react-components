@@ -70,3 +70,9 @@ export const CloseButtonSectionStyled = styled.div<{
 }>`
   ${({ styles }) => getStyles(styles.closeIconContainer)};
 `;
+
+export const LinkContainerStyled = styled.div<{
+  styles: MessagePropsThemeType;
+}>`
+  ${({ styles }) => getStyles(styles.linkContainer)};
+`;

@@ -2,6 +2,12 @@ export type {
   IMessageStandAlone,
   IMessageControlled,
   IMessageUnControlled,
+  MessageActionButtonType,
+  MessageExtraActionButtonType,
+  MessageContentType,
+  MessageTitleType,
+  MessageTagType,
+  MessageLinkType,
   MessagePropsThemeType,
   MessageStylesType,
 } from './types';

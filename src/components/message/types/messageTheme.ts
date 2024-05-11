@@ -20,6 +20,7 @@ export type MessagePropsThemeType = {
     size?: string;
   };
   illustration?: IllustrationTypes;
+  linkContainer?: CommonStyleType;
 };
 
 export type MessageStylesType<P extends string | number | symbol> = {

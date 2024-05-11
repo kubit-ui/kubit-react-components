@@ -4,15 +4,17 @@ import { Button } from '@/components/button';
 import { ElementOrIcon } from '@/components/elementOrIcon';
 import { ElementOrIllustration } from '@/components/elementOrIllustration';
 import { Tag } from '@/components/tag';
-import { Text, TextComponentType } from '@/components/text';
+import { Text, TextComponentType, TextDecorationType } from '@/components/text';
 import { AriaLiveOptionType } from '@/types';
 
+import { Link } from '../link';
 // styles
 import {
   ActioButtonWrapperStyled,
   ButtonSectionStyled,
   CloseButtonSectionStyled,
   ExtraActioButtonWrapperStyled,
+  LinkContainerStyled,
   MessageContentStyled,
   MessageHeaderStyled,
   MessageHeaderTitleStyled,
@@ -136,6 +138,17 @@ const MessageStandAloneComponent = (
           </CloseButtonSectionStyled>
         )}
       </ButtonSectionStyled>
+      {props.link?.content && (
+        <LinkContainerStyled styles={props.styles}>
+          <Link
+            dataTestId={`${props.dataTestId}Link`}
+            decoration={TextDecorationType.UNDERLINE}
+            {...props.link}
+          >
+            {props.link.content}
+          </Link>
+        </LinkContainerStyled>
+      )}
     </MessageStyled>
   ) : null;
 };

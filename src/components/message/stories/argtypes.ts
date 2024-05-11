@@ -91,6 +91,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    link: {
+      description: 'Object with link properties',
+      type: { name: 'object', required: false },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'MessageLinkType',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     infoIcon: {
       description: 'Object with properties of the icon to show into title message',
       type: { name: 'object' },
