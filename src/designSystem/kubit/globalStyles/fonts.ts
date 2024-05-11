@@ -6,6 +6,13 @@ import GTAmericaExpandedLight from '../fonts/GT-America-ExpandedLight.otf';
 import GTAmericaExtendedLight from '../fonts/GT-America-Extended-Light.otf';
 import GTAmericaExtendedBold from '../fonts/GT-America-Extended-Medium.otf';
 import GTAmericaExtendedRegular from '../fonts/GT-America-Extended-Regular.ttf';
+import NunitoBlack from '../fonts/NunitoSans_10pt-Black.ttf';
+import NunitoBold from '../fonts/NunitoSans_10pt-Bold.ttf';
+import NunitoExtraBold from '../fonts/NunitoSans_10pt-ExtraBold.ttf';
+import NunitoExtraLight from '../fonts/NunitoSans_10pt-ExtraLight.ttf';
+import NunitoLight from '../fonts/NunitoSans_10pt-Light.ttf';
+import NunitoRegular from '../fonts/NunitoSans_10pt-Regular.ttf';
+import NunitoSemiBold from '../fonts/NunitoSans_10pt-SemiBold.ttf';
 import RobotoMonoBold from '../fonts/RobotoMono-Bold.ttf';
 import RobotoMonoLight from '../fonts/RobotoMono-Light.ttf';
 import RobotoMonoMedium from '../fonts/RobotoMono-Medium.ttf';
@@ -63,5 +70,47 @@ export const FONTS_KUBIT_GLOBAL_STYLES = css`
     font-family: 'Roboto-Mono Font';
     font-weight: 400;
     src: url(${RobotoMonoMedium}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Nunito-Sans Font';
+    font-weight: 200;
+    src: url(${NunitoExtraLight}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Nunito-Sans Font';
+    font-weight: 300;
+    src: url(${NunitoLight}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Nunito-Sans Font';
+    font-weight: 400;
+    src: url(${NunitoRegular}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Nunito-Sans Font';
+    font-weight: 500;
+    src: url(${NunitoSemiBold}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Nunito-Sans Font';
+    font-weight: 600;
+    src: url(${NunitoBold}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Nunito-Sans Font';
+    font-weight: 700;
+    src: url(${NunitoExtraBold}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Nunito-Sans Font';
+    font-weight: 800;
+    src: url(${NunitoBlack}) format('truetype');
   }
 `;

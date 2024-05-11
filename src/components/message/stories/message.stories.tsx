@@ -43,6 +43,7 @@ export const Message: Story = {
       ),
     },
     title: { content: 'Title' },
+    link: { content: 'Link', variant: 'SECONDARY', url: '#' },
     themeArgs: themesObject[themeSelected][STYLES_NAME.MESSAGE],
   },
 };

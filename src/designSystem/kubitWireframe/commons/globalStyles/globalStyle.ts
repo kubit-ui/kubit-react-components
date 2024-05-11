@@ -9,7 +9,7 @@ export const KUBIT_WIREFRAME_GLOBAL_STYLES = css`
   html,
   body,
   * {
-    font-family: ${FONT_FAMILY.font_family_gt_america_extended};
+    font-family: ${FONT_FAMILY.font_family_nunito_sans};
   }
   *,
   *::before,

@@ -51,3 +51,39 @@
   font-weight: 800;
   src: url('../fonts/RobotoMono-Bold.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'Nunito-Sans Font';
+  font-weight: 100;
+  src: url('../fonts/NunitoSans_10pt-ExtraLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito-Sans Font';
+  font-weight: 300;
+  src: url('../fonts/NunitoSans_10pt-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito-Sans Font';
+  font-weight: 400;
+  src: url('../fonts/NunitoSans_10pt-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito-Sans Font';
+  font-weight: 700;
+  src: url('../fonts/NunitoSans_10pt-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito-Sans Font';
+  font-weight: 800;
+  src: url('../fonts/NunitoSans_10pt-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito-Sans Font';
+  font-weight: 900;
+  src: url('../fonts/NunitoSans_10pt-Black.ttf') format('truetype');
+}

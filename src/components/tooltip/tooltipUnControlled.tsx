@@ -95,7 +95,7 @@ const TooltipUnControlledComponent = React.forwardRef(
       event.preventDefault();
     };
 
-    const handleClick: React.MouseEventHandler<HTMLElement> = () => {
+    const handleClick: React.MouseEventHandler<HTMLElement> = event => {
       if (mediaDevice === DeviceBreakpointsType.DESKTOP) {
         if (tooltipAsModalValue && !open) {
           //this condition is needed because tooltip would close if you clicked on tooltip container beeing tooltip a modal
@@ -103,10 +103,13 @@ const TooltipUnControlledComponent = React.forwardRef(
         }
         return;
       }
-      if (open) {
-        hideTooltip();
-      } else {
+      // Mobile / tablet
+      if (!open) {
         showTooltip();
+        return;
+      }
+      if (!tooltipAsModalValue && !tooltipRef.current?.contains(event.target as Node)) {
+        hideTooltip();
       }
     };
 

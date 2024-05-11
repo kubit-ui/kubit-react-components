@@ -50,7 +50,7 @@ const InputPasswordComponent = React.forwardRef(
     const icon = inputPasswordType === InputTypeType.PASSWORD ? disabledIcon : activeIcon;
 
     const setTypeInput: React.MouseEventHandler<HTMLButtonElement> = event => {
-      const icon = type === InputTypeType.PASSWORD ? disabledIcon : activeIcon;
+      const icon = inputPasswordType === InputTypeType.PASSWORD ? disabledIcon : activeIcon;
       setInputPasswordType(
         inputPasswordType === InputTypeType.PASSWORD ? InputTypeType.TEXT : InputTypeType.PASSWORD
       );

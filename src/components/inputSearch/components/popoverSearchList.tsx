@@ -4,8 +4,10 @@ import { ForwardedRef, forwardRef, useMemo } from 'react';
 import { Input } from '@/components/input';
 //  components
 import { PopoverControlled as Popover } from '@/components/popover';
+import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text } from '@/components/text';
 import { useId } from '@/hooks';
+import { AriaLiveOptionType } from '@/types';
 
 import { ActionBottomSheetControlledStructure as ActionBottomSheet } from '../../actionBottomSheet/actionBottomSheetControlled';
 // helpers
@@ -83,18 +85,7 @@ export const PopoverSearchListComponent = (
   );
 
   const renderIconOrMessage = () => {
-    if (props.loading) {
-      return (
-        <LoadingIcon
-          expanded={true}
-          loader={props.loader}
-          loading={props.loading}
-          loadingText={props.loadingText}
-          stateStyles={props.styles?.[props.state]}
-        />
-      );
-    }
-    if (props.noResultsText?.content) {
+    if (!props.loading && props.noResultsText?.content) {
       if (typeof props.noResultsText.content === 'string') {
         return (
           <div>
@@ -115,15 +106,30 @@ export const PopoverSearchListComponent = (
         <div>
           {showTextWritten && getOptionsList()}
           {props.noResultsText.content}
+          <ScreenReaderOnly
+            ariaLive={AriaLiveOptionType.ASSERTIVE}
+            data-testid={`${props.dataTestId}ScreenReaderOnly`}
+          >
+            {props.loadingText?.content}
+          </ScreenReaderOnly>
         </div>
       );
     }
-    return null;
+    return (
+      <LoadingIcon
+        expanded={true}
+        loader={props.loader}
+        loading={props.loading}
+        loadingText={props.loadingText}
+        stateStyles={props.styles?.[props.state]}
+      />
+    );
   };
 
   const renderSearchList = () => (
     <ListContainerStyled
       $height={getLength(props.optionList) ? props.listOptionsHeight : ''}
+      data-testid={`${props.dataTestId}InputSearchList`}
       styles={props.styles?.[props.state]}
       useActionBottomSheet={useActionBottomSheet}
     >
@@ -171,6 +177,7 @@ export const PopoverSearchListComponent = (
           dataTestId={`${props.dataTestId}ActionBottomSheet`}
           headerContent={
             <Input
+              dataTestId={`${props.dataTestId}HeaderContentInput`}
               id={inputPopoverId}
               variant={props.inputConfiguration?.variant}
               {...props.inputConfiguration}

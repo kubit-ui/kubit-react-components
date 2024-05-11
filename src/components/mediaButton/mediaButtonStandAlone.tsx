@@ -59,9 +59,15 @@ const MediaButtonStandaloneComponent = (
       onClick={props.onClick}
     >
       <ButtonStyled styles={props.styles}>
-        {props.loading && (props.styles?.loader?.variant || props.loader?.variant) ? (
-          <Loader variant={props.styles?.loader?.variant} width={iconSize} {...props.loader} />
-        ) : (
+        {(props.styles?.loader?.variant || props.loader?.variant) && (
+          <Loader
+            variant={props.styles?.loader?.variant}
+            visible={props.loading}
+            width={iconSize}
+            {...props.loader}
+          />
+        )}
+        {!props.loading && (
           <>
             <ElementOrIcon
               color={iconColor}

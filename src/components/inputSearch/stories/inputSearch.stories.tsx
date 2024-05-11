@@ -52,6 +52,9 @@ const commonArgs: IInputSearch = {
   errorMessage: { content: 'Error message' },
   errorIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'error' },
   loadingText: { content: 'Loading results' },
+  loader: {
+    altText: 'loading',
+  },
   noResultsText: { content: 'noResultsText' },
 };
 export const InputSearch: Story = {

@@ -151,16 +151,25 @@ describe('New Input Dropdown Component', () => {
 
   it('Should render loading and valueSelected', async () => {
     renderProvider(
+      <InputDropdown {...mockProps} loader={{ altText: 'loading' }} loadingList={true} />
+    );
+
+    const inputDropdownLoading = screen.getByText('loading');
+    expect(inputDropdownLoading).toBeInTheDocument();
+  });
+
+  it('Should render loading text and loading icon when options list is empty', async () => {
+    renderProvider(
       <InputDropdown
         {...mockProps}
-        loader={{ altText: 'loading' }}
         loadingList={true}
+        loadingText={{ content: 'loading' }}
         optionList={{ options: [] }}
       />
     );
 
-    const inputDropdownLoading = screen.getByLabelText('loading');
-    expect(inputDropdownLoading).toBeInTheDocument();
+    const inputSearchLoading = screen.getByText('loading');
+    expect(inputSearchLoading).toBeInTheDocument();
   });
 
   it('Should allow select an option', async () => {

@@ -43,7 +43,7 @@ const LinkComponent = React.forwardRef(
     const isInline = action === LinkActionType.INLINE;
     const textDecoration = isInline ? TextDecorationType.UNDERLINE : decoration;
     const textVariant = textVariantProp ?? styles.container?.font_variant;
-    const weight = styles.container?.font_weight;
+    const weight = props.weight || styles.container?.font_weight;
     const color = colorLinkProp || styles.font_color || styles.container?.color;
 
     const { state, setRef } = useManageState({

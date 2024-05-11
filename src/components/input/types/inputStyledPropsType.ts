@@ -34,6 +34,7 @@ export type TextCounterStyledProps = {
 };
 
 export type LoaderStyledProps = {
+  loading?: boolean;
   styles?: InputStateProps;
 };
 

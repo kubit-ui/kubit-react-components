@@ -54,6 +54,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    visible: {
+      description: 'Boolean to show or hide the loader',
+      control: { type: 'boolean' },
+      type: { name: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     dataTestId: {
       description: 'String used for testing',
       control: { type: 'text' },

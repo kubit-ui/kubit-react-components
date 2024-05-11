@@ -10,12 +10,8 @@ export const ScreenReaderOnly = ({
   dataTestId,
 }: IScreenReaderOnly): JSX.Element => {
   return (
-    <>
-      {children && (
-        <ScreenReaderOnlyStyled aria-live={ariaLive} data-testid={dataTestId} id={id}>
-          {children}
-        </ScreenReaderOnlyStyled>
-      )}
-    </>
+    <ScreenReaderOnlyStyled aria-live={ariaLive} data-testid={dataTestId} id={id}>
+      {children}
+    </ScreenReaderOnlyStyled>
   );
 };

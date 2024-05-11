@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { IButton } from '@/components/button';
 import { IElementOrIcon } from '@/components/elementOrIcon';
 import { IElementOrillustration } from '@/components/elementOrIllustration';
+import { ILink } from '@/components/link';
 import { ITag } from '@/components/tag';
 import { IText } from '@/components/text';
 import { AriaLiveOptionType, CustomTokenTypes, ROLES } from '@/types';
@@ -30,6 +31,10 @@ export type MessageTagType = Omit<ITag, 'children'> & {
   content: string;
 };
 
+export type MessageLinkType = Omit<ILink, 'children'> & {
+  content?: string;
+};
+
 export interface IMessageStandAlone {
   illustration?: IElementOrillustration;
   infoIcon?: IElementOrIcon;
@@ -47,6 +52,7 @@ export interface IMessageStandAlone {
   role?: ROLES.STATUS | ROLES.ALERT;
   id?: string;
   ariaLive?: AriaLiveOptionType;
+  link?: MessageLinkType;
 }
 
 export interface IMessageControlled<V = undefined extends string ? unknown : string>

@@ -40,6 +40,7 @@ export interface IRadioButtonStandAlone extends IRadioButtonStyled {
   dataTestId?: string;
   screenReaderId?: string;
   id?: string;
+  lastChild?: boolean;
 }
 /**
  * @description

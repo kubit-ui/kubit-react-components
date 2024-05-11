@@ -48,9 +48,15 @@ export const useTooltip = <V>({
 
   // Avoid to show tooltip when scrolling
   React.useEffect(() => {
+    const handleResize = () => {
+      updateTooltipPosition();
+    };
+
     window.addEventListener('scroll', onScroll, true);
+    window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('scroll', onScroll, true);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 

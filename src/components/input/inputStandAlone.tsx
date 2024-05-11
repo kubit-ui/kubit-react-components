@@ -117,7 +117,7 @@ const InputStandAloneComponent = (
             : undefined
         }
         disabled={isDisabled(state)}
-        icon={props.icon}
+        icon={{ dataTestId: `${props.dataTestId}Icon`, ...props.icon }}
         iconPosition={props.iconPosition}
         loading={props.loading}
         state={state}

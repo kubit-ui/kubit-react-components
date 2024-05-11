@@ -211,7 +211,7 @@ export interface IInputSearch<V = undefined extends string ? unknown : string>
   error?: boolean;
   searchFilterConfig?: SearchFilterConfig;
   disableErrorInvalidOption?: boolean;
-  regex?: string;
+  regex?: string | RegExp;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   clearTextInputPopoverIconClick?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;

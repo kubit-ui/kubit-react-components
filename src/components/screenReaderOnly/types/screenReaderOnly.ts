@@ -1,7 +1,7 @@
 import { AriaLiveOptionType } from '@/types/ariaLiveOption';
 
 export interface IScreenReaderOnly {
-  children?: string | JSX.Element;
+  children?: React.ReactNode;
   id?: string;
   show?: boolean;
   ariaLive?: AriaLiveOptionType;

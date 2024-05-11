@@ -22,7 +22,10 @@ import { IDropdownSelectedStandAlone } from './types';
 
 const DROPDOWN_SELECTED_BASE_ID = 'DropdownSelected';
 
-const DropdownSelectedStandAloneComponent = (props: IDropdownSelectedStandAlone): JSX.Element => {
+const DropdownSelectedStandAloneComponent = (
+  props: IDropdownSelectedStandAlone,
+  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+): JSX.Element => {
   const BASE_ID = useId(DROPDOWN_SELECTED_BASE_ID);
   const POPOVER_ID = `${BASE_ID}-popover`;
   const ariaControls = props.open ? `${BASE_ID}-list` : undefined;
@@ -65,6 +68,7 @@ const DropdownSelectedStandAloneComponent = (props: IDropdownSelectedStandAlone)
 
   return (
     <DropdrownSelectedContainerStyled
+      ref={ref}
       data-testid={props.dataTestIdComponent}
       styles={props.styles}
       onBlur={event => props.onFocus?.(event)}

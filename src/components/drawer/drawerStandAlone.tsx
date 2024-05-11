@@ -46,7 +46,11 @@ const DrawerStandAloneComponent = (
       >
         {!blocked && (
           <DrawerNavigationStyled level={props.level} styles={props.styles}>
-            <ElementOrIcon customIconStyles={props.styles.icon} {...props.closeIcon} />
+            <ElementOrIcon
+              customIconStyles={props.styles.icon}
+              {...props.closeIcon}
+              dataTestId={`${props.dataTestId}CloseIcon`}
+            />
           </DrawerNavigationStyled>
         )}
         <DrawerTitleContentFooterContainerStyled

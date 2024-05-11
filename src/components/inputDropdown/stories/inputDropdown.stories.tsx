@@ -43,6 +43,9 @@ const commonArgs: IInputDropdown = {
   errorMessage: { content: 'Error message' },
   errorIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'error' },
   loadingText: { content: 'Loading results' },
+  loader: {
+    altText: 'loading',
+  },
   icon: { icon: ICONS.ICON_CHEVRON_DOWN },
   optionList: {
     options: [

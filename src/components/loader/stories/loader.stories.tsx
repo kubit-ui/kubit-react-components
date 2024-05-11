@@ -27,6 +27,7 @@ export const Loader: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].LoaderVariantType || {})[0] as string,
     width: '48px',
+    visible: true,
     themeArgs: themesObject[themeSelected][STYLES_NAME.LOADER],
   },
 };
@@ -35,5 +36,6 @@ export const LoaderWithCtv: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].LoaderVariantType || {})[0] as string,
     width: '48px',
+    visible: true,
   },
 };

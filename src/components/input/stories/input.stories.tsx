@@ -51,6 +51,10 @@ const commonArgs: IInputUnControlled = {
   icon: { icon: ICONS.ICON_PLACEHOLDER },
   secondaryLabel: labelSecondary(themeSelected),
   additionalInfo: additionalInfoAction(themeSelected),
+  loader: {
+    variant: Object.values(variantsObject[themeSelected].LoaderVariantType || {})[0] as string,
+    altText: 'loaderAltText',
+  },
 };
 
 export const Input: Story = {
