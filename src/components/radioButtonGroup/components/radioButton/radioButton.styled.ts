@@ -15,6 +15,11 @@ interface IRadioButtonContentStyled {
   styles: VariantStyles<RadioButtonStylesType>;
   state: RadioButtonStateType;
   hasLabel?: boolean;
+  lastChild?: boolean;
+}
+
+interface IRadioButtonErrorStyled {
+  styles?: RadioButtonBaseStyles;
 }
 
 interface IRadioButtonErrorStyled {
@@ -58,7 +63,7 @@ export const RadioButtonStyled = styled.div<IRadioButtonContentStyled>`
   display: ${props => (props.hasLabel ? 'grid' : 'block')};
   grid-template-columns: auto 1fr;
   ${props => getStyles(props.styles?.[props.state]?.rowContainer)}
-
+  margin-bottom: ${props => (props.lastChild ? 0 : undefined)};
   & > :nth-child(3) {
     grid-column: 2;
   }

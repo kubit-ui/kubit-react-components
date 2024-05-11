@@ -33,7 +33,12 @@ export const RadioButtonStandAlone = (props: IRadioButtonStandAlone): JSX.Elemen
       : props.styles?.[props.state]?.label?.font_weight;
 
   return (
-    <RadioButtonStyled hasLabel={!!props.label} state={props.state} styles={props.styles}>
+    <RadioButtonStyled
+      hasLabel={!!props.label}
+      lastChild={props.lastChild}
+      state={props.state}
+      styles={props.styles}
+    >
       <RadioButtonContainerInput styles={props.styles}>
         <RadioButtonInputStyled
           aria-describedby={
@@ -64,7 +69,7 @@ export const RadioButtonStandAlone = (props: IRadioButtonStandAlone): JSX.Elemen
           <Label
             color={props.styles?.[props.state]?.label?.color}
             cursor={props.disabled ? CURSOR_DEFAULT : CURSOR_POINTER}
-            data-testid={`${props.dataTestId}Label`}
+            dataTestId={`${props.dataTestId}Label`}
             inputId={inputId}
             textVariant={props.styles?.[props.state]?.label?.font_variant}
             weight={getLabelFontWeight()}

@@ -63,6 +63,7 @@ const RadioButtonGroupStandAloneComponent = (
           errorIcon={o.errorIcon}
           errorMessage={o.errorMessage}
           label={{ content: o.label }}
+          lastChild={index === props.options.length - 1}
           name={props.name}
           screenReaderId={o.screenReader ? screenReaderId : undefined}
           state={o.state}
