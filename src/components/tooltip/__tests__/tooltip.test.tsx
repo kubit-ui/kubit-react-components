@@ -323,7 +323,7 @@ describe('Tooltip', () => {
   it('Tooltip - mobile - it close the tooltip after clicking twice', () => {
     window.matchMedia = windowMatchMedia('onlyMobile');
     jest.spyOn(mediaHooks, 'useMediaDevice').mockImplementation(() => DeviceBreakpointsType.MOBILE);
-    renderProvider(<Tooltip {...mockProps} />);
+    renderProvider(<Tooltip {...mockProps} tooltipAsModal={false} />);
     const label = screen.getByText(mockProps.children as string);
 
     fireEvent.click(label);
