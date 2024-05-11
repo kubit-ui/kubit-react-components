@@ -44,7 +44,7 @@ type ParamsType = {
   options: IOptionGroup[];
   type: InputTypeType;
   value?: string;
-  regex?: string;
+  regex?: string | RegExp;
   disabled?: boolean;
   error?: boolean;
   hasResultTextWrittenByUser?: boolean;

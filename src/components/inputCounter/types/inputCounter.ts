@@ -37,6 +37,7 @@ export interface IInputCounter<V = undefined extends string ? unknown : string>
   disabled?: boolean;
   errorExecution?: ERROR_EXECUTION;
   keyValidation?: string;
+  regex?: string | RegExp;
   onInternalErrors?: (errors: string[]) => void;
   onError?: (error: boolean) => void;
 }
