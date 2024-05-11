@@ -58,8 +58,13 @@ export const ButtonStyled = styled.button<IButtonStyled>`
   ${({ $state, $styles, $sizeStyles }) => setTokens($state, $styles, $sizeStyles)}
 
   &:disabled {
-    ${({ $styles, $sizeStyles }) => setTokens(ButtonStateType.DISABLED, $styles, $sizeStyles)}
-    cursor: 'default',
+    cursor: default;
+    ${({ $styles, $sizeStyles, $loading }) =>
+      setTokens(
+        $loading ? ButtonStateType.LOADING : ButtonStateType.DISABLED,
+        $styles,
+        $sizeStyles
+      )};
   }
 
   &:hover:not(:disabled) {

@@ -15,17 +15,18 @@ export const ButtonStandAloneStructure = (props: IButtonStandAlone): JSX.Element
 
   return (
     <>
-      {props.loading && props.loader ? (
+      {props.loader && (
         <>
           {typeof props.loader === 'object' && 'variant' in props.loader ? (
             <ButtonLoaderStyled>
-              <Loader {...props.loader} width={getWidthSize()} />
+              <Loader visible={props.loading} width={getWidthSize()} {...props.loader} />
             </ButtonLoaderStyled>
           ) : (
             <ButtonLoaderStyled>{props.loader as React.ReactNode}</ButtonLoaderStyled>
           )}
         </>
-      ) : (
+      )}
+      {!props.loading && (
         <>
           <ElementOrIcon
             linearIcon
@@ -34,7 +35,6 @@ export const ButtonStandAloneStructure = (props: IButtonStandAlone): JSX.Element
             width={getWidthSize()}
             {...props.icon}
           />
-
           {props.children}
         </>
       )}
@@ -47,6 +47,8 @@ const ButtonStandAloneComponent = (
   ref: React.ForwardedRef<HTMLButtonElement> | undefined | null
 ): JSX.Element => {
   const ariaProps = pickAriaProps(props);
+  const disabled =
+    props.state === ButtonStateType.DISABLED || props.state === ButtonStateType.LOADING;
 
   return (
     <ButtonStyled
@@ -65,7 +67,7 @@ const ButtonStandAloneComponent = (
       $styles={props.styles}
       alignText={props.alignText}
       data-testid={props.dataTestId}
-      disabled={props.state === ButtonStateType.DISABLED}
+      disabled={disabled}
       form={props.form}
       minWidth={props.minWidth}
       tabIndex={props.tabIndex}

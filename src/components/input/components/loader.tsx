@@ -6,14 +6,12 @@ import { Loader } from '@/components/loader';
 import { LoaderWrapperStyled } from '../input.styled';
 import { IInputLoader } from '../types/input';
 
-export const LoaderStandAlone = (props: IInputLoader): JSX.Element | null => {
-  if (!props.loading || !(props.styles?.loaderVariant || props.loader?.variant)) {
-    return null;
-  }
+export const LoaderStandAlone = (props: IInputLoader): JSX.Element => {
   return (
     <LoaderWrapperStyled styles={props.styles}>
       <Loader
         variant={props.styles?.loaderVariant}
+        visible={props.loading}
         width={props.styles?.loaderIcon?.width}
         {...props.loader}
       />

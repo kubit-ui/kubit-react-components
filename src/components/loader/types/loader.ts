@@ -27,6 +27,7 @@ export interface ILoaderStandAlone extends LoaderAriaAttributes {
   dataTestId?: string;
   altText?: string;
   position?: string;
+  visible?: boolean;
 }
 
 /**

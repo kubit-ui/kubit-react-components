@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { srOnlyMixin } from '@/styles/mixins';
 import { CommonStyleType } from '@/types';
 import { getStyles } from '@/utils';
 
@@ -13,6 +14,7 @@ type InputDropdownStylesType = {
 
 type InputDropdownLoadingStylesType = {
   $expanded: boolean;
+  loading?: boolean;
   styles?: InputDropdownStateProps;
 };
 
@@ -100,6 +102,7 @@ export const InputDropdownListStyled = styled.div<
 `;
 
 export const LoadingWrapper = styled.div<InputDropdownLoadingStylesType>`
+  ${({ loading }) => !loading && srOnlyMixin}
   display: flex;
   flex-direction: column;
   align-items: center;

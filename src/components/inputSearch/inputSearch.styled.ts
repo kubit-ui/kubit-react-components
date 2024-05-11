@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { srOnlyMixin } from '@/styles/mixins';
 import { CommonStyleType } from '@/types';
 import { getStyles } from '@/utils';
 
@@ -13,6 +14,7 @@ type InputSearchStylesType = {
 
 type InputSearchLoadingStylesType = {
   $expanded: boolean;
+  loading?: boolean;
   styles?: InputSearchStateProps;
 };
 
@@ -98,6 +100,7 @@ export const InputSearchListStyled = styled.div<
 `;
 
 export const LoadingWrapper = styled.div<InputSearchLoadingStylesType>`
+  ${({ loading }) => !loading && srOnlyMixin}
   display: flex;
   flex-direction: column;
   align-items: center;

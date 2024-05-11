@@ -54,7 +54,7 @@ describe('MediaButton component', () => {
   it('Should render a loader when loading', async () => {
     const { container } = renderProvider(<MediaButton {...mockProps} loading />);
 
-    const loader = screen.getByLabelText(mockProps.loader?.altText as string);
+    const loader = screen.getByText(mockProps.loader?.altText as string);
 
     expect(loader).toBeInTheDocument();
 

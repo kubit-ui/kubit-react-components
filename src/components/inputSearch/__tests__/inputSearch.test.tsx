@@ -144,15 +144,24 @@ describe('New Input Search Component', () => {
 
   it('Should render loading and valueSelected', async () => {
     renderProvider(
+      <InputSearch {...mockProps} loader={{ altText: 'loading' }} loadingList={true} />
+    );
+
+    const inputSearchLoading = screen.getByText('loading');
+    expect(inputSearchLoading).toBeInTheDocument();
+  });
+
+  it('Should render loading text and loading icon when options list is empty', async () => {
+    renderProvider(
       <InputSearch
         {...mockProps}
-        loader={{ altText: 'loading' }}
         loadingList={true}
+        loadingText={{ content: 'loading' }}
         optionList={[]}
       />
     );
 
-    const inputSearchLoading = screen.getByLabelText('loading');
+    const inputSearchLoading = screen.getByText('loading');
     expect(inputSearchLoading).toBeInTheDocument();
   });
 
@@ -266,10 +275,9 @@ describe('New Input Search Component', () => {
       <InputSearch
         {...mockProps}
         hasResultTextWrittenByUser={false}
-        loader={{ altText: 'loading' }}
         loading={false}
+        loadingList={false}
         noResultsText={undefined}
-        optionList={[]}
       />
     );
 

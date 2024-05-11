@@ -13,10 +13,20 @@ const mockProps = {
 
 describe('Loader Component', () => {
   it('Should render component', async () => {
-    const { getByLabelText, container } = renderProvider(<Loader {...mockProps} />);
+    const { getByText, container } = renderProvider(<Loader {...mockProps} visible={true} />);
 
-    const loader = getByLabelText(mockProps.altText);
+    const loader = getByText(mockProps.altText);
     expect(loader).toBeInTheDocument();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+  it('Should render component but not visible', async () => {
+    const { queryByText, container } = renderProvider(<Loader {...mockProps} visible={false} />);
+
+    const loader = queryByText(mockProps.altText);
+    expect(loader).not.toBeInTheDocument();
 
     const results = await axe(container);
     expect(container).toHTMLValidate();

@@ -32,30 +32,26 @@ export const PopoverSearchListComponent = (
   const { refInput, refActionBottomSheet } = ref as unknown as MultipleRef;
 
   const renderIconOrMessage = () => {
-    if (props.loading) {
-      return (
-        <LoadingIcon
-          loader={props.loader}
-          loading={props.loading}
-          loadingText={props.loadingText}
-          stateStyles={props.styles?.[props.state]}
-        />
-      );
-    }
-    if (props.noResultsText?.content) {
+    if (!props.loading && props.noResultsText?.content) {
       return (
         <NoResultsTextWrapper styles={props.styles?.[props.state]}>
           <Text
             customTypography={props.styles?.[props.state]?.noResultsText}
             dataTestId={`${props.dataTestId}noResultsText`}
-            {...props.noResultsText}
           >
-            {props.noResultsText.content}
+            {props.noResultsText?.content}
           </Text>
         </NoResultsTextWrapper>
       );
     }
-    return null;
+    return (
+      <LoadingIcon
+        loader={props.loader}
+        loading={props.loading}
+        loadingText={props.loadingText}
+        stateStyles={props.styles?.[props.state]}
+      />
+    );
   };
 
   const renderSearchList = () => (
@@ -125,6 +121,7 @@ export const PopoverSearchListComponent = (
           headerContent={
             showHeaderInput && (
               <Input
+                dataTestId={`${props.dataTestId}HeaderContentInput`}
                 icon={{
                   ...props.inputPopoverIcon,
                   onClick: event => {

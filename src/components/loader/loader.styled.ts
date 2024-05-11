@@ -21,3 +21,5 @@ export const LoaderStyled = styled.span<ILoaderStyled>`
     ${styles.animation}
   `}
 `;
+
+export const LoaderWrapperStyled = styled.span``;

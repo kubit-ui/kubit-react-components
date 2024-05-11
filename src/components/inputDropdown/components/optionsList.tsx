@@ -52,6 +52,7 @@ export const OptionsListComponent = (
       )}
 
       <LoadingIcon
+        loader={props.loader}
         loading={props.loading}
         loadingText={props.loadingText}
         optionList={props.optionList}
