@@ -12,4 +12,10 @@ describe('isValidUrl utils', () => {
 
     expect(isValidHttpUrl(url)).toBeTruthy();
   });
+
+  it('Relative URL is valid', () => {
+    const url = './url/valid';
+
+    expect(isValidHttpUrl(url)).toBeTruthy();
+  });
 });
