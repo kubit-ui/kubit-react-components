@@ -10,19 +10,19 @@ export const TEXT_STYLES: TextStylesType<TextVariantType> = {
   },
 
   [TextVariantType.MAIN_HEADING_H1_EXPANDED]: {
-    font_family: FONT_FAMILY.font_family_nunito_sans,
+    font_family: FONT_FAMILY.font_family_gt_america_expanded,
     typography: HEADING.H1,
   },
   [TextVariantType.MAIN_HEADING_H2_EXPANDED]: {
-    font_family: FONT_FAMILY.font_family_nunito_sans,
+    font_family: FONT_FAMILY.font_family_gt_america_expanded,
     typography: HEADING.H2,
   },
   [TextVariantType.MAIN_HEADING_H3_EXPANDED]: {
-    font_family: FONT_FAMILY.font_family_nunito_sans,
+    font_family: FONT_FAMILY.font_family_gt_america_expanded,
     typography: HEADING.H3,
   },
   [TextVariantType.MAIN_HEADING_H4_EXPANDED]: {
-    font_family: FONT_FAMILY.font_family_nunito_sans,
+    font_family: FONT_FAMILY.font_family_gt_america_expanded,
     typography: HEADING.H4,
   },
   [TextVariantType.HEADING_DISPLAY_1_EXPANDED]: {
