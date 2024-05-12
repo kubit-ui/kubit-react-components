@@ -153,7 +153,7 @@ import ICON_KUBIT from './icon_kubit.svg';
 import ICON_LAPTOP from './icon_laptop.svg';
 import ICON_LAST_PAGE from './icon_last_page.svg';
 import ICON_LAYOUT from './icon_layout.svg';
-import ICON_LEFT_ARROW_ALT from './icon_left_arrow_alt.svg';
+import ICON_LEFT_ARROW_ALT from './icon_left-arrow-alt.svg';
 import ICON_LEFT_ARROW_CIRCLE from './icon_left_arrow_circle.svg';
 import ICON_LEFT_DOWN_ARROW_CIRCLE from './icon_left_down_arrow_circle.svg';
 import ICON_LEFT_TOP_ARROW_CIRCLE from './icon_left_top_arrow_circle.svg';
