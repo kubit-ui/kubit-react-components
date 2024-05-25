@@ -7,7 +7,7 @@ import { axe } from 'jest-axe';
 
 import { InputTypeType } from '@/components/input';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { POSITIONS } from '@/types';
+import { POSITIONS, ROLES } from '@/types';
 import * as keyboard from '@/utils/keyboard/keyboard.utility';
 
 import { ToggleControlled } from '../toggleControlled';
@@ -26,6 +26,7 @@ const mockProps = {
     leftIconAltText: 'off option',
   },
   dataTestId: 'toggleId',
+  ['aria-label']: 'toggle',
 };
 
 const mockPropsThreePositions = {
@@ -46,7 +47,7 @@ describe('Toggle component', () => {
   it('should display an accesible text by default corresponding to the unchecked state', async () => {
     const { container } = renderProvider(<Toggle {...mockProps} />);
 
-    const toggle = screen.getAllByRole(InputTypeType.RADIO)[0];
+    const toggle = screen.getByRole(ROLES.SWITCH);
 
     expect(toggle).toBeInTheDocument();
     expect(toggle).not.toBeChecked();
@@ -61,23 +62,10 @@ describe('Toggle component', () => {
       <Toggle {...mockProps} defaultTogglePosition={POSITIONS.RIGHT} />
     );
 
-    const toggle = screen.getAllByRole(InputTypeType.RADIO)[0];
+    const toggle = screen.getByRole(ROLES.SWITCH);
 
     expect(toggle).toBeInTheDocument();
-    expect(toggle).not.toBeChecked();
-
-    const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
-  });
-
-  it('should display with disabled state', async () => {
-    const { container } = renderProvider(<Toggle {...mockProps} disabled={true} />);
-
-    const toggle = screen.getAllByRole(InputTypeType.RADIO)[0];
-
-    expect(toggle).toBeInTheDocument();
-    expect(toggle).toBeDisabled();
+    expect(toggle).toBeChecked();
 
     const results = await axe(container);
     expect(container).toHTMLValidate();
@@ -89,11 +77,10 @@ describe('Toggle component', () => {
       <Toggle {...mockProps} defaultTogglePosition={POSITIONS.RIGHT} disabled={true} />
     );
 
-    const toggle = screen.getAllByRole(InputTypeType.RADIO)[0];
+    const toggle = screen.getByRole(ROLES.SWITCH);
 
     expect(toggle).toBeInTheDocument();
-    expect(toggle).not.toBeChecked();
-    expect(toggle).toBeDisabled();
+    expect(toggle).toBeChecked();
 
     const results = await axe(container);
     expect(container).toHTMLValidate();
@@ -103,21 +90,13 @@ describe('Toggle component', () => {
   it('should hide said text and display an alternative when clicked', async () => {
     const { container } = renderProvider(<Toggle {...mockProps} />);
 
-    const toggle = screen.getAllByRole(InputTypeType.RADIO)[0];
+    const toggle = screen.getByRole(ROLES.SWITCH);
 
     expect(toggle).not.toBeChecked();
 
     await user.click(toggle);
 
     expect(toggle).toBeChecked();
-
-    const secondToggle = screen.getAllByRole(InputTypeType.RADIO)[1];
-
-    expect(secondToggle).not.toBeChecked();
-
-    await user.click(secondToggle);
-
-    expect(secondToggle).toBeChecked();
 
     const results = await axe(container);
     expect(container).toHTMLValidate();
@@ -128,8 +107,8 @@ describe('Toggle component', () => {
     jest.spyOn(keyboard, 'isKeyEnterPressed').mockReturnValueOnce(true);
     const { container } = renderProvider(<Toggle {...mockProps} />);
 
-    expect(screen.getByTestId('toggleIdOnLabelOption')).toBeInTheDocument();
-    expect(screen.getByTestId('toggleIdOffLabelOption')).toBeInTheDocument();
+    expect(screen.getByTestId('toggleIdOnOption')).toBeInTheDocument();
+    expect(screen.getByTestId('toggleIdOffOption')).toBeInTheDocument();
 
     const group = screen.getByTestId('toggleId');
     expect(group).toBeInTheDocument();
@@ -159,10 +138,13 @@ describe('Toggle component', () => {
     const onChange = jest.fn();
     renderProvider(<Toggle {...mockProps} onChange={onChange} />);
 
-    const secondToggle = screen.getAllByRole(InputTypeType.RADIO)[1];
-    expect(secondToggle).not.toBeChecked();
-    await user.click(secondToggle);
-    expect(secondToggle).toBeChecked();
+    const toggle = screen.getByRole(ROLES.SWITCH);
+    expect(toggle).not.toBeChecked();
+    await user.click(toggle);
+    expect(toggle).toBeChecked();
+
+    await user.click(toggle);
+    expect(toggle).not.toBeChecked();
 
     const group = screen.getByTestId('toggleId');
     expect(group).toBeInTheDocument();
@@ -218,7 +200,14 @@ describe('Toogle Three Positions', () => {
     jest.spyOn(keyboard, 'isKeySpacePressed').mockReturnValueOnce(true);
     const onClick = jest.fn();
     const onKeyDown = jest.fn();
-    renderProvider(<Toggle {...mockPropsThreePositions} onClick={onClick} onKeyDown={onKeyDown} />);
+    renderProvider(
+      <Toggle
+        {...mockPropsThreePositions}
+        blockCenter={true}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+      />
+    );
 
     const onLabelOption = screen.getByTestId('toggleIdOnLabelOption');
     expect(onLabelOption).toBeInTheDocument();
@@ -229,6 +218,30 @@ describe('Toogle Three Positions', () => {
     expect(group).toBeInTheDocument();
     fireEvent.keyDown(onLabelOption);
     expect(onKeyDown).toHaveBeenCalled();
+  });
+
+  it('ThreePositions - With disabled true click shouldnt work', async () => {
+    jest.spyOn(keyboard, 'isKeySpacePressed').mockReturnValueOnce(true);
+    const onClick = jest.fn();
+    const onKeyDown = jest.fn();
+    renderProvider(
+      <Toggle
+        {...mockPropsThreePositions}
+        disabled={true}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+      />
+    );
+
+    const onLabelOption = screen.getByTestId('toggleIdOnLabelOption');
+    expect(onLabelOption).toBeInTheDocument();
+    fireEvent.click(onLabelOption);
+    expect(onClick).not.toHaveBeenCalled();
+
+    const group = screen.getByTestId('toggleId');
+    expect(group).toBeInTheDocument();
+    fireEvent.keyDown(onLabelOption);
+    expect(onKeyDown).not.toHaveBeenCalled();
   });
 
   it('ThreePositions - Should click in offText and called onKeyDown', () => {
@@ -273,7 +286,7 @@ describe('ToggleControlled', () => {
   it('should display an accesible text by default corresponding to the unchecked state', async () => {
     const { container } = renderProvider(<ToggleControlled {...mockProps} />);
 
-    const toggle = screen.getAllByRole(InputTypeType.RADIO)[0];
+    const toggle = screen.getByRole(ROLES.SWITCH);
 
     expect(toggle).toBeInTheDocument();
     expect(toggle).not.toBeChecked();

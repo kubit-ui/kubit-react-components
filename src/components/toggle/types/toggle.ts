@@ -22,7 +22,7 @@ export type ToggleOnAndOffTextType = Omit<IText<string>, 'children'> & {
   content: string;
 };
 
-type ToggleAriaAttributes = Pick<React.AriaAttributes, 'aria-describedby'>;
+type ToggleAriaAttributes = Pick<React.AriaAttributes, 'aria-label' | 'aria-describedby'>;
 
 /**
  * @name IToggle
@@ -44,6 +44,7 @@ export interface IToggleStandAlone extends ToggleAriaAttributes {
   screenReaderId?: string;
   disabled?: boolean;
   blockCenter?: boolean;
+  tabIndex?: number;
   onClick?: (position: POSITIONS, e: React.MouseEvent<HTMLElement>) => void;
   onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
 }

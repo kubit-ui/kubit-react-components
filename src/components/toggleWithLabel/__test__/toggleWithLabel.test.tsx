@@ -13,6 +13,7 @@ import { ToggleWithLabelUncontrolled as ToggleWithLabel } from '../toggleWithLab
 
 const mockProps = {
   variant: 'DEFAULT',
+  ['aria-label']: 'toggle',
   name: 'switch',
   label: { content: 'accesible Label' },
   offText: { content: 'OFF' },
@@ -68,7 +69,9 @@ describe('Toggle with label component', () => {
   });
   it('ThreePositions - should display the toggle with three position', async () => {
     const user = userEvent.setup();
-    const { container } = renderProvider(<ToggleWithLabel {...mockProps} variant="YES_NO" />);
+    const { container } = renderProvider(
+      <ToggleWithLabel {...mockProps} hasThreePositions={true} variant="YES_NO" />
+    );
 
     const toggle = screen.getAllByRole(InputTypeType.RADIO)[0];
 

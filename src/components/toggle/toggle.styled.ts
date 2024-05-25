@@ -91,6 +91,14 @@ export const ToggleRadioSwitchStyled = styled.input<ToggleRadioSwitchType>`
   flex: 1;
   margin: 0;
 `;
+export const ToggleSpanSwitchStyled = styled.span<ToggleRadioSwitchType>`
+  opacity: 0;
+  cursor: pointer;
+  width: ${({ $width }) => $width};
+  height: ${({ $height }) => $height};
+  flex: 1;
+  margin: 0;
+`;
 
 export const SliderContainerStyled = styled.span<TogglePropsStyleType & CirclePropsType>`
   // Thumb styles
@@ -106,6 +114,16 @@ export const SliderContainerStyled = styled.span<TogglePropsStyleType & CirclePr
 `;
 
 export const LabelWrapperStyled = styled(SliderContainerStyled)`
+  z-index: ${props => props.theme.Z_INDEX?.INTERN_1};
+  pointer-events: none;
+  ${({ showLabel }) =>
+    !showLabel &&
+    css`
+      opacity: 0;
+    `}
+`;
+
+export const IconWrapperStyled = styled(SliderContainerStyled)`
   z-index: ${props => props.theme.Z_INDEX?.INTERN_1};
   pointer-events: none;
   ${({ showLabel }) =>

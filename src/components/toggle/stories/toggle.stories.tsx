@@ -27,10 +27,11 @@ export default meta;
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
 const commonArgs: IToggleUnControlled = {
-  variant: Object.values(variantsObject[themeSelected].ToggleVariantType || {})[0] as string,
-  onIcon: { icon: ICONS.ICON_CHEVRON_DOWN, altText: 'on icon' },
-  offIcon: { icon: ICONS.ICON_CHEVRON_UP },
-  inputValues: {
+  'variant': Object.values(variantsObject[themeSelected].ToggleVariantType || {})[0] as string,
+  'onIcon': { icon: ICONS.ICON_CHEVRON_DOWN },
+  'offIcon': { icon: ICONS.ICON_CHEVRON_UP },
+  'aria-label': 'toggle aria label',
+  'inputValues': {
     rightInputValue: 'on option',
     centerInputValue: 'undeterminated option',
     leftInputValue: 'off option',
