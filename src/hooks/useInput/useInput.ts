@@ -35,6 +35,7 @@ import {
 import { matchInputValue } from '@/utils/maskUtility/mask.utility';
 
 import { limitValue } from './helpers/limitValue';
+import { modifyInputNumberValue } from './helpers/modifyInputNumberValue';
 import { ParamsTypeInputHook, ReturnTypeInputHook } from './types/inputHook';
 
 export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
@@ -128,6 +129,23 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
     }
   }, [value]);
 
+  const truncateFloatValue = value => {
+    if (value === '') {
+      return;
+    }
+    const hasMark = value.match(/[^a-zA-Z0-9]/g);
+
+    const isLastCharAMark =
+      hasMark &&
+      props.maxLength &&
+      value.length >= props.maxLength &&
+      value[props.maxLength - 1] === hasMark[0];
+
+    return isLastCharAMark && props.type === InputTypeType.NUMBER
+      ? value.replace(hasMark[0], '')
+      : value;
+  };
+
   const controlValue = value => {
     // control character limit
     const limitedValue = value && limitValue(value, props.min, props.max, props.maxLength);
@@ -135,10 +153,17 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
     // truncate the value with maximun of decimals
     const truncateValue =
       props.truncate && props.maxDecimals !== null && props.maxDecimals !== undefined
-        ? truncatedValue(String(limitedValue), props.maxDecimals)
+        ? truncatedValue(
+            String(limitedValue),
+            props.maxDecimals,
+            props.locale || props.formatNumber?.locale
+          )
         : limitedValue;
-    handleSetValue(truncateValue);
-    return truncateValue;
+
+    const valueTruncated = truncateFloatValue(truncateValue);
+
+    handleSetValue(valueTruncated);
+    return valueTruncated;
   };
 
   // add thousand separator to the value
@@ -154,46 +179,48 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
   };
 
   const handleChangeInternal: React.ChangeEventHandler<HTMLInputElement> = event => {
+    let eventValue = event.target.value;
     // format value with the mask
     if (props.maskType) {
-      let newMaskedValue = cleanInputValue(event.target.value, props.maskType);
+      let newMaskedValue = cleanInputValue(eventValue, props.maskType);
       if (props.mask) {
         newMaskedValue = formatMask(newMaskedValue, props.mask);
       }
-      event.target.value = newMaskedValue;
+      eventValue = newMaskedValue;
     } else if (props.regex) {
-      const newMaskedValue = matchInputValue(String(value), event.target.value, props.regex);
-      event.target.value = newMaskedValue;
-    }
-    if (props.truncate && props.maxDecimals !== null && props.maxDecimals !== undefined) {
-      event.target.value = truncatedValue(
-        String(event.target.value),
-        props.maxDecimals,
-        props.locale || props.formatNumber?.locale
-      );
+      const newMaskedValue = matchInputValue(String(value), eventValue, props.regex);
+      eventValue = newMaskedValue;
     }
 
     // key validation
     if (props.errorExecution === ERROR_EXECUTION.ON_CHANGE && props.keyValidation) {
-      props.onError?.(!validationValue(props.keyValidation, event.target.value));
+      props.onError?.(!validationValue(props.keyValidation, eventValue));
     }
 
     // limit or truncate the value
-    const valueControlled = controlValue(event.target.value);
+    const valueControlled = controlValue(eventValue);
 
     // check internal validations
     if (props.type !== InputTypeType.DATE) {
-      checkInternalValidations(event.target.value);
+      checkInternalValidations(eventValue);
+    }
+
+    if (
+      modifyInputNumberValue({
+        value: eventValue,
+        min: props.min,
+        max: props.max,
+        maxLength: props.maxLength,
+      }) ||
+      props.type !== InputTypeType.NUMBER
+    ) {
+      event.target.value = valueControlled;
     }
 
     // value = previous value
     // valueControlled = current value
     if (value === valueControlled) {
       return;
-    }
-
-    if (props.type === InputTypeType.NUMBER) {
-      event.target.value = valueControlled;
     }
 
     props.onChange?.(event);
@@ -223,10 +250,14 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
       handleSetValue(event.target.value);
     }
     // transform the string value to a number format with dot as decimal separator to avoid errors
-    event.target.value = convertDecimalSeparator(
+    const decimalNumber = convertDecimalSeparator(
       event.target.value,
       getDecimalSeparator(props.locale || props.formatNumber?.locale)
     );
+
+    if (!isNaN(parseFloat(decimalNumber)) && isFinite(parseFloat(decimalNumber))) {
+      event.target.value = decimalNumber;
+    }
     props.onFocus?.(event);
     setFocus(true);
   };
