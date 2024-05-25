@@ -9,6 +9,7 @@ export type PillSelectorStyles = {
   pill?: PillStyleType;
   firstPill?: PillStyleType;
   lastPill?: PillStyleType;
+  thumb?: CommonStyleType;
 };
 
 export type PillSelectorThemeType<V extends string | number | symbol> = {

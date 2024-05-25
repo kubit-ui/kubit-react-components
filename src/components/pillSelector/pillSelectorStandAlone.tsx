@@ -4,7 +4,7 @@ import { Pill } from '@/components/pill';
 import { useRoveFocus } from '@/hooks';
 import { ROLES } from '@/types';
 
-import { PillSelectorWrapper } from './pillSelector.styled';
+import { PillSelectorWrapper, ThumbStyled } from './pillSelector.styled';
 import type { IPillSelectorStandAlone } from './types';
 import { keyLeftMove, keyRightMove } from './utils';
 
@@ -46,8 +46,12 @@ const PillSelectorStandAloneComponent = (
       role={ROLES.RADIOGROUP}
       styles={props.styles}
     >
+      {!props.multiSelect && props.styles?.thumb && (
+        <ThumbStyled data-testid={`${dataTestId}Thumb`} styles={props.styles} />
+      )}
       {props.pills.length > 1 && props.pills.length <= maxPills
         ? props.pills.map((pill, index) => {
+            const pillSelected = props.pillSelected?.includes(pill.value.toString());
             return (
               (props.pillSize || pill?.size) && (
                 <Pill
@@ -56,14 +60,9 @@ const PillSelectorStandAloneComponent = (
                   focus={focus === index}
                   multiSelect={props.multiSelect}
                   name={props.name}
-                  selected={props.pillSelected?.includes(pill.value.toString())}
+                  selected={pillSelected}
                   size={props.pillSize || ''}
-                  tabIndex={
-                    props.pillSelected?.includes(pill.value.toString()) ||
-                    (!isPillSelected && index === 0)
-                      ? 0
-                      : -1
-                  }
+                  tabIndex={pillSelected || (!isPillSelected && index === 0) ? 0 : -1}
                   {...pill}
                   value={pill.value.toString()}
                   variant={props.pillVariant}

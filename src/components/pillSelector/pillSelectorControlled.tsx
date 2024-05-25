@@ -17,8 +17,48 @@ const PillSelectorControlledComponent = React.forwardRef(
   ): JSX.Element => {
     const styles = useStyles<PillSelectorStyles, V>(PILL_SELECTOR_STYLES, props.variant, ctv);
     const id = useId('name');
+    const measuredRef = React.useRef<HTMLDivElement | null>(null);
+
+    // update measurements of the thumb
+    const updateMeasurements = () => {
+      // get the index of the selected pill
+      const index =
+        props.pills.findIndex(
+          pill => pill.value.toString() === props.pillSelected?.[0].toString()
+        ) + 1;
+
+      // get the size and the position of the thumb from the selected pill
+      if (measuredRef.current) {
+        const thumb = measuredRef.current.childNodes[0] as HTMLElement;
+        const selectedPill = measuredRef.current.childNodes[index] as HTMLElement;
+
+        thumb.style.width = `${selectedPill?.clientWidth}px`;
+        thumb.style.height = `${selectedPill?.getBoundingClientRect().height}px`;
+        thumb.style.left = `calc(${selectedPill?.getBoundingClientRect().left}px - ${window?.getComputedStyle(selectedPill)?.paddingLeft})`;
+      }
+    };
+
+    React.useImperativeHandle(
+      ref,
+      () => {
+        return measuredRef.current as HTMLDivElement;
+      },
+      []
+    );
+
+    React.useEffect(() => {
+      if (!props.multiSelect && measuredRef?.current && props.pillSelected?.[0] && styles?.thumb) {
+        updateMeasurements();
+      }
+    }, [props.multiSelect, measuredRef, props.pills, props.pillSelected?.[0]]);
+
     return (
-      <PillSelectorStandAlone ref={ref} name={`pillSelector${id}`} styles={styles} {...props} />
+      <PillSelectorStandAlone
+        ref={measuredRef}
+        name={`pillSelector${id}`}
+        styles={styles}
+        {...props}
+      />
     );
   }
 );

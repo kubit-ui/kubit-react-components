@@ -6,6 +6,7 @@ import { axe } from 'jest-axe';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { ROLES } from '@/types';
 
+import * as stylesHook from '../../../hooks/useStyles/useStyles';
 import { PillSelectorUnControlled } from '../pillSelectorUnControlled';
 import { IPillSelectorUnControlled } from '../types';
 
@@ -24,6 +25,28 @@ const mockProps: IPillSelectorUnControlled = {
     },
   ],
   dataTestId: 'dataTestId',
+};
+
+const mockStyles = {
+  container: {
+    display: 'flex',
+    flex_direction: 'row',
+    max_width: 'fit-content',
+  },
+  pill: {
+    border_left: '0',
+    border_right: '0',
+  },
+  firstPill: {
+    border_right: '0',
+  },
+  lastPill: {
+    border_left: '0',
+  },
+  thumb: {
+    background_color: 'red',
+  },
+  ['DEFAULT']: {},
 };
 
 describe('PillSelector component', () => {
@@ -96,5 +119,19 @@ describe('PillSelector component', () => {
 
     fireEvent.focus(secondtPillInput);
     expect(secondPill).toHaveFocus();
+  });
+
+  it('Render thumb', () => {
+    jest.spyOn(stylesHook, 'useStyles').mockImplementation(() => mockStyles);
+    renderProvider(<PillSelectorUnControlled {...mockProps} />);
+
+    const thumb = screen.getByTestId(`${mockProps.dataTestId}Thumb`);
+
+    expect(thumb).toBeInTheDocument();
+
+    const firstPillInput = screen.getByDisplayValue(mockProps.pills[0].value.toString());
+    fireEvent.click(firstPillInput);
+
+    expect(firstPillInput).toBeChecked();
   });
 });
