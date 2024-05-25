@@ -1,6 +1,11 @@
 import { CSSProp, css } from 'styled-components';
 
-import { InputBasicStateProps, InputState, LABEL_TYPE } from '@/components/input/types';
+import {
+  InputBasicStateProps,
+  InputIconPosition,
+  InputState,
+  LABEL_TYPE,
+} from '@/components/input/types';
 import { InputStyledProps, LabelStyledProps } from '@/components/input/types/inputStyledPropsType';
 import { getTypographyStyles } from '@/utils';
 import { pxToRem } from '@/utils/pxToRem/pxToRem';
@@ -129,6 +134,7 @@ export const mapLabelTypeStyles = (props: LabelStyledProps): CSSProp => {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        justify-content: ${props.styles?.labelContainer?.justify_content};
 
         label {
           ${labelStandardMixin()}
@@ -164,11 +170,47 @@ export const mapBaseStyles = ({
   opacity: ${styles?.[state]?.inputContainer?.opacity};
 `;
 
-export const getPaddingRight = (styles?: InputBasicStateProps): CSSProp => {
-  const paddingRight = styles?.inputContainer?.padding?.split(' ')[1] || null;
+// deprecated - remove this `getIconPaddingDeprecated` function when icon prop is removed
+export const getIconPaddingDeprecated = (
+  position?: InputIconPosition,
+  styles?: InputBasicStateProps
+): CSSProp => {
+  const padding = styles?.inputContainer?.padding?.split(' ')[1] || null;
+  const iconWidth = styles?.inputIcon?.width;
+
+  if (position === InputIconPosition.RIGHT) {
+    return css`
+      padding-right: calc(${padding} + ${iconWidth});
+    `;
+  }
   return css`
-    padding-right: calc(${paddingRight} + ${styles?.inputIcon?.width});
+    padding-left: calc(${padding} + ${iconWidth});
   `;
+};
+
+export const getIconPadding = (
+  leftIcon?: boolean,
+  rightIcon?: boolean,
+  styles?: InputBasicStateProps
+): CSSProp | undefined => {
+  const padding = styles?.inputContainer?.padding?.split(' ')[1] || null;
+  const iconWidth = styles?.inputIcon?.width;
+
+  if (leftIcon && rightIcon) {
+    return css`
+      padding-left: calc(${padding} + ${iconWidth});
+      padding-right: calc(${padding} + ${iconWidth});
+    `;
+  } else if (leftIcon) {
+    return css`
+      padding-left: calc(${padding} + ${iconWidth});
+    `;
+  } else if (rightIcon) {
+    return css`
+      padding-right: calc(${padding} + ${iconWidth});
+    `;
+  }
+  return undefined;
 };
 
 export const mapVariableStyles = (styles?: InputBasicStateProps): CSSProp => css`
