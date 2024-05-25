@@ -2,7 +2,8 @@ import styled, { css } from 'styled-components';
 
 // mixins
 import {
-  getPaddingRight,
+  getIconPadding,
+  getIconPaddingDeprecated,
   inputFocusWidthMixin,
   mapBaseStyles,
   mapLabelTypeStyles,
@@ -86,12 +87,13 @@ export const LoaderWrapperStyled = styled.div<LoaderStyledProps>`
 `;
 
 export const InputIconStyled = styled.div<InputIconStyledProps>`
-  ${({ styles }) => getStyles(styles?.inputIconContainer)};
-  ${({ iconPosition, styles }) =>
-    iconPosition === InputIconPosition.RIGHT &&
-    css`
-      ${getStyles(styles?.inputIconContainerRight)};
-    `};
+  ${({ iconPosition, styles }) => css`
+    ${getStyles(
+      iconPosition === InputIconPosition.RIGHT
+        ? styles?.inputIconContainerRight
+        : styles?.inputIconContainer
+    )};
+  `}
 `;
 
 // Input Styles
@@ -135,14 +137,18 @@ export const InputStyled = styled.input<InputStyledProps>`
 
   &:not(:placeholder-shown) {
     ${({ styles }) => mapVariableStyles(styles?.[InputState.FILLED])}
-    ${({ icon, iconPosition, styles, state }) =>
-      icon && iconPosition === InputIconPosition.RIGHT ? getPaddingRight(styles?.[state]) : ''}
+    ${({ icon, iconPosition, leftIcon, rightIcon, styles, state }) =>
+      icon
+        ? getIconPaddingDeprecated(iconPosition, styles?.[state])
+        : getIconPadding(!!leftIcon?.icon, !!rightIcon?.icon, styles?.[state])}
   }
 
   &:placeholder-shown {
     ${({ styles }) => mapVariableStyles(styles?.[InputState.EMPTY])}
-    ${({ icon, iconPosition, styles, state }) =>
-      icon && iconPosition === InputIconPosition.RIGHT ? getPaddingRight(styles?.[state]) : ''}
+    ${({ icon, iconPosition, leftIcon, rightIcon, styles, state }) =>
+      icon
+        ? getIconPaddingDeprecated(iconPosition, styles?.[state])
+        : getIconPadding(!!leftIcon?.icon, !!rightIcon?.icon, styles?.[state])}
   }
 
   &:disabled {
@@ -173,8 +179,8 @@ export const InputStyled = styled.input<InputStyledProps>`
     cursor: ${cursorPointer};
   `}
 
-  padding-left: ${({ styles, state, iconPosition }) =>
-    iconPosition === InputIconPosition.LEFT && styles?.[state]?.inputContainer?.padding_left};
+  padding-left: ${({ styles, state, leftIcon }) =>
+    leftIcon && styles?.[state]?.inputContainer?.padding_left};
   box-shadow: ${({ styles, state }) => styles?.[state]?.inputContainer?.box_shadow};
   ${({
     theme: {

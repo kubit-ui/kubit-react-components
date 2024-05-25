@@ -2,19 +2,19 @@ import { useTheme } from 'styled-components';
 
 import { mergeObjects } from '@/utils';
 
-interface IUseStyles<V> {
+interface IUseStyles<T, V> {
   styleName: string;
   variantName?: V;
-  customTokens?: object;
+  customTokens?: Partial<T>;
   isOptional?: boolean;
 }
 
-export const useStylesV2 = <T, V = undefined | string>({
+export const useStylesV2 = <T extends object, V = undefined | string>({
   styleName,
   variantName,
   customTokens,
   isOptional,
-}: IUseStyles<V>): T | undefined => {
+}: IUseStyles<T, V>): T | undefined => {
   const theme = useTheme();
   if (styleName in theme) {
     const style = theme[styleName];
@@ -23,7 +23,7 @@ export const useStylesV2 = <T, V = undefined | string>({
       return style as T;
     } else if ((variantName as string) in style) {
       if (customTokens) {
-        return mergeObjects(structuredClone(style[variantName]), customTokens) as T;
+        return mergeObjects<T, Partial<T>>(structuredClone(style[variantName]), customTokens) as T;
       }
       return style[variantName];
     }

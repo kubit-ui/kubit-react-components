@@ -155,13 +155,33 @@ describe('New Input Component', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('Should call onIconClick when user click on icon', async () => {
+  it('Should call onLeftIconClick when user click on left icon', async () => {
     const onIconClick = jest.fn();
     const { container, getByRole } = renderProvider(
       <Input
         {...commonProps}
-        icon={{ icon: 'UNICORN', altText: 'Open Info', onClick: onIconClick }}
+        leftIcon={{ icon: 'UNICORN', altText: 'Open Info', onClick: onIconClick }}
         placeholder={'placeholder'}
+      />
+    );
+
+    const triggerButton = getByRole('button', { name: 'Open Info' });
+    fireEvent.click(triggerButton);
+    expect(onIconClick).toHaveBeenCalled();
+
+    // A11Y and w3c validator
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Should call onRightIconClick when user click on right icon', async () => {
+    const onIconClick = jest.fn();
+    const { container, getByRole } = renderProvider(
+      <Input
+        {...commonProps}
+        placeholder={'placeholder'}
+        rightIcon={{ icon: 'UNICORN', altText: 'Open Info', onClick: onIconClick }}
       />
     );
 
@@ -348,12 +368,36 @@ describe('New Input Component', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('Should show icon as img instead of as button', async () => {
+  it('Should show left icon as img instead of as button', async () => {
+    const iconClick = jest.fn();
     const { container, getByRole } = renderProvider(
       <Input
         {...commonProps}
-        icon={{ icon: 'UNICORN', altText: 'Open Info' }}
+        leftIcon={{ icon: 'UNICORN', altText: 'Open Info', onClick: iconClick }}
         placeholder={'placeholder'}
+      />
+    );
+
+    const triggerButton = getByRole('button', { name: 'Open Info' });
+    expect(triggerButton).toBeInTheDocument();
+
+    fireEvent.click(triggerButton);
+
+    expect(iconClick).toHaveBeenCalled();
+
+    // A11Y and w3c validator
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Should show right icon as img instead of as button', async () => {
+    const iconClick = jest.fn();
+    const { container, getByRole } = renderProvider(
+      <Input
+        {...commonProps}
+        placeholder={'placeholder'}
+        rightIcon={{ icon: 'UNICORN', altText: 'Open Info', onClick: iconClick }}
       />
     );
 

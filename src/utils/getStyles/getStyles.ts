@@ -14,6 +14,7 @@ import {
   PointerTypes,
   PositionTypes,
   TypographyTypes,
+  WordWrapTypes,
 } from '@/types/styles';
 import { AnimationType } from '@/types/styles/animation';
 
@@ -479,6 +480,20 @@ export const getPointerStyles = (prop?: PointerTypes): CSSProp => {
   `;
 };
 
+export const getWordWrapStyles = (prop?: WordWrapTypes): CSSProp => {
+  if (!prop) {
+    return css``;
+  }
+  const { word_wrap, word_break, white_space, text_overflow } = prop;
+
+  return css`
+    ${word_wrap && `word-wrap: ${word_wrap};`}
+    ${word_break && `word-break: ${word_break};`}
+    ${white_space && `white-space: ${white_space};`}
+    ${text_overflow && `text-overflow: ${text_overflow};`}
+  `;
+};
+
 const getGenericStyles = (styles?: CommonStyleType): CSSProp => {
   return css`
     ${getPaddingStyles(styles)}
@@ -490,6 +505,8 @@ const getGenericStyles = (styles?: CommonStyleType): CSSProp => {
     ${getMarginStyles(styles)}
     ${getPositionStyles(styles)}
     ${getPointerStyles(styles)}
+    ${getWordWrapStyles(styles)}
+    ${getAnimationStyles(styles)}
   `;
 };
 
@@ -560,9 +577,19 @@ export const getAnimationStyles = (prop?: AnimationType): CSSProp => {
   if (!prop) {
     return css``;
   }
-  const { transition } = prop;
+  const {
+    transition,
+    transition_delay,
+    transition_duration,
+    transition_property,
+    transition_timing_function,
+  } = prop;
 
   return css`
-    ${transition && `display: ${transition};`}
+    ${transition && `transition: ${transition};`}
+    ${transition_delay && `transition-delay: ${transition_delay};`}
+    ${transition_duration && `transition-duration: ${transition_duration};`}
+    ${transition_property && `transition-property: ${transition_property};`}
+    ${transition_timing_function && `transition-timing-function: ${transition_timing_function};`}
   `;
 };

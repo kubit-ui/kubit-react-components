@@ -26,6 +26,19 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    errorMessageIcon: {
+      type: { name: 'object' },
+      description:
+        'In the error state, the field is accompanied by an error icon and a description of the problem to help resolve it.',
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'IElementOrIcon',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
+    // deprecated - remove when `errorMessageIcon` prop is removed
     errorIcon: {
       description:
         'Object with error icon properties. In the error state, the field is accompanied by an error mbIcon and a description of the problem to help resolve it.',
@@ -63,6 +76,30 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
           detail: Object.keys(InputIconPosition).join(', '),
         },
         defaultValue: { summary: InputIconPosition.RIGHT },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
+    leftIcon: {
+      description: 'Icon to show on the left side of the input',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'object',
+          detail: 'IElementOrIcon',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
+    rightIcon: {
+      description: 'Icon to show on the right side of the input',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'object',
+          detail: 'IElementOrIcon',
+        },
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },

@@ -5,6 +5,7 @@ import * as React from 'react';
 
 import { axe } from 'jest-axe';
 
+import { ToggleControlled } from '@/components/toggle';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { ROLES } from '@/types';
 
@@ -113,11 +114,18 @@ describe('Option component', () => {
       <Option
         {...mockProps}
         toggle={{
-          variant: 'DEFAULT',
+          'variant': 'DEFAULT',
+          'aria-label': 'toggle',
         }}
       />
     );
-    const toggles = screen.getAllByRole(ROLES.RADIO);
+    const toggles = screen.getAllByRole(ROLES.SWITCH);
+    expect(toggles.length).toBeGreaterThan(0);
+  });
+  it('Should render the content with ToggleControlled component', () => {
+    const extraContent = <ToggleControlled variant="DEFAULT" />;
+    renderProvider(<Option {...mockProps} extraContent={extraContent} />);
+    const toggles = screen.getAllByRole(ROLES.SWITCH);
     expect(toggles.length).toBeGreaterThan(0);
   });
 });

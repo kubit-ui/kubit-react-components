@@ -10,6 +10,9 @@ type FooterStylesType = {
   contentDirection?: ContentDirectionType;
   flexDirectionDesktopTablet?: string;
   alignItems?: string;
+  $margin?: boolean;
+  $marginLeft?: boolean;
+  $marginRight?: boolean;
 };
 
 type RootContainerStyledType = FooterStylesType & {
@@ -36,4 +39,7 @@ export const FooterContentStyled = styled.div<FooterStylesType>`
   justify-content: ${props =>
     props.contentDirection === ContentDirectionType.HORIZONTAL ? 'flex-start' : 'center'};
   ${props => getStyles(props.styles?.contentContainer)}
+  margin: ${props => props.$margin && 'auto'};
+  margin-left: ${props => props.$marginLeft && 'auto'};
+  margin-right: ${props => props.$marginRight && 'auto'};
 `;

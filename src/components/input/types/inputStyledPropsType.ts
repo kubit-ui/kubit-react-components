@@ -1,3 +1,5 @@
+import { IElementOrIcon } from '@/components/elementOrIcon';
+
 import { InputStateProps, InputStylesProps } from './input';
 import { InputIconPosition, InputState, LABEL_TYPE } from './inputTheme';
 
@@ -52,8 +54,16 @@ export type InputStyledProps = {
   state: InputState;
   styles?: InputStylesProps;
   cursorPointer?: string;
+  /**
+   * @deprecated `icon` will be removed. Use 'leftIcon` or 'rightIcon' instead
+   */
   icon?: JSX.Element | HTMLElement | React.ReactNode | string;
+  /**
+   * @deprecated `iconPosition` will be removed. Use 'leftIcon` or 'rightIcon' instead
+   */
   iconPosition?: InputIconPosition;
+  leftIcon?: IElementOrIcon;
+  rightIcon?: IElementOrIcon;
   labelType?: LABEL_TYPE;
   placeholder?: string;
 };

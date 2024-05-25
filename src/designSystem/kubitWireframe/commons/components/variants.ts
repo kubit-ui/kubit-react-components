@@ -54,3 +54,4 @@ export * from './thirdPartyAnimation/variants';
 export * from './toggle/variants';
 export * from './tooltip/variants';
 export * from './validationStatus/variants';
+export * from './loader/variants';

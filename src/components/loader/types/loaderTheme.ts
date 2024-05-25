@@ -8,6 +8,7 @@ import { CommonStyleType } from '@/types/index';
  * @interface LoaderStylesPropsType
  */
 export type LoaderStylesPropsType = {
+  parentContainer?: CommonStyleType;
   container?: CommonStyleType;
   animation: CSSProp;
 };

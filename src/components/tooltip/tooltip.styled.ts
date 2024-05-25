@@ -14,7 +14,6 @@ type TooltipStylesPropsTypes = {
 
 export const TooltipStyled = styled.div<{ tooltipAsModal?: boolean }>`
   display: inline-block;
-  cursor: ${props => (props.tooltipAsModal ? 'pointer' : 'auto')};
 `;
 
 export const TooltipExternalContainerStyled = styled.div<TooltipStylesPropsTypes>`

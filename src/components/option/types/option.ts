@@ -42,7 +42,11 @@ export interface IOptionStandAlone extends OptionAriaAttributes {
   dataTestId?: string;
   tabIndex?: number;
   as?: string | React.ElementType;
+  /**
+   * @deprecated This property will be removed. Use `extraContent` instead passing the component you want.
+   */
   toggle?: IToggleUnControlled;
+  extraContent?: React.ReactNode;
 }
 
 /**

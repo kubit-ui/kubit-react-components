@@ -25,3 +25,7 @@ export const PillSelectorWrapper = styled.div<PillSelectorStylesProp>`
     ${({ isSelected, styles }) => isSelected && getStyles(styles?.pill?.selected)}
   }
 `;
+
+export const ThumbStyled = styled.div<PillSelectorStylesProp>`
+  ${({ styles }) => getStyles(styles?.thumb)};
+`;

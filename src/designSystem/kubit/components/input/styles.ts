@@ -84,10 +84,13 @@ const commonProps = {
   inputIconContainer: {
     position: 'absolute',
     top: '50%',
-    left: '0.625rem',
     transform: 'translate(0%, -50%)',
+    left: '0.625rem',
   },
   inputIconContainerRight: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translate(0%, -50%)',
     left: 'auto',
     right: '1.1rem',
   },
@@ -157,6 +160,9 @@ const errorProps = {
     color: COLORS.FEEDBACK.color_feedbackError_font_50,
   },
   errorMessageContainer: {
+    display: 'flex',
+    flex_direction: 'row',
+    gap: SPACINGS.spacing_100,
     margin_top: SPACINGS.spacing_150,
     margin_bottom: SPACINGS.spacing_150,
     padding_left: SPACINGS.spacing_0,
@@ -164,9 +170,6 @@ const errorProps = {
   errorMessageIcon: {
     width: SIZES.size_150,
     height: SIZES.size_150,
-  },
-  errorMessageIconContainer: {
-    margin_right: SPACINGS.spacing_100,
   },
   placeholder: {
     ...commonProps.placeholder,

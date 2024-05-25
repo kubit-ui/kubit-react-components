@@ -9,6 +9,7 @@ import { PaddingTypes } from './padding';
 import { PointerTypes } from './pointer';
 import { PositionTypes } from './position';
 import { BoxShadowTypes } from './shadow';
+import { WordWrapTypes } from './wordWrap';
 
 type BreakPointsStyleType = {
   [key in DeviceBreakpointsType]?: GenericStyleType & PseudoElementsType;
@@ -23,7 +24,8 @@ type GenericStyleType = PaddingTypes &
   MarginTypes &
   PositionTypes &
   PointerTypes &
-  AnimationType;
+  AnimationType &
+  WordWrapTypes;
 
 export type AfterOrBeforeType = { content?: string } & GenericStyleType;
 

@@ -42,7 +42,11 @@ export interface IPopoverDropdownList {
   hasResultTextWrittenByUser?: boolean;
   hasInputInSearchList?: boolean;
   searchText?: string;
+  /**
+   * @deprecated `inputPopoverIcon` will be removed. Use `popoverRightIcon` instead
+   */
   inputPopoverIcon?: IElementOrIcon;
+  inputPopoverRightIcon?: IElementOrIcon;
   inputPopoverVariant?: string;
   inputPopoverValue?: string;
   value?: string;
@@ -128,7 +132,11 @@ export interface IInputDropdownStandAlone
   hasResultTextWrittenByUser?: boolean;
   // input popover
   hasInputInSearchList?: boolean;
+  /**
+   * @deprecated `inputPopoverIcon` will be removed. Use `popoverRightIcon` instead
+   */
   inputPopoverIcon?: IElementOrIcon;
+  inputPopoverRightIcon?: IElementOrIcon;
   inputPopoverValue?: string;
   inputPopoverVariant?: string;
   clearTextInputPopoverIconClick?: boolean;

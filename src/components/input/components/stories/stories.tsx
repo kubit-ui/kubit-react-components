@@ -1,6 +1,21 @@
 import * as React from 'react';
 
+import { ICONS } from '@/assets';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
+
+const themeWithAdditionalInfo = [
+  'kubit',
+  'flameLightAlt',
+  'modelBankLightAlt',
+  'horizonLightAlt',
+  'novaLightAlt',
+  'flameLightRegular',
+  'modelBankLightRegular',
+  'horizonLightRegular',
+  'novaLightRegular',
+];
+
+const themeWithoutIcon = themeWithAdditionalInfo.filter(theme => theme !== 'kubit');
 
 // LabelSecondary
 const labelSecondaryStyles = {
@@ -10,8 +25,6 @@ const labelSecondaryStyles = {
   fontWeight: '400',
 };
 
-const themeWithAdditionalInfo = ['kubit'];
-
 export const labelSecondary = (themeSelected: string): React.ReactNode =>
   themeWithAdditionalInfo.includes(themeSelected) && (
     <div style={labelSecondaryStyles}>
@@ -19,7 +32,7 @@ export const labelSecondary = (themeSelected: string): React.ReactNode =>
     </div>
   );
 
-// AddiotionalInfo
+// AdditionalInfo
 const additionalInfoStyles = {
   marginLeft: '0.25rem',
   fontSize: '0.875rem',
@@ -32,3 +45,7 @@ export const additionalInfoAction = (themeSelected: string): React.ReactNode =>
       <ReplaceContent width={'fit-content'} />
     </div>
   );
+
+// Icon
+export const inputIcon = (themeSelected: string): string | undefined =>
+  themeWithoutIcon.includes(themeSelected) ? undefined : ICONS.ICON_PLACEHOLDER;

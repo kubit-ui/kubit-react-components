@@ -1,0 +1,5 @@
+export enum LoaderVariantType {
+  PRIMARY_WHITE = 'PRIMARY_WHITE',
+  PRIMARY_RED = 'PRIMARY_RED',
+  PRIMARY_BLACK = 'PRIMARY_BLACK',
+}

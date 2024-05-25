@@ -317,7 +317,6 @@ describe('New Input Dropdown Component', () => {
     const { container, getByRole } = renderProvider(
       <InputDropdown
         {...mockProps}
-        icon={{ icon: 'UNICORN', altText: 'Open Info', onClick: onIconClick }}
         optionList={{
           options: [
             {
@@ -327,10 +326,16 @@ describe('New Input Dropdown Component', () => {
           ],
         }}
         placeholder={'placeholder'}
+        rightIcon={{
+          icon: 'UNICORN',
+          altText: 'Open Info',
+          onClick: onIconClick,
+        }}
       />
     );
 
     const triggerButton = getByRole('button', { name: 'Open Info' });
+
     fireEvent.click(triggerButton);
     expect(onIconClick).toHaveBeenCalled();
 

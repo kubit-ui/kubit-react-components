@@ -1,15 +1,38 @@
-import { CSSProp, createGlobalStyle } from 'styled-components';
+import { CSSProp, createGlobalStyle, css } from 'styled-components';
 
 type GlobalStyle = {
   custom: CSSProp;
   customFonts?: CSSProp;
 };
 
+export const commonElementStyles = css`
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 0;
+`;
+
 export const GlobalStyle = createGlobalStyle<GlobalStyle>`
     ${props => props.custom}
     ${props => props.customFonts}
 
-    html, body, div, span, applet, object, iframe,
+    @supports (font: -apple-system-body) {
+        html {
+            font: -apple-system-body;
+        }
+    }
+
+    html {        
+        ${commonElementStyles}
+    }
+
+    body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
     del, dfn, em, img, ins, kbd, q, s, samp,
@@ -22,17 +45,8 @@ export const GlobalStyle = createGlobalStyle<GlobalStyle>`
     figure, figcaption, footer, header, hgroup, 
     menu, nav, output, ruby, section, summary,
     time, mark, audio, video, dialog, input, button {
-        margin: 0;
-        padding: 0;
         font-size: 100%;
-        vertical-align: baseline;
-        margin-block-start: 0;
-        margin-block-end: 0;
-        margin-inline-start: 0;
-        margin-inline-end: 0;
-        box-sizing: border-box;
-        background-color: transparent;
-        border: 0;
+        ${commonElementStyles}
     }
     dialog {
         border: 0;

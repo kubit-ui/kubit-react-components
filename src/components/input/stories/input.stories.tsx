@@ -49,6 +49,8 @@ const commonArgs: IInputUnControlled = {
   informationAssociatedValue: { content: 'Lorem ipsum dolor sit. Lorem ipsum dolor sit amet' },
   iconPosition: InputIconPosition.RIGHT,
   icon: { icon: ICONS.ICON_PLACEHOLDER },
+  leftIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'icon alt text' },
+  rightIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'icon alt text' },
   secondaryLabel: labelSecondary(themeSelected),
   additionalInfo: additionalInfoAction(themeSelected),
   loader: {

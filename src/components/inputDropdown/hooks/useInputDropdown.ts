@@ -5,6 +5,7 @@ import {
   FocusEventHandler,
   ForwardedRef,
   KeyboardEventHandler,
+  MouseEventHandler,
   MutableRefObject,
   useCallback,
   useEffect,
@@ -55,7 +56,8 @@ type ParamsType = {
   onClick?: (
     event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement, MouseEvent>
   ) => void;
-  onIconClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onIconClick?: MouseEventHandler<HTMLButtonElement>;
+  onRightIconClick?: MouseEventHandler<HTMLButtonElement>;
   onInputPopoverIconClick?: () => void;
   onChange?: InputDropdownOnChangeType;
   onBlur?: FocusEventHandler<HTMLInputElement>;
@@ -241,6 +243,7 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
   const handleClickIconInputDropdown: React.MouseEventHandler<HTMLButtonElement> = event => {
     handleOpenOptions(!openOptions);
     props.onIconClick?.(event);
+    props.onRightIconClick?.(event);
   };
 
   const handleInputKeyDown: KeyboardEventHandler<HTMLInputElement> = event => {

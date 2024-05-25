@@ -163,6 +163,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    extraContent: {
+      description: 'Allow to add a ReactNode at the end of the option',
+      control: { type: 'object' },
+      type: { name: 'object' },
+      table: {
+        type: {
+          summary: 'ReactNode',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     role: {
       description: 'Provide semantic meaning to the option',
       control: false,

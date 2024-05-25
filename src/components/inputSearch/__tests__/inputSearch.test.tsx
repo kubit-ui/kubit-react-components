@@ -23,7 +23,11 @@ const mockProps = {
       options: ['string'],
     },
   ],
-  icon: { icon: 'UNICORN', altText: 'Open Info', onClick: jest.fn() },
+  rightIcon: {
+    icon: 'UNICORN',
+    altText: 'Open Info',
+    onClick: jest.fn(),
+  },
   label: { content: 'input search' },
   closeIcon: { icon: 'CLOSE_ICON' },
   dataTestId: 'testid',
@@ -139,7 +143,7 @@ describe('New Input Search Component', () => {
     const triggerButton = screen.getByRole('button', { name: 'Open Info' });
     fireEvent.click(triggerButton);
     fireEvent.click(triggerButton);
-    expect(mockProps.icon.onClick).toHaveBeenCalledTimes(2);
+    expect(mockProps.rightIcon.onClick).toHaveBeenCalledTimes(2);
   });
 
   it('Should render loading and valueSelected', async () => {

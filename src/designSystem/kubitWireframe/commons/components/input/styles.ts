@@ -80,10 +80,13 @@ const commonProps = COLORS => ({
   inputIconContainer: {
     position: 'absolute',
     top: '50%',
-    left: '0.625rem',
     transform: 'translate(0%, -50%)',
+    left: '0.625rem',
   },
   inputIconContainerRight: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translate(0%, -50%)',
     left: 'auto',
     right: '1.1rem',
   },

@@ -1,6 +1,8 @@
 /**
  * Build the aria-describedby attribute for the checkbox
  * @param extraAriaDescribedBy
+ * @param label
+ * @param checkBoxLabelId
  * @param helpContent
  * @param checkBoxkHelpContentId
  * @param textError
@@ -12,6 +14,8 @@
  */
 export const buildAriaDescribedBy = ({
   extraAriaDescribedBy,
+  label,
+  checkBoxLabelId,
   helpContent,
   checkBoxkHelpContentId,
   errorText,
@@ -21,6 +25,8 @@ export const buildAriaDescribedBy = ({
   screenReaderId,
 }: {
   extraAriaDescribedBy: string;
+  label?: JSX.Element | string;
+  checkBoxLabelId: string;
   helpContent?: JSX.Element | string;
   checkBoxkHelpContentId: string;
   hasError: boolean;
@@ -30,6 +36,9 @@ export const buildAriaDescribedBy = ({
   screenReaderId: string;
 }): string => {
   let res = extraAriaDescribedBy;
+  if (label) {
+    res += ` ${checkBoxLabelId}`;
+  }
   if (screenReaderText) {
     res += ` ${screenReaderId}`;
   }

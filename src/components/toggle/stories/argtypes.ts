@@ -161,8 +161,30 @@ export const argtypes = (
         category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
-    ['aria-describedBy']: {
-      description: 'Text for property aria-labelledby applied to input component',
+    ['aria-label']: {
+      description: 'Text for property aria-label applied to parent container',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-describedby']: {
+      description: 'Text for property aria-labelledby applied to parent component',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-labelledby']: {
+      description: 'Text for property aria-labelledby applied to parent component',
       type: { name: 'string' },
       control: { type: 'text' },
       table: {
@@ -193,6 +215,17 @@ export const argtypes = (
         },
         defaultValue: {
           summary: 'false',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    tabIndex: {
+      description: 'Prop to manage the tabIndex of toggle',
+      type: { name: 'number' },
+      control: { type: 'number' },
+      table: {
+        type: {
+          summary: 'number',
         },
         category: CATEGORY_CONTROL.MODIFIERS,
       },

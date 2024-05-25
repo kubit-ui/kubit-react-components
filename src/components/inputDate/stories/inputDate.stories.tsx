@@ -58,6 +58,7 @@ const commonArgs: IInputDate = {
   // initialDate: normalizeDate(new Date('01-01-2000')),
   // initialSecondDate: normalizeDate(new Date('05-01-2000')),
   defaultDate: new Date(),
+  rightIcon: { icon: ICONS.ICON_PLACEHOLDER },
   closeIcon: { icon: ICONS.ICON_CLOSE },
   type: InputTypeType.TEXT,
   today: 'Today, ',

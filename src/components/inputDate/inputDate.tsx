@@ -128,6 +128,13 @@ const InputDateComponent = React.forwardRef(
         minDate={minDate}
         minLength={minLength}
         placeholder={getPlaceholder(placeholder, state, styles[state]?.label?.type)}
+        rightIcon={{
+          ...props.rightIcon,
+          onClick: event => {
+            handleShowCalendar();
+            props.rightIcon?.onClick?.(event);
+          },
+        }}
         state={state}
         styles={styles}
         truncate={truncate}
