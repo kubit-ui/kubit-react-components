@@ -1,6 +1,11 @@
+type MergeValues<S> = S[Extract<keyof S, string>];
+type ParsingObject<S> = MergeValues<S> extends object ? MergeValues<S> : never;
 /* eslint-disable complexity */
-export const mergeObjects = (target: object, ...sources: object[]): object => {
-  const result = Array.isArray(target) ? [] : { ...target };
+export const mergeObjects = <T extends object, S extends object>(
+  target: T,
+  ...sources: S[]
+): Partial<T & S> => {
+  const result = Array.isArray(target) ? ([] as unknown as T[]) : { ...target };
 
   for (const source of sources) {
     for (const key in source) {
@@ -10,17 +15,22 @@ export const mergeObjects = (target: object, ...sources: object[]): object => {
           if (
             // eslint-disable-next-line no-prototype-builtins
             !result.hasOwnProperty(key) ||
-            typeof result[key] !== 'object' ||
-            result[key] === null
+            typeof (result as S)[key] !== 'object' ||
+            (result as S)[key] === null
           ) {
-            result[key] = Array.isArray(source[key]) ? [] : {};
+            (result as S)[key] = Array.isArray(source[key])
+              ? ([] as MergeValues<S>)
+              : ({} as MergeValues<S>);
           }
-          result[key] = mergeObjects(result[key], source[key]);
+          (result as S)[key] = mergeObjects<ParsingObject<S>, S>(
+            (result as S)[key] as ParsingObject<S>,
+            source[key] as S
+          ) as MergeValues<S>;
         } else {
-          result[key] = source[key];
+          (result as S)[key] = source[key];
         }
       }
     }
   }
-  return result;
+  return result as Partial<T & S>;
 };

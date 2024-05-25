@@ -5,10 +5,10 @@ import { mergeObjects } from '@/utils/mergeObjects/mergeObjects';
 /**
  * @version This hook has a upper version, please use useStylesV2
  */
-export const useStyles = <T, V = undefined | string>(
+export const useStyles = <T extends object, V = undefined | string>(
   styleName: string,
   typeName?: V,
-  customTokens?: object
+  customTokens?: Partial<T>
 ): T => {
   const theme = useTheme();
   const style = theme[styleName];
@@ -21,7 +21,7 @@ export const useStyles = <T, V = undefined | string>(
   if (styleName !== undefined && typeName !== undefined) {
     if (style?.[typeName]) {
       if (customTokens) {
-        styles = mergeObjects(structuredClone(style[typeName]), customTokens);
+        styles = mergeObjects<T, Partial<T>>(structuredClone(style[typeName]), customTokens);
       } else {
         styles = style[typeName];
       }
