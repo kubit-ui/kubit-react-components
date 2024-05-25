@@ -130,6 +130,13 @@ export const PopoverSearchListComponent = (
                   },
                 }}
                 id={inputPopoverId}
+                rightIcon={{
+                  ...props.inputPopoverRightIcon,
+                  onClick: event => {
+                    props.onInputPopoverIconClick();
+                    props.inputPopoverRightIcon?.onClick?.(event);
+                  },
+                }}
                 value={props.inputPopoverValue}
                 // The variant is the same for all the states
                 variant={props.styles?.[props.state]?.inputVariant as string}

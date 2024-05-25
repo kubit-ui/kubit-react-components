@@ -34,6 +34,12 @@ export const InputDateStandAloneComponent = (
         }}
         id={inputId}
         overrideStyles={props.styles}
+        rightIcon={{
+          ...props.rightIcon,
+          altText: props.calendarOpen
+            ? props.configAccesibility?.closeInputIconAriaLabel
+            : props.configAccesibility?.openInputIconAriaLabel,
+        }}
         role={ROLES.COMBOBOX}
         variant={props.inputVariant ?? props.styles?.[props.state]?.inputVariant}
       />

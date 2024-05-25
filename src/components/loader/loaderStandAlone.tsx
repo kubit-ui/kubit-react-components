@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { ROLES } from '@/types/index';
-import { pickAriaProps } from '@/utils/aria/aria';
 
 import { ScreenReaderOnly } from '../screenReaderOnly';
 // styles
@@ -9,30 +8,23 @@ import { LoaderStyled, LoaderWrapperStyled } from './loader.styled';
 import { ILoaderStandAlone } from './types';
 
 const LoaderStandaloneComponent = (
-  {
-    width,
-    styles,
-    altText,
-    position,
-    dataTestId = 'loaderStandaloneTestId',
-    visible,
-    ...props
-  }: ILoaderStandAlone,
+  { dataTestId = 'loaderStandaloneTestId', ...props }: ILoaderStandAlone,
   ref: React.ForwardedRef<HTMLSpanElement> | undefined | null
 ): JSX.Element => {
-  const ariaProps = pickAriaProps(props);
   return (
-    <LoaderWrapperStyled role={ROLES.STATUS}>
-      {visible && (
+    <LoaderWrapperStyled role={ROLES.STATUS} styles={props.styles}>
+      {props.visible && (
         <>
           <LoaderStyled
             ref={ref}
-            $width={width}
+            $width={props.width}
             data-testid={dataTestId}
-            position={position}
-            styles={styles}
+            position={props.position}
+            styles={props.styles}
           />
-          <ScreenReaderOnly dataTestId={`${dataTestId}ScreenReader`}>{altText}</ScreenReaderOnly>
+          <ScreenReaderOnly dataTestId={`${dataTestId}ScreenReader`}>
+            {props.altText}
+          </ScreenReaderOnly>
         </>
       )}
     </LoaderWrapperStyled>

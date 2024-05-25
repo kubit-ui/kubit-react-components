@@ -156,8 +156,13 @@ export interface IInputIcon {
   loading?: boolean;
   disabled?: boolean;
   // icons
-  icon?: IElementOrIcon;
+  rightIcon?: IElementOrIcon;
+  leftIcon?: IElementOrIcon;
   iconPosition?: InputIconPosition;
+  /**
+   * @deprecated `icon` will be removed. Use `rightIcon` or `leftIcon` instead
+   */
+  icon?: IElementOrIcon;
 }
 
 export interface IInputLoader {
@@ -294,6 +299,8 @@ type componentPropsToOmit =
   | 'placeholder'
   | 'leftExtraStyles'
   | 'topExtraStyles'
+  // uncomment when icon prop is removed
+  // | 'iconPosition'
   | 'id';
 export interface IInputComponents
   extends InputAriaAttributes,
@@ -304,6 +311,7 @@ export interface IInputComponents
     Omit<ILabel, componentPropsToOmit>,
     Omit<ITitle, componentPropsToOmit>,
     Omit<IInputLoader, componentPropsToOmit>,
+    // remove interface extension when icon prop is removed
     Omit<IInputIcon, componentPropsToOmit> {}
 
 type AriaHasPopupType =
@@ -319,7 +327,10 @@ type AriaHasPopupType =
 
 export interface MultipleRef {
   refInput?: React.MutableRefObject<HTMLInputElement>;
+  // remove `refIcon` when icon prop is removed
   refIcon: React.MutableRefObject<HTMLSpanElement | undefined>;
+  refRightIcon: React.MutableRefObject<HTMLSpanElement | undefined>;
+  refLeftIcon: React.MutableRefObject<HTMLSpanElement | undefined>;
 }
 
 export type FormatNumber = Intl.NumberFormatOptions & {

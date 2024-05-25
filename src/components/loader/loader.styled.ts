@@ -22,4 +22,7 @@ export const LoaderStyled = styled.span<ILoaderStyled>`
   `}
 `;
 
-export const LoaderWrapperStyled = styled.span``;
+export const LoaderWrapperStyled = styled.span<ILoaderStyled>`
+  display: flex;
+  ${props => getStyles(props.styles.parentContainer)}
+`;

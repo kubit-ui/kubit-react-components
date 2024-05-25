@@ -11,6 +11,8 @@ import { CustomTokenTypes, POSITIONS } from '@/types';
 
 import { InputDateStylesProps } from './inputDateTheme';
 
+type InputRightIconType = Omit<IElementOrIcon, 'altText'>;
+
 export type SelectedDate = {
   startDate: Date;
   endDate: Date;
@@ -67,13 +69,15 @@ type propsToOmitInputBasic =
   | 'aria-expanded'
   | 'aria-haspopup'
   | 'formatNumber'
-  | 'locale';
+  | 'locale'
+  | 'rightIcon';
 
 export interface IInputDateStandAlone extends Omit<IInputStandAlone, propsToOmitInputBasic> {
   styles: InputDateStylesProps;
   // modifiers
   locale: string;
   inputVariant?: string;
+  rightIcon?: InputRightIconType;
   // actionBottomSheet
   closeIcon?: IElementOrIcon;
   labelComponentType?: TextComponentType;

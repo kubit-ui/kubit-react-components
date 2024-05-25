@@ -273,9 +273,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         disable: true,
       },
     },
-    icon: {
+    rightIcon: {
+      description:
+        'Icon to show on the right side of the input. `altText` are not allowed here. You can set in configAccesibility prop in `iconInputOpenAriaLabel` and `iconInputCloseAriaLabel`',
+      type: { name: 'object' },
+      control: { type: 'object' },
       table: {
-        disable: true,
+        type: {
+          summary: 'object',
+          detail: 'IElementOrIcon',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
   };
