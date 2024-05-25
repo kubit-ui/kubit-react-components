@@ -126,15 +126,15 @@ export const Selector = (props: ISelector): JSX.Element => {
     <SelectorStyled isDaySelector={isDaySelector} styles={props.styles}>
       <IconAndBackTextStyled styles={props.styles} onClick={handleOnClickBack}>
         <ElementOrIcon
+          color={iconArrowDisabled(props.minDate) ? props.styles?.colorArrowDisabled : undefined}
+          customIconStyles={props.styles?.leftArrow}
+          disabled={iconArrowDisabled(props.minDate)}
+          {...leftArrowIcon}
           aria-label={
             showCustomSelector
               ? props.configAccesibility?.backToMonthAriaLabel
               : leftArrowIcon['aria-label']
           }
-          color={iconArrowDisabled(props.minDate) ? props.styles?.colorArrowDisabled : undefined}
-          customIconStyles={props.styles?.leftArrow}
-          disabled={iconArrowDisabled(props.minDate)}
-          {...leftArrowIcon}
           onClick={handleOnClickLeftIcon}
         />
         {showCustomSelector && (
