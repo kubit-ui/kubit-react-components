@@ -25,7 +25,7 @@ export type InputPasswordIconType = Omit<IElementOrIcon, 'onClick'> & {
   ) => void;
 };
 
-type propsToOmit = 'styles' | 'state' | 'icon' | 'onIconClick' | 'formatNumber';
+type propsToOmit = 'styles' | 'state' | 'icon' | 'formatNumber' | 'rightIcon';
 
 export enum OnIconClickValueType {
   HIDE = 'hide',

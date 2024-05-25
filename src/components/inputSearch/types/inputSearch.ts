@@ -44,7 +44,11 @@ export type PopoverSearchInputType = {
   label?: InputLabelType;
   secondaryLabel?: ReactNode;
   helpMessage?: InputHelpMessageType;
+  /**
+   * @deprecated `icon` will be removed. Use `rightIcon instead
+   */
   icon?: IElementOrIcon;
+  rightIcon?: IElementOrIcon;
   overrideStyles?: InputStylesProps;
   placeholder?: string;
   value?: string;
@@ -163,7 +167,11 @@ export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOm
   closeIcon?: IElementOrIcon;
   icon?: IElementOrIcon;
   // input popover
+  /**
+   * @deprecated `inputPopoverIcon` will be removed. Use `popoverRightIcon` instead
+   */
   inputPopoverIcon?: IElementOrIcon;
+  inputPopoverRightIcon?: IElementOrIcon;
   inputPopoverValue?: string;
   inputPopoverVariant?: string;
   // Functions

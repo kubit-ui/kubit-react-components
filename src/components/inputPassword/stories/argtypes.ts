@@ -80,9 +80,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.FUNCTIONS,
       },
     },
-    icon: {
+    rightIcon: {
+      description:
+        'Icon to show on the right side of the input. `icon` and `altText` are not allowed here, you can set them in `iconActive` and `iconDisabled` and `iconShowPasswordAriaLabel` and `iconHidePasswordAriaLabel`',
+      type: { name: 'object' },
+      control: { type: 'object' },
       table: {
-        disable: true,
+        type: {
+          summary: 'object',
+          detail: 'IElementOrIcon',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
   };

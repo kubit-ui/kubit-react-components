@@ -42,6 +42,11 @@ const mockProps = {
     },
   },
   type: InputTypeType.TEXT,
+  rightIcon: {
+    icon: 'UNICORN',
+    altText: 'Open info',
+    onClick: jest.fn(),
+  },
 };
 
 jest.useFakeTimers();
@@ -111,6 +116,7 @@ test('handleClickIconInputDropdown function', async () => {
       ...mockProps,
       onOpenCloseOptions: mockOnOpenCloseOptions,
       onIconClick: mockOnIconClick,
+      onRightIconClick: mockOnIconClick,
       value: 'label1',
     })
   );

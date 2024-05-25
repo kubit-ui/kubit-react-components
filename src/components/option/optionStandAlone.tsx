@@ -137,6 +137,7 @@ const OptionStandAlone = React.forwardRef(
           )}
         </OptionFirstRowWrapperStyled>
         {props.toggle && <Toggle {...props.toggle} />}
+        {props.extraContent && props.extraContent}
       </OptionStyled>
     );
   }

@@ -72,6 +72,7 @@ const InputDropdownComponent = React.forwardRef(
       styles,
       onClick,
       onIconClick: icon?.onClick,
+      onRightIconClick: props.rightIcon?.onClick,
       onInputPopoverIconClick,
       elementsToShow,
       disabled,
@@ -98,6 +99,10 @@ const InputDropdownComponent = React.forwardRef(
         listOptionsHeight={listOptionsHeight}
         open={openOptions}
         optionList={optionsFiltered}
+        rightIcon={{
+          ...props.rightIcon,
+          onClick: handleClickIconInputDropdown,
+        }}
         searchText={searchText}
         state={state}
         styles={styles}

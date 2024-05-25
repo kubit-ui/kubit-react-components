@@ -50,6 +50,10 @@ export const InputSearchStandAloneComponent = (
           }}
           id={inputId}
           overrideStyles={props.styles}
+          rightIcon={{
+            ...props.rightIcon,
+            onClick: props.rightIcon?.onClick,
+          }}
           role={ROLES.COMBOBOX}
           value={props.searchText}
           variant={props.inputVariant ?? props.styles?.[props.state]?.inputVariant}
@@ -74,6 +78,7 @@ export const InputSearchStandAloneComponent = (
           secondaryLabel: props.secondaryLabel,
           helpMessage: props.helpMessage,
           icon: props.inputPopoverIcon,
+          rightIcon: props.inputPopoverRightIcon,
           overrideStyles: props.styles,
           placeholder: props.placeholder,
           value: props.inputPopoverValue,

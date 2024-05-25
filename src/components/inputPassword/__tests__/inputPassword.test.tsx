@@ -58,7 +58,7 @@ describe('New Input Password Component', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('Should allow to show and hidde the password', async () => {
+  it('Should allow to show and hide the password', async () => {
     const onInputTypeChangeMock = jest.fn();
     const { container, getByRole, getByTestId } = renderProvider(
       <InputPassword {...mockProps} onInputTypeChange={onInputTypeChangeMock} />
@@ -67,12 +67,12 @@ describe('New Input Password Component', () => {
     // Default type
     expect(getByTestId(mockProps.dataTestId + 'Input').getAttribute('type')).toBe('password');
 
-    const iconBotton = getByRole('button');
-    fireEvent.click(iconBotton);
+    const iconButton = getByRole('button');
+    fireEvent.click(iconButton);
 
     expect(getByTestId(mockProps.dataTestId + 'Input').getAttribute('type')).toBe('text');
 
-    fireEvent.click(iconBotton);
+    fireEvent.click(iconButton);
     expect(getByTestId(mockProps.dataTestId + 'Input').getAttribute('type')).toBe('password');
 
     expect(onInputTypeChangeMock).toHaveBeenCalledTimes(2);

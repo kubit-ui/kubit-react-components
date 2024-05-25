@@ -188,6 +188,13 @@ export const PopoverSearchListComponent = (
                   props.inputConfiguration?.icon?.onClick?.(event);
                 },
               }}
+              rightIcon={{
+                ...props.inputConfiguration?.rightIcon,
+                onClick: event => {
+                  props.inputConfiguration?.onIconClick?.(event);
+                  props.inputConfiguration?.rightIcon?.onClick?.(event);
+                },
+              }}
               // It is necessary for the variation of the help message position
               // The variant is the same for all the states
               onChange={props.inputConfiguration?.onChange}

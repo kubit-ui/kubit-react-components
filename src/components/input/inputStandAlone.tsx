@@ -8,6 +8,7 @@ import {
   HelpMessageStandAlone,
   InformationAssociatedStandAlone,
   InputIconStandAlone,
+  InputIconStandAloneDeprecated,
   LabelStandAlone,
   LoaderStandAlone,
   TextCountStandAlone,
@@ -26,6 +27,7 @@ import {
   AUTOCOMPLETE_TYPE,
   IInputStandAlone,
   InputHelpMessagePosition,
+  InputIconPosition,
   LABEL_TYPE,
   MultipleRef,
 } from './types';
@@ -49,10 +51,23 @@ const InputStandAloneComponent = (
   const helpMessageId = `${props.inputId}HelpText`;
   const errorMessageId = `${props.inputId}Error`;
   const labelId = `${props.inputId}Label`;
-
+  // eslint-disable-next-line complexity
   const buildInput = () => (
     <InputWrapperStyled styles={styles?.[state]}>
       <LoaderStandAlone loader={props.loader} loading={props.loading} styles={styles?.[state]} />
+      <InputIconStandAlone
+        ref={
+          ref && 'refLeftIcon' in ref
+            ? ((ref as unknown as MultipleRef)
+                ?.refLeftIcon as React.MutableRefObject<HTMLDivElement>)
+            : undefined
+        }
+        disabled={isDisabled(state)}
+        iconPosition={InputIconPosition.LEFT}
+        leftIcon={props.leftIcon}
+        state={state}
+        styles={styles?.[state]}
+      />
       <InputStyled
         ref={
           ref && 'refInput' in ref
@@ -82,6 +97,7 @@ const InputStandAloneComponent = (
         id={props.inputId}
         inputMode={inputMode}
         labelType={styles?.[state]?.label?.type}
+        leftIcon={props.leftIcon}
         max={props.max}
         maxLength={props.maxLength}
         min={props.min}
@@ -89,6 +105,7 @@ const InputStandAloneComponent = (
         name={props.name}
         placeholder={props.placeholder}
         required={props.required}
+        rightIcon={props.rightIcon}
         role={props.role}
         state={state}
         styles={styles}
@@ -111,6 +128,20 @@ const InputStandAloneComponent = (
         }}
       />
       <InputIconStandAlone
+        ref={
+          ref && 'refRightIcon' in ref
+            ? ((ref as unknown as MultipleRef)
+                ?.refRightIcon as React.MutableRefObject<HTMLDivElement>)
+            : undefined
+        }
+        disabled={isDisabled(state)}
+        iconPosition={InputIconPosition.RIGHT}
+        rightIcon={props.rightIcon}
+        state={state}
+        styles={styles?.[state]}
+      />
+      {/* remove this <InputIconStandalone> when prop `icon` is removed */}
+      <InputIconStandAloneDeprecated
         ref={
           ref && 'refIcon' in ref
             ? ((ref as unknown as MultipleRef)?.refIcon as React.MutableRefObject<HTMLDivElement>)
