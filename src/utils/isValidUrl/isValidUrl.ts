@@ -1,4 +1,7 @@
 const HTTP_PROTOCOL = 'http';
+const DATA_PROTOCOL = 'data';
+
+const VALID_PROTOCOLS = [HTTP_PROTOCOL, DATA_PROTOCOL];
 
 export const isValidHttpUrl = (string: string): boolean => {
   let parsedURL;
@@ -13,5 +16,5 @@ export const isValidHttpUrl = (string: string): boolean => {
     return false;
   }
 
-  return parsedURL.protocol.startsWith(HTTP_PROTOCOL);
+  return VALID_PROTOCOLS.some(validProtocol => parsedURL.protocol.startsWith(validProtocol));
 };
