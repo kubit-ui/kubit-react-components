@@ -1,4 +1,5 @@
 import { DeviceBreakpointsType } from '../breakpoints';
+import { WordWrapTypes } from './wordWrap';
 
 /**
  * @property font_variant variant for the Text component
@@ -17,16 +18,13 @@ type GenericDeviceTypographyType = {
   text_align?: string;
   text_decoration?: string;
   text_transform?: string;
-  white_space?: string;
-  word_break?: string;
-  word_wrap?: string;
-  text_overflow?: string;
   text_shadow?: string;
   text_indent?: string;
   text_justify?: string;
   color?: string;
   overflow?: string;
-} & TypographyCustomType;
+} & TypographyCustomType &
+  WordWrapTypes;
 
 export type TypographyTypes = GenericDeviceTypographyType & {
   [key in DeviceBreakpointsType]?: GenericDeviceTypographyType;

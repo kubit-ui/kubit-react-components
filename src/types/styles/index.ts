@@ -24,3 +24,4 @@ export * from './icon';
 export * from './illustration';
 export * from './pointer';
 export * from './commonStyle';
+export * from './wordWrap';
