@@ -31,6 +31,7 @@ import { LAYOUT_STYLES } from './layout';
 import { getLineSeparatorStyles } from './lineSeparator';
 import { getLinkStyles } from './link';
 import { getListOptionsStyles } from './listOptions';
+import { getLoaderStyles } from './loader';
 import { getMessageStyles } from './message';
 import { getModalStyles } from './modal';
 import { getNavigationCardStyles } from './navigationCard';
@@ -114,4 +115,5 @@ export const getComponentsStyles = (COLORS: {
   TOGGLE_STYLES: getToggleStyles(COLORS),
   TOOLTIP_STYLES: getTooltipStyles(COLORS),
   VALIDATION_STATUS_STYLES: getValidationStatusStyles(COLORS),
+  LOADER_STYLES: getLoaderStyles(COLORS),
 });
