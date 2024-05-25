@@ -40,7 +40,6 @@ export const TEXT_STYLES: TextStylesType<TextVariantType> = {
     font_family: FONT_FAMILY.font_family_nunito_sans,
     typography: PARAGRAPH.CAPTION,
   },
-
   [TextVariantType.HEADING_DISPLAY_1_EXTENDED]: {
     font_family: FONT_FAMILY.font_family_nunito_sans,
     typography: HEADING.DISPLAY,
