@@ -130,7 +130,7 @@ const SnackbarStandAloneComponent = (
           <ElementOrIcon
             customIconStyles={props.styles?.closeIcon}
             dataTestId={`${props.dataTestId}Icon`}
-            onClick={props.onCloseButtonClick(false)}
+            onClick={e => props.onCloseButtonClick(false)(e)}
             {...props.closeIcon}
           />
         </ButtonWrapper>
