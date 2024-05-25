@@ -80,6 +80,7 @@ const FooterStandAloneComponent = (
           <FooterContent
             contentDirection={props.contentDirection}
             forceVertical={props.forceVertical}
+            marginRight={true}
             styles={props.styles}
           >
             {firstContent}
@@ -87,6 +88,7 @@ const FooterStandAloneComponent = (
           <FooterContent
             contentDirection={props.contentDirection}
             forceVertical={props.forceVertical}
+            margin={true}
             styles={props.styles}
           >
             {secondContent}
@@ -94,6 +96,7 @@ const FooterStandAloneComponent = (
           <FooterContent
             contentDirection={props.contentDirection}
             forceVertical={props.forceVertical}
+            marginLeft={true}
             styles={props.styles}
           >
             {thridContent}

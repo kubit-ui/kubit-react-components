@@ -15,7 +15,7 @@ const defaultShadow = 'none';
 export const useScrollEffect = (
   conditional = true,
   shadowStyles = defaultShadow,
-  shadowVisible = 99
+  shadowVisible = 1
 ): CustomHookReturnValue => {
   // the scrollable element ref
   const innerScrollableRef = useRef<HTMLElement | null>(null);
