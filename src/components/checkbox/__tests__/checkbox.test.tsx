@@ -247,7 +247,10 @@ describe('Checkbox component', () => {
     const checkbox = screen.getByRole('checkbox');
 
     expect(checkbox).toBeInTheDocument();
-    expect(checkbox).toHaveAttribute('aria-describedby', `${checkboxId}ScreenReader`);
+    expect(checkbox).toHaveAttribute(
+      'aria-describedby',
+      `${checkboxId}Label ${checkboxId}ScreenReader`
+    );
 
     const results = await axe(container);
     expect(container).toHTMLValidate();

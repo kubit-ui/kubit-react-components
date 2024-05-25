@@ -51,6 +51,7 @@ const CheckboxStandAloneComponent = (
   const { isChecked, isDisabled, hasError } = checkboxState(state);
 
   const checkBoxId = id ?? uniqueId;
+  const checkBoxLabelId = `${checkBoxId}Label`;
   const checkBoxkHelpContentId = `${checkBoxId}HelpContent`;
   const checkBoxErrorId = `${checkBoxId}Error`;
   const screenReaderId = `${checkBoxId}ScreenReader`;
@@ -68,6 +69,7 @@ const CheckboxStandAloneComponent = (
             color={labelTypography?.color}
             cursor={isDisabled ? CURSOR_DEFAULT : CURSOR_POINTER}
             dataTestId={`${dataTestId}Label`}
+            id={checkBoxLabelId}
             inputId={checkBoxId}
             required={required}
             textVariant={labelTypography?.font_variant}
@@ -126,6 +128,8 @@ const CheckboxStandAloneComponent = (
             ref={ref}
             aria-describedby={buildAriaDescribedBy({
               extraAriaDescribedBy,
+              label: label?.content,
+              checkBoxLabelId,
               helpContent: helperContent?.content,
               checkBoxkHelpContentId,
               hasError,
