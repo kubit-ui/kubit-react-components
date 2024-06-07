@@ -1,6 +1,6 @@
 import { useTheme } from 'styled-components';
 
-import { mergeObjects } from '@/utils';
+import { mergeObjects, structuredClone } from '@/utils';
 
 interface IUseStyles<T, V> {
   styleName: string;
