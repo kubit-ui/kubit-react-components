@@ -52,6 +52,7 @@ export const InfoAssociatedButtonStyled = styled.div<InformationAssociatedStyled
 export const InputErrorAndHelpMessageWrapperStyled = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const InputErrorStyled = styled.div<ErrorMessageStyledProps>`
@@ -179,8 +180,6 @@ export const InputStyled = styled.input<InputStyledProps>`
     cursor: ${cursorPointer};
   `}
 
-  padding-left: ${({ styles, state, leftIcon }) =>
-    leftIcon && styles?.[state]?.inputContainer?.padding_left};
   box-shadow: ${({ styles, state }) => styles?.[state]?.inputContainer?.box_shadow};
   ${({
     theme: {

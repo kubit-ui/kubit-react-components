@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { ICONS } from '@/assets';
-import { IconHighlightedType } from '@/components/iconHighlighted';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
@@ -40,15 +39,12 @@ const commonArgs: IInputUnControlled = {
   title: { content: 'Title', component: InputTitleComponentType.H1 },
   errorMessage: { content: 'Error message' },
   errorIcon: { icon: ICONS.ICON_PLACEHOLDER },
-  highlightedInformationAssociatedIcon: {
+  informationAssociatedIcon: {
     icon: ICONS.ICON_PLACEHOLDER,
     altText: 'unicorn alt text',
-    type: IconHighlightedType.INFORMATIVE,
     position: InputIconPosition.LEFT,
   },
   informationAssociatedValue: { content: 'Lorem ipsum dolor sit. Lorem ipsum dolor sit amet' },
-  iconPosition: InputIconPosition.RIGHT,
-  icon: { icon: ICONS.ICON_PLACEHOLDER },
   leftIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'icon alt text' },
   rightIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'icon alt text' },
   secondaryLabel: labelSecondary(themeSelected),

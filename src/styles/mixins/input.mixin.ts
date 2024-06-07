@@ -193,7 +193,7 @@ export const getIconPadding = (
   rightIcon?: boolean,
   styles?: InputBasicStateProps
 ): CSSProp | undefined => {
-  const padding = styles?.inputContainer?.padding?.split(' ')[1] || null;
+  const padding = styles?.inputContainer?.padding?.split(' ')[1] || styles?.inputContainer?.padding;
   const iconWidth = styles?.inputIcon?.width;
 
   if (leftIcon && rightIcon) {

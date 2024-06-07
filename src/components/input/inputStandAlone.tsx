@@ -79,7 +79,7 @@ const InputStandAloneComponent = (
         aria-labelledby={buildAriaLabelledBy({
           extraAriaLabelledBy,
           labelId,
-          helpMessage: helpMessage?.content,
+          helpMessage: helpMessage?.content as string,
           helpMessageId,
           errorMessage: errorMessage?.content,
           errorMessageId,
