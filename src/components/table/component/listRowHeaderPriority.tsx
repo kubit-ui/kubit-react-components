@@ -24,7 +24,7 @@ export const ListRowHeaderPriority = (props: IListRowHeaderPriority): JSX.Elemen
     dividerValue,
     getExpandedAria,
     getValue,
-    getBackgroundColorCellValue,
+    getCellTokenValue,
     handleShowExpandedContent,
     hasExpandedContentRow,
     showExpandedContent,
@@ -94,13 +94,15 @@ export const ListRowHeaderPriority = (props: IListRowHeaderPriority): JSX.Elemen
                   <ListItemHeaderPriorityStyled
                     borderPosition={props.value.rowBorderPosition}
                     customAlign={
+                      getCellTokenValue({ headerValue: header, token: 'align' }) ||
                       header?.config?.alignValue?.[props.device] ||
                       header?.config?.alignValue ||
                       header?.config?.alignHeader?.[props.device] ||
                       header?.config?.alignHeader
                     }
                     customBackgroundColor={
-                      getBackgroundColorCellValue(header) ?? props.value.backgroundColor
+                      getCellTokenValue({ headerValue: header, token: 'backgroundColor' }) ??
+                      props.value.backgroundColor
                     }
                     customWidth={header?.config?.width}
                     data-testid={`${props.dataTestId}ItemList${indexHeader}`}

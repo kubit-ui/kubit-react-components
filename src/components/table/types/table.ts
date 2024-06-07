@@ -72,6 +72,7 @@ export type ValueConfigType = {
     | number
     | boolean;
   backgroundColor?: string;
+  align?: string;
 };
 
 export type IValueConfigPropsType = {
@@ -83,6 +84,7 @@ export type IValueConfigPropsType = {
   rowHeader?: ITableRowHeader;
   rowBorderPosition?: LineSeparatorPositionType;
   backgroundColor?: string;
+  align?: string;
 };
 
 /**
