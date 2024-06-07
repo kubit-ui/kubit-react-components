@@ -10,41 +10,64 @@ const commonProps = {
   container: {
     display: 'flex',
     align_items: 'center',
-    height: SPACINGS.spacing_250,
-    column_gap: SPACINGS.spacing_50,
+    width: 'auto',
     [DeviceBreakpointsType.DESKTOP]: {
-      width: '100%',
+      height: SPACINGS.spacing_400,
+      max_height: SPACINGS.spacing_450,
     },
     [DeviceBreakpointsType.TABLET]: {
-      width: '100%',
+      height: SPACINGS.spacing_550,
     },
     [DeviceBreakpointsType.MOBILE]: {
-      width: '20.5rem',
+      height: SPACINGS.spacing_550,
     },
   },
   indicatorsContainer: {
     display: 'flex',
-    width: '100%',
-    column_gap: SPACINGS.spacing_150,
+  },
+  mediaButtonContainer: {
+    margin_right: SPACINGS.spacing_300,
   },
   mediaButton: {
     iconSize: MediaButtonSizeType.SMALL,
   },
+  leftArrowContainer: {
+    [DeviceBreakpointsType.DESKTOP]: {
+      margin_right: SPACINGS.spacing_300,
+    },
+    [DeviceBreakpointsType.TABLET]: {
+      margin_right: SPACINGS.spacing_150,
+    },
+    [DeviceBreakpointsType.MOBILE]: {
+      margin_right: SPACINGS.spacing_150,
+    },
+  },
+  rightArrowContainer: {
+    [DeviceBreakpointsType.DESKTOP]: {
+      margin_left: SPACINGS.spacing_300,
+    },
+    [DeviceBreakpointsType.TABLET]: {
+      margin_left: SPACINGS.spacing_150,
+    },
+    [DeviceBreakpointsType.MOBILE]: {
+      margin_left: SPACINGS.spacing_150,
+    },
+  },
   leftArrowIcon: {
-    width: SIZES.size_150,
-    height: SIZES.size_150,
+    width: SIZES.size_250,
+    height: SIZES.size_250,
     disabled: {
-      width: SIZES.size_150,
-      height: SIZES.size_150,
+      width: SIZES.size_250,
+      height: SIZES.size_250,
       color: COLORS.ACCENT.color_accent_default_bg_100,
     },
   },
   rightArrowIcon: {
-    width: SIZES.size_150,
-    height: SIZES.size_150,
+    width: SIZES.size_250,
+    height: SIZES.size_250,
     disabled: {
-      width: SIZES.size_150,
-      height: SIZES.size_150,
+      width: SIZES.size_250,
+      height: SIZES.size_250,
       color: COLORS.ACCENT.color_accent_default_bg_100,
     },
   },
