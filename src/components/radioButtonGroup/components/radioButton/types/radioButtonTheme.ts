@@ -16,6 +16,7 @@ export type RadioButtonBaseStyles = {
   errorMessageIconContainer?: CommonStyleType;
   radioButtonContainer?: CommonStyleType;
   radioButton?: CommonStyleType;
+  infoIconContainer?: CommonStyleType;
   tooltip?: {
     icon?: IconTypes;
     variant?: string;

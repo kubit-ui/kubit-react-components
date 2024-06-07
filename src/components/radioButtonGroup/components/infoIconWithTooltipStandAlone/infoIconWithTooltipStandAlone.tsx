@@ -17,7 +17,7 @@ export const InfoIconWithTooltipStandAlone = ({
     return null;
   }
   const infoIconWithoutTooltip = (
-    <InfoIconWrapperStyled>
+    <InfoIconWrapperStyled styles={styles}>
       <ElementOrIcon
         customIconStyles={styles[RadioButtonGroupStateType.DEFAULT]?.tooltip?.icon}
         dataTestId={dataTestId}

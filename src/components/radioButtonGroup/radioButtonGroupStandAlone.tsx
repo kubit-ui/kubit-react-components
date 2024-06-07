@@ -37,6 +37,12 @@ const RadioButtonGroupStandAloneComponent = (
         <>
           <Text component={legendComponent} customTypography={props.styles?.[state]?.title}>
             {props.legend}
+            <InfoIconWithTooltipStandAlone
+              dataTestId={`${dataTestId}InfoIcon`}
+              infoIcon={props.infoIcon}
+              styles={props.styles}
+              tooltip={props.tooltip}
+            />
             {props.required && (
               <>
                 {requiredSymbol}
@@ -44,12 +50,6 @@ const RadioButtonGroupStandAloneComponent = (
               </>
             )}
           </Text>
-          <InfoIconWithTooltipStandAlone
-            dataTestId={`${dataTestId}InfoIcon`}
-            infoIcon={props.infoIcon}
-            styles={props.styles}
-            tooltip={props.tooltip}
-          />
         </>
       )}
       {props.options.map((o, index) => (
