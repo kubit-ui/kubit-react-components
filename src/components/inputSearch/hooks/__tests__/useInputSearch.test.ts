@@ -11,10 +11,6 @@ import { InputTypeType } from '@/types/inputType';
 import * as inputHooks from '../../../../hooks/useInput/useInput';
 import { useInputSearch } from '../useInputSearch';
 
-global.structuredClone = jest.fn(val => {
-  return JSON.parse(JSON.stringify(val));
-});
-
 const options = [
   {
     options: ['option1', 'option2'],

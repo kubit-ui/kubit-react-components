@@ -551,7 +551,8 @@ export const useCarousel = ({
       !carouselContainer ||
       !carouselContent ||
       !allowShift.current ||
-      !numElementsPerPage.current
+      !numElementsPerPage.current ||
+      !elements.length
     ) {
       return;
     }

@@ -44,9 +44,7 @@ export const InformationAssociatedStandAlone = (
       />
     ) : (
       <ElementOrIcon
-        color={props.styles?.informationAssociatedIcon?.color}
-        height={props.styles?.informationAssociatedIcon?.height}
-        width={props.styles?.informationAssociatedIcon?.width}
+        customIconStyles={props.styles?.informationAssociatedIcon}
         {...props.informationAssociatedIcon}
       />
     );

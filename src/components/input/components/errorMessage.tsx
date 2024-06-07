@@ -15,23 +15,20 @@ export const ErrorMessageStandAlone = (props: IErrorMessage): JSX.Element => {
       id={props.errorMessageId}
       styles={props.styles}
     >
-      {props.errorMessage?.content && hasError(props.state) ? (
-        <Text
-          customTypography={props.styles?.errorMessage}
-          dataTestId={`${props.dataTestId}ErrorMessage`}
-          {...props.errorMessage}
-        >
-          {props.errorIcon?.icon && (
-            <ErrorIconWrapperStyled styles={props.styles}>
-              <ElementOrIcon
-                customIconStyles={props.styles?.errorMessageIcon}
-                {...props.errorIcon}
-              />
-            </ErrorIconWrapperStyled>
-          )}
-          {props.errorMessage.content}
-        </Text>
-      ) : null}
+      {hasError(props.state) && (
+        <>
+          <ErrorIconWrapperStyled styles={props.styles}>
+            <ElementOrIcon customIconStyles={props.styles?.errorMessageIcon} {...props.errorIcon} />
+          </ErrorIconWrapperStyled>
+          <Text
+            customTypography={props.styles?.errorMessage}
+            dataTestId={`${props.dataTestId}ErrorMessage`}
+            {...props.errorMessage}
+          >
+            {props.errorMessage?.content}
+          </Text>
+        </>
+      )}
     </InputErrorStyled>
   );
 };

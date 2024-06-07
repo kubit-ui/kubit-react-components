@@ -25,6 +25,15 @@ export const ParentContainerStyled = styled.div<MediaProgressBarStylesType>`
   ${props => getStyles(props.styles.container)}
 `;
 
+export const BarStyled = styled.div<MediaProgressBarStylesType>`
+  ${props => getStyles(props.styles.bar)}
+  ${({ barFocused, styles }) =>
+    !barFocused &&
+    css`
+      ${getStyles(styles.bar?.filled)}
+    `};
+`;
+
 export const BarContainerStyled = styled.div<MediaProgressBarStylesType>`
   ${props => getStyles(props.styles.barContainer)}
   ${({ barFocused, styles }) =>
@@ -37,17 +46,13 @@ export const BarContainerStyled = styled.div<MediaProgressBarStylesType>`
     css`
       pointer-events: none;
     `};
+  &:focus-visible {
+    outline-style: none;
+    & > ${BarStyled} {
+      ${({ theme: { FOCUS_STYLES } }) => FOCUS_STYLES};
+    }
+  }
 `;
-
-export const BarStyled = styled.div<MediaProgressBarStylesType>`
-  ${props => getStyles(props.styles.bar)}
-  ${({ barFocused, styles }) =>
-    !barFocused &&
-    css`
-      ${getStyles(styles.bar?.filled)}
-    `};
-`;
-
 export const ProgressBarStyled = styled.div<MediaProgressBarStylesType>`
   ${props => getStyles(props.styles.progressBar)}
   ${({ barFocused }) =>

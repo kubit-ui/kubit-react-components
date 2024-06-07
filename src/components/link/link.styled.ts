@@ -4,12 +4,14 @@ import styled, { css } from 'styled-components';
 import { focusVisibleAlt } from '@/styles/mixins';
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
-import { TextPropsStylesType } from '../text/types';
+import { applyVariantStyles as applyTextVariantStyles } from '../text/text.styled';
+import { TextPropsStylesType, TextVariantStylesType } from '../text/types';
 import { LinkPositionType, LinkPropsStylesType, LinkPropsType, LinkStateType } from './types';
 
 type LinkPropsExtended = {
   linkStyles: LinkPropsStylesType;
   alignCenter: boolean;
+  textStyles?: TextVariantStylesType;
 };
 const applyDevicePropsTextStyles = (props: TextPropsStylesType) => {
   return css`
@@ -44,13 +46,28 @@ const applyPropsTextStyles = (props: TextPropsStylesType) => css`
   `}
 `;
 
+const applyLinkStateStyles = ({
+  textStyles,
+  linkPropsStyles,
+}: {
+  textStyles?: TextVariantStylesType;
+  linkPropsStyles?: LinkPropsStylesType;
+}) => {
+  return css`
+    ${getStyles(linkPropsStyles?.container)}
+    ${getTypographyStyles(linkPropsStyles?.container)}
+    // If textVariant is defined it should be applied before the own variant styles
+    ${applyTextVariantStyles(textStyles)}
+    // In alternative variants, the focus colors must be change
+    ${linkPropsStyles?.altVariant && focusVisibleAlt()}
+  `;
+};
+
 export const TextStyledExtended = styled.p.withConfig({
   shouldForwardProp: () => true,
 })<LinkPropsExtended>`
-  ${({ linkStyles }) => getStyles(linkStyles?.[LinkStateType.DEFAULT]?.container)}
-  ${({ linkStyles }) => getTypographyStyles(linkStyles?.[LinkStateType.DEFAULT]?.container)}
-  // In alternative variants, the focus colors must be change
-  ${({ linkStyles }) => linkStyles?.[LinkStateType.DEFAULT]?.altVariant && focusVisibleAlt()}
+  ${({ linkStyles, textStyles }) =>
+    applyLinkStateStyles({ textStyles, linkPropsStyles: linkStyles?.[LinkStateType.DEFAULT] })}
   ${({ alignCenter }) =>
     alignCenter &&
     css`
@@ -58,31 +75,23 @@ export const TextStyledExtended = styled.p.withConfig({
     `};
 
   &[aria-disabled='true'] {
-    ${({ linkStyles }) => getStyles(linkStyles?.[LinkStateType.DISABLED]?.container)}
-    ${({ linkStyles }) => getTypographyStyles(linkStyles?.[LinkStateType.DISABLED]?.container)}
-    // In alternative variants, the focus colors must be change
-    ${({ linkStyles }) => linkStyles?.[LinkStateType.DEFAULT]?.altVariant && focusVisibleAlt()}
+    ${({ linkStyles, textStyles }) =>
+      applyLinkStateStyles({ textStyles, linkPropsStyles: linkStyles?.[LinkStateType.DISABLED] })}
   }
 
   &:hover:not([aria-disabled='true']) {
-    ${({ linkStyles }) => getStyles(linkStyles?.[LinkStateType.HOVER]?.container)}
-    ${({ linkStyles }) => getTypographyStyles(linkStyles?.[LinkStateType.HOVER]?.container)}
-    // In alternative variants, the focus colors must be change
-    ${({ linkStyles }) => linkStyles?.[LinkStateType.HOVER]?.altVariant && focusVisibleAlt()}
+    ${({ linkStyles, textStyles }) =>
+      applyLinkStateStyles({ textStyles, linkPropsStyles: linkStyles?.[LinkStateType.HOVER] })}
   }
 
   &:active:not([aria-disabled='true']) {
-    ${({ linkStyles }) => getStyles(linkStyles?.[LinkStateType.PRESSED]?.container)}
-    ${({ linkStyles }) => getTypographyStyles(linkStyles?.[LinkStateType.PRESSED]?.container)}
-    // In alternative variants, the focus colors must be change
-    ${({ linkStyles }) => linkStyles?.[LinkStateType.PRESSED]?.altVariant && focusVisibleAlt()}
+    ${({ linkStyles, textStyles }) =>
+      applyLinkStateStyles({ textStyles, linkPropsStyles: linkStyles?.[LinkStateType.PRESSED] })}
   }
 
   &:visited:not([aria-disabled='true']) {
-    ${({ linkStyles }) => getStyles(linkStyles?.[LinkStateType.VISITED]?.container)}
-    ${({ linkStyles }) => getTypographyStyles(linkStyles?.[LinkStateType.VISITED]?.container)}
-    // In alternative variants, the focus colors must be change
-    ${({ linkStyles }) => linkStyles?.[LinkStateType.VISITED]?.altVariant && focusVisibleAlt()}
+    ${({ linkStyles, textStyles }) =>
+      applyLinkStateStyles({ textStyles, linkPropsStyles: linkStyles?.[LinkStateType.VISITED] })}
   }
 
   // Apply props tokens

@@ -37,7 +37,7 @@ export const TableRow = (props: ITableRow): JSX.Element => {
     dividerValue,
     getExpandedAria,
     getValue,
-    getBackgroundColorCellValue,
+    getCellTokenValue,
     handleShowExpandedContent,
     hasExpandedContentRow,
     hasFooter,
@@ -88,13 +88,15 @@ export const TableRow = (props: ITableRow): JSX.Element => {
               <TableColumnBodyStyled
                 key={indexHeader}
                 customAlign={
+                  getCellTokenValue({ headerValue, token: 'align' }) ||
                   headerValue?.config?.alignValue?.[props.device] ||
                   headerValue?.config?.alignValue ||
                   headerValue?.config?.alignHeader?.[props.device] ||
                   headerValue?.config?.alignHeader
                 }
                 customBackgroundColor={
-                  getBackgroundColorCellValue(headerValue) ?? props.value.backgroundColor
+                  getCellTokenValue({ headerValue, token: 'backgroundColor' }) ??
+                  props.value.backgroundColor
                 }
                 customWidth={headerValue?.config?.width}
                 data-testid={`${props.dataTestId}Row${props.indexRow}Content${indexHeader}`}

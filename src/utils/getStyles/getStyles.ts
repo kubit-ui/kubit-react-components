@@ -337,18 +337,30 @@ export const getPositionStyles = (prop?: PositionTypes): CSSProp => {
   if (!prop) {
     return css``;
   }
-  const { position, top, right, bottom, left, float, transform, z_index, transform_style } = prop;
+  const {
+    position,
+    top,
+    right,
+    bottom,
+    left,
+    float,
+    transform,
+    z_index,
+    transform_style,
+    translate,
+  } = prop;
 
   return css`
     ${position && `position: ${position};`}
     ${transform_style && `transform-style: ${transform_style};`}
     ${top && `top: ${top};`}
-              ${right && `right: ${right};`}
-              ${bottom && `bottom: ${bottom};`}
-              ${left && `left: ${left};`}
-              ${float && `float: ${float};`}
-              ${transform && `transform: ${transform};`}
-              ${z_index && `z-index: ${z_index};`}
+    ${right && `right: ${right};`}
+    ${bottom && `bottom: ${bottom};`}
+    ${left && `left: ${left};`}
+    ${float && `float: ${float};`}
+    ${transform && `transform: ${transform};`}
+    ${z_index && `z-index: ${z_index};`}
+    ${translate && `translate: ${translate};`}
   `;
 };
 

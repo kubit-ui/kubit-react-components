@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
+import { ICONS } from '@/assets';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
@@ -21,18 +23,27 @@ const meta = {
     figmaUrl:
       'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3922-29665&mode=dev',
   },
+  render: ({ ...args }) => <StoryWithHooks {...args} />,
 } satisfies Meta<typeof Story>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
+const StoryWithHooks = args => {
+  return (
+    <div style={{ width: '32px' }}>
+      <Story {...args} />
+    </div>
+  );
+};
+
 export const RadioButtongroup: Story = {
   args: {
     variant: Object.values(
       variantsObject[themeSelected].RadioButtonGroupVariantType || {}
     )[0] as string,
-    legend: 'Select your favorite fruit',
+    legend: 'Select your favorite fruit. Make sure your decision',
     name: 'Name',
     options: [
       { label: 'Strawberry', value: 'S' },
@@ -45,6 +56,12 @@ export const RadioButtongroup: Story = {
       { label: 'Kiwis', value: 'K', disabled: true },
       { label: 'Coconut', value: 'C' },
     ],
+    infoIcon: { icon: ICONS.ICON_PLACEHOLDER },
+    tooltip: {
+      closeIcon: { icon: ICONS.ICON_CLOSE },
+      title: { content: 'Tooltip title' },
+      content: { content: 'Tooltip content' },
+    },
     themeArgs: themesObject[themeSelected][STYLES_NAME.RADIO_BUTTON_GROUP],
   },
 };

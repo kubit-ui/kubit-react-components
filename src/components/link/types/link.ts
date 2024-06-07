@@ -7,7 +7,11 @@ import {
   IButtonStandAlone,
 } from '@/components/button';
 import { IElementOrIcon } from '@/components/elementOrIcon';
-import { TextComponentType, TextDecorationType } from '@/components/text/types';
+import {
+  TextComponentType,
+  TextDecorationType,
+  TextVariantStylesType,
+} from '@/components/text/types';
 import { GenericLinkType } from '@/provider/genericComponents';
 import { CustomTokenTypes } from '@/types';
 
@@ -34,8 +38,8 @@ export interface ILinkStandAlone extends LinkAriaAttributes {
   role?: string;
   state: LinkStateType;
   styles: LinkPropsStylesType;
+  textStyles?: TextVariantStylesType;
   target?: LinkTargetType;
-  textVariant?: string;
   url: string;
   weight?: number;
   alignCenter: boolean;
@@ -43,11 +47,15 @@ export interface ILinkStandAlone extends LinkAriaAttributes {
 }
 
 export interface ILink
-  extends Omit<ILinkStandAlone, 'styles' | 'component' | 'alignCenter' | 'state' | 'aria-disabled'>,
+  extends Omit<
+      ILinkStandAlone,
+      'styles' | 'component' | 'alignCenter' | 'state' | 'aria-disabled' | 'textStyles'
+    >,
     Omit<CustomTokenTypes<LinkStylesType<string>>, 'cts' | 'extraCt'> {
   alignCenter?: boolean;
   disabled?: boolean;
   variant: string;
+  textVariant?: string;
 }
 
 export interface ILinkAsButtonStandAlone extends Omit<IButtonStandAlone, 'showLoader'> {

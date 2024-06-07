@@ -76,6 +76,24 @@ describe('Carousel component', () => {
     expect(results).toHaveNoViolations();
   });
 
+  it('Carousel with no elements should not break', async () => {
+    const { container, getByTestId } = renderProvider(
+      <CarouselUnControlled {...mockProps} elements={[]} />
+    );
+
+    const carousel = getByTestId('dataTestIdCarouselWrapper');
+    expect(carousel).toBeInTheDocument();
+
+    const results = await axe(container);
+    // Disable style in line
+    expect(container).toHTMLValidate({
+      rules: {
+        'no-inline-style': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
+  });
+
   it('Carousel with numPages 1', async () => {
     const elements = [
       <div key="0" aria-label="1 of 10" aria-roledescription="slide" role="group">

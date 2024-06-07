@@ -5,52 +5,65 @@ import { COLORS, RADIUS, SPACINGS } from '../../foundations';
 import { LoaderVariantType } from '../loader';
 import { MediaButtonVariantType } from './variants';
 
+const commonButtonContainerProps = {
+  position: 'relative',
+  cursor: 'pointer',
+  border_radius: RADIUS.radius_100,
+  margin: SPACINGS.spacing_100,
+};
+
+const commonContainerProps = {
+  position: 'relative',
+  display: 'flex',
+  cursor: 'pointer',
+  border_radius: RADIUS.radius_100,
+};
+
+const commonDefaultProps = {
+  container: { ...commonContainerProps },
+  buttonContainer: { ...commonButtonContainerProps },
+  icon: {
+    color: COLORS.BRAND.color_brand_bg_50,
+    disabled: {
+      color: COLORS.ACCENT.color_accent_default_bg_100,
+    },
+  },
+  iconToTransition: {
+    color: COLORS.BRAND.color_brand_bg_50,
+  },
+  loader: {
+    variant: LoaderVariantType.PRIMARY_WHITE,
+  },
+};
+
 export const MEDIA_BUTTON_STYLES: MediaButtonStylesType<MediaButtonVariantType> = {
   [MediaButtonVariantType.DEFAULT]: {
     [MediaButtonSizeType.LARGE]: {
+      ...commonDefaultProps,
       container: {
-        position: 'relative',
-        display: 'flex',
-        cursor: 'pointer',
+        ...commonContainerProps,
         background_color: COLORS.NEUTRAL.color_neutral_bg_100,
-        padding: SPACINGS.spacing_100,
-        border_radius: RADIUS.radius_100,
-        width: SPACINGS.spacing_100,
-        height: SPACINGS.spacing_100,
-        min_width: SPACINGS.spacing_100,
-        min_height: SPACINGS.spacing_100,
       },
-      icon: {
-        color: COLORS.BRAND.color_brand_bg_50,
-      },
-      iconToTransition: {
-        color: COLORS.BRAND.color_brand_bg_50,
-      },
-      loader: {
-        variant: LoaderVariantType.PRIMARY_WHITE,
+      buttonContainer: {
+        ...commonButtonContainerProps,
+        width: SPACINGS.spacing_500,
+        height: SPACINGS.spacing_500,
+        min_width: SPACINGS.spacing_500,
+        min_height: SPACINGS.spacing_500,
       },
     },
     [MediaButtonSizeType.SMALL]: {
+      ...commonDefaultProps,
       container: {
-        position: 'relative',
-        display: 'flex',
-        cursor: 'pointer',
+        ...commonContainerProps,
         background_color: COLORS.NEUTRAL.color_neutral_bg_100,
-        padding: SPACINGS.spacing_100,
-        border_radius: RADIUS.radius_100,
-        width: SPACINGS.spacing_100,
-        height: SPACINGS.spacing_100,
-        min_width: SPACINGS.spacing_100,
-        min_height: SPACINGS.spacing_100,
       },
-      icon: {
-        color: COLORS.BRAND.color_brand_bg_50,
-      },
-      iconToTransition: {
-        color: COLORS.BRAND.color_brand_bg_50,
-      },
-      loader: {
-        variant: LoaderVariantType.PRIMARY_WHITE,
+      buttonContainer: {
+        ...commonButtonContainerProps,
+        width: SPACINGS.spacing_400,
+        height: SPACINGS.spacing_400,
+        min_width: SPACINGS.spacing_400,
+        min_height: SPACINGS.spacing_400,
       },
     },
   },

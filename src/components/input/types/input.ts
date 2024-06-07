@@ -251,7 +251,7 @@ export type IInformationAssociated = IInformationAssociatedDecoration & {
 };
 
 export type InputHelpMessageType = Omit<IText<string>, 'children'> & {
-  content?: string;
+  content?: React.ReactNode | string;
 };
 
 export interface IHelpMessage {

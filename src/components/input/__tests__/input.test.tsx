@@ -54,10 +54,6 @@ function backspace(element) {
   fireEvent.keyUp(element, sharedEventConfig);
 }
 
-global.structuredClone = jest.fn(val => {
-  return JSON.parse(JSON.stringify(val));
-});
-
 const writeText = jest.fn();
 
 Object.assign(navigator, {
@@ -295,7 +291,7 @@ describe('New Input Component', () => {
       informationAssociatedValue: undefined,
       informationAssociatedIcon: undefined,
     };
-    const { container, getByText, getByAltText } = renderProvider(
+    const { container, getByText, getByLabelText } = renderProvider(
       <Input
         {...commonProps}
         {...informationAssociatedConfig}
@@ -308,7 +304,7 @@ describe('New Input Component', () => {
     const errorMessage = getByText('ERROR');
     expect(errorMessage).toBeInTheDocument();
 
-    const errorIcon = getByAltText('Error alt text');
+    const errorIcon = getByLabelText('Error alt text');
     expect(errorIcon).toBeInTheDocument();
     // A11Y and w3c validator
     const results = await axe(container);

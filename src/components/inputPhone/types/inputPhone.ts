@@ -26,7 +26,8 @@ export type InputPhonePrefixType = Omit<IText<string>, 'children'> & {
 export interface IInputPhoneStandAlone extends Omit<IInputStandAlone, propsToOmitInputBasic> {
   styles: InputPhoneStylesProps;
   flag: InputPhoneFlagType;
-  prefix: InputPhonePrefixType;
+  prefix?: InputPhonePrefixType;
+  prefixNode?: React.ReactNode;
   inputVariant?: string;
 }
 

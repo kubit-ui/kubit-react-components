@@ -18,10 +18,6 @@ const mockProps = {
   value: 'password',
 };
 
-global.structuredClone = jest.fn(val => {
-  return JSON.parse(JSON.stringify(val));
-});
-
 describe('New Input Password Component', () => {
   it('Should render InputPassword component', async () => {
     const { container, getByTestId } = renderProvider(<InputPassword {...mockProps} />);

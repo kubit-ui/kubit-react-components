@@ -26,6 +26,17 @@ const DropdownSelectedUnControlledComponent = (
 
   const buttonOrLinkRef = React.useRef<HTMLButtonElement>(null);
 
+  // Close dropdown when the document hides
+  React.useEffect(() => {
+    const handleVisibilityChange = e => {
+      if (document.hidden) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
+
   const handleOnClickButton: React.MouseEventHandler<HTMLButtonElement | HTMLLinkElement> = () => {
     props.onButtonClick?.(!open);
     setOpen(!open);

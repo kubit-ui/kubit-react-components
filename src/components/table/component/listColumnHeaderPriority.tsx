@@ -88,7 +88,7 @@ const ListColumnHeaderValue = (props: IListColumnHeaderValue): JSX.Element => {
     rowHeader,
     getExpandedAria,
     getValue,
-    getBackgroundColorCellValue,
+    getCellTokenValue,
     handleShowExpandedContent,
     hasExpandedContentRow,
     showExpandedContent,
@@ -123,13 +123,15 @@ const ListColumnHeaderValue = (props: IListColumnHeaderValue): JSX.Element => {
         <ListItemHeaderPriorityStyled
           borderPosition={props.value.rowBorderPosition}
           customAlign={
+            getCellTokenValue({ headerValue: props.header, token: 'align' }) ||
             props.header?.config?.alignValue?.[props.device] ||
             props.header?.config?.alignValue ||
             props.header?.config?.alignHeader?.[props.device] ||
             props.header?.config?.alignHeader
           }
           customBackgroundColor={
-            getBackgroundColorCellValue(props.header) ?? props.value.backgroundColor
+            getCellTokenValue({ headerValue: props.header, token: 'backgroundColor' }) ??
+            props.value.backgroundColor
           }
           customWidth={props.header?.config?.width}
           flexWidth={props.header?.config?.flexWidth}

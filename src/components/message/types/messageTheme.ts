@@ -11,6 +11,7 @@ export type MessagePropsThemeType = {
   infoIcon?: IconTypes;
   closeIcon?: IconTypes;
   closeIconContainer?: CommonStyleType;
+  buttonSectionContainer?: CommonStyleType;
   actionButtonContainer?: CommonStyleType;
   actionButton?: {
     size?: string;

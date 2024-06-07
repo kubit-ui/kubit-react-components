@@ -20,10 +20,6 @@ const mockProps = {
   value: 'value',
 };
 
-global.structuredClone = jest.fn(val => {
-  return JSON.parse(JSON.stringify(val));
-});
-
 const mockStyles = {
   [InputState.EMPTY]: {},
 };

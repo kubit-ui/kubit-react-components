@@ -5,6 +5,7 @@ import {
   BORDERS,
   COLORS,
   FONT_WEIGHT,
+  PARAGRAPH,
   RADIUS,
   SIZES,
   SPACINGS,
@@ -34,6 +35,12 @@ const commonVariantsTokens = {
     width: SPACINGS.spacing_400,
     border_style: 'solid',
     border_width: BORDERS.border_50,
+  },
+  infoIconContainer: {
+    display: 'inline-flex',
+    //calc to position the icon in the middle of the line height is: (line_height - icon_height) / 2
+    translate: `0rem calc((${PARAGRAPH.LARGE.DESKTOP.line_height} - ${SIZES.size_150})/2)`,
+    margin_left: SPACINGS.spacing_100,
   },
   label: {
     font_variant: TextVariantType.PARAGRAPH_SMALL_EXTENDED,

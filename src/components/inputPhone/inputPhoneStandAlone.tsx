@@ -41,31 +41,37 @@ export const InputPhoneStandAloneComponent = (
   const flagSize = props.flag.size ?? props.styles?.[props.state]?.affixIconHighlighted?.size;
   const renderAffix = () => (
     <AffixStyled ref={measuredRef} id={extraAriaLabelledBy} styles={props.styles?.[props.state]}>
-      <AffixIconWrapperStyled styles={props.styles?.[props.state]}>
-        {props.flag.type && flagVariant && flagSize ? (
-          <IconHighlighted
-            backgroundColor={props.styles?.[props.state]?.affixIconHighlighted?.backgroundColor}
-            size={
-              props.styles?.[props.state]?.affixIconHighlighted?.size as IconHighlightedSizeType
-            }
-            variant={props.styles?.[props.state]?.affixIconHighlighted?.variant}
-            {...props.flag}
-          />
-        ) : (
-          <ElementOrIcon
-            height={props.styles?.[props.state]?.affixIcon?.height}
-            width={props.styles?.[props.state]?.affixIcon?.width}
-            {...props.flag}
-          />
-        )}
-      </AffixIconWrapperStyled>
-      <Text
-        customTypography={props.styles?.[props.state]?.affix}
-        dataTestId={`${props.dataTestId}Suffix`}
-        {...props.prefix}
-      >
-        {props.prefix.content}
-      </Text>
+      {props.prefixNode ? (
+        props.prefixNode
+      ) : (
+        <>
+          <AffixIconWrapperStyled styles={props.styles?.[props.state]}>
+            {props.flag.type && flagVariant && flagSize ? (
+              <IconHighlighted
+                backgroundColor={props.styles?.[props.state]?.affixIconHighlighted?.backgroundColor}
+                size={
+                  props.styles?.[props.state]?.affixIconHighlighted?.size as IconHighlightedSizeType
+                }
+                variant={props.styles?.[props.state]?.affixIconHighlighted?.variant}
+                {...props.flag}
+              />
+            ) : (
+              <ElementOrIcon
+                height={props.styles?.[props.state]?.affixIcon?.height}
+                width={props.styles?.[props.state]?.affixIcon?.width}
+                {...props.flag}
+              />
+            )}
+          </AffixIconWrapperStyled>
+          <Text
+            customTypography={props.styles?.[props.state]?.affix}
+            dataTestId={`${props.dataTestId}Suffix`}
+            {...props.prefix}
+          >
+            {props.prefix?.content}
+          </Text>
+        </>
+      )}
     </AffixStyled>
   );
 

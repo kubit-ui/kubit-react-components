@@ -37,7 +37,7 @@ export const LayoutStandAlone = ({
           </GridItem>
         </Grid>
       )}
-      <Grid addPaddingForLayout config={gridConfiguration}>
+      <Grid addPaddingForLayout config={gridConfiguration} data-testid={`${dataTestId}Main`}>
         <GridItem
           as={LayoutRoleType.main}
           desktop={asideContent ? main?.[DeviceBreakpointsType.DESKTOP] : main?.DESKTOP_FULL}
@@ -49,6 +49,7 @@ export const LayoutStandAlone = ({
         {asideContent && (
           <GridItem
             as={LayoutRoleType.aside}
+            data-testid={`${dataTestId}Aside`}
             desktop={aside?.[DeviceBreakpointsType.DESKTOP]}
             mobile={aside?.[DeviceBreakpointsType.MOBILE]}
             tablet={aside?.[DeviceBreakpointsType.TABLET]}
@@ -58,7 +59,7 @@ export const LayoutStandAlone = ({
         )}
       </Grid>
       {footerContent && footer && (
-        <Grid addPaddingForLayout config={gridConfiguration}>
+        <Grid addPaddingForLayout config={gridConfiguration} data-testid={`${dataTestId}Footer`}>
           <GridItem
             as={LayoutRoleType.footer}
             desktop={footer[DeviceBreakpointsType.DESKTOP]}

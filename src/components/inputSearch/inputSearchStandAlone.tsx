@@ -43,7 +43,7 @@ export const InputSearchStandAloneComponent = (
           aria-controls={props.open ? getAriaControls(props.optionList, ariaControls) : undefined}
           aria-expanded={props.open}
           aria-haspopup={PopoverComponentType.DIALOG}
-          autocomplete={AUTOCOMPLETE_TYPE.OFF}
+          autocomplete={props.autocomplete || AUTOCOMPLETE_TYPE.OFF}
           icon={{
             ...props.icon,
             onClick: props.icon?.onClick,

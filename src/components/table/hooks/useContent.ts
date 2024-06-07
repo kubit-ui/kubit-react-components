@@ -23,7 +23,13 @@ interface IUseContentResponse {
   dividerValue: () => null | TableDividerType | unknown;
   getExpandedAria: () => string | undefined;
   getValue: (headerValue: ITableHeader) => string | JSX.Element | DividerContent;
-  getBackgroundColorCellValue: (headerValue: ITableHeader) => string | undefined;
+  getCellTokenValue: ({
+    headerValue,
+    token,
+  }: {
+    headerValue: ITableHeader;
+    token: string;
+  }) => string | undefined;
   handleShowExpandedContent: (value: boolean) => void;
   hasExpandedContentRow: boolean;
   hasFooter: boolean;
@@ -91,14 +97,20 @@ export const useContent = (props: IUseContent): IUseContentResponse => {
     return (cellValue as ValueConfigType).value as string | JSX.Element;
   };
 
-  const getBackgroundColorCellValue = (headerValue: ITableHeader): string | undefined => {
+  const getCellTokenValue = ({
+    headerValue,
+    token,
+  }: {
+    headerValue: ITableHeader;
+    token: string;
+  }): string | undefined => {
     const cellValue = props.value[headerValue.id]
       ? (props.value[headerValue.id] as string | JSX.Element | ValueConfigType)
       : '-';
     if (React.isValidElement(cellValue) || typeof cellValue === 'string') {
       return;
     }
-    return (cellValue as ValueConfigType).backgroundColor;
+    return (cellValue as ValueConfigType)[token];
   };
 
   const hasExpandedContentRow = !!Object.getOwnPropertyDescriptor(props.value, 'expandedContent');
@@ -111,7 +123,7 @@ export const useContent = (props: IUseContent): IUseContentResponse => {
     dividerValue,
     getExpandedAria,
     getValue,
-    getBackgroundColorCellValue,
+    getCellTokenValue,
     handleShowExpandedContent,
     hasExpandedContentRow,
     hasFooter,

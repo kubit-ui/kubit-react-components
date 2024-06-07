@@ -12,7 +12,7 @@ export const buildAriaLabelledBy = ({
 }: {
   labelId: string;
   extraAriaLabelledBy?: string;
-  helpMessage?: string;
+  helpMessage?: React.ReactNode;
   helpMessageId?: string;
   errorMessage?: string;
   errorMessageId: string;

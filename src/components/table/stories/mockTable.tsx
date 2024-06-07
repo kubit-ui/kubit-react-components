@@ -566,7 +566,7 @@ export const mockCustomizableTable = {
     },
     {
       date: '18 DIC',
-      name: { value: 'Dwight', backgroundColor: 'green' },
+      name: { value: 'Dwight', backgroundColor: 'green', align: 'right' },
       surname: 'Malone',
       routingNumber: '123456789',
       accountNumber: '****999999',

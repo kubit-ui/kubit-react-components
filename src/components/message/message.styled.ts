@@ -11,11 +11,7 @@ export const MessageStyled = styled.div<{
   ${({ styles }) => getStyles(styles.container)};
 `;
 
-export const MessageHeaderStyled = styled.div`
-  width: 100%;
-`;
-
-export const MessageHeaderTitleStyled = styled.div<{
+export const MessageHeaderStyled = styled.div<{
   styles: MessagePropsThemeType;
   isLargeMessage?: boolean;
   withIcon?: boolean;
@@ -52,11 +48,10 @@ export const ExtraActioButtonWrapperStyled = styled.div<{
   ${({ styles }) => getStyles(styles.extraActionButtonContainer)};
 `;
 
-export const ButtonSectionStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: flex-end;
+export const ButtonSectionStyled = styled.div<{
+  styles: MessagePropsThemeType;
+}>`
+  ${({ styles }) => getStyles(styles.buttonSectionContainer)};
 `;
 
 export const ActioButtonWrapperStyled = styled.div<{

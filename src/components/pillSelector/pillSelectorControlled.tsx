@@ -34,7 +34,7 @@ const PillSelectorControlledComponent = React.forwardRef(
 
         thumb.style.width = `${selectedPill?.clientWidth}px`;
         thumb.style.height = `${selectedPill?.getBoundingClientRect().height}px`;
-        thumb.style.left = `calc(${selectedPill?.getBoundingClientRect().left}px - ${window?.getComputedStyle(selectedPill)?.paddingLeft})`;
+        thumb.style.left = `${selectedPill.offsetLeft}px`;
       }
     };
 

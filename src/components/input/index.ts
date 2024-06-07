@@ -5,3 +5,5 @@ export { InputControlled } from './inputControlled';
 export { InputUnControlled as Input } from './inputUnControlled';
 
 export * from './input.styled';
+
+export * from './utils';

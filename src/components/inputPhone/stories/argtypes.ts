@@ -62,5 +62,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    prefixNode: {
+      description:
+        'Node to show into prefix container. If this prop is passed, the prefix prop will be ignored',
+      control: { type: 'string' },
+      type: { name: 'string' },
+      table: {
+        type: {
+          summary: 'ReactNode',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
   };
 };

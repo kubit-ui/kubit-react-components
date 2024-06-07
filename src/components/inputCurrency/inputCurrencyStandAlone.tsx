@@ -71,50 +71,65 @@ export const InputCurrencyStandAloneComponent = (
   return (
     <Input
       ref={ref}
-      bottomExtraStyles={getExtraStyles(
-        POSITIONS.BOTTOM,
-        props.currencyPosition,
-        width,
-        props.currencyNameContainerPosition === InputContentPosition.OUT ||
-          props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT,
-        props.helpMessagePosition ?? props.styles?.[props.state]?.helpMessage?.position
-      )}
-      centerExtraStyles={getExtraStyles(
-        POSITIONS.CENTER,
-        props.currencyPosition,
-        width,
-        props.currencyNameContainerPosition === InputContentPosition.OUT ||
-          props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT
-      )}
+      bottomExtraStyles={
+        props.styles?.[props.state]?.bottomExtraStyles ??
+        getExtraStyles(
+          POSITIONS.BOTTOM,
+          props.currencyPosition,
+          width,
+          props.currencyNameContainerPosition === InputContentPosition.OUT ||
+            props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT,
+          props.helpMessagePosition ?? props.styles?.[props.state]?.helpMessage?.position
+        )
+      }
+      centerExtraStyles={
+        props.styles?.[props.state]?.centerExtraStyles ??
+        getExtraStyles(
+          POSITIONS.CENTER,
+          props.currencyPosition,
+          width,
+          props.currencyNameContainerPosition === InputContentPosition.OUT ||
+            props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT
+        )
+      }
       extraAriaLabelledBy={extraAriaLabelledBy}
       id={inputId}
       leftContent={props.currencyPosition === POSITIONS.LEFT ? renderAffix() : undefined}
-      leftExtraStyles={getExtraStyles(
-        POSITIONS.LEFT,
-        props.currencyPosition,
-        width,
-        props.currencyNameContainerPosition === InputContentPosition.OUT ||
-          props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT,
-        props.helpMessagePosition ?? props.styles?.[props.state]?.helpMessage?.position
-      )}
+      leftExtraStyles={
+        props.styles?.[props.state]?.leftExtraStyles ??
+        getExtraStyles(
+          POSITIONS.LEFT,
+          props.currencyPosition,
+          width,
+          props.currencyNameContainerPosition === InputContentPosition.OUT ||
+            props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT,
+          props.helpMessagePosition ?? props.styles?.[props.state]?.helpMessage?.position
+        )
+      }
       overrideStyles={props.styles}
       rightContent={props.currencyPosition === POSITIONS.RIGHT ? renderAffix() : undefined}
-      rightExtraStyles={getExtraStyles(
-        POSITIONS.RIGHT,
-        props.currencyPosition,
-        width,
-        props.currencyNameContainerPosition === InputContentPosition.OUT ||
-          props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT,
-        props.helpMessagePosition ?? props.styles?.[props.state]?.helpMessage?.position
-      )}
-      topExtraStyles={getExtraStyles(
-        POSITIONS.TOP,
-        props.currencyPosition,
-        width,
-        props.currencyNameContainerPosition === InputContentPosition.OUT ||
-          props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT,
-        props.helpMessagePosition ?? props.styles?.[props.state]?.helpMessage?.position
-      )}
+      rightExtraStyles={
+        props.styles?.[props.state]?.rightExtraStyles ??
+        getExtraStyles(
+          POSITIONS.RIGHT,
+          props.currencyPosition,
+          width,
+          props.currencyNameContainerPosition === InputContentPosition.OUT ||
+            props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT,
+          props.helpMessagePosition ?? props.styles?.[props.state]?.helpMessage?.position
+        )
+      }
+      topExtraStyles={
+        props.styles?.[props.state]?.topExtraStyles ??
+        getExtraStyles(
+          POSITIONS.TOP,
+          props.currencyPosition,
+          width,
+          props.currencyNameContainerPosition === InputContentPosition.OUT ||
+            props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT,
+          props.helpMessagePosition ?? props.styles?.[props.state]?.helpMessage?.position
+        )
+      }
       truncate={true}
       variant={props.inputVariant ?? props.styles?.[props.state]?.inputVariant}
       {...props}

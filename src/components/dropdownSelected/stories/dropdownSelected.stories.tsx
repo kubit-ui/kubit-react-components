@@ -49,6 +49,7 @@ const commonArgs: IDropdownSelectedUncontrolled = {
         value: 'option2',
       },
     ],
+    type: ListOptionsType.SELECTION,
   },
   closePopoverOnScroll: true,
 };
