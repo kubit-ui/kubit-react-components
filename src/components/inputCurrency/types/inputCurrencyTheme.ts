@@ -1,3 +1,5 @@
+import { CSSProp } from 'styled-components';
+
 import {
   InputBasicStateProps,
   InputContentPosition,
@@ -12,6 +14,11 @@ export type InputCurrencyStateProps = InputBasicStateProps & {
   currencyNameContainerPosition?: InputContentPosition;
   currencyName?: TypographyTypes;
   inputVariant?: string;
+  leftExtraStyles?: CSSProp;
+  centerExtraStyles?: CSSProp;
+  rightExtraStyles?: CSSProp;
+  topExtraStyles?: CSSProp;
+  bottomExtraStyles?: CSSProp;
 };
 
 export type InputCurrencyStylesProps = {
