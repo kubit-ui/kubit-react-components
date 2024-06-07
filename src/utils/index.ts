@@ -38,3 +38,4 @@ export * from './date/';
 export * from './buildPropsDecorativeElement/buildPropsDecorativeElement';
 export * from './syntheticComponents';
 export * from './aria/aria';
+export * from './structuredClone';
