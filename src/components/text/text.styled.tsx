@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { DefaultTheme, FlattenInterpolation, ThemeProps, css } from 'styled-components';
 
 import { getTypographyStyles } from '@/utils/getStyles/getStyles';
 
@@ -37,7 +37,9 @@ const applyPropsTextStyles = (props: TextPropsStylesType) => css`
   `}
 `;
 
-const applyVariantStyles = (textStyles?: TextThemeStylesType) => {
+export const applyVariantStyles = (
+  textStyles?: TextThemeStylesType
+): FlattenInterpolation<ThemeProps<DefaultTheme>> => {
   return css`
     font-family: ${textStyles?.font_family};
     font-weight: ${textStyles?.font_weight};
