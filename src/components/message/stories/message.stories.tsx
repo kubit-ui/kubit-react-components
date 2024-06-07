@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
+import { ICONS } from '@/assets';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
@@ -43,7 +44,19 @@ export const Message: Story = {
       ),
     },
     title: { content: 'Title' },
-    link: { content: 'Link', variant: 'SECONDARY', url: '#' },
+    infoIcon: { icon: ICONS.ICON_GHOST, altText: 'info' },
+    closeIcon: { icon: ICONS.ICON_CLOSE, altText: 'close' },
+    actionButton: {
+      content: 'Action',
+      variant: Object.values(variantsObject[themeSelected].ButtonVariantType || {})[0] as string,
+      size: Object.values(variantsObject[themeSelected].ButtonSizeType || {})[2] as string,
+    },
+    tag: {
+      variant: Object.values(variantsObject[themeSelected].TagVariantType || {})[0] as string,
+      option: Object.values(variantsObject[themeSelected].TagOptionType || {})[0] as string,
+      status: Object.values(variantsObject[themeSelected].TagStatusType || {})[0] as string,
+      content: 'Tag content',
+    },
     themeArgs: themesObject[themeSelected][STYLES_NAME.MESSAGE],
   },
 };

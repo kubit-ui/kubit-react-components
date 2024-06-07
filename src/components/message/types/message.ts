@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import * as React from 'react';
 
 import { IButton } from '@/components/button';
 import { IElementOrIcon } from '@/components/elementOrIcon';
@@ -20,7 +20,7 @@ export type MessageExtraActionButtonType = Omit<IButton, 'children'> & {
 };
 
 export type MessageContentType = Omit<IText<string>, 'children'> & {
-  content: string | ReactNode;
+  content: React.ReactNode;
 };
 
 export type MessageTitleType = Omit<IText<string>, 'children'> & {

@@ -17,7 +17,6 @@ import {
   LinkContainerStyled,
   MessageContentStyled,
   MessageHeaderStyled,
-  MessageHeaderTitleStyled,
   MessageStyled,
   MessageTextStyled,
 } from './message.styled';
@@ -60,11 +59,9 @@ const MessageStandAloneComponent = (
     );
 
   const buildTag = () => (
-    <div>
-      <Tag option={''} status={''} variant={''} {...props.tag}>
-        {props.tag?.content}
-      </Tag>
-    </div>
+    <Tag option={''} status={''} variant={''} {...props.tag}>
+      {props.tag?.content}
+    </Tag>
   );
 
   const buildExtraActionButton = () =>
@@ -89,23 +86,23 @@ const MessageStandAloneComponent = (
     );
   };
 
-  return props.open ? (
-    <MessageStyled
-      ref={ref}
-      aria-live={ariaLive}
-      data-testid={`${props.dataTestId}Message`}
-      id={props.id}
-      role={props.role}
-      styles={props.styles}
-    >
-      <MessageHeaderStyled>
-        <MessageHeaderTitleStyled
-          isLargeMessage={isLargeMessage}
+  return (
+    <>
+      {props.open && (
+        <MessageStyled
+          ref={ref}
+          aria-live={ariaLive}
+          data-testid={`${props.dataTestId}Message`}
+          id={props.id}
+          role={props.role}
           styles={props.styles}
-          withIcon={!!props.closeIcon}
         >
           {buildIconOrIllustration()}
-          <div>
+          <MessageHeaderStyled
+            isLargeMessage={isLargeMessage}
+            styles={props.styles}
+            withIcon={!!props.closeIcon}
+          >
             {props.title && (
               <MessageTextStyled
                 aria-errormessage={props.ariaMessageId}
@@ -113,7 +110,7 @@ const MessageStandAloneComponent = (
                 styles={props.styles.closeIcon}
               >
                 <Text
-                  component={TextComponentType.H2}
+                  component={TextComponentType.PARAGRAPH}
                   customTypography={props.styles.title}
                   dataTestId={`${props.dataTestId}Title`}
                   {...props.title}
@@ -126,31 +123,31 @@ const MessageStandAloneComponent = (
             <MessageContentStyled isLargeMessage={isLargeMessage} styles={props.styles}>
               {buildContent()}
             </MessageContentStyled>
-          </div>
-        </MessageHeaderTitleStyled>
-      </MessageHeaderStyled>
-      <ButtonSectionStyled>
-        {buildExtraActionButton()}
-        {buildActionButton()}
-        {props.closeIcon?.onClick && (
-          <CloseButtonSectionStyled styles={props.styles}>
-            <ElementOrIcon customIconStyles={props.styles.closeIcon} {...props.closeIcon} />
-          </CloseButtonSectionStyled>
-        )}
-      </ButtonSectionStyled>
-      {props.link?.content && (
-        <LinkContainerStyled styles={props.styles}>
-          <Link
-            dataTestId={`${props.dataTestId}Link`}
-            decoration={TextDecorationType.UNDERLINE}
-            {...props.link}
-          >
-            {props.link.content}
-          </Link>
-        </LinkContainerStyled>
+            <ButtonSectionStyled styles={props.styles}>
+              {buildExtraActionButton()}
+              {buildActionButton()}
+              {props.closeIcon?.onClick && (
+                <CloseButtonSectionStyled styles={props.styles}>
+                  <ElementOrIcon customIconStyles={props.styles.closeIcon} {...props.closeIcon} />
+                </CloseButtonSectionStyled>
+              )}
+            </ButtonSectionStyled>
+            {props.link?.content && (
+              <LinkContainerStyled styles={props.styles}>
+                <Link
+                  dataTestId={`${props.dataTestId}Link`}
+                  decoration={TextDecorationType.UNDERLINE}
+                  {...props.link}
+                >
+                  {props.link.content}
+                </Link>
+              </LinkContainerStyled>
+            )}
+          </MessageHeaderStyled>
+        </MessageStyled>
       )}
-    </MessageStyled>
-  ) : null;
+    </>
+  );
 };
 
 export const MessageStandAlone = React.forwardRef(MessageStandAloneComponent);

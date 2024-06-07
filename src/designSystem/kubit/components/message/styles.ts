@@ -8,18 +8,19 @@ import { MessageVariantType } from './variants';
 const commonProps = {
   container: {
     display: 'flex',
-    flex_direction: 'column',
+    flex_direction: 'row',
     align_items: 'flex-start',
-    justify_content: 'space-between',
+    justify_content: 'flex-start',
     position: 'relative',
     border_style: 'solid',
     border_radius: RADIUS.radius_00,
     border_width: BORDERS.border_50,
     padding: SPACINGS.spacing_300,
+    gap: SPACINGS.spacing_150,
   },
   headerContainer: {
     display: 'flex',
-    flex_direction: 'row',
+    flex_direction: 'column',
     align_items: 'flex-start',
     gap: SPACINGS.spacing_300,
     margin_right: SPACINGS.spacing_450,
@@ -56,9 +57,15 @@ const commonProps = {
   },
   closeIconContainer: {
     gap: SPACINGS.spacing_150,
-    margin_left: SPACINGS.spacing_300,
+    right: SPACINGS.spacing_300,
     position: 'absolute',
     top: SPACINGS.spacing_300,
+  },
+  buttonSectionContainer: {
+    display: 'flex',
+    flex_direction: 'column',
+    width: '100%',
+    align_items: 'flex-start',
   },
 };
 
