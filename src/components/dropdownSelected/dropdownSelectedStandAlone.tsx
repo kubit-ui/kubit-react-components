@@ -71,9 +71,9 @@ const DropdownSelectedStandAloneComponent = (
       ref={ref}
       data-testid={props.dataTestIdComponent}
       styles={props.styles}
-      onBlur={event => props.onFocus?.(event)}
+      onBlur={props.onBlur}
       onFocus={props.onFocus}
-      onKeyDown={event => props.onKeyDown?.(event)}
+      onKeyDown={props.onKeyDown}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
     >

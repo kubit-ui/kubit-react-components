@@ -182,4 +182,26 @@ describe('DropdownSelected component', () => {
     expect(handleMouseEnter).toHaveBeenCalledTimes(1);
     expect(handleMouseLeave).toHaveBeenCalledTimes(1);
   });
+
+  it('closes the dropdown when the visibility changes', async () => {
+    // Mock the document.hidden property
+    Object.defineProperty(document, 'hidden', {
+      configurable: true,
+      get: () => true,
+    });
+
+    const { getAllByRole } = renderProvider(<DropdownSelected {...mockProps} defaultOpen={true} />);
+
+    const option1 = getAllByRole('option')[0];
+    option1.focus();
+
+    expect(option1).toBeInTheDocument();
+
+    await act(async () => {
+      // Simulate the visibilitychange event
+      fireEvent(document, new Event('visibilitychange'));
+    });
+
+    expect(option1).not.toBeInTheDocument();
+  });
 });
