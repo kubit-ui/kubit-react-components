@@ -28,7 +28,7 @@ const LinkStandAloneComponent = (
       isDisabled={props.state === LinkStateType.DISABLED}
       linkStyles={props.styles}
       target={props.target}
-      variant={props.textVariant}
+      textStyles={props.textStyles}
       weight={props.weight}
       //We have to make this because even it was disabled, you could access to onClick by arrows
       onClick={props.state !== LinkStateType.DISABLED ? props.onClick : undefined}

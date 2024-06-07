@@ -1,9 +1,9 @@
 /* eslint-disable complexity */
 import * as React from 'react';
 
-import { TextDecorationType } from '@/components/text/types';
+import { TextDecorationType, TextVariantStylesType } from '@/components/text/types';
 import { STYLES_NAME } from '@/constants';
-import { States, useManageState } from '@/hooks';
+import { States, useManageState, useStylesV2 } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 import { useGenericComponents } from '@/provider/genericComponents/genericComponentsProvider';
@@ -26,7 +26,7 @@ const LinkComponent = React.forwardRef(
       alignCenter = false,
       disabled = false,
       color: colorLinkProp,
-      textVariant: textVariantProp,
+      textVariant,
       role: roleProp,
       variant,
       ctv,
@@ -38,11 +38,15 @@ const LinkComponent = React.forwardRef(
     const { role } = disabledLink(disabled, roleProp);
     const ariaDisabled = disabled || undefined;
     const actionStyles = useStyles<LinkPropsStylesType>(STYLES_NAME.LINK, action, ctv?.[action]);
+    const textStyles = useStylesV2<TextVariantStylesType>({
+      styleName: STYLES_NAME.TEXT,
+      variantName: textVariant,
+      isOptional: true,
+    });
     const styles = (variant && actionStyles?.[variant]) || {};
 
     const isInline = action === LinkActionType.INLINE;
     const textDecoration = isInline ? TextDecorationType.UNDERLINE : decoration;
-    const textVariant = textVariantProp ?? styles.container?.font_variant;
     const weight = props.weight || styles.container?.font_weight;
     const color = colorLinkProp || styles.font_color || styles.container?.color;
 
@@ -65,7 +69,7 @@ const LinkComponent = React.forwardRef(
         role={role}
         state={state as unknown as LinkStateType}
         styles={styles}
-        textVariant={textVariant}
+        textStyles={textStyles}
         weight={weight}
       />
     );
