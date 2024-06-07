@@ -18,10 +18,6 @@ const mockProps = {
   currencyPosition: POSITIONS.LEFT,
 };
 
-global.structuredClone = jest.fn(val => {
-  return JSON.parse(JSON.stringify(val));
-});
-
 const mockStyles = {
   [InputState.EMPTY]: {
     currencyNameContainerPosition: InputContentPosition.OUT,

@@ -38,10 +38,6 @@ const mockProps = {
 
 window.matchMedia = windowMatchMedia();
 
-global.structuredClone = jest.fn(val => {
-  return JSON.parse(JSON.stringify(val));
-});
-
 describe('New Input Dropdown Component', () => {
   it('Should render InputDropdown component', async () => {
     const { container } = renderProvider(<InputDropdown {...mockProps} open={true} />);

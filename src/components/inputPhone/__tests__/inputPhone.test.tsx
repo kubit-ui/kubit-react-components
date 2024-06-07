@@ -21,17 +21,13 @@ const mockProps: IInputPhone = {
   onChange: jest.fn(),
 };
 
-global.structuredClone = jest.fn(val => {
-  return JSON.parse(JSON.stringify(val));
-});
-
 describe('New Input Phone Component', () => {
   it('Should display the component correctly', async () => {
     const { container, getByText, getByTestId } = renderProvider(
       <InputPhone {...mockProps} mask={'###-###-###'} />
     );
     const phoneInput = getByTestId('IPInputInput');
-    const prefixBox = getByText(mockProps.prefix.content);
+    const prefixBox = getByText(mockProps.prefix?.content as string);
 
     expect(phoneInput).toBeInTheDocument();
     expect(prefixBox).toBeInTheDocument();
@@ -42,7 +38,9 @@ describe('New Input Phone Component', () => {
   });
 
   it('Should display the component correctly without mask', async () => {
-    const { container, getByTestId } = renderProvider(<InputPhone {...mockProps} />);
+    const { container, getByTestId } = renderProvider(
+      <InputPhone {...mockProps} prefixNode="prefixNode" />
+    );
     const phoneInput = getByTestId('IPInputInput');
 
     expect(phoneInput).toBeInTheDocument();
@@ -62,7 +60,7 @@ describe('New Input Phone Component', () => {
       />
     );
     const phoneInput = getByTestId('IPInputInput');
-    const prefixBox = getByText(mockProps.prefix.content);
+    const prefixBox = getByText(mockProps.prefix?.content as string);
 
     expect(phoneInput).toBeInTheDocument();
     expect(prefixBox).toBeInTheDocument();

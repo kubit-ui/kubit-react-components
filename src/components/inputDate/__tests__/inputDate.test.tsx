@@ -40,10 +40,6 @@ const mockProps = {
   variant: 'DEFAULT',
 };
 
-global.structuredClone = jest.fn(val => {
-  return JSON.parse(JSON.stringify(val));
-});
-
 describe('New Input Date Component', () => {
   test('Should render InputDate component', () => {
     renderProvider(<InputDate {...mockProps} defaultDate={undefined} maxDate={undefined} />);
