@@ -1,3 +1,5 @@
+import { structuredClone } from '@/utils';
+
 import { IOptionGroup, InputSearchFilterOptionReturnValue } from '../types';
 
 // eslint-disable-next-line complexity

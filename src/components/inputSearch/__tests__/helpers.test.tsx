@@ -15,10 +15,6 @@ const options = [
   },
 ];
 
-global.structuredClone = jest.fn(val => {
-  return JSON.parse(JSON.stringify(val));
-});
-
 describe('Input Search Helpers', () => {
   test('Should filter options with value', async () => {
     const filteredOptions = [
