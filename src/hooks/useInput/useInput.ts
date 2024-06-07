@@ -131,7 +131,7 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
 
   const truncateFloatValue = value => {
     if (value === '') {
-      return;
+      return value;
     }
     const hasMark = value.match(/[^a-zA-Z0-9]/g);
 
@@ -158,7 +158,7 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
             props.maxDecimals,
             props.locale || props.formatNumber?.locale
           )
-        : limitedValue;
+        : String(limitedValue);
 
     const valueTruncated = truncateFloatValue(truncateValue);
 
@@ -172,7 +172,7 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
       // remove existing thousand separator
       const newValue = removeThousandSeparator(value, props.locale || format.locale);
       // format value
-      const formattedValue = formatNumber(Number(newValue), format);
+      const formattedValue = formatNumber(Number(newValue), format, props.locale || format.locale);
       return formattedValue;
     }
     return value;

@@ -108,7 +108,7 @@ const TooltipUnControlledComponent = React.forwardRef(
         showTooltip();
         return;
       }
-      if (!tooltipAsModalValue && !tooltipRef.current?.contains(event.target as Node)) {
+      if (!tooltipRef.current?.contains(event.target as Node)) {
         hideTooltip();
       }
     };
