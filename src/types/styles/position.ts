@@ -7,5 +7,6 @@ export type PositionTypes = {
   float?: string;
   transform?: string;
   transform_style?: string;
+  translate?: string;
   z_index?: number;
 };
