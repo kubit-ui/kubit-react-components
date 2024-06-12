@@ -1,4 +1,4 @@
-import { CATEGORY_CONTROL } from '@/constants';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl';
 import { IThemeObjectVariants } from '@/designSystem/themesObject';
 import { ArgTypesReturn, ROLES } from '@/types';
 import { AriaLiveOptionType } from '@/types/ariaLiveOption';

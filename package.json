@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/react-components",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
   "author": {
     "name": "Kubit",
@@ -28,11 +28,11 @@
     "package.json",
     "README.md",
     "LICENSE.md",
-    "!dist/**/assets",
+    "!dist/cjs/assets",
+    "!dist/esm/assets",
     "!dist/**/tests",
     "!dist/**/**/*.test.*",
     "!dist/**/storybook",
-    "!dist/**/util",
     "!dist/**/**/stories"
   ],
   "keywords": [

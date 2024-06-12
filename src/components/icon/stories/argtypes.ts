@@ -1,5 +1,5 @@
 import { ICONS } from '@/assets';
-import { CATEGORY_CONTROL } from '@/constants';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl';
 import { ArgTypesReturn } from '@/types';
 
 export const argtypes = (): ArgTypesReturn => {

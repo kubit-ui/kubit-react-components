@@ -1,5 +1,5 @@
 import { TextComponentType } from '@/components/text';
-import { CATEGORY_CONTROL } from '@/constants';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl';
 import { IThemeObjectVariants } from '@/designSystem/themesObject';
 import { ArgTypesReturn } from '@/types';
 

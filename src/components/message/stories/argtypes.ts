@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import { ICONS } from '@/assets';
-import { CATEGORY_CONTROL } from '@/constants';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl';
 import { IThemeObjectVariants } from '@/designSystem/themesObject';
 import { objectFlip } from '@/storybook/utils/utils';
 import { ArgTypesReturn, AriaLiveOptionType } from '@/types';
