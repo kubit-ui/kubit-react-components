@@ -27,7 +27,13 @@
     "dist",
     "package.json",
     "README.md",
-    "LICENSE.md"
+    "LICENSE.md",
+    "!dist/**/assets",
+    "!dist/**/tests",
+    "!dist/**/**/*.test.*",
+    "!dist/**/storybook",
+    "!dist/**/util",
+    "!dist/**/**/stories"
   ],
   "keywords": [
     "web-components",
