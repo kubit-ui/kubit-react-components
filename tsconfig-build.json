@@ -6,7 +6,6 @@
     "src/**/__fixtures__",
     "src/**/__tests__",
     "src/**/stories",
-    "src/**/assets",
     "dist"
   ],
   "compilerOptions": {
