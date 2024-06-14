@@ -49,6 +49,7 @@ const commonArgs: IInputSearch = {
   inputPopoverIcon: { icon: 'CLOSE' },
   titleActionBottomSheet: 'Title List',
   optionList: options,
+  optionsListDefaultArias: { ['aria-label']: 'Label' },
   errorMessage: { content: 'Error message' },
   errorIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'error' },
   loadingText: { content: 'Loading results' },

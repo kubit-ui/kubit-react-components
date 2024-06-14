@@ -60,6 +60,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    optionsListDefaultArias: {
+      description: 'Arias for the options list',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'OptionGroupAriasTypes',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     elementsToShow: {
       description: 'Number of elements to show in the list',
       control: { type: 'text' },

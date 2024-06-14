@@ -19,11 +19,17 @@ export type ListOptionsOptionType = Omit<IOption<string>, 'children' | 'variant'
   value?: string | number;
 };
 
+export type OptionsContainerAriasType = Pick<
+  React.AriaAttributes,
+  'aria-label' | 'aria-labelledby'
+>;
+
 export interface IListOptionsStandAlone {
   optionVariant: string;
   hightlightedOptionVariant?: string;
   styles: ListOptionsPropsStylesType;
   type?: ListOptionsType;
+  optionsContainerArias?: OptionsContainerAriasType;
   options: ListOptionsOptionType[];
   caseSensitive?: boolean;
   charsHighlighted?: string;

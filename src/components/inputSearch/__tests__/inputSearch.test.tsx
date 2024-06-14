@@ -21,6 +21,7 @@ const mockProps = {
   optionList: [
     {
       options: ['string'],
+      ['aria-label']: 'input search',
     },
   ],
   rightIcon: {

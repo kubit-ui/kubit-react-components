@@ -35,115 +35,135 @@ const MOCK = {
   onOptionClick: jest.fn(),
 };
 
-test('Should render  ListOptions component', async () => {
-  const ref = jest.fn();
-  const { container } = renderProvider(<ListOptions ref={ref} {...MOCK} />);
+describe('ListOptions component', () => {
+  it('Should render  ListOptions component', async () => {
+    const ref = jest.fn();
+    const { container } = renderProvider(<ListOptions ref={ref} {...MOCK} />);
 
-  expect(screen.getByText('labelTest')).toBeInTheDocument();
+    expect(screen.getByText('labelTest')).toBeInTheDocument();
 
-  // When type = SELECTION, the component will be executed inside a combobox
-  const results = await axe(container, {
-    rules: {
-      // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role
-      'aria-input-field-name': { enabled: false },
-    },
+    const results = await axe(container, {
+      rules: {
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role
+        'aria-input-field-name': { enabled: false },
+      },
+    });
+    expect(container).toHTMLValidate({
+      rules: {
+        'prefer-native-element': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
   });
-  expect(container).toHTMLValidate({
-    rules: {
-      'prefer-native-element': 'off',
-    },
+
+  it('Arias can be specified for the options container', async () => {
+    const ref = jest.fn();
+    const { container } = renderProvider(
+      <ListOptions ref={ref} {...MOCK} optionsContainerArias={{ 'aria-label': 'label' }} />
+    );
+
+    expect(screen.getByRole(ROLES.LISTBOX, { name: 'label' })).toBeInTheDocument();
+
+    const results = await axe(container, {
+      rules: {
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role
+        'aria-input-field-name': { enabled: false },
+      },
+    });
+    expect(container).toHTMLValidate({
+      rules: {
+        'prefer-native-element': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
   });
-  expect(results).toHaveNoViolations();
-});
 
-test('Should render ListOptions component with onClick option', async () => {
-  const { container } = renderProvider(<ListOptions {...MOCK} />);
+  it('Should render ListOptions component with onClick option', async () => {
+    const { container } = renderProvider(<ListOptions {...MOCK} />);
 
-  const triggerButton = screen.getByRole(ROLES.OPTION, { name: 'labelTest' });
-  fireEvent.click(triggerButton);
+    const triggerButton = screen.getByRole(ROLES.OPTION, { name: 'labelTest' });
+    fireEvent.click(triggerButton);
 
-  expect(MOCK.onOptionClick).toHaveBeenCalled();
+    expect(MOCK.onOptionClick).toHaveBeenCalled();
 
-  // When type = SELECTION, the component will be executed inside a combobox
-  const results = await axe(container, {
-    rules: {
-      // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role
-      'aria-input-field-name': { enabled: false },
-    },
+    const results = await axe(container, {
+      rules: {
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role
+        'aria-input-field-name': { enabled: false },
+      },
+    });
+    expect(container).toHTMLValidate({
+      rules: {
+        'prefer-native-element': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
   });
-  expect(container).toHTMLValidate({
-    rules: {
-      'prefer-native-element': 'off',
-    },
+
+  it('Execute onFucus must provide the focus', async () => {
+    const { container } = renderProvider(<ListOptions {...MOCK} />);
+
+    const option = screen.getByRole(ROLES.OPTION, { name: 'labelTest' });
+    fireEvent.focus(option);
+
+    expect(option).toHaveFocus();
+
+    const results = await axe(container, {
+      rules: {
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role
+        'aria-input-field-name': { enabled: false },
+      },
+    });
+    expect(container).toHTMLValidate({
+      rules: {
+        'prefer-native-element': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
   });
-  expect(results).toHaveNoViolations();
-});
 
-test('Execute onFucus must provide the focus', async () => {
-  const { container } = renderProvider(<ListOptions {...MOCK} />);
+  it('Should render ListOptions component with selectedValue equal to first option', async () => {
+    const newMockProps = {
+      ...MOCK,
+      selectedValue: 1,
+    };
 
-  const option = screen.getByRole(ROLES.OPTION, { name: 'labelTest' });
-  fireEvent.focus(option);
+    const { container } = renderProvider(<ListOptions {...newMockProps} />);
 
-  expect(option).toHaveFocus();
+    expect(screen.getByText('labelTest')).toBeInTheDocument();
 
-  const results = await axe(container, {
-    rules: {
-      // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role
-      'aria-input-field-name': { enabled: false },
-    },
+    const results = await axe(container, {
+      rules: {
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role
+        'aria-input-field-name': { enabled: false },
+      },
+    });
+    expect(container).toHTMLValidate({
+      rules: {
+        'prefer-native-element': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
   });
-  expect(container).toHTMLValidate({
-    rules: {
-      'prefer-native-element': 'off',
-    },
+
+  it('List options with type=NAVIGATION must render a role=presentation', async () => {
+    const { container, getAllByRole } = renderProvider(
+      <ListOptions {...MOCK} type={ListOptionsType.NAVIGATION} />
+    );
+    const options = getAllByRole(ROLES.PRESENTATION);
+    expect(options.length).toBe(2);
+
+    const results = await axe(container, {
+      rules: {
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role
+        'aria-input-field-name': { enabled: false },
+      },
+    });
+    expect(container).toHTMLValidate({
+      rules: {
+        'prefer-native-element': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
   });
-  expect(results).toHaveNoViolations();
-});
-
-test('Should render ListOptions component with selectedValue equal to first option', async () => {
-  const newMockProps = {
-    ...MOCK,
-    selectedValue: 1,
-  };
-
-  const { container } = renderProvider(<ListOptions {...newMockProps} />);
-
-  expect(screen.getByText('labelTest')).toBeInTheDocument();
-
-  // When type = SELECTION, the component will be executed inside a combobox
-  const results = await axe(container, {
-    rules: {
-      // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role
-      'aria-input-field-name': { enabled: false },
-    },
-  });
-  expect(container).toHTMLValidate({
-    rules: {
-      'prefer-native-element': 'off',
-    },
-  });
-  expect(results).toHaveNoViolations();
-});
-
-test('List options with type=NAVIGATION must render a role=presentation', async () => {
-  const { container, getAllByRole } = renderProvider(
-    <ListOptions {...MOCK} type={ListOptionsType.NAVIGATION} />
-  );
-  const options = getAllByRole(ROLES.PRESENTATION);
-  expect(options.length).toBe(2);
-
-  // When type = SELECTION, the component will be executed inside a combobox
-  const results = await axe(container, {
-    rules: {
-      // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/combobox_role
-      'aria-input-field-name': { enabled: false },
-    },
-  });
-  expect(container).toHTMLValidate({
-    rules: {
-      'prefer-native-element': 'off',
-    },
-  });
-  expect(results).toHaveNoViolations();
 });

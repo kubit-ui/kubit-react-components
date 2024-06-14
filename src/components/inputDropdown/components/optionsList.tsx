@@ -40,6 +40,10 @@ export const OptionsListComponent = (
           id={props['aria-controls']}
           optionVariant={props.stylesListOption.optionVariant}
           options={props.optionList.options}
+          optionsContainerArias={{
+            ['aria-label']: props.optionList['aria-label'],
+            ['aria-labelledby']: props.optionList['aria-labelledby'],
+          }}
           roveFocus={roveFocusProps}
           selectedValue={props.value}
           variant={props.stylesListOption.variant}

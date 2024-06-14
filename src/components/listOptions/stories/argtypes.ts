@@ -62,6 +62,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    optionsContainerArias: {
+      description: 'Arias for the options container',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'object',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     content: {
       description: 'Content to show before the options',
       type: { name: 'string' },

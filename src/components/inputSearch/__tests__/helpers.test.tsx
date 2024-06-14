@@ -56,12 +56,6 @@ describe('Input Search Helpers', () => {
     expect(result.optionsFiltered).toEqual([{ options: ['test1'] }]);
   });
 
-  test('should return original options when no match is found', () => {
-    const options = [{ options: ['test1', 'test2', 'test3'] }];
-    const result = filterOptions('test4', options);
-    expect(result.optionsFiltered).toEqual(options);
-  });
-
   test('check match', () => {
     const options = ['first', 'second', 'thrid'];
     const correctValue = 'first';

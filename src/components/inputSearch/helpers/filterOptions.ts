@@ -2,7 +2,6 @@ import { structuredClone } from '@/utils';
 
 import { IOptionGroup, InputSearchFilterOptionReturnValue } from '../types';
 
-// eslint-disable-next-line complexity
 export const filterOptions = (
   value: string | number | undefined,
   options: IOptionGroup[],
@@ -35,11 +34,7 @@ export const filterOptions = (
     optionsFiltered[i].options = optionsAvailable;
   }
 
-  const hasValue = optionsFiltered.some(option => option.options.length > 0);
-
-  return {
-    optionsFiltered: hasValue ? optionsFiltered : options,
-  };
+  return { optionsFiltered };
 };
 
 export const hasMatchWithOptions = (
