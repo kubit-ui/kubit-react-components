@@ -84,7 +84,6 @@ type ReturnType = {
   handleChangeInputSearch: ChangeEventHandler<HTMLInputElement>;
   handleInputKeyDown: KeyboardEventHandler<HTMLInputElement>;
   handleInputPopoverKeyDown: KeyboardEventHandler<HTMLInputElement>;
-  valueSearchSelected?: string;
   state: InputState;
   handleBlurInternal: FocusEventHandler<HTMLInputElement>;
   handleFocusInternal: FocusEventHandler<HTMLInputElement>;

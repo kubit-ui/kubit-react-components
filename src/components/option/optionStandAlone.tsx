@@ -25,7 +25,14 @@ const OptionStandAlone = React.forwardRef(
   (props: IOptionStandAlone, ref: React.ForwardedRef<HTMLElement | undefined>) => {
     const ariaProps = pickAriaProps(props);
     const filling = !!props.labelCharsHighlighted && props.labelCharsHighlighted?.length > 0;
-    const state = getState(props.disabled, props.selected, props.multiSelect, props.hover, filling);
+    const state = getState(
+      props.disabled,
+      props.focus,
+      props.selected,
+      props.multiSelect,
+      props.hover,
+      filling
+    );
     const stateStyles = props.styles[state];
     const disabled = state === OptionStateType.DISABLED;
 
@@ -59,6 +66,7 @@ const OptionStandAlone = React.forwardRef(
         role={props.role}
         tabIndex={props.tabIndex}
         url={props.url}
+        onBlur={props.onBlur}
         onClick={handleClickOption}
         onFocus={props.onFocus}
         onKeyDown={(event: React.KeyboardEvent<HTMLDivElement>) => {

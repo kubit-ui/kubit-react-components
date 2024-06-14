@@ -56,7 +56,6 @@ const InputSearchComponent = React.forwardRef(
       optionsFiltered,
       searchText,
       inputPopoverText,
-      valueSearchSelected,
       showHighlightedOption,
       handleChangeInputSearch,
       handleClickInputSearch,
@@ -128,7 +127,7 @@ const InputSearchComponent = React.forwardRef(
         state={state}
         styles={styles}
         type={type}
-        value={valueSearchSelected}
+        value={searchText}
         onBlur={handleBlurInternal}
         onChange={handleChangeInputSearch}
         onClick={handleClickInputSearch}

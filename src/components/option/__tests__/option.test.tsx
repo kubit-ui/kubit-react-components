@@ -80,19 +80,41 @@ describe('Option component', () => {
     const option = screen.getByText(mockProps.label);
 
     const disabled = undefined;
+    const focused = false;
     const selected = undefined;
     const multiSelected = undefined;
     let hover = false;
     const filling = false;
-    expect(getStateSpy).toHaveBeenCalledWith(disabled, selected, multiSelected, hover, filling);
+    expect(getStateSpy).toHaveBeenCalledWith(
+      disabled,
+      focused,
+      selected,
+      multiSelected,
+      hover,
+      filling
+    );
 
     fireEvent.mouseEnter(option);
     hover = true;
-    expect(getStateSpy).toHaveBeenCalledWith(disabled, selected, multiSelected, hover, filling);
+    expect(getStateSpy).toHaveBeenCalledWith(
+      disabled,
+      focused,
+      selected,
+      multiSelected,
+      hover,
+      filling
+    );
 
     fireEvent.mouseLeave(option);
     hover = false;
-    expect(getStateSpy).toHaveBeenCalledWith(disabled, selected, multiSelected, hover, filling);
+    expect(getStateSpy).toHaveBeenCalledWith(
+      disabled,
+      focused,
+      selected,
+      multiSelected,
+      hover,
+      filling
+    );
   });
 
   it('A checked icon could be shown when its multiselect and its selected', () => {

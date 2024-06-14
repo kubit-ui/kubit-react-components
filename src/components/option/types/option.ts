@@ -37,6 +37,7 @@ export interface IOptionStandAlone extends OptionAriaAttributes {
   onMouseEnter: React.MouseEventHandler<HTMLElement>;
   onMouseLeave: React.MouseEventHandler<HTMLElement>;
   onFocus?: React.FocusEventHandler<HTMLElement>;
+  onBlur?: React.FocusEventHandler<HTMLElement>;
   role?: ROLES;
   componentLink?: GenericLinkType;
   dataTestId?: string;
