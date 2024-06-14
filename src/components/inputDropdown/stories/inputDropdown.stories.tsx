@@ -58,6 +58,7 @@ const commonArgs: IInputDropdown = {
         label: 'option 2',
       },
     ],
+    ['aria-label']: 'Label',
   },
 };
 

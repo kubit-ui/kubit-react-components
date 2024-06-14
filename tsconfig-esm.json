@@ -6,11 +6,5 @@
     "declaration": true,
     "declarationDir": "./dist/esm"
   },
-  "exclude": [
-    "./vite.config.ts",
-    "./src/**/*stories.tsx",
-    "./src/**/*test.tsx",
-    "./src/**/*test.ts",
-    "./src/**/assets"
-  ]
+  "exclude": ["./vite.config.ts"]
 }

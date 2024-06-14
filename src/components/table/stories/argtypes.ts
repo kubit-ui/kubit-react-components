@@ -1,4 +1,4 @@
-import { CATEGORY_CONTROL } from '@/constants';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl';
 import { IThemeObjectVariants } from '@/designSystem/themesObject';
 import { ArgTypesReturn } from '@/types';
 
@@ -203,6 +203,19 @@ export const argtypes = (
           summary: '{ [keys in DeviceBreakpointsType]?: boolean; }',
         },
         category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    tBodyScrollArias: {
+      description: 'Aria label for tbody when scroll',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'TBodyScrollAriasType',
+          detail:
+            'TBodyScrollAriasType: { ["aria-label"]?: string; ["aria-labelledby"]?: string; }',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
     formatListHeaderPriority: {

@@ -17,14 +17,9 @@ export const formatDateToNative = (value: string, format: string): string => {
     const dd = cleanDate[ddIdx];
     const mm = cleanDate[mmIdx];
     let yyyy = cleanDate[yyyyIdx];
-
     if (yyyy.length < 4) {
-      const diff = Math.abs(yyyy.length - 4);
-      for (let i = 0; i < diff; i++) {
-        yyyy = yyyy.concat('', '0');
-      }
+      yyyy = yyyy.padStart(4, '0');
     }
-
     return `${yyyy}-${mm}-${dd}`;
   }
   return '';

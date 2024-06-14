@@ -34,11 +34,13 @@ export interface ICheckboxErrorStandAlone {
   errorMessage?: CheckboxHelperAndErrorTextType;
 }
 
+type CheckboxAriaAttributes = Pick<React.AriaAttributes, 'aria-label' | 'aria-labelledby'>;
+
 /**
  * @description
  * interface for the checkbox standAlone
  */
-export interface ICheckboxStandAlone extends IInputComponent {
+export interface ICheckboxStandAlone extends IInputComponent, CheckboxAriaAttributes {
   dataTestId?: string;
   state: CheckboxStateType;
   styles?: CheckboxPropsStylesType;

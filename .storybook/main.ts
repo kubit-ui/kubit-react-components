@@ -14,9 +14,10 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
     '@storybook/addon-coverage',
-    './tokensAddons/register.tsx',
-    './figmaAddon/register.tsx',
-    './githubAddon/register.tsx',
+    './addons/tokensAddons/register.tsx',
+    './addons/figmaAddon/register.tsx',
+    './addons/githubAddon/register.tsx',
+    './addons/statusAddon/register.tsx',
   ],
   framework: {
     name: '@storybook/react-vite',

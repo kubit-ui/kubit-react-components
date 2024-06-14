@@ -1,5 +1,5 @@
 import { ICONS } from '@/assets';
-import { CATEGORY_CONTROL } from '@/constants';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl';
 import { IThemeObjectVariants } from '@/designSystem/themesObject';
 import { objectFlip } from '@/storybook/utils/utils';
 import { ArgTypesReturn } from '@/types';
@@ -60,6 +60,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
           summary: ListOptionsType.SELECTION,
         },
         category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    optionsContainerArias: {
+      description: 'Arias for the options container',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'object',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
     content: {

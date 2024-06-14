@@ -57,7 +57,7 @@ const PopoverCalendarComponent = (
       ]}
       trapFocusInsideModal={true}
       variant={props.styles?.[props.state]?.popoverVariant?.[device]}
-      onCloseInternally={() => props.onCalendarOpen}
+      onCloseInternally={() => props.onCalendarOpen?.(false)}
     >
       {isActionBottomSheet ? (
         <ActionBottomSheet

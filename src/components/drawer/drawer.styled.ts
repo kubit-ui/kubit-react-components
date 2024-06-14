@@ -23,8 +23,8 @@ export const DrawerTitleContentFooterContainerStyled = styled.div<DrawerStylesTy
   //Height is 100svh minus DrawerNavigationStyled total height
   height: ${props =>
     !props.blocked
-      ? `calc(100svh - (${props.styles.iconContainer?.padding_top} + ${props.styles.iconContainer?.padding_right} + ${props.styles.icon?.width}))`
-      : '100svh'};
+      ? `calc(var(--100svh, 100vh) - (${props.styles.iconContainer?.padding_top} + ${props.styles.iconContainer?.padding_right} + ${props.styles.icon?.width}))`
+      : 'var(--100svh, 100vh)'};
   ${props => getStyles(props.styles.titleContentFooterContainer)}
 `;
 
@@ -34,7 +34,9 @@ export const DrawerTitleStyled = styled.div.withConfig({
 
 export const DrawerStyled = styled.div<DrawerStylesType>`
   background-color: #fff;
-  height: 100svh;
+  max-height: 100vh;
+  max-height: var(--100svh, 100vh);
+  max-height: 100svh;
   min-width: 50vw;
   max-width: 50vw;
   overflow-y: auto;
@@ -45,9 +47,13 @@ export const DrawerStyled = styled.div<DrawerStylesType>`
       },
     }) => css`
       ${onlyDesktop} {
+        min-height: 100vh;
+        min-height: var(--100svh, 100vh);
         min-height: 100svh;
       }
       ${onlyTablet} {
+        min-height: 100vh;
+        min-height: var(--100svh, 100vh);
         min-height: 100svh;
       }
     `};

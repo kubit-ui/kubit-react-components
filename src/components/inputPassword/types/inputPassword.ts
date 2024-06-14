@@ -45,5 +45,8 @@ export interface IInputPassword<V = undefined extends string ? unknown : string>
   onInputTypeChange?: () => void;
   onInternalErrors?: (errors: string[]) => void;
   onError?: (error: boolean) => void;
+  /**
+   * @deprecated This prop will be deprecated in the next major. Use instead activeIcon onClick and disabledIcon on click
+   */
   onIconClick?: (value: OnIconClickValueType) => void;
 }

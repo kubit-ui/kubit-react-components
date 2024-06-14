@@ -39,3 +39,4 @@ export * from './buildPropsDecorativeElement/buildPropsDecorativeElement';
 export * from './syntheticComponents';
 export * from './aria/aria';
 export * from './structuredClone';
+export * from './scroll';

@@ -24,7 +24,10 @@ export type InputSearchOptionType = ListOptionsOptionType;
 export type InputSearchTitleType = Omit<IText<string>, 'children'> & {
   content?: string | number;
 };
-export interface IOptionGroup {
+
+export type OptionGroupAriasTypes = Pick<React.AriaAttributes, 'aria-label' | 'aria-labelledby'>;
+
+export interface IOptionGroup extends OptionGroupAriasTypes {
   options: string[];
   title?: InputSearchTitleType;
   optionVariant?: string;
@@ -75,6 +78,7 @@ export interface IPopoverSearchList {
   loadingText?: InputSearchLoadingTextType;
   open: boolean;
   optionList: IOptionGroup[];
+  optionsListDefaultArias?: OptionGroupAriasTypes;
   preventCloseOnClickElements?: (HTMLElement | null | undefined)[];
   searchText?: string;
   hasResultTextWrittenByUser?: boolean;
@@ -90,7 +94,7 @@ export interface IPopoverSearchList {
   onOptionsListKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
 }
 
-export interface IOptionsListSearchList {
+export interface IOptionsListSearchList extends OptionGroupAriasTypes {
   caseSensitive?: boolean;
   index?: number;
   stylesListOption?: InputSearchListOptionsProps;
@@ -155,6 +159,7 @@ export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOm
   caseSensitive?: boolean;
   listOptionsHeight: string;
   optionList: IOptionGroup[];
+  optionsListDefaultArias?: OptionGroupAriasTypes;
   loadingList?: boolean;
   loadingText?: InputSearchLoadingTextType;
   elementsToShow?: number;

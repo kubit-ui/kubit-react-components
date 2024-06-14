@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { ICONS } from '@/assets';
 import { FooterPositionType } from '@/components/footer';
 import { ModalControlled } from '@/components/modal';
 import { PopoverPositionVariantType } from '@/components/popover';
@@ -13,6 +12,7 @@ import {
 import { COLORS } from '@/designSystem/kubit/foundations';
 
 import { ErrorBoundaryErrors } from '../../types/errorBoundary';
+import ICON_CLOSE from './assets/icon_x_close.svg';
 import { FooterButton } from './errorBoundaryModal.styled';
 
 interface ModalProps {
@@ -38,7 +38,7 @@ export const ErrorBoundaryModal = ({ errors, onClose, open = true }: ModalProps)
 
   return (
     <ModalControlled
-      closeIcon={{ icon: ICONS.ICON_CLOSE, altText: 'closeIcon', onClick: onClose }}
+      closeIcon={{ icon: ICON_CLOSE, altText: 'closeIcon', onClick: onClose }}
       content={
         <Text
           color={COLORS.SECONDARY.color_secondary_font_50}

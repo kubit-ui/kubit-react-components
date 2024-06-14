@@ -9,7 +9,6 @@ import { isKeyTabPressed } from '@/utils';
 import { AUTOCOMPLETE_TYPE } from '../input/types/input';
 import { PopoverSearchList } from './components';
 // helpers
-import { getAriaControls } from './helpers';
 import { MultipleRef } from './hooks/useInputSearch';
 // styles
 import { InputSearchStyled } from './inputSearch.styled';
@@ -26,7 +25,6 @@ export const InputSearchStandAloneComponent = (
   const { refInput, refIcon } = ref as unknown as MultipleRef;
 
   const sendRef = { refInput: refInput, refIcon: refIcon };
-
   return (
     <InputSearchStyled
       data-testid={`${props.dataTestId}InputSearch`}
@@ -40,7 +38,7 @@ export const InputSearchStandAloneComponent = (
         <Input
           {...props}
           ref={sendRef as unknown as ForwardedRef<HTMLInputElement | undefined | null> | undefined}
-          aria-controls={props.open ? getAriaControls(props.optionList, ariaControls) : undefined}
+          aria-controls={props.open ? ariaControls : undefined}
           aria-expanded={props.open}
           aria-haspopup={PopoverComponentType.DIALOG}
           autocomplete={props.autocomplete || AUTOCOMPLETE_TYPE.OFF}
@@ -96,6 +94,7 @@ export const InputSearchStandAloneComponent = (
         noResultsText={props.noResultsText}
         open={props.open}
         optionList={props.optionList}
+        optionsListDefaultArias={props.optionsListDefaultArias}
         preventCloseOnClickElements={[
           (refInput as MutableRefObject<HTMLInputElement | null | undefined>)?.current,
           (refIcon as MutableRefObject<HTMLSpanElement | null | undefined>)?.current,

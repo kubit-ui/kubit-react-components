@@ -7,6 +7,7 @@ import { Text } from '@/components/text';
 import { TextDecorationType } from '@/components/text/types';
 
 import { ILinkAsButtonStandAlone } from '../types/link';
+import { LinkAsButtonWrapperStyled } from './linkAsButton.styled';
 
 // eslint-disable-next-line complexity
 export const LinkAsButtonStandAloneComponent = (
@@ -14,30 +15,37 @@ export const LinkAsButtonStandAloneComponent = (
   ref: React.ForwardedRef<HTMLElement> | undefined
 ): JSX.Element => {
   return (
-    <Text
-      ref={ref}
-      aria-label={props['aria-label']}
-      component={component}
-      dataTestId={props.dataTestId}
-      decoration={TextDecorationType.NONE}
-      isDisabled={props.state === ButtonStateType.DISABLED}
-      role={role}
-      target={target}
-      url={url}
-      onClick={onClick}
+    // Apply button border radius to the link when focus-visible
+    <LinkAsButtonWrapperStyled
+      $sizeStyles={props.sizeStyles}
+      $state={props.state}
+      $styles={props.styles}
     >
-      <ButtonStyled
-        as="span"
-        {...props}
-        $fullWidth={props.fullWidth}
-        $iconPosition={props.iconPosition}
-        $sizeStyles={props.sizeStyles}
-        $state={props.state}
-        $styles={props.styles}
+      <Text
+        ref={ref}
+        aria-label={props['aria-label']}
+        component={component}
+        dataTestId={props.dataTestId}
+        decoration={TextDecorationType.NONE}
+        isDisabled={props.state === ButtonStateType.DISABLED}
+        role={role}
+        target={target}
+        url={url}
+        onClick={onClick}
       >
-        <ButtonStandAloneStructure {...props}>{children}</ButtonStandAloneStructure>
-      </ButtonStyled>
-    </Text>
+        <ButtonStyled
+          as="span"
+          {...props}
+          $fullWidth={props.fullWidth}
+          $iconPosition={props.iconPosition}
+          $sizeStyles={props.sizeStyles}
+          $state={props.state}
+          $styles={props.styles}
+        >
+          <ButtonStandAloneStructure {...props}>{children}</ButtonStandAloneStructure>
+        </ButtonStyled>
+      </Text>
+    </LinkAsButtonWrapperStyled>
   );
 };
 

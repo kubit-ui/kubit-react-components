@@ -1,5 +1,6 @@
 // types
 import { ButtonStateType, ButtonStylesType } from '@/components/button/types';
+import { DeviceBreakpointsType } from '@/types';
 
 // constants
 import {
@@ -7,6 +8,7 @@ import {
   COLORS,
   FONT_FAMILY,
   FONT_WEIGHT,
+  PARAGRAPH,
   SIZES,
   SPACINGS,
   TEXT_ALIGN,
@@ -29,7 +31,6 @@ const commonPropsDefault = {
   border_radius: BORDERS.border_00,
   text_align: TEXT_ALIGN.center,
   font_family: FONT_FAMILY.font_family_nunito_sans,
-  font_size: '1rem',
 };
 
 export const BUTTON_STYLES: ButtonStylesType<ButtonVariantType, ButtonSizeType> = {
@@ -40,9 +41,12 @@ export const BUTTON_STYLES: ButtonStylesType<ButtonVariantType, ButtonSizeType> 
     padding_bottom: SPACINGS.spacing_150,
     gap: SPACINGS.spacing_100,
 
+    font_size: PARAGRAPH.SMALL[DeviceBreakpointsType.DESKTOP].font_size,
+    line_height: PARAGRAPH.SMALL[DeviceBreakpointsType.DESKTOP].line_height,
+
     icon: {
-      width: SIZES.size_250,
-      height: SIZES.size_250,
+      width: SIZES.size_200,
+      height: SIZES.size_200,
     },
   },
   [ButtonSizeType.MEDIUM]: {
@@ -52,21 +56,27 @@ export const BUTTON_STYLES: ButtonStylesType<ButtonVariantType, ButtonSizeType> 
     padding_bottom: SPACINGS.spacing_250,
     gap: SPACINGS.spacing_150,
 
+    font_size: PARAGRAPH.MEDIUM[DeviceBreakpointsType.DESKTOP].font_size,
+    line_height: PARAGRAPH.MEDIUM[DeviceBreakpointsType.DESKTOP].line_height,
+
     icon: {
       width: SIZES.size_250,
       height: SIZES.size_250,
     },
   },
   [ButtonSizeType.LARGE]: {
-    padding_right: SPACINGS.spacing_400,
-    padding_left: SPACINGS.spacing_400,
-    padding_top: SPACINGS.spacing_300,
-    padding_bottom: SPACINGS.spacing_300,
+    padding_right: SPACINGS.spacing_300,
+    padding_left: SPACINGS.spacing_300,
+    padding_top: SPACINGS.spacing_250,
+    padding_bottom: SPACINGS.spacing_250,
     gap: SPACINGS.spacing_150,
 
+    font_size: PARAGRAPH.MEDIUM[DeviceBreakpointsType.DESKTOP].font_size,
+    line_height: PARAGRAPH.MEDIUM[DeviceBreakpointsType.DESKTOP].line_height,
+
     icon: {
-      width: SIZES.size_300,
-      height: SIZES.size_300,
+      width: SIZES.size_250,
+      height: SIZES.size_250,
     },
   },
   [ButtonVariantType.PRIMARY]: {
@@ -125,19 +135,19 @@ export const BUTTON_STYLES: ButtonStylesType<ButtonVariantType, ButtonSizeType> 
     [ButtonStateType.PRESSED]: {
       ...actionCommonProps,
       altVariant: true,
-      color: COLORS.PRESSED.color_accent_pressed_font_50,
-      background_color: COLORS.PRESSED.color_accent_pressed_bg_100,
+      color: COLORS.ACCENT.color_accent_default_font_100,
+      text_decoration: 'none',
       icon: {
-        color: COLORS.PRESSED.color_accent_pressed_icon_50,
+        color: COLORS.ACCENT.color_accent_default_icon_100,
       },
     },
     [ButtonStateType.HOVER]: {
       ...actionCommonProps,
       altVariant: true,
-      color: COLORS.ACCENT.color_accent_default_font_100,
-      text_decoration: 'none',
+      color: COLORS.PRESSED.color_accent_pressed_font_50,
+      background_color: COLORS.PRESSED.color_accent_pressed_bg_100,
       icon: {
-        color: COLORS.ACCENT.color_accent_default_icon_100,
+        color: COLORS.PRESSED.color_accent_pressed_icon_50,
       },
     },
     [ButtonStateType.DISABLED]: {
@@ -161,19 +171,19 @@ export const BUTTON_STYLES: ButtonStylesType<ButtonVariantType, ButtonSizeType> 
     [ButtonStateType.PRESSED]: {
       ...actionCommonProps,
       altVariant: true,
-      color: COLORS.PRESSED.color_accent_pressed_font_150,
-      background_color: COLORS.PRESSED.color_accent_pressed_bg_100,
+      color: COLORS.ACCENT.color_accent_default_font_50,
+      text_decoration: 'none',
       icon: {
-        color: COLORS.PRESSED.color_accent_pressed_icon_150,
+        color: COLORS.ACCENT.color_accent_default_icon_50,
       },
     },
     [ButtonStateType.HOVER]: {
       ...actionCommonProps,
       altVariant: true,
-      color: COLORS.ACCENT.color_accent_default_font_50,
-      text_decoration: 'none',
+      color: COLORS.PRESSED.color_accent_pressed_font_150,
+      background_color: COLORS.PRESSED.color_accent_pressed_bg_100,
       icon: {
-        color: COLORS.ACCENT.color_accent_default_icon_50,
+        color: COLORS.PRESSED.color_accent_pressed_icon_150,
       },
     },
     [ButtonStateType.DISABLED]: {
@@ -189,34 +199,32 @@ export const BUTTON_STYLES: ButtonStylesType<ButtonVariantType, ButtonSizeType> 
     [ButtonStateType.DEFAULT]: {
       ...actionCommonProps,
       altVariant: true,
-      // text_decoration: 'none',
       color: COLORS.ACCENT.color_accent_default_font_150,
       icon: {
-        color: COLORS.ACCENT.color_accent_default_font_150,
+        color: COLORS.ACCENT.color_accent_default_icon_150,
       },
     },
     [ButtonStateType.PRESSED]: {
       ...actionCommonProps,
       altVariant: true,
-      // text_decoration: 'none',
-      color: COLORS.ACCENT.color_accent_default_font_100,
+      text_decoration: 'none',
+      color: COLORS.ACCENT.color_accent_default_font_150,
       icon: {
-        color: COLORS.ACCENT.color_accent_default_font_100,
+        color: COLORS.ACCENT.color_accent_default_icon_150,
       },
     },
     [ButtonStateType.HOVER]: {
       ...actionCommonProps,
       altVariant: true,
-      text_decoration: 'none',
-      color: COLORS.NEUTRAL.color_neutral_font_150,
+      color: COLORS.PRESSED.color_accent_pressed_font_100,
+      background_color: COLORS.PRESSED.color_accent_pressed_bg_200,
       icon: {
-        color: COLORS.NEUTRAL.color_neutral_font_150,
+        color: COLORS.PRESSED.color_accent_pressed_icon_100,
       },
     },
     [ButtonStateType.DISABLED]: {
       ...actionCommonProps,
       altVariant: true,
-      // text_decoration: 'none',
       color: COLORS.DISABLED.color_accentDisabled_font_100,
       icon: {
         color: COLORS.DISABLED.color_accentDisabled_icon_100,

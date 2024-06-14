@@ -64,7 +64,11 @@ export const PopoverSearchListComponent = (
     <OptionsList
       key={index}
       ref={ref}
-      aria-controls={`${props['aria-controls']}${index}`}
+      aria-controls={props['aria-controls']}
+      aria-label={section?.['aria-label'] ?? props.optionsListDefaultArias?.['aria-label']}
+      aria-labelledby={
+        section?.['aria-labelledby'] ?? props.optionsListDefaultArias?.['aria-labelledby']
+      }
       caseSensitive={props.caseSensitive}
       dataTestId={`${props.dataTestId}OptionsList${index}`}
       hightlightedOption={showTextWritten || showHighlightedOption}
@@ -161,7 +165,6 @@ export const PopoverSearchListComponent = (
       variant={props.styles?.[props.state]?.popoverVariant?.[props.device]}
       onCloseInternally={() => {
         props.onOpenOptions(false);
-        refInput?.current?.focus();
       }}
     >
       {useActionBottomSheet ? (
@@ -172,6 +175,7 @@ export const PopoverSearchListComponent = (
             onClick: event => {
               props.onOpenOptions(false);
               props.closeIcon?.onClick?.(event);
+              refInput?.current?.focus();
             },
           }}
           dataTestId={`${props.dataTestId}ActionBottomSheet`}

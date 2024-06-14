@@ -898,6 +898,29 @@ export const OPTION_STYLES: OptionStylesType<OptionVariantType> = {
         ...commonSublabelInputSearch,
       },
     },
+    [OptionStateType.FOCUS]: {
+      container: {
+        ...commonContainerInputOption,
+        background_color: COLORS.NEUTRAL.color_neutral_bg_200,
+        border_left: `${BORDERS.border_200} solid ${COLORS.BRAND.color_brand_border_50}`,
+      },
+      labelIconContainer: {
+        ...commonLabelIconContainerInputSearch,
+      },
+      label: {
+        ...commonLabelInputSearch,
+        font_weight: FONT_WEIGHT.font_weight_600,
+      },
+      labelHightlighted: {
+        ...commonLabelHightlightedInputSearch,
+      },
+      icon: {
+        ...commonIconInputSearch,
+      },
+      sublabel: {
+        ...commonSublabelInputSearch,
+      },
+    },
   },
   [OptionVariantType.INPUT_OPTION_HIGHTLIGHTED]: {
     [OptionStateType.DEFAULT]: {
@@ -1074,6 +1097,30 @@ export const OPTION_STYLES: OptionStylesType<OptionVariantType> = {
       },
       sublabel: {
         ...commonSublabelHighlighted,
+      },
+    },
+
+    [OptionStateType.FOCUS]: {
+      container: {
+        ...commonContainerInputOption,
+        background_color: COLORS.NEUTRAL.color_neutral_bg_200,
+        border_left: `${BORDERS.border_200} solid ${COLORS.BRAND.color_brand_border_50}`,
+      },
+      labelIconContainer: {
+        ...commonLabelIconContainerInputSearch,
+      },
+      label: {
+        ...commonLabelInputSearch,
+        font_weight: FONT_WEIGHT.font_weight_600,
+      },
+      labelHightlighted: {
+        ...commonLabelHightlightedInputSearch,
+      },
+      icon: {
+        ...commonIconInputSearch,
+      },
+      sublabel: {
+        ...commonSublabelInputSearch,
       },
     },
   },

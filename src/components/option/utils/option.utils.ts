@@ -3,6 +3,7 @@ import { OptionStateType } from '../types';
 // eslint-disable-next-line complexity
 const getState = (
   disabled: boolean | undefined,
+  focused: boolean | undefined,
   selected: boolean | undefined,
   multiSelected: boolean | undefined,
   hover: boolean,
@@ -10,6 +11,9 @@ const getState = (
 ): OptionStateType => {
   if (disabled) {
     return OptionStateType.DISABLED;
+  }
+  if (focused) {
+    return OptionStateType.FOCUS;
   }
   if (selected) {
     if (multiSelected) {

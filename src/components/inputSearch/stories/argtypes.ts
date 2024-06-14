@@ -1,4 +1,4 @@
-import { CATEGORY_CONTROL } from '@/constants';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl';
 import { IThemeObjectVariants } from '@/designSystem/themesObject';
 import { ArgTypesReturn } from '@/types';
 
@@ -58,6 +58,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
           summary: 'IOptionGroup[]',
         },
         category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
+    optionsListDefaultArias: {
+      description: 'Arias for the options list',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'OptionGroupAriasTypes',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
     elementsToShow: {

@@ -23,10 +23,11 @@ type InputDropdownCustomHeightType = {
   useActionBottomSheet?: boolean;
 };
 
-export const InputDropdownStyled = styled.div`
+export const InputDropdownStyled = styled.div<InputDropdownStylesType>`
   position: relative;
   display: flex;
   flex-direction: column;
+  ${({ styles }) => getStyles(styles?.inputDropdownContainer)}
 `;
 
 const buildHeight = ({
@@ -57,7 +58,7 @@ export const ListContainerStyled = styled.div<
   InputDropdownStylesType & InputDropdownCustomHeightType
 >`
   transition: height 200ms;
-  ${({ styles }) => getStyles(styles?.searchListContainer)}/* div { */
+  ${({ styles }) => getStyles(styles?.searchListContainer)}
 `;
 
 export const InputDropdownListStyled = styled.div<

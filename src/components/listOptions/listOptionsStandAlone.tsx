@@ -68,6 +68,8 @@ export const ListOptionsStandAlone = React.forwardRef(
         {props.content}
         <OptionsWrapperStyled
           ref={listEl as React.RefObject<HTMLUListElement>}
+          aria-label={props.optionsContainerArias?.['aria-label']}
+          aria-labelledby={props.optionsContainerArias?.['aria-labelledby']}
           as={'ul'}
           id={id}
           role={isSelection ? ROLES.LISTBOX : ROLES.MENU}

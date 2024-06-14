@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Footer } from '@/components/footer';
 import { Text, TextComponentType } from '@/components/text';
 import { useId } from '@/hooks';
+import { ROLES } from '@/types';
 import { pickAriaProps } from '@/utils/aria/aria';
 
 import {
@@ -106,6 +107,10 @@ export const TableComponent = (
                   styles={props.styles.header?.[props.headerVariant]}
                 >
                   <Text
+                    align={
+                      headerValue?.config?.alignHeader?.[props.device] ||
+                      headerValue?.config?.alignHeader
+                    }
                     component={TextComponentType.SPAN}
                     customTypography={props.styles.header?.[props.headerVariant]?.typography}
                     dataTestId={`${props.dataTestId}Header${index}`}
@@ -133,7 +138,15 @@ export const TableComponent = (
             )}
           </TableRowHeaderStyled>
         </TableRowGroupHeaderStyled>
-        <TableRowGroupBodyStyled styles={props.styles}>
+        <TableRowGroupBodyStyled
+          aria-label={props.hasScroll ? props.tBodyScrollArias?.['aria-label'] : undefined}
+          aria-labelledby={
+            props.hasScroll ? props.tBodyScrollArias?.['aria-labelledby'] : undefined
+          }
+          role={props.hasScroll ? ROLES.REGION : undefined}
+          styles={props.styles}
+          tabIndex={props.hasScroll ? 0 : undefined}
+        >
           {props.values.map((value, indexValue) => {
             return (
               <TableRow
