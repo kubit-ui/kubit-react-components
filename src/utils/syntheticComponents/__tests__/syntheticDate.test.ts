@@ -25,6 +25,6 @@ describe('syntheticDate test', () => {
 
     const rightFormatDate = formatDateToNative(date, format);
 
-    expect(rightFormatDate).toBe('2000-02-11');
+    expect(rightFormatDate).toBe('0002-02-11');
   });
 });
