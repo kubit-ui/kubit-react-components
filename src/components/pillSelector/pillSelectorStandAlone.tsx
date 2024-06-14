@@ -42,6 +42,7 @@ const PillSelectorStandAloneComponent = (
     <PillSelectorWrapper
       ref={listEl as React.RefObject<HTMLDivElement>}
       data-testid={`${dataTestId}PillSelector`}
+      hasThumb={!!(!props.multiSelect && props.styles?.thumb)}
       isSelected={isPillSelected}
       role={ROLES.RADIOGROUP}
       styles={props.styles}

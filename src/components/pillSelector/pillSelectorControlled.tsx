@@ -47,9 +47,18 @@ const PillSelectorControlledComponent = React.forwardRef(
     );
 
     React.useEffect(() => {
+      let resizeObserver: ResizeObserver;
       if (!props.multiSelect && measuredRef?.current && props.pillSelected?.[0] && styles?.thumb) {
         updateMeasurements();
+        resizeObserver = new ResizeObserver(() => {
+          updateMeasurements();
+        });
+        // Start observing the element
+        resizeObserver.observe(measuredRef.current);
       }
+      return () => {
+        resizeObserver?.disconnect();
+      };
     }, [props.multiSelect, measuredRef, props.pills, props.pillSelected?.[0]]);
 
     return (
