@@ -132,7 +132,10 @@ const CarouselUnControlledComponent = <V extends string | unknown>(
 
   const { handleClickMediaButton, handleMouseOver, handleMouseOut, isPlaying } = useAutomateControl(
     {
-      isPlayingInitially: props.pageControlAutomateConfig?.playingInitially,
+      isPlayingInitially:
+        props.pageControlAutomateConfig !== undefined
+          ? props.pageControlAutomateConfig.playingInitially
+          : false,
       onClickMediaButton: props.pageControlAutomateConfig?.playStop.onClick,
     }
   );
