@@ -51,6 +51,8 @@ const CheckboxWithLabelStandAloneComponent = <V extends string | unknown>(
         styles={styles}
       >
         <CheckboxControlled
+          aria-label={props['aria-label']}
+          aria-labelledby={props['aria-labelledby']}
           checked={checked}
           checkedIcon={checkedIcon}
           dataTestId={dataTestId}

@@ -44,6 +44,7 @@ const CheckboxStandAloneComponent = (
     helperText,
     extraAriaDescribedBy = '',
     screenReaderText,
+    ...props
   }: ICheckboxStandAlone,
   ref: React.ForwardedRef<HTMLInputElement> | undefined | null
 ): JSX.Element => {
@@ -139,6 +140,8 @@ const CheckboxStandAloneComponent = (
               screenReaderId,
             })}
             aria-invalid={hasError}
+            aria-label={props['aria-label']}
+            aria-labelledby={props['aria-labelledby']}
             checked={isChecked}
             data-testid={`${dataTestId}Input`}
             disabled={isDisabled}
