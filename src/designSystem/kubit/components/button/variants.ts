@@ -9,6 +9,9 @@ export enum ButtonVariantType {
 
 export enum ButtonSizeType {
   LARGE = 'LARGE',
+  /**
+   * @deprecated `MEDIUM` will be removed. Use `LARGE` instead
+   */
   MEDIUM = 'MEDIUM',
   SMALL = 'SMALL',
 }
