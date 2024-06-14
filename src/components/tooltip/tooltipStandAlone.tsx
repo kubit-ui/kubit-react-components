@@ -184,7 +184,7 @@ const TooltipStandAlone = ({
           positionVariant={PopoverPositionVariantType.ABSOLUTE}
           preventCloseOnClickElements={[props.labelRef?.current]}
           role={!props.tooltipAsModal ? ROLES.TOOLTIP : undefined}
-          trapFocusInsideModal={!props.tooltipAsModal ? false : true}
+          trapFocusInsideModal={true}
           variant={props.styles.popoverVariant?.[props.mediaDevice]}
           {...props.popover}
           onCloseInternally={props.onPopoverCloseInternally}
