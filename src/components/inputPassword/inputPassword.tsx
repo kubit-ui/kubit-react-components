@@ -48,9 +48,7 @@ const InputPasswordComponent = React.forwardRef(
       ctv
     );
 
-    const icon = inputPasswordType === InputTypeType.PASSWORD ? disabledIcon : activeIcon;
-
-    const setTypeInput: React.MouseEventHandler<HTMLButtonElement> = event => {
+    const handleRightIconClick: React.MouseEventHandler<HTMLButtonElement> = event => {
       const icon = inputPasswordType === InputTypeType.PASSWORD ? disabledIcon : activeIcon;
 
       setInputPasswordType(
@@ -58,12 +56,12 @@ const InputPasswordComponent = React.forwardRef(
       );
       onInputTypeChange && onInputTypeChange();
       // deprecated - Remove this icon.onClick when the 'icon' is removed from the component
-      icon.onClick?.(
+      const iconClickValue =
         inputPasswordType === InputTypeType.PASSWORD
           ? OnIconClickValueType.VISIBLE
-          : OnIconClickValueType.HIDE,
-        event
-      );
+          : OnIconClickValueType.HIDE;
+      icon.onClick?.(iconClickValue, event);
+      onIconClick?.(iconClickValue);
     };
 
     const {
@@ -94,6 +92,8 @@ const InputPasswordComponent = React.forwardRef(
       onInternalErrors,
     });
 
+    const icon = inputPasswordType === InputTypeType.PASSWORD ? disabledIcon : activeIcon;
+
     return (
       <InputPasswordStandAlone
         {...props}
@@ -101,7 +101,7 @@ const InputPasswordComponent = React.forwardRef(
         maxLength={maxLength}
         rightIcon={{
           ...icon,
-          onClick: event => setTypeInput(event),
+          onClick: handleRightIconClick,
         }}
         state={state}
         styles={styles}
