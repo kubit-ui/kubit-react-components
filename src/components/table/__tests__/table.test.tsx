@@ -11,6 +11,7 @@ import * as useMediaDevice from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { windowMatchMedia } from '@/tests/windowMatchMedia';
 import { DeviceBreakpointsType, ROLES } from '@/types';
+import * as hasScrollUtils from '@/utils/scroll/hasScroll';
 
 import { Table } from '../table';
 import { FormatListHeaderPriorityType } from '../types';
@@ -378,6 +379,25 @@ const mockDividerFromHeader = {
 };
 
 describe('Table component', () => {
+  beforeAll(() => {
+    global.ResizeObserver = class ResizeObserver {
+      callback;
+      constructor(callback) {
+        this.callback = callback;
+      }
+      observe() {
+        // Call the callback
+        this.callback();
+      }
+      unobserve() {
+        // do nothing
+      }
+      disconnect() {
+        // do nothing
+      }
+    };
+  });
+
   it('Renders with a valid HTML structure', async () => {
     const { container } = renderProvider(
       <Table
@@ -575,6 +595,30 @@ describe('Table component', () => {
 
     expect(uls.length).not.toBe(0);
     expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('When scroll appears in the tbody, tBody surface is focusable and and labels can be added', async () => {
+    // Mock hasScrollUtils and resize observer
+    jest.spyOn(hasScrollUtils, 'hasScroll').mockImplementation(() => true);
+    const { container } = renderProvider(
+      <Table
+        aria-label={'aria table label'}
+        captionDescription={'caption description'}
+        tBodyScrollArias={{ 'aria-label': 'aria-label' }}
+        {...mockBase}
+      />
+    );
+    const results = await axe(container);
+    const tbody = screen.getByRole(ROLES.REGION, { name: 'aria-label' });
+
+    expect(tbody).toBeDefined();
+    expect(tbody).toHaveAttribute('tabindex', '0');
+    expect(container).toHTMLValidate({
+      rules: {
+        'prefer-native-element': 'off',
+      },
+    });
     expect(results).toHaveNoViolations();
   });
 });

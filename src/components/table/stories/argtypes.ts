@@ -205,6 +205,19 @@ export const argtypes = (
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    tBodyScrollArias: {
+      description: 'Aria label for tbody when scroll',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'TBodyScrollAriasType',
+          detail:
+            'TBodyScrollAriasType: { ["aria-label"]?: string; ["aria-labelledby"]?: string; }',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     formatListHeaderPriority: {
       description: 'When format list format, allows to select the list direction (from the table)',
       type: { name: 'string' },

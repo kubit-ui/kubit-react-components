@@ -150,6 +150,11 @@ type TableAriaAttributes = Pick<
   'aria-label' | 'aria-labelledby' | 'aria-describedby'
 >;
 
+type TBodyScrollAriasType = {
+  ['aria-label']?: string;
+  ['aria-labelledby']?: string;
+};
+
 /**
  * @description
  * Table props
@@ -157,7 +162,6 @@ type TableAriaAttributes = Pick<
  */
 export interface ITableStandAlone extends TableAriaAttributes {
   styles: TableRowHeaderTypes<string, string>;
-  refTableBody?: React.Ref<HTMLTableSectionElement>;
   lineSeparatorLineStyles: LineSeparatorLinePropsStylesType;
   lineSeparatorTopOnHeader?: boolean;
   lineSeparatorBottomOnHeader?: boolean;
@@ -173,6 +177,8 @@ export interface ITableStandAlone extends TableAriaAttributes {
   hiddenHeaderOn?: HiddenType;
   device: DeviceBreakpointsType;
   scrolling: boolean;
+  hasScroll: boolean;
+  tBodyScrollArias?: TBodyScrollAriasType;
   headerVariant?: string;
   expandedContentHelpMessage?: string;
   formatList?: { [key in DeviceBreakpointsType]?: boolean };
@@ -195,7 +201,7 @@ export interface ITableStandAlone extends TableAriaAttributes {
 export interface ITable<V = undefined extends string ? unknown : string>
   extends Omit<
       ITableStandAlone,
-      'styles' | 'lineSeparatorLineStyles' | 'device' | 'scrolling' | 'refTableBody'
+      'styles' | 'lineSeparatorLineStyles' | 'device' | 'scrolling' | 'hasScroll'
     >,
     Omit<CustomTokenTypes<TableRowHeaderTypes<string, string>>, 'cts' | 'extraCt'> {
   variant: V;
