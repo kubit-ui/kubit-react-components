@@ -1,3 +1,5 @@
+import { CSSProp } from 'styled-components';
+
 import { IconHighlightedSizeType } from '@/components/iconHighlighted/types/size';
 import {
   InputBasicStateProps,
@@ -19,6 +21,10 @@ export type InputPhoneStateProps = InputBasicStateProps & {
     backgroundColor?: string;
   };
   affixIconHighlightedContainer?: CommonStyleType;
+  leftExtraStyles?: CSSProp;
+  centerExtraStyles?: CSSProp;
+  topExtraStyles?: CSSProp;
+  bottomExtraStyles?: CSSProp;
 };
 
 export type InputPhoneStylesProps = {

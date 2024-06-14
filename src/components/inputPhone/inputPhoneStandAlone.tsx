@@ -37,8 +37,8 @@ export const InputPhoneStandAloneComponent = (
     : inputAffixId;
 
   const flagVariant =
-    props.flag.variant ?? props.styles?.[props.state]?.affixIconHighlighted?.variant;
-  const flagSize = props.flag.size ?? props.styles?.[props.state]?.affixIconHighlighted?.size;
+    props.flag?.variant ?? props.styles?.[props.state]?.affixIconHighlighted?.variant;
+  const flagSize = props.flag?.size ?? props.styles?.[props.state]?.affixIconHighlighted?.size;
   const renderAffix = () => (
     <AffixStyled ref={measuredRef} id={extraAriaLabelledBy} styles={props.styles?.[props.state]}>
       {props.prefixNode ? (
@@ -46,7 +46,7 @@ export const InputPhoneStandAloneComponent = (
       ) : (
         <>
           <AffixIconWrapperStyled styles={props.styles?.[props.state]}>
-            {props.flag.type && flagVariant && flagSize ? (
+            {props.flag?.type && flagVariant && flagSize ? (
               <IconHighlighted
                 backgroundColor={props.styles?.[props.state]?.affixIconHighlighted?.backgroundColor}
                 size={
@@ -82,38 +82,50 @@ export const InputPhoneStandAloneComponent = (
       <Input
         {...props}
         ref={ref}
-        bottomExtraStyles={getExtraStyles(
-          POSITIONS.BOTTOM,
-          POSITIONS.LEFT,
-          width,
-          props.styles?.[props.state]?.affixContainerPosition === InputContentPosition.OUT,
-          props.styles?.[props.state]?.helpMessage?.position
-        )}
-        centerExtraStyles={getExtraStyles(
-          POSITIONS.CENTER,
-          POSITIONS.LEFT,
-          width,
-          props.styles?.[props.state]?.affixContainerPosition === InputContentPosition.OUT,
-          props.styles?.[props.state]?.helpMessage?.position
-        )}
+        bottomExtraStyles={
+          props.styles?.[props.state]?.bottomExtraStyles ??
+          getExtraStyles(
+            POSITIONS.BOTTOM,
+            POSITIONS.LEFT,
+            width,
+            props.styles?.[props.state]?.affixContainerPosition === InputContentPosition.OUT,
+            props.styles?.[props.state]?.helpMessage?.position
+          )
+        }
+        centerExtraStyles={
+          props.styles?.[props.state]?.centerExtraStyles ??
+          getExtraStyles(
+            POSITIONS.CENTER,
+            POSITIONS.LEFT,
+            width,
+            props.styles?.[props.state]?.affixContainerPosition === InputContentPosition.OUT,
+            props.styles?.[props.state]?.helpMessage?.position
+          )
+        }
         extraAriaLabelledBy={extraAriaLabelledBy}
         id={inputId}
         leftContent={renderAffix()}
-        leftExtraStyles={getExtraStyles(
-          POSITIONS.LEFT,
-          POSITIONS.LEFT,
-          width,
-          props.styles?.[props.state]?.affixContainerPosition === InputContentPosition.OUT,
-          props.styles?.[props.state]?.helpMessage?.position
-        )}
+        leftExtraStyles={
+          props.styles?.[props.state]?.leftExtraStyles ??
+          getExtraStyles(
+            POSITIONS.LEFT,
+            POSITIONS.LEFT,
+            width,
+            props.styles?.[props.state]?.affixContainerPosition === InputContentPosition.OUT,
+            props.styles?.[props.state]?.helpMessage?.position
+          )
+        }
         overrideStyles={props.styles}
-        topExtraStyles={getExtraStyles(
-          POSITIONS.TOP,
-          POSITIONS.LEFT,
-          width,
-          props.styles?.[props.state]?.affixContainerPosition === InputContentPosition.OUT,
-          props.styles?.[props.state]?.helpMessage?.position
-        )}
+        topExtraStyles={
+          props.styles?.[props.state]?.topExtraStyles ??
+          getExtraStyles(
+            POSITIONS.TOP,
+            POSITIONS.LEFT,
+            width,
+            props.styles?.[props.state]?.affixContainerPosition === InputContentPosition.OUT,
+            props.styles?.[props.state]?.helpMessage?.position
+          )
+        }
         variant={props.inputVariant ?? props.styles?.[props.state]?.inputVariant}
       />
     </div>

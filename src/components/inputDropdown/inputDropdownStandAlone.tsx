@@ -26,6 +26,7 @@ export const InputDropdownStandAloneComponent = (
   return (
     <InputDropdownStyled
       data-testid={`${props.dataTestId}InputDropdown`}
+      styles={props.styles?.[props.state]}
       onKeyDown={e => {
         if (props.device === DeviceBreakpointsType.DESKTOP && isKeyTabPressed(e.key)) {
           props.onOpenOptions(false);

@@ -135,7 +135,7 @@ const InputDropdownBoundary = <V extends string | unknown>(
       </FallbackComponent>
     }
   >
-    <InputDropdownComponent {...props} />
+    <InputDropdownComponent {...props} ref={ref} />
   </ErrorBoundary>
 );
 

@@ -7,6 +7,7 @@ export type InputDropdownStateProps = InputBasicStateProps & {
   popoverVariant?: { [key in DeviceBreakpointsType]?: string };
   useActionBottomSheet?: { [key in DeviceBreakpointsType]?: boolean };
   actionBottomSheetVariant?: string;
+  inputDropdownContainer?: CommonStyleType;
   searchListContainer?: CommonStyleType;
   searchListSubContainer?: CommonStyleType;
   loaderExpandedContainer?: CommonStyleType;

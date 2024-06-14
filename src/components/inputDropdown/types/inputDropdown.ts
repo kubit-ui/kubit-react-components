@@ -14,11 +14,16 @@ import {
   InputDropdownStylesProps,
 } from './inputDropdownTheme';
 
+export type InputDropdownOptionsAriasTypes = Pick<
+  React.AriaAttributes,
+  'aria-label' | 'aria-labelledby'
+>;
+
 export type InputDropdownOptionsType = {
   options: ListOptionsOptionType[];
   optionVariant?: string;
   listOptionsVariant?: string;
-};
+} & InputDropdownOptionsAriasTypes;
 
 export interface IPopoverDropdownList {
   open: boolean;
