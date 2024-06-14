@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { focusFirstDescendant } from '@/utils';
+
 import { SnackbarControlled } from './snackbarControlled';
 import { ISnackbarUnControlled } from './types';
 
@@ -53,6 +55,8 @@ const SnackbarUnControlledComponent = <V extends string | unknown>(
   const handleCloseButton: (_open: boolean) => React.MouseEventHandler<HTMLButtonElement> =
     _open => event => {
       props.onOpenClose?.(_open, event);
+      // Only after the user closes the snackbar manually, the focus will be set to the first focusable element of the page
+      focusFirstDescendant(document.body);
     };
 
   const handleMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
