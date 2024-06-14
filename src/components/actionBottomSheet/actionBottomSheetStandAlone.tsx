@@ -8,7 +8,7 @@ import {
   ActionBottomSheetHeaderContentStyled,
   ActionBottomSheetHeaderStyled,
   ActionBottomSheetIconSyled,
-  ActionBottomSheetSyled,
+  ActionBottomSheetStyled,
   ActionBottomSheetTitleSyled,
 } from './actionBottomSheet.styled';
 import { IActionBottomSheetStandAlone } from './types';
@@ -18,7 +18,7 @@ const ActionBottomSheetStandAloneComponent = (
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   return (
-    <ActionBottomSheetSyled
+    <ActionBottomSheetStyled
       ref={ref}
       $height={props.height}
       data-testid={`${props.dataTestId}Container`}
@@ -53,7 +53,7 @@ const ActionBottomSheetStandAloneComponent = (
       <ActionBottomSheetContentStyled ref={scrollableRef} styles={props.styles.content}>
         {props.children}
       </ActionBottomSheetContentStyled>
-    </ActionBottomSheetSyled>
+    </ActionBottomSheetStyled>
   );
 };
 

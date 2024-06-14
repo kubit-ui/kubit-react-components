@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { PopoverControlled as Popover } from '@/components/popover';
 import { STYLES_NAME } from '@/constants';
-import { useId, useMediaDevice, useScrollEffect } from '@/hooks';
+import { useDeviceHeight, useId, useMediaDevice, useScrollEffect } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 import { DeviceBreakpointsType } from '@/types';
@@ -22,6 +22,7 @@ const ActionBottomSheetControlledStructureComponent = React.forwardRef(
     { variant, ctv, ...props }: IActionBottomSheetControlledStructure<V>,
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
+    useDeviceHeight();
     const styles = useStyles<ActionBottomSheetVariantStylesType, V>(
       STYLES_NAME.ACTION_BOTTOM_SHEET,
       variant,

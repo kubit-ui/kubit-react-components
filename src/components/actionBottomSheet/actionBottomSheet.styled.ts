@@ -13,8 +13,10 @@ type IActionBottomSheetStyles = {
   styles?: CommonStyleType;
 };
 
-export const ActionBottomSheetSyled = styled.div<IActionBottomSheetStyles & { $height?: string }>`
+export const ActionBottomSheetStyled = styled.div<IActionBottomSheetStyles & { $height?: string }>`
   max-height: 100vh;
+  max-height: var(--100svh, 100vh);
+  max-height: 100svh;
   ${props => getStyles(props.styles)}
   height: ${({ $height }) => $height};
 `;
@@ -49,6 +51,8 @@ export const ActionBottomSheetContentStyled = styled.div<IActionBottomSheetStyle
   ${({ theme: { MEDIA_QUERIES } }) => css`
     ${MEDIA_QUERIES?.mobileAndTablet} {
       max-height: 100vh;
+      max-height: var(--100svh, 100vh);
+      max-height: 100svh;
     }
   `}
 `;

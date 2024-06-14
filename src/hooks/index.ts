@@ -16,3 +16,4 @@ export * from './useManageState/useManageState';
 export { useScrollEffect } from './useScrollEffect/useScrollEffect';
 export * from './useScrollPosition/useScrollPosition';
 export { useZoomEffect } from './useZoomEffect/useZoomEffect';
+export { useDeviceHeight } from './useDeviceHeight/useDeviceHeight';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { STYLES_NAME } from '@/constants';
-import { useMediaDevice, useScrollEffect, useZoomEffect } from '@/hooks';
+import { useDeviceHeight, useMediaDevice, useScrollEffect, useZoomEffect } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 import { CssProperty } from '@/utils';
@@ -28,6 +28,7 @@ const DrawerControlledComponent = React.forwardRef(
     { portalId, ...props }: IDrawerControlled<V>,
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
+    useDeviceHeight();
     const styles = useStyles<DrawerVariantStylesType, V>(
       STYLES_NAME.DRAWER,
       props.variant,
