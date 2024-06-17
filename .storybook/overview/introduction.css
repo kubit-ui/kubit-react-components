@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'myFirstFont';
+  font-family: 'GTAmericaFont';
   src: url('../font/gtamericaregular.woff');
 }
 
@@ -18,7 +18,7 @@
   justify-content: center;
   margin-left: 6rem;
   gap: 2rem;
-  font-family: 'myFirstFont';
+  font-family: 'GTAmericaFont';
 }
 
 .welcome_title {

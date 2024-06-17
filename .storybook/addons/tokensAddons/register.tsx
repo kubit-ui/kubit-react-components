@@ -1,7 +1,5 @@
-import { addons, types } from '@storybook/addons';
-import { Meta, Source, Title } from '@storybook/blocks';
-import { AddonPanel, Placeholder, Separator, Spaced } from '@storybook/components';
-import { useAddonState, useArgs } from '@storybook/manager-api';
+import { AddonPanel, Spaced } from '@storybook/components';
+import { addons, types, useArgs } from '@storybook/manager-api';
 
 import React from 'react';
 

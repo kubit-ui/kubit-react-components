@@ -2,10 +2,10 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: [
-    '../src/components/**/*.mdx',
+    '../.storybook/**/*.@(mdx|stories.@(js|jsx|ts|tjx|tdx|tsx))',
     '../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
     '../src/storybook/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-    '../.storybook/**/*.stories.@(js|jsx|mdx|ts|tjx|tdx|tsx)',
+    '../.storybook/**/*.@(mdx|stories.@(js|jsx|ts|tjx|tdx|tsx))',
   ],
   staticDirs: ['./assets', '../assets'],
   addons: [
@@ -24,8 +24,10 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
-    autodocs: 'tag',
     defaultName: 'Documentation',
+  },
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
   },
 };
 export default config;

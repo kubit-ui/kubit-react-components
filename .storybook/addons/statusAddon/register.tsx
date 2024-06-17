@@ -1,6 +1,5 @@
 import { Div } from '@storybook/components';
-import { addons, types } from '@storybook/manager-api';
-import { useParameter } from '@storybook/manager-api';
+import { addons, types, useParameter } from '@storybook/manager-api';
 
 import React from 'react';
 

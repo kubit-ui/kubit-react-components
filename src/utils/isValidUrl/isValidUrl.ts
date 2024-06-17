@@ -7,7 +7,6 @@ export const isValidHttpUrl = (string: string): boolean => {
   let parsedURL;
 
   try {
-    // eslint-disable-next-line node/no-unsupported-features/node-builtins
     parsedURL = new URL(string);
   } catch (e) {
     if (string.startsWith('/') || string.startsWith('./') || string.startsWith('../')) {
