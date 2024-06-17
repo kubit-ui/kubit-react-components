@@ -20,13 +20,9 @@ export const OptionComponent = React.forwardRef(
     const [hover, setHover] = React.useState(false);
     const [focused, setFocused] = React.useState(false);
 
-    React.useImperativeHandle(
-      ref,
-      () => {
-        return innerRef.current as HTMLElement;
-      },
-      []
-    );
+    React.useImperativeHandle(ref, () => {
+      return innerRef.current as HTMLElement;
+    }, []);
 
     React.useEffect(() => {
       if (focus) {

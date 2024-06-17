@@ -22,13 +22,9 @@ const ThirdPartyAnimationComponent = <V extends string | unknown>(
   const { thirdPartyAnimationData } = variantTheme;
   const element = React.useRef<HTMLDivElement>(null);
 
-  React.useImperativeHandle(
-    ref,
-    () => {
-      return element.current as HTMLDivElement;
-    },
-    []
-  );
+  React.useImperativeHandle(ref, () => {
+    return element.current as HTMLDivElement;
+  }, []);
 
   React.useEffect(() => {
     if (element.current) {
