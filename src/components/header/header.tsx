@@ -6,17 +6,23 @@ import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
 import { HeaderStandAlone } from './headerStandAlone';
+import { useHeaderShadow } from './hook/useHeaderShadow';
 import { HeaderPropsStylesType, IHeader, IHeaderStandAlone } from './types';
 
 const HeaderComponent = React.forwardRef(
   <V extends string | unknown>(
-    { variant, ctv, ...props }: IHeader<V>,
+    { variant, ctv, showShadowFrom, ...props }: IHeader<V>,
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
     const styles = useStyles<HeaderPropsStylesType, V>(STYLES_NAME.HEADER, variant, ctv);
     const device = useMediaDevice();
+    const { box_shadow } = styles?.container?.scrollShadow || {};
+    const { headerRef } = useHeaderShadow({
+      ref,
+      shadow: { boxShadow: box_shadow, showShadowFrom },
+    });
 
-    return <HeaderStandAlone {...props} ref={ref} device={device} styles={styles} />;
+    return <HeaderStandAlone {...props} ref={headerRef} device={device} styles={styles} />;
   }
 );
 HeaderComponent.displayName = 'HeaderComponent';

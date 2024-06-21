@@ -12,6 +12,7 @@ export interface IHeaderStandAlone {
   crumbs?: CrumbType[];
   device: DeviceBreakpointsType;
   dataTestId?: string;
+  showShadowFrom?: number;
 }
 
 export interface IHeader<V = undefined extends string ? unknown : string>
