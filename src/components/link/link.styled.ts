@@ -77,21 +77,25 @@ export const TextStyledExtended = styled.p.withConfig({
   &[aria-disabled='true'] {
     ${({ linkStyles, textStyles }) =>
       applyLinkStateStyles({ textStyles, linkPropsStyles: linkStyles?.[LinkStateType.DISABLED] })}
+    ${props => applyPropsTextStyles(props)}
   }
 
   &:hover:not([aria-disabled='true']) {
     ${({ linkStyles, textStyles }) =>
       applyLinkStateStyles({ textStyles, linkPropsStyles: linkStyles?.[LinkStateType.HOVER] })}
+    ${props => applyPropsTextStyles(props)}
   }
 
   &:active:not([aria-disabled='true']) {
     ${({ linkStyles, textStyles }) =>
       applyLinkStateStyles({ textStyles, linkPropsStyles: linkStyles?.[LinkStateType.PRESSED] })}
+    ${props => applyPropsTextStyles(props)}
   }
 
   &:visited:not([aria-disabled='true']) {
     ${({ linkStyles, textStyles }) =>
       applyLinkStateStyles({ textStyles, linkPropsStyles: linkStyles?.[LinkStateType.VISITED] })}
+    ${props => applyPropsTextStyles(props)}
   }
 
   // Apply props tokens
