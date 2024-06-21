@@ -3,9 +3,9 @@ import { MASK_TYPE } from '@/components/input/types/input';
 export const cleanInputValueAlphanumeric = (value: string): string => value.replace(/[\W_]+/g, '');
 export const cleanInputValueAlphanumericWithSpaces = (value: string): string =>
   value.replace(/[^\w\s]+/g, '');
-export const cleanInputValueNumber = (value: string): string => value.replace(/[^\d]/g, '');
+export const cleanInputValueNumber = (value: string): string => value.replace(/[^\d]|e|"|\^/gi, '');
 export const cleanInputValueNumberWithSpaces = (value: string): string =>
-  value.replace(/[^\d\s]/g, '');
+  value.replace(/[^\d\s]|e|"|\^/gi, '');
 export const cleanInputValueLetters = (value: string): string => value.replace(/[^a-zñA-ZÑ]/g, '');
 export const cleanInputValueLettersHyphenSpace = (value: string): string =>
   value.replace(/[^a-zñA-ZÑ\s-]/g, '');
