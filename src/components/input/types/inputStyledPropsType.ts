@@ -22,6 +22,10 @@ export type InformationAssociatedStyledProps = {
   styles?: InputStateProps;
 };
 
+export type ErrorAndHelpMessageWrapperStyledProps = {
+  styles?: InputStateProps;
+};
+
 export type ErrorMessageStyledProps = {
   styles?: InputStateProps;
 };
@@ -69,7 +73,6 @@ export type InputStyledProps = {
 };
 
 export type InputWrapperStyledProps = {
-  iconPosition?: InputIconPosition;
   styles?: InputStateProps;
   labelType?: LABEL_TYPE;
 };

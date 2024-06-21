@@ -96,7 +96,6 @@ const InputStandAloneComponent = (
         iconPosition={props.iconPosition}
         id={props.inputId}
         inputMode={inputMode}
-        labelType={styles?.[state]?.label?.type}
         leftIcon={props.leftIcon}
         max={props.max}
         maxLength={props.maxLength}
@@ -201,7 +200,7 @@ const InputStandAloneComponent = (
         styles={styles?.[state]}
       />
       <MessagesAndCounterWrapperStyled>
-        <InputErrorAndHelpMessageWrapperStyled>
+        <InputErrorAndHelpMessageWrapperStyled styles={styles?.[state]}>
           <ErrorMessageStandAlone
             dataTestId={props.dataTestId}
             errorAriaLiveType={props.errorAriaLiveType}
