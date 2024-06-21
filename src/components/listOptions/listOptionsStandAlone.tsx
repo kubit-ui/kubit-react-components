@@ -40,9 +40,13 @@ export const ListOptionsStandAlone = React.forwardRef(
     const [focus, setFocus, listEl] = useRoveFocus(props.roveFocus ?? roveFocusProps);
     const _id = useId();
 
-    React.useImperativeHandle(ref, () => {
-      return listEl.current as HTMLDivElement;
-    }, []);
+    React.useImperativeHandle(
+      ref,
+      () => {
+        return listEl.current as HTMLDivElement;
+      },
+      []
+    );
 
     const id = props.id ?? _id;
     const isSelection = type === ListOptionsType.SELECTION;
