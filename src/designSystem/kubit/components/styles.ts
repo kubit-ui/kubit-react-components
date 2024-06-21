@@ -67,3 +67,4 @@ export * from './stepperNumber/styles';
 export * from './thirdPartyAnimation/styles';
 export * from './textArea/styles';
 export * from './loadingState/styles';
+export * from './selectorBoxFile/styles';

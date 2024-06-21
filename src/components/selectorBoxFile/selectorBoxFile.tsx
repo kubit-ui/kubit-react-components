@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { STYLES_NAME } from '@/constants';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
@@ -10,8 +11,6 @@ import {
   SelectorBoxFilePropsStylesType,
 } from './types';
 import { getState } from './utils';
-
-const SELECTOR_BOX_FILE_STYLES = 'SELECTOR_BOX_FILE_STYLES';
 
 const SelectorBoxFileComponent = React.forwardRef(
   <V extends string | unknown>(
@@ -34,7 +33,7 @@ const SelectorBoxFileComponent = React.forwardRef(
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
     const styles = useStyles<SelectorBoxFilePropsStylesType, V>(
-      SELECTOR_BOX_FILE_STYLES,
+      STYLES_NAME.SELECTOR_BOX_FILE,
       variant,
       ctv
     );

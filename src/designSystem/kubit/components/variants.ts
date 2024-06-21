@@ -67,3 +67,4 @@ export * from './thirdPartyAnimation/variants';
 export * from './textArea/variants';
 export * from './loadingState/variants';
 export * from './textCount/variants';
+export * from './selectorBoxFile/variants';
