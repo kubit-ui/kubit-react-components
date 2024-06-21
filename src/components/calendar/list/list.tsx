@@ -229,6 +229,7 @@ export const List = ({
               styles={props.styles}
             >
               <ItemRove
+                ariaDisabled={isDisabled}
                 ariaLabel={formatDate(day, {
                   weekday: 'long',
                   year: 'numeric',

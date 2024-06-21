@@ -67,6 +67,10 @@ const commonProps = {
     width: '100%',
     align_items: 'flex-start',
   },
+  linksContainer: {
+    display: 'flex',
+    gap: SPACINGS.spacing_150,
+  },
 };
 
 export const MESSAGE_STYLES: MessageStylesType<MessageVariantType> = {

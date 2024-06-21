@@ -73,6 +73,7 @@ export type InputBasicStateProps = {
     size: string;
   };
   informationAssociatedButtonContainer?: CommonStyleType;
+  errorAndHelpMessageContainer?: CommonStyleType;
   errorMessage?: TypographyTypes;
   errorMessageContainer?: CommonStyleType;
   errorMessageIcon?: IconTypes;

@@ -17,12 +17,14 @@ export const DOT_STYLES: DotStylesType<DotVariantType, DotSizeType> = {
       border_width: BORDERS.border_50,
       border_color: COLORS.ACCENT.color_accent_default_border_150,
       border_style: 'solid',
+      color: COLORS.ACCENT.color_accent_default_font_150,
     },
   },
   [DotVariantType.WITHOUT_BORDER]: {
     container: {
       ...containerCommonProps,
       background_color: COLORS.ACCENT.color_accent_default_bg_100,
+      color: COLORS.ACCENT.color_accent_default_font_150,
     },
   },
   [DotVariantType.ALTERNATIVE]: {
@@ -54,6 +56,7 @@ export const DOT_STYLES: DotStylesType<DotVariantType, DotSizeType> = {
       font_size: PARAGRAPH.CAPTION.DESKTOP.font_size,
       line_height: PARAGRAPH.CAPTION.DESKTOP.line_height,
       font_weight: FONT_WEIGHT.font_weight_600,
+      font_style: 'normal',
     },
   },
   [DotSizeType.BIG]: {
@@ -66,6 +69,7 @@ export const DOT_STYLES: DotStylesType<DotVariantType, DotSizeType> = {
       font_size: PARAGRAPH.CAPTION.DESKTOP.font_size,
       line_height: PARAGRAPH.CAPTION.DESKTOP.line_height,
       font_weight: FONT_WEIGHT.font_weight_600,
+      font_style: 'normal',
     },
   },
 };

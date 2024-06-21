@@ -35,6 +35,7 @@ const IconBasicComponent = (
         aria-label={props['aria-label'] || altText}
         data-testid={iconProps.dataTestId}
         disabled={disabled}
+        tabIndex={tabIndex}
         type={ButtonType.BUTTON}
         onClick={onClick}
       >

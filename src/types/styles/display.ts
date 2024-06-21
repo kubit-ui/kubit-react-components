@@ -12,6 +12,7 @@ export type DisplayTypes = {
   flex_shrink?: string;
   flex_basis?: string;
   justify_content?: string;
+  justify_items?: string;
   align_items?: string;
   align_self?: string;
   align_content?: string;

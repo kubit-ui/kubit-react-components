@@ -66,6 +66,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.TESTING,
       },
     },
+    showShadowFrom: {
+      description: 'Percentage number to display component shadow',
+      control: { type: 'number' },
+      type: { name: 'number' },
+      table: {
+        type: {
+          summary: 'number',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     ctv: {
       description: 'Object used for update variant styles',
       type: { name: 'object' },

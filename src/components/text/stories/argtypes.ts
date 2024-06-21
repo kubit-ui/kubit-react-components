@@ -106,11 +106,11 @@ export const argtypes = (
     },
     weight: {
       description: 'Font weight',
-      type: { name: 'string' },
-      control: { type: 'text' },
+      type: { name: 'number' },
+      control: { type: 'number' },
       table: {
         type: {
-          summary: 'string',
+          summary: 'number',
         },
         category: CATEGORY_CONTROL.MODIFIERS,
       },

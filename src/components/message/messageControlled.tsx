@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { STYLES_NAME } from '@/constants';
 import { useStyles } from '@/hooks/useStyles/useStyles';
+import { useGenericComponents } from '@/provider';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
 // styles
@@ -15,7 +16,9 @@ const MessageControlledComponent = React.forwardRef(
   ): JSX.Element => {
     const styles = useStyles<MessagePropsThemeType, V>(STYLES_NAME.MESSAGE, props.variant, ctv);
 
-    return <MessageStandAlone ref={ref} styles={styles} {...props} />;
+    const { LINK } = useGenericComponents();
+
+    return <MessageStandAlone ref={ref} linkComponent={LINK} styles={styles} {...props} />;
   }
 );
 MessageControlledComponent.displayName = 'MessageControlledComponent';

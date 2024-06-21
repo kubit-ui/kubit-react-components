@@ -14,6 +14,7 @@ import { getStyles } from '@/utils/getStyles/getStyles';
 import { InputCounterStateProps } from '../inputCounter/types/inputCounterTheme';
 import { InputIconPosition, InputState } from './types';
 import {
+  ErrorAndHelpMessageWrapperStyledProps,
   ErrorMessageStyledProps,
   HelpMessageStyledProps,
   InformationAssociatedStyledProps,
@@ -49,10 +50,8 @@ export const InfoAssociatedTextAndDecorativeStyled = styled.div<InformationAssoc
 
 export const InfoAssociatedButtonStyled = styled.div<InformationAssociatedStyledProps>``;
 
-export const InputErrorAndHelpMessageWrapperStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+export const InputErrorAndHelpMessageWrapperStyled = styled.div<ErrorAndHelpMessageWrapperStyledProps>`
+  ${({ styles }) => getStyles(styles?.errorAndHelpMessageContainer)};
 `;
 
 export const InputErrorStyled = styled.div<ErrorMessageStyledProps>`

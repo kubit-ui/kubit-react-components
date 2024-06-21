@@ -165,6 +165,7 @@ export const getDisplayStyles = (prop?: DisplayTypes): CSSProp => {
     flex_shrink,
     flex_basis,
     justify_content,
+    justify_items,
     align_items,
     align_self,
     align_content,
@@ -210,6 +211,7 @@ export const getDisplayStyles = (prop?: DisplayTypes): CSSProp => {
     ${flex_shrink && `flex-shrink: ${flex_shrink};`}
     ${flex_basis && `flex-basis: ${flex_basis};`}
     ${justify_content && `justify-content: ${justify_content};`}
+    ${justify_items && `justify-items: ${justify_items};`}
     ${align_items && `align-items: ${align_items};`}
     ${align_self && `align-self: ${align_self};`}    
     ${align_content && `align-content: ${align_content};`}

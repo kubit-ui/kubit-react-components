@@ -4,7 +4,7 @@ import { create } from '@storybook/theming';
 
 const theme = create({
   base: 'light', // this will inherit the base properties of Storybook's dark theme
-  brandTitle: `Kubit | react-components`,
+  brandTitle: `React components by Kubit`,
   brandUrl: 'https://kubit-ui.com/',
 
   // colors

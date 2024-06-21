@@ -16,4 +16,6 @@ export const DotStyled = styled.span<IDotStyled>`
   ${props => getMeasuresStyles(props.sizeStyles.container)}
   ${props => getTypographyStyles(props.sizeStyles.container)}
   ${props => getTypographyStyles(props.styles.container)}
+  width: ${props => props.$width};
+  height: ${props => props.$height};
 `;

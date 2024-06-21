@@ -57,6 +57,28 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    width: {
+      control: { type: 'text' },
+      type: { name: 'string' },
+      description: 'Add width to the dot',
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    height: {
+      control: { type: 'text' },
+      type: { name: 'string' },
+      description: 'Add height to the dot',
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     dataTestId: {
       control: { type: 'text' },
       type: { name: 'string' },

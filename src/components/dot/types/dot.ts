@@ -10,6 +10,8 @@ import { DotSizePropsType, DotVariantStylesType } from './dotTheme';
 export interface IDotStyled {
   styles: DotVariantStylesType;
   sizeStyles: DotSizePropsType;
+  $width?: string;
+  $height?: string;
 }
 
 /**
@@ -21,6 +23,8 @@ export interface IDotStandAlone {
   styles: DotVariantStylesType;
   sizeStyles: DotSizePropsType;
   formatedNumber?: number | string;
+  width?: string;
+  height?: string;
   dataTestId?: string;
 }
 

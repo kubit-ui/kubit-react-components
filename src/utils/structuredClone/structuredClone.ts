@@ -1,4 +1,10 @@
 // eslint-disable-next-line node/no-extraneous-import
 import ungapStructuredClone from '@ungap/structured-clone';
 
-export const structuredClone = self.structuredClone ?? ungapStructuredClone;
+let structuredClone;
+if (typeof self !== 'undefined' && self.structuredClone) {
+  structuredClone = self.structuredClone;
+} else {
+  structuredClone = ungapStructuredClone;
+}
+export { structuredClone };

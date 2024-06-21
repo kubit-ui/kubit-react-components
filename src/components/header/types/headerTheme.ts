@@ -5,7 +5,7 @@ export type HeaderPropsStyles = {
 };
 
 export type HeaderPropsStylesType = {
-  container?: CommonStyleType;
+  container?: CommonStyleType & { scrollShadow?: Pick<CommonStyleType, 'box_shadow'> };
   breadcrumbs?: CommonStyleType;
   content?: CommonStyleType;
   leftContent?: CommonStyleType;

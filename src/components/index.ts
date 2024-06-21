@@ -80,3 +80,4 @@ export * from './textCount';
 export * from './dropdownSelected';
 export * from './portal';
 export * from './tagV2';
+export * from './selectorBoxFile';

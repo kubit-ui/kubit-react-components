@@ -10,7 +10,7 @@ export const LinkAsButtonWrapperStyled = styled.div<{
 }>`
   display: inline;
   > *:first-child {
-    display: block;
+    display: inline-block;
     ${({ $sizeStyles, $styles, $state }) => {
       if (!$styles?.[$state]) {
         return css``;

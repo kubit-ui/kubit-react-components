@@ -10,6 +10,8 @@ import { InputStyledProps, LabelStyledProps } from '@/components/input/types/inp
 import { getTypographyStyles } from '@/utils';
 import { pxToRem } from '@/utils/pxToRem/pxToRem';
 
+import { getPaddingLeftFromContainer, getPaddingRightFromContainer } from './input.mixin.utils';
+
 const isStandardLabel = (labelType: string | undefined): boolean => {
   return labelType === LABEL_TYPE.STANDARD;
 };
@@ -175,16 +177,17 @@ export const getIconPaddingDeprecated = (
   position?: InputIconPosition,
   styles?: InputBasicStateProps
 ): CSSProp => {
-  const padding = styles?.inputContainer?.padding?.split(' ')[1] || null;
   const iconWidth = styles?.inputIcon?.width;
 
   if (position === InputIconPosition.RIGHT) {
+    const paddingRight = getPaddingRightFromContainer(styles?.inputContainer);
     return css`
-      padding-right: calc(${padding} + ${iconWidth});
+      padding-right: calc(${paddingRight} + ${iconWidth});
     `;
   }
+  const paddingLeft = getPaddingLeftFromContainer(styles?.inputContainer);
   return css`
-    padding-left: calc(${padding} + ${iconWidth});
+    padding-left: calc(${paddingLeft} + ${iconWidth});
   `;
 };
 
@@ -193,21 +196,24 @@ export const getIconPadding = (
   rightIcon?: boolean,
   styles?: InputBasicStateProps
 ): CSSProp | undefined => {
-  const padding = styles?.inputContainer?.padding?.split(' ')[1] || styles?.inputContainer?.padding;
   const iconWidth = styles?.inputIcon?.width;
 
   if (leftIcon && rightIcon) {
+    const paddingLeft = getPaddingLeftFromContainer(styles?.inputContainer);
+    const paddingRight = getPaddingRightFromContainer(styles?.inputContainer);
     return css`
-      padding-left: calc(${padding} + ${iconWidth});
-      padding-right: calc(${padding} + ${iconWidth});
+      padding-left: calc(${paddingLeft} + ${iconWidth});
+      padding-right: calc(${paddingRight} + ${iconWidth});
     `;
   } else if (leftIcon) {
+    const paddingLeft = getPaddingLeftFromContainer(styles?.inputContainer);
     return css`
-      padding-left: calc(${padding} + ${iconWidth});
+      padding-left: calc(${paddingLeft} + ${iconWidth});
     `;
   } else if (rightIcon) {
+    const paddingRight = getPaddingRightFromContainer(styles?.inputContainer);
     return css`
-      padding-right: calc(${padding} + ${iconWidth});
+      padding-right: calc(${paddingRight} + ${iconWidth});
     `;
   }
   return undefined;

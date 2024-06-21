@@ -8,5 +8,6 @@ export type {
   MessageTitleType,
   MessageTagType,
   MessageLinkType,
+  MessageContainerAsLinkType,
 } from './message';
 export type { MessagePropsThemeType, MessageStylesType } from './messageTheme';
