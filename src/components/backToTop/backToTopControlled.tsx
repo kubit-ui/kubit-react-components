@@ -25,9 +25,13 @@ const BackToTopControlledComponent = React.forwardRef(
 
     const innerRef = React.useRef<HTMLButtonElement | null>(null);
 
-    React.useImperativeHandle(ref, () => {
-      return innerRef?.current as HTMLButtonElement;
-    }, []);
+    React.useImperativeHandle(
+      ref,
+      () => {
+        return innerRef?.current as HTMLButtonElement;
+      },
+      []
+    );
 
     const { state, setRef } = useManageState({
       states: Object.values(BackToTopStateType) as States,
