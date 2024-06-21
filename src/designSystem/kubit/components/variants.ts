@@ -68,3 +68,4 @@ export * from './textArea/variants';
 export * from './loadingState/variants';
 export * from './textCount/variants';
 export * from './selectorBoxFile/variants';
+export * from './stepperProgress/variants';

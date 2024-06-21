@@ -81,3 +81,4 @@ export * from './dropdownSelected';
 export * from './portal';
 export * from './tagV2';
 export * from './selectorBoxFile';
+export * from './stepperProgress';

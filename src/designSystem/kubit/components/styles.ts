@@ -68,3 +68,4 @@ export * from './thirdPartyAnimation/styles';
 export * from './textArea/styles';
 export * from './loadingState/styles';
 export * from './selectorBoxFile/styles';
+export * from './stepperProgress/styles';
