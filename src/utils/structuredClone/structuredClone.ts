@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-extraneous-import
 import ungapStructuredClone from '@ungap/structured-clone';
 
 let structuredClone;
