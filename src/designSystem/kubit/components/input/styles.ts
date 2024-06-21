@@ -55,6 +55,18 @@ const commonProps = {
     font_weight: FONT_WEIGHT.font_weight_400,
     color: COLORS.NEUTRAL.color_neutral_font_50,
   },
+  errorAndHelpMessageContainer: {
+    display: 'flex',
+    flex_direction: 'column',
+    gap: SPACINGS.spacing_150,
+  },
+  helpMessageContainer: {
+    padding: SPACINGS.spacing_0,
+    padding_left: SPACINGS.spacing_0,
+    display: 'flex',
+    flex_direction: 'row',
+    justify_content: 'space-between',
+  },
   helpMessage: {
     text_align: TEXT_ALIGN.left,
     font_weight: FONT_WEIGHT.font_weight_300,
@@ -66,14 +78,6 @@ const commonProps = {
     size: IconHighlightedSizeType.LARGE,
     color: COLORS.SECONDARY.color_secondary_bg_100,
     variant: IconHighlightedVariantType.ROUND,
-  },
-  helpMessageContainer: {
-    margin_top: SPACINGS.spacing_100,
-    padding: SPACINGS.spacing_0,
-    padding_left: SPACINGS.spacing_0,
-    display: 'flex',
-    flex_direction: 'row',
-    justify_content: 'space-between',
   },
   inputIcon: {
     color: COLORS.ACCENT.color_accent_default_icon_100,
@@ -152,6 +156,10 @@ const errorProps = {
     ...commonProps.inputContainer,
     border_color: COLORS.FEEDBACK.color_feedbackError_border_100,
   },
+  errorAndHelpMessageContainer: {
+    ...commonProps.errorAndHelpMessageContainer,
+    margin_top: SPACINGS.spacing_150,
+  },
   errorMessage: {
     font_variant: TextVariantType.PARAGRAPH_CAPTION_EXPANDED,
     font_weight: FONT_WEIGHT.font_weight_300,
@@ -162,8 +170,6 @@ const errorProps = {
     display: 'flex',
     flex_direction: 'row',
     gap: SPACINGS.spacing_100,
-    margin_top: SPACINGS.spacing_150,
-    margin_bottom: SPACINGS.spacing_150,
     padding_left: SPACINGS.spacing_0,
   },
   errorMessageIcon: {
