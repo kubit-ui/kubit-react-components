@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
 import { ICONS } from '@/assets';
+import { LinkTargetType } from '@/components/link';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
@@ -33,30 +34,58 @@ export const Message: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].MessageVariantType || {})[0] as string,
     content: {
-      content: (
-        <ReplaceContent width="100%">
-          <p>lorem ipsum</p>
-          <p>
-            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-            lorem ipsum
-          </p>
-        </ReplaceContent>
-      ),
+      content: 'This is a text content large message',
+    },
+    inlineLink: {
+      content: ' Inline Link',
+      variant: 'SECONDARY',
+      url: 'https://www.google.com',
+      target: LinkTargetType.BLANK,
     },
     title: { content: 'Title' },
     infoIcon: { icon: ICONS.ICON_GHOST, altText: 'info' },
     closeIcon: { icon: ICONS.ICON_CLOSE, altText: 'close' },
-    actionButton: {
-      content: 'Action',
-      variant: Object.values(variantsObject[themeSelected].ButtonVariantType || {})[0] as string,
-      size: Object.values(variantsObject[themeSelected].ButtonSizeType || {})[2] as string,
+    link: {
+      content: 'Link',
+      variant: 'SECONDARY',
+      url: 'https://www.google.com',
+      target: LinkTargetType.BLANK,
     },
+    links: [
+      {
+        content: 'Link 1',
+        variant: 'SECONDARY',
+        url: 'https://www.google.com',
+        target: LinkTargetType.BLANK,
+      },
+      {
+        content: 'Link 2',
+        variant: 'SECONDARY',
+        url: 'https://www.google.com',
+        target: LinkTargetType.BLANK,
+      },
+    ],
+    // actionButton: {
+    //   content: 'Action',
+    //   variant: Object.values(variantsObject[themeSelected].ButtonVariantType || {})[0] as string,
+    //   size: Object.values(variantsObject[themeSelected].ButtonSizeType || {})[2] as string,
+    // },
     tag: {
       variant: Object.values(variantsObject[themeSelected].TagVariantType || {})[0] as string,
       option: Object.values(variantsObject[themeSelected].TagOptionType || {})[0] as string,
       status: Object.values(variantsObject[themeSelected].TagStatusType || {})[0] as string,
       content: 'Tag content',
     },
+    dataTestId: 'dataTestId',
+    // messageContainerProps: {
+    //   url: 'https://www.google.com',
+    //   target: LinkTargetType.BLANK,
+    // },
+    // titleAndContentContainerProps: {
+    //   url: 'https://www.google.com',
+    //   target: LinkTargetType.BLANK,
+    //   onClick: () => console.log('Card clicked'),
+    // },
     themeArgs: themesObject[themeSelected][STYLES_NAME.MESSAGE],
   },
 };

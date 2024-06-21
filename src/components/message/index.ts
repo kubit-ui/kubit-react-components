@@ -10,6 +10,7 @@ export type {
   MessageLinkType,
   MessagePropsThemeType,
   MessageStylesType,
+  MessageContainerAsLinkType,
 } from './types';
 
 export { MessageControlled } from './messageControlled';

@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import * as React from 'react';
 
 import { Button } from '@/components/button';
@@ -15,6 +16,7 @@ import {
   CloseButtonSectionStyled,
   ExtraActioButtonWrapperStyled,
   LinkContainerStyled,
+  LinksContainerStyled,
   MessageContentStyled,
   MessageHeaderStyled,
   MessageStyled,
@@ -92,16 +94,30 @@ const MessageStandAloneComponent = (
         <MessageStyled
           ref={ref}
           aria-live={ariaLive}
+          as={props.messageContainerProps?.url ? props.linkComponent : 'div'}
           data-testid={`${props.dataTestId}Message`}
           id={props.id}
           role={props.role}
           styles={props.styles}
+          target={props.messageContainerProps?.target}
+          url={(props.messageContainerProps?.url || undefined) as string}
+          onClick={props.messageContainerProps?.onClick}
         >
           {buildIconOrIllustration()}
+          {props.closeIcon?.onClick && (
+            <CloseButtonSectionStyled styles={props.styles}>
+              <ElementOrIcon customIconStyles={props.styles.closeIcon} {...props.closeIcon} />
+            </CloseButtonSectionStyled>
+          )}
           <MessageHeaderStyled
+            as={props.titleAndContentContainerProps?.url ? props.linkComponent : 'div'}
             isLargeMessage={isLargeMessage}
+            role={props.titleAndContentRole}
             styles={props.styles}
+            target={props.titleAndContentContainerProps?.target}
+            url={(props.titleAndContentContainerProps?.url || undefined) as string}
             withIcon={!!props.closeIcon}
+            onClick={props.titleAndContentContainerProps?.onClick}
           >
             {props.title && (
               <MessageTextStyled
@@ -122,16 +138,23 @@ const MessageStandAloneComponent = (
             {props.tag?.content && buildTag()}
             <MessageContentStyled isLargeMessage={isLargeMessage} styles={props.styles}>
               {buildContent()}
-            </MessageContentStyled>
-            <ButtonSectionStyled styles={props.styles}>
-              {buildExtraActionButton()}
-              {buildActionButton()}
-              {props.closeIcon?.onClick && (
-                <CloseButtonSectionStyled styles={props.styles}>
-                  <ElementOrIcon customIconStyles={props.styles.closeIcon} {...props.closeIcon} />
-                </CloseButtonSectionStyled>
+              {props.inlineLink?.content && (
+                <Link
+                  dataTestId={`${props.dataTestId}Link`}
+                  decoration={TextDecorationType.UNDERLINE}
+                  {...props.inlineLink}
+                >
+                  {props.inlineLink.content}
+                </Link>
               )}
-            </ButtonSectionStyled>
+            </MessageContentStyled>
+            {(props.extraActionButton || props.actionButton) && (
+              <ButtonSectionStyled styles={props.styles}>
+                {buildExtraActionButton()}
+                {buildActionButton()}
+              </ButtonSectionStyled>
+            )}
+
             {props.link?.content && (
               <LinkContainerStyled styles={props.styles}>
                 <Link
@@ -142,6 +165,23 @@ const MessageStandAloneComponent = (
                   {props.link.content}
                 </Link>
               </LinkContainerStyled>
+            )}
+            {props.links && props.links.length > 0 && (
+              <LinksContainerStyled styles={props.styles}>
+                {props.links.map((link, index) =>
+                  link.content ? (
+                    <LinkContainerStyled key={index} styles={props.styles}>
+                      <Link
+                        dataTestId={`${props.dataTestId}Link${index}`}
+                        decoration={TextDecorationType.UNDERLINE}
+                        {...link}
+                      >
+                        {link.content}
+                      </Link>
+                    </LinkContainerStyled>
+                  ) : null
+                )}
+              </LinksContainerStyled>
             )}
           </MessageHeaderStyled>
         </MessageStyled>

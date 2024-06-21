@@ -71,3 +71,9 @@ export const LinkContainerStyled = styled.div<{
 }>`
   ${({ styles }) => getStyles(styles.linkContainer)};
 `;
+
+export const LinksContainerStyled = styled.div<{
+  styles: MessagePropsThemeType;
+}>`
+  ${({ styles }) => getStyles(styles.linksContainer)};
+`;

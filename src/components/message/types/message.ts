@@ -3,9 +3,10 @@ import * as React from 'react';
 import { IButton } from '@/components/button';
 import { IElementOrIcon } from '@/components/elementOrIcon';
 import { IElementOrillustration } from '@/components/elementOrIllustration';
-import { ILink } from '@/components/link';
+import { ILink, LinkTargetType } from '@/components/link';
 import { ITag } from '@/components/tag';
 import { IText } from '@/components/text';
+import { GenericLinkType } from '@/provider/genericComponents';
 import { AriaLiveOptionType, CustomTokenTypes, ROLES } from '@/types';
 
 import { MessagePropsThemeType } from './messageTheme';
@@ -35,12 +36,23 @@ export type MessageLinkType = Omit<ILink, 'children'> & {
   content?: string;
 };
 
+export type MessageContainerAsLinkType = {
+  onClick?: () => void;
+  url?: string;
+  target?: LinkTargetType;
+};
+
 export interface IMessageStandAlone {
   illustration?: IElementOrillustration;
+  linkComponent: GenericLinkType;
+  messageContainerProps?: MessageContainerAsLinkType;
+  titleAndContentContainerProps?: MessageContainerAsLinkType;
+  titleAndContentRole?: ROLES;
   infoIcon?: IElementOrIcon;
   actionButton?: MessageActionButtonType;
   extraActionButton?: MessageExtraActionButtonType;
   content: MessageContentType;
+  inlineLink?: MessageLinkType;
   title?: MessageTitleType;
   tag?: MessageTagType;
   ariaMessageId?: string;
@@ -49,14 +61,18 @@ export interface IMessageStandAlone {
   maxContentLength?: number;
   open: boolean;
   styles: MessagePropsThemeType;
-  role?: ROLES.STATUS | ROLES.ALERT;
+  role?: ROLES;
   id?: string;
   ariaLive?: AriaLiveOptionType;
+  /**
+   * @deprecated Use the new prop "links"
+   */
   link?: MessageLinkType;
+  links?: MessageLinkType[];
 }
 
 export interface IMessageControlled<V = undefined extends string ? unknown : string>
-  extends Omit<IMessageStandAlone, 'styles'>,
+  extends Omit<IMessageStandAlone, 'styles' | 'linkComponent'>,
     Omit<CustomTokenTypes<MessagePropsThemeType>, 'cts' | 'extraCt'> {
   open: boolean;
   variant: V;

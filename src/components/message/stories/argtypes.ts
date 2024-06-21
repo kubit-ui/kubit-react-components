@@ -36,6 +36,28 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    messageContainerProps: {
+      description: 'Object with properties for message container',
+      control: { type: 'object' },
+      type: { name: 'object' },
+      table: {
+        type: {
+          summary: 'MessageAsLinkType',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
+    titleAndContentContainerProps: {
+      description: 'Object with properties for title and content container',
+      control: { type: 'object' },
+      type: { name: 'object' },
+      table: {
+        type: {
+          summary: 'MessageAsLinkType',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     actionButton: {
       description: 'Object with properties for action button',
       control: { type: 'object' },
@@ -102,6 +124,28 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    inlineLink: {
+      description: 'Object with inlinelink properties',
+      type: { name: 'object', required: false },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'MessageLinkType',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
+    links: {
+      description: 'Object with links',
+      type: { name: 'object', required: false },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'MessageLinkType[]',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     infoIcon: {
       description: 'Object with properties of the icon to show into title message',
       type: { name: 'object' },
@@ -154,7 +198,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
       table: {
         type: {
           summary: 'ROLES',
-          detail: 'alert, status',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    titleAndContentRole: {
+      description: 'Prop used for accesibility to asign a rol',
+      control: { type: 'select' },
+      type: { name: 'string' },
+      table: {
+        type: {
+          summary: 'ROLES',
         },
         category: CATEGORY_CONTROL.MODIFIERS,
       },

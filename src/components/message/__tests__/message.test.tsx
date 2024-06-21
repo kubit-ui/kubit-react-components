@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { axe } from 'jest-axe';
 
+import { LinkTargetType } from '@/components/link';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { ROLES } from '@/types';
 
@@ -25,6 +26,7 @@ const MOCK = {
   open: true,
   closeIcon: { onClick: jest.fn() },
   link: { content: 'Link', variant: 'SECONDARY', url: '#' },
+  dataTestId: 'dataTestId',
 };
 
 const mockPropsWithTagAndExtraAction = {
@@ -137,6 +139,84 @@ describe('Message component', () => {
   });
   it('Should have a right html structure, when have a illustration', async () => {
     const { container } = renderProvider(<Message {...mockIllustration} />);
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Click on Message container when it is a link', async () => {
+    const messageContainerProps = {
+      url: 'https://www.google.com',
+      target: LinkTargetType.BLANK,
+      onClick: jest.fn(),
+    };
+
+    const { container } = renderProvider(
+      <Message
+        {...MOCK}
+        actionButton={undefined}
+        link={undefined}
+        messageContainerProps={messageContainerProps}
+      />
+    );
+
+    const parentContainer = screen.getAllByRole(ROLES.LINK)[0];
+    fireEvent.click(parentContainer);
+    expect(messageContainerProps.onClick).toHaveBeenCalled();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+  it('Click on titleAndContentContainer container when it is a link', async () => {
+    const titleAndContentContainerProps = {
+      url: 'https://www.google.com',
+      target: LinkTargetType.BLANK,
+      onClick: jest.fn(),
+    };
+
+    const { container } = renderProvider(
+      <Message
+        {...MOCK}
+        actionButton={undefined}
+        link={undefined}
+        titleAndContentContainerProps={titleAndContentContainerProps}
+      />
+    );
+
+    const parentContainer = screen.getAllByRole(ROLES.LINK)[0];
+    fireEvent.click(parentContainer);
+    expect(titleAndContentContainerProps.onClick).toHaveBeenCalled();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+  it('Show links and inlineLink', async () => {
+    const links = [
+      { content: 'Link 1 Array', variant: 'SECONDARY', url: '#' },
+      { content: 'Link 2 Array', variant: 'SECONDARY', url: '#' },
+    ];
+    const inlineLink = { content: 'Inline Link', variant: 'SECONDARY', url: '#' };
+
+    const { container } = renderProvider(
+      <Message
+        {...MOCK}
+        actionButton={undefined}
+        inlineLink={inlineLink}
+        link={undefined}
+        links={links}
+      />
+    );
+
+    const linkElement1 = screen.getByRole('link', { name: /Link 1 Array/i });
+    const linkElement2 = screen.getByRole('link', { name: /Link 2 Array/i });
+    const inlineLinkElement = screen.getByRole('link', { name: /Inline Link/i });
+
+    expect(linkElement1).toBeInTheDocument();
+    expect(linkElement2).toBeInTheDocument();
+    expect(inlineLinkElement).toBeInTheDocument();
 
     const results = await axe(container);
     expect(container).toHTMLValidate();
