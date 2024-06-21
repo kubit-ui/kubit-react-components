@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import Package from '../../package.json';
+import Package from '../../package.json';
 import bg from './assets/cover_home.webp';
 import './introduction.css';
 
@@ -24,7 +24,7 @@ export const Introduction = () => {
     >
       <div className="welcome-text-container">
         <h2 className="welcome_title">Kubit | web-components</h2>
-        <h4 className="welcome_version">{`v.1.0.0 | Saturn`}</h4>
+        <h4 className="welcome_version">{`v.${Package.version}| Saturn`}</h4>
       </div>
     </div>
   );
