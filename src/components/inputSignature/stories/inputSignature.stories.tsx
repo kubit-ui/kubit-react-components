@@ -9,7 +9,7 @@ import { argtypes } from './argTypes';
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 
 const meta = {
-  title: 'Components/Form/InputSignature',
+  title: 'Components/Forms/InputSignature',
   component: Story,
   parameters: {
     layout: 'centered',
