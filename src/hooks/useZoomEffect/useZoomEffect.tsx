@@ -8,6 +8,7 @@ import { CssProperty, changeCssProperty } from '@/utils';
 const MAX_ZOOM = 1.25;
 const CONDITION = true;
 const MEASURE_REM = 16;
+const INIT_ZOOM = 1;
 
 const getOriginalCssProps = (element: HTMLElement, cssProps: CssProperty[]) => {
   // to store the original css props
@@ -48,6 +49,8 @@ export const useZoomEffect = (
   const originalStyles = useRef<CssProperty[]>([]);
   // indicate if zoomed
   const zoomed = useRef<boolean>(false);
+  // control the previous zoom value
+  const prevZoom = useRef<number>(INIT_ZOOM);
   // indicate the theme breakpoints
   const { BREAKPOINTS } = useTheme();
 
@@ -64,10 +67,12 @@ export const useZoomEffect = (
     if (zoom > maxZoom) {
       zoomed.current && changeCssProperty(element, effect);
       zoomed.current = false;
-    } else {
+    } else if (prevZoom.current > zoom && zoom === INIT_ZOOM) {
+      // apply the original styles when returning to normal size after zooming in
       !zoomed.current && changeCssProperty(element, originalStyles.current);
       zoomed.current = true;
     }
+    prevZoom.current = zoom;
   }, [condition]);
 
   const elementRef = useCallback(
