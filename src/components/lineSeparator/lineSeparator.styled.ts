@@ -11,6 +11,7 @@ import {
 export const LineSeparatorRootWrapperStyled = styled.div<ILineSeparatorLineStyled>`
   position: relative;
   width: 100%;
+  ${props => getStyles(props.styles.lineSeparatorRootWrapper)}
   &:before {
     content: '';
     position: absolute;
