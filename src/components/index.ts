@@ -82,3 +82,6 @@ export * from './portal';
 export * from './tagV2';
 export * from './selectorBoxFile';
 export * from './stepperProgress';
+export * from './badge';
+export * from './slider';
+export * from './pagination';
