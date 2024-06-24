@@ -69,3 +69,6 @@ export * from './textArea/styles';
 export * from './loadingState/styles';
 export * from './selectorBoxFile/styles';
 export * from './stepperProgress/styles';
+export * from './badge/styles';
+export * from './slider/styles';
+export * from './pagination/styles';

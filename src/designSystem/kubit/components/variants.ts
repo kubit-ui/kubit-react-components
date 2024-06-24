@@ -69,3 +69,6 @@ export * from './loadingState/variants';
 export * from './textCount/variants';
 export * from './selectorBoxFile/variants';
 export * from './stepperProgress/variants';
+export * from './badge/variants';
+export * from './slider/variants';
+export * from './pagination/variants';
