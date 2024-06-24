@@ -3,17 +3,7 @@ import * as React from 'react';
 import { ICONS } from '@/assets';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
 
-const themeWithAdditionalInfo = [
-  'kubit',
-  'flameLightAlt',
-  'modelBankLightAlt',
-  'horizonLightAlt',
-  'novaLightAlt',
-  'flameLightRegular',
-  'modelBankLightRegular',
-  'horizonLightRegular',
-  'novaLightRegular',
-];
+const themeWithAdditionalInfo = ['kubit'];
 
 const themeWithoutIcon = themeWithAdditionalInfo.filter(theme => theme !== 'kubit');
 
