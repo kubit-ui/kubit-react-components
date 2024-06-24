@@ -243,13 +243,9 @@ export const TableExpandedCellStyled = styled.td<{
 
 export const TableEmptyExpandedContentRow = styled.div<{ styles?: TableRowStylesTypes }>`
   width: ${({ styles }) =>
-    `calc(${styles?.accordionIcon?.width} + (${
-      styles?.accordionIconContainer?.padding_left ?? '0%'
-    } + ${styles?.accordionIconContainer?.padding_right ?? '0%'}))`};
+    `calc(${styles?.accordionIcon?.width} + (${styles?.accordionIconContainer?.padding_left ?? '0%'} + ${styles?.accordionIconContainer?.padding_right ?? '0%'}))`};
   height: ${({ styles }) =>
-    `calc(${styles?.accordionIcon?.height} + (${
-      styles?.accordionIconContainer?.padding_top ?? '0%'
-    } + ${styles?.accordionIconContainer?.padding_bottom ?? '0%'}))`};
+    `calc(${styles?.accordionIcon?.height} + (${styles?.accordionIconContainer?.padding_top ?? '0%'} + ${styles?.accordionIconContainer?.padding_bottom ?? '0%'}))`};
 `;
 
 export const TableExpandedButton = styled.button<{ styles?: TableRowStylesTypes }>`
