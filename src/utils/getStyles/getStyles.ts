@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { CSSProp, css } from 'styled-components';
 
 import {

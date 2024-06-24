@@ -11,7 +11,7 @@ import { within } from '../utils/within';
 export const shift = (options: ShiftOptionsMiddleware = {}): Middleware => ({
   name: 'shift',
   options,
-  // eslint-disable-next-line complexity
+
   fn(state) {
     const { x, y, placement } = state;
     const {

@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import * as React from 'react';
 
 import { ContentDirectionType, Footer } from '@/components/footer';

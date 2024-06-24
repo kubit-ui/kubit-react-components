@@ -34,7 +34,6 @@ export const getInnerBoundingClientRect = (element: Element, strategy: Strategy)
   };
 };
 
-// eslint-disable-next-line complexity
 export const getClientRectFromClippingAncestor = (
   clippingAncestor: Element | RootBoundary,
   strategy: Strategy
@@ -75,7 +74,7 @@ export const hasFixedPositionAncestor = (element: Element, stopNode: Node): bool
  * clipping (or hiding) child elements. This returns all clipping ancestors
  * of the given element up the tree.
  */
-// eslint-disable-next-line complexity
+
 export const getClippingElementAncestors = (element: Element): Array<Element> => {
   let result = getOverflowAncestors(element).filter(
     el => isElement(el) && getNodeName(el as Element) !== 'body'

@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import * as React from 'react';
 
 import { useScrollBlock } from '@/hooks/useScrollBlock/useScrollBlock';

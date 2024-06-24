@@ -51,7 +51,7 @@ const InputStandAloneComponent = (
   const helpMessageId = `${props.inputId}HelpText`;
   const errorMessageId = `${props.inputId}Error`;
   const labelId = `${props.inputId}Label`;
-  // eslint-disable-next-line complexity
+
   const buildInput = () => (
     <InputWrapperStyled styles={styles?.[state]}>
       <LoaderStandAlone loader={props.loader} loading={props.loading} styles={styles?.[state]} />

@@ -8,7 +8,6 @@ type PropsReturnType = {
   additionalProps: object | undefined;
 };
 
-// eslint-disable-next-line complexity
 export const buildProps = (
   styles: NavigationCardStylesPropsType,
   element: DecorativePropsType | undefined,

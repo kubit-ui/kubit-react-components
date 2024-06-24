@@ -19,7 +19,6 @@ import { IPopoverDropdownList } from '../types/inputDropdown';
 import { LoadingIcon } from './loadingIcon';
 import { OptionsList } from './optionsList';
 
-// eslint-disable-next-line complexity
 export const PopoverSearchListComponent = (
   props: IPopoverDropdownList,
   ref: ForwardedRef<unknown>

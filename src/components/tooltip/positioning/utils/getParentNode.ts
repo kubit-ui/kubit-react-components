@@ -1,7 +1,6 @@
 import { isShadowRoot } from './is.utils';
 import { getNodeName } from './node';
 
-// eslint-disable-next-line complexity
 export const getParentNode = (node: Node): Node => {
   if (getNodeName(node) === 'html') {
     return node;

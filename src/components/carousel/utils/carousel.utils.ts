@@ -48,7 +48,6 @@ export const calcNumPages = ({
   return numPages;
 };
 
-// eslint-disable-next-line complexity
 export const getFirstAndLastIndexInCarouselView = ({
   elementsLength,
   numElementsPerPage,
@@ -107,7 +106,6 @@ export const getFirstAndLastIndexInCarouselView = ({
   return { firstIndexInView, lastIndexInView };
 };
 
-// eslint-disable-next-line complexity
 export const calcNumElementsPerPage = ({
   carouselContainer,
   carouselContent,

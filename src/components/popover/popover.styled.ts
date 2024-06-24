@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import styled, { css } from 'styled-components';
 
 import { DeviceBreakpointsType } from '@/types/breakpoints';

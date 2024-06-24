@@ -29,7 +29,6 @@ import {
 import { ITooltipStandAlone } from './types';
 import { getAriaDescriptorsBy, getHtmlTagForTooltip } from './utils';
 
-// eslint-disable-next-line complexity
 const TooltipStandAlone = ({
   childrenAsButton = true,
   ...props

@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { POSITIONS } from '@/types/positions';
 
 export const getAlignStyles = (align: POSITIONS, extraGap = '20px'): string => {

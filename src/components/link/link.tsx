@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import * as React from 'react';
 
 import { TextDecorationType, TextVariantStylesType } from '@/components/text/types';

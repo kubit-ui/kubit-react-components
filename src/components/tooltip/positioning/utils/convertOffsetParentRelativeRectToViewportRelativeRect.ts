@@ -4,7 +4,6 @@ import { getElementScroll } from './getElementScroll';
 import { isHTMLElement, isOverflowElement } from './is.utils';
 import { getNodeName } from './node';
 
-// eslint-disable-next-line complexity
 export const convertOffsetParentRelativeRectToViewportRelativeRect = ({
   rect,
   offsetParent,
