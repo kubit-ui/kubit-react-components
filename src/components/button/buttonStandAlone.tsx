@@ -70,6 +70,7 @@ const ButtonStandAloneComponent = (
       disabled={disabled}
       form={props.form}
       minWidth={props.minWidth}
+      role={props.role}
       tabIndex={props.tabIndex}
       type={props.type}
       onClick={props.onClick}

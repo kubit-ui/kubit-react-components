@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { IElementOrIcon } from '@/components/elementOrIcon';
 import { ILoader } from '@/components/loader/types';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes, ROLES } from '@/types';
 
 import type { IconPositionType } from './buttonIconPosition';
 import type { ButtonSizePropsType, ButtonStateKeyOfType } from './buttonTheme';
@@ -61,6 +61,7 @@ export interface IButtonStandAlone
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   icon?: IElementOrIcon;
   form?: string;
+  role?: string | ROLES;
 }
 
 /**
