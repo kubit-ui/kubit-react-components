@@ -48,6 +48,7 @@ export * from './snackbar/variants';
 export * from './stepperNumber/variants';
 export * from './table/variants';
 export * from './tag/variants';
+export * from './tagV2/variants';
 export * from './text/variants';
 export * from './textCount/variants';
 export * from './thirdPartyAnimation/variants';
