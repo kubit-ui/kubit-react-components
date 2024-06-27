@@ -149,14 +149,6 @@ const TooltipStandAlone = ({
   return (
     <TooltipStyled
       ref={props.labelRef}
-      // Aria describedby is used when the tooltip is not used as a modal
-      // Tooltip will not be shown when the popover component is used and it is hidden
-      aria-describedby={
-        !props.tooltipAsModal &&
-        (props.mediaDevice === DeviceBreakpointsType.DESKTOP || props.popoverOpen)
-          ? ariaDescriptorsBy
-          : undefined
-      }
       data-testid={`${props.dataTestId}Tooltip`}
       tooltipAsModal={props.tooltipAsModal}
       onBlur={props.onBlur}
@@ -165,12 +157,23 @@ const TooltipStandAlone = ({
       onKeyDown={props.onKeyDown}
       onMouseDown={props.onMouseDown}
       onMouseEnter={props.onMouseEnter}
-      // When no focusable elements screenReaders may read the text when focus and then using arrows
-      // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tooltip_role
-      // or https://dequeuniversity.com/library/aria/tooltip
       onMouseLeave={props.onMouseLeave}
     >
-      <TooltipTrigger childrenAsButton={childrenAsButton}>{props.children}</TooltipTrigger>
+      <TooltipTrigger
+        // Aria describedby is used when the tooltip is not used as a modal
+        // When no focusable elements screenReaders may read the text when focus and then using arrows
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tooltip_role
+        // or https://dequeuniversity.com/library/aria/tooltip
+        ariaDescribedBy={
+          !props.tooltipAsModal &&
+          (props.mediaDevice === DeviceBreakpointsType.DESKTOP || props.popoverOpen)
+            ? ariaDescriptorsBy
+            : undefined
+        }
+        childrenAsButton={childrenAsButton}
+      >
+        {props.children}
+      </TooltipTrigger>
       {props.mediaDevice === DeviceBreakpointsType.DESKTOP ? (
         Tooltip
       ) : (
