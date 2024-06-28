@@ -23,7 +23,8 @@ const FunctionalitiesModuleStandAloneComponent = (
   const mergeList = (): ListOptionsOptionType[] => {
     return (
       props.sections?.reduce((prev: ListOptionsOptionType[], current) => {
-        return [...prev, ...current.options];
+        const currentOptions = current.options ? current.options : [];
+        return [...prev, ...currentOptions];
       }, []) ?? []
     );
   };
@@ -61,7 +62,7 @@ const FunctionalitiesModuleStandAloneComponent = (
               content={section.optionsContent}
               dataTestId={`${props.dataTestId}ListOptions`}
               optionVariant={props.styles.listOptions.optionVariant}
-              options={section.options}
+              options={section.options || []}
               selectedValue={props.selectedValue}
               title={{ component: TextComponentType.H6, ...section.optionsTitle }}
               type={ListOptionsType.NAVIGATION}

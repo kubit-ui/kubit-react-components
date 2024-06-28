@@ -21,7 +21,7 @@ export type FunctionalitiesModuleActionBottomSheetType = Omit<
 
 export type FunctionalitiesModuleSectionType = {
   tab: PrimaryTabTabType;
-  options: Omit<ListOptionsOptionType, 'highlighted'>[];
+  options?: Omit<ListOptionsOptionType, 'highlighted'>[];
   optionsTitle?: ListOptionsTitleType;
   optionsContent?: ReactNode;
 };

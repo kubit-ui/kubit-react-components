@@ -8,11 +8,11 @@ export const SECTIONS: FunctionalitiesModuleSectionType[] = [
       content: 'Tab 1',
     },
     options: [
-      {
-        label: 'option 0 (disabled)',
-        disabled: true,
-        value: '0',
-      },
+      // {
+      //   label: 'option 0 (disabled)',
+      //   disabled: true,
+      //   value: '0',
+      // },
     ],
   },
   {
