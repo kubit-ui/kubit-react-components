@@ -5,7 +5,6 @@ import { Footer } from '@/components/footer';
 import { PopoverControlled as Popover } from '@/components/popover';
 import { Text, TextComponentType } from '@/components/text';
 import { useId } from '@/hooks';
-import { ROLES } from '@/types';
 
 import {
   DrawerContentStyled,
@@ -59,13 +58,11 @@ const DrawerStandAloneComponent = (
         >
           <DrawerTitleStyled
             ref={shadowRef}
-            aria-label={typeof props.title?.content === 'string' ? props.title.content : undefined}
             as={Text as unknown as React.ElementType}
             component={DrawerTitleComponentType.H3 as unknown as TextComponentType}
             customTypography={props.styles.title}
             dataTestId={`${titleIdFinal}Title`}
             id={titleIdFinal}
-            role={ROLES.NAVIGATION}
             {...props.title}
           >
             {props.title?.content}
