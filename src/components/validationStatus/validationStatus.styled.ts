@@ -8,10 +8,10 @@ type ValidationStatusProps = {
   styles: ValidationStatusStylesProps;
 };
 
-export const ValidationStatusFrame = styled.div<ValidationStatusProps>`
+export const ValidationStatusFrame = styled.ul<ValidationStatusProps>`
   ${props => getStyles(props.styles.container)}
 `;
 
-export const ValidationStatusRow = styled.div<ValidationStatusProps>`
+export const ValidationStatusRow = styled.li<ValidationStatusProps>`
   ${props => getStyles(props.styles.row)}
 `;

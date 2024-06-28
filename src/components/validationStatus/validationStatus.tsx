@@ -16,7 +16,7 @@ const VALIDATION_STATUS_STYLES = 'VALIDATION_STATUS_STYLES';
 const ValidationStatusComponent = React.forwardRef(
   <V extends string | unknown>(
     { variant, ctv, ...props }: IValidationStatus<V>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+    ref: React.ForwardedRef<HTMLUListElement> | undefined | null
   ): JSX.Element => {
     const styles = useStyles<ValidationStatusStylesProps, V>(
       VALIDATION_STATUS_STYLES,
@@ -31,7 +31,7 @@ ValidationStatusComponent.displayName = 'ValidationStatusComponent';
 
 const ValidationStatusBoundary = <V extends string | unknown>(
   props: IValidationStatus<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+  ref: React.ForwardedRef<HTMLUListElement> | undefined | null
 ): JSX.Element => (
   <ErrorBoundary
     fallBackComponent={
