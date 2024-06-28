@@ -28,6 +28,7 @@ const StepperProgressStandAloneComponent = (
       step: 'step',
       of: 'of',
       completed: 'completed',
+      steps: 'steps',
     },
   }: IStepperProgressStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
@@ -37,7 +38,7 @@ const StepperProgressStandAloneComponent = (
   const uniqueId = useId('stepperProgress');
   const stepperProgressId = id ?? uniqueId;
 
-  prefixAriaLabel.step = _currentStep === 1 ? 'step' : 'steps';
+  prefixAriaLabel.step = _currentStep === 1 ? prefixAriaLabel.step : prefixAriaLabel.steps;
 
   return (
     <StepperProgressContainerStyled ref={ref} styles={styles}>
@@ -56,9 +57,9 @@ const StepperProgressStandAloneComponent = (
         styles={styles}
       >
         <Text component={TextComponentType.SPAN} customTypography={styles.currentStep}>
-          {`${_currentStep} ${prefixAriaLabel?.step} `}
+          {`${_currentStep} ${prefixAriaLabel?.step || ''} `}
           <Text component={TextComponentType.SPAN} customTypography={styles.maxStep}>
-            {`${prefixAriaLabel?.of} ${maxSteps} ${prefixAriaLabel?.completed}`}
+            {`${prefixAriaLabel?.of || ''} ${maxSteps} ${prefixAriaLabel?.completed || ''}`}
           </Text>
         </Text>
       </StepperProgressHelpText>
