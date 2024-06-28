@@ -42,6 +42,7 @@ import { getPageControlStyles } from './pageControl';
 import { getPillStyles } from './pill';
 import { getPillSelectorStyles } from './pillSelector';
 import { POPOVER_STYLES } from './popover';
+import { getQuickButtonStyles } from './quickButton';
 import { getRadioButtonGroupStyles } from './radioButtonGroup';
 import { getSkeletonStyles } from './skeleton';
 import { getSnackbarStyles } from './snackbar';
@@ -113,6 +114,7 @@ export const getComponentsStyles = (COLORS: {
   TEXT_COUNT_STYLES: getTextCountStyles(COLORS),
   TEXT_STYLES: TEXT_STYLES,
   THIRD_PARTY_ANIMATION_STYLES: getThirdPartyAnimationStyles(COLORS),
+  QUICK_BUTTON_STYLES: getQuickButtonStyles(COLORS),
   BACK_TO_TOP_STYLES: getBackTopStyles(COLORS),
   TOGGLE_STYLES: getToggleStyles(COLORS),
   TOOLTIP_STYLES: getTooltipStyles(COLORS),

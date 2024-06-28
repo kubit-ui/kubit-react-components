@@ -42,6 +42,7 @@ export * from './pill/variants';
 export * from './pillSelector/variants';
 export * from './popover/variants';
 export * from './tabs/variants';
+export * from './quickButton/variants';
 export * from './radioButtonGroup/variants';
 export * from './skeleton/variants';
 export * from './snackbar/variants';
