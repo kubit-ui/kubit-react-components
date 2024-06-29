@@ -72,6 +72,7 @@ const ButtonStandAloneComponent = (
       minWidth={props.minWidth}
       role={props.role}
       tabIndex={props.tabIndex}
+      title={props.title}
       type={props.type}
       onClick={props.onClick}
     >

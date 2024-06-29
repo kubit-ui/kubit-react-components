@@ -62,6 +62,7 @@ export interface IButtonStandAlone
   icon?: IElementOrIcon;
   form?: string;
   role?: string | ROLES;
+  title?: string;
 }
 
 /**
