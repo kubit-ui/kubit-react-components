@@ -44,6 +44,7 @@ export const ListRowHeaderPriority = (props: IListRowHeaderPriority): JSX.Elemen
           customBackgroundColor={rowHeader?.config?.backgroundColor}
           customWidth={rowHeader?.config?.width}
           flexWidth={rowHeader?.config?.flexWidth}
+          index={props.index}
           lineSeparatorBottomOnHeader={props.lineSeparatorBottomOnHeader}
           lineSeparatorLineStyles={props.lineSeparatorLineStyles}
           lineSeparatorTopOnHeader={props.lineSeparatorTopOnHeader}

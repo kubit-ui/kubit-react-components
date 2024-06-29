@@ -92,6 +92,11 @@ export const TABLE_STYLES: TableStylesType<
           ...commonPropsHeader.container,
           background_color: COLORS.SECONDARY.color_secondary_bg_150,
         },
+        column: {
+          ...commonPropsHeader.column,
+          //It is used to add color to one single header cell, intead of the whole row
+          background_color: COLORS.SECONDARY.color_secondary_bg_150,
+        },
       },
       [TableHeaderVariantType.SECONDARY]: {
         ...commonPropsHeader,
@@ -101,6 +106,11 @@ export const TABLE_STYLES: TableStylesType<
           border_bottom_width: BORDERS.border_100,
           border_bottom_color: COLORS.SECONDARY.color_secondary_border_50,
           border_bottom_style: 'solid',
+        },
+        column: {
+          ...commonPropsHeader.column,
+          //It is used to add color to one single header cell, intead of the whole row
+          background_color: COLORS.NEUTRAL.color_neutral_bg_250,
         },
       },
       [TableHeaderVariantType.CUSTOMIZABLE_HEADER]: {
@@ -171,17 +181,26 @@ export const TABLE_STYLES: TableStylesType<
       flex_direction: 'column',
       justify_content: 'left',
       background_color: COLORS.NEUTRAL.color_neutral_bg_250,
+      gap: SPACINGS.spacing_250,
+    },
+    listContainerHeaderPriority: {
+      display: 'flex',
+      flex_direction: 'column',
+      justify_content: 'left',
+      gap: SPACINGS.spacing_250,
     },
     listContainerSydeBySyde: {
       display: 'flex',
       flex_direction: 'row',
       justify_content: 'space-between',
       flex_wrap: 'wrap',
+      gap: SPACINGS.spacing_250,
     },
     listRowContainer: {
       display: 'flex',
       flex_direction: 'column',
       justify_content: 'left',
+      gap: SPACINGS.spacing_250,
     },
     listRowContainerBorder: true,
     listRow: {
@@ -189,13 +208,14 @@ export const TABLE_STYLES: TableStylesType<
       flex_direction: 'column',
       justify_content: 'left',
       padding: `${SPACINGS.spacing_250} ${SPACINGS.spacing_300}`,
-      gap: SPACINGS.spacing_150,
+      gap: SPACINGS.spacing_250,
     },
     listRowSideBySide: {
       display: 'flex',
       flex_direction: 'row',
       justify_content: 'space-between',
       flex_wrap: 'wrap',
+      gap: SPACINGS.spacing_250,
     },
     divider: {
       lineSeparatorLabelVariant: LineSeparatorLabelVariantType.LABEL_DEFAULT,

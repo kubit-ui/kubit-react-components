@@ -159,6 +159,7 @@ const mockBaseCustomizable = {
       id: 'routingNumber',
       label: 'Routing number',
       config: { alignHeader: 'left', alignValue: 'left' },
+      headerVariant: 'SECONDARY',
     },
     {
       id: 'accountNumber',

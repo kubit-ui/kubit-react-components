@@ -39,6 +39,7 @@ export const ListColumnHeaderPriority = (props: IListComponent): JSX.Element => 
                   customWidth={header?.config?.width}
                   flexWidth={header?.config?.flexWidth}
                   hidden={props.hiddenHeaderOn?.[props.device]}
+                  index={indexHeader}
                   lineSeparatorBottomOnHeader={props.lineSeparatorBottomOnHeader}
                   lineSeparatorLineStyles={props.lineSeparatorLineStyles}
                   lineSeparatorTopOnHeader={props.lineSeparatorTopOnHeader}
