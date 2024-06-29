@@ -50,6 +50,7 @@ export const ListOptionsStandAlone = React.forwardRef(
     const id = props.id ?? _id;
     const isSelection = type === ListOptionsType.SELECTION;
     const isNavigation = type === ListOptionsType.NAVIGATION;
+    const hasOptions = props.options && props.options.length > 0;
 
     return (
       <ListOptionsWrapperStyled styles={props.styles}>
@@ -65,64 +66,66 @@ export const ListOptionsStandAlone = React.forwardRef(
           </TitleWrapperStyled>
         )}
         {props.content}
-        <OptionsWrapperStyled
-          ref={listEl as React.RefObject<HTMLUListElement>}
-          aria-label={props.optionsContainerArias?.['aria-label']}
-          aria-labelledby={props.optionsContainerArias?.['aria-labelledby']}
-          as={'ul'}
-          id={id}
-          role={isSelection ? ROLES.LISTBOX : ROLES.MENU}
-          styles={props.styles}
-        >
-          {props.options.map((option, index) => {
-            const selected = isSelected(
-              option,
-              props.selectedValue,
-              props.multiSelect,
-              props.caseSensitive
-            );
-            const optionComponent = (
-              <Option
-                key={`${id}Option${index}`}
-                aria-selected={isSelection ? selected : undefined}
-                as={isNavigation ? 'div' : 'li'}
-                checkedIcon={props.checkedIcon}
-                dataTestId={`${dataTestId}Option${index}`}
-                focus={focus === index}
-                labelCharsHighlighted={props.charsHighlighted}
-                multiSelect={props.multiSelect}
-                role={isSelection ? ROLES.OPTION : ROLES.MENUITEM}
-                selected={selected}
-                tabIndex={isNavigation ? 0 : -1}
-                variant={getOptionVariant(
-                  option.highlighted,
-                  props.hightlightedOptionVariant,
-                  props.optionVariant
-                )}
-                {...option}
-                onClick={e => {
-                  setFocus(index);
-                  props.onOptionClick?.(option.value, e);
-                  option.onClick?.(e);
-                }}
-                onFocus={e => {
-                  if (index !== focus) {
-                    setFocus(index);
-                  }
-                  option.onFocus?.(e);
-                }}
-              />
-            );
-            if (type === ListOptionsType.NAVIGATION) {
-              return (
-                <li key={`${id}LiOption${index}`} role="presentation">
-                  {optionComponent}
-                </li>
+        {hasOptions && (
+          <OptionsWrapperStyled
+            ref={listEl as React.RefObject<HTMLUListElement>}
+            aria-label={props.optionsContainerArias?.['aria-label']}
+            aria-labelledby={props.optionsContainerArias?.['aria-labelledby']}
+            as={'ul'}
+            id={id}
+            role={isSelection ? ROLES.LISTBOX : ROLES.MENU}
+            styles={props.styles}
+          >
+            {props.options.map((option, index) => {
+              const selected = isSelected(
+                option,
+                props.selectedValue,
+                props.multiSelect,
+                props.caseSensitive
               );
-            }
-            return optionComponent;
-          })}
-        </OptionsWrapperStyled>
+              const optionComponent = (
+                <Option
+                  key={`${id}Option${index}`}
+                  aria-selected={isSelection ? selected : undefined}
+                  as={isNavigation ? 'div' : 'li'}
+                  checkedIcon={props.checkedIcon}
+                  dataTestId={`${dataTestId}Option${index}`}
+                  focus={focus === index}
+                  labelCharsHighlighted={props.charsHighlighted}
+                  multiSelect={props.multiSelect}
+                  role={isSelection ? ROLES.OPTION : ROLES.MENUITEM}
+                  selected={selected}
+                  tabIndex={isNavigation ? 0 : -1}
+                  variant={getOptionVariant(
+                    option.highlighted,
+                    props.hightlightedOptionVariant,
+                    props.optionVariant
+                  )}
+                  {...option}
+                  onClick={e => {
+                    setFocus(index);
+                    props.onOptionClick?.(option.value, e);
+                    option.onClick?.(e);
+                  }}
+                  onFocus={e => {
+                    if (index !== focus) {
+                      setFocus(index);
+                    }
+                    option.onFocus?.(e);
+                  }}
+                />
+              );
+              if (type === ListOptionsType.NAVIGATION) {
+                return (
+                  <li key={`${id}LiOption${index}`} role="presentation">
+                    {optionComponent}
+                  </li>
+                );
+              }
+              return optionComponent;
+            })}
+          </OptionsWrapperStyled>
+        )}
       </ListOptionsWrapperStyled>
     );
   }
