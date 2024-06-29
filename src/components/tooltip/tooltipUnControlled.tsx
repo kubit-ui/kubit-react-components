@@ -29,13 +29,9 @@ const TooltipUnControlledComponent = React.forwardRef(
       styleTooltipAsModal: styles.tooltipAsModal,
     });
 
-    React.useImperativeHandle(
-      ref,
-      () => {
-        return labelRef.current as HTMLDivElement;
-      },
-      []
-    );
+    React.useImperativeHandle(ref, () => {
+      return labelRef.current as HTMLDivElement;
+    }, []);
 
     const { showTooltip, hideTooltip, allowFocusOpenTooltip, open } = useTooltip<V>({
       labelRef,

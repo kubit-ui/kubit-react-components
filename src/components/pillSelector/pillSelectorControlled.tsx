@@ -38,13 +38,9 @@ const PillSelectorControlledComponent = React.forwardRef(
       }
     };
 
-    React.useImperativeHandle(
-      ref,
-      () => {
-        return measuredRef.current as HTMLDivElement;
-      },
-      []
-    );
+    React.useImperativeHandle(ref, () => {
+      return measuredRef.current as HTMLDivElement;
+    }, []);
 
     React.useEffect(() => {
       let resizeObserver: ResizeObserver;
