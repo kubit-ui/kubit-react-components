@@ -15,7 +15,6 @@ import {
 } from './selector.styled';
 import { ISelector } from './types/selector';
 
-// eslint-disable-next-line complexity
 export const Selector = (props: ISelector): JSX.Element => {
   const { dateHelpers, formatDate } = useUtilsProvider();
 

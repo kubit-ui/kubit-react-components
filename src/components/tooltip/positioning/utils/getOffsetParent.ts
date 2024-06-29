@@ -31,7 +31,7 @@ const getContainingBlock = (element: Element) => {
 /**
  * Get the closest ancestor positioned element
  */
-// eslint-disable-next-line complexity
+
 export const getOffsetParent = (element: Element): Element | Window => {
   if (!isHTMLElement(element)) {
     return window;

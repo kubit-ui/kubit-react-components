@@ -11,7 +11,6 @@ import { RibbonShape } from './component/RibbonShape';
 import { TagStyled, TagWrapperStyled } from './tag.styled';
 import { type ITagStandAlone, TAG_VARIANT_TYPE } from './types';
 
-// eslint-disable-next-line complexity
 const TagStandAloneComponent = (
   props: ITagStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null

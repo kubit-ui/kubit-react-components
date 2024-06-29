@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import * as React from 'react';
 
 import { Footer } from '@/components/footer';
@@ -92,6 +91,7 @@ export const TableComponent = (
               </TableColumnHeaderStyled>
             )}
             {headersElementWithoutDivider.map((headerValue, index) => {
+              const headerVariant = headerValue.variant ? headerValue.variant : props.headerVariant;
               return (
                 <TableColumnHeaderStyled
                   key={headerValue.id}
@@ -104,7 +104,7 @@ export const TableComponent = (
                   flexWidth={headerValue?.config?.flexWidth}
                   hasDivider={headerValue?.config?.hasDivider}
                   scope="col"
-                  styles={props.styles.header?.[props.headerVariant]}
+                  styles={props.styles.header?.[headerVariant]}
                 >
                   <Text
                     align={
@@ -112,7 +112,7 @@ export const TableComponent = (
                       headerValue?.config?.alignHeader
                     }
                     component={TextComponentType.SPAN}
-                    customTypography={props.styles.header?.[props.headerVariant]?.typography}
+                    customTypography={props.styles.header?.[headerVariant]?.typography}
                     dataTestId={`${props.dataTestId}Header${index}`}
                   >
                     {headerValue.label}

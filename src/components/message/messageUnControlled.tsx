@@ -10,8 +10,9 @@ const MessageUnControlledComponent = <V extends string | unknown>(
 ): JSX.Element => {
   const [open, setOpen] = React.useState(defaultOpen);
 
-  const handleCloseButton = () => {
+  const handleCloseButton: React.MouseEventHandler<HTMLButtonElement> = event => {
     setOpen(false);
+    props.closeIcon?.onClick?.(event);
   };
 
   return (

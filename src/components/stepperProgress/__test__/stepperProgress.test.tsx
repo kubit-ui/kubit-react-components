@@ -12,6 +12,20 @@ const mockProps = {
   maxSteps: 10,
   currentStep: 3,
   variant: 'DEFAULT',
+  prefixAriaLabel: {
+    step: 'step',
+    of: 'of',
+    completed: 'completed',
+    steps: 'steps',
+  },
+};
+
+const mockPropsDefault = {
+  dataTestId: 'testId',
+  ariaLabel: 'Content loading...',
+  maxSteps: 10,
+  currentStep: 3,
+  variant: 'DEFAULT',
 };
 
 describe('StepperProgress component', () => {
@@ -27,6 +41,13 @@ describe('StepperProgress component', () => {
   });
   it('Should have a helper text', () => {
     renderProvider(<StepperProgress {...mockProps} />);
+
+    const helpTextContent = `${mockProps.currentStep} steps of ${mockProps.maxSteps} completed`;
+    const helpText = screen.getByTestId(mockProps.dataTestId + 'HelpText');
+    expect(helpText.textContent).toBe(helpTextContent);
+  });
+  it('Should have a defaulta configuration', () => {
+    renderProvider(<StepperProgress {...mockPropsDefault} />);
 
     const helpTextContent = `${mockProps.currentStep} steps of ${mockProps.maxSteps} completed`;
     const helpText = screen.getByTestId(mockProps.dataTestId + 'HelpText');

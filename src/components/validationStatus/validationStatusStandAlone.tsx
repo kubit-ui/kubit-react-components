@@ -14,7 +14,7 @@ const maxItems = 6;
 
 const ValidationStatusStandAloneComponent = (
   { maxItemsAllowed = maxItems, ...props }: IValidationStatusStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+  ref: React.ForwardedRef<HTMLUListElement> | undefined | null
 ): JSX.Element => {
   const itemsLimited: ValidationStatusItemType[] =
     props.items.length > maxItemsAllowed ? props.items.slice(0, maxItemsAllowed) : props.items;

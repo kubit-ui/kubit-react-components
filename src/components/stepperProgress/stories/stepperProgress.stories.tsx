@@ -30,6 +30,7 @@ export const StepperProgress: Story = {
       step: 'step',
       of: 'of',
       completed: 'completed',
+      steps: 'steps',
     },
     themeArgs: themesObject[themeSelected][STYLES_NAME.STEPPER_PROGRESS],
   },

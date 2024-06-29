@@ -1,9 +1,3 @@
-/**
- * Variants
- * @description Variants for the components
- * @typedef {Object} Variants
- * There are upcomming variants for the next components
- */
 export type Variants = {
   ButtonVariantType?: object;
   CheckboxVariantType?: object;
@@ -111,8 +105,8 @@ export type Variants = {
   TagStatusType?: object;
   TagOptionType?: object;
   TagVariantType?: object;
+  TagVariantTypeV2?: object;
   VideoVariantType?: object;
   DropdownSelectedVariantType?: object;
   TextCountVariantType?: object;
-  TagVariantTypeV2?: object;
 };

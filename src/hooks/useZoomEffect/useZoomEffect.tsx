@@ -54,7 +54,6 @@ export const useZoomEffect = (
   // indicate the theme breakpoints
   const { BREAKPOINTS } = useTheme();
 
-  // eslint-disable-next-line complexity
   const applyEffects = useCallback(() => {
     const realDevice = getRealDevice(BREAKPOINTS);
     if (!condition || !innerElementRef.current || realDevice !== DeviceBreakpointsType.DESKTOP) {

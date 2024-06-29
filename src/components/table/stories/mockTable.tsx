@@ -499,6 +499,7 @@ export const mockCustomizableTable = {
       id: 'routingNumber',
       label: 'Routing number',
       config: { alignHeader: 'center', alignValue: 'center' },
+      variant: 'PRIMARY',
     },
     {
       id: 'accountNumber',

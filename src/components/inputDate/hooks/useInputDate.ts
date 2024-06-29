@@ -291,7 +291,7 @@ export const useInputDate = ({
   };
 
   // validate formatted dates
-  // eslint-disable-next-line complexity
+
   const handleChangeInternalValidate: ChangeEventHandler<HTMLInputElement> = event => {
     const dateValue = event?.target?.value;
     // reset the internal errors for new verify

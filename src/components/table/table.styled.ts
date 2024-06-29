@@ -145,6 +145,7 @@ export const TableColumnHeaderStyled = styled.th<{
   customBackgroundColor?: string;
 }>`
   ${props => getStyles(props.styles?.column)}
+  ${({ styles }) => getTypographyStyles(styles?.typography)}
   // Apply custom styles
   ${({ customWidth, customAlign, flexWidth, customBackgroundColor }) =>
     applyCustomCellStyles({ customWidth, customAlign, flexWidth, customBackgroundColor })}
@@ -243,13 +244,9 @@ export const TableExpandedCellStyled = styled.td<{
 
 export const TableEmptyExpandedContentRow = styled.div<{ styles?: TableRowStylesTypes }>`
   width: ${({ styles }) =>
-    `calc(${styles?.accordionIcon?.width} + (${
-      styles?.accordionIconContainer?.padding_left ?? '0%'
-    } + ${styles?.accordionIconContainer?.padding_right ?? '0%'}))`};
+    `calc(${styles?.accordionIcon?.width} + (${styles?.accordionIconContainer?.padding_left ?? '0%'} + ${styles?.accordionIconContainer?.padding_right ?? '0%'}))`};
   height: ${({ styles }) =>
-    `calc(${styles?.accordionIcon?.height} + (${
-      styles?.accordionIconContainer?.padding_top ?? '0%'
-    } + ${styles?.accordionIconContainer?.padding_bottom ?? '0%'}))`};
+    `calc(${styles?.accordionIcon?.height} + (${styles?.accordionIconContainer?.padding_top ?? '0%'} + ${styles?.accordionIconContainer?.padding_bottom ?? '0%'}))`};
 `;
 
 export const TableExpandedButton = styled.button<{ styles?: TableRowStylesTypes }>`
@@ -329,6 +326,7 @@ export const ListRowHeaderPriorityStyled = styled.ul<{
 `;
 
 export const ListHeaderItemStylesStyled = styled.span<{
+  index?: number;
   hasSomeExpandedContent?: boolean;
   lineSeparatorLineStyles?: LineSeparatorLinePropsStylesType;
   lineSeparatorTopOnHeader?: boolean;
@@ -339,9 +337,10 @@ export const ListHeaderItemStylesStyled = styled.span<{
   flexWidth?: string | number | FlexWidthType;
   customBackgroundColor?: string;
 }>`
-  ${({ lineSeparatorLineStyles, lineSeparatorTopOnHeader, lineSeparatorBottomOnHeader }) => {
+  ${({ index, lineSeparatorLineStyles, lineSeparatorTopOnHeader, lineSeparatorBottomOnHeader }) => {
     const lineSeparator: (CSSProp | undefined)[] = [];
-    if (lineSeparatorTopOnHeader) {
+    // Only add lineSeparator on top when it is the first row
+    if (lineSeparatorTopOnHeader && index === 0) {
       lineSeparator.push(lineSeparatorLineStyles?.buildLineStyles?.(LineSeparatorPositionType.TOP));
     }
     if (lineSeparatorBottomOnHeader) {

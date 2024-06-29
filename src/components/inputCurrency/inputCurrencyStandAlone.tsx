@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 // vendors
 import * as React from 'react';
 

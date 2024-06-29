@@ -9,7 +9,6 @@ import { TextDecorationType } from '@/components/text/types';
 import { ILinkAsButtonStandAlone } from '../types/link';
 import { LinkAsButtonWrapperStyled } from './linkAsButton.styled';
 
-// eslint-disable-next-line complexity
 export const LinkAsButtonStandAloneComponent = (
   { children, url, component, target, role, onClick, ...props }: ILinkAsButtonStandAlone,
   ref: React.ForwardedRef<HTMLElement> | undefined

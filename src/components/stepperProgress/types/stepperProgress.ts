@@ -12,7 +12,7 @@ export interface IStepperProgressStandAlone extends IStepperProgressStyled {
   ariaLabel?: string;
   initialStep: number;
   maxSteps: number;
-  prefixAriaLabel?: { step: string; of: string; completed?: 'completed' };
+  prefixAriaLabel?: { step?: string; of?: string; completed?: string; steps?: string };
   currentStep: number;
 }
 

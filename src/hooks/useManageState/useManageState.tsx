@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 import { STATES } from '@/types';

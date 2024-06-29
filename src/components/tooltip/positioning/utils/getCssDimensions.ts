@@ -4,7 +4,7 @@ import { isHTMLElement } from './is.utils';
 /**
  * Return the dimensions of the element, if fallback is true we should retrieve this information in another way
  */
-// eslint-disable-next-line complexity
+
 export const getCssDimensions = (element: Element): Dimensions & { fallback: boolean } => {
   const css = window.getComputedStyle(element);
   let width = parseFloat(css.width) || 0;

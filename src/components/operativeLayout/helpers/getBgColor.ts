@@ -10,7 +10,6 @@ type getBgColorReturnValuesType = {
   rightBgColor?: string;
 };
 
-// eslint-disable-next-line complexity
 export const getBgColor = (
   mainContainerWidth: number | null,
   asideContainerPosition: number | null,

@@ -27,6 +27,7 @@ const IconComplexComponent = (
 
   React.useEffect(() => {
     (async () => {
+      // eslint-disable-next-line n/no-unsupported-features/node-builtins
       const res = await fetch(icon);
       let response = '';
       if (res) {

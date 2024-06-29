@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-import { STYLES_NAME } from '@/constants';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
 import { StepperProgressStandAlone } from './stepperProgressStandAlone';
 import { IStepperProgress, IStepperProgressStandAlone, StepperProgressCommonProps } from './types';
+
+const STEPPER_PROGRESS_STYLES = 'STEPPER_PROGRESS_STYLES';
 
 const StepperProgressComponent = React.forwardRef(
   <V extends string | unknown>(
@@ -13,7 +14,7 @@ const StepperProgressComponent = React.forwardRef(
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
     const styles = useStyles<StepperProgressCommonProps, V>(
-      STYLES_NAME.STEPPER_PROGRESS,
+      STEPPER_PROGRESS_STYLES,
       props.variant,
       ctv
     );

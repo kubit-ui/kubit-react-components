@@ -6,6 +6,7 @@ import { TooltipTriggerWrapperStyled } from '../tooltip.styled';
 interface ITooltipTrigger {
   disabled?: boolean;
   childrenAsButton: boolean;
+  ariaDescribedBy?: string;
 }
 
 export const TooltipTrigger = (
@@ -13,7 +14,11 @@ export const TooltipTrigger = (
 ): React.ReactNode => {
   if (props.childrenAsButton) {
     return (
-      <TooltipTriggerWrapperStyled disabled={props.disabled} type={ButtonType.BUTTON}>
+      <TooltipTriggerWrapperStyled
+        aria-describedby={props.ariaDescribedBy}
+        disabled={props.disabled}
+        type={ButtonType.BUTTON}
+      >
         {props.children}
       </TooltipTriggerWrapperStyled>
     );

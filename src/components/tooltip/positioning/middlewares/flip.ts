@@ -12,7 +12,7 @@ import { getOppositePlacement } from '../utils/getOppositePlacement';
 export const flip = (options: FlipOptionsMiddleware = {}): Middleware => ({
   name: 'flip',
   options,
-  // eslint-disable-next-line complexity
+
   fn(state) {
     const { placement, middlewareData, rects, initialPlacement } = state;
 

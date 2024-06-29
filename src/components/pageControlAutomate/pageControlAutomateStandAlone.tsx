@@ -16,7 +16,6 @@ import { IPageControlAutomateStandAlone } from './types';
 const dataTestIdIndicator = 'indicator';
 const dataTestIdIndicatorProgress = 'indicatorProgress';
 
-// eslint-disable-next-line complexity
 const PageControlAutomateStandAloneComponent = (
   props: IPageControlAutomateStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null

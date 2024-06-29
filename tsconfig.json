@@ -9,7 +9,7 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"],
-      "fixtures/*": ["./__fixtures__/*"],
+      "fixtures/*": ["./__fixtures__/*"]
     },
     "typeRoots": ["src/types", "node_modules/@types"],
     "types": ["jest"],
@@ -22,8 +22,8 @@
     "strict": true,
     "noImplicitAny": false,
     "plugins": [],
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
-  "exclude": [],
-  "references": [{ "path": "./tsconfig.node.json" }],
+  "exclude": ["./vite.config.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

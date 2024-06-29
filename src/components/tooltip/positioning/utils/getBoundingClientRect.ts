@@ -3,7 +3,6 @@ import { isClientRectVisualViewportBased, isElement } from './is.utils';
 import { rectToClientRect } from './rectToClientRect';
 import { unwrapElement } from './unwrapElement';
 
-// eslint-disable-next-line complexity
 export const getBoundingClientRect = (
   element: Element | VirtualElement,
   isFixedStrategy = false,

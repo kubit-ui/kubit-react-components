@@ -1,6 +1,6 @@
 type MergeValues<S> = S[Extract<keyof S, string>];
 type ParsingObject<S> = MergeValues<S> extends object ? MergeValues<S> : never;
-/* eslint-disable complexity */
+
 export const mergeObjects = <T extends object, S extends object>(
   target: T,
   ...sources: S[]

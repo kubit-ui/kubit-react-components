@@ -56,6 +56,7 @@ function backspace(element) {
 
 const writeText = jest.fn();
 
+// eslint-disable-next-line n/no-unsupported-features/node-builtins
 Object.assign(navigator, {
   clipboard: {
     writeText,
@@ -186,6 +187,24 @@ describe('New Input Component', () => {
     expect(onIconClick).toHaveBeenCalled();
 
     // A11Y and w3c validator
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  it('Should render a decorative icon, when onClick callback is not set', async () => {
+    const iconDataTestId = 'IconTestId';
+    const { container, getByTestId } = renderProvider(
+      <Input
+        {...commonProps}
+        placeholder={'placeholder'}
+        rightIcon={{ icon: 'UNICORN', dataTestId: iconDataTestId }}
+      />
+    );
+
+    const triggerButton = getByTestId(iconDataTestId);
+    expect(triggerButton).toBeInTheDocument();
+
     const results = await axe(container);
     expect(container).toHTMLValidate();
     expect(results).toHaveNoViolations();

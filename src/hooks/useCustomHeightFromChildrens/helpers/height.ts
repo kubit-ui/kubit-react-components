@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 // Set list options height when not use the ActionbottomSheet
 export const getHeight = (element: HTMLElement[], limit: number): string => {
   const REM_MEASURE = 16;

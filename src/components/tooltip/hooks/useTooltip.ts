@@ -108,7 +108,7 @@ export const useTooltip = <V>({
   useEscPressed({ element: props.labelRef, execute: hideTooltip });
 
   // This function calc the position position where the tooltip should be displayed
-  // eslint-disable-next-line complexity
+
   const updateTooltipPosition = () => {
     if (!props.labelRef.current || !props.tooltipRef.current) {
       return;
@@ -148,9 +148,9 @@ export const useTooltip = <V>({
       top: arrowY !== null ? `${arrowY}px` : '',
       right: '',
       bottom: '',
-      [staticSide as string]: `calc(${
-        styles.tooltipExternalContainer?.[DeviceBreakpointsType.DESKTOP]?.padding ?? 0
-      } - ${styles.arrowContainer?.arrow_position ?? '0px'} / 2)`,
+      [staticSide as string]: `calc(${styles.tooltipExternalContainer?.[DeviceBreakpointsType.DESKTOP]?.padding ?? 0} - ${
+        styles.arrowContainer?.arrow_position ?? '0px'
+      } / 2)`,
     };
 
     if (arrowElement && (arrowElement as HTMLElement).style) {

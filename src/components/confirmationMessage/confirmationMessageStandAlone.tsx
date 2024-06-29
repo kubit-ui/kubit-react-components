@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import * as React from 'react';
 
 import { ContentDirectionType, Footer } from '@/components/footer';
@@ -62,10 +61,15 @@ const ConfirmationMessageStandAloneComponent = (
         styles={props.stylesState}
       >
         {props.title && (
-          <TitleTextStyled align={alignValue[align.toLocaleLowerCase()]} styles={props.stylesState}>
+          <TitleTextStyled
+            align={alignValue[align.toLocaleLowerCase()]}
+            data-testid={`${props.dataTestId}TitleContainer`}
+            styles={props.stylesState}
+          >
             {props.decorativeElement?.element && (
               <DecorativeElement
                 {...props.decorativeElement}
+                dataTestId={`${props.dataTestId}DecorativeElement`}
                 element={buildPropsDecorativeElement<
                   ConfirmationMessagePropsStylesType | undefined
                 >(props.decorativeElement?.element, props.stylesState)}
@@ -84,6 +88,7 @@ const ConfirmationMessageStandAloneComponent = (
         )}
         <DescriptionTextStyled
           align={alignValue[align.toLocaleLowerCase()]}
+          data-testid={`${props.dataTestId}DescriptionContainer`}
           styles={props.stylesState}
         >
           {buildDescription()}
@@ -100,6 +105,7 @@ const ConfirmationMessageStandAloneComponent = (
       {props.content && (
         <ContentContainerStyled
           align={alignValue[align.toLocaleLowerCase()]}
+          data-testid={`${props.dataTestId}Content`}
           styles={props.stylesState}
         >
           {props.content}

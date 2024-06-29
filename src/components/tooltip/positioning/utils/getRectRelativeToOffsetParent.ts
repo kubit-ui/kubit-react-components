@@ -5,7 +5,6 @@ import { getWindowScrollBarX } from './getWindowScrollBarX';
 import { isHTMLElement, isOverflowElement } from './is.utils';
 import { getNodeName } from './node';
 
-// eslint-disable-next-line complexity
 export const getRectRelativeToOffsetParent = (
   element: Element | VirtualElement,
   offsetParent: Element | Window,

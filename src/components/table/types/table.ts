@@ -134,6 +134,7 @@ export interface ITableHeader {
   id: string;
   config?: ConfigType;
   value?: ValueFunctionType & DividerContent;
+  variant?: string;
 }
 
 export interface ITableRowHeader extends Omit<ITableHeader, 'id'> {

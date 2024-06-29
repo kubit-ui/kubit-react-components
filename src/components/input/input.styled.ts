@@ -87,6 +87,7 @@ export const LoaderWrapperStyled = styled.div<LoaderStyledProps>`
 `;
 
 export const InputIconStyled = styled.div<InputIconStyledProps>`
+  pointer-events: ${({ $pointerEvents }) => ($pointerEvents ? 'auto' : 'none')};
   ${({ iconPosition, styles }) => css`
     ${getStyles(
       iconPosition === InputIconPosition.RIGHT
@@ -211,5 +212,12 @@ export const InputWrapperStyled = styled.div<InputWrapperStyledProps>`
     transition:
       background-color 600000s 0s,
       color 600000s 0s;
+  }
+  /* Removing input background colour for autocomplete when it is disabled */
+  input:-webkit-autofill:disabled {
+    -webkit-text-fill-color: ${props => props.styles?.input?.color};
+    -webkit-box-shadow: 0 0 0px 1000px ${props => props.styles?.inputContainer?.background_color}
+      inset;
+    transition: background-color 5000s ease-in-out 0s;
   }
 `;

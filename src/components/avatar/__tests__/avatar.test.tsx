@@ -19,9 +19,31 @@ const mockProps = {
   onClick: jest.fn(),
 };
 
+const mockPropsWithoutOnClick = {
+  size: 'SMALL',
+  dot: {
+    variant: 'WITH_BORDER',
+    size: 'BIG',
+    number: 1,
+    maxNumber: 2,
+  },
+};
+
 describe('Avatar component', () => {
   test('Should render Avatar with Initials component', async () => {
     const { container } = renderProvider(<Avatar {...mockProps} initials={{ content: 'HA' }} />);
+    const avatar = screen.queryByText('HA');
+    expect(avatar).toBeDefined();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
+  test('Should render Avatar with Initials component without onclick', async () => {
+    const { container } = renderProvider(
+      <Avatar {...mockPropsWithoutOnClick} initials={{ content: 'HA' }} />
+    );
     const avatar = screen.queryByText('HA');
     expect(avatar).toBeDefined();
 

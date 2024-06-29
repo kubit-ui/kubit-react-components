@@ -46,7 +46,7 @@ const commonArgs: IInputDropdown = {
   loader: {
     altText: 'loading',
   },
-  icon: { icon: ICONS.ICON_CHEVRON_DOWN, tabIndex: -1 },
+  icon: { icon: ICONS.ICON_CHEVRON_DOWN },
   optionList: {
     options: [
       {

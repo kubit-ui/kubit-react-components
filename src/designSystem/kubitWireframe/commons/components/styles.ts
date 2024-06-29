@@ -42,6 +42,7 @@ import { getPageControlStyles } from './pageControl';
 import { getPillStyles } from './pill';
 import { getPillSelectorStyles } from './pillSelector';
 import { POPOVER_STYLES } from './popover';
+import { getQuickButtonStyles } from './quickButton';
 import { getRadioButtonGroupStyles } from './radioButtonGroup';
 import { getSkeletonStyles } from './skeleton';
 import { getSnackbarStyles } from './snackbar';
@@ -49,6 +50,7 @@ import { getStepperNumberStyles } from './stepperNumber';
 import { getTableStyles } from './table';
 import { getTabsStyles } from './tabs';
 import { getTagStyles } from './tag';
+import { getTagStylesV2 } from './tagV2';
 import { TEXT_STYLES } from './text/styles';
 import { getTextCountStyles } from './textCount';
 import { getThirdPartyAnimationStyles } from './thirdPartyAnimation';
@@ -108,9 +110,11 @@ export const getComponentsStyles = (COLORS: {
   STEPPER_NUMBER_STYLES: getStepperNumberStyles(COLORS),
   TABLE_STYLES: getTableStyles(COLORS),
   TAG_STYLES: getTagStyles(COLORS),
+  TAG_STYLES_V2: getTagStylesV2(COLORS),
   TEXT_COUNT_STYLES: getTextCountStyles(COLORS),
   TEXT_STYLES: TEXT_STYLES,
   THIRD_PARTY_ANIMATION_STYLES: getThirdPartyAnimationStyles(COLORS),
+  QUICK_BUTTON_STYLES: getQuickButtonStyles(COLORS),
   BACK_TO_TOP_STYLES: getBackTopStyles(COLORS),
   TOGGLE_STYLES: getToggleStyles(COLORS),
   TOOLTIP_STYLES: getTooltipStyles(COLORS),
