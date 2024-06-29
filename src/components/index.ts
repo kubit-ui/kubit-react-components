@@ -22,6 +22,7 @@ export * from './table';
 export * from './tooltip';
 export * from './itemRove';
 export * from './divider';
+export * from './quickButton';
 export * from './skeleton';
 export * from './overlay';
 export * from './lineSeparator';

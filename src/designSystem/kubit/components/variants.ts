@@ -53,6 +53,7 @@ export * from './pageControlAutomate/variants';
 export * from './pagination/variants';
 export * from './pill/variants';
 export * from './pillSelector/variants';
+export * from './quickButton/variants';
 export * from './radioButtonGroup/variants';
 export * from './table/variants';
 export * from './toggle/variants';

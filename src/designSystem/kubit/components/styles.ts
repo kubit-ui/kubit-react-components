@@ -53,6 +53,7 @@ export * from './pageControlAutomate/styles';
 export * from './pagination/styles';
 export * from './pill/styles';
 export * from './pillSelector/styles';
+export * from './quickButton/styles';
 export * from './radioButtonGroup/styles';
 export * from './table/styles';
 export * from './textCount/styles';
