@@ -148,9 +148,9 @@ export const useTooltip = <V>({
       top: arrowY !== null ? `${arrowY}px` : '',
       right: '',
       bottom: '',
-      [staticSide as string]: `calc(${
-        styles.tooltipExternalContainer?.[DeviceBreakpointsType.DESKTOP]?.padding ?? 0
-      } - ${styles.arrowContainer?.arrow_position ?? '0px'} / 2)`,
+      [staticSide as string]: `calc(${styles.tooltipExternalContainer?.[DeviceBreakpointsType.DESKTOP]?.padding ?? 0} - ${
+        styles.arrowContainer?.arrow_position ?? '0px'
+      } / 2)`,
     };
 
     if (arrowElement && (arrowElement as HTMLElement).style) {
