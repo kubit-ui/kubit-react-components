@@ -56,6 +56,7 @@ function backspace(element) {
 
 const writeText = jest.fn();
 
+// eslint-disable-next-line n/no-unsupported-features/node-builtins
 Object.assign(navigator, {
   clipboard: {
     writeText,

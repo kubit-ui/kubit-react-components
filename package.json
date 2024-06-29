@@ -152,7 +152,7 @@
     "tsc-alias": "1.8.10",
     "typedoc": "^0.26.2",
     "typedoc-plugin-markdown": "^4.1.0",
-    "typescript": "*",
+    "typescript": "^5.4.5",
     "vite": "^5.3.1",
     "vite-tsconfig-paths": "^4.3.2",
     "yarn-deduplicate": "^6.0.2"
@@ -169,7 +169,6 @@
     "strip-ansi": "^6.0.1",
     "string-width": "^4.2.2",
     "wrap-ansi": "^7.0.0",
-    "@typescript-eslint/utils": "6.13.0",
     "@babel/highlight": "7.24.1 "
   },
   "bugs": {
