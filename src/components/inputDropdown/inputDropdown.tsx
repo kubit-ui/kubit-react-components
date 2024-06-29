@@ -43,6 +43,7 @@ const InputDropdownComponent = React.forwardRef(
       ctv
     );
     const device = useMediaDevice();
+    const hasIconAction = !!icon?.onClick || !!props.rightIcon?.onClick;
 
     const {
       openOptions,
@@ -93,7 +94,7 @@ const InputDropdownComponent = React.forwardRef(
         {...props}
         ref={innerRef as unknown as React.Ref<unknown> | undefined}
         device={device}
-        icon={{ ...icon, onClick: handleClickIconInputDropdown }}
+        icon={{ ...icon, onClick: hasIconAction ? handleClickIconInputDropdown : undefined }}
         informationAssociatedValue={informationAssociatedValue}
         inputPopoverValue={inputPopoverText}
         listOptionsHeight={listOptionsHeight}
@@ -101,7 +102,7 @@ const InputDropdownComponent = React.forwardRef(
         optionList={optionsFiltered}
         rightIcon={{
           ...props.rightIcon,
-          onClick: handleClickIconInputDropdown,
+          onClick: hasIconAction ? handleClickIconInputDropdown : undefined,
         }}
         searchText={searchText}
         state={state}

@@ -15,19 +15,26 @@ const InputIconStandAloneComponent = (
     return null;
   }
 
+  const hasAction = !!props.rightIcon?.onClick || !!props.leftIcon?.onClick;
+
   const onClick: React.MouseEventHandler<HTMLButtonElement> = event => {
     props.rightIcon?.onClick?.(event);
     props.leftIcon?.onClick?.(event);
   };
 
   return (
-    <InputIconStyled ref={ref} iconPosition={props.iconPosition} styles={props.styles}>
+    <InputIconStyled
+      ref={ref}
+      $pointerEvents={hasAction}
+      iconPosition={props.iconPosition}
+      styles={props.styles}
+    >
       <ElementOrIcon
         customIconStyles={props.styles?.inputIcon}
         disabled={props.disabled}
         {...props.rightIcon}
         {...props.leftIcon}
-        onClick={onClick}
+        onClick={hasAction ? onClick : undefined}
       />
     </InputIconStyled>
   );
@@ -43,17 +50,25 @@ const InputIconStandAloneDeprecatedComponent = (
   if (!props.icon || props.loading) {
     return null;
   }
+
+  const hasAction = !!props.icon.onClick;
+
   const onClick: React.MouseEventHandler<HTMLButtonElement> = event => {
     props.icon?.onClick?.(event);
   };
 
   return (
-    <InputIconStyled ref={ref} iconPosition={props.iconPosition} styles={props.styles}>
+    <InputIconStyled
+      ref={ref}
+      $pointerEvents={hasAction}
+      iconPosition={props.iconPosition}
+      styles={props.styles}
+    >
       <ElementOrIcon
         customIconStyles={props.styles?.inputIcon}
         disabled={props.disabled}
         {...props.icon}
-        onClick={onClick}
+        onClick={hasAction ? onClick : undefined}
       />
     </InputIconStyled>
   );

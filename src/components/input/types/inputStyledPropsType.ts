@@ -47,6 +47,7 @@ export type LoaderStyledProps = {
 export type InputIconStyledProps = {
   iconPosition?: InputIconPosition;
   styles?: InputStateProps;
+  $pointerEvents?: boolean;
 };
 
 // Input

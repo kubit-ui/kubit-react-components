@@ -87,6 +87,7 @@ export const LoaderWrapperStyled = styled.div<LoaderStyledProps>`
 `;
 
 export const InputIconStyled = styled.div<InputIconStyledProps>`
+  pointer-events: ${({ $pointerEvents }) => ($pointerEvents ? 'auto' : 'none')};
   ${({ iconPosition, styles }) => css`
     ${getStyles(
       iconPosition === InputIconPosition.RIGHT
