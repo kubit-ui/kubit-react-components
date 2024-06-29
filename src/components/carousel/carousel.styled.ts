@@ -4,7 +4,7 @@ import { getStyles } from '@/utils/getStyles/getStyles';
 
 import { CarouselArrowStateType, CarouselPropsStylesType } from './types';
 
-export const RootStyled = styled.section<{
+export const RootStyled = styled.article<{
   styles: CarouselPropsStylesType;
   allowModifySliceWidth?: boolean;
 }>`
