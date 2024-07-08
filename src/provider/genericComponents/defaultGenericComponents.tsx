@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IGenericLink } from './genericComponents.type';
+import { IGenericImage, IGenericLink } from './genericComponents.type';
 
 const Link = React.forwardRef(function Link(props: IGenericLink, ref: unknown) {
   return (
@@ -25,6 +25,17 @@ const Link = React.forwardRef(function Link(props: IGenericLink, ref: unknown) {
   );
 });
 
+const Image = React.forwardRef(function Image(props: IGenericImage, ref: unknown) {
+  return (
+    <img
+      ref={ref as React.LegacyRef<HTMLImageElement> | undefined}
+      {...props}
+      alt={props.alt || ''}
+    />
+  );
+});
+
 export const defaultGenericComponents = {
   LINK: Link,
+  IMAGE: Image,
 };
