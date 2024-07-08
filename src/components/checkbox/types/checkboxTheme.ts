@@ -19,6 +19,9 @@ export type CheckboxPropsStylesType = {
   errorWrapper?: CommonStyleType;
   errorIcon?: IconTypes;
   textError?: TypographyTypes;
+  container?: CommonStyleType;
+  iconLabelWrapper?: CommonStyleType;
+  frameContainer?: CommonStyleType;
 };
 
 export type CheckboxPropsStateStylesType = {

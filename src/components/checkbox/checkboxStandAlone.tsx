@@ -122,9 +122,9 @@ const CheckboxStandAloneComponent = (
   };
 
   return (
-    <CheckboxContainerStyled>
-      <CheckboxIconLabelWrapperStyled>
-        <CheckboxFrameStyled>
+    <CheckboxContainerStyled styles={styles}>
+      <CheckboxIconLabelWrapperStyled styles={styles}>
+        <CheckboxFrameStyled styles={styles}>
           <CheckboxStyled
             ref={ref}
             aria-describedby={buildAriaDescribedBy({
