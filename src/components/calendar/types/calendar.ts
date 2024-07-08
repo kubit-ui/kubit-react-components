@@ -28,6 +28,9 @@ export type IConfigAccesibility = {
   monthSelectorAriaLabel?: string;
   yearSelectorAriaLabel?: string;
   backToMonthAriaLabel?: string;
+  monthSelectorRole?: string;
+  yearSelectorRole?: string;
+  daySelectorRole?: string;
 };
 export interface ICalendarStandAlone<V = undefined extends string ? unknown : string> {
   id?: string;

@@ -39,6 +39,9 @@ export interface ISelector {
     sizeSelectorButton?: string;
   };
   configAccesibility?: {
+    monthSelectorRole?: string;
+    yearSelectorRole?: string;
+    daySelectorRole?: string;
     monthSelectorAriaLabel?: string;
     yearSelectorAriaLabel?: string;
     daySelectorAriaLabel?: string;
