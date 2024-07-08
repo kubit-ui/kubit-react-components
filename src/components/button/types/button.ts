@@ -18,6 +18,7 @@ type ButtonAriaAttributes = Pick<
   | 'aria-expanded'
   | 'aria-pressed'
   | 'aria-disabled'
+  | 'aria-hidden'
 >;
 
 /**
