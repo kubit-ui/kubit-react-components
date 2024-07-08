@@ -11,6 +11,7 @@ import { getCheckboxWithLabelStyles } from './checkboxWithLabel';
 import { getChipStyles } from './chip';
 import { getConfirmationMessageStyles } from './confirmationMessage';
 import { getContainerStyles } from './container';
+import { getDataTableStyles } from './dataTable';
 import { getDividerStyles } from './divider';
 import { getDotStyles } from './dot';
 import { getDrawerStyles } from './drawer';
@@ -31,7 +32,6 @@ import { LAYOUT_STYLES } from './layout';
 import { getLineSeparatorStyles } from './lineSeparator';
 import { getLinkStyles } from './link';
 import { getListOptionsStyles } from './listOptions';
-import { getLoaderStyles } from './loader';
 import { getMessageStyles } from './message';
 import { getModalStyles } from './modal';
 import { getNavigationCardStyles } from './navigationCard';
@@ -48,6 +48,14 @@ import { getSkeletonStyles } from './skeleton';
 import { getSnackbarStyles } from './snackbar';
 import { getStepperNumberStyles } from './stepperNumber';
 import { getTableStyles } from './table';
+import { getTableBodyStyles } from './tableBody';
+import { getTableCaptionStyles } from './tableCaption';
+import { getTableCellStyles } from './tableCell';
+import { getTableDividerStyles } from './tableDivider';
+import { getTableFootStyles } from './tableFoot';
+import { getTableHeadStyles } from './tableHead';
+import { getTableRowStyles } from './tableRow';
+import { getTableV2Styles } from './tableV2';
 import { getTabsStyles } from './tabs';
 import { getTagStyles } from './tag';
 import { getTagStylesV2 } from './tagV2';
@@ -119,5 +127,13 @@ export const getComponentsStyles = (COLORS: {
   TOGGLE_STYLES: getToggleStyles(COLORS),
   TOOLTIP_STYLES: getTooltipStyles(COLORS),
   VALIDATION_STATUS_STYLES: getValidationStatusStyles(COLORS),
-  LOADER_STYLES: getLoaderStyles(COLORS),
+  TABLE_CELL_STYLES: getTableCellStyles(COLORS),
+  TABLE_CAPTION_STYLES: getTableCaptionStyles(COLORS),
+  TABLE_BODY_STYLES: getTableBodyStyles(COLORS),
+  TABLE_DIVIDER_STYLES: getTableDividerStyles(COLORS),
+  TABLE_FOOT_STYLES: getTableFootStyles(COLORS),
+  TABLE_HEAD_STYLES: getTableHeadStyles(COLORS),
+  TABLE_ROW_STYLES: getTableRowStyles(COLORS),
+  TABLE_V2_STYLES: getTableV2Styles(COLORS),
+  DATA_TABLE_STYLES: getDataTableStyles(COLORS),
 });
