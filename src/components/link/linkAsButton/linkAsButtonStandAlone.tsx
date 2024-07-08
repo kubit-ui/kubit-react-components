@@ -40,6 +40,7 @@ export const LinkAsButtonStandAloneComponent = (
           $sizeStyles={props.sizeStyles}
           $state={props.state}
           $styles={props.styles}
+          aria-label=""
         >
           <ButtonStandAloneStructure {...props}>{children}</ButtonStandAloneStructure>
         </ButtonStyled>
