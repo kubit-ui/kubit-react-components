@@ -99,6 +99,7 @@ export const InputSearchStandAloneComponent = (
           (refInput as MutableRefObject<HTMLInputElement | null | undefined>)?.current,
           (refIcon as MutableRefObject<HTMLSpanElement | null | undefined>)?.current,
         ]}
+        regex={props.regex}
         searchText={props.searchText}
         state={props.state}
         styles={props.styles}

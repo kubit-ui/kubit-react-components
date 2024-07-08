@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { InputTypeType } from '@/components/input';
+import { INTERNAL_ERROR_EXECUTION, InputTypeType } from '@/components/input';
 import { STYLES_NAME } from '@/constants';
 import { useMediaDevice, useStyles } from '@/hooks';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
@@ -22,6 +22,7 @@ const InputSearchComponent = React.forwardRef(
       disableErrorInvalidOption = false,
       clearTextInputPopoverIconClick = true,
       highlightedOption = '',
+      internalErrorExecution = INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR,
       value,
       disabled,
       error,
@@ -73,6 +74,7 @@ const InputSearchComponent = React.forwardRef(
       handleInputPopoverKeyDown,
       handleOptionsListKeyDown,
     } = useInputSearch({
+      internalErrorExecution,
       open,
       type,
       options: optionList,
@@ -123,6 +125,7 @@ const InputSearchComponent = React.forwardRef(
         maxLength={maxLength}
         open={openOptions}
         optionList={optionsFiltered}
+        regex={regex}
         searchText={searchText}
         state={state}
         styles={styles}

@@ -13,7 +13,12 @@ import {
 } from 'react';
 
 import { useInternalValidations } from '@/components/input/hooks';
-import { InputState, InputTypeType, InternalErrorType } from '@/components/input/types';
+import {
+  INTERNAL_ERROR_EXECUTION,
+  InputState,
+  InputTypeType,
+  InternalErrorType,
+} from '@/components/input/types';
 import { useCustomHeightFromChildrens, useMediaDevice } from '@/hooks';
 import { useInput } from '@/hooks/useInput/useInput';
 import {
@@ -55,6 +60,7 @@ type ParamsType = {
   maxLength?: number;
   searchFilterConfig?: SearchFilterConfig;
   caseSensitive?: boolean;
+  internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   onIconClick?: React.MouseEventHandler<HTMLButtonElement>;
   executeInternalOpenOptions?: boolean;
@@ -239,6 +245,7 @@ export const useInputSearch = ({
 
   // Input Basic hook
   const { state, inputRef, handleBlurInternal, handleFocusInternal } = useInput({
+    internalErrorExecution: props.internalErrorExecution,
     ref: props.ref,
     disabled: props.disabled,
     error: props.error || internalErrors.length > 0,
