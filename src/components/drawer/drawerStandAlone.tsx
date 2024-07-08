@@ -14,10 +14,18 @@ import {
   DrawerTitleContentFooterContainerStyled,
   DrawerTitleStyled,
 } from './drawer.styled';
-import { DrawerTitleComponentType, IDrawerStandAlone } from './types';
+import { IDrawerStandAlone } from './types';
 
 const DrawerStandAloneComponent = (
-  { blocked = false, scrollableRef, shadowRef, footerRef, contentRef, ...props }: IDrawerStandAlone,
+  {
+    blocked = false,
+    scrollableRef,
+    shadowRef,
+    footerRef,
+    contentRef,
+    titleComponent = TextComponentType.H3,
+    ...props
+  }: IDrawerStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const uniqueTitleId = useId('drawer-title');
@@ -59,7 +67,7 @@ const DrawerStandAloneComponent = (
           <DrawerTitleStyled
             ref={shadowRef}
             as={Text as unknown as React.ElementType}
-            component={DrawerTitleComponentType.H3 as unknown as TextComponentType}
+            component={titleComponent as unknown as TextComponentType}
             customTypography={props.styles.title}
             dataTestId={`${titleIdFinal}Title`}
             id={titleIdFinal}
