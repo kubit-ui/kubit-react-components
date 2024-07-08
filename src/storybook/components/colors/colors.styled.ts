@@ -13,14 +13,16 @@ export const ColorsTitleStyled = styled.h2`
 
 export const ColorsContainerStyled = styled.div`
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `;
 
 export const ColorsColorDataStyled = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
   border-bottom: 1px solid #d7d7d7;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
   align-items: center;
@@ -36,11 +38,13 @@ export const ColorsCicleStyled = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 100%;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 `;
 
 export const ColorsNameStyled = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 5px;
 `;
 
 export const ColorsHexNameStyled = styled.div`
