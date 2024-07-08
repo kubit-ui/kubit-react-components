@@ -9,13 +9,22 @@ import { trapFocus } from '@/utils/focusHandlers/focusHandlers';
 
 import { TOOLTIP_STYLES } from './constants';
 import { useTooltip } from './hooks';
+import { useTooltipAsModalAriaLabel } from './hooks/useTooltipAsModalAriaLabel';
 import { TooltipStandAlone } from './tooltipStandAlone';
 import { ITooltipStandAlone, ITooltipUnControlled, TooltipVariantStylesProps } from './types';
 import { useTooltipAsModal } from './utils';
 
 const TooltipUnControlledComponent = React.forwardRef(
   <V extends string | unknown>(
-    { ctv, tooltipAsModal, align, onOpenClose, variant, ...props }: ITooltipUnControlled<V>,
+    {
+      ctv,
+      tooltipAsModal,
+      align,
+      onOpenClose,
+      variant,
+      tooltipAriaLabel,
+      ...props
+    }: ITooltipUnControlled<V>,
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
     const styles = useStyles<TooltipVariantStylesProps, V>(TOOLTIP_STYLES, variant, ctv);
@@ -24,18 +33,16 @@ const TooltipUnControlledComponent = React.forwardRef(
     const labelRef = React.useRef<HTMLDivElement>(null);
     const tooltipRef = React.useRef<HTMLDivElement>(null);
 
+    const helpAriaLabel = useTooltipAsModalAriaLabel(tooltipRef);
+
     const tooltipAsModalValue = useTooltipAsModal({
       propTooltipAsModal: tooltipAsModal,
       styleTooltipAsModal: styles.tooltipAsModal,
     });
 
-    React.useImperativeHandle(
-      ref,
-      () => {
-        return labelRef.current as HTMLDivElement;
-      },
-      []
-    );
+    React.useImperativeHandle(ref, () => {
+      return labelRef.current as HTMLDivElement;
+    }, []);
 
     const { showTooltip, hideTooltip, allowFocusOpenTooltip, open } = useTooltip<V>({
       labelRef,
@@ -144,6 +151,7 @@ const TooltipUnControlledComponent = React.forwardRef(
         mediaDevice={mediaDevice}
         popoverOpen={open}
         styles={styles}
+        tooltipAriaLabel={tooltipAriaLabel ?? helpAriaLabel}
         tooltipAsModal={tooltipAsModalValue}
         tooltipRef={tooltipRef}
         onBlur={handleBlur}

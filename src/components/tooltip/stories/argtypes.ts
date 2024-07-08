@@ -103,6 +103,17 @@ export const argtypes = (
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    tooltipAriaLabel: {
+      description: 'Aria label for the tooltip when is modal',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     popover: {
       description: 'Object with popover properties',
       type: { name: 'object' },

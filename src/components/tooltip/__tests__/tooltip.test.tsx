@@ -466,4 +466,16 @@ describe('Tooltip', () => {
     expect(title).toBeVisible();
     expect(content).toBeVisible();
   });
+
+  it('Tooltip as modal - it should have the external aria-label when it set', () => {
+    const externalArialLabel = 'external aria label';
+    renderProvider(<Tooltip {...mockProps} tooltipAsModal tooltipAriaLabel={externalArialLabel} />);
+    const label = screen.getByText(mockProps.children as string);
+
+    fireEvent.keyDown(label, ENTER);
+
+    const tooltip = screen.getByLabelText(externalArialLabel);
+
+    expect(tooltip).toBeInTheDocument();
+  });
 });

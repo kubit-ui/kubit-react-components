@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
 import { ICONS } from '@/assets';
 import { STYLES_NAME } from '@/constants';
@@ -32,7 +33,14 @@ export const Tooltip: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].TooltipVariantType || {})[0] as string,
     title: { content: 'Tootltip title' },
-    content: { content: 'Tooltip content' },
+    content: {
+      content: (
+        <div style={{ color: '#fff' }}>
+          <div>content first line</div>
+          <div>content second line</div>
+        </div>
+      ),
+    },
     children: 'Hover me',
     align: TooltipAlignType.TOP,
     closeIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Close icon' },
