@@ -1,0 +1,4 @@
+export enum TableRowVariantTypeV2 {
+  HEADER_ROW_DEFAULT = 'HEADER_ROW_DEFAULT',
+  BODY_ROW_DEFAULT = 'BODY_ROW_DEFAULT',
+}

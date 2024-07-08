@@ -1,6 +1,7 @@
 import {
   ERROR_EXECUTION,
   IInputStandAlone,
+  INTERNAL_ERROR_EXECUTION,
   InputContentPosition,
   InputHelpMessagePosition,
 } from '@/components/input';
@@ -35,6 +36,7 @@ export interface IInputCurrency<V = undefined extends string ? unknown : string>
   error?: boolean;
   disabled?: boolean;
   errorExecution?: ERROR_EXECUTION;
+  internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
   keyValidation?: string;
   regex?: string | RegExp;
   onInternalErrors?: (errors: string[]) => void;

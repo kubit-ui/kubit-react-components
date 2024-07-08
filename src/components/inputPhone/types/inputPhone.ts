@@ -1,5 +1,5 @@
 import { IIconHighlighted, IconHighlightedSizeType } from '@/components/iconHighlighted';
-import { ERROR_EXECUTION, IInputStandAlone } from '@/components/input';
+import { ERROR_EXECUTION, IInputStandAlone, INTERNAL_ERROR_EXECUTION } from '@/components/input';
 import { IText } from '@/components/text';
 import { CustomTokenTypes } from '@/types';
 
@@ -40,6 +40,7 @@ export interface IInputPhone<V = undefined extends string ? unknown : string>
   error?: boolean;
   disabled?: boolean;
   errorExecution?: ERROR_EXECUTION;
+  internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
   keyValidation?: string;
   onInternalErrors?: (errors: string[]) => void;
   onError?: (error: boolean) => void;

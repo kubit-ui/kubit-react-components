@@ -1,3 +1,4 @@
+import { GenericImageType } from '@/provider/genericComponents';
 import { DeviceBreakpointsType } from '@/types/breakpoints';
 
 import { ImageLoadingType } from './loading';
@@ -23,6 +24,7 @@ export interface IImageStandAlone {
   dataTestId?: string;
   borderRadius?: string;
   objectFit?: ImageObjectFitType;
+  component?: GenericImageType;
 }
 
 export type IImage = IImageStandAlone;

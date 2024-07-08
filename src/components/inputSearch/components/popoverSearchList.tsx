@@ -24,7 +24,7 @@ import { LoadingIcon } from './loadingIcon';
 import { OptionsList } from './optionsList';
 
 export const PopoverSearchListComponent = (
-  { sublabel = 'Use this', ...props }: IPopoverSearchList,
+  { sublabel = { content: 'Use this' }, ...props }: IPopoverSearchList,
   ref: ForwardedRef<unknown>
 ): JSX.Element => {
   const { refInput, refActionBottomSheet } = ref as unknown as MultipleRef;
@@ -192,6 +192,7 @@ export const PopoverSearchListComponent = (
                   props.inputConfiguration?.icon?.onClick?.(event);
                 },
               }}
+              regex={props.regex}
               rightIcon={{
                 ...props.inputConfiguration?.rightIcon,
                 onClick: event => {

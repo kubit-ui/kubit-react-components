@@ -3,6 +3,7 @@ import { IElementOrIcon } from '@/components/elementOrIcon';
 import {
   ERROR_EXECUTION,
   IInputStandAlone,
+  INTERNAL_ERROR_EXECUTION,
   InputLabelType,
   InputState,
 } from '@/components/input/types';
@@ -91,11 +92,12 @@ export interface IInputDateStandAlone extends Omit<IInputStandAlone, propsToOmit
   hasRange?: boolean;
   configAccesibility?: IConfigAccesibilityPopover;
   disabledDates?: Date[];
+  extraCalendarWidth?: string;
+  extraCalendarWidthSide?: POSITIONS;
   // functions
   onCalendarOpen?: (open: boolean) => void;
   onDateChange: (newDate: Date[]) => void;
-  extraCalendarWidth?: string;
-  extraCalendarWidthSide?: POSITIONS;
+  onWrapperBlur?: React.FocusEventHandler<HTMLDivElement>;
 }
 
 type propsToOmit =
@@ -120,6 +122,7 @@ export interface IInputDate<V = undefined extends string ? unknown : string>
   error?: boolean;
   disabled?: boolean;
   errorExecution?: ERROR_EXECUTION;
+  internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
   keyValidation?: string;
   maxDate?: Date;
   // functions

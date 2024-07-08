@@ -47,7 +47,7 @@ const InputIconStandAloneDeprecatedComponent = (
   props: IInputIcon,
   ref: React.ForwardedRef<HTMLDivElement>
 ): JSX.Element | null => {
-  if (!props.icon || props.loading) {
+  if (!props.icon || props.rightIcon || props.leftIcon || props.loading) {
     return null;
   }
 

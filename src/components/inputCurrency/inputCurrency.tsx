@@ -5,7 +5,7 @@ import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
 // helpers
-import { InputTypeType } from '../input';
+import { INTERNAL_ERROR_EXECUTION, InputTypeType } from '../input';
 import { InputCurrencyStandAlone } from './inputCurrencyStandAlone';
 import { IInputCurrency, IInputCurrencyStandAlone, InputCurrencyStylesProps } from './types';
 
@@ -17,6 +17,11 @@ const InputCurrencyComponent = React.forwardRef(
       maxDecimals = 2,
       truncate = true,
       min = 0,
+      internalErrorExecution = INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR,
+      disabledArrowUpDownInputNumber = false,
+      ignoreKeys = ['+', '-', 'e'],
+      disabledWheelMouse = true,
+      type = InputTypeType.NUMBER,
       max,
       errorExecution,
       keyValidation,
@@ -25,15 +30,13 @@ const InputCurrencyComponent = React.forwardRef(
       mask,
       maskType,
       disabled,
-      disabledArrowUpDownInputNumber = false,
       error,
       value: currentValue,
       informationAssociatedValue,
-      ignoreKeys = ['+', '-', 'e'],
       regex,
       formatNumber,
       locale,
-      disabledWheelMouse = true,
+      variant,
       onBlur,
       onChange,
       onFocus,
@@ -41,16 +44,11 @@ const InputCurrencyComponent = React.forwardRef(
       onError,
       onInternalErrors,
       ctv,
-      type = InputTypeType.NUMBER,
       ...props
     }: IInputCurrency<V>,
     ref: React.ForwardedRef<HTMLInputElement | undefined>
   ): JSX.Element => {
-    const styles = useStyles<InputCurrencyStylesProps, V>(
-      INPUT_CURRENCY_STYLES,
-      props.variant,
-      ctv
-    );
+    const styles = useStyles<InputCurrencyStylesProps, V>(INPUT_CURRENCY_STYLES, variant, ctv);
     const inputCurrencyType = formatNumber ? InputTypeType.TEXT : type;
     // if formatNumber is true (input element of type text), min and maxDecimals should be undefined because it will be handled by the formatNumber function
     const inputCurrencyMin = formatNumber ? undefined : min;
@@ -67,6 +65,7 @@ const InputCurrencyComponent = React.forwardRef(
     } = useInput({
       ref,
       errorExecution,
+      internalErrorExecution,
       keyValidation,
       max,
       min: inputCurrencyMin,

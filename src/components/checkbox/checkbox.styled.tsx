@@ -12,18 +12,19 @@ type SpanChecked = {
   $isChecked?: boolean;
 };
 
-export const CheckboxContainerStyled = styled.div`
+export const CheckboxContainerStyled = styled.div<ThemeStylesType>`
   width: fit-content;
+  ${props => getStyles(props.styles?.container)}
 `;
 
-export const CheckboxIconLabelWrapperStyled = styled.div`
+export const CheckboxIconLabelWrapperStyled = styled.div<ThemeStylesType>`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  ${props => getStyles(props.styles?.iconLabelWrapper)}
 `;
 
 export const CheckboxStyled = styled.input<ThemeStylesType>`
-  ${props => getStyles(props.styles?.checkbox)}
   appearance: none;
   cursor: pointer;
   display: grid;
@@ -31,12 +32,14 @@ export const CheckboxStyled = styled.input<ThemeStylesType>`
   &:disabled {
     cursor: default;
   }
+  ${props => getStyles(props.styles?.checkbox)}
 `;
 
-export const CheckboxFrameStyled = styled.div`
+export const CheckboxFrameStyled = styled.div<ThemeStylesType>`
   position: relative;
   height: fit-content;
   width: fit-content;
+  ${props => getStyles(props.styles?.frameContainer)}
 `;
 
 export const CheckedIcon = styled.span<ThemeStylesType & SpanChecked>`

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { InputTypeType, MASK_TYPE } from '@/components/input/types';
+import { INTERNAL_ERROR_EXECUTION, InputTypeType, MASK_TYPE } from '@/components/input/types';
 import { useStyles } from '@/hooks';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
@@ -20,6 +20,7 @@ const InputDateComponent = React.forwardRef(
       dateSeparator = 'to',
       maskType = MASK_TYPE.NUMBERS,
       truncate = false,
+      internalErrorExecution = INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR,
       format,
       placeholder = format,
       today,
@@ -42,6 +43,7 @@ const InputDateComponent = React.forwardRef(
       informationAssociatedValue,
       ignoreKeys,
       onBlur,
+      onWrapperBlur,
       onFocus,
       onKeyDown,
       onChange,
@@ -69,6 +71,7 @@ const InputDateComponent = React.forwardRef(
       state,
       inputRef,
       handleBlurInternal,
+      handleWrapperBlur,
       handleFocusInternal,
       handleKeyDownInternal,
       handleChangeInternal,
@@ -82,11 +85,13 @@ const InputDateComponent = React.forwardRef(
       today,
       hasRange,
       dateSeparator,
+      onWrapperBlur,
       onClick,
       onDateError,
       onSelectedDateChange,
       onCalendarOpen,
       errorExecution,
+      internalErrorExecution,
       keyValidation,
       max,
       min,
@@ -147,6 +152,7 @@ const InputDateComponent = React.forwardRef(
         onDateChange={handlePickCalendarDate}
         onFocus={handleFocusInternal}
         onKeyDown={handleKeyDownInternal}
+        onWrapperBlur={handleWrapperBlur}
       />
     );
   }

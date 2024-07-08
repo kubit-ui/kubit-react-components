@@ -31,7 +31,7 @@ import {
   LABEL_TYPE,
   MultipleRef,
 } from './types';
-import { buildAriaLabelledBy, hasError, isDisabled } from './utils';
+import { buildAriaDescribedBy, buildAriaLabelledBy, hasError, isDisabled } from './utils';
 
 const InputStandAloneComponent = (
   {
@@ -77,15 +77,19 @@ const InputStandAloneComponent = (
         aria-haspopup={props['aria-haspopup']}
         aria-invalid={hasError(state)}
         aria-labelledby={buildAriaLabelledBy({
-          extraAriaLabelledBy,
           labelId,
+          extraAriaLabelledBy,
           helpMessage: helpMessage?.content as string,
           helpMessageId,
-          errorMessage: errorMessage?.content,
+          state: state,
+        })}
+        {...ariaProps}
+        aria-describedby={buildAriaDescribedBy({
+          ariaDescribedBy: props['aria-describedby'],
+          errorMessage: errorMessage?.content as string,
           errorMessageId,
           state,
         })}
-        {...ariaProps}
         autoCapitalize={autoCapitalize}
         autoComplete={autocomplete}
         cursorPointer={styles?.[state]?.inputContainer?.cursor}
@@ -149,7 +153,9 @@ const InputStandAloneComponent = (
         disabled={isDisabled(state)}
         icon={{ dataTestId: `${props.dataTestId}Icon`, ...props.icon }}
         iconPosition={props.iconPosition}
+        leftIcon={props.leftIcon}
         loading={props.loading}
+        rightIcon={props.rightIcon}
         state={state}
         styles={styles?.[state]}
       />

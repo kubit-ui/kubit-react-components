@@ -19,6 +19,12 @@ import { InputState } from '../types/inputTheme';
 export const InformationAssociatedStandAlone = (
   props: IInformationAssociated
 ): JSX.Element | null => {
+  const isInformationAssociatedVisible =
+    !!props.informationAssociatedValue &&
+    (props.state === InputState.FILLED ||
+      props.state === InputState.ERROR_FILLED_WITH_INFO ||
+      props.state === InputState.DISABLED_FILLED_WITH_INFO);
+
   const InfoAssociatedDecoration = (
     props: IInformationAssociatedDecoration
   ): JSX.Element | null => {
@@ -49,55 +55,54 @@ export const InformationAssociatedStandAlone = (
     );
   };
 
-  if (
-    !props.informationAssociatedValue ||
-    (props.state !== InputState.FILLED &&
-      props.state !== InputState.DISABLED_FILLED_WITH_INFO &&
-      props.state !== InputState.ERROR_FILLED_WITH_INFO)
-  ) {
-    return null;
-  }
-
   return (
-    <InformationAssociatedWrapperStyled
-      aria-live={AriaLiveOptionType.POLITE}
-      data-testid={`${props.dataTestId}InfoAssociated`}
-      iconPosition={
-        props.informationAssociatedIcon?.position ||
-        props.highlightedInformationAssociatedIcon?.position
-      }
-      styles={props.styles}
-    >
-      <InfoAssociatedTextAndDecorativeStyled styles={props.styles}>
-        <InfoAssociatedDecoration
-          highlightedInformationAssociatedIcon={props.highlightedInformationAssociatedIcon}
-          informationAssociatedIcon={props.informationAssociatedIcon}
+    <>
+      {props.informationAssociatedValue && (
+        <InformationAssociatedWrapperStyled
+          aria-live={AriaLiveOptionType.POLITE}
+          data-testid={`${props.dataTestId}InfoAssociated`}
+          iconPosition={
+            props.informationAssociatedIcon?.position ||
+            props.highlightedInformationAssociatedIcon?.position
+          }
           styles={props.styles}
-        />
-        <Text
-          component={TextComponentType.SPAN}
-          customTypography={props.styles?.informationAssociated}
-          {...props.informationAssociatedValue}
         >
-          {props.informationAssociatedValue.content}
-        </Text>
-      </InfoAssociatedTextAndDecorativeStyled>
-      {props.informationAssociatedButton &&
-        (props.styles?.informationAssociatedButton?.size ||
-          props.informationAssociatedButton?.size) &&
-        (props.styles?.informationAssociatedButton?.variant ||
-          props.informationAssociatedButton?.variant) &&
-        props.state === InputState.ERROR_FILLED_WITH_INFO && (
-          <InfoAssociatedButtonStyled styles={props.styles}>
-            <Button
-              size={props.styles?.informationAssociatedButton?.size}
-              variant={props.styles?.informationAssociatedButton?.variant}
-              {...props.informationAssociatedButton}
-            >
-              {props.informationAssociatedButton.content}
-            </Button>
-          </InfoAssociatedButtonStyled>
-        )}
-    </InformationAssociatedWrapperStyled>
+          {isInformationAssociatedVisible && (
+            <>
+              <InfoAssociatedTextAndDecorativeStyled styles={props.styles}>
+                <InfoAssociatedDecoration
+                  highlightedInformationAssociatedIcon={props.highlightedInformationAssociatedIcon}
+                  informationAssociatedIcon={props.informationAssociatedIcon}
+                  styles={props.styles}
+                />
+                <Text
+                  component={TextComponentType.SPAN}
+                  customTypography={props.styles?.informationAssociated}
+                  {...props.informationAssociatedValue}
+                >
+                  {props.informationAssociatedValue?.content}
+                </Text>
+              </InfoAssociatedTextAndDecorativeStyled>
+              {props.informationAssociatedButton &&
+                (props.styles?.informationAssociatedButton?.size ||
+                  props.informationAssociatedButton?.size) &&
+                (props.styles?.informationAssociatedButton?.variant ||
+                  props.informationAssociatedButton?.variant) &&
+                props.state === InputState.ERROR_FILLED_WITH_INFO && (
+                  <InfoAssociatedButtonStyled styles={props.styles}>
+                    <Button
+                      size={props.styles?.informationAssociatedButton?.size}
+                      variant={props.styles?.informationAssociatedButton?.variant}
+                      {...props.informationAssociatedButton}
+                    >
+                      {props.informationAssociatedButton.content}
+                    </Button>
+                  </InfoAssociatedButtonStyled>
+                )}
+            </>
+          )}
+        </InformationAssociatedWrapperStyled>
+      )}
+    </>
   );
 };

@@ -95,7 +95,8 @@ const TableBoundary = <V extends string | unknown>(
 /**
  * @description
  * Table component is used to display data in a tabular format.
- * Is the best table component ever, taht you can find in the world.
+ *
+ * @deprecated This component is deprecated. Please use our new DataTable component to display data in a table format. Alternatively, you can create a table manually using the new table-related components: TableV2, TableHead, TableBody, TableRow, TableCell, TableDivider, and TableCaption. This component will be removed in the next major release.
  */
 const Table = React.forwardRef(TableBoundary) as <V extends string | unknown>(
   props: ITable<V> & {

@@ -15,7 +15,12 @@ import {
 } from 'react';
 
 import { useInternalValidations } from '@/components/input/hooks';
-import { InputState, InputTypeType, InternalErrorType } from '@/components/input/types';
+import {
+  INTERNAL_ERROR_EXECUTION,
+  InputState,
+  InputTypeType,
+  InternalErrorType,
+} from '@/components/input/types';
 import { ListOptionsOptionType } from '@/components/listOptions';
 import { useCustomHeightFromChildrens, useInput, useMediaDevice } from '@/hooks';
 import {
@@ -52,6 +57,7 @@ type ParamsType = {
   informationAssociated?: string;
   hasInputInSearchList?: boolean;
   name?: string;
+  internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
   onClick?: (
     event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement, MouseEvent>
   ) => void;
@@ -141,6 +147,7 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
 
   // Input Basic hook
   const { state, inputRef, handleFocusInternal } = useInput({
+    internalErrorExecution: props.internalErrorExecution,
     disabled: props.disabled,
     error: props.error || internalErrors.length > 0,
     // need for update the state

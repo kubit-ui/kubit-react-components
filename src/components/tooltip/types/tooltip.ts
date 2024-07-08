@@ -55,6 +55,7 @@ export interface ITooltipStandAlone {
   onTooltipKeyDown?: React.KeyboardEventHandler<HTMLElement>;
   popover?: TooltipPopoverType;
   dragIcon?: IElementOrIcon;
+  tooltipAriaLabel?: string;
 }
 
 /**

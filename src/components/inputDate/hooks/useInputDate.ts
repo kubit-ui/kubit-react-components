@@ -9,7 +9,7 @@ import {
 } from 'react';
 
 import { useInternalValidations } from '@/components/input/hooks';
-import { InternalErrorType } from '@/components/input/types';
+import { ERROR_EXECUTION, InternalErrorType } from '@/components/input/types';
 import { verifyDate } from '@/components/inputDate/utils';
 import { ParamsTypeInputHook, ReturnTypeInputHook } from '@/hooks/useInput/types/inputHook';
 import { useInput } from '@/hooks/useInput/useInput';
@@ -35,6 +35,7 @@ type ParamsType = ParamsTypeInputHook & {
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   onDateError?: (hasError: boolean) => void;
   onCalendarOpen?: (calendarOpen: boolean) => void;
+  onWrapperBlur?: FocusEventHandler<HTMLDivElement>;
 };
 
 type ReturnType = ReturnTypeInputHook & {
@@ -47,11 +48,13 @@ type ReturnType = ReturnTypeInputHook & {
   handleShowCalendar: () => void;
   handleOpenCalendar: (open: boolean) => void;
   handleChangeInternalValidate: ChangeEventHandler<HTMLInputElement>;
+  handleWrapperBlur: FocusEventHandler<HTMLDivElement>;
 };
 
 export const useInputDate = ({
   ref,
   errorExecution,
+  internalErrorExecution,
   keyValidation,
   max,
   min,
@@ -67,6 +70,7 @@ export const useInputDate = ({
   type,
   truncate,
   informationAssociated,
+  onWrapperBlur,
   onBlur,
   onChange,
   onFocus,
@@ -231,11 +235,13 @@ export const useInputDate = ({
   );
 
   // Methods
+  // Click on the icon to show the calendar
   const handleShowCalendar = () => {
     setCalendarOpen(!calendarOpen);
     props.onCalendarOpen?.(!calendarOpen);
   };
 
+  // Popover control calendar
   const handleOpenCalendar = (open: boolean): void => {
     setCalendarOpen(open);
     props.onCalendarOpen?.(open);
@@ -249,18 +255,27 @@ export const useInputDate = ({
     props.onClick?.(event);
   };
 
-  const onBlurDate: FocusEventHandler<HTMLInputElement> = event => {
-    if (props.hasRange) {
-      handleChangeInternalValidateDateRange(event.target.value);
-    } else {
-      handleChangeInternalValidateSingleDate(event.target.value);
+  const onBlurDate: FocusEventHandler<HTMLDivElement> = event => {
+    if (event.currentTarget.contains(event.relatedTarget)) {
+      return;
     }
+
+    const inputValue = inputRef?.current?.value ?? '';
+
+    if (errorExecution === ERROR_EXECUTION.ON_BLUR) {
+      if (props.hasRange) {
+        handleChangeInternalValidateDateRange(inputValue);
+      } else {
+        handleChangeInternalValidateSingleDate(inputValue);
+      }
+    }
+
     const hasError = internalErrors.length > 0;
 
     props.onDateError?.(hasError);
 
     let adaptEvent;
-    const dateValue = event.target.value;
+    const dateValue = inputValue;
     if (props.hasRange) {
       const hasSeparator = props.dateSeparator && dateValue.includes(props.dateSeparator);
       const secondDateExists = dateValue.length > props.format.length;
@@ -287,7 +302,7 @@ export const useInputDate = ({
     } else {
       adaptEvent = setDate(dateValue, props.format);
     }
-    onBlur?.(adaptEvent);
+    onWrapperBlur?.(adaptEvent);
   };
 
   // validate formatted dates
@@ -303,7 +318,9 @@ export const useInputDate = ({
 
     // date range
     if (dateValue?.length === props.format?.length * 2 + 1) {
-      handleChangeInternalValidateDateRange(dateValue);
+      if (errorExecution === ERROR_EXECUTION.ON_CHANGE) {
+        handleChangeInternalValidateDateRange(dateValue);
+      }
       const orderedRangeDates = orderStringDates(dateValue);
       // if the first date is invalid give an error
       const hasError = internalErrors.length > 0;
@@ -328,7 +345,10 @@ export const useInputDate = ({
       );
 
       // single date
-    } else if (dateValue?.length === props.format?.length) {
+    } else if (
+      dateValue?.length === props.format?.length &&
+      errorExecution === ERROR_EXECUTION.ON_CHANGE
+    ) {
       handleChangeInternalValidateSingleDate(dateValue);
     }
     let adaptEvent;
@@ -421,8 +441,8 @@ export const useInputDate = ({
     handleSetValue,
   } = useInput({
     ref,
-    errorExecution,
     keyValidation,
+    internalErrorExecution,
     max,
     min,
     maxLength,
@@ -435,7 +455,7 @@ export const useInputDate = ({
     type,
     truncate,
     informationAssociated,
-    onBlur: onBlurDate,
+    onBlur,
     onFocus,
     onKeyDown,
     onError,
@@ -500,6 +520,7 @@ export const useInputDate = ({
     inputRef,
     handleChangeInternal,
     handleBlurInternal,
+    handleWrapperBlur: onBlurDate,
     handleFocusInternal,
     handleKeyDownInternal,
     handleSetValue,

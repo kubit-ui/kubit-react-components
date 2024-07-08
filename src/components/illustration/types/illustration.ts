@@ -2,7 +2,7 @@ import { IllustrationTypes } from '@/types';
 
 type IllustrationAriaAttributes = Pick<
   React.AriaAttributes,
-  'aria-label' | 'aria-controls' | 'aria-checked'
+  'aria-label' | 'aria-controls' | 'aria-checked' | 'aria-hidden'
 >;
 
 export interface IIllustrationStandAlone extends IllustrationAriaAttributes {

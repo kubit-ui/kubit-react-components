@@ -20,8 +20,8 @@ export const Colors = (): JSX.Element[] | JSX.Element => {
   if (themeObject === undefined || !themeObject) {
     return (
       <div>
-        <h1>Illustrations</h1>
-        <p>There are no illustrations for the selected theme ({theme})</p>
+        <h1>Colors</h1>
+        <p>There are no colors for the selected theme ({theme})</p>
       </div>
     );
   }
@@ -41,12 +41,12 @@ export const Colors = (): JSX.Element[] | JSX.Element => {
                     }}
                   />
                   <ColorsNameStyled>
-                    <span>color name</span>
+                    <b>color name</b>
                     <span>{_key}</span>
                   </ColorsNameStyled>
                 </ColorsCircleNameStyled>
                 <ColorsHexNameStyled>
-                  <span>Hex</span>
+                  <b>Hex</b>
                   <span>{value as ReactNode}</span>
                 </ColorsHexNameStyled>
               </ColorsColorDataStyled>

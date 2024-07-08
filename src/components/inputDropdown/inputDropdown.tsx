@@ -4,7 +4,7 @@ import { STYLES_NAME } from '@/constants';
 import { useMediaDevice, useStyles } from '@/hooks';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
-import { InputTypeType } from '../input/types';
+import { INTERNAL_ERROR_EXECUTION, InputTypeType } from '../input/types';
 import { useInputDropdown } from './hooks/useInputDropdown';
 import { InputDropdownStandAlone } from './inputDropdownStandAlone';
 import { IInputDropdown, IInputDropdownStandAlone, InputDropdownStylesProps } from './types';
@@ -18,6 +18,7 @@ const InputDropdownComponent = React.forwardRef(
       type = InputTypeType.TEXT,
       elementsToShow = DEFAULT_LIMIT,
       clearTextInputPopoverIconClick = true,
+      internalErrorExecution = INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR,
       value,
       icon,
       disabled,
@@ -66,6 +67,7 @@ const InputDropdownComponent = React.forwardRef(
       handleInputPopoverChange,
       handleInputPopoverKeyDown,
     } = useInputDropdown({
+      internalErrorExecution,
       open,
       optionList,
       type,

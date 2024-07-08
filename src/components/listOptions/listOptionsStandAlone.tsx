@@ -39,13 +39,9 @@ export const ListOptionsStandAlone = React.forwardRef(
     const [focus, setFocus, listEl] = useRoveFocus(props.roveFocus ?? roveFocusProps);
     const _id = useId();
 
-    React.useImperativeHandle(
-      ref,
-      () => {
-        return listEl.current as HTMLDivElement;
-      },
-      []
-    );
+    React.useImperativeHandle(ref, () => {
+      return listEl.current as HTMLDivElement;
+    }, []);
 
     const id = props.id ?? _id;
     const isSelection = type === ListOptionsType.SELECTION;
@@ -73,7 +69,7 @@ export const ListOptionsStandAlone = React.forwardRef(
             aria-labelledby={props.optionsContainerArias?.['aria-labelledby']}
             as={'ul'}
             id={id}
-            role={isSelection ? ROLES.LISTBOX : ROLES.MENU}
+            role={isSelection ? ROLES.LISTBOX : undefined}
             styles={props.styles}
           >
             {props.options.map((option, index) => {
@@ -93,7 +89,7 @@ export const ListOptionsStandAlone = React.forwardRef(
                   focus={focus === index}
                   labelCharsHighlighted={props.charsHighlighted}
                   multiSelect={props.multiSelect}
-                  role={isSelection ? ROLES.OPTION : ROLES.MENUITEM}
+                  role={isSelection ? ROLES.OPTION : undefined}
                   selected={selected}
                   tabIndex={isNavigation ? 0 : -1}
                   variant={getOptionVariant(
@@ -116,11 +112,7 @@ export const ListOptionsStandAlone = React.forwardRef(
                 />
               );
               if (type === ListOptionsType.NAVIGATION) {
-                return (
-                  <li key={`${id}LiOption${index}`} role="presentation">
-                    {optionComponent}
-                  </li>
-                );
+                return <li key={`${id}LiOption${index}`}>{optionComponent}</li>;
               }
               return optionComponent;
             })}

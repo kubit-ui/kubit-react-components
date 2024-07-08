@@ -14,10 +14,11 @@ const IllustrationStandAloneComponent = (
     rotate = '0deg',
     transitionDuration = '0.2s',
     dataTestId,
+    'aria-hidden': ariaHidden,
   }: IIllustrationStandAlone,
   ref: React.ForwardedRef<HTMLImageElement> | undefined | null
 ): JSX.Element => {
-  const isEmptyAltText = !altText;
+  const isEmptyAltText = ariaHidden || !altText;
 
   return (
     <IllustrationStyled

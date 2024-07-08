@@ -53,14 +53,16 @@ const NavigationRowStandaloneComponent = (
         )}
       </IconAndIconHighlightedContainerStyled>
       <TextSectionStyled styles={props.styles}>
-        <Text
-          component={TextComponentType.SPAN}
-          customTypography={props.styles.text}
-          dataTestId={`${dataTestId}Text`}
-          {...props.text}
-        >
-          {props.text.content}
-        </Text>
+        {props.text && (
+          <Text
+            component={TextComponentType.SPAN}
+            customTypography={props.styles.text}
+            dataTestId={`${dataTestId}Text`}
+            {...props.text}
+          >
+            {props.text.content}
+          </Text>
+        )}
         <Text
           component={TextComponentType.SPAN}
           customTypography={props.styles.description}
@@ -70,6 +72,7 @@ const NavigationRowStandaloneComponent = (
           {props.description?.content}
         </Text>
       </TextSectionStyled>
+
       <ElementOrIcon
         customIconStyles={props.styles.arrowIcon}
         dataTestId={`${dataTestId}ArrowIcon`}

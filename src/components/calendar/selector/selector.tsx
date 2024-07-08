@@ -41,7 +41,12 @@ export const Selector = (props: ISelector): JSX.Element => {
     );
   };
 
-  const renderButtonSelector = (type: string, showSelector: boolean, ariaLabel?: string) => {
+  const renderButtonSelector = (
+    type: string,
+    showSelector: boolean,
+    ariaLabel?: string,
+    role?: string
+  ) => {
     const buttonState = showSelector ? ButtonStateType.DISABLED : ButtonStateType.DEFAULT;
 
     const selectorToShow = () => {
@@ -73,6 +78,7 @@ export const Selector = (props: ISelector): JSX.Element => {
       <Button
         aria-label={ariaLabel}
         disabled={showSelector}
+        role={role}
         size={sizeSelectorButton || props.styles?.selectorOptions?.sizeSelectorButton}
         variant={variantSelectorButton || props.styles?.selectorOptions?.variantSelectorButton}
         onClick={handleClickButtonSelector}
@@ -101,29 +107,21 @@ export const Selector = (props: ISelector): JSX.Element => {
     onChangeCurrentDate(dateHelpers.getAddMonths(auxCurrentDate, 1));
   };
 
-  const handleOnClickBack: React.MouseEventHandler<HTMLDivElement> = event => {
-    onClickLeftIcon();
-    props.onLeftIconClick?.(event);
-  };
-
   const handleOnClickLeftIcon: React.MouseEventHandler<HTMLButtonElement> = event => {
     onClickLeftIcon();
     leftArrowIcon.onClick?.(event);
-  };
-
-  const handleOnClickRight: React.MouseEventHandler<HTMLDivElement> = event => {
-    onClickRightIcon();
-    props.onRightIconClick?.(event);
+    props.onLeftIconClick?.(event);
   };
 
   const handleOnClickRightIcon: React.MouseEventHandler<HTMLButtonElement> = event => {
     onClickRightIcon();
     rightArrowIcon.onClick?.(event);
+    props.onRightIconClick?.(event);
   };
 
   return (
     <SelectorStyled isDaySelector={isDaySelector} styles={props.styles}>
-      <IconAndBackTextStyled styles={props.styles} onClick={handleOnClickBack}>
+      <IconAndBackTextStyled styles={props.styles}>
         <ElementOrIcon
           color={iconArrowDisabled(props.minDate) ? props.styles?.colorArrowDisabled : undefined}
           customIconStyles={props.styles?.leftArrow}
@@ -147,20 +145,23 @@ export const Selector = (props: ISelector): JSX.Element => {
           renderButtonSelector(
             CalendarElementType.DAY,
             props.showDaySelector,
-            props.configAccesibility?.daySelectorAriaLabel
+            props.configAccesibility?.daySelectorAriaLabel,
+            props.configAccesibility?.daySelectorRole
           )}
         {renderButtonSelector(
           CalendarElementType.MONTH,
           props.showMonthSelector,
-          props.configAccesibility?.monthSelectorAriaLabel
+          props.configAccesibility?.monthSelectorAriaLabel,
+          props.configAccesibility?.monthSelectorRole
         )}
         {renderButtonSelector(
           CalendarElementType.YEAR,
           props.showYearSelector,
-          props.configAccesibility?.yearSelectorAriaLabel
+          props.configAccesibility?.yearSelectorAriaLabel,
+          props.configAccesibility?.yearSelectorRole
         )}
       </OptionsStyled>
-      <RightIconStyled showCustomSelector={showCustomSelector} onClick={handleOnClickRight}>
+      <RightIconStyled showCustomSelector={showCustomSelector}>
         <ElementOrIcon
           color={iconArrowDisabled(props.maxDate) ? props.styles?.colorArrowDisabled : undefined}
           customIconStyles={props.styles?.rightArrow}

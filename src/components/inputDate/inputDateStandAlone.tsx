@@ -17,11 +17,12 @@ export const InputDateStandAloneComponent = (
   const uniqueId = useId('inputDate');
   const inputId = props.id ?? uniqueId;
   const ariaControls = props.calendarOpen ? `${uniqueId}Calendar` : undefined;
+  const { onWrapperBlur, ...innerInputProps } = props;
 
   return (
-    <InputDateStyled data-testid={`${props.dataTestId}InputDate`}>
+    <InputDateStyled data-testid={`${props.dataTestId}InputDate`} onBlur={onWrapperBlur}>
       <Input
-        {...props}
+        {...innerInputProps}
         ref={ref}
         aria-controls={ariaControls}
         aria-expanded={props.calendarOpen}
@@ -40,7 +41,7 @@ export const InputDateStandAloneComponent = (
             ? props.configAccesibility?.closeInputIconAriaLabel
             : props.configAccesibility?.openInputIconAriaLabel,
         }}
-        role={ROLES.COMBOBOX}
+        role={ROLES.TEXTBOX}
         variant={props.inputVariant ?? props.styles?.[props.state]?.inputVariant}
       />
       <PopoverCalendar

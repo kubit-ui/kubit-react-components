@@ -250,14 +250,14 @@ export const innerRightContentPosition = (): CSSProp => css`
 
 // help message styles when label is not STANDARD and input has inner left content
 export const helpMessageMargin = (marginLeft: number): CSSProp => css`
-  div:has(> span) {
+  > div:has(> span) {
     margin-left: ${pxToRem(marginLeft)}rem;
   }
 `;
 
 // label is not STANDARD (absolute position) and input has inner left content
 export const labelInTopStyles = (marginLeft: number): CSSProp => css`
-  div:has(> label) {
+  > div {
     margin-left: ${marginLeft}rem;
     width: calc(100% - ${marginLeft}rem);
   }

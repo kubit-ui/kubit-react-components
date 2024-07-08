@@ -3,15 +3,17 @@ import * as React from 'react';
 import { useInput } from '@/hooks/useInput/useInput';
 
 import { InputControlled } from './inputControlled';
-import { IInputUnControlled, InputTypeType } from './types';
+import { IInputUnControlled, INTERNAL_ERROR_EXECUTION, InputTypeType } from './types';
 
 const InputUnControlledComponent = <V extends string | unknown>(
   {
     type = InputTypeType.TEXT,
     truncate = false,
+    internalErrorExecution = INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR,
+    disabledArrowUpDownInputNumber = false,
+    disabledWheelMouse = true,
     errorExecution,
     keyValidation,
-    disabledArrowUpDownInputNumber = false,
     min,
     max,
     maxLength,
@@ -26,7 +28,6 @@ const InputUnControlledComponent = <V extends string | unknown>(
     ignoreKeys,
     formatNumber,
     locale,
-    disabledWheelMouse = true,
     onBlur,
     onChange,
     onFocus,
@@ -50,6 +51,7 @@ const InputUnControlledComponent = <V extends string | unknown>(
   } = useInput({
     ref,
     errorExecution,
+    internalErrorExecution,
     keyValidation,
     disabledArrowUpDownInputNumber,
     max,

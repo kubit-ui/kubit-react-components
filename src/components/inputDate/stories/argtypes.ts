@@ -286,5 +286,15 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    onWrapperBlur: {
+      description: 'Function that is called when blur the component wrapper',
+      control: false,
+      table: {
+        type: {
+          summary: 'FocusEventHandler<HTMLDivElement>',
+        },
+        category: CATEGORY_CONTROL.FUNCTIONS,
+      },
+    },
   };
 };

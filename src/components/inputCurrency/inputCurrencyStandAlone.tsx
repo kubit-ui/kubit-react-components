@@ -37,9 +37,9 @@ export const InputCurrencyStandAloneComponent = (
   const uniqueId = useId('inputCurrency');
   const inputId = props.id ?? uniqueId;
   const inputAffixId = `${inputId}Affix`;
-  const extraAriaLabelledBy = props.extraAriaLabelledBy
-    ? `${inputAffixId}-${props.extraAriaLabelledBy}`
-    : inputAffixId;
+  const ariaDescribedBy = !props['aria-describedby']
+    ? inputAffixId
+    : `${props['aria-describedby']} ${inputAffixId}`;
 
   const renderAffix = () => (
     <AffixStyled
@@ -49,7 +49,7 @@ export const InputCurrencyStandAloneComponent = (
         props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT
       }
       $positionAffix={props.currencyPosition}
-      id={extraAriaLabelledBy}
+      id={ariaDescribedBy}
       styles={props.styles?.[props.state]}
     >
       <ScreenReaderOnly>{props.screenReaderCurrencyName}</ScreenReaderOnly>
@@ -70,6 +70,7 @@ export const InputCurrencyStandAloneComponent = (
   return (
     <Input
       ref={ref}
+      aria-describedby={ariaDescribedBy}
       bottomExtraStyles={
         props.styles?.[props.state]?.bottomExtraStyles ??
         getExtraStyles(
@@ -91,7 +92,7 @@ export const InputCurrencyStandAloneComponent = (
             props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT
         )
       }
-      extraAriaLabelledBy={extraAriaLabelledBy}
+      extraAriaLabelledBy={props.extraAriaLabelledBy}
       id={inputId}
       leftContent={props.currencyPosition === POSITIONS.LEFT ? renderAffix() : undefined}
       leftExtraStyles={

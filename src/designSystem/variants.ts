@@ -109,4 +109,13 @@ export type Variants = {
   VideoVariantType?: object;
   DropdownSelectedVariantType?: object;
   TextCountVariantType?: object;
+  TableCellVariantType?: object;
+  TableRowVariantTypeV2?: object;
+  TableBodyVariantType?: object;
+  TableHeadVariantType?: object;
+  TableFootVariantType?: object;
+  TableCaptionVariantType?: object;
+  TableDividerVariantType?: object;
+  TableV2VariantType?: object;
+  DataTableVariantType?: object;
 };

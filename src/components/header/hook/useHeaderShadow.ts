@@ -17,13 +17,9 @@ type HeaderShadowReturnValues = {
 export const useHeaderShadow = ({ ref, shadow }: HeaderShadowProps): HeaderShadowReturnValues => {
   const headerRef = useRef<HTMLElement | null>(null);
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return headerRef?.current as HTMLDivElement;
-    },
-    []
-  );
+  useImperativeHandle(ref, () => {
+    return headerRef?.current as HTMLDivElement;
+  }, []);
 
   useEffect(() => {
     if (!headerRef.current) {

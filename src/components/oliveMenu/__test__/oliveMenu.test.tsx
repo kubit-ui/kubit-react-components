@@ -5,7 +5,6 @@ import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { ROLES } from '@/types';
 
 import { OliveMenu } from '../oliveMenu';
 import { IOliveMenu, OliveMenuListOptions } from '../types';
@@ -116,7 +115,7 @@ describe('OliveMenu component', () => {
     const openButton = screen.getAllByText('Options');
     fireEvent.click(openButton[0]);
 
-    const option = screen.getAllByRole(ROLES.MENUITEM, { name: 'option 1' })[0];
+    const option = screen.getAllByText('option 1')[0];
     fireEvent.click(option);
 
     expect(onOptionClickMock).toHaveBeenCalled();

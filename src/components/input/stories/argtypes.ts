@@ -3,7 +3,12 @@ import { IThemeObjectVariants } from '@/designSystem/themesObject';
 import { ArgTypesReturn, ROLES } from '@/types';
 import { AriaLiveOptionType } from '@/types/ariaLiveOption';
 
-import { AUTOCAPITALIZE_TYPE, ERROR_EXECUTION, MASK_TYPE } from '../types/input';
+import {
+  AUTOCAPITALIZE_TYPE,
+  ERROR_EXECUTION,
+  INTERNAL_ERROR_EXECUTION,
+  MASK_TYPE,
+} from '../types/input';
 import { InputIconPosition } from '../types/inputTheme';
 import { InputTypeType } from '../types/inputType';
 
@@ -321,6 +326,20 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
           detail: Object.keys(ERROR_EXECUTION).join(', '),
         },
         defaultValue: { summary: null },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    internalErrorExecution: {
+      control: { type: 'select' },
+      description: 'When internal error handling occurs',
+      options: ['onChange', 'onBlur', 'onChangeOnBlur'],
+      type: { name: 'string' },
+      table: {
+        type: {
+          summary: 'INTERNAL_ERROR_EXECUTION',
+          detail: Object.keys(INTERNAL_ERROR_EXECUTION).join(', '),
+        },
+        defaultValue: { summary: INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR },
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },

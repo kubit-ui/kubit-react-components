@@ -7,5 +7,8 @@ export type {
   GenericComponentsType,
   IGenericLink,
   GenericLinkType,
+  GenericImageType,
+  IGenericImage,
+  IGenericComponentsProvider,
 } from './genericComponents.type';
 export * from './defaultGenericComponents';

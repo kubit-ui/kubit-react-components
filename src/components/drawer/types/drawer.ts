@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { IElementOrIcon } from '@/components/elementOrIcon';
 import { IFooter } from '@/components/footer';
 import { IPopoverControlled } from '@/components/popover';
-import { IText } from '@/components/text';
+import { IText, TextComponentType } from '@/components/text';
 import { CustomTokenTypes } from '@/types';
 import { DeviceBreakpointsType } from '@/types/breakpoints';
 
@@ -27,6 +27,7 @@ export interface IDrawerStandAlone {
   footer?: DrawerFooterType;
   closeIcon?: IElementOrIcon;
   title?: DrawerTextType;
+  titleComponent?: TextComponentType | string;
   open: boolean;
   level: DrawerLevelPositionTypes;
   dataTestId?: string;

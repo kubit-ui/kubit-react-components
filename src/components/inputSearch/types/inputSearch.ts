@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { IElementOrIcon } from '@/components/elementOrIcon';
 import {
   IInputStandAlone,
+  INTERNAL_ERROR_EXECUTION,
   InputHelpMessageType,
   InputLabelType,
   InputState,
@@ -10,6 +11,7 @@ import {
 } from '@/components/input/types';
 import { ListOptionsOptionType } from '@/components/listOptions';
 import { ILoader } from '@/components/loader/types';
+import { OptionSublabelType } from '@/components/option';
 import { IText } from '@/components/text/types';
 import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
 
@@ -84,8 +86,9 @@ export interface IPopoverSearchList {
   hasResultTextWrittenByUser?: boolean;
   state: InputState;
   styles: InputSearchStylesProps;
-  sublabel?: string;
+  sublabel?: OptionSublabelType;
   titleActionBottomSheet?: string;
+  regex?: string | RegExp;
   value?: string;
   caseSensitive?: boolean;
   // Functions
@@ -155,6 +158,7 @@ export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOm
   searchText?: string;
   value?: string;
   titleActionBottomSheet?: string;
+  regex?: string | RegExp;
   // listOptions
   caseSensitive?: boolean;
   listOptionsHeight: string;
@@ -168,7 +172,7 @@ export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOm
   hasResultTextWrittenByUser?: boolean;
   hasHighlightedOption?: boolean;
   // actionBottomSheet
-  sublabel?: string;
+  sublabel?: OptionSublabelType;
   closeIcon?: IElementOrIcon;
   icon?: IElementOrIcon;
   // input popover
@@ -225,6 +229,7 @@ export interface IInputSearch<V = undefined extends string ? unknown : string>
   searchFilterConfig?: SearchFilterConfig;
   disableErrorInvalidOption?: boolean;
   regex?: string | RegExp;
+  internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   clearTextInputPopoverIconClick?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
