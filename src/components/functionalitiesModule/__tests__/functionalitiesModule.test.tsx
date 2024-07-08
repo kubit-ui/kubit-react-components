@@ -101,10 +101,7 @@ describe('FunctionalitiesModule component', () => {
       />
     );
 
-    const buttonOption1 = screen.getAllByRole(ROLES.MENUITEM, {
-      name: 'option 1',
-      hidden: true,
-    })?.[0];
+    const buttonOption1 = screen.getByText('option 1');
     expect(buttonOption1.textContent).toBe(optionSelected);
 
     const results = await axe(container);
@@ -181,7 +178,7 @@ describe('FunctionalitiesModule component', () => {
         {...mockProps}
       />
     );
-    const buttonOption1 = screen.getByRole(ROLES.MENUITEM, { name: 'option 1' });
+    const buttonOption1 = screen.getByText('option 1');
     fireEvent.click(buttonOption1);
     expect(mockProps.onOptionClick).toHaveBeenCalled();
 
