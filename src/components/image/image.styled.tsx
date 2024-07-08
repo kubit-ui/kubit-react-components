@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { ImageObjectFitType, ImageStylesPropsType } from './types';
 
+export const ImageStyled = styled.img``;
+
 export const ImagePictureStyled = styled.picture<ImageStylesPropsType>`
   position: relative;
   display: inline-block;
