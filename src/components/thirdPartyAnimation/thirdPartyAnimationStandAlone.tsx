@@ -8,7 +8,7 @@ import { IThirdPartyAnimationStandAlone } from './types';
 
 const ThirdPartyAnimationStandAloneComponent = (
   { dataTestId, height, width, ...props }: IThirdPartyAnimationStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement | null>
+  ref: React.ForwardedRef<HTMLSpanElement | null>
 ): JSX.Element => {
   const emptyAriaLabel = props['aria-label'].length === 0;
 

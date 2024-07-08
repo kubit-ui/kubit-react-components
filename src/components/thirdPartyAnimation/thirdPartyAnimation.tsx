@@ -11,7 +11,7 @@ const THIRD_PARTY_ANIMATION_STYLES = 'THIRD_PARTY_ANIMATION_STYLES';
 
 const ThirdPartyAnimationComponent = <V extends string | unknown>(
   { autoplay = true, loop = true, variant, ...props }: IThirdPartyAnimation<V>,
-  ref: React.ForwardedRef<HTMLDivElement | null>
+  ref: React.ForwardedRef<HTMLSpanElement | null>
 ): JSX.Element => {
   const [animation, setAnimation] = React.useState<AnimationItem>();
   const variantTheme = useStyles<{ thirdPartyAnimationData: object }, V>(
@@ -20,15 +20,11 @@ const ThirdPartyAnimationComponent = <V extends string | unknown>(
   );
 
   const { thirdPartyAnimationData } = variantTheme;
-  const element = React.useRef<HTMLDivElement>(null);
+  const element = React.useRef<HTMLSpanElement>(null);
 
-  React.useImperativeHandle(
-    ref,
-    () => {
-      return element.current as HTMLDivElement;
-    },
-    []
-  );
+  React.useImperativeHandle(ref, () => {
+    return element.current as HTMLSpanElement;
+  }, []);
 
   React.useEffect(() => {
     if (element.current) {
@@ -53,7 +49,7 @@ const ThirdPartyAnimationComponent = <V extends string | unknown>(
 
 const ThirdPartyAnimation = React.forwardRef(ThirdPartyAnimationComponent) as <V>(
   props: React.PropsWithChildren<IThirdPartyAnimation<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement | null> | undefined | null;
+    ref?: React.ForwardedRef<HTMLSpanElement | null> | undefined | null;
   }
 ) => ReturnType<typeof ThirdPartyAnimationComponent>;
 
