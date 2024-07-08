@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IOption } from '@/components/option';
+import { IOption, OptionSublabelType } from '@/components/option';
 import { IText } from '@/components/text';
 import { UseRoveFocusProps } from '@/hooks/useRoveFocus/useRoveFocus';
 import { CustomTokenTypes } from '@/types';
@@ -17,6 +17,7 @@ export type ListOptionsOptionType = Omit<IOption<string>, 'children' | 'variant'
   variant?: string;
   highlighted?: boolean;
   value?: string | number;
+  sublabel?: OptionSublabelType;
 };
 
 export type OptionsContainerAriasType = Pick<

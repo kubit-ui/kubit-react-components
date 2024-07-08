@@ -146,11 +146,11 @@ describe('ListOptions component', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('List options with type=NAVIGATION must render a role=presentation', async () => {
+  it('List options with type=NAVIGATION must render a role=li', async () => {
     const { container, getAllByRole } = renderProvider(
       <ListOptions {...MOCK} type={ListOptionsType.NAVIGATION} />
     );
-    const options = getAllByRole(ROLES.PRESENTATION);
+    const options = getAllByRole(ROLES.LISTITEM);
     expect(options.length).toBe(2);
 
     const results = await axe(container, {
