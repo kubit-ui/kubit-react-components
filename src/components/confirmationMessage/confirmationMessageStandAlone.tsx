@@ -58,6 +58,7 @@ const ConfirmationMessageStandAloneComponent = (
     <ConfirmationMessageStyled ref={ref} styles={props.stylesState}>
       <TitleAndDescriptionStyled
         align={alignValue[align.toLocaleLowerCase()]}
+        data-testid={`${props.dataTestId}TitleAndDescriptionContainer`}
         styles={props.stylesState}
       >
         {props.title && (
