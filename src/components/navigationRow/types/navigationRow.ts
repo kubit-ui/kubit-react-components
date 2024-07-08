@@ -21,7 +21,7 @@ export type NavigationRowIconHighlightedType = Omit<IIconHighlighted, 'variant' 
 
 export interface INavigationRowStandAlone {
   styles: NavigationRowStylesPropsType;
-  text: NavigationRowTextAndDescriptionType;
+  text?: NavigationRowTextAndDescriptionType;
   description?: NavigationRowTextAndDescriptionType;
   // icons
   arrowIcon: IElementOrIcon;
