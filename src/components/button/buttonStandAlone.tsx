@@ -15,7 +15,7 @@ export const ButtonStandAloneStructure = (props: IButtonStandAlone): JSX.Element
 
   return (
     <>
-      {props.loader && (
+      {props.loader && props.loading && (
         <>
           {typeof props.loader === 'object' && 'variant' in props.loader ? (
             <ButtonLoaderStyled>
