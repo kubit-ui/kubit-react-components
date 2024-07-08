@@ -9,7 +9,11 @@ import {
 } from 'react';
 
 import { useInternalValidations } from '@/components/input/hooks';
-import { ERROR_EXECUTION, FormatNumber } from '@/components/input/types/input';
+import {
+  ERROR_EXECUTION,
+  FormatNumber,
+  INTERNAL_ERROR_EXECUTION,
+} from '@/components/input/types/input';
 import { InputTypeType } from '@/components/input/types/inputType';
 import {
   checkValidFormattedNumber,
@@ -200,7 +204,11 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
     const valueControlled = controlValue(eventValue);
 
     // check internal validations
-    if (props.type !== InputTypeType.DATE) {
+    if (
+      props.type !== InputTypeType.DATE &&
+      (props.internalErrorExecution === INTERNAL_ERROR_EXECUTION.ON_CHANGE ||
+        props.internalErrorExecution === INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR)
+    ) {
       checkInternalValidations(eventValue);
     }
 
@@ -226,6 +234,12 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
   };
 
   const handleBlurInternal: FocusEventHandler<HTMLInputElement> = event => {
+    if (
+      props.internalErrorExecution === INTERNAL_ERROR_EXECUTION.ON_BLUR ||
+      props.internalErrorExecution === INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR
+    ) {
+      checkInternalValidations(event.target.value);
+    }
     if (props.formatNumber) {
       // add thousand separator to the value
       event.target.value = addThousandSeparator(event.target.value, props.formatNumber);

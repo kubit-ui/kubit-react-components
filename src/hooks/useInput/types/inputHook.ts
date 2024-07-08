@@ -11,6 +11,7 @@ import { FormatNumber, InputState, InputTypeType, MASK_TYPE } from '@/components
 export type ParamsTypeInputHook = {
   ref?: ForwardedRef<HTMLInputElement | undefined>;
   errorExecution?: string;
+  internalErrorExecution?: string;
   keyValidation?: string;
   disabledArrowUpDownInputNumber?: boolean;
   disabledWheelMouse?: boolean;
