@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { ActionBottomSheetTextType } from '@/components/actionBottomSheet';
 import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IInputStandAlone, InputState } from '@/components/input/types';
+import { IInputStandAlone, INTERNAL_ERROR_EXECUTION, InputState } from '@/components/input/types';
 import { ListOptionsOptionType } from '@/components/listOptions';
 import { ILoader } from '@/components/loader/types';
 import { IText } from '@/components/text';
@@ -178,6 +178,7 @@ export interface IInputDropdown<V = undefined extends string ? unknown : string>
   open?: boolean;
   disabled?: boolean;
   error?: boolean;
+  internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
   onClick?: (
     event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement, MouseEvent>
   ) => void;

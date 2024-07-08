@@ -15,18 +15,41 @@ export const buildAriaLabelledBy = ({
   helpMessage?: React.ReactNode;
   helpMessageId?: string;
   errorMessage?: string;
-  errorMessageId: string;
+  errorMessageId?: string;
   state?: InputState;
 }): string => {
   let res = labelId;
   if (extraAriaLabelledBy) {
     res += ` ${extraAriaLabelledBy}`;
   }
-  if (errorMessage && hasError(state)) {
+  if (errorMessageId && errorMessage && hasError(state)) {
     res += ` ${errorMessageId}`;
   }
-  if (helpMessage) {
+  if (helpMessageId && helpMessage) {
     res += ` ${helpMessageId}`;
+  }
+  return res;
+};
+
+export const buildAriaDescribedBy = ({
+  ariaDescribedBy,
+  errorMessage,
+  errorMessageId,
+  state,
+}: {
+  ariaDescribedBy?: string;
+  errorMessage?: string;
+  errorMessageId?: string;
+  state?: InputState;
+}): string | undefined => {
+  if (!ariaDescribedBy && !errorMessage) return;
+
+  let res: string = '';
+  if (ariaDescribedBy) {
+    res += ` ${ariaDescribedBy}`;
+  }
+  if (errorMessageId && errorMessage && hasError(state)) {
+    res += ` ${errorMessageId}`;
   }
   return res;
 };

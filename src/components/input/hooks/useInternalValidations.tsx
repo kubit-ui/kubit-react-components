@@ -27,7 +27,7 @@ export const useInternalValidations = (
     }
     // Min length validation
     const minLengthValidation = () => {
-      if (value && type === InputTypeType.TEXT && minLength && value.length < minLength) {
+      if (type === InputTypeType.TEXT && minLength && value.length < minLength) {
         errors.push(InternalErrorType.INVALID_MIN_LENGTH);
       }
     };

@@ -1,5 +1,9 @@
 import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ERROR_EXECUTION, IInputStandAlone } from '@/components/input/types';
+import {
+  ERROR_EXECUTION,
+  IInputStandAlone,
+  INTERNAL_ERROR_EXECUTION,
+} from '@/components/input/types';
 import { CustomTokenTypes } from '@/types';
 
 import { InputPasswordStylesProps } from './inputPasswordTheme';
@@ -41,6 +45,7 @@ export interface IInputPassword<V = undefined extends string ? unknown : string>
   error?: boolean;
   disabled?: boolean;
   errorExecution?: ERROR_EXECUTION;
+  internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
   keyValidation?: string;
   onInputTypeChange?: () => void;
   onInternalErrors?: (errors: string[]) => void;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { InputTypeType } from '@/components/input';
+import { INTERNAL_ERROR_EXECUTION, InputTypeType } from '@/components/input';
 import { STYLES_NAME } from '@/constants';
 import { useInput, useStyles } from '@/hooks';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
@@ -17,6 +17,7 @@ const InputPasswordComponent = React.forwardRef(
   <V extends string | unknown>(
     {
       type = InputTypeType.PASSWORD,
+      internalErrorExecution = INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR,
       errorExecution,
       keyValidation,
       maxLength,
@@ -75,6 +76,7 @@ const InputPasswordComponent = React.forwardRef(
     } = useInput({
       ref,
       errorExecution,
+      internalErrorExecution,
       keyValidation,
       maxLength,
       mask,

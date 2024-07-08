@@ -4,7 +4,7 @@ import { STYLES_NAME } from '@/constants';
 import { useId, useInput, useStyles } from '@/hooks';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
-import { InputTypeType } from '../input/types';
+import { INTERNAL_ERROR_EXECUTION, InputTypeType } from '../input/types';
 import { InputCounterStandAlone } from './inputCounterStandAlone';
 import { IInputCounter, IInputCounterStandAlone, InputCounterStylesProps } from './types';
 
@@ -13,6 +13,7 @@ const InputCounterComponent = React.forwardRef(
     {
       type = InputTypeType.TEXT,
       truncate = false,
+      internalErrorExecution = INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR,
       errorExecution,
       keyValidation,
       min,
@@ -57,6 +58,7 @@ const InputCounterComponent = React.forwardRef(
     } = useInput({
       ref,
       errorExecution,
+      internalErrorExecution,
       keyValidation,
       max,
       min,

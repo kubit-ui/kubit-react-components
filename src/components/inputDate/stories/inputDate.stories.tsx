@@ -54,7 +54,6 @@ const commonArgs: IInputDate = {
   locale: 'en-EN',
   maxDate: normalizeDate(new Date()),
   minDate: normalizeDate(new Date('01-01-2000')),
-  icon: { icon: ICONS.ICON_PLACEHOLDER },
   // initialDate: normalizeDate(new Date('01-01-2000')),
   // initialSecondDate: normalizeDate(new Date('05-01-2000')),
   defaultDate: new Date(),

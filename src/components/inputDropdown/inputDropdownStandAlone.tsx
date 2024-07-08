@@ -19,7 +19,7 @@ export const InputDropdownStandAloneComponent = (
   const inputWrapperRef = React.useRef(null);
   const uniqueId: string = useId('inputDropdown');
   const inputId: string = props.id ?? uniqueId;
-  const ariaControls = props.open ? `${uniqueId}List` : undefined;
+  const ariaControls = `${uniqueId}List`;
   const { refInput, refIcon } = ref as unknown as MultipleRef;
   const refs = { refInput, refIcon };
 
@@ -39,11 +39,13 @@ export const InputDropdownStandAloneComponent = (
           ref={
             refs as unknown as React.ForwardedRef<HTMLInputElement | undefined | null> | undefined
           }
-          aria-controls={ariaControls}
+          aria-controls={props.open ? ariaControls : undefined}
           aria-expanded={props.open}
           aria-haspopup={ROLES.LISTBOX}
           autocomplete={
-            props.styles?.[props.state]?.allowSearch ? AUTOCOMPLETE_TYPE.ON : AUTOCOMPLETE_TYPE.OFF
+            props.autocomplete || props.styles?.[props.state]?.allowSearch
+              ? AUTOCOMPLETE_TYPE.ON
+              : AUTOCOMPLETE_TYPE.OFF
           }
           icon={{ rotate: props.open ? '180deg' : '0deg', ...props.icon }}
           id={inputId}
@@ -53,8 +55,9 @@ export const InputDropdownStandAloneComponent = (
           value={props.searchText}
           variant={props.inputVariant ?? props.styles?.[props.state]?.inputVariant}
           onChange={event =>
-            props.styles?.[props.state]?.allowSearch &&
-            props.device === DeviceBreakpointsType.DESKTOP
+            props.autocomplete ||
+            (props.styles?.[props.state]?.allowSearch &&
+              props.device === DeviceBreakpointsType.DESKTOP)
               ? props.onChange?.(event)
               : undefined
           }

@@ -1,4 +1,4 @@
-import { ERROR_EXECUTION, IInputStandAlone } from '@/components/input';
+import { ERROR_EXECUTION, IInputStandAlone, INTERNAL_ERROR_EXECUTION } from '@/components/input';
 import { ITextCountControlled } from '@/components/textCount';
 import { CustomTokenTypes } from '@/types';
 
@@ -36,6 +36,7 @@ export interface IInputCounter<V = undefined extends string ? unknown : string>
   error?: boolean;
   disabled?: boolean;
   errorExecution?: ERROR_EXECUTION;
+  internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
   keyValidation?: string;
   regex?: string | RegExp;
   onInternalErrors?: (errors: string[]) => void;

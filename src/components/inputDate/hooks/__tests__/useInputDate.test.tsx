@@ -2,6 +2,7 @@ import { act } from '@testing-library/react-hooks';
 import { ChangeEvent } from 'react';
 import * as React from 'react';
 
+import { ERROR_EXECUTION } from '@/components/input/types';
 import { renderHookProvider } from '@/tests/renderProvider/renderProvider.utility';
 
 import { useInputDate } from '../useInputDate';
@@ -54,7 +55,10 @@ describe('useInputDate Hook', () => {
     const onChange = jest.fn();
     const format = 'DD-MM-YYYY';
     const minDate = new Date('01-01-2000');
-    const { result } = renderHookProvider(() => useInputDate({ format, minDate, onChange }));
+    const errorExecution = ERROR_EXECUTION.ON_CHANGE;
+    const { result } = renderHookProvider(() =>
+      useInputDate({ format, minDate, onChange, errorExecution })
+    );
 
     act(() => {
       result.current.handleChangeInternalValidate({
@@ -78,7 +82,10 @@ describe('useInputDate Hook', () => {
     const onChange = jest.fn();
     const format = 'DD-MM-YYYY';
     const minDate = new Date('01-01-2000');
-    const { result } = renderHookProvider(() => useInputDate({ format, minDate, onChange }));
+    const errorExecution = ERROR_EXECUTION.ON_CHANGE;
+    const { result } = renderHookProvider(() =>
+      useInputDate({ format, minDate, onChange, errorExecution })
+    );
 
     act(() => {
       result.current.handleChangeInternalValidate({

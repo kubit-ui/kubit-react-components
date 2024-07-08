@@ -1,6 +1,8 @@
 import { fireEvent, screen } from '@testing-library/react';
 import * as React from 'react';
 
+import { ICONS } from '@/assets';
+import { ERROR_EXECUTION } from '@/components/input/types';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { windowMatchMedia } from '@/tests/windowMatchMedia';
@@ -20,7 +22,7 @@ const mockProps = {
   defaultDate: new Date(),
   dateFormatted: [null, null],
   transformDate: jest.fn(),
-  icon: { icon: 'CALENDAR' },
+  rightIcon: { icon: ICONS.ICON_PLACEHOLDER },
   calendar: {
     configCalendar: {
       leftArrowIcon: { icon: 'ERROR', ['aria-label']: 'Previous month' },
@@ -44,7 +46,7 @@ describe('New Input Date Component', () => {
   test('Should render InputDate component', () => {
     renderProvider(<InputDate {...mockProps} defaultDate={undefined} maxDate={undefined} />);
 
-    const input = screen.getByRole('combobox');
+    const input = screen.getByRole(ROLES.TEXTBOX);
 
     expect(input).toBeDefined();
   });
@@ -52,12 +54,12 @@ describe('New Input Date Component', () => {
   test('Should render InputDate with range component', () => {
     renderProvider(<InputDate {...mockProps} hasRange={true} />);
 
-    const input = screen.getByRole('combobox');
+    const input = screen.getByRole(ROLES.TEXTBOX);
 
     expect(input).toBeDefined();
   });
 
-  test('On input click should sow calendar', () => {
+  test('On input click should show calendar', () => {
     renderProvider(<InputDate {...mockProps} />);
 
     const calendarIcon = screen.getByRole('button');
@@ -124,7 +126,7 @@ describe('New Input Date Component', () => {
     const withShowCalendar = { ...restProps, showCalendar: true };
     renderProvider(<InputDate {...withShowCalendar} />);
 
-    const input = screen.getByRole('combobox');
+    const input = screen.getByRole(ROLES.TEXTBOX);
 
     expect(input).toBeDefined();
   });
@@ -148,18 +150,23 @@ describe('New Input Date Component', () => {
 
   test('On blur component call handleChangeInternalValidateSingleDate and addInternalError', () => {
     const mockOnBlur = jest.fn();
-    renderProvider(<InputDate {...mockProps} onBlur={mockOnBlur} />);
+    const errorExecution = ERROR_EXECUTION.ON_BLUR;
+    renderProvider(
+      <InputDate {...mockProps} errorExecution={errorExecution} onBlur={mockOnBlur} />
+    );
 
-    const input = screen.getByRole('combobox');
+    const input = screen.getByRole(ROLES.TEXTBOX);
     fireEvent.blur(input);
     expect(mockOnBlur).toHaveBeenCalled();
   });
 
   test('On blur component call handleChangeInternalValidateDateRange and addInternalError', () => {
     const mockOnBlur = jest.fn();
+    const errorExecution = ERROR_EXECUTION.ON_BLUR;
     renderProvider(
       <InputDate
         {...mockProps}
+        errorExecution={errorExecution}
         hasRange={true}
         initialDate={normalizeDate(new Date('01-01-2000'))}
         initialSecondDate={normalizeDate(new Date('05-01-2000'))}
@@ -167,7 +174,7 @@ describe('New Input Date Component', () => {
       />
     );
 
-    const input = screen.getByRole('combobox');
+    const input = screen.getByRole(ROLES.TEXTBOX);
     fireEvent.blur(input);
     expect(mockOnBlur).toHaveBeenCalled();
   });

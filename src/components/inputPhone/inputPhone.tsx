@@ -6,7 +6,7 @@ import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
 import { InputTypeType } from '../input';
-import { MASK_TYPE } from '../input/types';
+import { INTERNAL_ERROR_EXECUTION, MASK_TYPE } from '../input/types';
 import { InputPhoneStandAlone } from './inputPhoneStandAlone';
 import { IInputPhone, IInputPhoneStandAlone, InputPhoneStylesProps } from './types';
 
@@ -16,6 +16,7 @@ const InputPhoneComponent = React.forwardRef(
       type = InputTypeType.TEL,
       maskType = MASK_TYPE.NUMBERS,
       truncate = false,
+      internalErrorExecution = INTERNAL_ERROR_EXECUTION.ON_CHANGE,
       errorExecution,
       keyValidation,
       min,
@@ -52,6 +53,7 @@ const InputPhoneComponent = React.forwardRef(
     } = useInput({
       ref,
       errorExecution,
+      internalErrorExecution,
       keyValidation,
       max,
       min,

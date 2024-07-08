@@ -70,6 +70,12 @@ export enum ERROR_EXECUTION {
   ON_BLUR = 'onBlur',
 }
 
+export enum INTERNAL_ERROR_EXECUTION {
+  ON_CHANGE = 'onChange',
+  ON_BLUR = 'onBlur',
+  ON_CHANGE_ON_BLUR = 'onChangeOnBlur',
+}
+
 export enum AUTOCAPITALIZE_TYPE {
   OFF = 'off',
   NONE = 'none',
@@ -421,6 +427,7 @@ export type IInputUnControlled<V = undefined extends string ? unknown : string> 
   disabled?: boolean;
   value?: string | number;
   errorExecution?: ERROR_EXECUTION;
+  internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
   keyValidation?: string;
   regex?: string | RegExp;
   // functions
