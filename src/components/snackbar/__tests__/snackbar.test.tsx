@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { act, fireEvent, screen } from '@testing-library/react';
 import * as React from 'react';
 
 import { axe } from 'jest-axe';
@@ -11,6 +11,7 @@ import { Snackbar, SnackbarMessageType } from '../index';
 
 const MOCK = {
   variant: 'DEFAULT',
+  ref: jest.fn(),
   onSecondaryActionClick: jest.fn(),
   open: true,
   closeIcon: {
@@ -82,6 +83,75 @@ describe('Snackbar component', () => {
     expect(screen.queryAllByText('button')).toHaveLength(0);
   });
 
+  const MockSnackbarFocusLastElement = () => {
+    const [open, setOpen] = React.useState(false);
+    return (
+      <div>
+        <button data-testid="firstPageElement">First Page Element</button>
+        <button data-testid="openSnackbar" onClick={() => setOpen(true)}>
+          Open Snackbar
+        </button>
+        <Snackbar {...MOCK} closeIcon={{ icon: 'UNICORN' }} open={open} />
+      </div>
+    );
+  };
+  it('after closing manually, if the element foucsed before the snackbar is open exist, this element will be focused', () => {
+    renderProvider(<MockSnackbarFocusLastElement />);
+
+    act(() => {
+      // Focus the button
+      screen.getByTestId('openSnackbar').focus();
+    });
+
+    act(() => {
+      // Open snackbar bar
+      fireEvent.click(screen.getByTestId('openSnackbar'));
+    });
+
+    act(() => {
+      // Close snackbar bar
+      fireEvent.click(screen.getByTestId(`${MOCK.dataTestId}Icon`));
+    });
+    // open snackbar should have the focus back
+    expect(screen.getByTestId('openSnackbar')).toHaveFocus();
+  });
+
+  const MockSnackbarCloseManuallyFocusFirstDescentand = () => {
+    const [open, setOpen] = React.useState(false);
+    return (
+      <div>
+        <button data-testid="firstPageElement">First Page Element</button>
+        {!open && (
+          <button data-testid="openSnackbar" onClick={() => setOpen(true)}>
+            Open Snackbar
+          </button>
+        )}
+        <Snackbar {...MOCK} closeIcon={{ icon: 'UNICORN' }} open={open} />
+      </div>
+    );
+  };
+  it('after closing manually, if the element that opens the snackbar does not exist, first element of the page should have the focus', () => {
+    renderProvider(<MockSnackbarCloseManuallyFocusFirstDescentand />);
+
+    act(() => {
+      // Focus the button
+      screen.getByTestId('openSnackbar').focus();
+    });
+
+    act(() => {
+      // Open snackbar bar
+      fireEvent.click(screen.getByTestId('openSnackbar'));
+    });
+
+    act(() => {
+      // Close snackbar bar
+      fireEvent.click(screen.getByTestId(`${MOCK.dataTestId}Icon`));
+    });
+
+    // first element of the page should have the focus
+    expect(screen.getByTestId('firstPageElement')).toHaveFocus();
+  });
+
   it('Should render icon, link, button and description when passed props', async () => {
     const { container } = renderProvider(
       <Snackbar {...mockWithDescription}>Snackbar Content</Snackbar>
@@ -109,7 +179,7 @@ describe('Snackbar component', () => {
     expect(results).toHaveNoViolations();
   });
 
-  test('Snackbar call the onOpenClose function, when the functions is provider and the snackbar closes automatically due to the closeTimeOut if neither focus or hovering', () => {
+  it('Snackbar call the onOpenClose function, when the functions is provider and the snackbar closes automatically due to the closeTimeOut if neither focus or hovering', () => {
     jest.useFakeTimers();
     const mockOpenClose = jest.fn();
     renderProvider(<Snackbar {...MOCK} closeTimeout={3000} onOpenClose={mockOpenClose} />);
@@ -122,7 +192,7 @@ describe('Snackbar component', () => {
     expect(mockOpenClose).toHaveBeenCalled();
   });
 
-  test('Snackbar will not call the onOpenClose function if the closeTimeOut set, but the user is hovering the snackbar', () => {
+  it('Snackbar will not call the onOpenClose function if the closeTimeOut set, but the user is hovering the snackbar', () => {
     jest.useFakeTimers();
     const mockOpenClose = jest.fn();
     renderProvider(<Snackbar {...MOCK} closeTimeout={3000} onOpenClose={mockOpenClose} />);
@@ -136,7 +206,7 @@ describe('Snackbar component', () => {
     expect(mockOpenClose).toHaveBeenCalled();
   });
 
-  test('Snackbar will not call the onOpenClose function if the closeTimeOut set, but the user is focusing the snackbar', () => {
+  it('Snackbar will not call the onOpenClose function if the closeTimeOut set, but the user is focusing the snackbar', () => {
     jest.useFakeTimers();
     const mockOpenClose = jest.fn();
     renderProvider(<Snackbar {...MOCK} closeTimeout={3000} onOpenClose={mockOpenClose} />);

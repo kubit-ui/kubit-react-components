@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { focusFirstDescendant } from '@/utils';
+import { focusFirstDescendantV2 } from '@/utils/focusHandlers/focusHandlers';
 
 import { SnackbarControlled } from './snackbarControlled';
 import { ISnackbarUnControlled } from './types';
@@ -21,6 +21,10 @@ const SnackbarUnControlledComponent = <V extends string | unknown>(
   const closeSnackbarTimeOut = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const hover = React.useRef(false);
   const focus = React.useRef(false);
+  const innerRef = React.useRef<HTMLDivElement>(null);
+  const lastFocusedElement = React.useRef<Element | null>(null);
+
+  React.useImperativeHandle(ref, () => innerRef?.current as HTMLDivElement, []);
 
   /**
    * Only start timeout if closeTimeOut is defined, and if the snackbar is not hovered or focused
@@ -43,6 +47,7 @@ const SnackbarUnControlledComponent = <V extends string | unknown>(
 
   React.useEffect(() => {
     if (open) {
+      lastFocusedElement.current = document.activeElement;
       startCloseSnackbarTimeout();
     } else {
       clearCloseSnackbarTimeout();
@@ -55,8 +60,20 @@ const SnackbarUnControlledComponent = <V extends string | unknown>(
   const handleCloseButton: (_open: boolean) => React.MouseEventHandler<HTMLButtonElement> =
     _open => event => {
       props.onOpenClose?.(_open, event);
-      // Only after the user closes the snackbar manually, the focus will be set to the first focusable element of the page
-      focusFirstDescendant(document.body);
+      // After manually closing the popover, focus the last focused element
+      // If the last focused element is not available, focus the first focusable element
+      if (
+        lastFocusedElement.current instanceof HTMLElement &&
+        document.contains(lastFocusedElement.current) &&
+        document.body !== lastFocusedElement.current
+      ) {
+        lastFocusedElement.current.focus();
+        return;
+      }
+      focusFirstDescendantV2({
+        element: document.body,
+        elementsToOmit: innerRef.current ? [innerRef.current] : [],
+      });
     };
 
   const handleMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -95,7 +112,7 @@ const SnackbarUnControlledComponent = <V extends string | unknown>(
   return (
     <SnackbarControlled
       {...props}
-      ref={ref}
+      ref={innerRef}
       open={open}
       variant={variant}
       onBlur={handleBlur}
