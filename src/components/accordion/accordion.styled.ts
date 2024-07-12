@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { CommonStyleType } from '@/types/styles';
-import { getStyles } from '@/utils/getStyles/getStyles';
+import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
 import { LineSeparatorLinePropsStylesType, LineSeparatorPositionType } from '../lineSeparator';
 
@@ -43,6 +43,7 @@ export const AccordionTitleStyled = styled.span<IAccordionStyles>`
 
 export const AccordionHeaderRightContentStyled = styled.div<IAccordionStyles>`
   ${props => getStyles(props.styles)}
+  ${props => getTypographyStyles(props.styles)}
 `;
 
 export const AccordionSubHeaderContainerStyled = styled.div<IAccordionStyles>`
