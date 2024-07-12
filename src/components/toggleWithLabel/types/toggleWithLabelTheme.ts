@@ -1,11 +1,11 @@
-import { CommonStyleType, TypographyTypes } from '@/types';
+import { CommonStyleType, PointerTypes, TypographyTypes } from '@/types';
 
 export type ToggleWithLabelStylePropsType = {
-  container?: CommonStyleType & TypographyTypes;
+  container?: CommonStyleType & TypographyTypes & PointerTypes;
   legendContainer?: CommonStyleType;
   rowContainer?: CommonStyleType & TypographyTypes;
   rowLegendContainer?: CommonStyleType;
-  legend?: TypographyTypes;
+  legend?: TypographyTypes & { disabled?: TypographyTypes };
   required?: TypographyTypes;
 };
 

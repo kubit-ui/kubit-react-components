@@ -17,6 +17,32 @@ export const getFocusableDescendants = (element: HTMLElement): HTMLElement[] | b
 };
 
 /**
+ * Retrieves an array of focusable descendants within a given element.
+ *
+ * @param element - The element to search for focusable descendants.
+ * @param elementsToOmit - Optional array of elements to omit from the search.
+ * @returns An array of HTMLElements representing the focusable descendants.
+ */
+export const getFocusableDescendantsV2 = ({
+  element,
+  elementsToOmit,
+}: {
+  element: HTMLElement;
+  elementsToOmit?: HTMLElement[];
+}): HTMLElement[] => {
+  const focusableNodes = Array.from(
+    element.querySelectorAll<HTMLElement>(FOCUSABLE_QUERY_SELECTOR)
+  ).filter(
+    node =>
+      !node.hasAttribute('aria-disabled:true') &&
+      !node.getAttribute('aria-hidden:true') &&
+      !node.hasAttribute('disabled') &&
+      !elementsToOmit?.some(elementToOmit => elementToOmit.contains(node))
+  );
+  return focusableNodes;
+};
+
+/**
  * Find the next focusable element (without looking to children)
  * Return true when a focusable element has been found and focused
  * @param element
@@ -133,6 +159,30 @@ export const focusFirstDescendant = (element: HTMLElement): void => {
         node.focus();
         return document.activeElement === node;
       });
+    }
+  }
+};
+
+/**
+ * Sets focus on the first focusable descendant of the given element.
+ *
+ * @param {Object} options - The options for focusing the first descendant.
+ * @param {HTMLElement} options.element - The element on which to set focus.
+ * @param {HTMLElement[]} [options.elementsToOmit] - An optional array of elements to omit from focus.
+ *
+ * @returns {void}
+ */
+export const focusFirstDescendantV2 = ({
+  element,
+  elementsToOmit,
+}: {
+  element: HTMLElement;
+  elementsToOmit?: HTMLElement[];
+}): void => {
+  if (element?.childNodes?.length) {
+    const focusableElements = getFocusableDescendantsV2({ element, elementsToOmit });
+    if (focusableElements.length) {
+      focusableElements[0].focus();
     }
   }
 };

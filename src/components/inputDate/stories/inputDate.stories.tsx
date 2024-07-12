@@ -6,13 +6,14 @@ import {
   additionalInfoAction,
   labelSecondary,
 } from '@/components/input/components/stories/stories';
+import { ERROR_EXECUTION } from '@/components/input/types';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 import { InputTypeType } from '@/types/inputType';
+import { formatDateToUTC } from '@/utils';
 
 import { InputDate as Story } from '../inputDate';
 import { IInputDate } from '../types';
-import { normalizeDate } from '../utils';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
@@ -32,10 +33,10 @@ const meta = {
     <div style={{ width: '50%' }}>
       <Story
         {...args}
-        initialDate={args.initialDate && normalizeDate(args.initialDate)}
-        initialSecondDate={args.initialSecondDate && normalizeDate(args.initialSecondDate)}
-        maxDate={args.maxDate && normalizeDate(args.maxDate)}
-        minDate={normalizeDate(args.minDate)}
+        initialDate={args.initialDate && formatDateToUTC(args.initialDate)}
+        initialSecondDate={args.initialSecondDate && formatDateToUTC(args.initialSecondDate)}
+        maxDate={args.maxDate && formatDateToUTC(args.maxDate)}
+        minDate={formatDateToUTC(args.minDate)}
       />
     </div>
   ),
@@ -52,10 +53,10 @@ const commonArgs: IInputDate = {
   format: 'DD-MM-YYYY',
   placeholder: 'Date',
   locale: 'en-EN',
-  maxDate: normalizeDate(new Date()),
-  minDate: normalizeDate(new Date('01-01-2000')),
-  // initialDate: normalizeDate(new Date('01-01-2000')),
-  // initialSecondDate: normalizeDate(new Date('05-01-2000')),
+  maxDate: formatDateToUTC(new Date()),
+  minDate: formatDateToUTC(new Date('2023-07-05')),
+  // initialDate: new Date('2024-07-10'),
+  // initialSecondDate: new Date('05-01-2000'),
   defaultDate: new Date(),
   rightIcon: { icon: ICONS.ICON_PLACEHOLDER },
   closeIcon: { icon: ICONS.ICON_CLOSE },
@@ -86,6 +87,7 @@ const commonArgs: IInputDate = {
     backToMonthAriaLabel: 'Back to month view',
   },
   disabledDates: [new Date('2020-01-01'), new Date('2020-01-05')],
+  errorExecution: ERROR_EXECUTION.ON_BLUR,
 };
 
 export const InputDate: Story = {

@@ -125,11 +125,16 @@ const TabsStandAloneComponent = (
                 >
                   {tabsLength > 1 ? (
                     <ItemRove
+                      ariaDisabled={
+                        (props.device === DeviceBreakpointsType.MOBILE && !positionVisibleInView) ||
+                        tab.disabled
+                      }
                       ariaSelected={isSelected}
                       asElement={PrimaryTabItemRoveStyled}
                       checkIsFirstTime={true}
                       disabled={
-                        props.device === DeviceBreakpointsType.MOBILE && !positionVisibleInView
+                        (props.device === DeviceBreakpointsType.MOBILE && !positionVisibleInView) ||
+                        tab.disabled
                       }
                       focus={focus === index}
                       id={`${BASE_ID}-tab-${index}`}

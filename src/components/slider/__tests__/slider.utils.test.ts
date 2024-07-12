@@ -10,71 +10,103 @@ import {
 
 describe('Slider utils - equalsRangeValues', () => {
   it('return false when array length is different', () => {
-    const areEquals = equalsRangeValues([1, 2], [1, 2, 3]);
+    const areEquals = equalsRangeValues({ values1: [1, 2], values2: [1, 2, 3] });
     expect(areEquals).toBeFalsy();
   });
 
   it('return false when array are differents', () => {
-    const areEquals = equalsRangeValues([1, 2], [1, 4]);
+    const areEquals = equalsRangeValues({ values1: [1, 2], values2: [1, 4] });
     expect(areEquals).toBeFalsy();
   });
 
   it('return true when array are equals', () => {
-    const areEquals = equalsRangeValues([1, 2], [1, 2]);
+    const areEquals = equalsRangeValues({ values1: [1, 2], values2: [1, 2] });
     expect(areEquals).toBeTruthy();
   });
 });
 
 describe('Slider utils - shouldUpdateLeftThumb', () => {
   it('return true if the newValue is less or equal than prevValue[0]', () => {
-    const shouldUpdate = shouldUpdateLeftThumb('right', 1, [2, 2]);
+    const shouldUpdate = shouldUpdateLeftThumb({
+      activePointer: 'right',
+      newValue: 1,
+      prevValue: [2, 2],
+    });
     expect(shouldUpdate).toBeTruthy();
   });
   it('return true if the activePointer is the left one and the new value less than prevValue[1]', () => {
-    const shouldUpdate = shouldUpdateLeftThumb('left', 1, [2, 2]);
+    const shouldUpdate = shouldUpdateLeftThumb({
+      activePointer: 'left',
+      newValue: 1,
+      prevValue: [2, 2],
+    });
     expect(shouldUpdate).toBeTruthy();
   });
 });
 
 describe('Slider utils - shouldUpdateRightThumb', () => {
   it('return true if the newValue is greater or equal than prevValue[1]', () => {
-    const shouldUpdate = shouldUpdateRightThumb('left', 3, [1, 2]);
+    const shouldUpdate = shouldUpdateRightThumb({
+      activePointer: 'left',
+      newValue: 3,
+      prevValue: [1, 2],
+    });
     expect(shouldUpdate).toBeTruthy();
   });
   it('return true if the activePointer is the right one and the new value greater than prevValue[0]', () => {
-    const shouldUpdate = shouldUpdateRightThumb('right', 3, [1, 2]);
+    const shouldUpdate = shouldUpdateRightThumb({
+      activePointer: 'right',
+      newValue: 3,
+      prevValue: [1, 2],
+    });
     expect(shouldUpdate).toBeTruthy();
   });
 });
 
 describe('Slider utils - calcNewRangeValue', () => {
   it('When shouldUpdateLeftThumb is true, return the new range value with the new value in the first position', () => {
-    const newRangeValue = calcNewRangeValue([2, 4], 1, { current: 'left' });
+    const newRangeValue = calcNewRangeValue({
+      prevValue: [2, 4],
+      newValue: 1,
+      activePointer: { current: 'left' },
+    });
     expect(newRangeValue).toEqual([1, 4]);
   });
 
   it('When shouldUpdateLeftThumb, but the current active pointer is the right one, the active pointer changes to left', () => {
     const activePointer = { current: 'right' };
-    const newRangeValue = calcNewRangeValue([2, 4], 1, activePointer);
+    const newRangeValue = calcNewRangeValue({
+      prevValue: [2, 4],
+      newValue: 1,
+      activePointer: activePointer,
+    });
     expect(newRangeValue).toEqual([1, 4]);
     expect(activePointer.current).toEqual('left');
   });
 
   it('When shouldUpdateRightThumb is true, return the new range value with the new value in the second position', () => {
-    const newRangeValue = calcNewRangeValue([2, 4], 3, { current: 'right' });
+    const newRangeValue = calcNewRangeValue({
+      prevValue: [2, 4],
+      newValue: 3,
+      activePointer: { current: 'right' },
+    });
     expect(newRangeValue).toEqual([2, 3]);
   });
 
   it('When shouldUpdateRightThumb, but the current active pointer is the left one, the active pointer changes to left', () => {
     const activePointer = { current: 'left' };
-    const newRangeValue = calcNewRangeValue([2, 4], 6, activePointer);
+    const newRangeValue = calcNewRangeValue({
+      prevValue: [2, 4],
+      newValue: 6,
+      activePointer,
+    });
     expect(newRangeValue).toEqual([2, 6]);
     expect(activePointer.current).toEqual('right');
   });
 
   it('When no shouldUpdateLeftThumb nor shouldUpdateRightThumb', () => {
     const activePointer = { current: 'other' };
-    const newRangeValue = calcNewRangeValue([2, 5], 4, activePointer);
+    const newRangeValue = calcNewRangeValue({ prevValue: [2, 5], newValue: 4, activePointer });
     expect(newRangeValue).toEqual([2, 5]);
   });
 });
@@ -86,7 +118,7 @@ describe('Slider utils - calcScaleValue', () => {
     const min = 0;
     const step = 0;
     const value = 5.5;
-    const scaleValue = calcScaleValue(max, min, step, value);
+    const scaleValue = calcScaleValue({ max, min, step, value });
     expect(scaleValue).toEqual(value);
   });
 });

@@ -186,6 +186,8 @@ export interface ITitle {
   styles?: InputStateProps;
   // modifiers
   title?: InputTitleType;
+  additionalInfo?: React.ReactNode;
+  state: InputState;
   dataTestId?: string;
 }
 

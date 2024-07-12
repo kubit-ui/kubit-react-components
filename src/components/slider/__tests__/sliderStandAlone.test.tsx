@@ -18,8 +18,7 @@ const mockSliderStandAlone = {
   disabled: false,
   // Scale
   showScale: false,
-  scaleArray: [],
-  scaleCount: 0,
+  scaleOffsets: [],
   // Generated props
   value: 50,
   offset: 50,

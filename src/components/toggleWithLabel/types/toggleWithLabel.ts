@@ -1,9 +1,14 @@
 import { IText } from '@/components/text';
 import { IToggleUnControlled } from '@/components/toggle/types';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes, POSITIONS } from '@/types';
 
 import { ToggleWithLabelStylePropsType } from './toggleWithLabelTheme';
 
+export enum LABEL_POSITION {
+  LEFT = POSITIONS.LEFT,
+  RIGHT = POSITIONS.RIGHT,
+  TOP = POSITIONS.TOP,
+}
 export interface IToggleWithLabelStyled {
   styles?: ToggleWithLabelStylePropsType;
   displayRow?: boolean;
@@ -26,13 +31,21 @@ export interface IToggleWithLabelStandAlone extends Omit<IToggleUnControlled, pr
   required: boolean;
   name?: string;
   toggleVariant: string;
+  /**
+   * @deprecated `displayRow` will be removed. Use 'labelPosition` instead
+   */
   displayRow?: boolean;
+  labelPosition?: LABEL_POSITION;
   textVariant?: string;
   screenReaderText?: string;
+  toggleRef?: React.ForwardedRef<HTMLInputElement> | undefined | null;
+  onClick?: (event: React.MouseEvent<HTMLFieldSetElement>) => void;
 }
 
+type propsToOmitStandAlone = 'styles' | 'toggleRef' | 'onClick';
+
 export interface IToggleWithLabelControlled<V = undefined extends string ? unknown : string>
-  extends Omit<IToggleWithLabelStandAlone, 'styles'>,
+  extends Omit<IToggleWithLabelStandAlone, propsToOmitStandAlone>,
     Omit<CustomTokenTypes<ToggleWithLabelStylePropsType>, 'cts' | 'extraCt'> {
   variant: V;
 }

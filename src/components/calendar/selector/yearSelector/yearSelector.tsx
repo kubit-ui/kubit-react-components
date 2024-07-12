@@ -59,6 +59,7 @@ export const YearSelector = (props: IYearSelector): JSX.Element => {
         return (
           <YearListStyled key={index} state={state} styles={props.styles}>
             <ItemRove
+              ariaLabel={String(year)}
               asElement={YearElementStyled}
               focus={focus === index}
               index={index}

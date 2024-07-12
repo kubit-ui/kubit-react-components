@@ -7,11 +7,7 @@ import { StyledScaleWrap, StyledScaledOption } from './sliderScaleStandAlone.sty
 
 export interface ISliderScaleStandAlone {
   showScale: boolean;
-  scaleArray: number[];
-  max: number;
-  min: number;
-  step: number;
-  scaleCount: number;
+  scaleOffsets: number[];
   styles: SliderBaseStylesType;
 }
 
@@ -21,11 +17,7 @@ export interface ISliderScaleStandAlone {
  */
 export const SliderScaleStandAlone = ({
   showScale,
-  scaleArray,
-  max,
-  min,
-  step,
-  scaleCount,
+  scaleOffsets,
   styles,
 }: ISliderScaleStandAlone): JSX.Element | null => {
   const uniqueTickmarksId = useId('tickmarks');
@@ -34,17 +26,11 @@ export const SliderScaleStandAlone = ({
   }
   return (
     <StyledScaleWrap id={uniqueTickmarksId} styles={styles}>
-      {scaleArray.map(i => {
-        let scaleOffset = 0;
-        if (i === scaleArray.length - 1) {
-          scaleOffset = 100;
-        } else if (i > 0) {
-          scaleOffset = (((1 - ((max - min) % step) / (max - min)) * 100) / scaleCount) * i;
-        }
+      {scaleOffsets.map((scaleElementOffset, i) => {
         return (
           <StyledScaledOption
             key={`${uniqueTickmarksId}_${i}`}
-            scaleOffset={scaleOffset}
+            scaleOffset={scaleElementOffset}
             styles={styles}
           />
         );

@@ -14,10 +14,9 @@ import { verifyDate } from '@/components/inputDate/utils';
 import { ParamsTypeInputHook, ReturnTypeInputHook } from '@/hooks/useInput/types/inputHook';
 import { useInput } from '@/hooks/useInput/useInput';
 import { useUtilsProvider } from '@/provider/utils';
-import { formatDateToNative, syntheticDate } from '@/utils';
+import { formatDateToNative, formatDateToUTC, syntheticDate } from '@/utils';
 
 import { SelectedDate } from '../types';
-import { normalizeDate } from '../utils/normalize';
 
 type ParamsType = ParamsTypeInputHook & {
   // modifiers
@@ -100,13 +99,6 @@ export const useInputDate = ({
       startDate: orderDates[0],
       endDate: orderDates[1],
     };
-  };
-
-  const getDateNormalize = (date: Date | undefined): Date | undefined => {
-    if (date) {
-      return normalizeDate(date);
-    }
-    return date;
   };
 
   const getDate = (date: Date | null | undefined): string => {
@@ -467,8 +459,8 @@ export const useInputDate = ({
   useEffect(() => {
     setDateFormatted(
       createDateFormatted(
-        getDateNormalize(props.initialDate),
-        getDateNormalize(props.initialSecondDate)
+        props.initialDate && formatDateToUTC(props.initialDate),
+        props.initialSecondDate && formatDateToUTC(props.initialSecondDate)
       )
     );
     if (props.hasRange) {

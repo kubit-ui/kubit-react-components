@@ -96,6 +96,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    initialStepOffset: {
+      description: 'Slider´s initial step offset',
+      type: { name: 'number' },
+      control: { type: 'number' },
+      table: {
+        type: {
+          summary: 'number',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     defaultValue: {
       description: 'Slider´s default value',
       control: { type: 'text' },

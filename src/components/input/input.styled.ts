@@ -12,7 +12,7 @@ import {
 import { getStyles } from '@/utils/getStyles/getStyles';
 
 import { InputCounterStateProps } from '../inputCounter/types/inputCounterTheme';
-import { InputIconPosition, InputState } from './types';
+import { InputIconPosition, InputState, InputStateProps } from './types';
 import {
   ErrorAndHelpMessageWrapperStyledProps,
   ErrorMessageStyledProps,
@@ -36,6 +36,14 @@ export const TitleWrapperStyled = styled.div.withConfig({
 
 export const LabelWrapperStyled = styled.div<LabelStyledProps>`
   ${mapLabelTypeStyles}
+`;
+
+export const AdditionalInfoWrapperStyled = styled.div<{ styles?: InputStateProps }>`
+  ${({ styles }) => getStyles(styles?.additionalInfoContainer)};
+`;
+
+export const TitleAndAdditionalInfoWrapperStyled = styled.div<{ styles?: InputStateProps }>`
+  ${({ styles }) => getStyles(styles?.titleAndAdditionalInfoContainer)};
 `;
 
 export const InformationAssociatedWrapperStyled = styled.div<InformationAssociatedStyledProps>`
@@ -87,6 +95,9 @@ export const LoaderWrapperStyled = styled.div<LoaderStyledProps>`
 `;
 
 export const InputIconStyled = styled.div<InputIconStyledProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: ${({ $pointerEvents }) => ($pointerEvents ? 'auto' : 'none')};
   ${({ iconPosition, styles }) => css`
     ${getStyles(

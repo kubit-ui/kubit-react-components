@@ -164,7 +164,13 @@ const InputStandAloneComponent = (
 
   const buildTopContent = () => (
     <TopContentWrapperStyled styles={styles?.[state]}>
-      <TitleStandAlone dataTestId={props.dataTestId} styles={styles?.[state]} title={props.title} />
+      <TitleStandAlone
+        additionalInfo={props.label ? undefined : props.additionalInfo}
+        dataTestId={props.dataTestId}
+        state={state}
+        styles={styles?.[state]}
+        title={props.title}
+      />
       <LabelStandAlone
         additionalInfo={props.additionalInfo}
         dataTestId={props.dataTestId}

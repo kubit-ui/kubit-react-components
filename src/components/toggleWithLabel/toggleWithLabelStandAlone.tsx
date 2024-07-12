@@ -20,6 +20,7 @@ const ToggleWithLabelStandAloneComponent = (
     requiredSymbol,
     textVariant,
     toggleVariant,
+    labelPosition,
     ...props
   }: IToggleWithLabelStandAlone,
   ref: React.ForwardedRef<HTMLFieldSetElement> | undefined | null
@@ -29,15 +30,23 @@ const ToggleWithLabelStandAloneComponent = (
   const screenReaderId = `${uniqueId}ScreenReader`;
   const labelId = `${uniqueId}Label`;
 
+  const legendStyles =
+    props.disabled && styles?.legend?.disabled ? styles?.legend?.disabled : styles?.legend;
+
   return (
-    <ToggleWithLabelStyled ref={ref} displayRow={displayRow} styles={styles}>
+    <ToggleWithLabelStyled
+      ref={ref}
+      displayRow={displayRow}
+      labelPosition={labelPosition}
+      styles={styles}
+      onClick={props.onClick}
+    >
       <Text
-        color={styles?.legend?.color}
         component={TextComponentType.LEGEND}
+        customTypography={legendStyles}
         dataTestId={`${props.dataTestId}Label`}
         id={labelId}
         variant={textVariant ?? styles?.legend?.font_variant}
-        weight={styles?.legend?.font_weight}
         {...label}
       >
         {label.content}
@@ -57,6 +66,7 @@ const ToggleWithLabelStandAloneComponent = (
       </Text>
       <Toggle
         {...props}
+        ref={props.toggleRef}
         aria-describedby={labelId}
         id={toggleId}
         screenReaderId={screenReaderId}

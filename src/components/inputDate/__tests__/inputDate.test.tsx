@@ -7,9 +7,9 @@ import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { windowMatchMedia } from '@/tests/windowMatchMedia';
 import { DeviceBreakpointsType, ROLES } from '@/types';
+import { formatDateToUTC } from '@/utils';
 
 import { InputDate } from '../inputDate';
-import { normalizeDate } from '../utils';
 
 window.matchMedia = windowMatchMedia();
 
@@ -168,8 +168,8 @@ describe('New Input Date Component', () => {
         {...mockProps}
         errorExecution={errorExecution}
         hasRange={true}
-        initialDate={normalizeDate(new Date('01-01-2000'))}
-        initialSecondDate={normalizeDate(new Date('05-01-2000'))}
+        initialDate={formatDateToUTC(new Date('01-01-2000'))}
+        initialSecondDate={formatDateToUTC(new Date('05-01-2000'))}
         onBlur={mockOnBlur}
       />
     );

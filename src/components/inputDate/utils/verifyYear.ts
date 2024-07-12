@@ -1,8 +1,10 @@
-const checkYear = (minYear: Date, maxYear: Date, currentDate: Date) => {
-  return currentDate >= minYear && currentDate <= maxYear;
+import { formatDateToUTC } from '@/utils';
+
+const checkYear = (minYear: Date, maxYear: Date, currentDate: string) => {
+  return formatDateToUTC(currentDate) >= minYear && formatDateToUTC(currentDate) <= maxYear;
 };
 
-export const verifyYear = (valueDate: Date, minDate: Date, maxDate: Date): boolean => {
+export const verifyYear = (valueDate: string, minDate: Date, maxDate: Date): boolean => {
   const minYear = minDate;
   const maxYear = maxDate;
   return checkYear(minYear, maxYear, valueDate);

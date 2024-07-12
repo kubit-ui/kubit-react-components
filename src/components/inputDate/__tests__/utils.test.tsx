@@ -1,13 +1,7 @@
 import { InputState, LABEL_TYPE } from '@/components/input/types';
+import { formatDateToUTC } from '@/utils';
 
-import {
-  getMask,
-  getPlaceholder,
-  normalizeDate,
-  verifyDate,
-  verifyFormat,
-  verifyYear,
-} from '../utils';
+import { getMask, getPlaceholder, verifyDate, verifyFormat, verifyYear } from '../utils';
 
 const format = 'DD-MM-YYYY';
 const dateSeparator = 'to';
@@ -20,15 +14,10 @@ describe('Input Date Utils', () => {
     const mask = '##-##-####';
     expect(getMask(format)).toBe(mask);
   });
-
   test('Should normalize date', async () => {
-    const date = 1685916000000;
+    const date = '2024-07-09T00:00';
     const newNormalizeDate = new Date(date);
-    expect(normalizeDate(date)).toStrictEqual(newNormalizeDate);
-  });
-  test('Should return the same date if date is type Date', async () => {
-    const date = new Date();
-    expect(normalizeDate(date)).toStrictEqual(date);
+    expect(formatDateToUTC(date)).toStrictEqual(newNormalizeDate);
   });
   test('Should verify length with no range date', async () => {
     const value = '01-06-2023';
@@ -49,11 +38,11 @@ describe('Input Date Utils', () => {
     expect(verifyDate(format, value, minDate, maxDate, dateSeparator, false, today)).toBe(false);
   });
   test('Should verify month', async () => {
-    const value = '40-03-2020';
+    const value = '03-40-2020';
     expect(verifyDate(format, value, minDate, maxDate, dateSeparator, false, today)).toBe(false);
   });
   test('Should verify year is between minDate and maxDate', async () => {
-    expect(verifyYear(new Date('2030-03-30'), minDate, maxDate)).toBe(false);
+    expect(verifyYear('2030-03-30', minDate, maxDate)).toBe(false);
   });
   test('Should verify getPlaceholder returns the same placeholder with labelType=STANDARD', async () => {
     const placeholder = 'example';
@@ -81,8 +70,8 @@ describe('Input Date Utils', () => {
   });
   test('Should call verifyFormatRangeDate', async () => {
     const value = '2023-11-21 to 2023-13-21';
-    const minDate = normalizeDate(new Date('01-01-2000'));
-    const maxDate = normalizeDate(new Date());
+    const minDate = formatDateToUTC(new Date('01-01-2000'));
+    const maxDate = formatDateToUTC(new Date());
     const today = 'Today,';
     const dateSeparator = 'to';
     const format = 'DD-MM-YYYY';
@@ -94,12 +83,12 @@ describe('Input Date Utils', () => {
   });
   test('Should call verifyFormatRangeDate without today and dateSeparator', async () => {
     const value = '2023-11-21 to 2023-13-21';
-    const minDate = normalizeDate(new Date('01-01-2000'));
-    const maxDate = normalizeDate(new Date());
+    const minDate = formatDateToUTC(new Date('01-01-2000'));
+    const maxDate = formatDateToUTC(new Date());
     const today = undefined;
     const dateSeparator = undefined;
     const format = 'DD-MM-YYYY';
-    const resultExpected = { hasError: false, valueFormatted: ['2023-11-21', 'to2023-13-', '21'] };
+    const resultExpected = { hasError: true, valueFormatted: ['2023-11-21', 'to2023-13-', '21'] };
     const isRange = true;
     expect(
       verifyFormat(format, value, minDate, maxDate, dateSeparator, today, isRange)

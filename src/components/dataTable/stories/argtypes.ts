@@ -25,7 +25,7 @@ export const argtypes = (
       control: { type: 'object' },
       table: {
         type: {
-          summary: 'DataTableColumnType',
+          summary: 'DataTableColumnType[]',
         },
         category: CATEGORY_CONTROL.CONTENT,
       },
@@ -36,7 +36,7 @@ export const argtypes = (
       control: { type: 'object' },
       table: {
         type: {
-          summary: 'DataTableRowType',
+          summary: 'DataTableRowType[]',
         },
         category: CATEGORY_CONTROL.CONTENT,
       },
@@ -48,7 +48,7 @@ export const argtypes = (
       control: { type: 'object' },
       table: {
         type: {
-          summary: 'DataTableRowGroupType',
+          summary: 'DataTableRowGroupType[]',
         },
         category: CATEGORY_CONTROL.CONTENT,
       },
@@ -76,7 +76,7 @@ export const argtypes = (
       },
     },
     hoverableRows: {
-      description: 'When define, only these rows will be hoverable',
+      description: 'When defined, only these rows will be hoverable',
       type: { name: 'array' },
       control: { type: 'array' },
       table: {
@@ -87,7 +87,7 @@ export const argtypes = (
       },
     },
     nonHoverableRows: {
-      description: 'When define, these rows will not be hoverable',
+      description: 'When defined, these rows will not be hoverable',
       type: { name: 'array' },
       control: { type: 'array' },
       table: {
@@ -145,7 +145,7 @@ export const argtypes = (
       },
     },
     ['aria-label']: {
-      description: 'Only when scroll, scrollable container aria label',
+      description: 'Only when it has scroll, scrollable container aria label',
       type: { name: 'string' },
       control: { type: 'text' },
       table: {
@@ -156,7 +156,7 @@ export const argtypes = (
       },
     },
     ['aria-labelledby']: {
-      description: 'Only when scroll, scrollable container aria labelled by',
+      description: 'Only when it has scroll, scrollable container aria labelled by',
       type: { name: 'string' },
       control: { type: 'text' },
       table: {

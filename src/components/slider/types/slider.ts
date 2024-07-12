@@ -42,8 +42,7 @@ export interface ISliderStandAlone {
   label?: SliderLabelType;
   // Scale
   showScale: boolean;
-  scaleArray: number[];
-  scaleCount: number;
+  scaleOffsets: number[];
   // Tooltip
   tooltip?: SliderTooltipType;
   rightTooltip?: SliderTooltipType;
@@ -93,8 +92,7 @@ type propsToOmit =
   | 'disabled'
   // Scale
   | 'showScale'
-  | 'scaleArray'
-  | 'scaleCount'
+  | 'scaleOffsets'
   // Generated props
   | 'value'
   | 'offset'
@@ -127,4 +125,5 @@ export interface ISlider<V = undefined extends string ? unknown : string>
   onDragStart?: () => void;
   onDragEnd?: () => void;
   disabled?: boolean;
+  initialStepOffset?: number;
 }

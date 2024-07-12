@@ -1,3 +1,5 @@
+import { isValidDate } from '@/utils/date/validateDate';
+
 import { verifyYear } from './verifyYear';
 
 type ReturnType = { valueFormatted: string | string[] | null; hasError: boolean };
@@ -8,7 +10,7 @@ export const formatValueDate = (value: string, today: string, dateSeparator = ''
 const matchFormatValueDate = (value: string, today, dateSeparator, format): string[] | null =>
   formatValueDate(value, today, dateSeparator).match(new RegExp('.{1,' + format.length + '}', 'g'));
 
-const verifyFormatSimpleDate = (
+const verifyFormatDate = (
   value: string,
   minDate: Date,
   maxDate: Date,
@@ -16,11 +18,13 @@ const verifyFormatSimpleDate = (
   dateSeparator: string,
   format: string
 ): ReturnType => {
-  let hasError = false;
   const valueFormatted = formatValueDate(value, today, dateSeparator);
-  const condition1 = valueFormatted.length > 0 && valueFormatted.length === format.length;
-  const condition2 = verifyYear(new Date(valueFormatted), minDate, maxDate);
-  hasError = !condition1 || !condition2;
+  const date = new Date(valueFormatted);
+
+  const hasError =
+    !isValidDate(date) ||
+    valueFormatted.length !== format.length ||
+    !verifyYear(valueFormatted, minDate, maxDate);
 
   return { valueFormatted, hasError };
 };
@@ -34,16 +38,24 @@ const verifyFormatRangeDate = (
   format: string
 ): ReturnType => {
   const VERIFY_LENGTH = 2;
-  let hasError = false;
   const valueFormatted = matchFormatValueDate(value, today, dateSeparator, format);
-  if (valueFormatted?.length === VERIFY_LENGTH) {
-    const condition1 =
-      valueFormatted[0]?.length === format.length && valueFormatted[1]?.length === format.length;
-    const condition2 =
-      verifyYear(new Date(valueFormatted[0]), minDate, maxDate) &&
-      verifyYear(new Date(valueFormatted[1]), minDate, maxDate);
-    hasError = !condition1 || !condition2;
+
+  if (
+    valueFormatted?.length !== VERIFY_LENGTH ||
+    !isValidDate(new Date(valueFormatted[0])) ||
+    !isValidDate(new Date(valueFormatted[1]))
+  ) {
+    return { valueFormatted, hasError: true };
   }
+
+  const condition1 =
+    valueFormatted[0]?.length === format.length && valueFormatted[1]?.length === format.length;
+  const condition2 =
+    verifyYear(valueFormatted[0], minDate, maxDate) &&
+    verifyYear(valueFormatted[1], minDate, maxDate);
+
+  const hasError = !condition1 || !condition2;
+
   return { valueFormatted, hasError };
 };
 
@@ -59,5 +71,5 @@ export const verifyFormat = (
   if (isRange) {
     return verifyFormatRangeDate(value, minDate, maxDate, today, dateSeparator, format);
   }
-  return verifyFormatSimpleDate(value, minDate, maxDate, today, dateSeparator, format);
+  return verifyFormatDate(value, minDate, maxDate, today, dateSeparator, format);
 };

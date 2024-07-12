@@ -128,6 +128,18 @@ export const TabStyled = styled.div<TabStylesType>`
   & ${PrimaryTabItemRoveStyled} {
     ${props => getStyles(props.styles?.[props.state]?.tabButton)}
 
+    &:hover {
+      ${props => getStyles(props.styles?.[TabsStateTypes.HOVER]?.tabButton)}
+    }
+
+    &:active {
+      ${props => getStyles(props.styles?.[TabsStateTypes.PRESSED]?.tabButton)}
+    }
+
+    &:disabled {
+      ${props => getStyles(props.styles?.[TabsStateTypes.DISABLED]?.tabButton)}
+    }
+
     // When label is empty
     ${props => props.empty && getStyles(props.styles?.[TabsStateTypes.EMPTY]?.tabButton)}
   }

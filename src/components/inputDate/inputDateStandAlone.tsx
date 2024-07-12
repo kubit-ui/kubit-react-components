@@ -25,7 +25,6 @@ export const InputDateStandAloneComponent = (
         {...innerInputProps}
         ref={ref}
         aria-controls={ariaControls}
-        aria-expanded={props.calendarOpen}
         aria-haspopup={PopoverComponentType.DIALOG}
         icon={{
           ...props.icon,

@@ -1,11 +1,12 @@
+import { formatDateToUTC } from './formatDate';
 import { transformDate } from './transformDate';
 
 export const isAfter = (date1: Date, date2: Date): boolean => {
-  return date1.getTime() > date2.getTime();
+  return formatDateToUTC(date1) > formatDateToUTC(date2);
 };
 
 export const isBefore = (date1: Date, date2: Date): boolean => {
-  return date1.getTime() < date2.getTime();
+  return formatDateToUTC(date1) < formatDateToUTC(date2);
 };
 
 export const isDatesEqual = (

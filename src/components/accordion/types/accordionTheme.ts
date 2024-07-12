@@ -29,7 +29,7 @@ export type AccordionPropsStylesType = {
   titleIconContainer?: CommonStyleType;
   title?: TypographyTypes;
   titleIcon?: IconTypes;
-  headerRightContentContainer?: CommonStyleType;
+  headerRightContentContainer?: CommonStyleType & TypographyTypes;
   lineSeparatorContainer?: CommonStyleType & { variant?: string };
 };
 

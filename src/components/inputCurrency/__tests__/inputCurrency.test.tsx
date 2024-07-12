@@ -28,13 +28,11 @@ const format = {
   style: 'decimal',
   maximumFractionDigits: 3,
   minimumFractionDigits: 1,
-};
+} as FormatNumber;
 
 describe('New Input Currency Component', () => {
   test('Should render InputCurrency component', async () => {
-    const { container } = renderProvider(
-      <InputCurrency {...mockProps} formatNumber={format as FormatNumber} />
-    );
+    const { container } = renderProvider(<InputCurrency {...mockProps} formatNumber={format} />);
 
     const currencyBox = screen.getByText('EUR');
     expect(currencyBox).toBeInTheDocument();
