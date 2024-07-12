@@ -16,7 +16,24 @@ const ToggleWithLabelControlledComponent = React.forwardRef(
   ): JSX.Element => {
     const styles = useStyles<ToggleWithLabelStylePropsType>(TOGGLE_WITH_LABEL_STYLES, variant, ctv);
 
-    return <ToggleWithLabelStandAlone ref={ref} styles={styles} {...props} />;
+    const toggleRef = React.useRef<HTMLInputElement>(null);
+
+    const handleClick = () => {
+      if (toggleRef.current) {
+        toggleRef.current.focus();
+        toggleRef.current.click();
+      }
+    };
+
+    return (
+      <ToggleWithLabelStandAlone
+        ref={ref}
+        styles={styles}
+        toggleRef={toggleRef}
+        onClick={handleClick}
+        {...props}
+      />
+    );
   }
 );
 ToggleWithLabelControlledComponent.displayName = 'ToggleWithLabelControlledComponent';

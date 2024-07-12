@@ -4,6 +4,8 @@ import { IThemeObjectVariants } from '@/designSystem/themesObject';
 import { objectFlip } from '@/storybook/utils/utils';
 import { ArgTypesReturn, POSITIONS } from '@/types';
 
+import { LABEL_POSITION } from '../types';
+
 export const argtypes = (
   variantsObject: IThemeObjectVariants,
   themeSelected: string
@@ -114,14 +116,29 @@ export const argtypes = (
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    //  deprecated - deleted the argtype when the 'displayRow' prop is removed
     displayRow: {
-      description: 'Set label aligment',
+      description: 'Set label aligment. Deprecated, use labelPosition instead',
       type: { name: 'boolean' },
       control: { type: 'boolean' },
       table: {
         type: {
           summary: 'boolean',
         },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    labelPosition: {
+      description: 'Set label aligment, when displayRow is not used',
+      control: { type: 'select' },
+      type: { name: 'text' },
+      options: Object.keys(LABEL_POSITION),
+      table: {
+        type: {
+          summary: 'LABEL_POSITION',
+          detail: Object.keys(LABEL_POSITION).join(', '),
+        },
+        defaultValue: { summary: LABEL_POSITION.LEFT },
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
@@ -255,7 +272,7 @@ export const argtypes = (
         category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
-    isDisabled: {
+    disabled: {
       description: 'Boolean to indicate if input component is disabled',
       type: { name: 'boolean' },
       control: { type: 'boolean' },
