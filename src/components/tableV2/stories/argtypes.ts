@@ -46,7 +46,7 @@ export const argtypes = (
       },
     },
     ['aria-label']: {
-      description: 'Only when scroll, scrollable container aria label',
+      description: 'Only when it has scroll, scrollable container aria label',
       type: { name: 'string' },
       control: { type: 'text' },
       table: {
@@ -57,7 +57,7 @@ export const argtypes = (
       },
     },
     ['aria-labelledby']: {
-      description: 'Only when scroll, scrollable container aria labelled by',
+      description: 'Only when it has scroll, scrollable container aria labelled by',
       type: { name: 'string' },
       control: { type: 'text' },
       table: {
