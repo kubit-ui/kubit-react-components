@@ -68,6 +68,8 @@ export const MonthSelector = (props: IMonthSelector): JSX.Element => {
             styles={props.styles}
           >
             <ItemRove
+              ariaDisabled={setDisabledMonths(index)}
+              ariaLabel={month.charAt(0).toUpperCase() + month.slice(1)}
               asElement={MonthElementStyled}
               focus={focus === index}
               index={index}
