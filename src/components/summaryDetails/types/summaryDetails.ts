@@ -6,7 +6,7 @@ import { CustomTokenTypes } from '@/types';
 import { SummaryDetailsPropsStylesType } from './summaryDetailsTheme';
 
 export type SummaryDetailsTextType = Omit<IText<string>, 'children'> & {
-  content: string;
+  content?: React.ReactNode;
 };
 
 export interface ISummaryDetailsStandAlone {
