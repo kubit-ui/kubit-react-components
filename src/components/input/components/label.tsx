@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Label } from '@/components/label';
 
 // styles
-import { LabelWrapperStyled } from '../input.styled';
+import { AdditionalInfoWrapperStyled, LabelWrapperStyled } from '../input.styled';
 import { LABEL_TYPE } from '../types';
 import { ILabel } from '../types/input';
 import { getFontSize, getMaxLabelSize } from '../utils';
@@ -64,7 +64,9 @@ export const LabelStandAlone = (props: ILabel): JSX.Element | null => {
         {props.label.content}
         {!props.required && props.secondaryLabel ? props.secondaryLabel : null}
       </Label>
-      {props.additionalInfo}
+      <AdditionalInfoWrapperStyled styles={props.styles?.[props.state]}>
+        {props.additionalInfo}
+      </AdditionalInfoWrapperStyled>
     </LabelWrapperStyled>
   ) : null;
 };

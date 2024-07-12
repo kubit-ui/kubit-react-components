@@ -57,6 +57,8 @@ export type InputBasicStateProps = {
   loaderVariant?: string;
   title?: TypographyTypes;
   titleContainer?: CommonStyleType;
+  additionalInfoContainer?: CommonStyleType;
+  titleAndAdditionalInfoContainer?: CommonStyleType;
   informationAssociated?: TypographyTypes;
   informationAssociatedTextAndDecorativeContainer?: CommonStyleType;
   informationAssociatedContainer?: CommonStyleType;
