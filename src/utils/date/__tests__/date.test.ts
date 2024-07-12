@@ -11,7 +11,7 @@ import {
   isBefore,
   isDatesEqual,
 } from '../date';
-import { formatDate } from '../format';
+import { formatDate } from '../formatDate';
 
 describe('Date functions', () => {
   const date1 = new Date('2022-01-01');

@@ -1,4 +1,5 @@
 import { EXPRESSIONS, FORMATTING_TOKENS } from './constants';
+import { formatDateToUTC } from './formatDate';
 import { DateType, formatPartsType } from './types';
 
 const getFormatParts = (format: string) => {
@@ -30,21 +31,9 @@ const getDataObject = (date: string, formatParts: formatPartsType) => {
   return dateObject;
 };
 
-const isValidDate = (date: Date) => {
-  return date instanceof Date && !isNaN(Number(date));
-};
-
 export const transformDate = (date: string | number, format?: string): Date => {
-  if (typeof date === 'number') {
-    return new Date(date);
-  }
-
-  if (!format) {
-    const dateInstance = new Date(date);
-    if (!isValidDate(dateInstance)) {
-      throw Error('Date is invalid');
-    }
-    return dateInstance;
+  if (typeof date === 'number' || !format) {
+    return formatDateToUTC(date);
   }
 
   const formatParts = getFormatParts(format);

@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { FormatNumber, InputContentPosition, InputState } from '@/components/input/types';
+import { InputContentPosition, InputState } from '@/components/input/types';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { POSITIONS } from '@/types/positions';
 
@@ -32,9 +32,7 @@ const format = {
 
 describe('New Input Currency Component', () => {
   test('Should render InputCurrency component', async () => {
-    const { container } = renderProvider(
-      <InputCurrency {...mockProps} formatNumber={format as FormatNumber} />
-    );
+    const { container } = renderProvider(<InputCurrency {...mockProps} formatNumber={format} />);
 
     const currencyBox = screen.getByText('EUR');
     expect(currencyBox).toBeInTheDocument();
