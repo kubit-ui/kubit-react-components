@@ -38,6 +38,7 @@ export const SliderComponent = React.forwardRef(
       min = 0,
       max = 100,
       step = 1,
+      initialStepOffset,
       disabled = false,
       defaultValue,
       value: propValue,
@@ -65,7 +66,8 @@ export const SliderComponent = React.forwardRef(
     }: ISlider<V>,
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
-    const _calcDefaultValue = _value => calcDefaultValue(range, max, min, step, _value);
+    const _calcDefaultValue = _value =>
+      calcDefaultValue({ range, max, min, step, initialStepOffset, value: _value });
 
     const containerRef = React.useRef<HTMLDivElement>(null);
     const [value, setValue] = React.useState<number | number[]>(
@@ -134,7 +136,8 @@ export const SliderComponent = React.forwardRef(
     React.useEffect(() => {
       if (propValue !== undefined) {
         if (
-          (range && !equalsRangeValues(propValue as number[], value as number[])) ||
+          (range &&
+            !equalsRangeValues({ values1: propValue as number[], values2: value as number[] })) ||
           (!range && propValue !== value)
         ) {
           setValue(_calcDefaultValue(propValue));
@@ -197,12 +200,16 @@ export const SliderComponent = React.forwardRef(
         offset: _offset,
         offsetBoundaries: offsetBoundaries,
       });
-      const newValue = calcScaleValue(max, min, step, _value);
+      const newValue = calcScaleValue({ max, min, step, initialStepOffset, value: _value });
 
       setValue(prevValue => {
         let _newValue: number | number[] = newValue;
         if (range) {
-          _newValue = calcNewRangeValue(prevValue as number[], newValue, activePointer);
+          _newValue = calcNewRangeValue({
+            prevValue: prevValue as number[],
+            newValue,
+            activePointer,
+          });
         }
         onChangeDebounce(_newValue);
         return _newValue;
@@ -219,15 +226,15 @@ export const SliderComponent = React.forwardRef(
       if (disabled) {
         return;
       }
-      const newValue = calcNewValueAfterKeyPress(
+      const newValue = calcNewValueAfterKeyPress({
         event,
         range,
-        activePointer.current,
+        activePointer: activePointer.current,
         max,
         min,
         step,
-        value
-      );
+        value,
+      });
       if (newValue !== undefined) {
         setValue(newValue);
         onChangeDebounce(newValue);
@@ -235,7 +242,13 @@ export const SliderComponent = React.forwardRef(
     };
 
     const handleIncrementClick = event => {
-      const newValue = incrementValue(activePointer.current, range, max, step, value);
+      const newValue = incrementValue({
+        activePointer: activePointer.current,
+        range,
+        max,
+        step,
+        value,
+      });
       if (newValue !== undefined) {
         setValue(newValue);
         onChangeDebounce(newValue);
@@ -244,7 +257,13 @@ export const SliderComponent = React.forwardRef(
     };
 
     const handleDecrementClick = event => {
-      const newValue = decrementValue(activePointer.current, range, min, step, value);
+      const newValue = decrementValue({
+        activePointer: activePointer.current,
+        range,
+        min,
+        step,
+        value,
+      });
       if (newValue !== undefined) {
         setValue(newValue);
         onChangeDebounce(newValue);
@@ -252,7 +271,13 @@ export const SliderComponent = React.forwardRef(
       decrementButton?.onClick?.(event);
     };
 
-    const { showScale, scaleCount, scaleArray } = getScale(type, max, min, step);
+    const { showScale, scaleOffsets } = getScale({
+      type,
+      max,
+      min,
+      step,
+      initialStepOffset,
+    });
     const { offset, offsetLeft, offsetRight } = getOffset({
       range,
       max,
@@ -294,8 +319,7 @@ export const SliderComponent = React.forwardRef(
         rightHelperText={rightHelperText}
         rightThumbIcon={rightThumbIcon}
         rightTooltip={rightTooltip}
-        scaleArray={scaleArray}
-        scaleCount={scaleCount}
+        scaleOffsets={scaleOffsets}
         setHover={setHover}
         showScale={showScale}
         step={step}

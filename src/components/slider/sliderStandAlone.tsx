@@ -33,8 +33,7 @@ const SliderStandAloneComponent = (
     label,
     // Scale
     showScale,
-    scaleArray,
-    scaleCount,
+    scaleOffsets,
     // Tooltip
     tooltip,
     rightTooltip,
@@ -106,15 +105,7 @@ const SliderStandAloneComponent = (
         </StyledLabelContainer>
       )}
       {/* Scale */}
-      <SliderScaleStandAlone
-        max={max}
-        min={min}
-        scaleArray={scaleArray}
-        scaleCount={scaleCount}
-        showScale={showScale}
-        step={step}
-        styles={styles}
-      />
+      <SliderScaleStandAlone scaleOffsets={scaleOffsets} showScale={showScale} styles={styles} />
       <StyledButtonsTracksContainer styles={styles}>
         <SliderButtonStandAlone
           {...decrementButton}

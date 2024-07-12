@@ -7,11 +7,7 @@ import { SliderBaseStylesType } from '../types';
 
 const mockScaleProps = {
   showScale: true,
-  scaleArray: [0, 1, 2, 3, 4, 5],
-  max: 100,
-  min: 1,
-  step: 1,
-  scaleCount: 100,
+  scaleOffsets: [0, 20, 40, 60, 80, 100],
   style: undefined,
   styles: {} as SliderBaseStylesType,
 };

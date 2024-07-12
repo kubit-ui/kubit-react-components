@@ -124,6 +124,29 @@ describe('Slider without range', () => {
     expect(getByRole(ROLES.SLIDER).style.left).toContain(`${mockSimpleSliderProps.min}%`);
   });
 
+  it('when the user sets initialStepOffset, the steps starts from this value', () => {
+    const min = 2;
+    const max = 10;
+    const step = 3;
+    const initialStepOffset = 0;
+    // Setting initialStepOffset to 0
+    // Steps are [2, 3, 6, 9, 10]
+    // Instead of [2, 5, 8, 10]
+    const value = 3;
+    const left = 12.5;
+    const { getByRole } = renderProvider(
+      <Slider
+        {...mockSimpleSliderProps}
+        initialStepOffset={initialStepOffset}
+        max={max}
+        min={min}
+        step={step}
+        value={value}
+      />
+    );
+    expect(getByRole(ROLES.SLIDER).style.left).toContain(`${left}%`);
+  });
+
   it('when the user changes a set value, the slider position must match that new value', () => {
     const { rerender, getByRole } = renderProvider(<Slider {...mockSimpleSliderProps} />);
     expect(getByRole(ROLES.SLIDER).style.left).toContain(`${mockSimpleSliderProps.value}%`);
