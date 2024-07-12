@@ -8,6 +8,7 @@ import { TabsVariantStylesType } from './tabsTheme';
 
 export type PrimaryTabTabType = Omit<IText<string>, 'children'> & {
   content?: ReactNode;
+  disabled?: boolean;
 };
 export interface ITabsStandAlone {
   styles: TabsVariantStylesType;

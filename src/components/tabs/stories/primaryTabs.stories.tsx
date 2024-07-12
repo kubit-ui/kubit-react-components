@@ -50,6 +50,7 @@ export const Tabs: Story = {
       {
         content: 'Second tab',
         ['aria-label']: 'ariaLabelSecondTab',
+        disabled: true,
       },
       {
         content: 'Third tab',
