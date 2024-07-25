@@ -11,7 +11,7 @@ import { INavigationCard, INavigationCardStandAlone, NavigationCardStylesPropsTy
 const NavigationCardComponent = React.forwardRef(
   <V extends string | unknown>(
     { variant, ctv, ...props }: INavigationCard<V>,
-    ref: React.ForwardedRef<HTMLAnchorElement> | undefined | null
+    ref: React.ForwardedRef<HTMLAnchorElement | HTMLButtonElement> | undefined | null
   ): JSX.Element => {
     const styles = useStyles<NavigationCardStylesPropsType, V>(
       STYLES_NAME.NAVIGATION_CARD,
@@ -36,7 +36,7 @@ NavigationCardComponent.displayName = 'NavigationCardComponent';
 
 const NavigationCardBoundary = <V extends string | unknown>(
   props: INavigationCard<V>,
-  ref: React.ForwardedRef<HTMLAnchorElement> | undefined | null
+  ref: React.ForwardedRef<HTMLAnchorElement | HTMLButtonElement> | undefined | null
 ): JSX.Element => (
   <ErrorBoundary
     fallBackComponent={
@@ -51,7 +51,7 @@ const NavigationCardBoundary = <V extends string | unknown>(
 
 const NavigationCard = React.forwardRef(NavigationCardBoundary) as <V extends string | unknown>(
   props: React.PropsWithChildren<INavigationCard<V>> & {
-    ref?: React.ForwardedRef<HTMLAnchorElement> | undefined | null;
+    ref?: React.ForwardedRef<HTMLAnchorElement | HTMLButtonElement> | undefined | null;
   }
 ) => ReturnType<typeof NavigationCardBoundary>;
 

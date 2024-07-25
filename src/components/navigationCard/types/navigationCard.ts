@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+import { ButtonType } from '@/components/button';
 import { DecorativePropsType } from '@/components/decorativeElement';
 import { IElementOrIcon } from '@/components/elementOrIcon';
 import { ITag } from '@/components/tag';
@@ -24,7 +25,8 @@ export type NavigationCardTagType = Omit<ITag, 'variant' | 'option' | 'children'
   screenReaderText?: string;
 };
 
-export interface INavigationCardStandAlone extends Omit<IGenericLink, 'children' | 'classname'> {
+export interface INavigationCardStandAlone
+  extends Omit<IGenericLink, 'children' | 'classname' | 'url' | 'onClick'> {
   styles: NavigationCardStylesPropsType;
   device: DeviceBreakpointsType;
   component: GenericLinkType;
@@ -34,7 +36,10 @@ export interface INavigationCardStandAlone extends Omit<IGenericLink, 'children'
   tag?: NavigationCardTagType;
   arrowIcon?: IElementOrIcon;
   arrowIconText?: NavigationCardTextType;
+  url?: string;
+  type?: ButtonType;
   dataTestId?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 }
 
 export interface INavigationCard<V = undefined extends string ? unknown : string>
