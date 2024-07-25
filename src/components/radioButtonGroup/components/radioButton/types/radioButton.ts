@@ -9,12 +9,6 @@ import { VariantStyles } from '@/types/variantStyles';
 import { RadioButtonStylesType } from './radioButtonTheme';
 import { RadioButtonStateType } from './state';
 
-export interface IRadioButtonStyled {
-  styles: VariantStyles<RadioButtonStylesType> & { altVariant?: boolean };
-  state?: RadioButtonStateType;
-  hasLabel?: boolean;
-}
-
 export type RadioButtonLabelType = Omit<ILabelStandAlone, 'children' | 'inputId'> & {
   content?: string;
 };
@@ -23,9 +17,15 @@ export type RadioButtonSubtitleType = Omit<IText<string>, 'children'> & {
   content?: JSX.Element | string;
 };
 
-export interface IRadioButtonStandAlone extends IRadioButtonStyled {
-  checked: boolean;
-  name: string;
+type RadioButtonAriaAttributes = Pick<
+  React.AriaAttributes,
+  'aria-label' | 'aria-labelledby' | 'aria-hidden'
+>;
+
+export interface IRadioButtonStandAlone extends RadioButtonAriaAttributes {
+  styles: VariantStyles<RadioButtonStylesType> & { altVariant?: boolean };
+  checked?: boolean;
+  name?: string;
   label?: RadioButtonLabelType;
   errorMessage?: string;
   errorIcon?: IElementOrIcon;
@@ -36,10 +36,11 @@ export interface IRadioButtonStandAlone extends IRadioButtonStyled {
   state: RadioButtonStateType;
   error?: boolean;
   disabled?: boolean;
-  value: string | number;
+  value?: string | number;
   dataTestId?: string;
   screenReaderId?: string;
   id?: string;
+  tabIndex?: number;
   lastChild?: boolean;
 }
 /**
@@ -50,10 +51,11 @@ export interface IRadioButtonStandAlone extends IRadioButtonStyled {
  * @property {V} variant - Variant of the radio button.
  */
 export interface IRadioButton<V = undefined extends string ? unknown : string>
-  extends Omit<IRadioButtonStandAlone, 'state'> {
+  extends Omit<IRadioButtonStandAlone, 'state' | 'styles'> {
   /**
    * @deprecated `state` is deprecated. Please use `error`, `disabled` or `checked` instead.
    */
   state?: RadioButtonStateType;
+  styles?: VariantStyles<RadioButtonStylesType> & { altVariant?: boolean };
   variant: V;
 }
