@@ -34,7 +34,10 @@ export interface ICheckboxErrorStandAlone {
   errorMessage?: CheckboxHelperAndErrorTextType;
 }
 
-type CheckboxAriaAttributes = Pick<React.AriaAttributes, 'aria-label' | 'aria-labelledby'>;
+type CheckboxAriaAttributes = Pick<
+  React.AriaAttributes,
+  'aria-label' | 'aria-labelledby' | 'aria-hidden'
+>;
 
 /**
  * @description
@@ -56,6 +59,7 @@ export interface ICheckboxStandAlone extends IInputComponent, CheckboxAriaAttrib
   helperText?: CheckboxHelperAndErrorTextType;
   extraAriaDescribedBy?: string;
   screenReaderText?: string;
+  tabIndex?: number;
 }
 
 /**
