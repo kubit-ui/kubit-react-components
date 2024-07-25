@@ -20,6 +20,7 @@ import {
   MessageHeaderStyled,
   MessageStyled,
   MessageTextStyled,
+  ParentContainerStyled,
 } from './message.styled';
 import { IMessageStandAlone } from './types';
 
@@ -88,11 +89,10 @@ const MessageStandAloneComponent = (
   };
 
   return (
-    <>
+    <ParentContainerStyled aria-live={ariaLive} styles={props.styles}>
       {props.open && (
         <MessageStyled
           ref={ref}
-          aria-live={ariaLive}
           as={props.messageContainerProps?.url ? props.linkComponent : 'div'}
           data-testid={`${props.dataTestId}Message`}
           id={props.id}
@@ -185,7 +185,7 @@ const MessageStandAloneComponent = (
           </MessageHeaderStyled>
         </MessageStyled>
       )}
-    </>
+    </ParentContainerStyled>
   );
 };
 

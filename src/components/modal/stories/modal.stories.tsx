@@ -39,7 +39,7 @@ export const Modal: Story = {
     open: true,
     closeIcon: { icon: ICONS.ICON_CLOSE },
     footer: {
-      variant: Object.values(variantsObject[themeSelected].FooterVariant || {})[0] as string,
+      variant: Object.values(variantsObject[themeSelected].FooterVariants || {})[0] as string,
       content: [
         <ReplaceContent key={0} data-position={FooterPositionType.LEFT} width={'100%'}>
           Footer content
@@ -79,7 +79,7 @@ export const ModalWithCtv: Story = {
     open: true,
     closeIcon: { icon: ICONS.ICON_CLOSE },
     footer: {
-      variant: Object.values(variantsObject[themeSelected].FooterVariant || {})[0] as string,
+      variant: Object.values(variantsObject[themeSelected].FooterVariants || {})[0] as string,
       content: [
         <ReplaceContent key={0} data-position={FooterPositionType.LEFT} width={'100%'}>
           Footer content

@@ -139,6 +139,7 @@ const CheckboxStandAloneComponent = (
               screenReaderText,
               screenReaderId,
             })}
+            aria-hidden={props['aria-hidden']}
             aria-invalid={hasError}
             aria-label={props['aria-label']}
             aria-labelledby={props['aria-labelledby']}
@@ -149,6 +150,7 @@ const CheckboxStandAloneComponent = (
             name={name}
             required={required}
             styles={styles}
+            tabIndex={props.tabIndex}
             type="checkbox"
             value={value}
             onBlur={onBlur}

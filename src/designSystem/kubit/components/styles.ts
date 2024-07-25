@@ -67,6 +67,7 @@ export * from './layout/styles';
 export * from './dropdownSelected/styles';
 export * from './header/styles';
 export * from './headerStructure/styles';
+export * from './inputDigitSequence/styles';
 export * from './selectorBoxFile/styles';
 export * from './skeleton/styles';
 export * from './slider/styles';

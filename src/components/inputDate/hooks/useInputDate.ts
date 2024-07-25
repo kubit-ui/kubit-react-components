@@ -69,6 +69,7 @@ export const useInputDate = ({
   type,
   truncate,
   informationAssociated,
+  disabledCopyAndPaste,
   onWrapperBlur,
   onBlur,
   onChange,
@@ -76,6 +77,7 @@ export const useInputDate = ({
   onKeyDown,
   onError,
   onInternalErrors,
+  onPaste,
   ...props
 }: ParamsType): ReturnType => {
   // Ghost prototype
@@ -431,6 +433,7 @@ export const useInputDate = ({
     handleFocusInternal,
     handleKeyDownInternal,
     handleSetValue,
+    handlePasteInternal,
   } = useInput({
     ref,
     keyValidation,
@@ -447,12 +450,14 @@ export const useInputDate = ({
     type,
     truncate,
     informationAssociated,
+    disabledCopyAndPaste,
     onBlur,
     onFocus,
     onKeyDown,
     onError,
     onInternalErrors,
     onChange: handleChangeInternalValidate,
+    onPaste,
   });
 
   // update initial dates when they have value
@@ -516,5 +521,6 @@ export const useInputDate = ({
     handleFocusInternal,
     handleKeyDownInternal,
     handleSetValue,
+    handlePasteInternal,
   };
 };

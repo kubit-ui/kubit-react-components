@@ -35,8 +35,8 @@ const ToggleThreePositionComponent = (
     position === POSITIONS.CENTER
       ? inputValues.centerInputValue
       : position === POSITIONS.RIGHT
-        ? inputValues.rightInputValue ?? props.onIcon?.altText
-        : inputValues.leftInputValue ?? props.offIcon?.altText;
+        ? (inputValues.rightInputValue ?? props.onIcon?.altText)
+        : (inputValues.leftInputValue ?? props.offIcon?.altText);
 
   const buildTextOrIcon = (position: POSITIONS) => {
     return (
@@ -153,7 +153,7 @@ const ToggleThreePositionComponent = (
       hasThreePositions={props.hasThreePositions}
       id={props.id}
       styles={props.styles}
-      tabIndex={!props.disabled ? props.tabIndex ?? 0 : undefined}
+      tabIndex={!props.disabled ? (props.tabIndex ?? 0) : undefined}
       togglePosition={props.togglePosition}
       onKeyDown={e => {
         e.persist();

@@ -15,4 +15,4 @@ export type {
 
 export { MessageControlled } from './messageControlled';
 export { MessageUnControlled as Message } from './messageUnControlled';
-export { MessageStyled } from './message.styled';
+export { ParentContainerStyled as MessageStyled } from './message.styled';

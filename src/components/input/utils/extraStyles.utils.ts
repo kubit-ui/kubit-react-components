@@ -36,10 +36,11 @@ const getRightExtraStyles = (
 const getTopExtraStyles = (
   affixPosition?: POSITIONS,
   width?: number,
-  isOutAffixPosition?: boolean
+  isOutAffixPosition?: boolean,
+  inputWidth?: number
 ): CSSProp | undefined => {
   if (affixPosition === POSITIONS.LEFT && isOutAffixPosition) {
-    return labelInTopStyles(width || 0);
+    return labelInTopStyles(width || 0, inputWidth || 0);
   }
   return undefined;
 };
@@ -77,7 +78,8 @@ export const getExtraStyles = (
   affixPosition?: POSITIONS,
   width?: number,
   isOutAffixPosition?: boolean,
-  helpTextPosition?: InputHelpMessagePosition
+  helpTextPosition?: InputHelpMessagePosition,
+  inputWidth?: number
 ): CSSProp | undefined => {
   if (stylesPosition === POSITIONS.LEFT) {
     return getLeftExtraStyles(affixPosition, isOutAffixPosition);
@@ -86,7 +88,7 @@ export const getExtraStyles = (
     return getRightExtraStyles(affixPosition, isOutAffixPosition);
   }
   if (stylesPosition === POSITIONS.TOP) {
-    return getTopExtraStyles(affixPosition, width, isOutAffixPosition);
+    return getTopExtraStyles(affixPosition, width, isOutAffixPosition, inputWidth);
   }
   if (stylesPosition === POSITIONS.BOTTOM) {
     return getBottomExtraStyles(affixPosition, width, isOutAffixPosition, helpTextPosition);

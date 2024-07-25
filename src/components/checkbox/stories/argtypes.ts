@@ -194,6 +194,50 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
+    tabIndex: {
+      description: 'Tab index',
+      control: { type: 'number' },
+      type: { name: 'number' },
+      table: {
+        type: {
+          summary: 'number',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    ['aria-label']: {
+      description: 'Input aria-label',
+      control: { type: 'text' },
+      type: { name: 'string' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-labelledby']: {
+      description: 'Input aria-labelledby',
+      control: { type: 'text' },
+      type: { name: 'string' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-hidden']: {
+      description: 'Hide element from screen readers',
+      control: { type: 'boolean' },
+      type: { name: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     dataTestId: {
       description: 'String used for testing',
       control: { type: 'text' },

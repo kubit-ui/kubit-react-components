@@ -1,6 +1,7 @@
 import {
   ChangeEvent,
   ChangeEventHandler,
+  ClipboardEventHandler,
   FocusEventHandler,
   ForwardedRef,
   KeyboardEventHandler,
@@ -61,6 +62,7 @@ type ParamsType = {
   searchFilterConfig?: SearchFilterConfig;
   caseSensitive?: boolean;
   internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
+  disabledCopyAndPaste?: boolean;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   onIconClick?: React.MouseEventHandler<HTMLButtonElement>;
   executeInternalOpenOptions?: boolean;
@@ -72,6 +74,8 @@ type ParamsType = {
   onPopoverOpen?: (open: boolean) => void;
   onInternalErrors?: (errors: string[]) => void;
   onOptionClick?: (value: string) => void;
+  onPaste?: ClipboardEventHandler<HTMLInputElement>;
+  onRightIconClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 type ReturnType = {
@@ -95,6 +99,8 @@ type ReturnType = {
   handleFocusInternal: FocusEventHandler<HTMLInputElement>;
   handleInputPopoverChange: ChangeEventHandler<HTMLInputElement>;
   handleOptionsListKeyDown: KeyboardEventHandler<HTMLDivElement>;
+  handlePasteInternal: ClipboardEventHandler<HTMLInputElement>;
+  handleRightIconClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 export const useInputSearch = ({
@@ -175,6 +181,11 @@ export const useInputSearch = ({
     props.onIconClick?.(e);
   };
 
+  const handleRightIconClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    executeInternalOpenOptions && handleOpenOptions(!openOptions);
+    props.onRightIconClick?.(e);
+  };
+
   const handleInputKeyDown: KeyboardEventHandler<HTMLInputElement> = event => {
     if (isKeyEscapePressed(event.key)) {
       handleOpenOptions(false);
@@ -244,19 +255,22 @@ export const useInputSearch = ({
   };
 
   // Input Basic hook
-  const { state, inputRef, handleBlurInternal, handleFocusInternal } = useInput({
-    internalErrorExecution: props.internalErrorExecution,
-    ref: props.ref,
-    disabled: props.disabled,
-    error: props.error || internalErrors.length > 0,
-    maxLength: props.maxLength,
-    // need for update the state
-    currentValue: searchText,
-    informationAssociated: props.informationAssociated,
-    onBlur: handleInputBlur,
-    onFocus: props.onFocus,
-    onInternalErrors: props.onInternalErrors,
-  });
+  const { state, inputRef, handleBlurInternal, handleFocusInternal, handlePasteInternal } =
+    useInput({
+      internalErrorExecution: props.internalErrorExecution,
+      ref: props.ref,
+      disabled: props.disabled,
+      error: props.error || internalErrors.length > 0,
+      maxLength: props.maxLength,
+      // need for update the state
+      currentValue: searchText,
+      informationAssociated: props.informationAssociated,
+      disabledCopyAndPaste: props.disabledCopyAndPaste,
+      onBlur: handleInputBlur,
+      onFocus: props.onFocus,
+      onInternalErrors: props.onInternalErrors,
+      onPaste: props.onPaste,
+    });
 
   const useActionBottomSheet = useMemo(
     () => props.styles?.[state]?.useActionBottomSheet?.[device],
@@ -311,6 +325,7 @@ export const useInputSearch = ({
     handleOpenOptions,
     handleClickInputSearch,
     handleIconClick,
+    handleRightIconClick,
     handleInputPopoverIconClick,
     handleValueSelected,
     handleChangeInputSearch,
@@ -323,5 +338,6 @@ export const useInputSearch = ({
     handleFocusInternal,
     handleInputPopoverChange,
     handleOptionsListKeyDown,
+    handlePasteInternal,
   };
 };

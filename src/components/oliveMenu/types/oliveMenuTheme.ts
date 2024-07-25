@@ -9,6 +9,7 @@ export type OliveMenuGlobalStylesType = {
     };
   };
   listOptionsContainer?: CommonStyleType;
+  popover?: CommonStyleType;
   popoverVariant?: string;
   actionBottomSheet?: {
     variant?: string;

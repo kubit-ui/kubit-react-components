@@ -1,3 +1,4 @@
+import { ButtonType } from '@/components/button';
 import { LinkTargetType } from '@/components/link';
 import { CATEGORY_CONTROL } from '@/constants/categoryControl';
 import { IThemeObjectVariants } from '@/designSystem/themesObject';
@@ -92,14 +93,30 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
       },
     },
     url: {
-      description: 'URL (part of the IGenericLink interface)',
+      description:
+        'URL (part of the IGenericLink interface), when no specify, the render component will be a button',
       control: { type: 'text' },
-      type: { name: 'string', required: true },
+      type: { name: 'string' },
       table: {
         type: {
           summary: 'string',
         },
         category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
+    tye: {
+      description: 'Type of the button (when no url is specified)',
+      control: { type: 'text' },
+      type: { name: 'string' },
+      table: {
+        defaultValue: {
+          summary: 'ButtonType.BUTTON',
+        },
+        type: {
+          summary: 'ButtonType',
+          detail: Object.keys(ButtonType).join(', '),
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
     target: {
@@ -132,7 +149,7 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
       control: false,
       table: {
         type: {
-          summary: '() => void',
+          summary: 'React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>',
         },
         category: CATEGORY_CONTROL.FUNCTIONS,
       },

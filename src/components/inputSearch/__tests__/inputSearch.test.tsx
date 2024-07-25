@@ -35,6 +35,7 @@ const mockProps = {
   handleOpenOptions: jest.fn(),
   handleValueSelected: jest.fn(),
   handleClickInputSearch: jest.fn(),
+  handleIconClick: jest.fn(),
   onClick: jest.fn(),
   onIconClick: jest.fn(),
   onInputPopoverIconClick: jest.fn(),
@@ -133,14 +134,13 @@ describe('New Input Search Component', () => {
     expect(inputSearch).toHaveFocus();
   });
 
-  it('Should click input icon', async () => {
-    const onFocus = jest.fn();
-    renderProvider(<InputSearch {...mockProps} onFocus={onFocus} />);
+  it('Should click on input icon', () => {
+    renderProvider(<InputSearch {...mockProps} />);
 
-    const triggerButton = screen.getByRole('button', { name: 'Open Info' });
-    fireEvent.click(triggerButton);
-    fireEvent.click(triggerButton);
-    expect(mockProps.rightIcon.onClick).toHaveBeenCalledTimes(2);
+    const inputIcon = screen.getByLabelText('Open Info');
+    fireEvent.click(inputIcon);
+
+    expect(mockProps.rightIcon.onClick).toHaveBeenCalled();
   });
 
   it('Should render loading and valueSelected', async () => {

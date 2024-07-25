@@ -15,6 +15,7 @@ export type ParamsTypeInputHook = {
   keyValidation?: string;
   disabledArrowUpDownInputNumber?: boolean;
   disabledWheelMouse?: boolean;
+  disabledCopyAndPaste?: boolean;
   max?: number;
   min?: number;
   maxLength?: number;
@@ -38,6 +39,7 @@ export type ParamsTypeInputHook = {
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   onError?: (value: boolean) => void;
   onInternalErrors?: (errors: string[]) => void;
+  onPaste?: React.ClipboardEventHandler<HTMLInputElement>;
 };
 
 export type ReturnTypeInputHook = {
@@ -49,4 +51,5 @@ export type ReturnTypeInputHook = {
   handleFocusInternal: FocusEventHandler<HTMLInputElement>;
   handleKeyDownInternal: KeyboardEventHandler<HTMLInputElement>;
   handleSetValue: React.Dispatch<React.SetStateAction<string | number>>;
+  handlePasteInternal: React.ClipboardEventHandler<HTMLInputElement>;
 };

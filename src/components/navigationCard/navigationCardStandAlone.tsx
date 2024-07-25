@@ -2,9 +2,10 @@ import * as React from 'react';
 
 import { DecorativeElement } from '@/components/decorativeElement';
 import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text } from '@/components/text';
+import { Text, TextComponentType } from '@/components/text';
 import { useId } from '@/hooks';
 
+import { ButtonType } from '../button';
 import { NavigationCardInfo } from './fragments';
 import { buildProps } from './helpers';
 import {
@@ -17,8 +18,8 @@ import {
 import { INavigationCardStandAlone } from './types';
 
 const NavigationCardStandaloneComponent = (
-  props: INavigationCardStandAlone,
-  ref: React.ForwardedRef<HTMLAnchorElement> | undefined | null
+  { type = ButtonType.BUTTON, ...props }: INavigationCardStandAlone,
+  ref: React.ForwardedRef<HTMLAnchorElement | HTMLButtonElement> | undefined | null
 ): JSX.Element => {
   const infoId = useId('infoId');
 
@@ -29,18 +30,22 @@ const NavigationCardStandaloneComponent = (
     props.dataTestId
   );
 
+  const innerContainersComponent = props.url ? 'div' : 'span';
+
   return (
     // Can not be spread -> styled component breaks
     <NavigationCardStyled
-      ref={ref}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ref={ref as any}
       aria-disabled={props['aria-disabled']}
-      as={props.component}
+      as={props.url ? props.component : 'button'}
       className={props.className}
       dataTestId={props.dataTestId}
       draggable={props.draggable}
       role={props.role}
       styles={props.styles}
       target={props.target}
+      type={props.url ? undefined : type}
       url={props.url}
       onClick={props.onClick}
       onFocus={props.onFocus}
@@ -49,27 +54,44 @@ const NavigationCardStandaloneComponent = (
     >
       <>
         {props.decorative && (
-          <NavigationCardDecorativeContainer marginRight={marginRight} styles={props.styles}>
+          <NavigationCardDecorativeContainer
+            as={innerContainersComponent}
+            marginRight={marginRight}
+            styles={props.styles}
+          >
             <DecorativeElement additionalProps={additionalProps} element={props.decorative} />
           </NavigationCardDecorativeContainer>
         )}
         <NavigationCardInfoContentStyled
+          as={innerContainersComponent}
           id={infoId}
           isExpanded={props.styles.containerExpandedContent}
         >
-          <NavigationCardLeftContentStyled isExpanded={props.styles.containerExpandedContent}>
+          <NavigationCardLeftContentStyled
+            as={innerContainersComponent}
+            isExpanded={props.styles.containerExpandedContent}
+          >
             <NavigationCardInfo
               dataTestId={props.dataTestId}
               description={props.description}
               device={props.device}
+              innerContainersComponent={innerContainersComponent}
               styles={props.styles}
               tag={props.tag}
               title={props.title}
             />
           </NavigationCardLeftContentStyled>
-          <NavigationCardRightContentStyled aria-hidden={true} styles={props.styles}>
+          <NavigationCardRightContentStyled
+            aria-hidden={true}
+            as={innerContainersComponent}
+            styles={props.styles}
+          >
             {props.styles.containerExpandedContent && (
-              <Text customTypography={props.styles.arrowIconText} {...props.arrowIconText}>
+              <Text
+                component={TextComponentType.SPAN}
+                customTypography={props.styles.arrowIconText}
+                {...props.arrowIconText}
+              >
                 {props.arrowIconText?.content}
               </Text>
             )}

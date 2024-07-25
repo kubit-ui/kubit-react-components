@@ -1,4 +1,16 @@
 @font-face {
+  font-family: 'DigitPasswordSmallSquare';
+  font-weight: 400;
+  src: url('../assets/fonts/DigitPasswordSmallSquare.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'DigitPasswordLargeSquare';
+  font-weight: 400;
+  src: url('../assets/fonts/DigitPasswordLargeSquare.ttf') format('truetype');
+}
+
+@font-face {
   font-family: 'GT-America-Expanded Font';
   font-weight: 700;
   src: url('../fonts/GT-America-Expanded-Medium.otf') format('truetype');

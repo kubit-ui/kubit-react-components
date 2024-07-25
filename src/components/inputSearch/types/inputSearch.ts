@@ -132,7 +132,6 @@ type propsToOmitInputStandalone =
   | 'variant'
   | 'styles'
   | 'inputId'
-  | 'icon'
   | 'error'
   | 'disabled'
   | 'textCounter'
@@ -174,7 +173,6 @@ export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOm
   // actionBottomSheet
   sublabel?: OptionSublabelType;
   closeIcon?: IElementOrIcon;
-  icon?: IElementOrIcon;
   // input popover
   /**
    * @deprecated `inputPopoverIcon` will be removed. Use `popoverRightIcon` instead

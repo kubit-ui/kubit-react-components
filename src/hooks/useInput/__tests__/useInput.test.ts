@@ -79,4 +79,16 @@ describe('useInput Hook', () => {
 
     expect(onError).toHaveBeenCalled();
   });
+  it('useInput - on internal paste should call parent onPaste', () => {
+    const onPaste = jest.fn();
+    const { result } = renderHook(() => useInput({ onPaste }));
+
+    act(() => {
+      result.current.handlePasteInternal({
+        clipboardData: { getData: () => '12323' },
+      } as unknown as React.ClipboardEvent<HTMLInputElement>);
+    });
+
+    expect(onPaste).toHaveBeenCalled();
+  });
 });

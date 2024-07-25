@@ -44,6 +44,7 @@ const commonArgs: IInputCurrency = {
   currencyPosition: POSITIONS.RIGHT,
   disabledArrowUpDownInputNumber: false,
   secondaryLabel: labelSecondary(themeSelected),
+  ignoreKeys: ['+', '-', 'e', '.'],
   additionalInfo: additionalInfoAction(themeSelected),
 };
 

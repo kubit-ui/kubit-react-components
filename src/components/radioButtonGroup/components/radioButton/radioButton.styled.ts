@@ -1,26 +1,9 @@
 import styled, { css } from 'styled-components';
 
 import { focusVisibleAlt } from '@/styles/mixins';
-import { VariantStyles } from '@/types';
 import { getStyles } from '@/utils';
 
-import {
-  IRadioButtonStyled,
-  RadioButtonBaseStyles,
-  RadioButtonStateType,
-  RadioButtonStylesType,
-} from './types';
-
-interface IRadioButtonContentStyled {
-  styles: VariantStyles<RadioButtonStylesType>;
-  state: RadioButtonStateType;
-  hasLabel?: boolean;
-  lastChild?: boolean;
-}
-
-interface IRadioButtonErrorStyled {
-  styles?: RadioButtonBaseStyles;
-}
+import { RadioButtonBaseStyles, RadioButtonStateStylesType, RadioButtonStateType } from './types';
 
 interface IRadioButtonErrorStyled {
   styles?: RadioButtonBaseStyles;
@@ -39,11 +22,14 @@ const getDynamicStyles = (styles?: RadioButtonBaseStyles) => css`
   }
 `;
 
-export const RadioButtonContainerInput = styled.div<IRadioButtonStyled>`
+export const RadioButtonContainerInput = styled.div<{ styles: RadioButtonStateStylesType }>`
   ${props => getStyles(props.styles[RadioButtonStateType.DEFAULT]?.radioButtonContainer)}
 `;
 
-export const RadioButtonInputStyled = styled.input<IRadioButtonStyled>`
+export const RadioButtonInputStyled = styled.input<{
+  styles: RadioButtonStateStylesType & { altVariant?: boolean };
+  state?: RadioButtonStateType;
+}>`
   appearance: none;
   cursor: pointer;
   display: inline-block;
@@ -59,7 +45,12 @@ export const RadioButtonInputStyled = styled.input<IRadioButtonStyled>`
   ${({ styles }) => styles.altVariant && focusVisibleAlt()}
 `;
 
-export const RadioButtonStyled = styled.div<IRadioButtonContentStyled>`
+export const RadioButtonStyled = styled.div<{
+  styles: RadioButtonStateStylesType;
+  state: RadioButtonStateType;
+  hasLabel?: boolean;
+  lastChild?: boolean;
+}>`
   display: ${props => (props.hasLabel ? 'grid' : 'block')};
   grid-template-columns: auto 1fr;
   ${props => getStyles(props.styles?.[props.state]?.rowContainer)}
@@ -76,13 +67,13 @@ export const RadioButtonLabelStyled = styled.div`
   align-items: center;
 `;
 
-export const RadioButtonErrorStyled = styled.div<IRadioButtonErrorStyled>`
+export const RadioButtonErrorStyled = styled.div<{ styles?: RadioButtonBaseStyles }>`
   ${({ styles }) => getStyles(styles?.errorMessageContainer)};
   p {
     display: flex;
   }
 `;
 
-export const ErrorIconWrapperStyled = styled.span<IRadioButtonErrorStyled>`
+export const ErrorIconWrapperStyled = styled.span<{ styles?: RadioButtonBaseStyles }>`
   ${({ styles }) => getStyles(styles?.errorMessageIconContainer)};
 `;

@@ -12,6 +12,7 @@ const InputUnControlledComponent = <V extends string | unknown>(
     internalErrorExecution = INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR,
     disabledArrowUpDownInputNumber = false,
     disabledWheelMouse = true,
+    disabledCopyAndPaste,
     errorExecution,
     keyValidation,
     min,
@@ -34,6 +35,7 @@ const InputUnControlledComponent = <V extends string | unknown>(
     onKeyDown,
     onError,
     onInternalErrors,
+    onPaste,
     ...props
   }: IInputUnControlled<V>,
   ref: React.ForwardedRef<HTMLInputElement | undefined>
@@ -48,6 +50,7 @@ const InputUnControlledComponent = <V extends string | unknown>(
     handleBlurInternal,
     handleFocusInternal,
     handleKeyDownInternal,
+    handlePasteInternal,
   } = useInput({
     ref,
     errorExecution,
@@ -71,12 +74,14 @@ const InputUnControlledComponent = <V extends string | unknown>(
     formatNumber,
     locale,
     disabledWheelMouse,
+    disabledCopyAndPaste,
     onBlur,
     onChange,
     onFocus,
     onKeyDown,
     onError,
     onInternalErrors,
+    onPaste,
   });
 
   return (
@@ -97,6 +102,7 @@ const InputUnControlledComponent = <V extends string | unknown>(
       onChange={handleChangeInternal}
       onFocus={handleFocusInternal}
       onKeyDown={handleKeyDownInternal}
+      onPaste={handlePasteInternal}
     />
   );
 };

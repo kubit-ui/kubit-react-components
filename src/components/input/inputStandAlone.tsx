@@ -124,11 +124,7 @@ const InputStandAloneComponent = (
         }}
         onFocus={props.onFocus}
         onKeyDown={props.onKeyDown}
-        onPaste={e => {
-          if (props.disabledCopyAndPaste) {
-            e.preventDefault();
-          }
-        }}
+        onPaste={props.onPaste}
       />
       <InputIconStandAlone
         ref={

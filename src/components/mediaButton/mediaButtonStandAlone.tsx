@@ -33,8 +33,8 @@ const MediaButtonStandaloneComponent = (
   } = props.twistedIcon ?? {};
 
   const ariaLabel = props.twisted
-    ? twistedIconAriaLabel ?? twistedIconAltText
-    : iconAriaLabel ?? iconAltText;
+    ? (twistedIconAriaLabel ?? twistedIconAltText)
+    : (iconAriaLabel ?? iconAltText);
 
   // When 'twisted' changes, We turn around the icon combined with the css property backface-visibility=hidden in the file icon.styled.ts
   const iconTwistAnimationTransformValue = props.twisted

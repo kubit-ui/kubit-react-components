@@ -27,7 +27,7 @@ export const detectOverflow = (
   const clippingClientRect = rectToClientRect(
     getClippingRect({
       element:
-        isElement(element) ?? true
+        (isElement(element) ?? true)
           ? (element as Element)
           : (element as VirtualElement).contextElement || window.document.documentElement,
       boundary,

@@ -1,6 +1,7 @@
 import {
   ChangeEvent,
   ChangeEventHandler,
+  ClipboardEventHandler,
   FocusEventHandler,
   ForwardedRef,
   KeyboardEventHandler,
@@ -58,6 +59,7 @@ type ParamsType = {
   hasInputInSearchList?: boolean;
   name?: string;
   internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
+  disabledCopyAndPaste?: boolean;
   onClick?: (
     event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement, MouseEvent>
   ) => void;
@@ -69,6 +71,7 @@ type ParamsType = {
   onFocus?: FocusEventHandler<HTMLInputElement>;
   onOpenCloseOptions?: (open: boolean) => void;
   onInternalErrors?: (errors: string[]) => void;
+  onPaste?: ClipboardEventHandler<HTMLInputElement>;
 };
 
 type ReturnHookType = {
@@ -91,6 +94,7 @@ type ReturnHookType = {
   state: InputState;
   handleFocusInternal: FocusEventHandler<HTMLInputElement>;
   handleInputPopoverChange: ChangeEventHandler<HTMLInputElement>;
+  handlePasteInternal?: ClipboardEventHandler<HTMLInputElement>;
 };
 
 export const useInputDropdown = (props: ParamsType): ReturnHookType => {
@@ -146,16 +150,18 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
   };
 
   // Input Basic hook
-  const { state, inputRef, handleFocusInternal } = useInput({
+  const { state, inputRef, handleFocusInternal, handlePasteInternal } = useInput({
     internalErrorExecution: props.internalErrorExecution,
     disabled: props.disabled,
     error: props.error || internalErrors.length > 0,
     // need for update the state
     currentValue: searchText,
     informationAssociated: props.informationAssociated,
+    disabledCopyAndPaste: props.disabledCopyAndPaste,
     onFocus: props.onFocus,
     onBlur: handleInputBlur,
     onInternalErrors: props.onInternalErrors,
+    onPaste: props.onPaste,
   });
 
   const useActionBottomSheet = useMemo(
@@ -388,5 +394,6 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
     listOptionsHeight,
     handleFocusInternal,
     handleInputPopoverChange,
+    handlePasteInternal,
   };
 };

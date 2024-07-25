@@ -5,6 +5,12 @@ import { getStyles } from '@/utils';
 
 import { MessagePropsThemeType } from './types/messageTheme';
 
+export const ParentContainerStyled = styled.div<{
+  styles: MessagePropsThemeType;
+}>`
+  ${({ styles }) => getStyles(styles.parentContainer)};
+`;
+
 export const MessageStyled = styled.div<{
   styles: MessagePropsThemeType;
 }>`

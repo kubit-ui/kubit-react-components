@@ -19,6 +19,7 @@ import {
 
 interface INavigationCardInfo {
   styles: NavigationCardStylesPropsType;
+  innerContainersComponent?: 'div' | 'span';
   title?: NavigationCardTextType;
   description?: NavigationCardTextType;
   tag?: NavigationCardTagType;
@@ -28,12 +29,17 @@ interface INavigationCardInfo {
 }
 
 export const NavigationCardInfo = (props: INavigationCardInfo): JSX.Element => (
-  <NavigationCardContentStyled>
+  <NavigationCardContentStyled as={props.innerContainersComponent}>
     <NavigationCardLinesTextStyled
+      as={props.innerContainersComponent}
       lines={props.styles.title?.[props.device]?.linesNumber ?? props.styles.title?.linesNumber}
     >
       <Text
-        component={props.styles.title?.[props.device]?.component ?? props.styles.title?.component}
+        component={
+          props.styles.title?.[props.device]?.component ??
+          props.styles.title?.component ??
+          TextComponentType.SPAN
+        }
         customTypography={props.styles.title}
         dataTestId={`${props.dataTestId}Text`}
         decoration={TextDecorationType.NONE}
@@ -43,8 +49,12 @@ export const NavigationCardInfo = (props: INavigationCardInfo): JSX.Element => (
       </Text>
     </NavigationCardLinesTextStyled>
     {props.description && (
-      <NavigationCardDescriptionContainerStyled styles={props.styles}>
+      <NavigationCardDescriptionContainerStyled
+        as={props.innerContainersComponent}
+        styles={props.styles}
+      >
         <NavigationCardLinesTextStyled
+          as={props.innerContainersComponent}
           lines={
             props.styles.description?.[props.device]?.linesNumber ??
             props.styles.description?.linesNumber
@@ -63,7 +73,7 @@ export const NavigationCardInfo = (props: INavigationCardInfo): JSX.Element => (
       </NavigationCardDescriptionContainerStyled>
     )}
     {props.tag && props.styles.containerExpandedContent && (
-      <NavigationCardTagContainer styles={props.styles}>
+      <NavigationCardTagContainer as={props.innerContainersComponent} styles={props.styles}>
         <Tag
           dataTestId={`${props.dataTestId}Tag`}
           option={props.styles.tag?.option}

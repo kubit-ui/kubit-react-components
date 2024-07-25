@@ -42,7 +42,7 @@ const commonArgs: IInputSearch = {
   secondaryLabel: labelSecondary(themeSelected),
   additionalInfo: additionalInfoAction(themeSelected),
   label: { content: 'label', requiredSymbol: '*' },
-  icon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'alternative' },
+  rightIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'alternative' },
   placeholder: 'Select an option',
   closeIcon: { icon: ICONS.ICON_CLOSE },
   value: 'option5',

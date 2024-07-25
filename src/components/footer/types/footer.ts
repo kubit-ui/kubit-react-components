@@ -19,16 +19,32 @@ export interface MobileSort {
 
 type FooterAriaAttributes = Pick<React.AriaAttributes, 'aria-label'>;
 
+type Position = keyof typeof FooterPositionType;
+
+interface IPositionedElement extends React.ReactElement {
+  props: React.PropsWithChildren<{ ['data-position']: Position } & React.Attributes>;
+}
+
 export interface IFooterStandAlone extends FooterAriaAttributes {
   styles: FooterPropsStylesType;
   role?: ROLES;
-  children: JSX.Element[] | JSX.Element;
+  children: IPositionedElement[] | IPositionedElement;
   dataTestId?: string;
+  /**
+   * @deprecated
+   */
   contentDirection?: ContentDirectionType;
   simpleContainer?: boolean;
   forceVertical?: boolean;
+  tabInverse?: boolean;
+  /**
+   * @deprecated
+   */
   alignItems?: string;
   lineSeparatorLineStyles: LineSeparatorLinePropsStylesType;
+  /**
+   * @deprecated
+   */
   footerMobileSortConfig?: MobileSort;
   device: DeviceBreakpointsType;
 }

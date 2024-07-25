@@ -9,6 +9,7 @@ export const FOOTER_STYLES: FooterStylesType<FooterVariants> = {
   [FooterVariants.DEFAULT]: {
     rootContainer: {
       background_color: COLORS.NEUTRAL.color_neutral_bg_250,
+      gap: SPACINGS.spacing_400,
       flex_direction: 'row',
       [DeviceBreakpointsType.DESKTOP]: {
         padding_top: SPACINGS.spacing_450,

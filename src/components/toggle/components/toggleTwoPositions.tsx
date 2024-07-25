@@ -55,7 +55,7 @@ const ToggleTwoPositionComponent = (
       id={props.id}
       role={ROLES.SWITCH}
       styles={props.styles}
-      tabIndex={!props.disabled ? props.tabIndex ?? 0 : undefined}
+      tabIndex={!props.disabled ? (props.tabIndex ?? 0) : undefined}
       togglePosition={props.togglePosition}
       onClick={e => {
         e.persist();

@@ -50,6 +50,9 @@ export const RadioButtonStandAlone = (props: IRadioButtonStandAlone): JSX.Elemen
               error: props.error,
             })
           }
+          aria-hidden={props['aria-hidden']}
+          aria-label={props['aria-label']}
+          aria-labelledby={props['aria-labelledby']}
           checked={props.checked}
           data-testid={`${props.dataTestId}Input`}
           disabled={props.disabled}
@@ -57,6 +60,7 @@ export const RadioButtonStandAlone = (props: IRadioButtonStandAlone): JSX.Elemen
           name={props.name}
           state={props.state}
           styles={props.styles}
+          tabIndex={props.tabIndex}
           type="radio"
           value={props.value}
           onBlur={props.onBlur}

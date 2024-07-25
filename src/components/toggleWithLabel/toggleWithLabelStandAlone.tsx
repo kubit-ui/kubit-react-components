@@ -36,34 +36,37 @@ const ToggleWithLabelStandAloneComponent = (
   return (
     <ToggleWithLabelStyled
       ref={ref}
+      as={label ? 'fieldset' : 'div'}
       displayRow={displayRow}
       labelPosition={labelPosition}
       styles={styles}
       onClick={props.onClick}
     >
-      <Text
-        component={TextComponentType.LEGEND}
-        customTypography={legendStyles}
-        dataTestId={`${props.dataTestId}Label`}
-        id={labelId}
-        variant={textVariant ?? styles?.legend?.font_variant}
-        {...label}
-      >
-        {label.content}
-        {required && (
-          <Text
-            aria-hidden={true}
-            color={styles?.required?.color}
-            component={TextComponentType.SPAN}
-            dataTestId={`${props.dataTestId}Required`}
-            variant={styles?.required?.font_variant}
-            weight={styles?.required?.font_weight}
-            {...requiredSymbol}
-          >
-            {requiredSymbol?.content}
-          </Text>
-        )}
-      </Text>
+      {label && (
+        <Text
+          component={TextComponentType.LEGEND}
+          customTypography={legendStyles}
+          dataTestId={`${props.dataTestId}Label`}
+          id={labelId}
+          variant={textVariant ?? styles?.legend?.font_variant}
+          {...label}
+        >
+          {label.content}
+          {required && (
+            <Text
+              aria-hidden={true}
+              color={styles?.required?.color}
+              component={TextComponentType.SPAN}
+              dataTestId={`${props.dataTestId}Required`}
+              variant={styles?.required?.font_variant}
+              weight={styles?.required?.font_weight}
+              {...requiredSymbol}
+            >
+              {requiredSymbol?.content}
+            </Text>
+          )}
+        </Text>
+      )}
       <Toggle
         {...props}
         ref={props.toggleRef}

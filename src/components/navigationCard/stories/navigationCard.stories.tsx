@@ -120,6 +120,14 @@ export const NavigationCard: Story = {
   },
 };
 
+export const NavigationCardButton: Story = {
+  args: {
+    ...commonArgs,
+    url: undefined,
+    themeArgs: themesObject[themeSelected][STYLES_NAME.NAVIGATION_CARD],
+  },
+};
+
 export const NavigationCardWithCtv: Story = {
   args: {
     ...commonArgs,

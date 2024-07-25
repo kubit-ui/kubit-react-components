@@ -29,12 +29,14 @@ const InputPhoneComponent = React.forwardRef(
       value: currentValue,
       informationAssociatedValue,
       ignoreKeys,
+      disabledCopyAndPaste,
       onBlur,
       onChange,
       onFocus,
       onKeyDown,
       onError,
       onInternalErrors,
+      onPaste,
       ctv,
       ...props
     }: IInputPhone<V>,
@@ -50,6 +52,7 @@ const InputPhoneComponent = React.forwardRef(
       handleBlurInternal,
       handleFocusInternal,
       handleKeyDownInternal,
+      handlePasteInternal,
     } = useInput({
       ref,
       errorExecution,
@@ -68,12 +71,14 @@ const InputPhoneComponent = React.forwardRef(
       truncate,
       informationAssociated: informationAssociatedValue?.content,
       ignoreKeys,
+      disabledCopyAndPaste,
       onBlur,
       onChange,
       onFocus,
       onKeyDown,
       onError,
       onInternalErrors,
+      onPaste,
     });
 
     return (
@@ -94,6 +99,7 @@ const InputPhoneComponent = React.forwardRef(
         onChange={handleChangeInternal}
         onFocus={handleFocusInternal}
         onKeyDown={handleKeyDownInternal}
+        onPaste={handlePasteInternal}
       />
     );
   }

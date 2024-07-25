@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Pill } from '@/components/pill';
 import { useRoveFocus } from '@/hooks';
 import { ROLES } from '@/types';
+import { pickAriaProps } from '@/utils';
 
 import { PillSelectorWrapper, ThumbStyled } from './pillSelector.styled';
 import type { IPillSelectorStandAlone } from './types';
@@ -14,6 +15,8 @@ const PillSelectorStandAloneComponent = (
   { dataTestId, maxPills = MAX_PILLS, ...props }: IPillSelectorStandAlone,
   ref: React.ForwardedRef<HTMLDivElement>
 ): React.JSX.Element => {
+  const ariaProps = pickAriaProps(props);
+
   const roveFocusProps = React.useMemo(
     () => ({
       size: props.pills.length,
@@ -36,6 +39,7 @@ const PillSelectorStandAloneComponent = (
 
   return (
     <PillSelectorWrapper
+      {...ariaProps}
       ref={listEl as React.RefObject<HTMLDivElement>}
       data-testid={`${dataTestId}PillSelector`}
       hasThumb={!!(!props.multiSelect && props.styles?.thumb)}

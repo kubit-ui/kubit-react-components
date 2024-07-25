@@ -401,7 +401,7 @@ export const useCarousel = ({
           carouselContent.style.left = `${left}px`;
         }
       } else {
-        let modifyExtraPadding = circular ? extraPadding ?? 0 : 0;
+        let modifyExtraPadding = circular ? (extraPadding ?? 0) : 0;
         if (!circular && extraPadding && index.current === numPagesState - 1) {
           modifyExtraPadding = extraPadding * 2;
         }

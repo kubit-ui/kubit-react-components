@@ -68,12 +68,14 @@ export enum MASK_TYPE {
 export enum ERROR_EXECUTION {
   ON_CHANGE = 'onChange',
   ON_BLUR = 'onBlur',
+  NONE = 'none',
 }
 
 export enum INTERNAL_ERROR_EXECUTION {
   ON_CHANGE = 'onChange',
   ON_BLUR = 'onBlur',
   ON_CHANGE_ON_BLUR = 'onChangeOnBlur',
+  NONE = 'none',
 }
 
 export enum AUTOCAPITALIZE_TYPE {
@@ -401,6 +403,7 @@ export type IInputStandAlone = IInputComponents & {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   onClick?: React.MouseEventHandler<HTMLInputElement>;
+  onPaste?: React.ClipboardEventHandler<HTMLInputElement>;
 };
 
 type propsToOmit =

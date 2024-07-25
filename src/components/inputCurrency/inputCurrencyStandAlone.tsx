@@ -4,6 +4,7 @@ import * as React from 'react';
 import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text, TextComponentType } from '@/components/text';
 import { useId } from '@/hooks';
+import { useElementBoundingClientRect } from '@/hooks/useElementBoundingClientRect/useElementBoundingClientRect';
 import { POSITIONS } from '@/types/positions';
 import { pxToRem } from '@/utils';
 
@@ -18,6 +19,11 @@ export const InputCurrencyStandAloneComponent = (
   ref: React.ForwardedRef<HTMLInputElement | undefined>
 ): JSX.Element => {
   const [width, setWidth] = React.useState(0);
+
+  const { measures } = useElementBoundingClientRect({
+    ref: ref as React.MutableRefObject<HTMLInputElement>,
+  });
+
   const measuredRef = React.useCallback(node => {
     if (node !== null) {
       const widthWithMargin =
@@ -127,7 +133,8 @@ export const InputCurrencyStandAloneComponent = (
           width,
           props.currencyNameContainerPosition === InputContentPosition.OUT ||
             props.styles?.[props.state]?.currencyNameContainerPosition === InputContentPosition.OUT,
-          props.helpMessagePosition ?? props.styles?.[props.state]?.helpMessage?.position
+          props.helpMessagePosition ?? props.styles?.[props.state]?.helpMessage?.position,
+          measures?.width
         )
       }
       truncate={true}

@@ -9,6 +9,7 @@ import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { windowMatchMedia } from '@/tests/windowMatchMedia';
 import { DeviceBreakpointsType, ROLES } from '@/types';
 
+import { TabsControlled } from '../tabsControlled';
 import { TabsUnControlled } from '../tabsUnControlled';
 import { ITabsUnControlled, PrimaryTabTabType } from '../types';
 
@@ -131,5 +132,25 @@ describe('Tabs component', () => {
       tabsLength: 2,
       selectedTab: 1,
     });
+  });
+
+  it('does not render content when unMountContent is true and selectedTab is undefined', () => {
+    renderProvider(<TabsUnControlled {...mockProps} unMountContent={true} />);
+    expect(screen.queryByText('Tab 1 content')).not.toBeInTheDocument();
+    expect(screen.queryByText('Tab 2 content')).not.toBeInTheDocument();
+    expect(screen.queryByText('Tab 3 content')).not.toBeInTheDocument();
+  });
+
+  it('renders all tabs with correct display style when unMountContent is false', () => {
+    const { container } = renderProvider(
+      <TabsControlled {...mockProps} selectedTab={1} unMountContent={false} />
+    );
+    const tabs = container.querySelectorAll('[role="tabpanel"]');
+    expect(tabs).toHaveLength(5);
+    expect(tabs[0]).toHaveStyle('display: none');
+    expect(tabs[1]).toHaveStyle('display: block');
+    expect(tabs[2]).toHaveStyle('display: none');
+    expect(tabs[3]).toHaveStyle('display: none');
+    expect(tabs[4]).toHaveStyle('display: none');
   });
 });

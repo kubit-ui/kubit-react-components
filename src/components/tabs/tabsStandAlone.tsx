@@ -36,6 +36,7 @@ const TabsStandAloneComponent = (
     dataTestId = 'primaryTab',
     minTabsInView = MIN_TABS_IN_VIEW,
     maxTabsInView = MAX_TABS_IN_VIEW,
+    unMountContent = true,
     ...props
   }: ITabsStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
@@ -82,19 +83,36 @@ const TabsStandAloneComponent = (
       </TabsRightArrowContainerStyled>
     );
 
-  const buildTabContent = () =>
-    props.selectedTab !== undefined &&
-    props.selectedTab !== null && (
-      <TabsContentStyled
-        aria-labelledby={`${BASE_ID}-tab-${props.selectedTab}`}
-        id={TAB_PANEL_ID}
-        role={ROLES.TABPANEL}
-        styles={props.styles}
-        tabIndex={allowFocusTabPanel ? 0 : -1}
-      >
-        {props.content?.[props.selectedTab]}
-      </TabsContentStyled>
-    );
+  const buildTabContent = () => {
+    const commonTokens = {
+      id: TAB_PANEL_ID,
+      role: ROLES.TABPANEL,
+      styles: props.styles,
+      tabIndex: allowFocusTabPanel ? 0 : -1,
+    };
+
+    return unMountContent
+      ? props.selectedTab !== undefined && props.selectedTab !== null && (
+          <TabsContentStyled
+            aria-labelledby={`${BASE_ID}-tab-${props.selectedTab}`}
+            {...commonTokens}
+          >
+            {props.content?.[props.selectedTab]}
+          </TabsContentStyled>
+        )
+      : props.content?.map((cont, index) => {
+          return (
+            <TabsContentStyled
+              key={index}
+              $display={props.selectedTab === index ? 'block' : 'none'}
+              aria-labelledby={`${BASE_ID}-tab-${index}`}
+              {...commonTokens}
+            >
+              {cont}
+            </TabsContentStyled>
+          );
+        });
+  };
 
   return (
     <TabsContainerStyled ref={ref} styles={props.styles}>

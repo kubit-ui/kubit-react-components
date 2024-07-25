@@ -15,8 +15,7 @@ const CONTAINER_STYLES_EDIT: CssProperty[] = [
   { cssPropertyName: 'overflow-y', cssPropertyValue: 'auto' },
 ];
 const CONTENT_STYLES_EDIT: CssProperty[] = [
-  { cssPropertyName: 'overflow-y', cssPropertyValue: 'unset' },
-  { cssPropertyName: 'max-height', cssPropertyValue: 'unset' },
+  { cssPropertyName: 'overflow-y', cssPropertyValue: 'visible' },
 ];
 
 const ModalControlledComponent = React.forwardRef(

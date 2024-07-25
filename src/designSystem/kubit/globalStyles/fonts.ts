@@ -1,5 +1,7 @@
 import { css } from 'styled-components';
 
+import DigitPasswordLargeSquare from '../fonts/Digit_Password_Large_Square.ttf';
+import DigitPasswordSmallSquare from '../fonts/Digit_Password_Small_Square.ttf';
 import GTAmericaExpandedBold from '../fonts/GT-America-Expanded-Medium.otf';
 import GTAmericaExpandedRegular from '../fonts/GT-America-Expanded-Regular.otf';
 import GTAmericaExpandedLight from '../fonts/GT-America-ExpandedLight.otf';
@@ -15,6 +17,18 @@ import NunitoRegular from '../fonts/NunitoSans_10pt-Regular.ttf';
 import NunitoSemiBold from '../fonts/NunitoSans_10pt-SemiBold.ttf';
 
 export const FONTS_KUBIT_GLOBAL_STYLES = css`
+  @font-face {
+    font-family: 'DigitPasswordSmallSquare';
+    font-weight: 400;
+    src: url(${DigitPasswordSmallSquare}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'DigitPasswordLargeSquare';
+    font-weight: 400;
+    src: url(${DigitPasswordLargeSquare}) format('truetype');
+  }
+
   @font-face {
     font-family: 'GT-America-Expanded Font';
     font-weight: 700;

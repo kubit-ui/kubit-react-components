@@ -8,8 +8,8 @@ export interface CustomTheme {
   Z_INDEX?: ZIndexType;
   STATES?: STATES;
   POSITIONS?: POSITIONS;
-  FOCUS_STYLES?: ThemedCssFunction;
-  FOCUS_STYLES_ALT?: ThemedCssFunction;
+  FOCUS_STYLES?: FlattenSimpleInterpolation;
+  FOCUS_STYLES_ALT?: FlattenSimpleInterpolation;
   ILLUSTRATIONS_STYLES?: IllustrationType;
   ICONS_STYLES?: IconType;
   TEXT_STYLES?: TypographyTypes;

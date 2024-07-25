@@ -7,6 +7,7 @@ import { ICONS, ILLUSTRATIONS } from '@/assets';
 import { DecorativePropsType, DecorativeType } from '@/components/decorativeElement';
 import { IIconHighlighted, IconHighlightedSizeType } from '@/components/iconHighlighted';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+import { ROLES } from '@/types';
 
 import { NavigationCard } from '../index';
 
@@ -174,5 +175,17 @@ describe('NavigationCard component', () => {
     const iconHighlighted = screen.getByTestId(`${mockProps.dataTestId}IconHighlighted`);
 
     expect(iconHighlighted).toBeInTheDocument();
+  });
+
+  it('When no url is specified, the rendered element is a button', async () => {
+    const { url, ..._mockProps } = mockProps;
+    const { container } = renderProvider(<NavigationCard {..._mockProps} variant="PRIMARY_ICON" />);
+
+    const navigationCard = screen.getByRole(ROLES.BUTTON);
+    expect(navigationCard).toBeInTheDocument();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
   });
 });

@@ -5,6 +5,11 @@ import { CustomTokenTypes } from '@/types';
 
 import { PillSelectorStyles } from './pillSelectorTheme';
 
+type PillSelectorAriaAttributes = Pick<
+  React.AriaAttributes,
+  'aria-label' | 'aria-labelledby' | 'aria-describedby' | 'aria-disabled'
+>;
+
 export type PillType = Pick<
   IPillUnControlled,
   | 'disabled'
@@ -25,7 +30,7 @@ type PillSelectedType = number | string;
 
 type Pill = Omit<PillType, 'size'> & { size?: string };
 
-export interface IPillSelectorStandAlone {
+export interface IPillSelectorStandAlone extends PillSelectorAriaAttributes {
   pillVariant: string;
   pillSize?: string;
   pillSelected?: PillSelectedType[];

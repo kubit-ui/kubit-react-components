@@ -24,8 +24,10 @@ export type RadioButtonBaseStyles = {
   };
 };
 
+export type RadioButtonStateStylesType = {
+  [state in RadioButtonStateType]?: RadioButtonBaseStyles;
+};
+
 export type RadioButtonStylesType<P extends string = string> = {
-  [variant in P]: {
-    [state in RadioButtonStateType]?: RadioButtonBaseStyles;
-  };
+  [variant in P]: RadioButtonStateStylesType;
 };

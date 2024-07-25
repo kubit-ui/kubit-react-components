@@ -1,6 +1,8 @@
 import { DeviceBreakpointsType } from '@/types';
 
 export const FONT_FAMILY = {
+  font_family_digit_password_small_square: '"DigitPasswordSmallSquare", sans-serif',
+  font_family_digit_password_large_square: '"DigitPasswordLargeSquare", sans-serif',
   font_family_gt_america_expanded: '"GT-America-Expanded Font", sans-serif',
   font_family_gt_america_extended: '"GT-America-Extended Font", sans-serif',
   font_family_roboto_condensed: '"Roboto-Mono Font", sans-serif',
