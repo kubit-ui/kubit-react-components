@@ -79,8 +79,8 @@ export const useContent = (props: IUseContent): IUseContentResponse => {
   const hasFooter = !!props.footer;
   const getExpandedAria = () =>
     showExpandedContent
-      ? props.value.accordionIconExpandedAriaLabel ?? props.accordionIconExpandedAriaLabel
-      : props.value.accordionIconCollapsedAriaLabel ?? props.accordionIconCollapsedAriaLabel;
+      ? (props.value.accordionIconExpandedAriaLabel ?? props.accordionIconExpandedAriaLabel)
+      : (props.value.accordionIconCollapsedAriaLabel ?? props.accordionIconCollapsedAriaLabel);
 
   const getValue = (headerValue: ITableHeader): string | JSX.Element | DividerContent => {
     if (headerValue.value) {

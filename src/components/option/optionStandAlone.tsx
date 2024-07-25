@@ -59,7 +59,7 @@ const OptionStandAlone = React.forwardRef(
         {...ariaProps}
         $stateStyles={stateStyles}
         $styles={props.styles}
-        as={props.url ? props.componentLink : props.as ?? OptionDivStyled}
+        as={props.url ? props.componentLink : (props.as ?? OptionDivStyled)}
         data-testid={props.dataTestId}
         role={props.role}
         tabIndex={props.tabIndex}
