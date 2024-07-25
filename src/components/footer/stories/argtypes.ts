@@ -15,7 +15,7 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
       control: { type: 'select' },
       type: { name: 'string', required: true },
       description: 'Footer variant',
-      options: Object.keys(variants[themeSelected].FooterVariant || {}),
+      options: Object.keys(variants[themeSelected].FooterVariants || {}),
       table: {
         type: {
           summary: 'string',
@@ -73,6 +73,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
     },
     simpleContainer: {
       description: 'Allows you to change the footer tag to a div',
+      control: { type: 'boolean' },
+      type: { name: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    tabInverse: {
+      description: 'Change the order to tab of the footer content',
       control: { type: 'boolean' },
       type: { name: 'boolean' },
       table: {

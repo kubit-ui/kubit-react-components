@@ -8,9 +8,6 @@ interface IFooterContent {
   contentDirection?: ContentDirectionType;
   forceVertical?: boolean;
   children: React.ReactNode[];
-  margin?: boolean;
-  marginLeft?: boolean;
-  marginRight?: boolean;
 }
 
 export const FooterContent = (props: IFooterContent): JSX.Element | null => {
@@ -21,11 +18,11 @@ export const FooterContent = (props: IFooterContent): JSX.Element | null => {
     return null;
   }
 
+  const order = (props.children[0] as JSX.Element)?.props['data-order'] || 0;
+
   return (
     <FooterContentStyled
-      $margin={props.margin}
-      $marginLeft={props.marginLeft}
-      $marginRight={props.marginRight}
+      $order={order}
       aria-hidden={!props.children.length}
       contentDirection={props.contentDirection}
       flexDirectionDesktopTablet={flexDirectionDesktopTablet}

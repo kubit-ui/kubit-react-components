@@ -29,11 +29,53 @@ type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
 export const Footer: Story = {
   args: {
-    variant: Object.values(variantsObject[themeSelected].FooterVariant || {})[0] as string,
+    variant: Object.values(variantsObject[themeSelected].FooterVariants || {})[0] as string,
     children: [
-      <ReplaceContent key={0} data-position={FooterPositionType.LEFT} />,
-      <ReplaceContent key={1} data-position={FooterPositionType.CENTER} />,
-      <ReplaceContent key={2} data-position={FooterPositionType.RIGHT} />,
+      <ReplaceContent key={0} as="button" data-position={FooterPositionType.LEFT} width="200px">
+        Contenido 1
+      </ReplaceContent>,
+      <ReplaceContent key={1} as="button" data-position={FooterPositionType.CENTER} width="200px">
+        Contenido 2
+      </ReplaceContent>,
+      <ReplaceContent key={2} as="button" data-position={FooterPositionType.RIGHT} width="200px">
+        Contenido 3
+      </ReplaceContent>,
+    ],
+    themeArgs: themesObject[themeSelected][STYLES_NAME.FOOTER],
+  },
+};
+
+export const FooterWithOneItem: Story = {
+  args: {
+    variant: Object.values(variantsObject[themeSelected].FooterVariants || {})[0] as string,
+    children: (
+      <ReplaceContent as="button" data-position={FooterPositionType.CENTER} width="280px">
+        Contenido 1
+      </ReplaceContent>
+    ),
+    themeArgs: themesObject[themeSelected][STYLES_NAME.FOOTER],
+  },
+};
+
+export const FooterWithMultipleItems: Story = {
+  args: {
+    variant: Object.values(variantsObject[themeSelected].FooterVariants || {})[0] as string,
+    children: [
+      <ReplaceContent key={0} as="button" data-position={FooterPositionType.LEFT} width="200px">
+        Contenido 1
+      </ReplaceContent>,
+      <ReplaceContent key={1} as="button" data-position={FooterPositionType.LEFT} width="200px">
+        Contenido 2
+      </ReplaceContent>,
+      <ReplaceContent key={2} as="button" data-position={FooterPositionType.CENTER} width="200px">
+        Contenido 3
+      </ReplaceContent>,
+      <ReplaceContent key={3} as="button" data-position={FooterPositionType.RIGHT} width="200px">
+        Contenido 4
+      </ReplaceContent>,
+      <ReplaceContent key={4} as="button" data-position={FooterPositionType.RIGHT} width="200px">
+        Contenido 5
+      </ReplaceContent>,
     ],
     themeArgs: themesObject[themeSelected][STYLES_NAME.FOOTER],
   },
@@ -41,11 +83,17 @@ export const Footer: Story = {
 
 export const FooterWithCtv: Story = {
   args: {
-    variant: Object.values(variantsObject[themeSelected].FooterVariant || {})[0] as string,
+    variant: Object.values(variantsObject[themeSelected].FooterVariants || {})[0] as string,
     children: [
-      <ReplaceContent key={0} data-position={FooterPositionType.LEFT} />,
-      <ReplaceContent key={1} data-position={FooterPositionType.CENTER} />,
-      <ReplaceContent key={2} data-position={FooterPositionType.RIGHT} />,
+      <ReplaceContent key={0} data-position={FooterPositionType.LEFT}>
+        Contenido 1
+      </ReplaceContent>,
+      <ReplaceContent key={1} data-position={FooterPositionType.CENTER}>
+        Contenido 2
+      </ReplaceContent>,
+      <ReplaceContent key={2} data-position={FooterPositionType.RIGHT}>
+        Contenido 3
+      </ReplaceContent>,
     ],
     ctv: {
       rootContainer: { padding: '2rem', background_color: 'pink' },

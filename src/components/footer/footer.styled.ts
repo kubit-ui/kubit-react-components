@@ -1,18 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { getStyles } from '@/utils';
 
 import { LineSeparatorLinePropsStylesType, LineSeparatorPositionType } from '../lineSeparator';
-import { ContentDirectionType, FooterPropsStylesType } from './types';
+import { FooterPropsStylesType } from './types';
 
 type FooterStylesType = {
   styles: FooterPropsStylesType;
-  contentDirection?: ContentDirectionType;
-  flexDirectionDesktopTablet?: string;
-  alignItems?: string;
-  $margin?: boolean;
-  $marginLeft?: boolean;
-  $marginRight?: boolean;
+  $forceVertical?: boolean;
+  $tabInverse?: boolean;
+};
+
+type FooterSectionStyledType = FooterStylesType & {
+  $justifyContent: string;
 };
 
 type RootContainerStyledType = FooterStylesType & {
@@ -20,26 +20,65 @@ type RootContainerStyledType = FooterStylesType & {
 };
 
 export const FooterStyled = styled.div<RootContainerStyledType>`
-  display: flex;
-  width: 100%;
-  align-items: ${props => props.alignItems || 'center'};
-  justify-content: space-between;
-  box-sizing: border-box;
-
   ${({ lineSeparatorLineStyles }) =>
     lineSeparatorLineStyles?.buildLineStyles?.(LineSeparatorPositionType.TOP)}
   ${props => getStyles(props.styles?.rootContainer)}
-  ${props =>
-    props.contentDirection && getStyles(props.styles?.rootContainer?.[props.contentDirection])}
+
+  display: flex;
+  ${() =>
+    ({
+      theme: {
+        MEDIA_QUERIES: { onlyMobile, tabletAndDesktop },
+      },
+      $forceVertical,
+      $tabInverse,
+    }) => css`
+      ${tabletAndDesktop} {
+        flex-direction: ${$forceVertical
+          ? $tabInverse
+            ? 'column-reverse'
+            : 'column'
+          : $tabInverse
+            ? 'row-reverse'
+            : 'row'};
+      }
+      ${onlyMobile} {
+        flex-direction: ${$tabInverse ? 'column-reverse' : 'column'};
+        justify-content: center;
+      }
+    `};
 `;
 
-export const FooterContentStyled = styled.div<FooterStylesType>`
-  display: flex;
-  flex-direction: ${props => props.flexDirectionDesktopTablet};
-  justify-content: ${props =>
-    props.contentDirection === ContentDirectionType.HORIZONTAL ? 'flex-start' : 'center'};
+export const FooterSectionStyled = styled.div<FooterSectionStyledType>`
   ${props => getStyles(props.styles?.contentContainer)}
-  margin: ${props => props.$margin && 'auto'};
-  margin-left: ${props => props.$marginLeft && 'auto'};
-  margin-right: ${props => props.$marginRight && 'auto'};
+
+  display: flex;
+  width: 100%;
+  ${() =>
+    ({
+      theme: {
+        MEDIA_QUERIES: { onlyMobile, tabletAndDesktop },
+      },
+
+      $justifyContent,
+      $forceVertical,
+      $tabInverse,
+    }) => css`
+      ${tabletAndDesktop} {
+        justify-content: ${$forceVertical ? 'center' : $justifyContent};
+        flex-direction: ${$forceVertical
+          ? $tabInverse
+            ? 'column-reverse'
+            : 'column'
+          : $tabInverse
+            ? 'row-reverse'
+            : 'row'};
+
+        align-items: ${$forceVertical && 'center'};
+      }
+      ${onlyMobile} {
+        flex-direction: ${$tabInverse ? 'column-reverse' : 'column'};
+        align-items: center;
+      }
+    `};
 `;
