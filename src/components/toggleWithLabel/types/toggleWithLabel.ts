@@ -25,7 +25,7 @@ export type ToggleRequiredSymbolType = Omit<IText<string>, 'children'> & {
 type propsToOmit = 'variant' | 'aria-describedby' | 'screenReaderId' | 'ctv' | 'cts' | 'extraCt';
 
 export interface IToggleWithLabelStandAlone extends Omit<IToggleUnControlled, propsToOmit> {
-  label: ToggleLabelType;
+  label?: ToggleLabelType;
   styles?: ToggleWithLabelStylePropsType;
   requiredSymbol?: ToggleRequiredSymbolType;
   required: boolean;
