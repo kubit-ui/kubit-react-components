@@ -27,6 +27,7 @@ export interface ITabsStandAlone {
   hideLabelForSingleTab?: boolean;
   dataTestId?: string;
   onSelectTab?: (tab: number) => void;
+  unMountContent?: boolean;
 }
 
 export interface ITabsControlled<V = undefined extends string ? unknown : string>

@@ -32,6 +32,7 @@ export const Tabs: Story = {
     variant: Object.values(variantsObject[themeSelected].TabsVariantType || {})[0] as string,
     leftIcon: { icon: ICONS.ICON_CHEVRON_UP },
     rightIcon: { icon: ICONS.ICON_CHEVRON_DOWN },
+    unMountContent: true,
     content: [
       <ReplaceContent key="content-0" width="100%">
         Content first tab

@@ -167,8 +167,9 @@ export const LabelHiddenContainer = styled.span`
   display: none;
 `;
 
-export const TabsContentStyled = styled.div<StylesType>`
+export const TabsContentStyled = styled.div<StylesType & { $display?: string }>`
   ${({ styles }) => getStyles(styles.contentContainer)}
+  display: ${({ $display }) => $display};
 `;
 
 export const TabsTabListStyled = styled.div<StylesType>`
