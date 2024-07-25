@@ -27,6 +27,9 @@ export interface IDrawerStandAlone {
   footer?: DrawerFooterType;
   closeIcon?: IElementOrIcon;
   title?: DrawerTextType;
+  /**
+   * @deprecated This property will be removed. Use "props.title.component" instead
+   */
   titleComponent?: TextComponentType | string;
   open: boolean;
   level: DrawerLevelPositionTypes;

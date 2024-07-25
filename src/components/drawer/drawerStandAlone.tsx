@@ -34,7 +34,8 @@ const DrawerStandAloneComponent = (
 
   return (
     <Popover
-      aria-labelledby={titleIdFinal}
+      aria-label={!props.title?.content ? `${props.popover?.['aria-label']}` : undefined}
+      aria-labelledby={props.title?.content ? titleIdFinal : undefined}
       aria-modal={props.open}
       clickOverlayClose={!blocked}
       dataTestId={`${props.dataTestId}Popover`}
