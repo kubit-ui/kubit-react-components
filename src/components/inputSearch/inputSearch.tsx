@@ -61,6 +61,7 @@ const InputSearchComponent = React.forwardRef(
       handleChangeInputSearch,
       handleClickInputSearch,
       handleIconClick,
+      handleRightIconClick,
       handleInputPopoverIconClick,
       handleOpenOptions,
       handleValueSelected,
@@ -84,6 +85,7 @@ const InputSearchComponent = React.forwardRef(
       regex,
       onClick,
       onIconClick: props.icon?.onClick,
+      onRightIconClick: props.rightIcon?.onClick,
       executeInternalOpenOptions,
       onInputPopoverIconClick,
       elementsToShow,
@@ -126,6 +128,7 @@ const InputSearchComponent = React.forwardRef(
         open={openOptions}
         optionList={optionsFiltered}
         regex={regex}
+        rightIcon={{ ...props.rightIcon, onClick: handleRightIconClick }}
         searchText={searchText}
         state={state}
         styles={styles}
