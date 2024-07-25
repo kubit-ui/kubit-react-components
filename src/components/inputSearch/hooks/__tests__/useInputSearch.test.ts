@@ -71,6 +71,7 @@ const mockUseInputValues = {
   handleChangeInternal: jest.fn(),
   handleKeyDownInternal: jest.fn(),
   handleSetValue: jest.fn(),
+  handlePasteInternal: jest.fn(),
 };
 
 describe('useInputSearch hook', () => {

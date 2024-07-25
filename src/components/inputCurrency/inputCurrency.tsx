@@ -21,6 +21,7 @@ const InputCurrencyComponent = React.forwardRef(
       disabledArrowUpDownInputNumber = false,
       ignoreKeys = ['+', '-', 'e'],
       disabledWheelMouse = true,
+      disabledCopyAndPaste,
       type = InputTypeType.NUMBER,
       max,
       errorExecution,
@@ -43,6 +44,7 @@ const InputCurrencyComponent = React.forwardRef(
       onKeyDown,
       onError,
       onInternalErrors,
+      onPaste,
       ctv,
       ...props
     }: IInputCurrency<V>,
@@ -62,6 +64,7 @@ const InputCurrencyComponent = React.forwardRef(
       handleBlurInternal,
       handleFocusInternal,
       handleKeyDownInternal,
+      handlePasteInternal,
     } = useInput({
       ref,
       errorExecution,
@@ -86,12 +89,14 @@ const InputCurrencyComponent = React.forwardRef(
       formatNumber,
       locale,
       disabledWheelMouse,
+      disabledCopyAndPaste,
       onBlur,
       onChange,
       onFocus,
       onKeyDown,
       onError,
       onInternalErrors,
+      onPaste,
     });
 
     return (
@@ -113,6 +118,7 @@ const InputCurrencyComponent = React.forwardRef(
         onChange={handleChangeInternal}
         onFocus={handleFocusInternal}
         onKeyDown={handleKeyDownInternal}
+        onPaste={handlePasteInternal}
       />
     );
   }

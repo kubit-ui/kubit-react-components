@@ -13,6 +13,7 @@ const InputCounterComponent = React.forwardRef(
     {
       type = InputTypeType.TEXT,
       truncate = false,
+      disabledCopyAndPaste,
       internalErrorExecution = INTERNAL_ERROR_EXECUTION.ON_CHANGE_ON_BLUR,
       errorExecution,
       keyValidation,
@@ -34,6 +35,7 @@ const InputCounterComponent = React.forwardRef(
       onKeyDown,
       onError,
       onInternalErrors,
+      onPaste,
       ctv,
       ...props
     }: IInputCounter<V>,
@@ -55,6 +57,7 @@ const InputCounterComponent = React.forwardRef(
       handleBlurInternal,
       handleFocusInternal,
       handleKeyDownInternal,
+      handlePasteInternal,
     } = useInput({
       ref,
       errorExecution,
@@ -74,12 +77,14 @@ const InputCounterComponent = React.forwardRef(
       informationAssociated: informationAssociatedValue?.content,
       ignoreKeys,
       regex,
+      disabledCopyAndPaste,
       onBlur,
       onChange,
       onFocus,
       onKeyDown,
       onError,
       onInternalErrors,
+      onPaste,
     });
 
     return (
@@ -101,6 +106,7 @@ const InputCounterComponent = React.forwardRef(
         onChange={handleChangeInternal}
         onFocus={handleFocusInternal}
         onKeyDown={handleKeyDownInternal}
+        onPaste={handlePasteInternal}
       />
     );
   }

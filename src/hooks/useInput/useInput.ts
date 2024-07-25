@@ -336,6 +336,16 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
     props.onKeyDown?.(event);
   };
 
+  const handlePasteInternal: React.ClipboardEventHandler<HTMLInputElement> = event => {
+    const clipboardData = event.clipboardData;
+    const pastedData = clipboardData?.getData('Text');
+    if (props.ignoreKeys?.some(key => pastedData.includes(key)) || props.disabledCopyAndPaste) {
+      event.preventDefault();
+      return;
+    }
+    props.onPaste?.(event);
+  };
+
   return {
     value,
     state,
@@ -345,5 +355,6 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
     handleFocusInternal,
     handleKeyDownInternal,
     handleSetValue,
+    handlePasteInternal,
   };
 };

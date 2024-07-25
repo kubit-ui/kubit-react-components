@@ -27,6 +27,7 @@ const InputPasswordComponent = React.forwardRef(
       error,
       value: currentValue,
       ignoreKeys,
+      disabledCopyAndPaste,
       onBlur,
       onChange,
       onFocus,
@@ -37,6 +38,7 @@ const InputPasswordComponent = React.forwardRef(
       disabledIcon,
       onInputTypeChange,
       onIconClick,
+      onPaste,
       ctv,
       ...props
     }: IInputPassword<V>,
@@ -73,6 +75,7 @@ const InputPasswordComponent = React.forwardRef(
       handleBlurInternal,
       handleFocusInternal,
       handleKeyDownInternal,
+      handlePasteInternal,
     } = useInput({
       ref,
       errorExecution,
@@ -86,12 +89,14 @@ const InputPasswordComponent = React.forwardRef(
       currentValue,
       type: inputPasswordType,
       ignoreKeys,
+      disabledCopyAndPaste,
       onBlur,
       onChange,
       onFocus,
       onKeyDown,
       onError,
       onInternalErrors,
+      onPaste,
     });
 
     const icon = inputPasswordType === InputTypeType.PASSWORD ? disabledIcon : activeIcon;
@@ -113,6 +118,7 @@ const InputPasswordComponent = React.forwardRef(
         onChange={handleChangeInternal}
         onFocus={handleFocusInternal}
         onKeyDown={handleKeyDownInternal}
+        onPaste={handlePasteInternal}
       />
     );
   }
