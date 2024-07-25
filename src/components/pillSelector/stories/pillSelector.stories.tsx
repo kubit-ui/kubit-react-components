@@ -28,6 +28,7 @@ type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
 export const PillSelector: Story = {
   args: {
+    ['aria-label']: 'Aria label pill selector',
     dataTestId: 'dataTestId',
     multiSelect: false,
     variant: Object.values(variantsObject[themeSelected].PillSelectorVariant || {})[0] as string,

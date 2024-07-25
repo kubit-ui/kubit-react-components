@@ -115,6 +115,50 @@ export const argtypes = (
         category: CATEGORY_CONTROL.TESTING,
       },
     },
+    ['aria-label']: {
+      description: 'Aria label of the button',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-describedby']: {
+      description: 'Aria text that should be read when the button is focused',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-labelledby']: {
+      description: 'Aria labelledby',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-disabled']: {
+      description: 'Aria for disabled buttons',
+      type: { name: 'boolean' },
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     ctv: {
       description: 'Object used for update variant styles',
       control: { type: 'object' },
