@@ -10,11 +10,12 @@ interface IReplaceContent extends AriaType {
   height?: string;
   id?: string;
   role?: ROLES;
+  as?: React.ElementType;
 }
 
 export const ReplaceContent = ({ children, ...props }: IReplaceContent): JSX.Element => {
   return (
-    <ReplaceContentStyled {...props}>
+    <ReplaceContentStyled as={props.as} {...props}>
       {!children ? <span>Replace here your Content</span> : children}
     </ReplaceContentStyled>
   );
