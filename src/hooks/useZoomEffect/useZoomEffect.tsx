@@ -47,8 +47,6 @@ export const useZoomEffect = (
   const innerElementRef = useRef<HTMLElement | null>(null);
   // original styles ref
   const originalStyles = useRef<CssProperty[]>([]);
-  // indicate if zoomed
-  const zoomed = useRef<boolean>(false);
   // control the previous zoom value
   const prevZoom = useRef<number>(INIT_ZOOM);
   // indicate the theme breakpoints
@@ -63,13 +61,12 @@ export const useZoomEffect = (
     const element = innerElementRef.current;
     // storage the original styles
     const zoom = window.devicePixelRatio;
+    const forwardZoom = prevZoom.current <= zoom;
     if (zoom > maxZoom) {
-      zoomed.current && changeCssProperty(element, effect);
-      zoomed.current = false;
-    } else if (prevZoom.current > zoom && zoom === INIT_ZOOM) {
+      changeCssProperty(element, effect);
+    } else if (!forwardZoom && zoom <= maxZoom) {
       // apply the original styles when returning to normal size after zooming in
-      !zoomed.current && changeCssProperty(element, originalStyles.current);
-      zoomed.current = true;
+      changeCssProperty(element, originalStyles.current);
     }
     prevZoom.current = zoom;
   }, [condition]);

@@ -66,6 +66,7 @@ export * from './layout/variants';
 export * from './dropdownSelected/variants';
 export * from './header/variants';
 export * from './headerStructure/variants';
+export * from './inputDigitSequence/variants';
 export * from './selectorBoxFile/variants';
 export * from './skeleton/variants';
 export * from './slider/variants';

@@ -32,7 +32,7 @@ export type Variants = {
   LayoutVariantType?: object;
   EmptyStateVariantType?: object;
   EmptyStateStateType?: object;
-  FooterVariant?: object;
+  FooterVariants?: object;
   FunctionalitiesModuleVariantType?: object;
   TabsVariantType?: object;
   HeaderVariantType?: object;

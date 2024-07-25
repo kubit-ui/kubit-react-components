@@ -80,6 +80,7 @@ export * from './headerStructure';
 export * from './radioButtonGroup';
 export * from './functionalitiesModule';
 export * from './footer';
+export * from './inputDigitSequence';
 export * from './layout';
 export * from './operativeLayout';
 export * from './grid';
