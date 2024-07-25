@@ -30,6 +30,7 @@ export interface IPopoverStandAlone {
   maxWidth?: string;
   component?: PopoverComponentType;
   id?: string;
+  ['aria-label']?: string;
   ['aria-modal']?: boolean;
   ['aria-description']?: string;
   ['aria-labelledby']?: string;

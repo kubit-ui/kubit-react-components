@@ -26,6 +26,8 @@ const PopoverStandAloneComponent = (
           variant={animationConfig?.animation}
         >
           <PopoverStyled
+            // Allow to identificate the element
+            data-popover
             {...ariaProps}
             align={props.align}
             as={props.component}

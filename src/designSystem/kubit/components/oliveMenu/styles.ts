@@ -46,6 +46,11 @@ export const OLIVE_MENU_STYLES: OliveMenuStylesType<OliveMenuVariant> = {
         gap: SPACINGS.spacing_0,
       },
     },
+    popover: {
+      [DeviceBreakpointsType.DESKTOP]: {
+        left: '0px',
+      },
+    },
     popoverVariant: PopoverVariantType.ACTION_BOTTOM_SHEET,
     actionBottomSheet: {
       variant: ActionBottomSheetVariantType.DEFAULT,

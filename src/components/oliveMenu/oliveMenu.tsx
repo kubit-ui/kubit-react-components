@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { useEscPressed, useMediaDevice } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
@@ -10,30 +11,31 @@ const OLIVE_MENU_STYLES = 'OLIVE_MENU_STYLES';
 
 const OliveMenuComponent = React.forwardRef(
   <V extends string | unknown>(
-    {
-      variant,
-      ctv,
-      trigger,
-      popover,
-      actionBottomSheetStructure,
-      onOpenClose,
-      ...props
-    }: IOliveMenu<V>,
+    { variant, ctv, trigger, actionBottomSheetStructure, onOpenClose, ...props }: IOliveMenu<V>,
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
     const [open, setOpen] = React.useState<boolean>(false);
     const styles = useStyles<OliveMenuGlobalStylesType, V>(OLIVE_MENU_STYLES, variant, ctv);
+    const device = useMediaDevice();
+
+    const innerRef = React.useRef<HTMLDivElement>(null);
+    React.useImperativeHandle(ref, () => innerRef.current as HTMLDivElement, []);
+
+    const handlePressScape = React.useCallback(() => {
+      // Do nothing if already closed
+      if (!open) {
+        return;
+      }
+      setOpen(false);
+      onOpenClose?.(false);
+    }, [open]);
+
+    useEscPressed({ execute: handlePressScape, element: innerRef });
 
     const handleTriggerClick = e => {
       setOpen(!open);
       onOpenClose?.(!open, e);
       trigger?.onClick?.(e);
-    };
-
-    const handlePopoverCloseInternally = () => {
-      setOpen(false);
-      onOpenClose?.(false);
-      popover?.onCloseInternally?.();
     };
 
     const handleCloseIconClick = e => {
@@ -42,18 +44,28 @@ const OliveMenuComponent = React.forwardRef(
       actionBottomSheetStructure?.closeIcon?.onClick?.(e);
     };
 
+    const handleBlur: React.FocusEventHandler<HTMLDivElement> = e => {
+      // Do nothing if the new focus is inside the component or already closed
+      if (e.currentTarget.contains(e.relatedTarget) || !open) {
+        return;
+      }
+      setOpen(false);
+      onOpenClose?.(false, e);
+    };
+
     return (
       <OliveMenuStandAlone
         {...props}
-        ref={ref}
+        ref={innerRef}
         actionBottomSheetStructure={{
           ...actionBottomSheetStructure,
           closeIcon: { ...actionBottomSheetStructure?.closeIcon, onClick: handleCloseIconClick },
         }}
+        device={device}
         open={open}
-        popover={{ ...popover, onCloseInternally: handlePopoverCloseInternally }}
         styles={styles}
         trigger={trigger && { ...trigger, onClick: handleTriggerClick }}
+        onBlur={handleBlur}
       />
     );
   }

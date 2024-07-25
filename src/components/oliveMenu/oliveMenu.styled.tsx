@@ -10,6 +10,9 @@ type OliveMenuStylesProps = {
 
 export const OliveMenuStyled = styled.div<OliveMenuStylesProps>`
   ${({ styles }) => getStyles(styles.container)};
+  *[data-popover] {
+    ${({ styles }) => getStyles(styles.popover)};
+  }
 `;
 
 export const ButtonContainer = styled.div<OliveMenuStylesProps>`
