@@ -21,6 +21,8 @@ export interface ITagStandAlone extends TagAriaAttributes {
   styles: TagPropsStylesType;
   icon?: IElementOrIcon;
   label?: TagLabelType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  component?: string | React.ComponentType<any>;
   dataTestId?: string;
 }
 

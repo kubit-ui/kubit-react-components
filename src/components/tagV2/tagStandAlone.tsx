@@ -14,7 +14,13 @@ const TagStandAloneComponent = (
 ): JSX.Element => {
   const ariaProps = pickAriaProps(props);
   return (
-    <TagContainerStyled ref={ref} data-testid={dataTestId} styles={props.styles} {...ariaProps}>
+    <TagContainerStyled
+      ref={ref}
+      as={props.component}
+      data-testid={dataTestId}
+      styles={props.styles}
+      {...ariaProps}
+    >
       <ElementOrIcon customIconStyles={props.styles.icon} {...props.icon} />
       <Text
         component={TextComponentType.SPAN}

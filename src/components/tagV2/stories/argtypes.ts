@@ -41,6 +41,17 @@ export const argtypes = (
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    component: {
+      description: 'Component',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string | React.ComponentType<any>',
+        },
+        category: CATEGORY_CONTROL.CUSTOMIZATION,
+      },
+    },
     dataTestId: {
       description: 'Test id',
       type: { name: 'string' },
