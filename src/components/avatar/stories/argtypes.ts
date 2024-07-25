@@ -8,7 +8,7 @@ import { AvatarBackgroundColor } from '../types';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {
-    theme: {
+    themeArgs: {
       table: {
         disable: true,
       },

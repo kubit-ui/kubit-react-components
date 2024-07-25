@@ -11,3 +11,5 @@ export type {
 export { LoadingStateState } from './types';
 
 export { LoadingState } from './loadingState';
+
+export { LoadingStateStyled } from './loadingState.styled';

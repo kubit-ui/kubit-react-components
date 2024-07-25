@@ -5,7 +5,7 @@ import { AriaLiveOptionType } from '@/types/ariaLiveOption';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {
-    theme: {
+    themeArgs: {
       table: {
         disable: true,
       },
