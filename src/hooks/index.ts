@@ -17,3 +17,4 @@ export { useScrollEffect } from './useScrollEffect/useScrollEffect';
 export * from './useScrollPosition/useScrollPosition';
 export { useZoomEffect } from './useZoomEffect/useZoomEffect';
 export { useDeviceHeight } from './useDeviceHeight/useDeviceHeight';
+export { useElementBoundingClientRect } from './useElementBoundingClientRect/useElementBoundingClientRect';

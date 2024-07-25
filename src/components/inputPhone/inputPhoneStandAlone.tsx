@@ -3,6 +3,7 @@ import React, { ForwardedRef, forwardRef, useCallback, useState } from 'react';
 import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text';
 import { useId } from '@/hooks';
+import { useElementBoundingClientRect } from '@/hooks/useElementBoundingClientRect/useElementBoundingClientRect';
 import { POSITIONS } from '@/types';
 import { pxToRem } from '@/utils';
 
@@ -18,6 +19,11 @@ export const InputPhoneStandAloneComponent = (
   ref: ForwardedRef<HTMLInputElement | undefined>
 ): JSX.Element => {
   const [width, setWidth] = useState(0);
+
+  const { measures } = useElementBoundingClientRect({
+    ref: ref as React.MutableRefObject<HTMLInputElement>,
+  });
+
   const measuredRef = useCallback(node => {
     if (node !== null) {
       const widthWithMargin =
@@ -39,6 +45,7 @@ export const InputPhoneStandAloneComponent = (
   const flagVariant =
     props.flag?.variant ?? props.styles?.[props.state]?.affixIconHighlighted?.variant;
   const flagSize = props.flag?.size ?? props.styles?.[props.state]?.affixIconHighlighted?.size;
+
   const renderAffix = () => (
     <AffixStyled ref={measuredRef} id={extraAriaLabelledBy} styles={props.styles?.[props.state]}>
       {props.prefixNode ? (
@@ -123,7 +130,8 @@ export const InputPhoneStandAloneComponent = (
             POSITIONS.LEFT,
             width,
             props.styles?.[props.state]?.affixContainerPosition === InputContentPosition.OUT,
-            props.styles?.[props.state]?.helpMessage?.position
+            props.styles?.[props.state]?.helpMessage?.position,
+            measures?.width
           )
         }
         variant={props.inputVariant ?? props.styles?.[props.state]?.inputVariant}
