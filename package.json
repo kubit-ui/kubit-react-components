@@ -153,7 +153,7 @@
     "typedoc": "^0.26.5",
     "typedoc-plugin-markdown": "^4.2.3",
     "typescript": "^5.5.4",
-    "vite": "^5.3.4",
+    "vite": "^5.3.3",
     "vite-tsconfig-paths": "^4.3.2",
     "yarn-deduplicate": "^6.0.2"
   },
