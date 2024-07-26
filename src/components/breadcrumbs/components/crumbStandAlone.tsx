@@ -1,8 +1,10 @@
 import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Link, LinkActionType } from '@/components/link';
-import { Text, TextComponentType } from '@/components/text';
+import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
+import { Link } from '@/components/link/link';
+import { LinkActionType } from '@/components/link/types/action';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { States, useManageState } from '@/hooks';
 
 import {

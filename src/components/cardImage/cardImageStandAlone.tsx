@@ -1,8 +1,10 @@
 import * as React from 'react';
 
-import { Link, LinkPositionType } from '@/components/link';
-import { Text, TextComponentType } from '@/components/text';
-import { ROLES } from '@/types';
+import { Link } from '@/components/link/link';
+import { LinkPositionType } from '@/components/link/types/position';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
+import { ROLES } from '@/types/role';
 
 import {
   CardImageContentStyled,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { ActionBottomSheetControlled as ActionBottomSheet } from '@/components/actionBottomSheet';
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { ListOptions, ListOptionsOptionType, ListOptionsType } from '@/components/listOptions';
 import { Tabs } from '@/components/tabs';
 import { TextComponentType } from '@/components/text';

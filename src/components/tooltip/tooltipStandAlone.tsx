@@ -7,7 +7,8 @@ import {
   PopoverComponentType,
   PopoverPositionVariantType,
 } from '@/components/popover';
-import { Text, TextComponentType } from '@/components/text';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { useId } from '@/hooks/useId/useId';
 import { DeviceBreakpointsType, ROLES } from '@/types';
 

@@ -2,7 +2,8 @@
 import * as React from 'react';
 
 import { ScreenReaderOnly } from '@/components/screenReaderOnly';
-import { Text, TextComponentType } from '@/components/text';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { useId } from '@/hooks';
 
 import { InfoIconWithTooltipStandAlone } from './components';

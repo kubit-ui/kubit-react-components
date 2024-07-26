@@ -3,7 +3,7 @@ import * as React from 'react';
 import { pickAriaProps } from '@/utils/aria/aria';
 
 import { ElementOrIcon } from '../elementOrIcon';
-import { Loader } from '../loader';
+import { Loader } from '../loader/loader';
 import { ButtonLoaderStyled, ButtonStyled } from './button.styled';
 import { ButtonStateType, IButtonStandAlone } from './types';
 

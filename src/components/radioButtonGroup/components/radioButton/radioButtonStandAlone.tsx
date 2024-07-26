@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Label } from '@/components/label';
+import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
 import { Text } from '@/components/text';
 import { useId } from '@/hooks';
 

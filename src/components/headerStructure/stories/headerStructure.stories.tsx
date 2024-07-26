@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
 import { ICONS } from '@/assets';
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { HeaderContentPositionType } from '@/components/header/types';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
 import { STYLES_NAME } from '@/constants';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { ScreenReaderOnly } from '@/components/screenReaderOnly';
-import { Tag } from '@/components/tag';
+import { Tag } from '@/components/tag/tag';
 import { Text, TextComponentType, TextDecorationType } from '@/components/text';
 import { DeviceBreakpointsType } from '@/types';
 

@@ -79,6 +79,7 @@ const commonArgs: ISelectorBoxFile = {
     content: { content: 'This is a tooltip content' },
   },
   tooltipIcon: { icon: ICONS.ICON_PLACEHOLDER },
+  fileExtension: ['pdf', 'jpeg'],
   containerBoxStateContent: {
     [SelectorBoxFileStateType.DEFAULT]: {
       icon: { icon: ICONS.ICON_PLACEHOLDER },

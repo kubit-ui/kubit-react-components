@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { TextCount } from '@/components/textCount';
+import { TextCount } from '@/components/textCount/textCount';
 
 import { InputControlled as Input } from '../input';
 import { IInputCounterStandAlone } from './types';

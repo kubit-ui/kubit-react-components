@@ -229,7 +229,7 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
       control: { type: 'object' },
       table: {
         type: {
-          summary: 'array',
+          summary: 'string[]',
         },
         category: CATEGORY_CONTROL.MODIFIERS,
       },

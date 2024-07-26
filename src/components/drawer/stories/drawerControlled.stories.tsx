@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
 import { ICONS } from '@/assets';
-import { Button } from '@/components/button';
-import { FooterPositionType } from '@/components/footer';
+import { Button } from '@/components/button/button';
+import { FooterPositionType } from '@/components/footer/types/position';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { TextComponentType } from '@/components/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { STYLES_NAME } from '@/constants';
 import { ButtonSizeType, ButtonVariantType } from '@/designSystem/kubit/components/variants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactElement } from 'react';
 
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 
 import { SliderButtonType, SliderIncDecButtonStylesType } from '../types';
 

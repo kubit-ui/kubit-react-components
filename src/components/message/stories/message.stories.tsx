@@ -65,6 +65,11 @@ export const Message: Story = {
         target: LinkTargetType.BLANK,
       },
     ],
+    // actionButton: {
+    //   content: 'Action',
+    //   variant: Object.values(variantsObject[themeSelected].ButtonVariantType || {})[0] as string,
+    //   size: Object.values(variantsObject[themeSelected].ButtonSizeType || {})[2] as string,
+    // },
     tag: {
       variant: Object.values(variantsObject[themeSelected].TagVariantType || {})[0] as string,
       option: Object.values(variantsObject[themeSelected].TagOptionType || {})[0] as string,
@@ -72,6 +77,15 @@ export const Message: Story = {
       content: 'Tag content',
     },
     dataTestId: 'dataTestId',
+    // messageContainerProps: {
+    //   url: 'https://www.google.com',
+    //   target: LinkTargetType.BLANK,
+    // },
+    // titleAndContentContainerProps: {
+    //   url: 'https://www.google.com',
+    //   target: LinkTargetType.BLANK,
+    //   onClick: () => console.log('Card clicked'),
+    // },
     themeArgs: themesObject[themeSelected][STYLES_NAME.MESSAGE],
   },
 };

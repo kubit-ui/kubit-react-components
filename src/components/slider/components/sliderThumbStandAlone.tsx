@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { ElementOrIcon, IElementOrIcon } from '@/components/elementOrIcon';
-import { Tooltip } from '@/components/tooltip';
+import { TooltipUnControlled as Tooltip } from '@/components/tooltip/tooltipUnControlled';
 import { useMediaDevice } from '@/hooks';
 import { ROLES } from '@/types';
 

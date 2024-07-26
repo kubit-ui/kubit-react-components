@@ -5,7 +5,7 @@ import { Text } from '@/components/text';
 import { TextComponentType } from '@/components/text/types';
 import { buildPropsDecorativeElement } from '@/utils';
 
-import { DecorativeElement } from '../decorativeElement';
+import { DecorativeElement } from '../decorativeElement/decorativeElementStandAlone';
 import {
   ConfirmationMessageStyled,
   ContentContainerStyled,

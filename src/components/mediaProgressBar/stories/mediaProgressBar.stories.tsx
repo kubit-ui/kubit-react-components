@@ -4,7 +4,7 @@ import * as React from 'react';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
-import { Button } from '../../button';
+import { Button } from '../../button/button';
 import { MediaProgressBar as Story } from '../mediaProgressBar';
 import { IMediaProgressBar } from '../types';
 import { argtypes } from './argtypes';

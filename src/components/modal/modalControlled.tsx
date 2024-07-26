@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import { STYLES_NAME } from '@/constants';
 import { useMediaDevice, useScrollEffect, useStyles, useZoomEffect } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '@/provider/errorBoundary/fallbackComponent';
 import { DeviceBreakpointsType } from '@/types';
 import { CssProperty } from '@/utils';
 

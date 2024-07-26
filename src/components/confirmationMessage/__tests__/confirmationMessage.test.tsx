@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { DecorativeType } from '@/components/decorativeElement';
 import { IElementOrIcon } from '@/components/elementOrIcon';
 import { FooterPositionType } from '@/components/footer';

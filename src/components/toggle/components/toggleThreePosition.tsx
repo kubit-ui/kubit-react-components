@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { InputTypeType } from '@/components/input';
-import { Label } from '@/components/label';
+import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
 import { ScreenReaderOnly } from '@/components/screenReaderOnly';
-import { Text, TextComponentType } from '@/components/text';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { AriaLiveOptionType, POSITIONS } from '@/types';
 
 import {

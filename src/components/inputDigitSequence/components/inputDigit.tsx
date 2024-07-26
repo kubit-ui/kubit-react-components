@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Label } from '@/components/label';
+import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
 import { Text } from '@/components/text';
 import { InputModeType } from '@/types';
 import { InputTypeType } from '@/types/inputType';

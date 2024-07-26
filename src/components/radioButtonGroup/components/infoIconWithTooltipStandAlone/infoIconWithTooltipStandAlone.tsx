@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Tooltip } from '@/components/tooltip';
+import { TooltipUnControlled as Tooltip } from '@/components/tooltip/tooltipUnControlled';
 
 import { IInfoIconWithTooltipStandAlone, RadioButtonGroupStateType } from '../../types';
 import { InfoIconWrapperStyled } from './infoIconWithTooltipStandAlone.styled';

@@ -8,7 +8,7 @@ import 'jest-styled-components';
 import { axe } from 'jest-axe';
 
 import { FooterPositionType } from '@/components/footer';
-import { Link } from '@/components/link';
+import { Link } from '@/components/link/link';
 import { TextComponentType } from '@/components/text';
 
 import { renderProvider } from '../../../tests/renderProvider/renderProvider.utility';

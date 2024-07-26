@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { LinkActionType } from '@/components/link';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { ButtonSizeType, ButtonVariantType } from '@/designSystem/kubit/components/variants';
 
 import { Snackbar } from './errorBoundarySnackbar.styled';
