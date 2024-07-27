@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
+import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
 
-import { Label } from '../label';
+import { LabelStandAlone as Label } from '../label/labelStandAlone';
 import { QuickButtonContainerStyled, QuickButtonStyled } from './quickButton.styled';
 import { IQuickButtonStandAlone, QuickButtonState } from './types';
 

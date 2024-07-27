@@ -7,6 +7,7 @@ import ICON_GHOST from './icons/icon_ghost.svg';
 import ICON_PLACEHOLDER from './icons/icon_placeholder.svg';
 import ICON_CLOSE from './icons/icon_x_close.svg';
 import ICON_PLAY_BUTTON from './icons/play_button.svg';
+import ICON_REPLACE from './icons/replace.svg';
 import ILLUSTRATION from './illustrations/illustration.svg';
 import IMAGE_1 from './images/image_1.png';
 import IMAGE_2 from './images/image_2.png';
@@ -24,6 +25,7 @@ export const ICONS = {
   ICON_CLOSE,
   ICON_PLAY_BUTTON,
   ICON_CHECKMARK_THICK,
+  ICON_REPLACE,
 };
 
 export const ILLUSTRATIONS = {

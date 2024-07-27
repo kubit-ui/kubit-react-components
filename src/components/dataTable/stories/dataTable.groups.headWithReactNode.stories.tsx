@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 
-import { ICONS } from '@/assets';
-import { Divider } from '@/components/divider';
-import { ElementOrIcon } from '@/components/elementOrIcon';
+import { ICONS } from '@/assets/storybook/';
+import { Divider } from '@/components/divider/divider';
+import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
 import { variantsObject } from '@/designSystem/themesObject';
 
 import { DataTable } from '../dataTable';

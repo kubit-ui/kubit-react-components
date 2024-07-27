@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { ActionBottomSheetControlledStructure } from '@/components/actionBottomSheet/actionBottomSheetControlled';
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { ListOptions, ListOptionsType } from '@/components/listOptions';
 import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
 import { ScreenReaderOnly } from '@/components/screenReaderOnly';

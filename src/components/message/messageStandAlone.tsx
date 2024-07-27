@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { ElementOrIcon } from '@/components/elementOrIcon';
-import { ElementOrIllustration } from '@/components/elementOrIllustration';
-import { Tag } from '@/components/tag';
+import { ElementOrIllustration } from '@/components/elementOrIllustration/elementOrIllustration';
+import { Tag } from '@/components/tag/tag';
 import { Text, TextComponentType, TextDecorationType } from '@/components/text';
 import { AriaLiveOptionType } from '@/types';
 

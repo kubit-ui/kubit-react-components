@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { FooterPositionType } from '@/components/footer';
-import { ModalControlled } from '@/components/modal';
-import { PopoverPositionVariantType } from '@/components/popover';
-import { Text, TextComponentType } from '@/components/text';
+import { FooterPositionType } from '@/components/footer/types/position';
+import { ModalControlled } from '@/components/modal/modalControlled';
+import { PopoverPositionVariantType } from '@/components/popover/types/positionVariant';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import {
   ModalVariantType,
   PopoverVariantType,

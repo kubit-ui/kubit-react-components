@@ -1,12 +1,13 @@
 import * as React from 'react';
 
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { ElementOrIcon } from '@/components/elementOrIcon';
-import { ElementOrIllustration } from '@/components/elementOrIllustration';
-import { Footer } from '@/components/footer';
+import { ElementOrIllustration } from '@/components/elementOrIllustration/elementOrIllustration';
+import { Footer } from '@/components/footer/footer';
 import { PopoverControlled as Popover } from '@/components/popover';
 import { PopoverComponentType, PopoverPositionVariantType } from '@/components/popover/types';
-import { Text, TextComponentType } from '@/components/text';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { useId } from '@/hooks';
 import { DeviceBreakpointsType } from '@/types';
 

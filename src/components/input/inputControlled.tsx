@@ -1,6 +1,7 @@
 // vendors
 import * as React from 'react';
 
+import { STYLES_NAME } from '@/constants/stylesName';
 import { useId } from '@/hooks/useId/useId';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
@@ -16,8 +17,6 @@ import {
   InputStylesProps,
 } from './types';
 
-const INPUT_STYLES = 'INPUT_STYLES';
-
 const InputControlledComponent = React.forwardRef(
   <V extends string | unknown>(
     {
@@ -31,9 +30,9 @@ const InputControlledComponent = React.forwardRef(
     }: IInputControlled<V>,
     ref: React.ForwardedRef<HTMLInputElement | undefined | null>
   ): JSX.Element => {
-    let styles = useStyles<InputStylesProps, V>(INPUT_STYLES, props.variant, ctv);
+    let styles = useStyles<InputStylesProps, V>(STYLES_NAME.INPUT, props.variant, ctv);
     // TODO improvement this merge object in THEME
-    styles = mergeObjects({ ...styles } ?? {}, props.overrideStyles ?? {});
+    styles = mergeObjects({ ...styles }, props.overrideStyles ?? {});
 
     const uniqueId = useId('input');
     const inputId = props.id ?? uniqueId;

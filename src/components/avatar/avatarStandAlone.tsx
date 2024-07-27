@@ -1,10 +1,11 @@
 import * as React from 'react';
 
 import { ButtonType } from '@/components/button';
-import { Dot } from '@/components/dot';
+import { Dot } from '@/components/dot/dot';
 import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Link } from '@/components/link';
-import { Text, TextComponentType } from '@/components/text';
+import { Link } from '@/components/link/link';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { pickAriaProps } from '@/utils/aria/aria';
 
 import { AvatarDotStyled, AvatarLinkStyled, AvatarStyled } from './avatar.styled';

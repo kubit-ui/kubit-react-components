@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ICONS } from '@/assets';
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { FooterPositionType } from '@/components/footer';
 import { Icon } from '@/components/icon';
 import { DeviceBreakpointsType } from '@/types';

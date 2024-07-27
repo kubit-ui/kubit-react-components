@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { Avatar } from '@/components/avatar';
-import { ElementOrIllustration } from '@/components/elementOrIllustration';
-import { IconHighlighted } from '@/components/iconHighlighted';
-import { ErrorBoundary } from '@/provider/errorBoundary';
+import { Avatar } from '@/components/avatar/avatar';
+import { ElementOrIllustration } from '@/components/elementOrIllustration/elementOrIllustration';
+import { IconHighlighted } from '@/components/iconHighlighted/iconHighlighted';
+import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
 
-import { ElementOrIcon } from '../elementOrIcon';
-import { Image } from '../image';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { Image } from '../image/image';
 import { DecorativeType, IDecorativeElementStandAlone } from './types';
 
 /**

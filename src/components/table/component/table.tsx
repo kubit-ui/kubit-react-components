@@ -1,7 +1,8 @@
 import * as React from 'react';
 
-import { Footer } from '@/components/footer';
-import { Text, TextComponentType } from '@/components/text';
+import { Footer } from '@/components/footer/footer';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { useId } from '@/hooks';
 import { ROLES } from '@/types';
 import { pickAriaProps } from '@/utils/aria/aria';

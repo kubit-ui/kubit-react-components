@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import { ButtonType } from '@/components/button';
 import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text, TextComponentType } from '@/components/text';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 
 import { useContent } from '../hooks/useContent';
 import {

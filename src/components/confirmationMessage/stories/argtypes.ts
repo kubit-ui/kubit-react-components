@@ -6,7 +6,7 @@ import { ALIGN_TYPE, ConfirmationMessageStateType } from '../types';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {
-    theme: {
+    themeArgs: {
       table: {
         disable: true,
       },

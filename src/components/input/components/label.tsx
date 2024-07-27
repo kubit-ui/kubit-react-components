@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Label } from '@/components/label';
+import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
 
 // styles
 import { AdditionalInfoWrapperStyled, LabelWrapperStyled } from '../input.styled';

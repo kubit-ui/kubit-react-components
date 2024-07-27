@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import { Text, TextComponentType } from '@/components/text';
+import { Text } from '@/components/text/text';
 import { useId } from '@/hooks/useId/useId';
 
+import { TextComponentType } from '../text/types/component';
 import type { ILabelStandAlone } from './types';
 
 export const LabelStandAloneComponent = (

@@ -1,12 +1,13 @@
 import * as React from 'react';
 
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Link } from '@/components/link';
+import { Link } from '@/components/link/link';
 import { PopoverControlled as Popover } from '@/components/popover';
 import { PopoverComponentType } from '@/components/popover/types';
 import { ScreenReaderOnly } from '@/components/screenReaderOnly';
-import { Text, TextComponentType } from '@/components/text';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { POSITIONS, ROLES } from '@/types';
 
 // styles

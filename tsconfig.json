@@ -2,7 +2,7 @@
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
     "target": "es2020",
-    "lib": ["ES2015", "ES2016", "DOM"],
+    "lib": ["ES2015", "ES2016", "ES2021", "DOM"],
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "module": "ESNext",

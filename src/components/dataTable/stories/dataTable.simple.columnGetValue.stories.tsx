@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
 
 import { ICONS } from '@/assets';
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { variantsObject } from '@/designSystem/themesObject';
 
 import { DataTable } from '../dataTable';

@@ -1,9 +1,10 @@
 import * as React from 'react';
 
-import { Button, IconPositionType } from '@/components/button';
+import { Button } from '@/components/button/button';
+import { IconPositionType } from '@/components/button/types/buttonIconPosition';
 import { ElementOrIcon } from '@/components/elementOrIcon';
-import { ElementOrIllustration } from '@/components/elementOrIllustration';
-import { Link } from '@/components/link';
+import { ElementOrIllustration } from '@/components/elementOrIllustration/elementOrIllustration';
+import { Link } from '@/components/link/link';
 import { Text } from '@/components/text';
 import { TextComponentType, TextDecorationType } from '@/components/text/types';
 

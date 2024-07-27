@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Footer } from '@/components/footer';
+import { Footer } from '@/components/footer/footer';
 
 import { ListContainerHeaderPriorityStyled, ListContainerStyled } from '../table.styled';
 import { FormatListHeaderPriorityType } from '../types/formatListHeaderPriority';

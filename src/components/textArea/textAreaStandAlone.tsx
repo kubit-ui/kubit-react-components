@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Label } from '@/components/label';
-import { TextCount } from '@/components/textCount';
+import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
+import { TextCount } from '@/components/textCount/textCount';
 import { AriaLiveOptionType } from '@/types';
 
 import { useId } from '../../hooks';

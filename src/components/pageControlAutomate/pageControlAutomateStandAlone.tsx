@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { MediaButton } from '@/components/mediaButton';
-import { MediaProgressBar } from '@/components/mediaProgressBar';
+import { MediaButton } from '@/components/mediaButton/mediaButton';
+import { MediaProgressBar } from '@/components/mediaProgressBar/mediaProgressBar';
 
 import { MediaButtonSizeType } from '../mediaButton/types/sizes';
 import {

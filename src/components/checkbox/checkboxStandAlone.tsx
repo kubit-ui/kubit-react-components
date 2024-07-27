@@ -1,8 +1,9 @@
 import * as React from 'react';
 
 import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Label } from '@/components/label';
-import { Text, TextComponentType } from '@/components/text';
+import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { useId } from '@/hooks/useId/useId';
 import { AriaLiveOptionType } from '@/types/ariaLiveOption';
 

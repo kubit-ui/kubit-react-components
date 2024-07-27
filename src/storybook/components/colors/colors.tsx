@@ -1,21 +1,22 @@
 import React, { ReactNode } from 'react';
 
 import { themesObject } from '@/designSystem/themesObject';
+import { Foundations } from '@/storybook/constants';
 
 import {
-  ColorsCicleStyled,
-  ColorsCircleNameStyled,
-  ColorsColorDataStyled,
-  ColorsContainerStyled,
-  ColorsHexNameStyled,
-  ColorsNameStyled,
-  ColorsStyled,
-  ColorsTitleStyled,
-} from './colors.styled';
+  FoundationCicleStyled,
+  FoundationCircleNameStyled,
+  FoundationColorDataStyled,
+  FoundationContainerStyled,
+  FoundationHexNameStyled,
+  FoundationNameStyled,
+  FoundationStyled,
+  FoundationTitleStyled,
+} from '../common';
 
 export const Colors = (): JSX.Element[] | JSX.Element => {
   const theme = localStorage.getItem('themeSelected') || 'kubit';
-  const themeObject = themesObject[theme]['COLORS'];
+  const themeObject = themesObject[theme][Foundations.COLORS];
 
   if (themeObject === undefined || !themeObject) {
     return (
@@ -28,32 +29,32 @@ export const Colors = (): JSX.Element[] | JSX.Element => {
 
   return Object.entries(themeObject).map(([key]) => {
     return (
-      <ColorsStyled key={key}>
-        <ColorsTitleStyled>{key}</ColorsTitleStyled>
-        <ColorsContainerStyled>
+      <FoundationStyled key={key}>
+        <FoundationTitleStyled>{key}</FoundationTitleStyled>
+        <FoundationContainerStyled>
           {Object.entries(themeObject[key]).map(([_key, value]) => {
             return (
-              <ColorsColorDataStyled key={_key + value}>
-                <ColorsCircleNameStyled>
-                  <ColorsCicleStyled
+              <FoundationColorDataStyled key={_key + value}>
+                <FoundationCircleNameStyled>
+                  <FoundationCicleStyled
                     style={{
                       backgroundColor: `${value}`,
                     }}
                   />
-                  <ColorsNameStyled>
+                  <FoundationNameStyled>
                     <b>color name</b>
                     <span>{_key}</span>
-                  </ColorsNameStyled>
-                </ColorsCircleNameStyled>
-                <ColorsHexNameStyled>
+                  </FoundationNameStyled>
+                </FoundationCircleNameStyled>
+                <FoundationHexNameStyled>
                   <b>Hex</b>
                   <span>{value as ReactNode}</span>
-                </ColorsHexNameStyled>
-              </ColorsColorDataStyled>
+                </FoundationHexNameStyled>
+              </FoundationColorDataStyled>
             );
           })}
-        </ColorsContainerStyled>
-      </ColorsStyled>
+        </FoundationContainerStyled>
+      </FoundationStyled>
     );
   });
 };

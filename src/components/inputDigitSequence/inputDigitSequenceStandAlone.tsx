@@ -1,8 +1,10 @@
 import * as React from 'react';
 
-import { Button, IconPositionType } from '@/components/button';
+import { Button } from '@/components/button/button';
+import { IconPositionType } from '@/components/button/types/buttonIconPosition';
 import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text, TextComponentType } from '@/components/text';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { AriaLiveOptionType } from '@/types';
 
 import { InputDigit, InputDigitSequenceHelpText, InputDigitSequenceTooltip } from './components';

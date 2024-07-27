@@ -3,7 +3,8 @@ import * as React from 'react';
 import { STYLES_NAME } from '@/constants/index';
 import { States, useManageState } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '@/provider/errorBoundary/fallbackComponent';
 
 import { ButtonStandAlone } from './buttonStandAlone';
 import {

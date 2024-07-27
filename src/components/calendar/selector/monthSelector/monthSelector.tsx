@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import { ButtonType } from '@/components/button';
 import { ItemRove } from '@/components/itemRove';
-import { Text, TextComponentType } from '@/components/text';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { useRoveFocus } from '@/hooks';
 import { useUtilsProvider } from '@/provider';
 

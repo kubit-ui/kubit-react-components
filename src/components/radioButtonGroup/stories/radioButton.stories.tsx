@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
-import { RadioButton as Story } from '../components';
+import { RadioButton as Story } from '../components/radioButton/radioButton';
 import { argtypes } from './radioButton.argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'flamePrivateLightAlt';

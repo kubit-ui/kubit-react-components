@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { Icon } from '@/components/icon';
 import * as useMediaDevice from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';

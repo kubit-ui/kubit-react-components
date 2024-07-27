@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Button } from '@/components/button';
+import { Button } from '@/components/button/button';
 import { ElementOrIcon } from '@/components/elementOrIcon';
 import { IconHighlighted } from '@/components/iconHighlighted';
 import { Text } from '@/components/text';

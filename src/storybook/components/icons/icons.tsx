@@ -4,6 +4,7 @@ import { Icon } from '@/components/icon';
 import { themesObject } from '@/designSystem/themesObject';
 import { UtilsProviderDocStorybook } from '@/storybook/provider/utilsProvider/utilsProvider';
 
+import { FoundationStyled } from '../common';
 import { IconNameStyled, IconsDataStyled, IconsInputStyled, IconsStyled } from './icons.styled';
 
 export const Icons = (): JSX.Element => {
@@ -34,7 +35,7 @@ export const Icons = (): JSX.Element => {
 
   return (
     <UtilsProviderDocStorybook theme={theme}>
-      <>
+      <FoundationStyled>
         <IconsInputStyled
           placeholder="Search Icon"
           type="text"
@@ -42,7 +43,7 @@ export const Icons = (): JSX.Element => {
           onChange={e => setSearchValue(e.target.value)}
         />
         <IconsStyled>{icons}</IconsStyled>
-      </>
+      </FoundationStyled>
     </UtilsProviderDocStorybook>
   );
 };

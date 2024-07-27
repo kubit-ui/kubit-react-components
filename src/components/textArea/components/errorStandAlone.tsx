@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { ElementOrIcon, IElementOrIcon } from '@/components/elementOrIcon';
-import { Text, TextComponentType } from '@/components/text';
+import { Text } from '@/components/text/text';
+import { TextComponentType } from '@/components/text/types/component';
 import { AriaLiveOptionType } from '@/types';
 
 import { ErrorWrapperStyled } from '../textArea.styled';
