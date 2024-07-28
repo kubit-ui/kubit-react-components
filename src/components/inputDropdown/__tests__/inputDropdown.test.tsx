@@ -220,7 +220,7 @@ describe('New Input Dropdown Component', () => {
     const listOptions = screen.getByRole(ROLES.LISTBOX);
     expect(listOptions).toBeInTheDocument();
 
-    const inputOption = screen.getByTestId('testidOptionsListOption0');
+    const inputOption = screen.getByTestId('testidOptionsListOption0option1');
     expect(inputOption).toHaveFocus();
   });
 
@@ -252,7 +252,9 @@ describe('New Input Dropdown Component', () => {
       fireEvent.keyDown(inputDropdown, ARROW_DOWN);
     });
 
-    const inputOption = screen.getByTestId('testidOptionsListOption0');
+    const inputOption = screen.getByTestId(
+      'testidOptionsListOption0option1LastNoHightlightedLabel'
+    );
 
     await act(async () => {
       fireEvent.keyDown(inputOption, {
