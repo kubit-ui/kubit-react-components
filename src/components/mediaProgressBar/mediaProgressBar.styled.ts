@@ -48,6 +48,8 @@ export const BarContainerStyled = styled.div<MediaProgressBarStylesType>`
     `};
   &:focus-visible {
     outline-style: none;
+    box-shadow: none;
+
     & > ${BarStyled} {
       ${({ theme: { FOCUS_STYLES } }) => FOCUS_STYLES};
     }
