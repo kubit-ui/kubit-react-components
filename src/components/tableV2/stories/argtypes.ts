@@ -19,9 +19,32 @@ export const argtypes = (
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    children: {
+      description: 'children',
+      control: false,
+      table: {
+        type: { summary: 'ReactNode' },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     autoRightStickyCalc: {
       description:
-        'When true, the table will calc the sticky right position for those cells marked as sticky',
+        'When true, the table will calc the sticky right position for those cells marked as sticky right',
+      type: { name: 'boolean' },
+      control: { type: 'boolean' },
+      table: {
+        defaultValue: {
+          summary: 'true',
+        },
+        type: {
+          summary: 'boolean',
+        },
+        category: CATEGORY_CONTROL.CUSTOMIZATION,
+      },
+    },
+    autoLeftStickyCalc: {
+      description:
+        'When true, the table will calc the sticky left position for those cells marked as sticky left',
       type: { name: 'boolean' },
       control: { type: 'boolean' },
       table: {

@@ -22,5 +22,6 @@ export interface ITableV2
     Omit<CustomTokenTypes<TablePropsStylesTypeV2>, 'cts' | 'extraCt'> {
   variant?: string;
   autoRightStickyCalc?: boolean;
+  autoLeftStickyCalc?: boolean;
   disableShadowEffects?: boolean;
 }

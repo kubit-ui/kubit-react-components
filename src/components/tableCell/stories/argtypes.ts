@@ -19,6 +19,14 @@ export const argtypes = (
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    children: {
+      description: 'children',
+      control: false,
+      table: {
+        type: { summary: 'ReactNode' },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     id: {
       description: 'Id',
       type: { name: 'string' },
@@ -174,12 +182,14 @@ export const argtypes = (
       },
     },
     sticky: {
-      description: 'Sticky, when true the cell will be sticky',
-      type: { name: 'boolean' },
-      control: { type: 'boolean' },
+      description:
+        'It defines the sticky position (Avoid using boolean values for `sticky`, it is preferable to use `left` or `right` to define the sticky position)',
+      type: { name: 'boolean | left | right' },
+      control: { type: 'select' },
+      options: ['true', 'left', 'right'],
       table: {
         type: {
-          summary: 'boolean',
+          summary: 'boolean | left | right',
         },
         category: CATEGORY_CONTROL.MODIFIERS,
       },

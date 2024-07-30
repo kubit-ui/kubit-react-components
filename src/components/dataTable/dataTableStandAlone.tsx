@@ -47,6 +47,7 @@ const DataTableStandAloneComponent = (
         tabIndex={hasScroll ? 0 : undefined}
       >
         <TableV2
+          autoLeftStickyCalc={false}
           autoRightStickyCalc={false}
           component={usingRowGroups ? 'div' : undefined}
           disableShadowEffects={true}
@@ -99,6 +100,7 @@ const DataTableStandAloneComponent = (
                 </TableDivider>
               )}
               <TableV2
+                autoLeftStickyCalc={false}
                 autoRightStickyCalc={false}
                 disableShadowEffects={true}
                 hasScrollDisabled={true}

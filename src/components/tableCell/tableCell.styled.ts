@@ -24,7 +24,7 @@ export const TDStyled = styled.td<{
   min-width: ${({ $minWidth }) => $minWidth};
   max-width: ${({ $maxWidth }) => $maxWidth};
   text-align: ${({ $textAlign }) => $textAlign};
-  &[data-sticky='true'] {
+  &[data-sticky] {
     position: sticky;
   }
   &[data-hidden='true'] {

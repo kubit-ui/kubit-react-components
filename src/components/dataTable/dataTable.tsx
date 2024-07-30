@@ -4,7 +4,13 @@ import { STYLES_NAME } from '@/constants';
 import { useStylesV2 } from '@/hooks';
 
 import { DataTableStandAlone } from './dataTableStandAlone';
-import { useDataTableHasScroll, useDataTableShadow, useDataTableStickyColumns } from './hooks';
+import {
+  useDataTableHasScroll,
+  useDataTableShadow,
+  useDataTableStickyDividers,
+  useDataTableStickyLeftColumns,
+  useDataTableStickyRightColumns,
+} from './hooks';
 import { DataTablePropsStylesType, IDataTable } from './types';
 
 const DataTableComponent = (
@@ -23,8 +29,12 @@ const DataTableComponent = (
 
   // Indicates if the data-table has scroll in order to add accesibility aria props
   const { hasScroll } = useDataTableHasScroll({ ref: innerRef });
-  // Set column sticky if data table has horizontal scroll
-  useDataTableStickyColumns({ ref: innerRef });
+  // Set column sticky right if data table has horizontal scroll
+  useDataTableStickyRightColumns({ ref: innerRef });
+  // Set column sticky left if data table has horizontal scroll
+  useDataTableStickyLeftColumns({ ref: innerRef });
+  // Set dividers sticky position and width if data table has horizontal scroll
+  useDataTableStickyDividers({ ref: innerRef });
   // Set shadow when scrolling
   useDataTableShadow({
     ref: innerRef,

@@ -23,7 +23,10 @@ export interface ITableCellStandAlone extends TableCellAriasType {
   left?: string;
   right?: string;
   bottom?: string;
-  sticky?: boolean;
+  /**
+   * @remarks Avoid using boolean values for `sticky`. Prefer specifying 'left' or 'right' to define the sticky side.
+   */
+  sticky?: boolean | 'left' | 'right';
   hidden?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   component?: string | React.ComponentType<any>;

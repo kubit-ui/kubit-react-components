@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
 import { TableBody } from '@/components/tableBody';
-import { TableCaption } from '@/components/tableCaption';
 import { TableCell } from '@/components/tableCell';
 import { TableFoot } from '@/components/tableFoot';
 import { TableHead } from '@/components/tableHead';
@@ -17,7 +16,7 @@ import { argtypes } from './argtypes';
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 
 const meta = {
-  title: 'Components/Table/TableV2',
+  title: 'Components/Table/TableV2/StickyHead',
   component: Story,
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
@@ -26,10 +25,6 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
-
-const captionVariant = Object.values(
-  variantsObject[themeSelected].TableCaptionVariantType || {}
-)[0] as string;
 
 const tHeadVariant = Object.values(
   variantsObject[themeSelected].TableHeadVariantType || {}
@@ -47,16 +42,19 @@ const commonArgs: React.PropsWithChildren<ITableV2> = {
   variant: Object.values(variantsObject[themeSelected].TableV2VariantType || {})[0] as string,
 };
 
-export const Table: Story = {
+export const TableWithStickyHead: Story = {
   args: {
     ...commonArgs,
+    ctv: {
+      scrollableContainer: { height: '200px' },
+    },
+    ['aria-label']: 'Aria label example',
     themeArgs: themesObject[themeSelected][STYLES_NAME.TABLE_HEAD],
     children: (
       <>
-        <TableCaption variant={captionVariant}>Caption Example</TableCaption>
-        <TableHead variant={tHeadVariant}>
+        <TableHead sticky variant={tHeadVariant}>
           <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
-            <TableCell hidden th variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 1
             </TableCell>
             <TableCell th variant="HEADER_CELL_DEFAULT">

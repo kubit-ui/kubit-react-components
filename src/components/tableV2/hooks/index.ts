@@ -1,3 +1,4 @@
 export * from './useTableHasScroll';
 export * from './useTableShadow';
-export * from './useTableStickyColumns';
+export * from './useTableStickyRightColumns';
+export * from './useTableStickyLeftColumns';

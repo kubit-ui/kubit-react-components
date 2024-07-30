@@ -49,7 +49,10 @@ export type DataTableColumnType = {
   minWidth?: string;
   maxWidth?: string;
   hidden?: boolean;
-  sticky?: boolean;
+  /**
+   * @remarks Avoid using boolean values for `sticky`. Prefer specifying 'left' or 'right' to define the sticky side.
+   */
+  sticky?: boolean | 'left' | 'right';
   textAlign?: string;
   valueTextAlign?: string;
   valueGetter?: (value: DataTableCellValueType, row: DataTableRowType) => DataTableCellValueType;

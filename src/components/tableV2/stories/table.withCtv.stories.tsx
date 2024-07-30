@@ -7,8 +7,7 @@ import { TableCell } from '@/components/tableCell';
 import { TableFoot } from '@/components/tableFoot';
 import { TableHead } from '@/components/tableHead';
 import { TableRow } from '@/components/tableRow';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { variantsObject } from '@/designSystem/themesObject';
 
 import { Table as Story } from '../table';
 import { ITableV2 } from '../types';
@@ -17,7 +16,7 @@ import { argtypes } from './argtypes';
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 
 const meta = {
-  title: 'Components/Table/TableV2',
+  title: 'Components/Table/TableV2/WithCtv',
   component: Story,
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
@@ -47,16 +46,21 @@ const commonArgs: React.PropsWithChildren<ITableV2> = {
   variant: Object.values(variantsObject[themeSelected].TableV2VariantType || {})[0] as string,
 };
 
-export const Table: Story = {
+export const TableWithCtv: Story = {
   args: {
     ...commonArgs,
-    themeArgs: themesObject[themeSelected][STYLES_NAME.TABLE_HEAD],
+    ctv: {
+      wrapper: {
+        background_color: 'pink',
+        padding: '10px',
+      },
+    },
     children: (
       <>
         <TableCaption variant={captionVariant}>Caption Example</TableCaption>
         <TableHead variant={tHeadVariant}>
           <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
-            <TableCell hidden th variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 1
             </TableCell>
             <TableCell th variant="HEADER_CELL_DEFAULT">
