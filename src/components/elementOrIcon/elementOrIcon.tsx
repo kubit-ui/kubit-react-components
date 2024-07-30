@@ -27,9 +27,8 @@ const ElementOrIconComponent = (
 };
 
 /**
- * @description
- * ElementOrIcon component is a component that can be used to display an element or an icon.
- * It can be used to display an icon or a component.
+ * ElementOrIcon component is a component that can be used to display either an element or an icon.
+ * It offers flexibility in rendering either icons or more complex components within a given context.
  * @param {IElementOrIcon} props
  * @returns {JSX.Element}
  * @constructor

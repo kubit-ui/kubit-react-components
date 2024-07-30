@@ -22,7 +22,6 @@ const ElementOrIllustrationComponent = (
 };
 
 /**
- * @description
  * ElementOrIllustration component is a component that can be used to display an element or an illustration.
  * It can be used to display an illustration or a component.
  * @param {IElementOrillustration} props
