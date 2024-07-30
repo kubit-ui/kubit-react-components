@@ -89,9 +89,11 @@ describe('Footer component', () => {
 
     const leftContent = getByText('Left content');
     const centerContent = getByText('Center content');
+    const rightContent = getByText('Right content');
 
-    // centerContent is before than leftContent
-    expect(centerContent.compareDocumentPosition(leftContent)).toBe(4);
+    expect(leftContent).toHaveAttribute('data-position', 'LEFT');
+    expect(centerContent).toHaveAttribute('data-position', 'CENTER');
+    expect(rightContent).toHaveAttribute('data-position', 'RIGHT');
   });
 
   it('Elements inner group direction can be changed for MOBILE', () => {
@@ -116,7 +118,6 @@ describe('Footer component', () => {
     const leftContentI = getByText('Left content I');
     const leftContentII = getByText('Left content II');
 
-    // leftContent if before than leftContentI
     expect(leftContentII.compareDocumentPosition(leftContentI)).toBe(4);
   });
 

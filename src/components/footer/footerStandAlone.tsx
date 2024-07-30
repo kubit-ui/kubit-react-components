@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { DeviceBreakpointsType } from '@/types';
 import { pickAriaProps } from '@/utils/aria/aria';
 
 // inner components
@@ -10,13 +11,22 @@ import {
   FooterMobileColumnFlow,
   FooterPositionType,
   IFooterStandAlone,
+  MobileSort,
 } from './types';
+import { getOrderConfiguration } from './utils/getOrderConfiguration';
 
 // simple container tag
 const FOOTER = 'footer';
 
+const DEFAULT_SORT: MobileSort = {
+  column: FooterMobileColumnFlow.DEFAULT,
+  firstContent: FooterPositionType.LEFT,
+  secondContent: FooterPositionType.CENTER,
+  thirdContent: FooterPositionType.RIGHT,
+};
+
 const FooterStandAloneComponent = (
-  { ...props }: IFooterStandAlone,
+  { orderInverse = [], footerMobileSortConfig = DEFAULT_SORT, ...props }: IFooterStandAlone,
   ref: React.ForwardedRef<HTMLElement> | undefined | null
 ): JSX.Element | null => {
   if (!props.children) {
@@ -24,13 +34,26 @@ const FooterStandAloneComponent = (
   }
 
   const ariaProps = pickAriaProps(props);
-
   const asFooter = props.simpleContainer ? undefined : FOOTER;
+
+  // START CONTENT: Remove when footerMobileSortConfig is removed
+  if (footerMobileSortConfig?.column === FooterMobileColumnFlow.REVERSE) {
+    orderInverse.push(DeviceBreakpointsType.MOBILE);
+  }
+  // END CONTENT
+
+  const setVertical =
+    props.contentDirection === ContentDirectionType.VERTICAL ||
+    // START CONTENT: Remove when forceVertical is removed
+    props.forceVertical;
+  // END CONTENT
+
+  const orderConfiguration = getOrderConfiguration(props.tabInverse || [], orderInverse);
 
   const renderChildren = (children: JSX.Element | JSX.Element[]) => {
     const childrenArray = React.Children.toArray(children);
 
-    const positions = {
+    const positions: { [key in FooterPositionType]: React.ReactNode[] } = {
       [FooterPositionType.LEFT]: [],
       [FooterPositionType.CENTER]: [],
       [FooterPositionType.RIGHT]: [],
@@ -42,13 +65,18 @@ const FooterStandAloneComponent = (
       let position = (child as JSX.Element)?.props?.['data-position'];
 
       // START CONTENT: Remove when footerMobileSortConfig is removed
-      if (props.footerMobileSortConfig) {
-        if (props.footerMobileSortConfig.firstContent === position) {
-          position = FooterPositionType.LEFT;
-        } else if (props.footerMobileSortConfig.secondContent === position) {
-          position = FooterPositionType.CENTER;
-        } else if (props.footerMobileSortConfig.thirdContent === position) {
-          position = FooterPositionType.RIGHT;
+      if (footerMobileSortConfig && props.device === DeviceBreakpointsType.MOBILE) {
+        const { firstContent, secondContent, thirdContent } = footerMobileSortConfig;
+
+        if (position === firstContent) {
+          positions[FooterPositionType.LEFT].push(child);
+          return;
+        } else if (position === secondContent) {
+          positions[FooterPositionType.CENTER].push(child);
+          return;
+        } else if (position === thirdContent) {
+          positions[FooterPositionType.RIGHT].push(child);
+          return;
         }
       }
       // END CONTENT
@@ -70,35 +98,29 @@ const FooterStandAloneComponent = (
     const sections = Object.entries(positions).map(([position, children]) => (
       <FooterSection
         key={position}
-        forceVertical={forceVertical}
+        alignItems={props.alignItems}
+        orderConfiguration={{
+          flexReverse: orderConfiguration[props.device].flexReverse,
+          reverse: orderConfiguration[props.device].reverse,
+        }}
         position={position}
+        setVertical={setVertical}
         styles={props.styles}
-        tabInverse={tabInverse}
       >
         {children}
       </FooterSection>
     ));
 
-    return <>{tabInverse ? sections.reverse() : sections}</>;
+    return <>{orderConfiguration[props.device].reverse ? sections.reverse() : sections}</>;
   };
-
-  // START CONTENT: Remove when contentDirection is removed
-  const forceVertical =
-    props.forceVertical || props.contentDirection === ContentDirectionType.VERTICAL;
-  // END CONTENT
-
-  // START CONTENT: Remove when footerMobileSortConfig is removed
-  const tabInverse =
-    props.tabInverse || props.footerMobileSortConfig?.column === FooterMobileColumnFlow.REVERSE;
-  // END CONTENT
 
   return (
     <FooterStyled
       {...ariaProps}
       {...props}
       ref={ref}
-      $forceVertical={forceVertical}
-      $tabInverse={tabInverse}
+      $flexReverse={orderConfiguration[props.device].flexReverse}
+      $setVertical={setVertical}
       as={asFooter}
       data-testid={props.dataTestId}
       lineSeparatorLineStyles={props.lineSeparatorLineStyles}
