@@ -31,4 +31,7 @@ const ToggleWithLabelUncontrolledComponent = (
   );
 };
 
+/**
+ * @deprecated This component has been deprecated and will be removed in the next MAJOR release. Will include all this on the Toggle component
+ */
 export const ToggleWithLabelUncontrolled = React.forwardRef(ToggleWithLabelUncontrolledComponent);

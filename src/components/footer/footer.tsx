@@ -49,6 +49,9 @@ const FooterBoundary = <V extends string | unknown>(
   </ErrorBoundary>
 );
 
+/**
+ * @deprecated This component has been deprecated and will be removed in the next MAJOR release. Will include all this on the CheckBox component
+ */
 const Footer = React.forwardRef(FooterBoundary) as <V extends string | unknown>(
   props: React.PropsWithChildren<IFooter<V>> & {
     ref?: React.ForwardedRef<HTMLElement> | undefined | null;

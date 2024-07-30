@@ -16,6 +16,7 @@ const createWrapperAndAppendToBody = (wrapperId: string): HTMLElement => {
 };
 
 /**
+ * @deprecated This component has been deprecated and will be not exported in the next MAJOR release
  * Renders a portal component that can be appended to the <body> tag or a custom wrapper element.
  * @param children - The content to be rendered inside the portal.
  * @param wrapperId - The ID of the custom wrapper element (optional).

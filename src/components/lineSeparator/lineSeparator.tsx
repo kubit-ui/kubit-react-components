@@ -71,7 +71,8 @@ const LineSeparator = React.forwardRef(LineSeparatorBoundary) as <
 ) => ReturnType<typeof LineSeparatorBoundary>;
 
 /**
- * @description
+ * @deprecated This component has been deprecated and will be removed in the next MAJOR release. Consider using an alternative component.
+ *
  * LineSeparator component is a wrapper component that adds a line separator between two components.
  * @param {React.PropsWithChildren<ILineSeparator<V, S>>} props
  * @returns {JSX.Element}

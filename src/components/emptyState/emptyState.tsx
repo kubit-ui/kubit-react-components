@@ -39,6 +39,9 @@ const EmptyStateBoundary = <V extends string | unknown>(
   </ErrorBoundary>
 );
 
+/**
+ *  @deprecated This component has been deprecated and will be removed in the next MAJOR release.
+ */
 const EmptyState = React.forwardRef(EmptyStateBoundary) as <V extends string | unknown>(
   props: IEmptyState<V> & {
     ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;

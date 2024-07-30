@@ -38,6 +38,9 @@ const LoadinfStateBoundary = <V extends string | unknown>(
   </ErrorBoundary>
 );
 
+/**
+ *  @deprecated This component has been deprecated and will be removed in the next MAJOR release.
+ */
 const LoadingState = React.forwardRef(LoadinfStateBoundary) as <V extends string | unknown>(
   props: React.PropsWithChildren<ILoadingState<V>> & {
     ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;

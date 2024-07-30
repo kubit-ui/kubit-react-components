@@ -52,6 +52,9 @@ const ConfirmationMessageBoundary = <V extends string | unknown>(
   </ErrorBoundary>
 );
 
+/**
+ * @deprecated This component has been deprecated and will be removed in the next MAJOR release.
+ */
 const ConfirmationMessage = React.forwardRef(ConfirmationMessageBoundary) as <
   V extends string | unknown,
 >(

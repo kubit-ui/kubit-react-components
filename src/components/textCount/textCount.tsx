@@ -37,6 +37,7 @@ const TextCountBoundary = (
 );
 
 /**
+ * @deprecated This component has been deprecated and will be not exported in the next MAJOR release.
  * @description
  * TextCount component is a component that can be used to create a counter of characters.
  * @param {React.PropsWithChildren<ITextCountControlled>} props

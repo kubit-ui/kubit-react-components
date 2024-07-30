@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IPillUnControlled } from '@/components/pill/types';
+import { IPillUnControlled, PillTextType } from '@/components/pill/types';
 import { CustomTokenTypes } from '@/types';
 
 import { PillSelectorStyles } from './pillSelectorTheme';
@@ -23,7 +23,14 @@ export type PillType = Pick<
   | 'aria-disabled'
 > & {
   value: string | number;
+  /**
+   * @deprecated This property will be renamed to "content". This is the content inside the pill
+   */
   label: React.ReactNode;
+  /**
+   * @deprecated This property will be renamed to "label". This is the label outside the pill.
+   */
+  externalLabel?: PillTextType;
 };
 
 type PillSelectedType = number | string;
