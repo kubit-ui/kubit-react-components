@@ -63,20 +63,25 @@ const SnackbarStandAloneComponent = (
       </SnackbarLinkWrapper>
     );
 
-  const buildDescription = () =>
-    props.description?.content &&
-    (props.styles?.description?.font_variant || props.description.variant) && (
-      <SnackbarDescriptionWrapper styles={props.styles}>
-        <Text
-          component={TextComponentType.PARAGRAPH}
-          customTypography={props.styles?.description}
-          dataTestId={`${props.dataTestId}Description`}
-          {...props.description}
-        >
-          {props.description?.content}
-        </Text>
-      </SnackbarDescriptionWrapper>
+  const buildDescription = () => {
+    const { content, ...restDescriptionProps } = props.description || {};
+
+    return (
+      content &&
+      (props.styles?.description?.font_variant || props.description?.variant) && (
+        <SnackbarDescriptionWrapper styles={props.styles}>
+          <Text
+            component={TextComponentType.PARAGRAPH}
+            customTypography={props.styles?.description}
+            dataTestId={`${props.dataTestId}Description`}
+            {...restDescriptionProps}
+          >
+            {content}
+          </Text>
+        </SnackbarDescriptionWrapper>
+      )
     );
+  };
 
   return (
     <Popover
