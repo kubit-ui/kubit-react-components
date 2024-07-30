@@ -4,7 +4,7 @@ import { getAriaControls } from '../utils';
 const menuSection: OliveMenuListOptions[] = [
   {
     title: { content: 'label1' },
-    id: '1',
+    id: 'number1',
     options: [
       {
         label: 'option 1',
@@ -25,7 +25,7 @@ const menuSection: OliveMenuListOptions[] = [
   },
   {
     title: { content: 'label2' },
-    id: '2',
+    id: 'number2',
     options: [
       {
         label: 'option 1',
@@ -48,7 +48,7 @@ const menuSection: OliveMenuListOptions[] = [
 describe('Olive Menu utils', () => {
   test('Should get ariaControls', async () => {
     expect(getAriaControls(menuSection, 'ariaControls')).toStrictEqual(
-      'ariaControls0 ariaControls1'
+      'ariaControls0number1 ariaControls1number2'
     );
   });
 });

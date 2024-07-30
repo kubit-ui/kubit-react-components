@@ -29,6 +29,7 @@ type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 const sections: OliveMenuListOptions[] = [
   {
     title: { content: 'list 1' },
+    id: 'ID_1',
     options: [
       {
         label: 'option 1',
@@ -48,6 +49,7 @@ const sections: OliveMenuListOptions[] = [
   },
   {
     title: { content: 'list 2' },
+    id: 'ID_2',
     options: [
       {
         label: 'option 1',

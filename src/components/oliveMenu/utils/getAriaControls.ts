@@ -5,6 +5,9 @@ export const getAriaControls = (
   ariaControls: string
 ): string => {
   let newAriaControls = '';
-  sections?.forEach((_section, index) => (newAriaControls += ` ${ariaControls}${index}`));
+  sections?.forEach(
+    (_section, index) =>
+      (newAriaControls += ` ${ariaControls}${index}${_section.id ? `${_section.id}` : ''}`)
+  );
   return newAriaControls.trimStart();
 };
