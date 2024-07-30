@@ -19,6 +19,14 @@ export const argtypes = (
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    children: {
+      description: 'children',
+      control: false,
+      table: {
+        type: { summary: 'ReactNode' },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     id: {
       description: 'Id',
       type: { name: 'string' },

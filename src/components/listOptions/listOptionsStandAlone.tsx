@@ -79,13 +79,16 @@ export const ListOptionsStandAlone = React.forwardRef(
                 props.multiSelect,
                 props.caseSensitive
               );
+              const title = props.title?.content || '';
+              const dataTestIdOption = `${dataTestId}${title}Option${index}${option.label}`;
+
               const optionComponent = (
                 <Option
                   key={`${id}Option${index}`}
                   aria-selected={isSelection ? selected : undefined}
                   as={isNavigation ? 'div' : 'li'}
                   checkedIcon={props.checkedIcon}
-                  dataTestId={`${dataTestId}Option${index}`}
+                  dataTestId={dataTestIdOption}
                   focus={focus === index}
                   labelCharsHighlighted={props.charsHighlighted}
                   multiSelect={props.multiSelect}

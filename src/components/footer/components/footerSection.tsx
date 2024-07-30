@@ -5,9 +5,16 @@ import { FooterPositionType, FooterPropsStylesType } from '../types';
 
 interface IFooterSection {
   styles: FooterPropsStylesType;
-  forceVertical?: boolean;
+  setVertical?: boolean;
   position: string;
-  tabInverse?: boolean;
+  orderConfiguration: {
+    flexReverse?: boolean;
+    reverse?: boolean;
+  };
+  /**
+   * @deprecated
+   */
+  alignItems?: string;
   children: React.ReactNode[];
 }
 
@@ -18,22 +25,23 @@ export const FooterSection = (props: IFooterSection): JSX.Element | null => {
 
   const getElementJustify = (position: string) => {
     const styles = {
-      [FooterPositionType.LEFT]: props.tabInverse ? 'flex-end' : 'flex-start',
+      [FooterPositionType.LEFT]: props.orderConfiguration.reverse ? 'flex-end' : 'flex-start',
       [FooterPositionType.CENTER]: 'center',
-      [FooterPositionType.RIGHT]: props.tabInverse ? 'flex-start' : 'flex-end',
+      [FooterPositionType.RIGHT]: props.orderConfiguration.reverse ? 'flex-start' : 'flex-end',
     };
     return styles[position] || 'center';
   };
 
   return (
     <FooterSectionStyled
-      $forceVertical={props.forceVertical}
+      $alignItems={props.alignItems}
+      $flexReverse={props.orderConfiguration.flexReverse}
       $justifyContent={getElementJustify(props.position)}
-      $tabInverse={props.tabInverse}
+      $setVertical={props.setVertical}
       aria-hidden={!props.children.length}
       styles={props.styles}
     >
-      {props.tabInverse ? props.children.reverse() : props.children}
+      {props.orderConfiguration.reverse ? props.children.reverse() : props.children}
     </FooterSectionStyled>
   );
 };

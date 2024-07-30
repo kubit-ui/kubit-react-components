@@ -30,13 +30,14 @@ export interface IFooterStandAlone extends FooterAriaAttributes {
   role?: ROLES;
   children: IPositionedElement[] | IPositionedElement;
   dataTestId?: string;
+  contentDirection?: ContentDirectionType;
+  simpleContainer?: boolean;
   /**
    * @deprecated
    */
-  contentDirection?: ContentDirectionType;
-  simpleContainer?: boolean;
   forceVertical?: boolean;
-  tabInverse?: boolean;
+  tabInverse?: DeviceBreakpointsType[];
+  orderInverse?: DeviceBreakpointsType[];
   /**
    * @deprecated
    */

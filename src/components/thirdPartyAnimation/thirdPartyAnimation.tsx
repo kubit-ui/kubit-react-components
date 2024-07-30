@@ -47,16 +47,17 @@ const ThirdPartyAnimationComponent = <V extends string | unknown>(
   return <ThirdPartyAnimationStandAlone ref={element} {...props} />;
 };
 
+/**
+ * @deprecated This component has been deprecated and will be removed in the next MAJOR release.
+ *
+ * ThirdPartyAnimation component is a component that can be used to create third-party animations.
+ * @param {React.PropsWithChildren<IThirdPartyAnimation<V>>} props
+ * @returns {JSX.Element}
+ */
 const ThirdPartyAnimation = React.forwardRef(ThirdPartyAnimationComponent) as <V>(
   props: React.PropsWithChildren<IThirdPartyAnimation<V>> & {
     ref?: React.ForwardedRef<HTMLSpanElement | null> | undefined | null;
   }
 ) => ReturnType<typeof ThirdPartyAnimationComponent>;
 
-/**
- * @description
- * ThirdPartyAnimation component is a component that can be used to create a third party animation.
- * @param {React.PropsWithChildren<IThirdPartyAnimation<V>>} props
- * @returns {JSX.Element}
- */
 export { ThirdPartyAnimation };

@@ -93,7 +93,7 @@ const OliveMenuStandAloneComponent = (
                 <ListOptions
                   key={section.id}
                   dataTestId={props.dataTestId}
-                  id={`${ariaControls}${index}`}
+                  id={`${ariaControls}${index}${section.id ? `${section.id}` : ''}`}
                   optionVariant={props.styles.listOptions?.optionVariant as string}
                   selectedValue={props.selectedValue}
                   title={{ component: TextComponentType.H6, ...title }}

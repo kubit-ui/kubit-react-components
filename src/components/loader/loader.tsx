@@ -33,14 +33,9 @@ const LoaderBoundary = <V extends string | unknown>(
   </ErrorBoundary>
 );
 
-const Loader = React.forwardRef(LoaderBoundary) as <V extends string | unknown>(
-  props: React.PropsWithChildren<ILoader<V>> & {
-    ref?: React.ForwardedRef<HTMLSpanElement> | undefined | null;
-  }
-) => ReturnType<typeof LoaderBoundary>;
-
 /**
- * @description
+ * @deprecated This component has been deprecated and will be removed in the next MAJOR release. Consider using an alternative component.
+ *
  * Loader component is used to show a loading state.
  * @param {React.PropsWithChildren<ILoader<V>>} props
  * @returns {JSX.Element}
@@ -48,4 +43,10 @@ const Loader = React.forwardRef(LoaderBoundary) as <V extends string | unknown>(
  * @example
  * <Loader variant="loader" />
  */
+const Loader = React.forwardRef(LoaderBoundary) as <V extends string | unknown>(
+  props: React.PropsWithChildren<ILoader<V>> & {
+    ref?: React.ForwardedRef<HTMLSpanElement> | undefined | null;
+  }
+) => ReturnType<typeof LoaderBoundary>;
+
 export { Loader };

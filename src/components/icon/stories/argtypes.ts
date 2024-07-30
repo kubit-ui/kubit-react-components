@@ -15,6 +15,17 @@ export const argtypes = (): ArgTypesReturn => {
         category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
+    id: {
+      description: 'id for icon',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     icon: {
       type: { name: 'string', required: true },
       control: { type: 'select' },

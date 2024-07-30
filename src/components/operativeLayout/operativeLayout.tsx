@@ -32,6 +32,9 @@ const OperativeLayoutComponent = ({
   );
 };
 
+/**
+ *  @deprecated This component has been deprecated and will be removed in the next MAJOR release.
+ */
 export const OperativeLayout = (props: IOperativeLayout): JSX.Element => (
   <ErrorBoundary
     fallBackComponent={

@@ -1,6 +1,7 @@
 import { IconTypes } from '@/types/index';
 
 export interface IIconComplex {
+  id?: string;
   color?: string;
   height?: string;
   width?: string;
@@ -21,6 +22,7 @@ type IconAriaAttributes = Pick<
 >;
 
 export interface IIconStandAlone extends IconAriaAttributes {
+  id?: string;
   altText?: string;
   color?: string;
   height?: string;

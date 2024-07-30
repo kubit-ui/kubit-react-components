@@ -42,6 +42,9 @@ const HeaderBoundary = <V extends string | unknown>(
   </ErrorBoundary>
 );
 
+/**
+ * @deprecated This component has been deprecated and will be removed in the next MAJOR release. Will include all this on the NavBar component
+ */
 const Header = React.forwardRef(HeaderBoundary) as <V extends string | unknown>(
   props: IHeader<V> & {
     ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;

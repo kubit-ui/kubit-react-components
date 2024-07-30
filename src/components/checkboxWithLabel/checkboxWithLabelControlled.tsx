@@ -57,6 +57,9 @@ const CheckboxWithLabelBoundary = <V extends string | unknown>(
   </ErrorBoundary>
 );
 
+/**
+ * @deprecated This component has been deprecated and will be removed in the next MAJOR release. Will include all this on the CheckBox component
+ */
 const CheckboxWithLabelControlled = React.forwardRef(CheckboxWithLabelBoundary) as <
   V extends string | unknown,
 >(

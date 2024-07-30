@@ -32,6 +32,7 @@ const TextStandAloneComponent = (
       $transform={transform}
       align={align}
       as={component}
+      content={undefined}
       data-testid={dataTestId}
       htmlFor={htmlFor}
       id={id}

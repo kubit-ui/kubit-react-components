@@ -52,6 +52,8 @@ const PillSelectorStandAloneComponent = (
       )}
       {props.pills.length > 1 && props.pills.length <= maxPills
         ? props.pills.map((pill, index) => {
+            // deprecated - remove this line when this props are changed
+            const { label, externalLabel, ...rest } = pill;
             const pillSelected = props.pillSelected?.includes(pill.value.toString());
             return (
               (props.pillSize || pill?.size) && (
@@ -59,12 +61,13 @@ const PillSelectorStandAloneComponent = (
                   key={pill.value}
                   dataTestId={`${dataTestId}Pill${index}`}
                   focus={focus === index}
+                  label={externalLabel}
                   multiSelect={props.multiSelect}
                   name={props.name}
                   selected={pillSelected}
                   size={props.pillSize || ''}
                   tabIndex={pillSelected || (!isPillSelected && index === 0) ? 0 : -1}
-                  {...pill}
+                  {...rest}
                   value={pill.value.toString()}
                   variant={props.pillVariant}
                   onFocus={() => {
@@ -74,7 +77,7 @@ const PillSelectorStandAloneComponent = (
                   }}
                   onPillChange={props.onPillChange}
                 >
-                  {pill.label}
+                  {label}
                 </Pill>
               )
             );

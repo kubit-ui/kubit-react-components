@@ -32,6 +32,10 @@ const commonArgs: IPillUnControlled = {
   children: 'Pill',
   decorativeIcon: { icon: ICONS.ICON_PLACEHOLDER },
   selectedIcon: { icon: ICONS.ICON_PLACEHOLDER },
+  dataTestId: 'PillTestId',
+  label: {
+    content: 'Label',
+  },
 };
 
 export const Pill: Story = {

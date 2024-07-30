@@ -1,6 +1,6 @@
 import { CATEGORY_CONTROL } from '@/constants/categoryControl';
 import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn, ROLES } from '@/types';
+import { ArgTypesReturn, DeviceBreakpointsType, ROLES } from '@/types';
 
 import { ContentDirectionType } from '../types';
 
@@ -58,19 +58,7 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
-    contentDirection: {
-      description: 'Define direction of the footer content',
-      options: Object.keys(ContentDirectionType),
-      control: { type: 'select' },
-      type: { name: 'string' },
-      table: {
-        type: {
-          summary: 'ContentDirectionType',
-          detail: Object.keys(ContentDirectionType).join(', '),
-        },
-        category: CATEGORY_CONTROL.MODIFIERS,
-      },
-    },
+
     simpleContainer: {
       description: 'Allows you to change the footer tag to a div',
       control: { type: 'boolean' },
@@ -83,12 +71,46 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
       },
     },
     tabInverse: {
-      description: 'Change the order to tab of the footer content',
-      control: { type: 'boolean' },
-      type: { name: 'boolean' },
+      description: 'Change the order to tab of the footer elements at the defined breakpoints',
+      control: { type: 'check' },
+      type: { name: 'check' },
+      options: [
+        DeviceBreakpointsType.MOBILE,
+        DeviceBreakpointsType.TABLET,
+        DeviceBreakpointsType.DESKTOP,
+      ],
       table: {
         type: {
-          summary: 'boolean',
+          summary: 'check',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    orderInverse: {
+      description: 'Change the order position of the footer elements at the defined breakpoints',
+      control: { type: 'check' },
+      type: { name: 'check' },
+      options: [
+        DeviceBreakpointsType.MOBILE,
+        DeviceBreakpointsType.TABLET,
+        DeviceBreakpointsType.DESKTOP,
+      ],
+      table: {
+        type: {
+          summary: 'check',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    contentDirection: {
+      description: 'Define direction of the footer content',
+      options: Object.keys(ContentDirectionType),
+      control: { type: 'select' },
+      type: { name: 'string' },
+      table: {
+        type: {
+          summary: 'ContentDirectionType',
+          detail: Object.keys(ContentDirectionType).join(', '),
         },
         category: CATEGORY_CONTROL.MODIFIERS,
       },

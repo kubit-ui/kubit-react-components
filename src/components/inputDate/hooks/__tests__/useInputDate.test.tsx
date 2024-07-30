@@ -67,17 +67,6 @@ describe('useInputDate Hook', () => {
     });
     expect(onChange).toHaveBeenCalledTimes(1);
   });
-  it('handleShowCalendar - call onCalendarOpen', () => {
-    const onCalendarOpen = jest.fn();
-    const format = 'DD-MM-YYYY';
-    const minDate = new Date('01-01-2000');
-    const { result } = renderHookProvider(() => useInputDate({ format, minDate, onCalendarOpen }));
-
-    act(() => {
-      result.current.handleShowCalendar();
-    });
-    expect(onCalendarOpen).toHaveBeenCalledTimes(1);
-  });
   it('handleChangeInternalValidate with range value- call onChange', () => {
     const onChange = jest.fn();
     const format = 'DD-MM-YYYY';

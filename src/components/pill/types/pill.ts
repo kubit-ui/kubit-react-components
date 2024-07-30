@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { IElementOrIcon } from '@/components/elementOrIcon';
+import { IText } from '@/components/text';
 import { CustomTokenTypes } from '@/types';
 
 import type { PillStateStylesType, PillStylesType, PillVariantStylesType } from './pillTheme';
@@ -19,6 +20,10 @@ type PillAriaAttributes = Pick<
   | 'aria-disabled'
 >;
 
+export type PillTextType = Omit<IText<string>, 'children'> & {
+  content: React.ReactNode;
+};
+
 export interface IPillStandAlone extends PillAriaAttributes {
   styles: PillVariantStylesType;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
@@ -34,6 +39,7 @@ export interface IPillStandAlone extends PillAriaAttributes {
   name?: string;
   tabIndex?: number;
   value?: string;
+  label?: PillTextType;
 }
 export interface IPillControlled
   extends Omit<IPillStandAlone, 'styles' | 'onPillChange'>,

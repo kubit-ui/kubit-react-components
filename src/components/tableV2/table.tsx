@@ -3,7 +3,12 @@ import * as React from 'react';
 import { STYLES_NAME } from '@/constants';
 import { useStylesV2 } from '@/hooks';
 
-import { useTableHasScroll, useTableShadow, useTableStickyColumns } from './hooks';
+import {
+  useTableHasScroll,
+  useTableShadow,
+  useTableStickyLeftColumns,
+  useTableStickyRightColumns,
+} from './hooks';
 import { TableStandAlone } from './tableStandAlone';
 import { ITableV2, TablePropsStylesTypeV2 } from './types';
 
@@ -12,6 +17,7 @@ const TableComponent = (
     variant,
     ctv,
     autoRightStickyCalc = true,
+    autoLeftStickyCalc = true,
     disableShadowEffects,
     ...props
   }: React.PropsWithChildren<ITableV2>,
@@ -29,8 +35,10 @@ const TableComponent = (
 
   // Indicates if table has scroll in order to add accesibility aria props
   const { hasScroll } = useTableHasScroll({ ref: innerRef, disabled: props.hasScrollDisabled });
-  // Set column sticky if table has horizontal scroll
-  useTableStickyColumns({ ref: innerRef, disabled: !autoRightStickyCalc });
+  // Set column sticky right if table has horizontal scroll
+  useTableStickyRightColumns({ ref: innerRef, disabled: !autoRightStickyCalc });
+  // Set column sticky left if table has horizontal scroll
+  useTableStickyLeftColumns({ ref: innerRef, disabled: !autoLeftStickyCalc });
   // Set shadow when scrolling
   useTableShadow({
     ref: innerRef,

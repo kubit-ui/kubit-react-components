@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ElementOrIllustration } from '@/components/elementOrIllustration';
+import { ElementOrIllustration } from '@/components/elementOrIllustration/elementOrIllustration';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
 const illustrationBaseMock = {

@@ -6,6 +6,14 @@ import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
 import type { IPillStyled } from './types';
 
+export const ParentContainerStyled = styled.div<IPillStyled>`
+  ${props => getStyles(props.styles?.parentContainer)}
+`;
+
+export const LabelContainerStyled = styled.div<IPillStyled>`
+  ${props => getStyles(props.styles?.labelContainer)}
+`;
+
 export const PillStyled = styled.div<IPillStyled & { focus?: boolean }>`
   ${props => getStyles(props.styles?.container)}
   &:focus-visible {

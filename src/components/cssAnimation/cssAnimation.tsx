@@ -107,7 +107,8 @@ const CssAnimationComponent = (
 };
 
 /**
- * @description
+ * @deprecated This component has been deprecated and will be removed in the next MAJOR release.
+ *
  * CssAnimation component is a wrapper component that can be used to wrap other components.
  *
  * @param {React.PropsWithChildren<ICssAnimation>} props
