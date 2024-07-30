@@ -9,6 +9,7 @@ import { IIconComplex, IIconStandAlone } from './types';
 
 const IconComplexComponent = (
   {
+    id,
     color,
     height,
     width,
@@ -27,7 +28,6 @@ const IconComplexComponent = (
 
   React.useEffect(() => {
     (async () => {
-      // eslint-disable-next-line n/no-unsupported-features/node-builtins
       const res = await fetch(icon);
       let response = '';
       if (res) {
@@ -51,6 +51,7 @@ const IconComplexComponent = (
       aria-label={altText}
       dangerouslySetInnerHTML={{ __html: svgContent }}
       data-testid={dataTestId}
+      id={id}
       role={emptyAltText ? ROLES.NONE : ROLES.IMG}
       twistAnimationTransformValue={twistAnimationTransformValue}
     />
@@ -61,6 +62,7 @@ export const IconComplex = React.forwardRef(IconComplexComponent);
 
 const IconStandAloneComponent = (
   {
+    id,
     linearIcon,
     icon,
     altText,
@@ -89,6 +91,7 @@ const IconStandAloneComponent = (
         emptyAltText={isEmptyAltText}
         height={height}
         icon={icon}
+        id={id}
         moveRound={rotate}
         transitionDuration={transitionDuration}
         twistAnimationTransformValue={twistAnimationTransformValue}
@@ -108,6 +111,7 @@ const IconStandAloneComponent = (
       alt={altText}
       aria-hidden={isEmptyAltText}
       data-testid={dataTestId}
+      id={id}
       loading="lazy"
       src={icon}
     />
@@ -124,6 +128,7 @@ const IconStandAloneComponent = (
       aria-hidden={isEmptyAltText}
       aria-label={altText}
       data-testid={dataTestId}
+      id={id}
       role={isEmptyAltText ? ROLES.NONE : ROLES.IMG}
       twistAnimationTransformValue={twistAnimationTransformValue}
     />
