@@ -22,13 +22,9 @@ const ThirdPartyAnimationComponent = <V extends string | unknown>(
   const { thirdPartyAnimationData } = variantTheme;
   const element = React.useRef<HTMLSpanElement>(null);
 
-  React.useImperativeHandle(
-    ref,
-    () => {
-      return element.current as HTMLSpanElement;
-    },
-    []
-  );
+  React.useImperativeHandle(ref, () => {
+    return element.current as HTMLSpanElement;
+  }, []);
 
   React.useEffect(() => {
     if (element.current) {

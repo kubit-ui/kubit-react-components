@@ -104,7 +104,7 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
-    tye: {
+    type: {
       description: 'Type of the button (when no url is specified)',
       control: { type: 'text' },
       type: { name: 'string' },
