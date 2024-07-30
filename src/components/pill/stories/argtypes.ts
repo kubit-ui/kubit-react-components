@@ -42,6 +42,17 @@ export const argtypes = (
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    label: {
+      description: 'Label outside of the pill',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     initialState: {
       description: 'Boolean to indicate if Pill is selected initially',
       type: { name: 'boolean' },

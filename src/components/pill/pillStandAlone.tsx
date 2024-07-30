@@ -5,7 +5,15 @@ import { InputTypeType } from '@/components/input';
 import { useId } from '@/hooks';
 import { pickAriaProps } from '@/utils/aria/aria';
 
-import { IconContainerStyled, PillInputStyled, PillLabelStyled, PillStyled } from './pill.styled';
+import { Text, TextComponentType } from '../text';
+import {
+  IconContainerStyled,
+  LabelContainerStyled,
+  ParentContainerStyled,
+  PillInputStyled,
+  PillLabelStyled,
+  PillStyled,
+} from './pill.styled';
 import { IPillStandAlone } from './types';
 import { getPillState } from './utils';
 
@@ -37,52 +45,65 @@ const PillStandAloneComponent = (
   const stateStyles = styles[state];
 
   return (
-    <PillStyled
-      ref={ref}
-      data-testid={dataTestId}
-      styles={stateStyles}
-      tabIndex={tabIndex}
-      onKeyDown={onKeyDown?.(value || '')}
-    >
-      <PillInputStyled
-        aria-checked={selected}
-        {...ariaProps}
-        checked={selected}
-        data-testid={`${dataTestId}Input`}
-        disabled={disabled}
-        id={id}
-        name={name}
+    <ParentContainerStyled styles={stateStyles}>
+      <PillStyled
+        ref={ref}
+        data-testid={dataTestId}
         styles={stateStyles}
-        tabIndex={-1}
-        type={component}
-        value={value}
-        onChange={onPillChange}
-        onFocus={onFocus}
-      />
-      {decorativeIcon && (
-        <IconContainerStyled styles={stateStyles}>
-          <ElementOrIcon
-            color={stateStyles?.decorativeIcon?.color}
-            dataTestId={dataTestId + 'DecorativeIcon'}
-            height={stateStyles?.decorativeIcon?.height}
-            width={stateStyles?.decorativeIcon?.width}
-            {...decorativeIcon}
-          />
-        </IconContainerStyled>
-      )}
-      <PillLabelStyled htmlFor={id} styles={stateStyles}>
-        {children}
-      </PillLabelStyled>
-      {selectedIcon && selected && (
-        <ElementOrIcon
-          color={stateStyles?.selectedIcon?.color}
-          dataTestId={dataTestId + 'SelectedIcon'}
-          height={stateStyles?.selectedIcon?.height}
-          width={stateStyles?.selectedIcon?.width}
-          {...selectedIcon}
+        tabIndex={tabIndex}
+        onKeyDown={onKeyDown?.(value || '')}
+      >
+        <PillInputStyled
+          aria-checked={selected}
+          {...ariaProps}
+          checked={selected}
+          data-testid={`${dataTestId}Input`}
+          disabled={disabled}
+          id={id}
+          name={name}
+          styles={stateStyles}
+          tabIndex={-1}
+          type={component}
+          value={value}
+          onChange={onPillChange}
+          onFocus={onFocus}
         />
+        {decorativeIcon && (
+          <IconContainerStyled styles={stateStyles}>
+            <ElementOrIcon
+              color={stateStyles?.decorativeIcon?.color}
+              dataTestId={dataTestId + 'DecorativeIcon'}
+              height={stateStyles?.decorativeIcon?.height}
+              width={stateStyles?.decorativeIcon?.width}
+              {...decorativeIcon}
+            />
+          </IconContainerStyled>
+        )}
+        <PillLabelStyled htmlFor={id} styles={stateStyles}>
+          {children}
+        </PillLabelStyled>
+        {selectedIcon && selected && (
+          <ElementOrIcon
+            color={stateStyles?.selectedIcon?.color}
+            dataTestId={dataTestId + 'SelectedIcon'}
+            height={stateStyles?.selectedIcon?.height}
+            width={stateStyles?.selectedIcon?.width}
+            {...selectedIcon}
+          />
+        )}
+      </PillStyled>
+      {props.label?.content && props.label.content !== null && (
+        <LabelContainerStyled styles={stateStyles}>
+          <Text
+            component={TextComponentType.PARAGRAPH}
+            customTypography={stateStyles?.labelContent}
+            {...props.label}
+          >
+            {props.label.content}
+          </Text>
+        </LabelContainerStyled>
       )}
-    </PillStyled>
+    </ParentContainerStyled>
   );
 };
 

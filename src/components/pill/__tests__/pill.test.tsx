@@ -13,6 +13,7 @@ const mockProps = {
   variant: 'DEFAULT',
   size: 'LARGE',
   dataTestId: 'pillComponent',
+  label: { content: 'label' },
 };
 
 describe('Pill component', () => {
