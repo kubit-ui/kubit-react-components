@@ -65,7 +65,6 @@ const InputDateComponent = React.forwardRef(
       calendarOpen,
       handleClickInput,
       handlePickCalendarDate,
-      handleShowCalendar,
       handleOpenCalendar,
       value,
       state,
@@ -122,7 +121,13 @@ const InputDateComponent = React.forwardRef(
         calendarOpen={calendarOpen}
         dateFormatted={dateFormatted}
         hasRange={hasRange}
-        icon={{ ...props.icon, onClick: handleShowCalendar }}
+        icon={{
+          ...props.icon,
+          onClick: event => {
+            handleOpenCalendar(!calendarOpen);
+            props.icon?.onClick?.(event);
+          },
+        }}
         informationAssociatedValue={informationAssociatedValue}
         mask={mask}
         maskType={maskType}
@@ -136,7 +141,7 @@ const InputDateComponent = React.forwardRef(
         rightIcon={{
           ...props.rightIcon,
           onClick: event => {
-            handleShowCalendar();
+            handleOpenCalendar(!calendarOpen);
             props.rightIcon?.onClick?.(event);
           },
         }}

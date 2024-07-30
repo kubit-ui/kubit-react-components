@@ -44,7 +44,6 @@ type ReturnType = ReturnTypeInputHook & {
   // functions
   handleClickInput: React.MouseEventHandler<HTMLInputElement>;
   handlePickCalendarDate: (newDate: Date[]) => void;
-  handleShowCalendar: () => void;
   handleOpenCalendar: (open: boolean) => void;
   handleChangeInternalValidate: ChangeEventHandler<HTMLInputElement>;
   handleWrapperBlur: FocusEventHandler<HTMLDivElement>;
@@ -229,12 +228,6 @@ export const useInputDate = ({
   );
 
   // Methods
-  // Click on the icon to show the calendar
-  const handleShowCalendar = () => {
-    setCalendarOpen(!calendarOpen);
-    props.onCalendarOpen?.(!calendarOpen);
-  };
-
   // Popover control calendar
   const handleOpenCalendar = (open: boolean): void => {
     setCalendarOpen(open);
@@ -509,7 +502,6 @@ export const useInputDate = ({
     calendarOpen,
     handleClickInput,
     handlePickCalendarDate,
-    handleShowCalendar,
     handleOpenCalendar,
     handleChangeInternalValidate,
     value,

@@ -44,6 +44,7 @@ export const InputDateStandAloneComponent = (
         variant={props.inputVariant ?? props.styles?.[props.state]?.inputVariant}
       />
       <PopoverCalendar
+        ref={ref}
         calendar={props.calendar}
         calendarOpen={props.calendarOpen}
         closeIcon={props.closeIcon}
