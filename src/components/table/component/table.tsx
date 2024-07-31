@@ -105,6 +105,14 @@ export const TableComponent = (
                   flexWidth={headerValue?.config?.flexWidth}
                   hasDivider={headerValue?.config?.hasDivider}
                   scope="col"
+                  showDivider={
+                    headerValue?.config?.srOnlyHeader?.[props.device] ||
+                    headerValue?.config?.showDividerHeader
+                  }
+                  srOnly={
+                    headerValue?.config?.srOnlyHeader?.[props.device] ||
+                    headerValue?.config?.srOnlyHeader
+                  }
                   styles={props.styles.header?.[headerVariant]}
                 >
                   <Text

@@ -5,12 +5,11 @@ import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
 import { Table as Story } from '../table';
 import { argtypes } from './argtypes';
-import {
-  mockBasicTable,
-  mockCustomizableTable,
-  mockTableWithDivider,
-  mockTableWithLineSeparatorAndCenterFooter,
-} from './mockTable';
+import { mockBasicTable } from './mockBasic';
+import { mockCustomizableTable } from './mockCustomizable';
+import { mockTableWithDivider } from './mockDivider';
+import { mockTableWithLineSeparatorAndCenterFooter } from './mockLineSeparatorAndFooter';
+import { mockTableShowingLineSeparatorHeader } from './mockShowLineSeparatorHeader';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 
@@ -38,11 +37,41 @@ export const Table: Story = {
     )[0] as string,
     captionDescription: 'Table caption',
     ['aria-label']: 'ariaLabel table',
+    tBodyScrollArias: { 'aria-label': 'ariaLabel tBody when scroll' },
+    themeArgs: themesObject[themeSelected][STYLES_NAME.TABLE],
+    ...mockBasicTable,
+  },
+};
+
+export const TableWithLineSeparator: Story = {
+  args: {
+    variant: Object.values(variantsObject[themeSelected].TableVariantType || {})[0] as string,
+    headerVariant: Object.values(
+      variantsObject[themeSelected].TableHeaderVariantType || {}
+    )[0] as string,
+    captionDescription: 'Table caption',
+    ['aria-label']: 'ariaLabel table',
     formatListInMobile: true,
     formatSideBySideInList: true,
     tBodyScrollArias: { 'aria-label': 'ariaLabel tBody when scroll' },
     themeArgs: themesObject[themeSelected][STYLES_NAME.TABLE],
     ...mockTableWithLineSeparatorAndCenterFooter,
+  },
+};
+
+export const TableShowingLineSeparatorHeader: Story = {
+  args: {
+    variant: Object.values(variantsObject[themeSelected].TableVariantType || {})[0] as string,
+    headerVariant: Object.values(
+      variantsObject[themeSelected].TableHeaderVariantType || {}
+    )[0] as string,
+    captionDescription: 'Table caption',
+    ['aria-label']: 'ariaLabel table',
+    formatListInMobile: true,
+    formatSideBySideInList: true,
+    tBodyScrollArias: { 'aria-label': 'ariaLabel tBody when scroll' },
+    themeArgs: themesObject[themeSelected][STYLES_NAME.TABLE],
+    ...mockTableShowingLineSeparatorHeader,
   },
 };
 
@@ -57,20 +86,6 @@ export const TableWithDivider: Story = {
     tBodyScrollArias: { 'aria-label': 'ariaLabel tBody when scroll' },
     themeArgs: themesObject[themeSelected][STYLES_NAME.TABLE],
     ...mockTableWithDivider,
-  },
-};
-
-export const TableBasic: Story = {
-  args: {
-    variant: Object.values(variantsObject[themeSelected].TableVariantType || {})[0] as string,
-    headerVariant: Object.values(
-      variantsObject[themeSelected].TableHeaderVariantType || {}
-    )[0] as string,
-    captionDescription: 'Table caption',
-    ['aria-label']: 'ariaLabel table',
-    tBodyScrollArias: { 'aria-label': 'ariaLabel tBody when scroll' },
-    themeArgs: themesObject[themeSelected][STYLES_NAME.TABLE],
-    ...mockBasicTable,
   },
 };
 
@@ -98,7 +113,7 @@ export const TableWithCtv: Story = {
     formatListInMobile: true,
     formatSideBySideInList: true,
     tBodyScrollArias: { 'aria-label': 'ariaLabel tBody when scroll' },
-    ...mockTableWithLineSeparatorAndCenterFooter,
+    ...mockBasicTable,
     ctv: {
       table: {
         background_color: 'red',
