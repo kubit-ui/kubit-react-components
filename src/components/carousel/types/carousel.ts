@@ -23,8 +23,9 @@ export type PageControlAutomateConfigType = Omit<
   mediaProgressBar: CarouselMediaProgressBarType;
 };
 
-export interface ICarouselStandAlone {
-  ['aria-labelledby']?: string;
+type CarouselAriaAttributes = Pick<React.AriaAttributes, 'aria-labelledby' | 'aria-live'>;
+
+export interface ICarouselStandAlone extends CarouselAriaAttributes {
   styles: CarouselPropsStylesType;
   carouselContainerRef: React.RefObject<HTMLDivElement>;
   carouselContentRef: React.RefObject<HTMLDivElement>;
