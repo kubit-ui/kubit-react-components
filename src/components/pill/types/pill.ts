@@ -31,7 +31,7 @@ export interface IPillStandAlone extends PillAriaAttributes {
   dataTestId?: string;
   decorativeIcon?: IElementOrIcon;
   selectedIcon?: IElementOrIcon;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   disabled?: boolean;
   multiSelect?: boolean;
   selected?: boolean;
