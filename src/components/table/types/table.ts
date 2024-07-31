@@ -49,6 +49,14 @@ type HiddenType = {
   [keys in DeviceBreakpointsType]?: boolean;
 };
 
+type ShowDividerHeaderType = {
+  [keys in DeviceBreakpointsType]?: boolean;
+};
+
+type SrOnlyHeaderType = {
+  [keys in DeviceBreakpointsType]?: boolean;
+};
+
 type ExpandedContentType = {
   [keys in DeviceBreakpointsType]?: JSX.Element;
 };
@@ -112,8 +120,10 @@ export type ConfigType = {
   alignHeader?: string | AlignType;
   alignValue?: string | AlignType;
   hasDivider?: boolean;
+  showDividerHeader?: boolean | ShowDividerHeaderType;
   width?: string;
   hidden?: HiddenType;
+  srOnlyHeader?: boolean | SrOnlyHeaderType;
   flexWidth?: number | string | FlexWidthType;
   backgroundColor?: string;
 };

@@ -33,7 +33,7 @@ const OliveMenuStandAloneComponent = (
   return (
     <OliveMenuStyled
       ref={ref}
-      data-testId={`${props.dataTestId}Container`}
+      data-testid={`${props.dataTestId}Container`}
       styles={props.styles}
       onBlur={props.onBlur}
     >

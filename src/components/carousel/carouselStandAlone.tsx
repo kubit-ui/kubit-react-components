@@ -111,7 +111,9 @@ const CarouselStandAloneComponent = (
         >
           <CarouselContentStyled
             ref={carouselContentRef}
-            aria-live={playing ? AriaLiveOptionType.OFF : AriaLiveOptionType.POLITE}
+            aria-live={
+              props['aria-live'] ?? (playing ? AriaLiveOptionType.OFF : AriaLiveOptionType.POLITE)
+            }
             centerMode={centerMode}
             data-testid={`${dataTestId}Content`}
             disableSwipe={disableSwipe}

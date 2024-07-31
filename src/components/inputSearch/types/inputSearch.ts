@@ -229,6 +229,10 @@ export interface IInputSearch<V = undefined extends string ? unknown : string>
   regex?: string | RegExp;
   internalErrorExecution?: INTERNAL_ERROR_EXECUTION;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+  /**
+   * @deprecated
+   * @description This prop is deprecated and will be removed in the next major version.
+   */
   clearTextInputPopoverIconClick?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onInputPopoverIconClick?: () => void;

@@ -151,8 +151,8 @@ export const TABLE_STYLES: TableStylesType<
           },
         },
         accordionIcon: {
-          height: SIZES.size_200,
-          width: SIZES.size_200,
+          height: SIZES.size_250,
+          width: SIZES.size_250,
           color: COLORS.NEUTRAL.color_neutral_icon_50,
         },
       },
@@ -170,8 +170,8 @@ export const TABLE_STYLES: TableStylesType<
           font_size: PARAGRAPH.MEDIUM[DeviceBreakpointsType.DESKTOP].font_size,
         },
         accordionIcon: {
-          height: SIZES.size_200,
-          width: SIZES.size_200,
+          height: SIZES.size_250,
+          width: SIZES.size_250,
           color: COLORS.NEUTRAL.color_neutral_icon_50,
         },
       },

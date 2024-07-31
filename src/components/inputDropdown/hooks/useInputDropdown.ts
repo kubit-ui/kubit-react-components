@@ -53,6 +53,10 @@ type ParamsType = {
   value?: string;
   styles: InputDropdownStylesProps;
   disabled?: boolean;
+  /**
+   * @deprecated
+   * @description This prop is deprecated and will be removed in the next major version.
+   */
   clearTextInputPopoverIconClick?: boolean;
   error?: boolean;
   informationAssociated?: string;

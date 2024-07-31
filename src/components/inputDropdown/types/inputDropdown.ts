@@ -144,6 +144,10 @@ export interface IInputDropdownStandAlone
   inputPopoverRightIcon?: IElementOrIcon;
   inputPopoverValue?: string;
   inputPopoverVariant?: string;
+  /**
+   * @deprecated
+   * @description This prop is deprecated and will be removed in the next major version.
+   */
   clearTextInputPopoverIconClick?: boolean;
   // Functions
   onOpenOptions: (value: boolean) => void;

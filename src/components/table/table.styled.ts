@@ -139,17 +139,27 @@ export const TableEmptyColumnHeaderStyled = styled.td<{ styles?: TableHeaderStyl
 export const TableColumnHeaderStyled = styled.th<{
   styles?: TableHeaderStylesTypes;
   hasDivider?: boolean;
+  showDivider?: boolean;
   customWidth?: string;
   customAlign?: string;
   flexWidth?: string | number | FlexWidthType;
   customBackgroundColor?: string;
+  srOnly?: boolean;
 }>`
   ${props => getStyles(props.styles?.column)}
   ${({ styles }) => getTypographyStyles(styles?.typography)}
   // Apply custom styles
   ${({ customWidth, customAlign, flexWidth, customBackgroundColor }) =>
     applyCustomCellStyles({ customWidth, customAlign, flexWidth, customBackgroundColor })}
-  ${props => props.hasDivider && applySrOnlyStyles()}
+  ${props => {
+    if (props.srOnly) {
+      return applySrOnlyStyles();
+    }
+    if (props.hasDivider && !props.showDivider) {
+      return applySrOnlyStyles();
+    }
+    return undefined;
+  }}
 `;
 
 /******** TABLE BODY STYLES *******/

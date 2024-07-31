@@ -223,9 +223,20 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
       },
     },
     ['aria-labelledby']: {
-      description: 'Carousel aria label by',
+      description: 'Carousel aria labelledby',
       type: { name: 'string' },
       control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-live']: {
+      description: 'Aria live applied to carousel content',
+      control: { type: 'text' },
+      type: { name: 'string' },
       table: {
         type: {
           summary: 'string',
