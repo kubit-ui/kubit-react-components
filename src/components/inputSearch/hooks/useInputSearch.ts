@@ -55,6 +55,10 @@ type ParamsType = {
   error?: boolean;
   hasResultTextWrittenByUser?: boolean;
   disableErrorInvalidOption?: boolean;
+  /**
+   * @deprecated
+   * @description This prop is deprecated and will be removed in the next major version.
+   */
   clearTextInputPopoverIconClick?: boolean;
   highlightedOption?: string;
   informationAssociated?: string;
