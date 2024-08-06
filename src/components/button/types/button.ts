@@ -64,6 +64,7 @@ export interface IButtonStandAlone
   form?: string;
   role?: string | ROLES;
   title?: string;
+  id?: string;
 }
 
 /**

@@ -35,6 +35,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    id: {
+      control: { type: 'text' },
+      type: { name: 'string' },
+      description: 'Button id',
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     disabled: {
       description: 'Specifies if the button element is disabled or not',
       type: { name: 'boolean' },

@@ -14,7 +14,7 @@ const meta = {
   title: 'Components/Actions/Button',
   component: ButtonStory,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
     githubUrl: 'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/button',
     figmaUrl:
       'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3922-9829',
@@ -31,6 +31,7 @@ export const Button: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].ButtonVariantType || {})[0] as string,
     size: Object.values(variantsObject[themeSelected].ButtonSizeType || {})[0] as string,
+    id: 'buttonId',
     children: 'Button',
     icon: {
       icon: ICONS.ICON_PLACEHOLDER,

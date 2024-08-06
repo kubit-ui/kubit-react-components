@@ -69,6 +69,7 @@ const ButtonStandAloneComponent = (
       data-testid={props.dataTestId}
       disabled={disabled}
       form={props.form}
+      id={props.id}
       minWidth={props.minWidth}
       role={props.role}
       tabIndex={props.tabIndex}
