@@ -190,6 +190,8 @@ const TooltipStandAlone = ({
           trapFocusInsideModal={true}
           variant={props.styles.popoverVariant?.[props.mediaDevice]}
           {...props.popover}
+          aria-label={props.popover?.['aria-label'] || props.tooltipAriaLabel}
+          aria-modal={props.tooltipAsModal || undefined}
           onCloseInternally={props.onPopoverCloseInternally}
         >
           {Tooltip}
