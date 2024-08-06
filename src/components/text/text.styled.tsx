@@ -101,6 +101,7 @@ const TEXT_STYLED_TRANSIENT_PROPS = [
   'decoration',
   'cursor',
   'customTypography',
+  'display',
 ];
 
 export const TextStyled = styled.p.withConfig({
