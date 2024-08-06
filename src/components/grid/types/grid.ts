@@ -1,9 +1,11 @@
 import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { CommonStyleType } from '@/types/styles/commonStyle';
 
 export type GridType = {
   addPaddingForLayout?: boolean;
   isFullWidth?: boolean;
   columnsPadding?: number;
+  styles?: CommonStyleType;
   config?: {
     [DeviceBreakpointsType.DESKTOP]?: GridConfigType;
     [DeviceBreakpointsType.TABLET]?: GridConfigType;
@@ -26,6 +28,9 @@ export type GridConfigType = {
   columns?: number;
   gap?: string;
   margin?: number;
+  headerStyles?: CommonStyleType;
+  mainStyles?: CommonStyleType;
+  footerStyles?: CommonStyleType;
 };
 
 export type CustomGridItemType = GridItemType & {

@@ -15,7 +15,6 @@ const meta = {
   title: 'Components/Templates/Layout',
   component: Story,
   parameters: {
-    layout: 'centered',
     githubUrl: 'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/layout',
   },
   tags: ['autodocs'],
@@ -29,7 +28,11 @@ type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 export const Layout: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].LayoutVariantType || {})[0] as string,
-    mainContent: <ReplaceContent height={'100%'}>Main content</ReplaceContent>,
+    mainContent: (
+      <>
+        <ReplaceContent height={'100%'}>Main content</ReplaceContent>
+      </>
+    ),
     headerContent: <ReplaceContent>Header content</ReplaceContent>,
     asideContent: <ReplaceContent height={'100%'}>Aside content</ReplaceContent>,
     footerContent: <ReplaceContent>Footer content</ReplaceContent>,

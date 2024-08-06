@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { getStyles } from '@/utils';
 
 import { ContentCustomGridItemType, CustomGridItemType, GridItemType, GridType } from './types';
 import { getGridConfiguration, getItemGridConfiguration, getMaxWidth } from './utils/grid.utils';
@@ -10,6 +11,7 @@ export const GridStyled = styled.div<GridType>`
   margin: auto;
   ${props =>
     ({
+      styles,
       theme: {
         MEDIA_QUERIES: { onlyTablet, onlyMobile, onlyDesktop },
         BREAKPOINTS,
@@ -27,15 +29,18 @@ export const GridStyled = styled.div<GridType>`
         )};
         padding: 0
           ${props.addPaddingForLayout ? props.config?.[DeviceBreakpointsType.DESKTOP]?.gap : 0};
+        ${getStyles(styles)}
       }
       ${onlyTablet} {
         ${getGridConfiguration(props.config?.[DeviceBreakpointsType.TABLET])};
         margin: 0 ${props.config?.[DeviceBreakpointsType.TABLET]?.margin}rem;
+        ${getStyles(styles)}
       }
 
       ${onlyMobile} {
         ${getGridConfiguration(props.config?.[DeviceBreakpointsType.MOBILE])};
         margin: 0 ${props.config?.[DeviceBreakpointsType.MOBILE]?.margin}rem;
+        ${getStyles(styles)}
       }
     `};
 `;
