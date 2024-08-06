@@ -52,6 +52,7 @@ export * from './operativeLayout/variants';
 export * from './pageControlAutomate/variants';
 export * from './pagination/variants';
 export * from './pill/variants';
+export * from './pillV2/variants';
 export * from './pillSelector/variants';
 export * from './quickButton/variants';
 export * from './radioButtonGroup/variants';

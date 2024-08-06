@@ -40,4 +40,7 @@ const PillBoundary = (
   </ErrorBoundary>
 );
 
+/**
+ * @deprecated Try the new PillV2 component
+ */
 export const PillControlled = React.forwardRef(PillBoundary);
