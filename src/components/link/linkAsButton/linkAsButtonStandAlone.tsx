@@ -16,6 +16,7 @@ export const LinkAsButtonStandAloneComponent = (
   return (
     // Apply button border radius to the link when focus-visible
     <LinkAsButtonWrapperStyled
+      $fullWidth={props.fullWidth}
       $sizeStyles={props.sizeStyles}
       $state={props.state}
       $styles={props.styles}

@@ -4,13 +4,14 @@ import { ButtonSizePropsType, ButtonStateKeyOfType, ButtonStateType } from '@/co
 
 // Apply button border radius to the link when focus-visible
 export const LinkAsButtonWrapperStyled = styled.div<{
+  $fullWidth?: boolean;
   $styles?: ButtonStateKeyOfType;
   $state: ButtonStateType;
   $sizeStyles?: ButtonSizePropsType;
 }>`
   display: inline;
   > *:first-child {
-    display: inline-block;
+    display: ${props => (props.$fullWidth ? 'block' : 'inline-block')};
     ${({ $sizeStyles, $styles, $state }) => {
       if (!$styles?.[$state]) {
         return css``;

@@ -11,7 +11,7 @@ const meta = {
   title: 'Components/Actions/LinkAsButton',
   component: LinkAsButtonStory,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),

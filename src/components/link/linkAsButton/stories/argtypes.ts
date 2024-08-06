@@ -202,7 +202,7 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
-    isFullWidth: {
+    fullWidth: {
       description: 'Show full width',
       type: { name: 'boolean' },
       control: { type: 'boolean' },
