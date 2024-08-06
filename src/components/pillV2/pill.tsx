@@ -16,7 +16,7 @@ const PillComponent = (
     disabled = false,
     ...props
   }: React.PropsWithChildren<IPill>,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: React.ForwardedRef<HTMLButtonElement>
 ) => {
   const variantStyles = useStylesV2<PillVariantPropsStylesType>({
     styleName: STYLES_NAME.PILL_V2,
