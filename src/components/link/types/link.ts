@@ -63,6 +63,7 @@ export interface ILinkAsButtonStandAlone extends Omit<IButtonStandAlone, 'showLo
   sizeStyles: ButtonSizePropsType;
   children: string | JSX.Element;
   component?: TextComponentType | GenericLinkType;
+  fullWidth?: boolean;
   url: string;
   state: ButtonStateType;
   target?: string;

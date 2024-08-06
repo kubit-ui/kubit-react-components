@@ -76,6 +76,8 @@ export type Variants = {
   PillSelectorVariant?: object;
   PillVariantType?: object;
   PillSizeType?: object;
+  PillVariantTypeV2?: object;
+  PillSizeTypeV2?: object;
   QuickButtonVariantType?: object;
   QuickCardHighlightsVariantType?: object;
   RadioButtonGroupVariantType?: object;

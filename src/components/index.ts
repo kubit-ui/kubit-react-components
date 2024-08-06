@@ -8,6 +8,7 @@ export * from './image';
 export * from './label';
 export * from './link';
 export * from './pill';
+export * from './pillV2';
 export * from './popover';
 export * from './tagV2';
 export * from './text';

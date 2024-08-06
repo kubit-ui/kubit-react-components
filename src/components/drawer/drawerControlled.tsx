@@ -17,10 +17,7 @@ const SCROLL_DISTANCE = 5;
 const FOOTER_EDIT_STYLES: CssProperty[] = [
   { cssPropertyName: 'position', cssPropertyValue: 'static' },
 ];
-/* Constants for useZoomEffect (content) */
-const CONTENT_EDIT_STYLE: CssProperty[] = [
-  { cssPropertyName: 'height', cssPropertyValue: 'fit-content' },
-];
+
 const MAX_ZOOM = 2.4;
 
 const DrawerControlledComponent = React.forwardRef(
@@ -44,13 +41,11 @@ const DrawerControlledComponent = React.forwardRef(
     );
 
     const footerRef = useZoomEffect(FOOTER_EDIT_STYLES, MAX_ZOOM);
-    const contentRef = useZoomEffect(CONTENT_EDIT_STYLE, MAX_ZOOM);
 
     const drawerStructure = (
       <DrawerStandAlone
         {...props}
         ref={ref}
-        contentRef={contentRef}
         device={device}
         footerRef={footerRef}
         scrollableRef={scrollableRef}

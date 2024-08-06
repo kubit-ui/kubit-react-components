@@ -1,3 +1,4 @@
+import { GridConfigType } from '@/components/grid';
 import { DeviceBreakpointsType } from '@/types/breakpoints';
 
 export type ConfigByDevice = {
@@ -9,7 +10,7 @@ export type ConfigByDevice = {
 export type LayoutVariantStylesType = {
   padding_botom_size?: string;
   gridConfig?: {
-    [deviceBreakpoint in DeviceBreakpointsType]?: ConfigByDevice;
+    [deviceBreakpoint in DeviceBreakpointsType]?: GridConfigType;
   };
   defaultColumnsConfig?: {
     header?: {

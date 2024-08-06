@@ -35,10 +35,11 @@ export interface ILayoutStandAlone {
     [DeviceBreakpointsType.TABLET]?: GridConfigType;
     [DeviceBreakpointsType.MOBILE]?: GridConfigType;
   };
+  device: DeviceBreakpointsType;
 }
 
 export interface ILayout
-  extends Omit<ILayoutStandAlone, 'styles'>,
+  extends Omit<ILayoutStandAlone, 'styles' | 'device'>,
     Omit<CustomTokenTypes<LayoutVariantStylesType>, 'cts' | 'extraCt'> {
   variant: string;
 }

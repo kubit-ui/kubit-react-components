@@ -52,6 +52,7 @@ export * from './operativeLayout/styles';
 export * from './pageControlAutomate/styles';
 export * from './pagination/styles';
 export * from './pill/styles';
+export * from './pillV2/styles';
 export * from './pillSelector/styles';
 export * from './quickButton/styles';
 export * from './radioButtonGroup/styles';

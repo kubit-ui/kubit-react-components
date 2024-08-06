@@ -17,6 +17,7 @@ export const LayoutStandAlone = ({
   gridConfig,
   footerContent,
   dataTestId = 'layout',
+  device,
 }: ILayoutStandAlone): JSX.Element => {
   const columnsConfiguration = columnsConfig ?? styles.defaultColumnsConfig;
   const gridConfiguration = gridConfig ?? styles.gridConfig;
@@ -25,7 +26,12 @@ export const LayoutStandAlone = ({
   return (
     <LayoutContainer $paddingBottom={styles.padding_botom_size} backgroundColor={backgroundColor}>
       {headerContent && (
-        <Grid addPaddingForLayout config={gridConfiguration} data-testid={`${dataTestId}Header`}>
+        <Grid
+          addPaddingForLayout
+          config={gridConfiguration}
+          data-testid={`${dataTestId}Header`}
+          styles={gridConfiguration?.[device]?.headerStyles}
+        >
           <GridItem
             as={LayoutRoleType.header}
             desktop={header?.[DeviceBreakpointsType.DESKTOP]}
@@ -36,7 +42,12 @@ export const LayoutStandAlone = ({
           </GridItem>
         </Grid>
       )}
-      <Grid addPaddingForLayout config={gridConfiguration} data-testid={`${dataTestId}Main`}>
+      <Grid
+        addPaddingForLayout
+        config={gridConfiguration}
+        data-testid={`${dataTestId}Main`}
+        styles={gridConfiguration?.[device]?.mainStyles}
+      >
         <GridItem
           as={LayoutRoleType.main}
           desktop={asideContent ? main?.[DeviceBreakpointsType.DESKTOP] : main?.DESKTOP_FULL}
@@ -58,7 +69,12 @@ export const LayoutStandAlone = ({
         )}
       </Grid>
       {footerContent && footer && (
-        <Grid addPaddingForLayout config={gridConfiguration} data-testid={`${dataTestId}Footer`}>
+        <Grid
+          addPaddingForLayout
+          config={gridConfiguration}
+          data-testid={`${dataTestId}Footer`}
+          styles={gridConfiguration?.[device]?.footerStyles}
+        >
           <GridItem
             as={LayoutRoleType.footer}
             desktop={footer[DeviceBreakpointsType.DESKTOP]}

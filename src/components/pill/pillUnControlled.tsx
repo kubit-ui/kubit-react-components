@@ -5,6 +5,9 @@ import { isKeyEnterPressed, isKeySpacePressed } from '@/utils';
 import { PillControlled } from './pillControlled';
 import { IPillUnControlled } from './types';
 
+/**
+ * @deprecated Try the new PillV2 component
+ */
 export const PillUnControlled = ({
   initialState = false,
   focus,
