@@ -41,8 +41,8 @@ export interface IDrawerStandAlone {
   scrollableRef: (node) => void;
   shadowRef: (node) => void;
   /* To useZoomEffect */
-  footerRef: (node) => void;
-  contentRef: (node) => void;
+  footerRef?: (node) => void;
+  contentRef?: (node) => void;
 }
 
 type OmitProps = 'styles' | 'device' | 'scrollableRef' | 'shadowRef' | 'footerRef' | 'contentRef';
