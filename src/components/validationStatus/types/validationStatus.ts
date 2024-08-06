@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { IElementOrIcon } from '@/components/elementOrIcon';
 import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes, ROLES } from '@/types';
 
 import { ValidationStatusState, ValidationStatusStylesProps } from './validationStatusTheme';
 
@@ -14,6 +14,7 @@ export type ValidationStatusItemType = {
   state: ValidationStatusState;
   text: ValidationStatusTextType;
   dataTestId?: string;
+  role?: string | ROLES;
 };
 
 export type ValidationStatusStateIconsType = {

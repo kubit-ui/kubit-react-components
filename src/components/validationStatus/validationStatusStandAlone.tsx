@@ -27,6 +27,7 @@ const ValidationStatusStandAloneComponent = (
           <ValidationStatusRow
             key={`${item.text.content}--${index}`}
             data-testid={item.dataTestId}
+            role={item.role}
             styles={props.styles}
           >
             <ElementOrIcon
