@@ -33,13 +33,9 @@ const PillSelectorStandAloneComponent = (
 
   const isPillSelected = props.pillSelected?.length !== 0;
 
-  React.useImperativeHandle(
-    ref,
-    () => {
-      return listEl.current as HTMLDivElement;
-    },
-    []
-  );
+  React.useImperativeHandle(ref, () => {
+    return listEl.current as HTMLDivElement;
+  }, []);
 
   return (
     <PillSelectorWrapper
