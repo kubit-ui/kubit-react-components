@@ -58,7 +58,10 @@ const AccordionStandAloneComponent = (
           styles={props.styles.headerInternalContainer}
         >
           <AccordionHeaderMainContainerStyled styles={props.styles.headerMainContainer}>
-            <AccordionHeaderTitleHeadlineStyled as={props.triggerComponent}>
+            <AccordionHeaderTitleHeadlineStyled
+              as={props.triggerComponent}
+              styles={props.styles.titleHeaderMainContainer}
+            >
               <AccordionTriggerStyled
                 aria-controls={PANEL_ID}
                 aria-expanded={open}

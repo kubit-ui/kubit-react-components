@@ -14,6 +14,7 @@ export type AccordionPropsStylesType = {
   headerExternalContainer?: CommonStyleType;
   headerInternalContainer?: CommonStyleType;
   headerMainContainer?: CommonStyleType;
+  titleHeaderMainContainer?: CommonStyleType;
   trigger?: CommonStyleType;
   /**
    * @deprecated currently link styles is used instead of trigger when tittle is not type of string. In the next major only trigger styles will be used
