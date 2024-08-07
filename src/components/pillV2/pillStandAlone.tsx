@@ -18,7 +18,7 @@ import { IPillStandAlone, PillType } from './types';
 
 const PillStandAloneComponent = (
   { dataTestId = 'pill', type = PillType.BUTTON, ...props }: IPillStandAlone,
-  ref: React.ForwardedRef<HTMLButtonElement> | undefined | null
+  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const id = useId('pill');
   const pillContentId = `${id}-content`;
@@ -35,17 +35,6 @@ const PillStandAloneComponent = (
       type={[PillType.BUTTON, PillType.TAB].includes(type) ? ButtonType.BUTTON : undefined}
       onClick={props.onClick}
     >
-      {[PillType.SELECTOR_SIMPLE, PillType.SELECTOR_MULTIPLE].includes(type) && (
-        <PillInputStyled
-          aria-labelledby={pillContentId}
-          checked={props.selected}
-          disabled={props.disabled}
-          name={props.name}
-          styles={props.styles}
-          type={type === PillType.SELECTOR_SIMPLE ? InputTypeType.RADIO : InputTypeType.CHECKBOX}
-          onChange={props.onChange}
-        />
-      )}
       <PillContentContainerStyled id={pillContentId} styles={props.styles}>
         <ElementOrIcon customIconStyles={props.styles?.leftIcon} {...props.leftIcon} />
         <Text
@@ -57,6 +46,18 @@ const PillStandAloneComponent = (
         </Text>
         <ElementOrIcon customIconStyles={props.styles?.rightIcon} {...props.rightIcon} />
       </PillContentContainerStyled>
+      {[PillType.SELECTOR_SIMPLE, PillType.SELECTOR_MULTIPLE].includes(type) && (
+        <PillInputStyled
+          aria-labelledby={pillContentId}
+          checked={props.selected}
+          disabled={props.disabled}
+          name={props.name}
+          styles={props.styles}
+          type={type === PillType.SELECTOR_SIMPLE ? InputTypeType.RADIO : InputTypeType.CHECKBOX}
+          value={props.value}
+          onChange={props.onChange}
+        />
+      )}
     </PillRootContainerStyled>
   );
 };

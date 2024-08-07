@@ -74,6 +74,8 @@ export type Variants = {
   PageControlAutomateVariant?: object;
   PaginationVariantsTheme?: object;
   PillSelectorVariant?: object;
+  PillSelectorVariantTypeV2?: object;
+  PillSelectorSizeTypeV2?: object;
   PillVariantType?: object;
   PillSizeType?: object;
   PillVariantTypeV2?: object;

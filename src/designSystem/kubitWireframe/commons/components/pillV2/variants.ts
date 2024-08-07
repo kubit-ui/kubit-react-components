@@ -1,6 +1,5 @@
 export enum PillVariantTypeV2 {
   DEFAULT = 'DEFAULT',
-  PILL_SELECTOR = 'PILL_SELECTOR',
 }
 
 export enum PillSizeTypeV2 {

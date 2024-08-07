@@ -54,6 +54,7 @@ export * from './pagination/variants';
 export * from './pill/variants';
 export * from './pillV2/variants';
 export * from './pillSelector/variants';
+export * from './pillSelectorV2/variants';
 export * from './quickButton/variants';
 export * from './radioButtonGroup/variants';
 export * from './table/variants';

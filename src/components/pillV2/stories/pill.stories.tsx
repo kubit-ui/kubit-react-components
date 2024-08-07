@@ -12,7 +12,7 @@ import { argtypes } from './argtypes';
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 
 const meta = {
-  title: 'Components/Status/PillV2',
+  title: 'Components/Forms/PillV2',
   component: Story,
   parameters: {
     layout: 'centered',
@@ -39,7 +39,7 @@ export const Pill: Story = {
   },
 };
 
-export const TagWithCtv: Story = {
+export const PillWithCtv: Story = {
   args: {
     ...commonPillProps,
     ctv: {
