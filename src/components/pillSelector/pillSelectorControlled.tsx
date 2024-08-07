@@ -92,4 +92,7 @@ const PillSelectorControlled = React.forwardRef(PillSelectorBoundary) as <
   }
 ) => ReturnType<typeof PillSelectorBoundary>;
 
+/**
+ * @deprecated Try the new PillSelectorV2 component
+ */
 export { PillSelectorControlled };

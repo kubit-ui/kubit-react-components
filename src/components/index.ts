@@ -36,6 +36,7 @@ export * from './message';
 export * from './modal';
 export * from './oliveMenu';
 export * from './pillSelector';
+export * from './pillSelectorV2';
 export * from './tabs';
 export * from './snackbar';
 export * from './stepperNumber';

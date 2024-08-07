@@ -20,6 +20,7 @@ export interface IPillStandAlone {
   disabled: boolean;
   type?: PillType;
   name?: string;
+  value?: string | number;
   ['aria-controls']?: string;
   onClick?: React.MouseEventHandler;
   onChange?: React.ChangeEventHandler;

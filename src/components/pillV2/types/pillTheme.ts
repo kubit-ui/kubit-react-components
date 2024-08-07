@@ -4,11 +4,11 @@ import { PillStateType } from './pillStateType';
 
 export type PillPropsStylesType = {
   rootContainer?: CommonStyleType;
-  input?: CommonStyleType;
   contentContainer?: CommonStyleType;
   leftIcon?: IconTypes;
   label?: TypographyTypes;
   rightIcon?: IconTypes;
+  input?: CommonStyleType;
 };
 
 export type PillSizePropsStylesType = {

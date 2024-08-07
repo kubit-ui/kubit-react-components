@@ -32,9 +32,10 @@ export const AccordionHeaderMainContainerStyled = styled.div<IAccordionStyles>`
   ${props => getStyles(props.styles)}
 `;
 
-export const AccordionHeaderTitleHeadlineStyled = styled.span`
+export const AccordionHeaderTitleHeadlineStyled = styled.span<IAccordionStyles>`
   display: flex;
   width: 100%;
+  ${props => getStyles(props.styles)}
 `;
 
 export const AccordionTitleStyled = styled.span<IAccordionStyles>`

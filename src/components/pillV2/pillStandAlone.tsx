@@ -35,17 +35,6 @@ const PillStandAloneComponent = (
       type={[PillType.BUTTON, PillType.TAB].includes(type) ? ButtonType.BUTTON : undefined}
       onClick={props.onClick}
     >
-      {[PillType.SELECTOR_SIMPLE, PillType.SELECTOR_MULTIPLE].includes(type) && (
-        <PillInputStyled
-          aria-labelledby={pillContentId}
-          checked={props.selected}
-          disabled={props.disabled}
-          name={props.name}
-          styles={props.styles}
-          type={type === PillType.SELECTOR_SIMPLE ? InputTypeType.RADIO : InputTypeType.CHECKBOX}
-          onChange={props.onChange}
-        />
-      )}
       <PillContentContainerStyled id={pillContentId} styles={props.styles}>
         <ElementOrIcon customIconStyles={props.styles?.leftIcon} {...props.leftIcon} />
         <Text
@@ -57,6 +46,18 @@ const PillStandAloneComponent = (
         </Text>
         <ElementOrIcon customIconStyles={props.styles?.rightIcon} {...props.rightIcon} />
       </PillContentContainerStyled>
+      {[PillType.SELECTOR_SIMPLE, PillType.SELECTOR_MULTIPLE].includes(type) && (
+        <PillInputStyled
+          aria-labelledby={pillContentId}
+          checked={props.selected}
+          disabled={props.disabled}
+          name={props.name}
+          styles={props.styles}
+          type={type === PillType.SELECTOR_SIMPLE ? InputTypeType.RADIO : InputTypeType.CHECKBOX}
+          value={props.value}
+          onChange={props.onChange}
+        />
+      )}
     </PillRootContainerStyled>
   );
 };

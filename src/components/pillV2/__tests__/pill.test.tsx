@@ -45,8 +45,7 @@ describe('Pill component', () => {
   });
 
   it('The default type of the pill is a button', async () => {
-    const { size, ...restMockProps } = mockProps;
-    const { container } = renderProvider(<Pill {...restMockProps} />);
+    const { container } = renderProvider(<Pill {...mockProps} />);
 
     const pill = screen.getByRole(ROLES.BUTTON);
     expect(pill).toBeInTheDocument();
@@ -57,11 +56,10 @@ describe('Pill component', () => {
   });
 
   it('When type is TAB it will render a tab', async () => {
-    const { size, ...restMockProps } = mockProps;
     const { container } = renderProvider(
       <div>
         <div role={ROLES.TABLIST}>
-          <Pill {...restMockProps} aria-controls="aria-controls-div" type={PillType.TAB} />
+          <Pill {...mockProps} aria-controls="aria-controls-div" type={PillType.TAB} />
         </div>
         <div id="aria-controls-div" />
       </div>
@@ -76,10 +74,7 @@ describe('Pill component', () => {
   });
 
   it('When type is SELECTOR_MULTIPLE it will render an input checkbox', async () => {
-    const { size, ...restMockProps } = mockProps;
-    const { container } = renderProvider(
-      <Pill {...restMockProps} type={PillType.SELECTOR_MULTIPLE} />
-    );
+    const { container } = renderProvider(<Pill {...mockProps} type={PillType.SELECTOR_MULTIPLE} />);
 
     const pill = screen.getByRole(ROLES.CHECKBOX);
     expect(pill).toBeInTheDocument();
@@ -90,10 +85,7 @@ describe('Pill component', () => {
   });
 
   it('When type is SELECTOR_SIMPLE it will render an input radio', async () => {
-    const { size, ...restMockProps } = mockProps;
-    const { container } = renderProvider(
-      <Pill {...restMockProps} type={PillType.SELECTOR_SIMPLE} />
-    );
+    const { container } = renderProvider(<Pill {...mockProps} type={PillType.SELECTOR_SIMPLE} />);
 
     const pill = screen.getByRole(ROLES.RADIO);
     expect(pill).toBeInTheDocument();
@@ -104,9 +96,8 @@ describe('Pill component', () => {
   });
 
   it('When type is SELECTOR and selected is true it will render an input checked', async () => {
-    const { size, ...restMockProps } = mockProps;
     const { container } = renderProvider(
-      <Pill {...restMockProps} selected type={PillType.SELECTOR_SIMPLE} />
+      <Pill {...mockProps} selected type={PillType.SELECTOR_SIMPLE} />
     );
 
     const pill = screen.getByRole(ROLES.RADIO);
@@ -118,9 +109,8 @@ describe('Pill component', () => {
   });
 
   it('When type is SELECTOR and disabled is true it will render an input disabled', async () => {
-    const { size, ...restMockProps } = mockProps;
     const { container } = renderProvider(
-      <Pill {...restMockProps} disabled type={PillType.SELECTOR_MULTIPLE} />
+      <Pill {...mockProps} disabled type={PillType.SELECTOR_MULTIPLE} />
     );
 
     const pill = screen.getByRole(ROLES.CHECKBOX);
@@ -132,9 +122,8 @@ describe('Pill component', () => {
   });
 
   it('When type is SELECTOR and selected and disabled is true it will render an input selected and disabled', async () => {
-    const { size, ...restMockProps } = mockProps;
     const { container } = renderProvider(
-      <Pill {...restMockProps} disabled selected type={PillType.SELECTOR_MULTIPLE} />
+      <Pill {...mockProps} disabled selected type={PillType.SELECTOR_MULTIPLE} />
     );
 
     const pill = screen.getByRole(ROLES.CHECKBOX);

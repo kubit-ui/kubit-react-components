@@ -114,6 +114,17 @@ export const argtypes = (
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    value: {
+      description: 'When type selector, input value',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string | number',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     ['aria-controls']: {
       description: 'aria-controls',
       type: { name: 'string' },

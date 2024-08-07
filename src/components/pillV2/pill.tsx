@@ -8,14 +8,7 @@ import { IPill, PillVariantPropsStylesType } from './types';
 import { getPillState } from './utils';
 
 const PillComponent = (
-  {
-    variant,
-    size,
-    ctv,
-    selected = false,
-    disabled = false,
-    ...props
-  }: React.PropsWithChildren<IPill>,
+  { variant, size, ctv, selected = false, disabled = false, ...props }: IPill,
   ref: React.ForwardedRef<HTMLButtonElement>
 ) => {
   const variantStyles = useStylesV2<PillVariantPropsStylesType>({

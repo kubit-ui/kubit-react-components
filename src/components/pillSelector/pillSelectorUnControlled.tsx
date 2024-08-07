@@ -45,4 +45,7 @@ const PillSelectorUnControlled = React.forwardRef(PillSelectorUnControlledCompon
   }
 ) => ReturnType<typeof PillSelectorUnControlledComponent>;
 
+/**
+ * @deprecated Try the new PillSelectorV2 component
+ */
 export { PillSelectorUnControlled };

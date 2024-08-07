@@ -41,6 +41,8 @@ import { getOverlayStyles } from './overlay';
 import { getPageControlStyles } from './pageControl';
 import { getPillStyles } from './pill';
 import { getPillSelectorStyles } from './pillSelector';
+import { getPillSelectorStylesV2 } from './pillSelectorV2';
+import { getPillStylesV2 } from './pillV2';
 import { POPOVER_STYLES } from './popover';
 import { getQuickButtonStyles } from './quickButton';
 import { getRadioButtonGroupStyles } from './radioButtonGroup';
@@ -109,7 +111,9 @@ export const getComponentsStyles = (COLORS: {
   OVERLAY_STYLES: getOverlayStyles(COLORS),
   PAGE_CONTROL_STYLES: getPageControlStyles(COLORS),
   PILL_SELECTOR_STYLES: getPillSelectorStyles(COLORS),
+  PILL_SELECTOR_STYLES_V2: getPillSelectorStylesV2(COLORS),
   PILL_STYLES: getPillStyles(COLORS),
+  PILL_STYLES_V2: getPillStylesV2(COLORS),
   POPOVER_STYLES: POPOVER_STYLES,
   PRIMARY_TABS_STYLES: getTabsStyles(COLORS),
   RADIO_BUTTON_GROUP_STYLES: getRadioButtonGroupStyles(COLORS),

@@ -54,6 +54,7 @@ export * from './pagination/styles';
 export * from './pill/styles';
 export * from './pillV2/styles';
 export * from './pillSelector/styles';
+export * from './pillSelectorV2/styles';
 export * from './quickButton/styles';
 export * from './radioButtonGroup/styles';
 export * from './table/styles';
