@@ -22,10 +22,18 @@ const PaginationComponent = React.forwardRef(
 
     const limitCurrentStep = Math.max(0, Math.min(currentStep, maxStepsNumber - 1));
 
+    let paginationCountersNumber = styles.paginationCountersNumber?.[device]?.counters ?? 5;
+
+    if (maxCountersNumber && maxCountersNumber < maxStepsNumber) {
+      paginationCountersNumber = maxCountersNumber;
+    } else {
+      paginationCountersNumber = Math.min(maxStepsNumber, paginationCountersNumber);
+    }
+
     const stepsNumber = buildstepsNumber(
       limitCurrentStep,
       maxStepsNumber,
-      styles.paginationCountersNumber?.[device]?.counters,
+      paginationCountersNumber,
       maxCountersNumber
     );
     const stepActive = stepsNumber.indexOf(limitCurrentStep + 1);

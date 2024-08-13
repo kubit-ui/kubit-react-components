@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
+import React, { useEffect } from 'react';
 
 import { ICONS } from '@/assets';
 import { STYLES_NAME } from '@/constants';
@@ -17,6 +17,12 @@ const meta = {
   component: Story,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Pagination is a controlled component. This story is an example of how to use it. To see other examples or modify the component behavior, visit the other stories in Pagination section or change the props in the controls.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
@@ -29,7 +35,13 @@ type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
 const StoryWithHooks = args => {
   const [step, setStep] = React.useState(0);
-  const maxSteps = 10;
+  const maxSteps = args.maxStepsNumber ? args.maxStepsNumber : 35;
+
+  useEffect(() => {
+    if (args.currentStep) {
+      setStep(args.currentStep - 1);
+    }
+  }, [args.currentStep]);
 
   const leftEdge = step <= 0;
   const rightEdge = step >= maxSteps;
@@ -80,6 +92,33 @@ export const Pagination = {
       variantsObject[themeSelected].PaginationVariantsTheme || {}
     )[0] as string,
     themeArgs: themesObject[themeSelected][STYLES_NAME.PAGINATION],
+    currentStep: 1,
+    maxStepsNumber: 35,
+    maxCountersNumber: 5,
+  },
+};
+
+export const PaginationWithTwoSteps = {
+  args: {
+    variant: Object.values(
+      variantsObject[themeSelected].PaginationVariantsTheme || {}
+    )[0] as string,
+    themeArgs: themesObject[themeSelected][STYLES_NAME.PAGINATION],
+    currentStep: 1,
+    maxStepsNumber: 2,
+    maxCountersNumber: 2,
+  },
+};
+
+export const PaginationWithFiveSteps = {
+  args: {
+    variant: Object.values(
+      variantsObject[themeSelected].PaginationVariantsTheme || {}
+    )[0] as string,
+    themeArgs: themesObject[themeSelected][STYLES_NAME.PAGINATION],
+    currentStep: 1,
+    maxStepsNumber: 5,
+    maxCountersNumber: 5,
   },
 };
 

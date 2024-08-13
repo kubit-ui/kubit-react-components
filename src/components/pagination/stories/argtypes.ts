@@ -24,7 +24,7 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
     currentStep: {
       control: { type: 'number' },
       type: { name: 'number', required: true },
-      description: 'Indicate the parent current position',
+      description: 'Indicate the parent current position. The max value is maxStepsNumber',
       table: {
         type: {
           summary: 'number',
@@ -33,9 +33,9 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
       },
     },
     maxStepsNumber: {
-      control: { type: 'number' },
+      control: { type: 'number', min: 2 },
       type: { name: 'number', required: true },
-      description: 'Set the max steps number',
+      description: 'Set the max steps number. The min value is 2',
       table: {
         type: {
           summary: 'number',
@@ -46,7 +46,7 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
     maxCountersNumber: {
       control: { type: 'number' },
       type: { name: 'number' },
-      description: 'Set the custom steps number to show',
+      description: 'Set the custom steps number to show. The min value is 2',
       table: {
         type: {
           summary: 'number',

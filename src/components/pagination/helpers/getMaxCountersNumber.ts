@@ -20,7 +20,7 @@ export const buildstepsNumber = (
 
   let currentPosition = currentStep + 1;
 
-  if (currentPosition >= maxCounters) {
+  if (currentPosition >= maxCounters && maxSteps !== maxCounters) {
     maxCounters--;
     startWith = [1, '...'];
   }
