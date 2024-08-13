@@ -12,10 +12,62 @@ import {
   PaddingTypes,
   PointerTypes,
   PositionTypes,
+  ScrollTypes,
   TypographyTypes,
   WordWrapTypes,
 } from '@/types/styles';
 import { AnimationType } from '@/types/styles/animation';
+
+/**
+ * Get scroll styles.
+ * @param {ScrollTypes} prop - scroll styles
+ */
+export const getScrollStyles = (prop?: ScrollTypes): CSSProp => {
+  if (!prop) {
+    return css``;
+  }
+  const {
+    scrollbar_width,
+    scrollbar_color,
+    overflow_block,
+    overflow_inline,
+    overflow_x,
+    overflow_y,
+    overflow,
+    overflow_clip_margin,
+    scrollbar_gutter,
+    scroll_behavior,
+    scroll_margin,
+    scroll_padding,
+    scroll_snap_align,
+    scroll_snap_stop,
+    scroll_snap_type,
+    webkit_scrollbar,
+    scroll_container,
+    scrollbar_aria_role,
+  } = prop;
+
+  return css`
+    ${scrollbar_width && `scrollbar-width: ${scrollbar_width};`}
+    ${scrollbar_color && `scrollbar-color: ${scrollbar_color};`}
+    ${overflow_block && `overflow-block: ${overflow_block};`}
+    ${overflow_inline && `overflow-inline: ${overflow_inline};`}
+    ${overflow_x && `overflow-x: ${overflow_x};`}
+    ${overflow_y && `overflow-y: ${overflow_y};`}
+    ${overflow && `overflow: ${overflow};`}
+    ${overflow_clip_margin && `overflow-clip-margin: ${overflow_clip_margin};`}
+    ${scrollbar_gutter && `scrollbar-gutter: ${scrollbar_gutter};`}
+    ${scroll_behavior && `scroll-behavior: ${scroll_behavior};`}
+    ${scroll_margin && `scroll-margin: ${scroll_margin};`}
+    ${scroll_padding && `scroll-padding: ${scroll_padding};`}
+    ${scroll_snap_align && `scroll-snap-align: ${scroll_snap_align};`}
+    ${scroll_snap_stop && `scroll-snap-stop: ${scroll_snap_stop};`}
+    ${scroll_snap_type && `scroll-snap-type: ${scroll_snap_type};`}
+    ${webkit_scrollbar && `::-webkit-scrollbar: ${webkit_scrollbar};`}
+    ${scroll_container && `scroll-container: ${scroll_container};`}
+    ${scrollbar_aria_role && `scrollbar-aria-role: ${scrollbar_aria_role};`}
+  `;
+};
 
 /**
  * Returns the background styles.
@@ -520,6 +572,7 @@ const getGenericStyles = (styles?: CommonStyleType): CSSProp => {
     ${getPointerStyles(styles)}
     ${getWordWrapStyles(styles)}
     ${getAnimationStyles(styles)}
+    ${getScrollStyles(styles)}
   `;
 };
 

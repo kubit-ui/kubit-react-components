@@ -18,7 +18,7 @@ export interface IIconComplex {
 
 type IconAriaAttributes = Pick<
   React.AriaAttributes,
-  'aria-label' | 'aria-controls' | 'aria-checked'
+  'aria-label' | 'aria-controls' | 'aria-checked' | 'aria-hidden'
 >;
 
 export interface IIconStandAlone extends IconAriaAttributes {

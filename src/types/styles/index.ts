@@ -9,6 +9,7 @@ export enum Styles {
   POSITION = 'position',
   TYPOGRAPHY = 'typography',
   POINTER = 'pointer',
+  SCROLL = 'scroll',
 }
 
 export * from './padding';
@@ -25,3 +26,4 @@ export * from './illustration';
 export * from './pointer';
 export * from './commonStyle';
 export * from './wordWrap';
+export * from './scroll';

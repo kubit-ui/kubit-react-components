@@ -31,7 +31,7 @@ const commonPillSelectorProps: IPillSelectorUnControlled = {
   )[0] as string,
   pills: [
     { label: { content: 'Pill 1' }, icon: { icon: ICONS.ICON_PLACEHOLDER }, value: 'value 1' },
-    { label: { content: 'Pill 2 ' }, icon: { icon: ICONS.ICON_PLACEHOLDER }, value: 'value 2' },
+    { label: { content: 'Pill 2' }, icon: { icon: ICONS.ICON_PLACEHOLDER }, value: 'value 2' },
     { label: { content: 'Pill 3' }, icon: { icon: ICONS.ICON_PLACEHOLDER }, value: 'value 3' },
     { label: { content: 'Pill 4' }, icon: { icon: ICONS.ICON_PLACEHOLDER }, value: 'value 4' },
   ],
