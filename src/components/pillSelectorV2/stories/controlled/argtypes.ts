@@ -11,7 +11,7 @@ export const argtypes = (
   return {
     variant: {
       description: 'Variant',
-      type: { name: 'string', required: true },
+      type: { name: 'string' },
       control: { type: 'select' },
       options: Object.keys(variantsObject[themeSelected].PillSelectorVariantTypeV2 || {}),
       table: {

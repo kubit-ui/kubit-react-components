@@ -11,7 +11,7 @@ export const argtypes = (
   return {
     variant: {
       description: 'Variant',
-      type: { name: 'string', required: true },
+      type: { name: 'string' },
       control: { type: 'select' },
       options: Object.keys(variantsObject[themeSelected].PillSelectorVariantTypeV2 || {}),
       table: {
@@ -59,7 +59,7 @@ export const argtypes = (
       },
     },
     selectedIcon: {
-      description: 'Icon to show when the pill is selected',
+      description: 'Icon to show when a pill is selected',
       type: { name: 'object' },
       table: {
         type: {
@@ -119,7 +119,7 @@ export const argtypes = (
         type: {
           summary: 'string',
         },
-        defaultValue: { summary: 'segmentedControl' },
+        defaultValue: { summary: 'pillSelector' },
         category: CATEGORY_CONTROL.TESTING,
       },
     },

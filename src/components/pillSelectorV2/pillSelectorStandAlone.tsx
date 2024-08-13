@@ -10,7 +10,7 @@ const PillSelectorStandAloneComponent = (
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   return (
-    <RootContainerStyled ref={ref} styles={props.styles}>
+    <RootContainerStyled ref={ref} data-testid={dataTestId} styles={props.styles}>
       {props.pills?.map((pill, index) => {
         const selected =
           props.type === PillSelectorType.SELECTOR_MULTIPLE

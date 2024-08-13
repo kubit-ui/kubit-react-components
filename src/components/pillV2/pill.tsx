@@ -9,7 +9,7 @@ import { getPillState } from './utils';
 
 const PillComponent = (
   { variant, size, ctv, selected = false, disabled = false, ...props }: IPill,
-  ref: React.ForwardedRef<HTMLButtonElement>
+  ref: React.ForwardedRef<HTMLDivElement>
 ) => {
   const variantStyles = useStylesV2<PillVariantPropsStylesType>({
     styleName: STYLES_NAME.PILL_V2,
