@@ -4,6 +4,7 @@ import { CalendarContainerStylesType } from '../../types/calendarTheme';
 
 export interface ISelector {
   currentDate: Date;
+  customBackText?: string;
   setCurrentDate: (date: Date) => void;
   maxDate: Date;
   minDate: Date;

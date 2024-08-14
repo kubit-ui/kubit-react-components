@@ -30,9 +30,10 @@ export const RightIconStyled = styled.span<RightIconType>`
   visibility: ${({ showCustomSelector }) => (showCustomSelector ? 'hidden' : 'visible')};
 `;
 
-export const IconAndBackTextStyled = styled.div<SelectorStyledType>`
+export const IconAndBackTextStyled = styled.button<SelectorStyledType>`
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
   ${({ styles }) => getStyles(styles?.selectorIconAndBackTextContainer)};
 `;
