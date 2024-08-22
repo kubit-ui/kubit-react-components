@@ -71,6 +71,7 @@ export const ListRowHeaderPriority = (props: IListRowHeaderPriority): JSX.Elemen
               <li key={indexHeader}>
                 {header.label && (
                   <ListHeaderItemStylesStyled
+                    aria-hidden={header?.config?.['aria-hidden']}
                     customAlign={
                       header?.config?.alignHeader?.[props.device] || header?.config?.alignHeader
                     }

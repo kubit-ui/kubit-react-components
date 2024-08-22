@@ -26,7 +26,7 @@ interface ITableComponent extends Omit<ITableStandAlone, 'headerVariant'> {
 }
 
 export const TableComponent = (
-  props: ITableComponent,
+  { ariaHiddenDividerColumn = true, ariaHiddenEmptyColumn = true, ...props }: ITableComponent,
   ref: React.ForwardedRef<HTMLTableElement> | undefined | null
 ): JSX.Element => {
   const ariaProps = pickAriaProps(props);
@@ -73,11 +73,15 @@ export const TableComponent = (
             styles={props.styles.header?.[props.headerVariant]}
           >
             {hasRowHeader && (
-              <TableEmptyColumnHeaderStyled styles={props.styles.header?.[props.headerVariant]} />
+              <TableEmptyColumnHeaderStyled
+                aria-hidden={ariaHiddenEmptyColumn}
+                styles={props.styles.header?.[props.headerVariant]}
+              />
             )}
             {hasSomeDividerContent && (
               <TableColumnHeaderStyled
                 key={'dividerContent'}
+                aria-hidden={ariaHiddenDividerColumn}
                 hasDivider={true}
                 scope="col"
                 styles={props.styles.header?.[props.headerVariant]}
@@ -96,6 +100,7 @@ export const TableComponent = (
               return (
                 <TableColumnHeaderStyled
                   key={headerValue.id}
+                  aria-hidden={headerValue.config?.['aria-hidden']}
                   customAlign={
                     headerValue?.config?.alignHeader?.[props.device] ||
                     headerValue?.config?.alignHeader
