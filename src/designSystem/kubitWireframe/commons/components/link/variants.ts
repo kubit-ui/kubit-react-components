@@ -1,4 +1,5 @@
 export enum LinkVariantType {
   PRIMARY = 'PRIMARY',
   SECONDARY = 'SECONDARY',
+  SECONDARY_ALT = 'SECONDARY_ALT',
 }
