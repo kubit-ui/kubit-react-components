@@ -37,6 +37,7 @@ const IconBasicComponent = (
         disabled={disabled}
         id={props.id}
         tabIndex={tabIndex}
+        title={props.title || ''}
         type={ButtonType.BUTTON}
         onClick={onClick}
       >
