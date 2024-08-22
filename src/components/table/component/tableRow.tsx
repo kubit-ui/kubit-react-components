@@ -62,6 +62,7 @@ export const TableRow = (props: ITableRow): JSX.Element => {
         <TableDivider divider={dividerValue()} styles={props.styles.divider} />
         {rowHeader && (
           <TableColumnHeaderStyled
+            aria-hidden={rowHeader.config?.['aria-hidden']}
             customAlign={
               rowHeader?.config?.alignHeader?.[props.device] || rowHeader?.config?.alignHeader
             }
@@ -87,6 +88,7 @@ export const TableRow = (props: ITableRow): JSX.Element => {
             return (
               <TableColumnBodyStyled
                 key={indexHeader}
+                aria-hidden={headerValue.config?.['aria-hidden']}
                 customAlign={
                   getCellTokenValue({ headerValue, token: 'align' }) ||
                   headerValue?.config?.alignValue?.[props.device] ||

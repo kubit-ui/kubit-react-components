@@ -123,22 +123,21 @@ export const Selector = (props: ISelector): JSX.Element => {
 
   return (
     <SelectorStyled isDaySelector={isDaySelector} styles={props.styles}>
-      <IconAndBackTextStyled styles={props.styles}>
+      <IconAndBackTextStyled
+        aria-label={showCustomSelector ? '' : leftArrowIcon['aria-label']}
+        styles={props.styles}
+        type="button"
+        onClick={handleOnClickLeftIcon}
+      >
         <ElementOrIcon
           color={iconArrowDisabled(props.minDate) ? props.styles?.colorArrowDisabled : undefined}
           customIconStyles={props.styles?.leftArrow}
           disabled={iconArrowDisabled(props.minDate)}
           {...leftArrowIcon}
-          aria-label={
-            showCustomSelector
-              ? props.configAccesibility?.backToMonthAriaLabel
-              : leftArrowIcon['aria-label']
-          }
-          onClick={handleOnClickLeftIcon}
         />
         {showCustomSelector && (
           <Text component={TextComponentType.PARAGRAPH} customTypography={props.styles?.backText}>
-            {'Back'}
+            {props.customBackText}
           </Text>
         )}
       </IconAndBackTextStyled>

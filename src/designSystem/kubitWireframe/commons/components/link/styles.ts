@@ -24,10 +24,10 @@ const commonContainerTokens = COLORS => ({
   font_variant: TextVariantType.PARAGRAPH_SMALL_EXPANDED,
   font_weight: FONT_WEIGHT.font_weight_400,
   cursor: 'pointer',
-  ...transformShadow(RADIUS.radius_300),
+  ...transformShadow(RADIUS.radius_00),
   ...shadowAfterStylesSpecificProps(
     RADIUS.radius_300,
-    COLORS.BRAND.color_brand_bg_50,
+    COLORS,
     SPACINGS.spacing_50,
     `calc(100% + ${SPACINGS.spacing_100})`,
     SPACINGS.spacing_50,
@@ -60,14 +60,25 @@ export const getLinkStyles = (COLORS: {
           ...commonTokens,
           container: {
             ...commonContainerTokens(COLORS),
-            color: COLORS.ACCENT.color_neutral_font_50,
+            color: COLORS.ACCENT.color_accent_default_font_100,
           },
           icon: {
             ...commonIconTokens,
-            color: COLORS.ACCENT.color_neutral_icon_50,
+            color: COLORS.ACCENT.color_accent_default_icon_100,
           },
         },
-        [LinkStateType.PRESSED]: {},
+        [LinkStateType.PRESSED]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokens(COLORS),
+            color: COLORS.PRESSED.color_accent_pressed_font_200,
+            background_color: COLORS.PRESSED.color_accent_pressed_bg_100,
+          },
+          icon: {
+            ...commonIconTokens,
+            color: COLORS.PRESSED.color_accent_pressed_icon_200,
+          },
+        },
         [LinkStateType.VISITED]: {},
         [LinkStateType.DISABLED]: {
           ...commonTokens,
@@ -84,11 +95,11 @@ export const getLinkStyles = (COLORS: {
           ...commonTokens,
           container: {
             ...commonContainerTokens(COLORS),
-            color: COLORS.ACCENT.color_neutral_font_50,
+            color: COLORS.ACCENT.color_accent_default_font_100,
           },
           icon: {
             ...commonIconTokens,
-            color: COLORS.ACCENT.color_neutral_icon_50,
+            color: COLORS.ACCENT.color_accent_default_icon_100,
           },
         },
       },
@@ -96,15 +107,26 @@ export const getLinkStyles = (COLORS: {
         [LinkStateType.DEFAULT]: {
           ...commonTokens,
           container: {
-            ...commonContainerTokensWithouShadow,
-            color: COLORS.ACCENT.color_neutral_font_50,
+            ...commonContainerTokens(COLORS),
+            color: COLORS.ACCENT.color_accent_default_font_50,
           },
           icon: {
             ...commonIconTokens,
-            color: COLORS.ACCENT.color_neutral_icon_50,
+            color: COLORS.ACCENT.color_accent_default_icon_50,
           },
         },
-        [LinkStateType.PRESSED]: {},
+        [LinkStateType.PRESSED]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokens(COLORS),
+            color: COLORS.PRESSED.color_accent_pressed_font_150,
+            background_color: COLORS.PRESSED.color_accent_pressed_bg_100,
+          },
+          icon: {
+            ...commonIconTokens,
+            color: COLORS.PRESSED.color_accent_pressed_icon_150,
+          },
+        },
         [LinkStateType.VISITED]: {},
         [LinkStateType.DISABLED]: {
           ...commonTokens,
@@ -120,12 +142,60 @@ export const getLinkStyles = (COLORS: {
         [LinkStateType.HOVER]: {
           ...commonTokens,
           container: {
-            ...commonContainerTokensWithouShadow,
-            color: COLORS.ACCENT.color_neutral_font_50,
+            ...commonContainerTokens(COLORS),
+            color: COLORS.ACCENT.color_accent_default_font_50,
           },
           icon: {
             ...commonIconTokens,
-            color: COLORS.ACCENT.color_neutral_icon_50,
+            color: COLORS.ACCENT.color_accent_default_icon_50,
+          },
+        },
+      },
+      [LinkVariantType.SECONDARY_ALT]: {
+        [LinkStateType.DEFAULT]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokens(COLORS),
+            color: COLORS.ACCENT.color_accent_default_font_150,
+          },
+          icon: {
+            ...commonIconTokens,
+            color: COLORS.ACCENT.color_accent_default_icon_150,
+          },
+        },
+        [LinkStateType.PRESSED]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokens(COLORS),
+            color: COLORS.PRESSED.color_accent_pressed_font_100,
+            background_color: COLORS.PRESSED.color_accent_pressed_bg_200,
+          },
+          icon: {
+            ...commonIconTokens,
+            color: COLORS.PRESSED.color_accent_pressed_icon_100,
+          },
+        },
+        [LinkStateType.VISITED]: {},
+        [LinkStateType.DISABLED]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokensWithouShadow,
+            color: COLORS.DISABLED.color_accentDisabled_font_100,
+          },
+          icon: {
+            ...commonIconTokens,
+            color: COLORS.DISABLED.color_accentDisabled_icon_100,
+          },
+        },
+        [LinkStateType.HOVER]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokens(COLORS),
+            color: COLORS.ACCENT.color_accent_default_font_150,
+          },
+          icon: {
+            ...commonIconTokens,
+            color: COLORS.ACCENT.color_accent_default_icon_150,
           },
         },
       },
@@ -136,14 +206,25 @@ export const getLinkStyles = (COLORS: {
           ...commonTokens,
           container: {
             ...commonContainerTokens(COLORS),
-            color: COLORS.ACCENT.color_neutral_font_50,
+            color: COLORS.ACCENT.color_accent_default_font_100,
           },
           icon: {
             ...commonIconTokens,
-            color: COLORS.ACCENT.color_neutral_icon_50,
+            color: COLORS.ACCENT.color_accent_default_icon_100,
           },
         },
-        [LinkStateType.PRESSED]: {},
+        [LinkStateType.PRESSED]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokens(COLORS),
+            color: COLORS.PRESSED.color_accent_pressed_font_200,
+            background_color: COLORS.PRESSED.color_accent_pressed_bg_100,
+          },
+          icon: {
+            ...commonIconTokens,
+            color: COLORS.PRESSED.color_accent_pressed_icon_200,
+          },
+        },
         [LinkStateType.VISITED]: {},
         [LinkStateType.DISABLED]: {
           ...commonTokens,
@@ -153,17 +234,19 @@ export const getLinkStyles = (COLORS: {
           },
           icon: {
             color: COLORS.DISABLED.color_accentDisabled_icon_100,
+            width: SPACINGS.spacing_350,
+            height: SPACINGS.spacing_350,
           },
         },
         [LinkStateType.HOVER]: {
           ...commonTokens,
           container: {
             ...commonContainerTokens(COLORS),
-            color: COLORS.ACCENT.color_neutral_font_50,
+            color: COLORS.ACCENT.color_accent_default_font_100,
           },
           icon: {
             ...commonIconTokens,
-            color: COLORS.ACCENT.color_neutral_icon_50,
+            color: COLORS.ACCENT.color_accent_default_icon_100,
           },
         },
       },
@@ -171,15 +254,26 @@ export const getLinkStyles = (COLORS: {
         [LinkStateType.DEFAULT]: {
           ...commonTokens,
           container: {
-            ...commonContainerTokensWithouShadow,
-            color: COLORS.ACCENT.color_neutral_font_50,
+            ...commonContainerTokens(COLORS),
+            color: COLORS.ACCENT.color_accent_default_font_50,
           },
           icon: {
             ...commonIconTokens,
-            color: COLORS.ACCENT.color_neutral_icon_50,
+            color: COLORS.ACCENT.color_accent_default_icon_50,
           },
         },
-        [LinkStateType.PRESSED]: {},
+        [LinkStateType.PRESSED]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokens(COLORS),
+            color: COLORS.PRESSED.color_accent_pressed_font_150,
+            background_color: COLORS.PRESSED.color_accent_pressed_bg_100,
+          },
+          icon: {
+            ...commonIconTokens,
+            color: COLORS.PRESSED.color_accent_pressed_icon_150,
+          },
+        },
         [LinkStateType.VISITED]: {},
         [LinkStateType.DISABLED]: {
           ...commonTokens,
@@ -189,17 +283,68 @@ export const getLinkStyles = (COLORS: {
           },
           icon: {
             color: COLORS.DISABLED.color_accentDisabled_icon_100,
+            width: SPACINGS.spacing_350,
+            height: SPACINGS.spacing_350,
           },
         },
         [LinkStateType.HOVER]: {
           ...commonTokens,
           container: {
-            ...commonContainerTokensWithouShadow,
-            color: COLORS.ACCENT.color_neutral_font_50,
+            ...commonContainerTokens(COLORS),
+            color: COLORS.ACCENT.color_accent_default_font_50,
           },
           icon: {
             ...commonIconTokens,
-            color: COLORS.ACCENT.color_neutral_icon_50,
+            color: COLORS.ACCENT.color_accent_default_icon_50,
+          },
+        },
+      },
+      [LinkVariantType.SECONDARY_ALT]: {
+        [LinkStateType.DEFAULT]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokens(COLORS),
+            color: COLORS.ACCENT.color_accent_default_font_150,
+          },
+          icon: {
+            ...commonIconTokens,
+            color: COLORS.ACCENT.color_accent_default_icon_150,
+          },
+        },
+        [LinkStateType.PRESSED]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokens(COLORS),
+            color: COLORS.PRESSED.color_accent_pressed_font_100,
+            background_color: COLORS.PRESSED.color_accent_pressed_bg_200,
+          },
+          icon: {
+            ...commonIconTokens,
+            color: COLORS.PRESSED.color_accent_pressed_icon_100,
+          },
+        },
+        [LinkStateType.VISITED]: {},
+        [LinkStateType.DISABLED]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokensWithouShadow,
+            color: COLORS.DISABLED.color_accentDisabled_font_100,
+          },
+          icon: {
+            color: COLORS.DISABLED.color_accentDisabled_icon_100,
+            width: SPACINGS.spacing_350,
+            height: SPACINGS.spacing_350,
+          },
+        },
+        [LinkStateType.HOVER]: {
+          ...commonTokens,
+          container: {
+            ...commonContainerTokens(COLORS),
+            color: COLORS.ACCENT.color_accent_default_font_150,
+          },
+          icon: {
+            ...commonIconTokens,
+            color: COLORS.ACCENT.color_accent_default_icon_150,
           },
         },
       },

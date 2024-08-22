@@ -126,6 +126,7 @@ export type ConfigType = {
   srOnlyHeader?: boolean | SrOnlyHeaderType;
   flexWidth?: number | string | FlexWidthType;
   backgroundColor?: string;
+  ['aria-hidden']?: boolean;
 };
 
 export type ValueFunctionType = (
@@ -173,6 +174,8 @@ type TBodyScrollAriasType = {
  */
 export interface ITableStandAlone extends TableAriaAttributes {
   styles: TableRowHeaderTypes<string, string>;
+  ariaHiddenDividerColumn?: boolean;
+  ariaHiddenEmptyColumn?: boolean;
   lineSeparatorLineStyles: LineSeparatorLinePropsStylesType;
   lineSeparatorTopOnHeader?: boolean;
   lineSeparatorBottomOnHeader?: boolean;

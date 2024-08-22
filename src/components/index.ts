@@ -81,6 +81,7 @@ export * from './tableCaption';
 export * from './tableDivider';
 export * from './tableV2';
 export * from './dataTable';
+export * from './virtualKeyboard';
 
 /**
  * Assets components.

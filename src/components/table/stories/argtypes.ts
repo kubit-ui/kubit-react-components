@@ -46,6 +46,30 @@ export const argtypes = (
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    ariaHiddenDividerColumn: {
+      description: 'aria-hidden prop applied to divider column created when table has divider',
+      type: { name: 'boolean' },
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: { summary: true },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    ariaHiddenEmptyColumn: {
+      description: 'aria-hidden prop applied to empty column created when has row headers',
+      type: { name: 'boolean' },
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: { summary: true },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     values: {
       description: 'Content of your table',
       type: { name: 'IValue[]', required: true },

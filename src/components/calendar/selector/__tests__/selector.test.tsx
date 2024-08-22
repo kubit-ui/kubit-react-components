@@ -38,9 +38,7 @@ describe('Selector component', () => {
   it('Selector with Range and selected Date Component', () => {
     renderProvider(<Selector {...mockProps} />);
 
-    const selector = screen.getByRole('button', {
-      name: mockProps.configCalendar.leftArrowIcon['aria-label'],
-    });
+    const selector = screen.getByLabelText(mockProps.configCalendar.leftArrowIcon['aria-label']);
 
     expect(selector).toBeInTheDocument();
   });

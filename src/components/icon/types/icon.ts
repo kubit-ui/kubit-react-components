@@ -40,6 +40,7 @@ export interface IIconStandAlone extends IconAriaAttributes {
   twistAnimationTransformValue?: string | null | undefined;
   complex?: boolean;
   customIconStyles?: IconTypes;
+  title?: string;
 }
 
 export type IIcon = Omit<IIconStandAlone, 'onKeyDown'> & {

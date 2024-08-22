@@ -12,7 +12,7 @@ import { YearSelector } from './selector/yearSelector/yearSelector';
 import { ICalendarStandAlone } from './types';
 
 const CalendarStandAloneComponent = (
-  { maxDate = new Date(), ...props }: ICalendarStandAlone,
+  { maxDate = new Date(), customBackText = 'Back', ...props }: ICalendarStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): React.JSX.Element => {
   const [showMonthSelector, setShowMonthSelector] = React.useState(false);
@@ -31,6 +31,7 @@ const CalendarStandAloneComponent = (
         configAccesibility={props.configAccesibility}
         configCalendar={props.configCalendar}
         currentDate={props.currentDate}
+        customBackText={customBackText}
         maxDate={maxDate}
         minDate={props.minDate}
         setCurrentDate={props.setCurrentDate}

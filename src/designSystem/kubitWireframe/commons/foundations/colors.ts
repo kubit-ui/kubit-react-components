@@ -1,5 +1,6 @@
 export const getColors = (
-  accentColor = '#DF2B51'
+  accentColor = '#DF2B51',
+  accentColorPressed = '#99354B'
 ): {
   [key: string]: { [key: string]: string };
 } => {
@@ -94,6 +95,7 @@ export const getColors = (
       color_accent_pressed_font_50: '#A01D39',
       color_accent_pressed_font_100: '#F4F4F4',
       color_accent_pressed_font_150: '#4F4F4F',
+      color_accent_pressed_font_200: accentColorPressed,
 
       color_accent_pressed_bg_50: '#A01D39',
       color_accent_pressed_bg_100: '#F4F4F4',
@@ -102,6 +104,7 @@ export const getColors = (
       color_accent_pressed_icon_50: '#A01D39',
       color_accent_pressed_icon_100: '#F4F4F4',
       color_accent_pressed_icon_150: '#4F4F4F',
+      color_accent_pressed_icon_200: accentColorPressed,
       color_accent_pressed_icon_250: '#FFFFFF',
 
       color_accent_pressed_border_50: '#A01D39',

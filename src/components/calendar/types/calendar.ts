@@ -34,6 +34,7 @@ export type IConfigAccesibility = {
 };
 export interface ICalendarStandAlone<V = undefined extends string ? unknown : string> {
   id?: string;
+  customBackText?: string;
   selectedDate: Date[];
   hasRange?: boolean;
   disabledDates?: Date[];

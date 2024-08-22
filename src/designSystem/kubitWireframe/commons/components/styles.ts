@@ -9,13 +9,11 @@ import { getCarouselStyles } from './carousel';
 import { getCheckboxStyles } from './checkbox';
 import { getCheckboxWithLabelStyles } from './checkboxWithLabel';
 import { getChipStyles } from './chip';
-import { getConfirmationMessageStyles } from './confirmationMessage';
 import { getContainerStyles } from './container';
 import { getDataTableStyles } from './dataTable';
 import { getDividerStyles } from './divider';
 import { getDotStyles } from './dot';
 import { getDrawerStyles } from './drawer';
-import { getEmptyStateStyles } from './emptyState';
 import { getFooterStyles } from './footer/styles';
 import { getFunctionalitiesModuleStyles } from './functionalitiesModule';
 import { getHeaderStyles } from './header/styles';
@@ -57,16 +55,15 @@ import { getTableDividerStyles } from './tableDivider';
 import { getTableFootStyles } from './tableFoot';
 import { getTableHeadStyles } from './tableHead';
 import { getTableRowStyles } from './tableRow';
-import { getTableV2Styles } from './tableV2';
 import { getTabsStyles } from './tabs';
 import { getTagStyles } from './tag';
 import { getTagStylesV2 } from './tagV2';
 import { TEXT_STYLES } from './text/styles';
 import { getTextCountStyles } from './textCount';
-import { getThirdPartyAnimationStyles } from './thirdPartyAnimation';
 import { getToggleStyles } from './toggle';
 import { getTooltipStyles } from './tooltip';
 import { getValidationStatusStyles } from './validationStatus/styles';
+import { getVirtualKeyboardStyles } from './virtualKeyboard/styles';
 
 export const getComponentsStyles = (COLORS: {
   [key: string]: { [key: string]: string };
@@ -81,12 +78,10 @@ export const getComponentsStyles = (COLORS: {
   CHECKBOX_STYLES: getCheckboxStyles(COLORS),
   CHECKBOX_WITH_LABEL_STYLES: getCheckboxWithLabelStyles(COLORS),
   CHIP_STYLES: getChipStyles(COLORS),
-  CONFIRMATION_MESSAGE_STYLES: getConfirmationMessageStyles(COLORS),
   CONTAINER_STYLES: getContainerStyles(COLORS),
   DIVIDER_STYLES: getDividerStyles(COLORS),
   DOT_STYLES: getDotStyles(COLORS),
   DRAWER_STYLES: getDrawerStyles(COLORS),
-  EMPTY_STATE_STYLES: getEmptyStateStyles(COLORS),
   FOOTER_STYLES: getFooterStyles(COLORS),
   FUNCTIONALITIES_MODULE_STYLES: getFunctionalitiesModuleStyles(COLORS),
   HEADER_STYLES: getHeaderStyles(COLORS),
@@ -125,12 +120,12 @@ export const getComponentsStyles = (COLORS: {
   TAG_STYLES_V2: getTagStylesV2(COLORS),
   TEXT_COUNT_STYLES: getTextCountStyles(COLORS),
   TEXT_STYLES: TEXT_STYLES,
-  THIRD_PARTY_ANIMATION_STYLES: getThirdPartyAnimationStyles(COLORS),
   QUICK_BUTTON_STYLES: getQuickButtonStyles(COLORS),
   BACK_TO_TOP_STYLES: getBackTopStyles(COLORS),
   TOGGLE_STYLES: getToggleStyles(COLORS),
   TOOLTIP_STYLES: getTooltipStyles(COLORS),
   VALIDATION_STATUS_STYLES: getValidationStatusStyles(COLORS),
+  VIRTUAL_KEYBOARD_STYLES: getVirtualKeyboardStyles(COLORS),
   TABLE_CELL_STYLES: getTableCellStyles(COLORS),
   TABLE_CAPTION_STYLES: getTableCaptionStyles(COLORS),
   TABLE_BODY_STYLES: getTableBodyStyles(COLORS),
@@ -138,6 +133,6 @@ export const getComponentsStyles = (COLORS: {
   TABLE_FOOT_STYLES: getTableFootStyles(COLORS),
   TABLE_HEAD_STYLES: getTableHeadStyles(COLORS),
   TABLE_ROW_STYLES: getTableRowStyles(COLORS),
-  TABLE_V2_STYLES: getTableV2Styles(COLORS),
+  TABLE_V2_STYLES: getTableStyles(COLORS),
   DATA_TABLE_STYLES: getDataTableStyles(COLORS),
 });

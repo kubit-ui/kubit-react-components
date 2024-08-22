@@ -33,6 +33,7 @@ export const ListColumnHeaderPriority = (props: IListComponent): JSX.Element => 
             >
               {header.label && (
                 <ListHeaderItemStylesStyled
+                  aria-hidden={header.config?.['aria-hidden']}
                   customAlign={
                     header?.config?.alignHeader?.[props.device] || header?.config?.alignHeader
                   }
