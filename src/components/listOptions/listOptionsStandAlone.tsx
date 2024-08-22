@@ -80,7 +80,7 @@ export const ListOptionsStandAlone = React.forwardRef(
                 props.caseSensitive
               );
               const title = props.title?.content || '';
-              const dataTestIdOption = `${dataTestId}${title}Option${index}${option.label}`;
+              const dataTestIdOption = `${dataTestId}${title}Option${index}${option.value || ''}`;
 
               const optionComponent = (
                 <Option
