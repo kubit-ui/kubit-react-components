@@ -43,7 +43,7 @@ export const Tooltip: Story = {
     },
     children: 'Hover me',
     align: TooltipAlignType.TOP,
-    closeIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Close icon' },
+    closeIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Close icon', title: 'Close' },
     tooltipAsModal: false,
     themeArgs: themesObject[themeSelected][STYLES_NAME.TOOLTIP],
   },
