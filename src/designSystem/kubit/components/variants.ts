@@ -88,3 +88,4 @@ export * from './tableCaption/variants';
 export * from './tableDivider/variants';
 export * from './tableV2/variants';
 export * from './dataTable/variants';
+export * from './virtualKeyboard/variants';
