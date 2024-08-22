@@ -67,12 +67,24 @@ export const ButtonStyled = styled.button<IButtonStyled>`
       )};
   }
 
-  &:hover:not(:disabled) {
-    ${({ $styles, $sizeStyles }) => setTokens(ButtonStateType.HOVER, $styles, $sizeStyles)}
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      ${({ $styles, $sizeStyles }) => setTokens(ButtonStateType.HOVER, $styles, $sizeStyles)}
+    }
   }
 
   &:active:not(:disabled) {
     ${({ $styles, $sizeStyles }) => setTokens(ButtonStateType.PRESSED, $styles, $sizeStyles)}
+  }
+
+  &:focus-visible {
+    ${({ $styles, $sizeStyles }) => setTokens(ButtonStateType.DEFAULT, $styles, $sizeStyles)}
+  }
+
+  @media (hover: none) {
+    &:hover {
+      ${({ $styles, $sizeStyles }) => setTokens(ButtonStateType.DEFAULT, $styles, $sizeStyles)}
+    }
   }
 
   width: ${props => (props.$fullWidth ? '100%' : 'auto')};
