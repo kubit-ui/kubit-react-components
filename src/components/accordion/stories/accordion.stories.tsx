@@ -4,6 +4,7 @@ import React from 'react';
 import { ICONS } from '@/assets';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
 import { TextComponentType } from '@/components/text';
+import { ToggleUnControlled } from '@/components/toggle/toggleUnControlled';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
@@ -40,6 +41,20 @@ export const Accordion: Story = {
     subHeaderContent: 'Hi, i am a subheader content',
     triggerComponent: TextComponentType.H3,
     footerContent: <ReplaceContent />,
+    headerRightContent: (
+      <ToggleUnControlled
+        aria-label="toggle aria label"
+        inputValues={{
+          rightInputValue: 'on option',
+          centerInputValue: 'undeterminated option',
+          leftInputValue: 'off option',
+          leftIconAltText: 'on option',
+        }}
+        offIcon={{ icon: ICONS.ICON_CHEVRON_UP }}
+        variant="DEFAULT"
+        onIcon={{ icon: ICONS.ICON_CHEVRON_DOWN }}
+      />
+    ),
     themeArgs: themesObject[themeSelected][STYLES_NAME.ACCORDION],
   },
 };
