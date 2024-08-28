@@ -49,6 +49,44 @@ export const Tooltip: Story = {
   },
 };
 
+export const TooltipSimple: Story = {
+  args: {
+    variant: Object.values(variantsObject[themeSelected].TooltipVariantType || {})[0] as string,
+    title: { content: 'Tootltip title' },
+    content: {
+      content: (
+        <div style={{ color: '#fff' }}>
+          <div>content first line</div>
+        </div>
+      ),
+    },
+    children: 'Hover me',
+    align: TooltipAlignType.TOP,
+    tooltipAsModal: false,
+    themeArgs: themesObject[themeSelected][STYLES_NAME.TOOLTIP],
+  },
+};
+
+export const TooltipComplex: Story = {
+  args: {
+    variant: Object.values(variantsObject[themeSelected].TooltipVariantType || {})[0] as string,
+    title: { content: 'Tootltip title' },
+    content: {
+      content: (
+        <div style={{ color: '#fff' }}>
+          <div>content first line</div>
+          <div>content second line</div>
+        </div>
+      ),
+    },
+    children: 'Hover me',
+    align: TooltipAlignType.TOP,
+    closeIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Close icon' },
+    tooltipAsModal: true,
+    themeArgs: themesObject[themeSelected][STYLES_NAME.TOOLTIP],
+  },
+};
+
 export const TooltipWithCtv: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].TooltipVariantType || {})[0] as string,
