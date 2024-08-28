@@ -34,6 +34,7 @@ export * from './breadcrumbs';
 export * from './drawer';
 export * from './message';
 export * from './modal';
+export * from './modalV2';
 export * from './oliveMenu';
 export * from './pillSelector';
 export * from './pillSelectorV2';

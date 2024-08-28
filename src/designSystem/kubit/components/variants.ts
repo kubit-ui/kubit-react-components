@@ -32,6 +32,7 @@ export * from './listOptions/variants';
 export * from './mediaProgressBar/variants';
 export * from './message/variants';
 export * from './modal/variants';
+export * from './modalV2/variants';
 export * from './pageControl/variants';
 export * from './tabs/variants';
 export * from './snackbar/variants';

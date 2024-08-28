@@ -76,6 +76,7 @@ export interface ICalendarStandAlone<V = undefined extends string ? unknown : st
     event?: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
   ) => void;
   preventCloseOnClickElements?: (HTMLElement | null | undefined)[];
+  locale?: string;
 }
 
 type propsToOmit = 'currentDate' | 'setCurrentDate' | 'selectedDate' | 'setSelectedDate' | 'styles';

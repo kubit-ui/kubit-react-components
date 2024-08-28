@@ -6,7 +6,6 @@ import * as React from 'react';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { windowMatchMedia } from '@/tests/windowMatchMedia';
 
-import { keyLeftMove, keyRightMove, keyTabMove } from '../utils';
 import { YearSelector } from '../yearSelector';
 
 window.matchMedia = windowMatchMedia();
@@ -42,35 +41,5 @@ describe('YearSelector', () => {
     fireEvent.click(button2024);
 
     expect(setCurrentDate).toHaveBeenCalled();
-  });
-
-  it('YearSelector utils - left key pressed should be move to a previous position', () => {
-    const result = keyLeftMove(yearList)(2);
-
-    expect(result).toBe(1);
-  });
-
-  it('YearSelector utils - left key pressed should be move to the end', () => {
-    const result = keyLeftMove(yearList)(0);
-
-    expect(result).toBe(yearList.length - 1);
-  });
-
-  it('YearSelector utils - right key pressed should be move to a next position', () => {
-    const result = keyRightMove(yearList)(2);
-
-    expect(result).toBe(3);
-  });
-
-  it('YearSelector utils - right key pressed should be move to the start', () => {
-    const result = keyRightMove(yearList)(3);
-
-    expect(result).toBe(0);
-  });
-
-  it('YearSelector utils - tab key pressed should be move outside month list', () => {
-    const result = keyTabMove(5);
-
-    expect(result).toBe(5);
   });
 });

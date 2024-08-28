@@ -12,22 +12,28 @@ import { setMonth } from '../../utils/setMonth';
 import { MonthElementStyled, MonthListStyled, MonthSelectorStyled } from './monthSelector.styled';
 import { IMonthSelector } from './types/monthSelector';
 import { MonthSelectorStateType } from './types/state';
-import { keyLeftMove, keyRightMove, keyTabMove } from './utils';
+import { keyDownMove, keyLeftMove, keyRightMove, keyTabMove, keyUpMove } from './utils';
 
 export const MonthSelector = (props: IMonthSelector): JSX.Element => {
   const { dateHelpers, transformDate } = useUtilsProvider();
 
+  const handleKeyMoveConfig = {
+    currentDate: props.currentDate,
+    maxDate: props.maxDate,
+    minDate: props.minDate,
+  };
+
   const roveFocusProps = React.useMemo(
     () => ({
       size: dateHelpers.getAllMonthName('long').length,
-      keyLeftMove,
-      keyRightMove: keyRightMove(new Date().getMonth()),
+      keyLeftMove: keyLeftMove(handleKeyMoveConfig),
+      keyRightMove: keyRightMove(handleKeyMoveConfig),
+      keyUpMove: keyUpMove(handleKeyMoveConfig),
+      keyDownMove: keyDownMove(handleKeyMoveConfig),
+      keyTabMove,
       currentFocusSelected: props.currentDate
         ? props.currentDate.getMonth()
         : new Date().getMonth(),
-      keyUpMove: 0,
-      keyDownMove: 0,
-      keyTabMove,
     }),
     [dateHelpers.getAllMonthName('long').length, props.currentDate]
   );
@@ -65,6 +71,7 @@ export const MonthSelector = (props: IMonthSelector): JSX.Element => {
           <MonthListStyled
             key={index}
             $disabled={setDisabledMonths(index)}
+            aria-selected={state === MonthSelectorStateType.SELECTED ? true : undefined}
             state={state}
             styles={props.styles}
           >

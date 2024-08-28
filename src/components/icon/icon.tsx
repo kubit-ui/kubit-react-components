@@ -10,7 +10,7 @@ import { IconStandAlone } from './iconStandAlone';
 import { IIcon } from './types';
 
 const IconBasicComponent = (
-  { tabIndex = 0, ...props }: IIcon,
+  { ...props }: IIcon,
   ref: React.ForwardedRef<HTMLSpanElement>
 ): JSX.Element | null => {
   const device = useMediaDevice();
@@ -36,7 +36,7 @@ const IconBasicComponent = (
         data-testid={iconProps.dataTestId}
         disabled={disabled}
         id={props.id}
-        tabIndex={tabIndex}
+        tabIndex={props.tabIndex}
         title={props.title || ''}
         type={ButtonType.BUTTON}
         onClick={onClick}

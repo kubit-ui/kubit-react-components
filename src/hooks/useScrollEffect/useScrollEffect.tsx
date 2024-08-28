@@ -8,15 +8,21 @@ interface CustomHookReturnValue {
   shadowRef: (node) => void;
 }
 
+interface CustomHookProps {
+  shadowStyles?: string;
+  conditional?: boolean;
+  shadowVisible?: number;
+}
+
 const MAX_PERCENTAGE = 100;
 const proportionLimit = 1.25;
 const defaultShadow = 'none';
 
-export const useScrollEffect = (
+export const useScrollEffect = ({
   conditional = true,
   shadowStyles = defaultShadow,
-  shadowVisible = 1
-): CustomHookReturnValue => {
+  shadowVisible = 1,
+}: CustomHookProps): CustomHookReturnValue => {
   // the scrollable element ref
   const innerScrollableRef = useRef<HTMLElement | null>(null);
   // the element ref to change the height and width

@@ -61,7 +61,7 @@ const ToggleTwoPositionComponent = (
         e.persist();
         const newPosition =
           props.togglePosition === POSITIONS.RIGHT ? POSITIONS.LEFT : POSITIONS.RIGHT;
-        props.onClick?.(newPosition, e);
+        props.onClick?.(e, newPosition);
       }}
       onKeyDown={e => {
         e.persist();
@@ -76,12 +76,6 @@ const ToggleTwoPositionComponent = (
         hasThreePositions={props.hasThreePositions}
         styles={props.styles}
         togglePosition={props.togglePosition}
-        onClick={e => {
-          e.persist();
-          const newPosition =
-            props.togglePosition === POSITIONS.RIGHT ? POSITIONS.LEFT : POSITIONS.RIGHT;
-          props.onClick?.(newPosition, e);
-        }}
       />
     </ToggleWrapperStyled>
   );

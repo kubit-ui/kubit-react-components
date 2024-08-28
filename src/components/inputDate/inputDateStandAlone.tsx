@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { InputControlled as Input } from '@/components/input';
-import { PopoverComponentType } from '@/components/popover';
 import { useId } from '@/hooks';
 import { ROLES } from '@/types';
 
@@ -24,8 +23,6 @@ export const InputDateStandAloneComponent = (
       <Input
         {...innerInputProps}
         ref={ref}
-        aria-controls={ariaControls}
-        aria-haspopup={PopoverComponentType.DIALOG}
         icon={{
           ...props.icon,
           altText: props.calendarOpen
@@ -39,8 +36,10 @@ export const InputDateStandAloneComponent = (
           altText: props.calendarOpen
             ? props.configAccesibility?.closeInputIconAriaLabel
             : props.configAccesibility?.openInputIconAriaLabel,
+          ['aria-haspopup']: true,
+          ['aria-controls']: ariaControls,
         }}
-        role={ROLES.TEXTBOX}
+        role={ROLES.COMBOBOX}
         variant={props.inputVariant ?? props.styles?.[props.state]?.inputVariant}
       />
       <PopoverCalendar
@@ -57,6 +56,7 @@ export const InputDateStandAloneComponent = (
         inputId={inputId}
         label={props.label}
         labelComponentType={props.labelComponentType}
+        locale={props.locale}
         maxDate={maxDate}
         minDate={props.minDate}
         secondSelectedDate={props.dateFormatted[1]}

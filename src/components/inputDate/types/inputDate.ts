@@ -12,7 +12,7 @@ import { CustomTokenTypes, POSITIONS } from '@/types';
 
 import { InputDateStylesProps } from './inputDateTheme';
 
-type InputRightIconType = Omit<IElementOrIcon, 'altText'>;
+type InputRightIconType = Omit<IElementOrIcon, 'altText' | 'aria-label'>;
 
 export type SelectedDate = {
   startDate: Date;
@@ -57,6 +57,7 @@ export interface IPopoverCalendar {
   onCalendarOpen?: (open: boolean) => void;
   extraCalendarWidth?: string;
   extraCalendarWidthSide?: POSITIONS;
+  locale?: string;
 }
 
 type propsToOmitInputBasic =

@@ -77,7 +77,7 @@ const ToggleThreePositionComponent = (
           onClick={e => {
             if (!block) {
               e.persist();
-              props.onClick?.(position, e);
+              props.onClick?.(e, position);
             }
           }}
         />

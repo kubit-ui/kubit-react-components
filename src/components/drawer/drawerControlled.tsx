@@ -11,7 +11,6 @@ import { DrawerStandAlone } from './drawerStandAlone';
 import { DrawerVariantStylesType, IDrawerControlled, IDrawerStandAlone } from './types';
 
 /* Constants for useScrollEffect */
-const CONDITION = true;
 const SCROLL_DISTANCE = 5;
 /* Constants for useZoomEffect (footer) */
 const FOOTER_EDIT_STYLES: CssProperty[] = [
@@ -34,11 +33,10 @@ const DrawerControlledComponent = React.forwardRef(
     const device = useMediaDevice();
     const stylesByDevice = styles[device];
 
-    const { scrollableRef, shadowRef } = useScrollEffect(
-      CONDITION,
-      stylesByDevice.titleContainer?.box_shadow,
-      SCROLL_DISTANCE
-    );
+    const { scrollableRef, shadowRef } = useScrollEffect({
+      shadowStyles: stylesByDevice.titleContainer?.box_shadow,
+      shadowVisible: SCROLL_DISTANCE,
+    });
 
     const footerRef = useZoomEffect(FOOTER_EDIT_STYLES, MAX_ZOOM);
 

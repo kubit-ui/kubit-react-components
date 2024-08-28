@@ -4,6 +4,7 @@ import { Calendar } from '@/components/calendar';
 //components
 import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
 import { useMediaDevice } from '@/hooks';
+import { ROLES } from '@/types';
 
 import { ActionBottomSheetControlledStructure as ActionBottomSheet } from '../../actionBottomSheet/actionBottomSheetControlled';
 //types
@@ -26,6 +27,7 @@ const PopoverCalendarComponent = (
       defaultCurrentDate={props.defaultDate}
       hasRange={props.hasRange}
       id={idPopoverCalendar}
+      locale={props.locale}
       maxDate={props.maxDate}
       minDate={props.minDate}
       preventCloseOnClickElements={[
@@ -44,17 +46,19 @@ const PopoverCalendarComponent = (
   return (
     <Popover
       hasBackDrop
+      aria-modal={props.calendarOpen}
       component={PopoverComponentType.DIV}
       dataTestId={`${props.dataTestId}Popover`}
       extraWidth={props.extraCalendarWidth}
       extraWidthSide={props.extraCalendarWidthSide}
       focusFirstDescendantAutomatically={false}
-      focusLastElementFocusedAfterClose={false}
+      focusLastElementFocusedAfterClose={true}
       open={props.calendarOpen}
       preventCloseOnClickElements={[
         (ref as React.MutableRefObject<HTMLInputElement | null | undefined>)?.current
           ?.parentNode as HTMLElement,
       ]}
+      role={ROLES.DIALOG}
       trapFocusInsideModal={true}
       variant={props.styles?.[props.state]?.popoverVariant?.[device]}
       onCloseInternally={() => props.onCalendarOpen?.(false)}

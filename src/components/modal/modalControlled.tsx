@@ -27,15 +27,15 @@ const ModalControlledComponent = React.forwardRef(
     const styles = useStyles<ModalBaseStylesType, V>(STYLES_NAME.MODAL, variant, ctv);
     const device = useMediaDevice();
 
-    const condition = React.useMemo(
+    const conditional = React.useMemo(
       () =>
         device !== DeviceBreakpointsType.DESKTOP && device !== DeviceBreakpointsType.LARGE_DESKTOP,
       [device]
     );
-    const { scrollableRef, resizeRef, shadowRef } = useScrollEffect(
-      condition,
-      styles.headerContainer?.box_shadow
-    );
+    const { scrollableRef, resizeRef, shadowRef } = useScrollEffect({
+      conditional,
+      shadowStyles: styles.headerContainer?.box_shadow,
+    });
 
     const zoomRef = useZoomEffect(CONTAINER_STYLES_EDIT, MAX_ZOOM);
     const zoomRefChild = useZoomEffect(CONTENT_STYLES_EDIT, MAX_ZOOM);

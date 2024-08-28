@@ -30,17 +30,17 @@ const ActionBottomSheetControlledStructureComponent = React.forwardRef(
     );
     const device = useMediaDevice();
 
-    const condition = React.useMemo(
+    const conditional = React.useMemo(
       () =>
         device !== DeviceBreakpointsType.DESKTOP && device !== DeviceBreakpointsType.LARGE_DESKTOP,
       [device]
     );
 
-    const { scrollableRef, shadowRef } = useScrollEffect(
-      condition,
-      styles.header?.[device]?.box_shadow,
-      SCROLL_DISTANCE
-    );
+    const { scrollableRef, shadowRef } = useScrollEffect({
+      conditional,
+      shadowStyles: styles.controlContainer?.[device]?.box_shadow,
+      shadowVisible: SCROLL_DISTANCE,
+    });
 
     return (
       <ActionBottomSheetStandAlone

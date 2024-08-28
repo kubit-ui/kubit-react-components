@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 export const ReplaceContentStyled = styled.div<{
   width?: string;
   height?: string;
+  margin?: string;
   backgroundColor?: string;
 }>`
   display: flex;
@@ -12,6 +13,7 @@ export const ReplaceContentStyled = styled.div<{
   gap: 1rem;
   width: ${({ width }) => width || '100%'};
   height: ${({ height }) => height || '200px'};
+  margin: ${({ margin }) => margin || '0px'};
   padding: 20px;
   background-color: ${({ backgroundColor }) => backgroundColor || 'rgb(234 240 254)'};
   color: #236df6;

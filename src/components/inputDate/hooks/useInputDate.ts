@@ -369,6 +369,13 @@ export const useInputDate = ({
   };
 
   const handlePickCalendarDate = (newPickDate: Date[]): void => {
+    // clean errors setted by internal validation, when date is selected from calendar
+    if (internalErrors.includes(InternalErrorType.INVALID_DATE)) {
+      removeInternalError(InternalErrorType.INVALID_DATE);
+    } else if (internalErrors.includes(InternalErrorType.INVALID_DATE_RANGE)) {
+      removeInternalError(InternalErrorType.INVALID_DATE_RANGE);
+    }
+
     const orderedDates: Date[] = [...newPickDate].sort(
       (a, b) => new Date(a).getTime() - new Date(b).getTime()
     );

@@ -59,7 +59,8 @@ const TooltipStandAlone = ({
   const Tooltip = (
     <TooltipExternalContainerStyled
       ref={props.tooltipRef}
-      aria-label={props.tooltipAsModal ? props.tooltipAriaLabel : undefined}
+      aria-label={props.tooltipAriaLabel}
+      aria-labelledby={titleId}
       as={getHtmlTagForTooltip({
         mediaDevice: props.mediaDevice,
         tooltipAsModal: props.tooltipAsModal,
@@ -107,7 +108,7 @@ const TooltipStandAlone = ({
               styles={props.styles}
             >
               <Text
-                component={TextComponentType.SPAN}
+                component={TextComponentType.H2}
                 customTypography={props.styles?.title}
                 dataTestId={`${props.dataTestId}TooltipContentTitle`}
                 variant={props.styles.title?.font_variant}

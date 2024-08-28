@@ -53,8 +53,8 @@ const commonArgs: IInputDate = {
   format: 'DD-MM-YYYY',
   placeholder: 'Date',
   locale: 'en-EN',
-  maxDate: formatDateToUTC(new Date()),
-  minDate: formatDateToUTC(new Date('2023-07-05')),
+  maxDate: formatDateToUTC(new Date('2025-09-15')),
+  minDate: formatDateToUTC(new Date('2012-07-05')),
   // initialDate: new Date('2024-07-10'),
   // initialSecondDate: new Date('05-01-2000'),
   defaultDate: new Date(),
@@ -78,6 +78,7 @@ const commonArgs: IInputDate = {
         variantsObject[themeSelected].ButtonSizeType || {}
       )[0] as string,
     },
+    formatWeekDayOption: 'short',
   },
   configAccesibility: {
     openInputIconAriaLabel: 'show calendar',

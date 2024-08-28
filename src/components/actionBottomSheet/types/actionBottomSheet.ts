@@ -1,4 +1,5 @@
 import { IElementOrIcon } from '@/components/elementOrIcon';
+import { ILink } from '@/components/link';
 import { IPopoverControlled } from '@/components/popover';
 import { IText } from '@/components/text';
 import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
@@ -21,6 +22,7 @@ export interface IActionBottomSheetStandAlone {
   children: React.ReactNode;
   styles: ActionBottomSheetVariantStylesType;
   closeIcon?: IElementOrIcon;
+  actionLink?: ILink;
   title?: ActionBottomSheetTextType;
   hasHeader?: boolean;
   dataTestId?: string;
