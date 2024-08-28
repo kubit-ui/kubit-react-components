@@ -19,6 +19,7 @@
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
+  "type": "module",
   "engines": {
     "node": ">=20.x",
     "npm": ">=7.0.0"
@@ -158,7 +159,7 @@
     "typedoc-plugin-markdown": "^4.2.6",
     "typescript": "^5.5.4",
     "vite": "^5.4.2",
-    "vite-tsconfig-paths": "^4.3.2",
+    "vite-tsconfig-paths": "^5.0.1",
     "yarn-deduplicate": "^6.0.2"
   },
   "dependencies": {
