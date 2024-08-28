@@ -1,43 +1,17 @@
 import { InputState } from '../types';
 import { hasError } from './state.utils';
 
-export const buildAriaLabelledBy = ({
-  extraAriaLabelledBy,
-  labelId,
+export const buildAriaDescribedBy = ({
+  ariaDescribedBy,
   helpMessage,
   helpMessageId,
   errorMessage,
   errorMessageId,
   state,
 }: {
-  labelId: string;
-  extraAriaLabelledBy?: string;
+  ariaDescribedBy?: string;
   helpMessage?: React.ReactNode;
   helpMessageId?: string;
-  errorMessage?: string;
-  errorMessageId?: string;
-  state?: InputState;
-}): string => {
-  let res = labelId;
-  if (extraAriaLabelledBy) {
-    res += ` ${extraAriaLabelledBy}`;
-  }
-  if (errorMessageId && errorMessage && hasError(state)) {
-    res += ` ${errorMessageId}`;
-  }
-  if (helpMessageId && helpMessage) {
-    res += ` ${helpMessageId}`;
-  }
-  return res;
-};
-
-export const buildAriaDescribedBy = ({
-  ariaDescribedBy,
-  errorMessage,
-  errorMessageId,
-  state,
-}: {
-  ariaDescribedBy?: string;
   errorMessage?: string;
   errorMessageId?: string;
   state?: InputState;
@@ -48,6 +22,10 @@ export const buildAriaDescribedBy = ({
   if (ariaDescribedBy) {
     res += ` ${ariaDescribedBy}`;
   }
+  if (helpMessageId && helpMessage) {
+    res += ` ${helpMessageId}`;
+  }
+
   if (errorMessageId && errorMessage && hasError(state)) {
     res += ` ${errorMessageId}`;
   }

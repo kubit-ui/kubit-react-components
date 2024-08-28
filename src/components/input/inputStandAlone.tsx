@@ -31,11 +31,10 @@ import {
   LABEL_TYPE,
   MultipleRef,
 } from './types';
-import { buildAriaDescribedBy, buildAriaLabelledBy, hasError, isDisabled } from './utils';
+import { buildAriaDescribedBy, hasError, isDisabled } from './utils';
 
 const InputStandAloneComponent = (
   {
-    extraAriaLabelledBy,
     styles,
     state,
     helpMessage,
@@ -76,16 +75,12 @@ const InputStandAloneComponent = (
         }
         aria-haspopup={props['aria-haspopup']}
         aria-invalid={hasError(state)}
-        aria-labelledby={buildAriaLabelledBy({
-          labelId,
-          extraAriaLabelledBy,
-          helpMessage: helpMessage?.content as string,
-          helpMessageId,
-          state: state,
-        })}
+        aria-labelledby={props.extraAriaLabelledBy}
         {...ariaProps}
         aria-describedby={buildAriaDescribedBy({
           ariaDescribedBy: props['aria-describedby'],
+          helpMessage: helpMessage?.content as string,
+          helpMessageId,
           errorMessage: errorMessage?.content as string,
           errorMessageId,
           state,
