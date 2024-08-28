@@ -20,7 +20,7 @@ const ACTION_BUTTON_SHEET_TOKENS = {
     box_shadow: SHADOW.shadow_10,
     background_color: COLORS.NEUTRAL.color_neutral_bg_250,
     border_radius: `${RADIUS.radius_50} ${RADIUS.radius_50} ${RADIUS.radius_00} ${RADIUS.radius_00}`,
-    padding: `${SPACINGS.spacing_400} ${SPACINGS.spacing_300}`,
+    padding: `${SPACINGS.spacing_0} ${SPACINGS.spacing_300} ${SPACINGS.spacing_400}`,
     display: 'flex',
     flex_direction: 'column',
     overflow_y: 'auto',
@@ -46,14 +46,20 @@ const ACTION_BUTTON_SHEET_TOKENS = {
     display: 'flex',
     flex_direction: 'column',
     padding: SPACINGS.spacing_300,
+    padding_top: '0',
     [DeviceBreakpointsType.TABLET]: {
-      box_shadow: SHADOW.shadow_10,
       margin_bottom: SPACINGS.spacing_250,
     },
     [DeviceBreakpointsType.MOBILE]: {
-      box_shadow: SHADOW.shadow_10,
       margin_bottom: SPACINGS.spacing_250,
     },
+  },
+  controlContainer: {
+    display: 'flex',
+    justify_content: 'space-between',
+    width: '100%',
+    background_color: COLORS.NEUTRAL.color_neutral_bg_250,
+    padding_top: SPACINGS.spacing_400,
   },
   titleContainer: {
     margin_bottom: SPACINGS.spacing_300,
@@ -76,7 +82,6 @@ const ACTION_BUTTON_SHEET_TOKENS = {
   },
   content: {
     max_height: '100vh',
-    overflow_y: 'auto',
   },
 };
 
@@ -108,7 +113,6 @@ export const ACTION_BOTTOM_SHEET_STYLES: ActionBottomSheetStylesType<ActionBotto
       header: {
         display: 'flex',
         flex_direction: 'column',
-        box_shadow: SHADOW.shadow_10,
         margin_top: SPACINGS.spacing_300,
         padding_left: SPACINGS.spacing_300,
         padding_right: SPACINGS.spacing_300,
@@ -152,7 +156,6 @@ export const ACTION_BOTTOM_SHEET_STYLES: ActionBottomSheetStylesType<ActionBotto
       header: {
         display: 'flex',
         flex_direction: 'column',
-        box_shadow: SHADOW.shadow_10,
         margin_top: SPACINGS.spacing_300,
         padding_left: SPACINGS.spacing_300,
         padding_right: SPACINGS.spacing_300,

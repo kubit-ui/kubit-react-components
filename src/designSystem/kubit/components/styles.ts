@@ -32,6 +32,7 @@ export * from './listOptions/styles';
 export * from './mediaProgressBar/styles';
 export * from './message/styles';
 export * from './modal/styles';
+export * from './modalV2/styles';
 export * from './pageControl/styles';
 export * from './tabs/styles';
 export * from './snackbar/styles';

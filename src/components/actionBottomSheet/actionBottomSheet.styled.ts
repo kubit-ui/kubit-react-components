@@ -25,6 +25,14 @@ export const ActionBottomSheetHeaderStyled = styled.div<IActionBottomSheetStyles
   ${props => getStyles(props.styles)}
 `;
 
+export const ActionBottomSheetControlStyled = styled.div<IActionBottomSheetStyles>`
+  ${props => getStyles(props.styles)}
+`;
+
+export const ActionBottomSheetActionStyled = styled.div<IActionBottomSheetStyles>`
+  ${props => getStyles(props.styles)}
+`;
+
 export const ActionBottomSheetIconSyled = styled.div<IActionBottomSheetStyles>`
   display: flex;
   ${props => getStyles(props.styles)}

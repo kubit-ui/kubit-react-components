@@ -9,6 +9,8 @@ import { CommonStyleType, IconTypes, TypographyTypes } from '@/types';
 export type ActionBottomSheetVariantStylesType = {
   container?: CommonStyleType;
   header?: CommonStyleType;
+  controlContainer?: CommonStyleType;
+  actionLinkContainer?: CommonStyleType;
   closeIconContainer?: CommonStyleType;
   closeIcon?: IconTypes;
   titleContainer?: CommonStyleType;

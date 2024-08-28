@@ -41,7 +41,16 @@ export const ActionBottomSheet: Story = {
       ['aria-label']: 'ariaLabelButton',
     },
     headerContent: <ReplaceContent />,
-    children: <ReplaceContent />,
+    children: (
+      <>
+        <ReplaceContent />
+        <ReplaceContent />
+        <ReplaceContent />
+        <ReplaceContent />
+        <ReplaceContent />
+        <ReplaceContent />
+      </>
+    ),
     open: true,
     themeArgs: themesObject[themeSelected][STYLES_NAME.ACTION_BOTTOM_SHEET],
   },
