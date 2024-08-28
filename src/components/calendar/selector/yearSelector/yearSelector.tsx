@@ -11,7 +11,7 @@ import { getYearList } from '../../utils/getYearList';
 import { setYear } from '../../utils/setYear';
 import { YearSelectorStateType } from './types/state';
 import { IYearSelector } from './types/yearSelector';
-import { keyLeftMove, keyRightMove, keyTabMove } from './utils';
+import { keyDownMove, keyLeftMove, keyRightMove, keyTabMove, keyUpMove } from './utils';
 // styles
 import { YearElementStyled, YearListStyled, YearSelectorStyled } from './yearSelector.styled';
 
@@ -23,12 +23,12 @@ export const YearSelector = (props: IYearSelector): JSX.Element => {
       size: getYearList(props.minDate, props.maxDate).length,
       keyLeftMove: keyLeftMove(getYearList(props.minDate, props.maxDate)),
       keyRightMove: keyRightMove(getYearList(props.minDate, props.maxDate)),
+      keyUpMove: keyUpMove(getYearList(props.minDate, props.maxDate)),
+      keyDownMove: keyDownMove(getYearList(props.minDate, props.maxDate)),
+      keyTabMove,
       currentFocusSelected: getYearList(props.minDate, props.maxDate).indexOf(
         props.currentDate ? props.currentDate.getFullYear() : new Date().getFullYear()
       ),
-      keyUpMove: 0,
-      keyDownMove: 0,
-      keyTabMove,
     }),
     [
       getYearList(props.minDate, props.maxDate).length,
@@ -58,7 +58,12 @@ export const YearSelector = (props: IYearSelector): JSX.Element => {
         const state = getState(props.currentDate, year);
 
         return (
-          <YearListStyled key={index} state={state} styles={props.styles}>
+          <YearListStyled
+            key={index}
+            aria-selected={state === YearSelectorStateType.SELECTED ? true : undefined}
+            state={state}
+            styles={props.styles}
+          >
             <ItemRove
               ariaLabel={String(year)}
               asElement={YearElementStyled}

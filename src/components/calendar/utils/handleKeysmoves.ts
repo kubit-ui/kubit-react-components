@@ -1,75 +1,161 @@
-type handleKeyMoveType = {
-  emptyDaysList: (Date | undefined)[];
+type HandleKeyMoveType = {
   dayList: (Date | undefined)[];
-  isAfter: (date1: Date, date2: Date) => boolean;
   maxDate: Date;
   currentDate: Date;
   minDate: Date;
-  availableDaysBeforeCurrentDate: number;
-  availableDaysAfterCurrentDate: number;
+  firstEmptyAndDisabledDays: number;
+  daysAndEmptyDaysUntilMaxDate: number;
+};
+const ONE_DAY = 1;
+const DAYS_PER_WEEK = 7;
+
+const isSameMonthAndYear = (date1: Date, date2: Date): boolean => {
+  return date1.getMonth() === date2.getMonth() && date1.getFullYear() === date2.getFullYear();
 };
 
-export const getAvailableDaysBeforeCurrentDate = (
+export const getFirstEmptyAndDisabledDays = (
   emptyDaysList: (Date | undefined)[],
   minDate: Date,
   currentDate: Date
 ): number =>
-  emptyDaysList.length + (minDate.getMonth() === currentDate.getMonth() ? minDate.getDate() : 0);
+  isSameMonthAndYear(minDate, currentDate)
+    ? emptyDaysList.length + minDate.getDate() - 1
+    : emptyDaysList.length;
 
-export const getAvailableDaysAfterCurrentDate = (
+export const getDaysAndEmptyDaysUntilMaxDate = (
   emptyDaysList: (Date | undefined)[],
   maxDate: Date,
   currentDate: Date
 ): number =>
-  emptyDaysList.length + (maxDate.getMonth() === currentDate.getMonth() ? maxDate.getDate() : 0);
+  isSameMonthAndYear(maxDate, currentDate)
+    ? emptyDaysList.length + maxDate.getDate() - 1
+    : emptyDaysList.length;
 
-export const handleKeyUpAndLeftMove = ({
-  emptyDaysList,
+export const handleKeyUpMove = ({
   dayList,
-  isAfter,
   maxDate,
-  availableDaysBeforeCurrentDate,
-  availableDaysAfterCurrentDate,
+  minDate,
+  firstEmptyAndDisabledDays,
+  daysAndEmptyDaysUntilMaxDate,
   currentDate,
-}: handleKeyMoveType): ((previous: number) => number) => {
+}: HandleKeyMoveType): ((previous: number) => number) => {
   return previous => {
-    if (isAfter(maxDate, new Date())) {
-      return previous === availableDaysBeforeCurrentDate || previous === 0
-        ? dayList.length - 1
-        : previous - 1;
-    }
-    if (previous === emptyDaysList.length) {
-      if (currentDate.getMonth() === maxDate.getMonth()) {
-        return availableDaysAfterCurrentDate - 1;
+    if (isSameMonthAndYear(minDate, currentDate)) {
+      if (previous === firstEmptyAndDisabledDays) {
+        return dayList.length - 1;
       }
-      return dayList.length - 1;
     }
-    return previous - 1;
+    if (previous === firstEmptyAndDisabledDays) {
+      return isSameMonthAndYear(maxDate, currentDate)
+        ? daysAndEmptyDaysUntilMaxDate
+        : dayList.length - 1;
+    }
+    if (previous <= firstEmptyAndDisabledDays + 7) {
+      return firstEmptyAndDisabledDays;
+    }
+    return previous - DAYS_PER_WEEK;
   };
 };
 
-export const handleKeyDownAndRightMove = ({
-  emptyDaysList,
+export const handleKeyDownMove = ({
   dayList,
-  isAfter,
   maxDate,
-  availableDaysBeforeCurrentDate,
-  availableDaysAfterCurrentDate,
-}: handleKeyMoveType): ((previous: number) => number) => {
+  minDate,
+  firstEmptyAndDisabledDays,
+  daysAndEmptyDaysUntilMaxDate,
+  currentDate,
+}: HandleKeyMoveType): ((previous: number) => number) => {
   return previous => {
-    if (isAfter(maxDate, new Date())) {
-      if (previous === dayList.length - 1) {
-        return availableDaysBeforeCurrentDate;
+    if (isSameMonthAndYear(minDate, currentDate) && previous === dayList.length - 1) {
+      return firstEmptyAndDisabledDays;
+    }
+    if (isSameMonthAndYear(maxDate, currentDate)) {
+      if (previous === daysAndEmptyDaysUntilMaxDate) {
+        return firstEmptyAndDisabledDays;
       }
-      if (previous === 0) {
-        return previous + 1 + availableDaysAfterCurrentDate;
+      // to go to max date if next day below is disabled unless it is the max date
+      if (
+        previous + firstEmptyAndDisabledDays + 1 >= maxDate.getDate() - 7 &&
+        previous !== daysAndEmptyDaysUntilMaxDate
+      ) {
+        return maxDate.getDate() + firstEmptyAndDisabledDays - 1;
       }
     }
     if (previous === dayList.length - 1) {
-      return emptyDaysList.length;
+      return firstEmptyAndDisabledDays;
     }
-    return previous === availableDaysAfterCurrentDate - 1 ? emptyDaysList.length : previous + 1;
+
+    if (previous >= dayList.length - 7) {
+      return dayList.length - 1;
+    }
+    return previous + DAYS_PER_WEEK;
+  };
+};
+
+export const handleKeyLeftMove = ({
+  dayList,
+  maxDate,
+  minDate,
+  firstEmptyAndDisabledDays,
+  daysAndEmptyDaysUntilMaxDate,
+  currentDate,
+}: HandleKeyMoveType): ((previous: number) => number) => {
+  return previous => {
+    if (previous === firstEmptyAndDisabledDays) {
+      if (isSameMonthAndYear(minDate, currentDate)) {
+        return dayList.length - 1;
+      } else if (isSameMonthAndYear(maxDate, currentDate)) {
+        return daysAndEmptyDaysUntilMaxDate;
+      }
+      return dayList.length - 1;
+    }
+    return previous - ONE_DAY;
+  };
+};
+
+export const handleKeyRightMove = ({
+  dayList,
+  maxDate,
+  minDate,
+  firstEmptyAndDisabledDays,
+  daysAndEmptyDaysUntilMaxDate,
+  currentDate,
+}: HandleKeyMoveType): ((previous: number) => number) => {
+  return previous => {
+    if (isSameMonthAndYear(minDate, currentDate) && previous === dayList.length - 1) {
+      return firstEmptyAndDisabledDays;
+    }
+    if (isSameMonthAndYear(maxDate, currentDate)) {
+      if (previous === daysAndEmptyDaysUntilMaxDate) {
+        return firstEmptyAndDisabledDays;
+      }
+    }
+    if (previous === dayList.length - 1) {
+      return firstEmptyAndDisabledDays;
+    }
+    return previous + ONE_DAY;
   };
 };
 
 export const handleKeyTabMove = (previous: number): number => previous;
+
+export const handleKeyPageUpMove = ({
+  firstEmptyAndDisabledDays,
+}: HandleKeyMoveType): ((previous: number) => number) => {
+  return () => {
+    return firstEmptyAndDisabledDays;
+  };
+};
+
+export const handleKeyPageDownMove = ({
+  dayList,
+  maxDate,
+  currentDate,
+  daysAndEmptyDaysUntilMaxDate,
+}: HandleKeyMoveType): ((previous: number) => number) => {
+  return () => {
+    return isSameMonthAndYear(maxDate, currentDate)
+      ? daysAndEmptyDaysUntilMaxDate
+      : dayList.length - 1;
+  };
+};

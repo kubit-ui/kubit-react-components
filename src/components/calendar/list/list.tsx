@@ -9,14 +9,18 @@ import { NEUTRAL_DATE } from '@/types';
 import { WEEK_DAYS } from '../constants/constants';
 import {
   getAllDaysInMonth,
-  getAvailableDaysAfterCurrentDate,
-  getAvailableDaysBeforeCurrentDate,
+  getDaysAndEmptyDaysUntilMaxDate,
   getFirstDayOfMonth,
+  getFirstEmptyAndDisabledDays,
   getStateDay,
   groupDaysByWeeks,
-  handleKeyDownAndRightMove,
+  handleKeyDownMove,
+  handleKeyLeftMove,
+  handleKeyPageDownMove,
+  handleKeyPageUpMove,
+  handleKeyRightMove,
   handleKeyTabMove,
-  handleKeyUpAndLeftMove,
+  handleKeyUpMove,
 } from '../utils/';
 // styles
 import {
@@ -51,18 +55,16 @@ export const List = ({
   const [ghostDateSelected, setGhostDateSelected] = React.useState<Date | 0>(0);
 
   const handleKeyMoveConfig = {
-    emptyDaysList,
     dayList,
-    isAfter: dateHelpers.isAfter,
     maxDate: props.maxDate,
     currentDate: props.currentDate,
     minDate: props.minDate,
-    availableDaysBeforeCurrentDate: getAvailableDaysBeforeCurrentDate(
+    firstEmptyAndDisabledDays: getFirstEmptyAndDisabledDays(
       emptyDaysList,
       props.minDate,
       props.currentDate
     ),
-    availableDaysAfterCurrentDate: getAvailableDaysAfterCurrentDate(
+    daysAndEmptyDaysUntilMaxDate: getDaysAndEmptyDaysUntilMaxDate(
       emptyDaysList,
       props.maxDate,
       props.currentDate
@@ -73,11 +75,13 @@ export const List = ({
     () => ({
       calendarBlankDaysSize: emptyDaysList.length,
       size: dayList.length,
-      keyDownMove: handleKeyDownAndRightMove(handleKeyMoveConfig),
-      keyUpMove: handleKeyUpAndLeftMove(handleKeyMoveConfig),
-      keyRightMove: handleKeyDownAndRightMove(handleKeyMoveConfig),
-      keyLeftMove: handleKeyUpAndLeftMove(handleKeyMoveConfig),
+      keyDownMove: handleKeyDownMove(handleKeyMoveConfig),
+      keyUpMove: handleKeyUpMove(handleKeyMoveConfig),
+      keyRightMove: handleKeyRightMove(handleKeyMoveConfig),
+      keyLeftMove: handleKeyLeftMove(handleKeyMoveConfig),
       keyTabMove: handleKeyTabMove,
+      keyPageDownMove: handleKeyPageDownMove(handleKeyMoveConfig),
+      keyPageUpMove: handleKeyPageUpMove(handleKeyMoveConfig),
       currentFocusSelected:
         (selectedDate[0] ? selectedDate[0].getDate() : new Date().getDate()) +
         emptyDaysList.length -

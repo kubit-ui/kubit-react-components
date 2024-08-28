@@ -50,7 +50,14 @@ const CalendarStandAloneComponent = (
       />
       <CalendarSelectorStyled>
         {!showMonthSelector && !showYearSelector && showDaySelector && (
-          <TableStyled role={ROLES.GRID}>
+          <TableStyled
+            aria-label={props.currentDate.toLocaleDateString(props.locale, {
+              timeZone: 'UTC',
+              month: 'long',
+              year: 'numeric',
+            })}
+            role={ROLES.GRID}
+          >
             <Header
               formatWeekDayOption={props.formatWeekDayOption}
               isSundayFirst={props.sundayFirst}

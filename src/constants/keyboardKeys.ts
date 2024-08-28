@@ -27,14 +27,14 @@ const PAGE_UP = {
   key: 'PageUp',
   which: 33,
   keyCode: 33,
-  code: 'Numpad9',
+  code: 'PageUp',
 };
 
 const PAGE_DOWN = {
   key: 'PageDown',
   which: 34,
   keyCode: 34,
-  code: 'Numpad3',
+  code: 'PageDown',
 };
 
 const ARROW_LEFT = {

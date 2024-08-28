@@ -46,7 +46,7 @@ describe('New Input Date Component', () => {
   test('Should render InputDate component', () => {
     renderProvider(<InputDate {...mockProps} defaultDate={undefined} maxDate={undefined} />);
 
-    const input = screen.getByRole(ROLES.TEXTBOX);
+    const input = screen.getByRole(ROLES.COMBOBOX);
 
     expect(input).toBeDefined();
   });
@@ -54,7 +54,7 @@ describe('New Input Date Component', () => {
   test('Should render InputDate with range component', () => {
     renderProvider(<InputDate {...mockProps} hasRange={true} />);
 
-    const input = screen.getByRole(ROLES.TEXTBOX);
+    const input = screen.getByRole(ROLES.COMBOBOX);
 
     expect(input).toBeDefined();
   });
@@ -126,7 +126,7 @@ describe('New Input Date Component', () => {
     const withShowCalendar = { ...restProps, showCalendar: true };
     renderProvider(<InputDate {...withShowCalendar} />);
 
-    const input = screen.getByRole(ROLES.TEXTBOX);
+    const input = screen.getByRole(ROLES.COMBOBOX);
 
     expect(input).toBeDefined();
   });
@@ -155,7 +155,7 @@ describe('New Input Date Component', () => {
       <InputDate {...mockProps} errorExecution={errorExecution} onBlur={mockOnBlur} />
     );
 
-    const input = screen.getByRole(ROLES.TEXTBOX);
+    const input = screen.getByRole(ROLES.COMBOBOX);
     fireEvent.blur(input);
     expect(mockOnBlur).toHaveBeenCalled();
   });
@@ -174,7 +174,7 @@ describe('New Input Date Component', () => {
       />
     );
 
-    const input = screen.getByRole(ROLES.TEXTBOX);
+    const input = screen.getByRole(ROLES.COMBOBOX);
     fireEvent.blur(input);
     expect(mockOnBlur).toHaveBeenCalled();
   });

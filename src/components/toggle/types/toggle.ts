@@ -45,11 +45,11 @@ export interface IToggleStandAlone extends ToggleAriaAttributes {
   disabled?: boolean;
   blockCenter?: boolean;
   tabIndex?: number;
-  onClick?: (position: POSITIONS, e: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>, position?: POSITIONS) => void;
   onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
 }
 
-type propsToOmit = 'styles' | 'togglePosition' | 'hasThreePositions' | 'onClick';
+type propsToOmit = 'styles' | 'togglePosition' | 'hasThreePositions';
 
 /**
  * @name IToggleControlled
@@ -63,7 +63,6 @@ export interface IToggleControlled<V = undefined extends string ? unknown : stri
   togglePosition?: POSITIONS;
   hasThreePositions?: boolean;
   onChange?: (position: POSITIONS) => void;
-  onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
 /**

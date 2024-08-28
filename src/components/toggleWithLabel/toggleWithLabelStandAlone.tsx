@@ -21,6 +21,7 @@ const ToggleWithLabelStandAloneComponent = (
     textVariant,
     toggleVariant,
     labelPosition,
+    onClick,
     ...props
   }: IToggleWithLabelStandAlone,
   ref: React.ForwardedRef<HTMLFieldSetElement> | undefined | null
@@ -40,7 +41,7 @@ const ToggleWithLabelStandAloneComponent = (
       displayRow={displayRow}
       labelPosition={labelPosition}
       styles={styles}
-      onClick={props.onClick}
+      onClick={onClick}
     >
       {label && (
         <Text

@@ -20,7 +20,6 @@ const ToggleControlledComponent = React.forwardRef(
       togglePosition = hasThreePositions ? POSITIONS.CENTER : POSITIONS.LEFT,
       disabled = false,
       onChange,
-      onClick,
       onKeyDown,
       ...props
     }: IToggleControlled<V>,
@@ -44,11 +43,6 @@ const ToggleControlledComponent = React.forwardRef(
       }
     };
 
-    const handleOnClick = (newPosition: POSITIONS, e: React.MouseEvent<HTMLElement>) => {
-      onChange?.(newPosition);
-      onClick?.(e);
-    };
-
     const state = getToggleState(hasThreePositions, togglePosition, disabled);
 
     const styles = styleVariant[state];
@@ -61,7 +55,6 @@ const ToggleControlledComponent = React.forwardRef(
         hasThreePositions={hasThreePositions}
         styles={styles}
         togglePosition={togglePosition}
-        onClick={handleOnClick}
         onKeyDown={handleKeyDown}
       />
     );
