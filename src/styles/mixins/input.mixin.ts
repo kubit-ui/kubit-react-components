@@ -256,17 +256,17 @@ export const helpMessageMargin = (marginLeft: number): CSSProp => css`
 `;
 
 // label is not STANDARD (absolute position) and input has inner left content
-export const labelInTopStyles = (marginLeft: number, affixWidth: number): CSSProp => css`
+export const labelInTopStyles = (marginLeft: number, inputWidth: number): CSSProp => css`
   > div {
     margin-left: ${marginLeft}rem;
-    width: ${affixWidth}px;
+    max-width: ${inputWidth}px;
   }
   /* We need to write the CSS code inside this CSS extension, which will only be applied to the web page when opening the Firefox browser. */
   /* Firefox need a explicit position when you use position:absolute; */
   @-moz-document url-prefix() {
     label {
       left: calc(${marginLeft}rem);
-      width: ${affixWidth}px;
+      max-width: ${inputWidth}px;
     }
   }
 `;
