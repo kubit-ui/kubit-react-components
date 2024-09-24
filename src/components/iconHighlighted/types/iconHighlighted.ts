@@ -12,7 +12,6 @@ export interface IIconHighlightedStyled {
 
 export interface IIconHighlightedStandAlone extends IElementOrIcon, IIconHighlightedStyled {
   size: IconHighlightedSizeType;
-  icon?: string;
   type?: IconHighlightedType;
 }
 
