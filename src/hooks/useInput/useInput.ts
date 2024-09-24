@@ -118,6 +118,17 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
 
   useEffect(() => {
     if (eventKeyPressRef.current && props.mask && inputRef?.current && value) {
+      const { start, end } = eventKeyPressRef.current.cursor;
+      // if multiple digits are selected, recovery the selected area
+      const area = Math.abs(start - end);
+      // this the mask representation of the selected area
+      const selected = props.mask.slice(start, end);
+      // match the mask representation with the mask character
+      const maskChart = selected.match(/#/g);
+      // calculate the difference between the selected area and the mask representation
+      const diffStart = maskChart ? Math.abs(maskChart.length - area) : 0;
+      const diffEnd = maskChart ? maskChart.length : 0;
+
       const position = getPosition(
         eventKeyPressRef.current.key,
         value,
@@ -125,10 +136,7 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
         positionRef.current
       );
       inputRef.current.focus();
-      inputRef.current.setSelectionRange(
-        eventKeyPressRef.current.cursor.start + position,
-        eventKeyPressRef.current.cursor.end + position
-      );
+      inputRef.current.setSelectionRange(start + diffStart + position, end - diffEnd + position);
     }
   }, [value]);
 
@@ -290,47 +298,53 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
       key,
       currentTarget: { selectionStart, selectionEnd },
     } = event;
-    let start = selectionStart;
-    let end = selectionEnd;
+    let start = selectionStart ?? 0;
+    let end = selectionEnd ?? 0;
+
+    const isSelected = Math.abs(start - end) > 0;
 
     // Check if the input has a mask
     if (props.mask && inputRef.current && start !== null && end !== null) {
       // Check if the key pressed is "Backspace" or "Delete"
       // Check if the character at the cursor position is a mask character
       if (key === BACKSPACE.key && props.mask[start - 1] && props.mask[start - 1] !== '#') {
-        let count = 1;
-        // Check if the character at the cursor position is a mask character
-        for (let index = start - 1; index >= 0; index--) {
-          if (props.mask[index] === '#') {
-            count = start - 1 - index;
-            break;
+        if (!isSelected) {
+          let count = 1;
+          // Check if the character at the cursor position is a mask character
+          for (let index = start - 1; index >= 0; index--) {
+            if (props.mask[index] === '#') {
+              count = start - 1 - index;
+              break;
+            }
           }
+          // Calculate the new cursor position
+          start = start - count;
+          end = end - count;
         }
-        // Calculate the new cursor position
-        start = start - count;
-        end = end - count;
         // Set the cursor to the new position
         inputRef.current.setSelectionRange(start, end);
       } else if (key === DELETE.key && props.mask[end] && props.mask[end] !== '#') {
-        let count = 1;
-        // Check if the character at the cursor position is a mask character
-        for (let index = end; index < props.mask.length; index++) {
-          if (props.mask[index] === '#') {
-            count = index - end;
-            break;
+        if (!isSelected) {
+          let count = 1;
+          // Check if the character at the cursor position is a mask character
+          for (let index = end; index < props.mask.length; index++) {
+            if (props.mask[index] === '#') {
+              count = index - end;
+              break;
+            }
           }
+          // Calculate the new cursor position
+          start = start + count;
+          end = end + count;
         }
-        // Calculate the new cursor position
-        start = start + count;
-        end = end + count;
         // Set the cursor to the new position
         inputRef.current.setSelectionRange(start, end);
       }
     }
 
     const cursor = {
-      start: start ?? 0,
-      end: end ?? 0,
+      start: start,
+      end: end,
     };
     eventKeyPressRef.current = { key, cursor };
     props.onKeyDown?.(event);
