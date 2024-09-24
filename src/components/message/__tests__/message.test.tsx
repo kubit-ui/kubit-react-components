@@ -75,6 +75,7 @@ describe('Message component', () => {
   });
 
   it('Should render tag and extra action', async () => {
+    const title = { content: <div>Title React Node</div> };
     const { container } = renderProvider(
       <Message
         {...mockPropsWithTagAndExtraAction}
@@ -84,6 +85,7 @@ describe('Message component', () => {
           status: 'NORMAL',
           content: 'Tag',
         }}
+        title={title}
       />
     );
 

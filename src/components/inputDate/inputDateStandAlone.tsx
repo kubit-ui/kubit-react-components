@@ -15,7 +15,7 @@ export const InputDateStandAloneComponent = (
 ): React.JSX.Element => {
   const uniqueId = useId('inputDate');
   const inputId = props.id ?? uniqueId;
-  const ariaControls = props.calendarOpen ? `${uniqueId}Calendar` : undefined;
+  const ariaControls = props.calendarOpen ? `${inputId}Calendar` : undefined;
   const { onWrapperBlur, ...innerInputProps } = props;
 
   return (
@@ -23,6 +23,8 @@ export const InputDateStandAloneComponent = (
       <Input
         {...innerInputProps}
         ref={ref}
+        aria-controls={ariaControls}
+        aria-expanded={props.calendarOpen}
         icon={{
           ...props.icon,
           altText: props.calendarOpen

@@ -1,8 +1,13 @@
 import * as React from 'react';
 
 import { STYLES_NAME } from '@/constants';
-import { useDeviceHeight, useMediaDevice, useScrollEffect, useZoomEffect } from '@/hooks';
-import { useStyles } from '@/hooks/useStyles/useStyles';
+import {
+  useDeviceHeight,
+  useMediaDevice,
+  useScrollEffect,
+  useStylesV2,
+  useZoomEffect,
+} from '@/hooks';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 import { CssProperty } from '@/utils';
 
@@ -25,17 +30,23 @@ const DrawerControlledComponent = React.forwardRef(
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
     useDeviceHeight();
-    const styles = useStyles<DrawerVariantStylesType, V>(
-      STYLES_NAME.DRAWER,
-      props.variant,
-      props.ctv
-    );
+
+    const handleScroll = (e: Event) => {
+      props.onContentScroll?.(e);
+    };
+
+    const styles = useStylesV2<DrawerVariantStylesType, V>({
+      styleName: STYLES_NAME.DRAWER,
+      variantName: props.variant,
+      customTokens: props.ctv,
+    });
     const device = useMediaDevice();
-    const stylesByDevice = styles[device];
+    const stylesByDevice = styles?.[device];
 
     const { scrollableRef, shadowRef } = useScrollEffect({
       shadowStyles: stylesByDevice.titleContainer?.box_shadow,
       shadowVisible: SCROLL_DISTANCE,
+      scrollCallback: handleScroll,
     });
 
     const footerRef = useZoomEffect(FOOTER_EDIT_STYLES, MAX_ZOOM);
@@ -44,9 +55,9 @@ const DrawerControlledComponent = React.forwardRef(
       <DrawerStandAlone
         {...props}
         ref={ref}
+        contentRef={scrollableRef}
         device={device}
         footerRef={footerRef}
-        scrollableRef={scrollableRef}
         shadowRef={shadowRef}
         styles={stylesByDevice}
       />

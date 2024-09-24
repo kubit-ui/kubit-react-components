@@ -12,6 +12,7 @@ interface CustomHookProps {
   shadowStyles?: string;
   conditional?: boolean;
   shadowVisible?: number;
+  scrollCallback?: (e: Event) => void;
 }
 
 const MAX_PERCENTAGE = 100;
@@ -22,6 +23,7 @@ export const useScrollEffect = ({
   conditional = true,
   shadowStyles = defaultShadow,
   shadowVisible = 1,
+  scrollCallback,
 }: CustomHookProps): CustomHookReturnValue => {
   // the scrollable element ref
   const innerScrollableRef = useRef<HTMLElement | null>(null);
@@ -84,13 +86,19 @@ export const useScrollEffect = ({
       if (node) {
         innerScrollableRef.current = node;
         applyEffect();
-        innerScrollableRef.current?.addEventListener('scroll', applyEffect);
+        innerScrollableRef.current?.addEventListener('scroll', e => {
+          applyEffect();
+          scrollCallback?.(e);
+        });
       } else {
-        innerScrollableRef.current?.removeEventListener('scroll', applyEffect);
+        innerScrollableRef.current?.removeEventListener('scroll', e => {
+          applyEffect();
+          scrollCallback?.(e);
+        });
         innerScrollableRef.current = null;
       }
     },
-    [applyEffect]
+    [applyEffect, scrollCallback]
   );
 
   const resizeRef = useCallback(node => {
@@ -111,5 +119,9 @@ export const useScrollEffect = ({
     }
   }, []);
 
-  return { scrollableRef, resizeRef, shadowRef };
+  return {
+    scrollableRef,
+    resizeRef,
+    shadowRef,
+  };
 };

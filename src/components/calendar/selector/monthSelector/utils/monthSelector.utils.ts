@@ -18,6 +18,9 @@ export const keyLeftMove = ({
   minDate,
 }: HandleKeyMoveType): ((previous: number) => number) => {
   return previous => {
+    if (isSameYear(maxDate, minDate)) {
+      return previous === minDate.getMonth() ? maxDate.getMonth() : previous - 1;
+    }
     if (isSameYear(maxDate, currentDate)) {
       return previous === FIRST_MONTH ? maxDate.getMonth() : previous - 1;
     }
@@ -34,6 +37,9 @@ export const keyRightMove = ({
   minDate,
 }: HandleKeyMoveType): ((previous: number) => number) => {
   return previous => {
+    if (isSameYear(maxDate, minDate)) {
+      return previous === maxDate.getMonth() ? minDate.getMonth() : previous + 1;
+    }
     if (isSameYear(maxDate, currentDate)) {
       return previous === maxDate.getMonth() ? FIRST_MONTH : previous + 1;
     }
@@ -50,6 +56,14 @@ export const keyUpMove = ({
   minDate,
 }: HandleKeyMoveType): ((previous: number) => number) => {
   return previous => {
+    if (isSameYear(maxDate, minDate)) {
+      if (previous === minDate.getMonth()) {
+        return maxDate.getMonth();
+      }
+      return previous <= minDate.getMonth() + NUM_DAYS_IN_ROW
+        ? minDate.getMonth()
+        : previous - NUM_DAYS_IN_ROW;
+    }
     if (isSameYear(minDate, currentDate)) {
       if (previous === minDate.getMonth()) {
         return LAST_MONTH;
@@ -77,6 +91,14 @@ export const keyDownMove = ({
   minDate,
 }: HandleKeyMoveType): ((previous: number) => number) => {
   return previous => {
+    if (isSameYear(maxDate, minDate)) {
+      if (previous === maxDate.getMonth()) {
+        return minDate.getMonth();
+      }
+      return previous >= maxDate.getMonth() - NUM_DAYS_IN_ROW
+        ? maxDate.getMonth()
+        : previous + NUM_DAYS_IN_ROW;
+    }
     if (isSameYear(minDate, currentDate)) {
       if (previous === LAST_MONTH) {
         return minDate.getMonth();

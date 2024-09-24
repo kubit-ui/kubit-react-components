@@ -19,6 +19,16 @@ import {
   transformDate,
 } from '@/utils/date';
 
+//delete on kubit
+const folder = {
+  santander: 'santander',
+  modelbank: 'mb',
+  santander_black: 'santander',
+  modelbank_cc: 'mb',
+  santander_cc: 'santander',
+};
+//delete on kubit
+
 export const UtilsProviderDocStorybook = ({
   children,
   theme,
@@ -28,6 +38,11 @@ export const UtilsProviderDocStorybook = ({
 }): JSX.Element => {
   return (
     <UtilsProvider
+      assets={{
+        baseHost: `https://assets.dev.openbank.com/web/${folder[theme]}/icons/`,
+        iconsBaseHost: `https://assets.dev.openbank.com/web/${folder[theme]}/icons/`,
+        illutrationsBaseHost: `https://assets.dev.openbank.com/web/${folder[theme]}/illustrations/`,
+      }}
       dateHelpers={{
         isAfter: (date1: Date, date2: Date) => {
           return isAfter(date1, date2);

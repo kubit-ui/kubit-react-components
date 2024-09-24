@@ -8,7 +8,7 @@ const checkLeapYear = (year: number): void => {
   }
 };
 
-const splitDate = (
+export const splitDate = (
   date: string,
   format: string,
   today: string,

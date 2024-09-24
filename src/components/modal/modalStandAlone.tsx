@@ -12,6 +12,7 @@ import { useId } from '@/hooks';
 import { DeviceBreakpointsType } from '@/types';
 
 import {
+  DraggableIcon,
   ModalCloseButtonStyled,
   ModalContentStyled,
   ModalFooterStyled,
@@ -95,6 +96,7 @@ const ModalStandAloneComponent = (
       positionVariant={PopoverPositionVariantType.FIXED}
       trapFocusInsideModal={true}
       variant={props.styles.popoverVariant}
+      onCloseInternally={props.onPopoverCloseInternally}
       {...props.popover}
     >
       <ModalStyled
@@ -109,6 +111,11 @@ const ModalStandAloneComponent = (
         onKeyDown={event => props.onKeyDown?.(event)}
       >
         <ModalHeaderStyled ref={shadowRef} $styles={props.styles}>
+          {!props.blocked && props.dragIcon && (
+            <DraggableIcon ref={props.dragIconRef} $styles={props.styles}>
+              <ElementOrIcon customIconStyles={props.styles?.dragIcon} {...props.dragIcon} />
+            </DraggableIcon>
+          )}
           {!props.blocked && props.closeIcon?.icon && (
             <ModalCloseButtonStyled $styles={props.styles}>
               <ElementOrIcon

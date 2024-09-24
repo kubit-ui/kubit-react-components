@@ -33,30 +33,7 @@ export const DrawerTitleStyled = styled.div.withConfig({
 })``;
 
 export const DrawerStyled = styled.div<DrawerStylesType>`
-  background-color: #fff;
-  max-height: 100vh;
-  max-height: var(--100svh, 100vh);
-  max-height: 100svh;
-  min-width: 50vw;
-  max-width: 50vw;
-  overflow-y: auto;
-  ${() =>
-    ({
-      theme: {
-        MEDIA_QUERIES: { onlyDesktop, onlyTablet },
-      },
-    }) => css`
-      ${onlyDesktop} {
-        min-height: 100vh;
-        min-height: var(--100svh, 100vh);
-        min-height: 100svh;
-      }
-      ${onlyTablet} {
-        min-height: 100vh;
-        min-height: var(--100svh, 100vh);
-        min-height: 100svh;
-      }
-    `};
+  ${props => props.position && getStyles(props.styles.container?.[props.position])}
 
   ${DrawerTitleStyled} {
     transition: box-shadow 300ms;
@@ -66,23 +43,6 @@ export const DrawerStyled = styled.div<DrawerStylesType>`
     ${props => getStyles(props.styles.titleContainer)}
     ${props => getTypographyStyles(props.styles.titleContainer)}
   }
-
-  ${() =>
-    ({
-      theme: {
-        MEDIA_QUERIES: { onlyMobile, onlyTablet },
-      },
-    }) => css`
-      ${onlyMobile} {
-        max-width: inherit;
-        max-height: inherit;
-      }
-      ${onlyTablet} {
-        max-width: 100vw;
-        min-width: 100vw;
-      }
-    `};
-  ${props => props.position && getStyles(props.styles.container?.[props.position])}
 `;
 
 export const DrawerNavigationStyled = styled.div<DrawerStylesType>`

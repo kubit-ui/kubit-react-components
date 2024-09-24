@@ -15,7 +15,7 @@ import { InputSearchStyled } from './inputSearch.styled';
 import { IInputSearchStandAlone } from './types';
 
 export const InputSearchStandAloneComponent = (
-  props: IInputSearchStandAlone,
+  { error, ...props }: IInputSearchStandAlone,
   ref: ForwardedRef<HTMLInputElement | undefined | null>
 ): JSX.Element => {
   const inputWrapperRef = useRef(null);
@@ -80,6 +80,9 @@ export const InputSearchStandAloneComponent = (
           overrideStyles: props.styles,
           placeholder: props.placeholder,
           value: props.inputPopoverValue,
+          error: error,
+          errorIcon: props.errorIcon,
+          errorMessage: props.errorMessage,
           // The variant is the same for all the states
           variant:
             props.inputPopoverVariant ?? (props.styles?.[props.state]?.inputVariant as string),
@@ -93,6 +96,7 @@ export const InputSearchStandAloneComponent = (
         loadingText={props.loadingText}
         noResultsText={props.noResultsText}
         open={props.open}
+        optionCheckedIcon={props.optionCheckedIcon}
         optionList={props.optionList}
         optionsListDefaultArias={props.optionsListDefaultArias}
         preventCloseOnClickElements={[

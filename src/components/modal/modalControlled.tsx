@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { STYLES_NAME } from '@/constants';
-import { useMediaDevice, useScrollEffect, useStyles, useZoomEffect } from '@/hooks';
+import { useMediaDevice, useScrollEffect, useStyles, useSwipeDown, useZoomEffect } from '@/hooks';
 import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
 import { FallbackComponent } from '@/provider/errorBoundary/fallbackComponent';
 import { DeviceBreakpointsType } from '@/types';
@@ -40,17 +40,29 @@ const ModalControlledComponent = React.forwardRef(
     const zoomRef = useZoomEffect(CONTAINER_STYLES_EDIT, MAX_ZOOM);
     const zoomRefChild = useZoomEffect(CONTENT_STYLES_EDIT, MAX_ZOOM);
 
+    const { setPopoverRef, setDragIconRef } = useSwipeDown(props.popover?.animationOptions, () =>
+      props.onClose?.()
+    );
+
+    const handlePopoverCloseInternally = () => {
+      props.popover?.onCloseInternally?.();
+      props.onClose?.();
+    };
+
     const modalStructure = (
       <ModalStandAlone
         {...props}
         ref={ref}
         device={device}
+        dragIconRef={setDragIconRef}
+        popover={{ ...props.popover, forwardedRef: setPopoverRef }}
         resizeRef={resizeRef}
         scrollableRef={scrollableRef}
         shadowRef={shadowRef}
         styles={styles}
         zoomRef={zoomRef}
         zoomRefChild={zoomRefChild}
+        onPopoverCloseInternally={handlePopoverCloseInternally}
       />
     );
 

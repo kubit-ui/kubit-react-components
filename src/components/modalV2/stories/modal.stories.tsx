@@ -24,11 +24,35 @@ const meta = {
     figmaUrl:
       'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3922-22906&mode=dev',
   },
+  render: ({ ...args }) => <StoryWithHooks {...args} />,
 } satisfies Meta<typeof Story>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
+
+const StoryWithHooks = args => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  return (
+    <div style={{ width: 'fit-content' }}>
+      <button onClick={handleOpen}>Open Modal</button>
+      <Story
+        {...args}
+        closeIcon={{ ...args.closeIcon, onClick: handleClose }}
+        open={open}
+        onClose={handleClose}
+      />
+    </div>
+  );
+};
 
 export const Modal: Story = {
   args: {
@@ -65,6 +89,7 @@ export const Modal: Story = {
         animationYEndPosition: '0px',
         animationXEndPosition: '0px',
       },
+      focusFirstDescendantAutomatically: false,
     },
     themeArgs: themesObject[themeSelected][STYLES_NAME.MODAL],
   },

@@ -20,7 +20,7 @@ export const syntheticDate = (name?: string): ReturnValue => {
   });
 
   const setDate = (value: string, format: string) => {
-    const validDate = formatDateToNative(value, format);
+    const validDate = formatDateToNative(value, format, false);
 
     dateElement.value = validDate;
     dateElement.dispatchEvent(changeEvent);

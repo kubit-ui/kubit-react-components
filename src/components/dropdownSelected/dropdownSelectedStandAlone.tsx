@@ -4,7 +4,7 @@ import { keyDownMove, keyUpMove } from '@/components/listOptions/utils';
 import { useId } from '@/hooks/useId/useId';
 import { ROLES } from '@/types';
 
-import { ButtonType } from '../button';
+import { ButtonType } from '../button/types';
 import { ElementOrIcon } from '../elementOrIcon';
 import { ListOptions, ListOptionsOptionType, ListOptionsType } from '../listOptions';
 import {

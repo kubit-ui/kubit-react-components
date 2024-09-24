@@ -3,7 +3,11 @@ import * as React from 'react';
 import { useId } from '@/hooks';
 
 import { Footer } from '../footer';
-import { Popover, PopoverComponentType, PopoverPositionVariantType } from '../popover';
+import {
+  PopoverControlled as Popover,
+  PopoverComponentType,
+  PopoverPositionVariantType,
+} from '../popover';
 import { ModalHeader } from './fragments';
 import { ModalContentStyled, ModalFooterStyled, ModalStyled } from './modal.styled';
 import { IModalStandAlone } from './types';
@@ -40,6 +44,7 @@ const ModalStandAloneComponent = <V extends string | unknown>(
       positionVariant={PopoverPositionVariantType.FIXED}
       trapFocusInsideModal={true}
       variant={props.styles.popoverVariant}
+      onCloseInternally={props.onPopoverCloseInternally}
       {...props.popover}
     >
       <ModalStyled
@@ -64,6 +69,9 @@ const ModalStandAloneComponent = <V extends string | unknown>(
           closeButton={props.closeButton}
           closeIcon={props.closeIcon}
           dataTestId={dataTestId}
+          device={props.device}
+          dragIcon={props.dragIcon}
+          dragIconRef={props.dragIconRef}
           styles={props.styles}
           title={props.title}
           titleIdFinal={titleIdFinal}

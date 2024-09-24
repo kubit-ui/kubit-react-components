@@ -135,6 +135,16 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    onContentScroll: {
+      description: 'Function to handle scroll event',
+      type: { name: 'function' },
+      table: {
+        type: {
+          summary: 'function',
+        },
+        category: CATEGORY_CONTROL.FUNCTIONS,
+      },
+    },
     dataTestId: {
       description: 'String used for testing',
       control: { type: 'text' },

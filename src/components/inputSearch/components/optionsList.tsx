@@ -48,6 +48,7 @@ export const OptionsListComponent = (
           ref={sendRef}
           caseSensitive={props.caseSensitive}
           charsHighlighted={props.searchText?.toString()}
+          checkedIcon={props.optionCheckedIcon}
           dataTestId={props.dataTestId}
           hightlightedOptionVariant={props.stylesListOption?.hightlightedOptionVariant}
           id={props['aria-controls']}

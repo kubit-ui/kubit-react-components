@@ -54,13 +54,12 @@ export const useManageState = ({
   const setRef = useCallback(node => {
     if (node) {
       innerRef.current = node;
-      if (props.states.includes(STATES.HOVER)) {
-        innerRef?.current?.addEventListener('mouseover', onMouseOver);
-        innerRef?.current?.addEventListener('mouseout', onMouseOut);
-      }
       if (props.states.includes(STATES.PRESSED)) {
         innerRef?.current?.addEventListener('mousedown', onMouseDown);
         innerRef?.current?.addEventListener('mouseup', onMouseUp);
+      } else if (props.states.includes(STATES.HOVER)) {
+        innerRef?.current?.addEventListener('mouseover', onMouseOver);
+        innerRef?.current?.addEventListener('mouseout', onMouseOut);
       }
     } else {
       // delete over listeners

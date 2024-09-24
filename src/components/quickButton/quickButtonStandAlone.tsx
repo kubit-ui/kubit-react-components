@@ -17,6 +17,7 @@ const QuickButtonStandAloneComponent = (
       data-testid={props.dataTestId}
       disabled={props.state === QuickButtonState.DISABLED}
       id={props.buttonId}
+      role={props.role}
       styles={props.styles}
       type={props.type}
       onClick={props.onClick}

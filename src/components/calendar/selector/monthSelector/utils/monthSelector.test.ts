@@ -52,6 +52,20 @@ describe('Month Selector utils', () => {
     const result2 = keyLeftFunction(previous2);
     expect(result2).toBe(previous2 - 1);
   });
+  it('keyLeftMove - maxDate and minDate in same year - should move to the left when left arrow key is pressed', () => {
+    const maxDate = new Date(2023, 8, 15);
+    const currentDate = new Date(2023, 8, 22);
+    const minDate = new Date(2023, 4, 15);
+
+    const keyLeftFunction = keyLeftMove({ currentDate, maxDate, minDate });
+
+    const previous1 = minDate.getMonth();
+    const previous2 = minDate.getMonth() + 1;
+    const result1 = keyLeftFunction(previous1);
+    expect(result1).toBe(maxDate.getMonth());
+    const result2 = keyLeftFunction(previous2);
+    expect(result2).toBe(previous2 - 1);
+  });
   it('keyRightMove - maxDate and currentDate in same year - should move to the right when right arrow key is pressed', () => {
     const maxDate = new Date(2023, 8, 15);
     const currentDate = new Date(2023, 8, 22);
@@ -91,6 +105,21 @@ describe('Month Selector utils', () => {
     const previous2 = 5;
     const result1 = keyRightFunction(previous1);
     expect(result1).toBe(firstMonth);
+    const result2 = keyRightFunction(previous2);
+    expect(result2).toBe(previous2 + 1);
+  });
+
+  it('keyRightMove - maxDate and minDate in same year - should move to the right when right arrow key is pressed', () => {
+    const maxDate = new Date(2023, 8, 15);
+    const currentDate = new Date(2023, 8, 22);
+    const minDate = new Date(2023, 4, 15);
+
+    const keyRightFunction = keyRightMove({ currentDate, maxDate, minDate });
+
+    const previous1 = maxDate.getMonth();
+    const previous2 = maxDate.getMonth() - 1;
+    const result1 = keyRightFunction(previous1);
+    expect(result1).toBe(minDate.getMonth());
     const result2 = keyRightFunction(previous2);
     expect(result2).toBe(previous2 + 1);
   });
@@ -145,7 +174,24 @@ describe('Month Selector utils', () => {
     const result3 = keyUpFunction(previous3);
     expect(result3).toBe(firstMonth);
   });
-  it('keyDownMove - maxDate and currentDate in same year - should move up when up arrow key is pressed', () => {
+  it('keyUpMove - maxDate and minDate in same year - should move up when up arrow key is pressed', () => {
+    const maxDate = new Date(2023, 8, 15);
+    const currentDate = new Date(2023, 8, 22);
+    const minDate = new Date(2023, 0, 15);
+
+    const keyUpFunction = keyUpMove({ currentDate, maxDate, minDate });
+
+    const previous1 = minDate.getMonth();
+    const previous2 = minDate.getMonth() + 3;
+    const previous3 = minDate.getMonth() + 2;
+    const result1 = keyUpFunction(previous1);
+    expect(result1).toBe(maxDate.getMonth());
+    const result2 = keyUpFunction(previous2);
+    expect(result2).toBe(previous2 - 3);
+    const result3 = keyUpFunction(previous3);
+    expect(result3).toBe(minDate.getMonth());
+  });
+  it('keyDownMove - maxDate and currentDate in same year - should move down when down arrow key is pressed', () => {
     const maxDate = new Date(2023, 8, 15);
     const currentDate = new Date(2023, 8, 22);
     const minDate = new Date(2000, 0, 15);
@@ -162,7 +208,7 @@ describe('Month Selector utils', () => {
     const result3 = keyDownFunction(previous3);
     expect(result3).toBe(maxDate.getMonth());
   });
-  it('keyDownMove - minDate and currentDate in same year - should move up when up arrow key is pressed', () => {
+  it('keyDownMove - minDate and currentDate in same year - should move down when down arrow key is pressed', () => {
     const maxDate = new Date(2025, 8, 15);
     const currentDate = new Date(2023, 8, 22);
     const minDate = new Date(2023, 0, 15);
@@ -179,7 +225,7 @@ describe('Month Selector utils', () => {
     const result3 = keyDownFunction(previous3);
     expect(result3).toBe(previous3 + 3);
   });
-  it('keyDownMove - currentDate year is different than minDate and maxDate - should move up when up arrow key is pressed', () => {
+  it('keyDownMove - currentDate year is different than minDate and maxDate - should move down when down arrow key is pressed', () => {
     const maxDate = new Date(2025, 8, 15);
     const currentDate = new Date(2023, 8, 22);
     const minDate = new Date(2000, 0, 15);
@@ -195,6 +241,23 @@ describe('Month Selector utils', () => {
     expect(result2).toBe(lastMonth);
     const result3 = keyDownFunction(previous3);
     expect(result3).toBe(previous3 + 3);
+  });
+  it('keyDownMove - maxDate and minDate in same year - should move down when down arrow key is pressed', () => {
+    const maxDate = new Date(2023, 8, 15);
+    const currentDate = new Date(2023, 8, 22);
+    const minDate = new Date(2023, 0, 15);
+
+    const keyDownFunction = keyDownMove({ currentDate, maxDate, minDate });
+
+    const previous1 = maxDate.getMonth();
+    const previous2 = 1;
+    const previous3 = maxDate.getMonth() + 3;
+    const result1 = keyDownFunction(previous1);
+    expect(result1).toBe(firstMonth);
+    const result2 = keyDownFunction(previous2);
+    expect(result2).toBe(previous2 + 3);
+    const result3 = keyDownFunction(previous3);
+    expect(result3).toBe(maxDate.getMonth());
   });
   it('keyTabMove - should return previous', () => {
     const previous = 5;

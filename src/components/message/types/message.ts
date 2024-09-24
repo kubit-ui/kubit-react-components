@@ -25,7 +25,7 @@ export type MessageContentType = Omit<IText<string>, 'children'> & {
 };
 
 export type MessageTitleType = Omit<IText<string>, 'children'> & {
-  content: string;
+  content: React.ReactNode;
 };
 
 export type MessageTagType = Omit<ITag, 'children'> & {

@@ -12,7 +12,7 @@ import { argtypes } from './argtypes';
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 
 const meta = {
-  title: 'Components/Resources/Mediabutton',
+  title: 'Components/Actions/Mediabutton',
   component: Story,
   parameters: {
     layout: 'centered',
@@ -41,7 +41,7 @@ const commonArgs: IMediaButton = {
   )[0] as MediaButtonSizeType,
   icon: { icon: ICONS.ICON_PLACEHOLDER },
   twistedIcon: { icon: ICONS.ICON_CLOSE },
-  hasBackground: false,
+  hasBackground: true,
   loading: true,
 };
 
@@ -49,6 +49,18 @@ export const Mediabutton: Story = {
   args: {
     ...commonArgs,
     themeArgs: themesObject[themeSelected][STYLES_NAME.MEDIA_BUTTON],
+  },
+};
+
+export const MediabuttonWithoutBackground: Story = {
+  args: {
+    ...commonArgs,
+    themeArgs: themesObject[themeSelected][STYLES_NAME.MEDIA_BUTTON],
+    size: Object.values(
+      variantsObject[themeSelected].MediaButtonIconSizeVariantType || {}
+    )[1] as MediaButtonSizeType,
+    hasBackground: false,
+    loading: false,
   },
 };
 

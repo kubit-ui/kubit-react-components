@@ -6,7 +6,7 @@ import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 import { useId } from '@/hooks';
 
-import { ButtonType } from '../button';
+import { ButtonType } from '../button/types';
 import { NavigationCardInfo } from './fragments';
 import { buildProps } from './helpers';
 import {
@@ -36,7 +36,6 @@ const NavigationCardStandaloneComponent = (
   return (
     // Can not be spread -> styled component breaks
     <NavigationCardStyled
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
       aria-disabled={props['aria-disabled']}
       as={props.url ? props.component : 'button'}

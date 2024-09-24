@@ -57,6 +57,9 @@ export interface IModalStandAlone {
   device: DeviceBreakpointsType;
   dataTestId?: string;
   onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
+  onPopoverCloseInternally?: () => void;
+  dragIcon?: IElementOrIcon;
+  dragIconRef?: (node) => void;
   /* To useScrollableEffect */
   scrollableRef: (node) => void;
   resizeRef: (node) => void;
@@ -73,16 +76,16 @@ type OmitProps =
   | 'resizeRef'
   | 'shadowRef'
   | 'zoomRef'
-  | 'zoomRefChild';
+  | 'zoomRefChild'
+  | 'dragIconRef';
 
 export interface IModalControlled<V = undefined extends string ? unknown : string>
   extends Omit<IModalStandAlone, OmitProps>,
     Omit<CustomTokenTypes<ModalBaseStylesType>, 'cts' | 'extraCt'> {
   variant: V;
   portalId?: string;
+  onClose?: () => void;
 }
 
 export interface IModalUnControlled<V = undefined extends string ? unknown : string>
-  extends IModalControlled<V> {
-  onClose?: () => void;
-}
+  extends IModalControlled<V> {}

@@ -44,7 +44,12 @@ const StoryWithHooks = args => {
   return (
     <div style={{ width: 'fit-content' }}>
       <button onClick={handleOpen}>Open Modal</button>
-      <Story {...args} closeIcon={{ ...args.closeIcon, onClick: handleClose }} open={open} />
+      <Story
+        {...args}
+        closeIcon={{ ...args.closeIcon, onClick: handleClose }}
+        open={open}
+        onClose={handleClose}
+      />
     </div>
   );
 };

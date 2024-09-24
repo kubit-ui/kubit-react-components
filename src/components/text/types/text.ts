@@ -20,7 +20,7 @@ export interface ITextStyled {
 
 type TextAriaAttributes = Pick<
   React.AriaAttributes,
-  'aria-label' | 'aria-labelledby' | 'aria-describedby' | 'aria-hidden'
+  'aria-label' | 'aria-labelledby' | 'aria-describedby' | 'aria-hidden' | 'aria-level'
 >;
 
 export interface ITextStandAlone extends ITextStyled, TextAriaAttributes {

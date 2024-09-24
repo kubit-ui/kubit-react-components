@@ -11,7 +11,11 @@ import { ButtonSizeType, ButtonVariantType } from '@/designSystem/kubit/componen
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
 import { DrawerControlled as Story } from '../index';
-import { DrawerLevelPositionTypes, DrawerTitleComponentType } from '../types';
+import {
+  DrawerLevelPositionTypes,
+  DrawerTitleComponentType,
+  DrawerVariantPositionTypes,
+} from '../types';
 import { argtypes } from './controlledArgtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
@@ -68,7 +72,14 @@ export const DrawerControlled: Story = {
     closeIcon: { icon: ICONS.ICON_CLOSE, altText: 'alt text icon', ['aria-label']: 'close icon' },
     level: DrawerLevelPositionTypes.FIRST_LEVEL,
     open: false,
-    children: <ReplaceContent />,
+    children: (
+      <>
+        <ReplaceContent />
+        <ReplaceContent />
+        <ReplaceContent />
+        <ReplaceContent />
+      </>
+    ),
     blocked: false,
     popover: {
       blockBack: true,
@@ -109,6 +120,12 @@ export const DrawerControlledWithCtv: Story = {
       DESKTOP: {
         title: {
           color: 'red',
+        },
+        container: {
+          [DrawerVariantPositionTypes.DRAWER_RIGHT]: {
+            min_width: '80vw',
+            max_width: '80vw',
+          },
         },
       },
       TABLET: {

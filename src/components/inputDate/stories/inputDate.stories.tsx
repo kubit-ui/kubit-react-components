@@ -53,8 +53,8 @@ const commonArgs: IInputDate = {
   format: 'DD-MM-YYYY',
   placeholder: 'Date',
   locale: 'en-EN',
-  maxDate: formatDateToUTC(new Date('2025-09-15')),
-  minDate: formatDateToUTC(new Date('2012-07-05')),
+  maxDate: formatDateToUTC(new Date('2024-09-15')),
+  minDate: formatDateToUTC(new Date('2024-03-05')),
   // initialDate: new Date('2024-07-10'),
   // initialSecondDate: new Date('05-01-2000'),
   defaultDate: new Date(),
@@ -88,7 +88,7 @@ const commonArgs: IInputDate = {
     backToMonthAriaLabel: 'Back to month view',
   },
   disabledDates: [new Date('2020-01-01'), new Date('2020-01-05')],
-  errorExecution: ERROR_EXECUTION.ON_BLUR,
+  errorExecution: ERROR_EXECUTION.ON_CHANGE,
 };
 
 export const InputDate: Story = {

@@ -3,13 +3,14 @@ import styled, { css } from 'styled-components';
 import { focusVisibleAlt } from '@/styles/mixins';
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { TooltipVariantStylesProps } from './types';
+import { TooltipAlignType, TooltipVariantStylesProps } from './types';
 
 type TooltipStylesPropsTypes = {
   styles: TooltipVariantStylesProps;
   hasCloseIcon?: boolean;
   hasTitle?: boolean;
   hasBorder?: boolean;
+  align?: TooltipAlignType;
 };
 
 export const TooltipStyled = styled.div<{ tooltipAsModal?: boolean }>`
@@ -62,6 +63,8 @@ export const TooltipCloseIconStyled = styled.div<TooltipStylesPropsTypes>`
 export const TooltipArrowStyled = styled.div<TooltipStylesPropsTypes>`
   position: absolute;
   ${({ styles }) => getStyles(styles.arrowContainer)}
+  ${({ styles, align = TooltipAlignType.TOP }) =>
+    getStyles(styles.arrowContainer?.tooltipAlignStyles?.[align])}
   width: ${props => props.styles.arrowContainer?.arrow_size};
   height: ${props => props.styles.arrowContainer?.arrow_size};
   transform: rotate(45deg);

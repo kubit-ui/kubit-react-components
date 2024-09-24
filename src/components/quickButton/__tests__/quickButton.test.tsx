@@ -34,6 +34,26 @@ describe('QuickButton component', () => {
     expect(container).toHTMLValidate();
     expect(results).toHaveNoViolations();
   });
+  it('Should have a correct html structure, when a role us provided', async () => {
+    const { container } = renderProvider(
+      <QuickButton {...mockProps} label={{ content: 'label' }} role="link" />
+    );
+
+    const quickButton = screen.getByRole('link');
+    const label = screen.getByText('label');
+
+    expect(quickButton).toBeDefined();
+    expect(label).toBeDefined();
+
+    const results = await axe(container);
+    // This is because the role is conditional
+    expect(container).toHTMLValidate({
+      rules: {
+        'prefer-native-element': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
+  });
 
   it('Variant is optional', async () => {
     const { container } = renderProvider(<QuickButton {...mockProps} variant={undefined} />);

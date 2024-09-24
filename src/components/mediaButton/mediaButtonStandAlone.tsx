@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ButtonType } from '../button';
+import { ButtonType } from '../button/types';
 //components
 import { ElementOrIcon } from '../elementOrIcon';
 import { Loader } from '../loader';

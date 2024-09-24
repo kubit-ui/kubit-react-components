@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const FOCUSABLE_QUERY_SELECTOR =
-  'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])';
+  'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]):not([tabindex="-1"]), summary, [tabindex]:not([tabindex="-1"])';
 
 export const getFocusableDescendants = (element: HTMLElement): HTMLElement[] | boolean => {
   const focusableNodes = Array.from(

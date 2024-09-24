@@ -3,6 +3,7 @@ import ICON_CHEVRON_DOWN from './icons/icon_chevron_down.svg';
 import ICON_CHEVRON_LEFT from './icons/icon_chevron_left.svg';
 import ICON_CHEVRON_RIGHT from './icons/icon_chevron_right.svg';
 import ICON_CHEVRON_UP from './icons/icon_chevron_up.svg';
+import ICON_DRAG from './icons/icon_ds_handle.svg';
 import ICON_GHOST from './icons/icon_ghost.svg';
 import ICON_PLACEHOLDER from './icons/icon_placeholder.svg';
 import ICON_CLOSE from './icons/icon_x_close.svg';
@@ -26,6 +27,7 @@ export const ICONS = {
   ICON_PLAY_BUTTON,
   ICON_CHECKMARK_THICK,
   ICON_REPLACE,
+  ICON_DRAG,
 };
 
 export const ILLUSTRATIONS = {

@@ -25,14 +25,23 @@ const containerCommonProps: {
   [DrawerVariantPositionTypes.DRAWER_RIGHT]: {
     border_top_left_radius: RADIUS.radius_50,
     border_bottom_left_radius: RADIUS.radius_50,
+    max_height: SPACINGS.spacing_100_vh,
+    background: COLORS.NEUTRAL.color_neutral_bg_250,
+    min_width: '50vw',
+    max_width: '50vw',
   },
   [DrawerVariantPositionTypes.DRAWER_LEFT]: {
     border_top_right_radius: RADIUS.radius_50,
     border_bottom_right_radius: RADIUS.radius_50,
+    max_height: SPACINGS.spacing_100_vh,
+    background: COLORS.NEUTRAL.color_neutral_bg_250,
+    min_width: '50vw',
+    max_width: '50vw',
   },
   [DrawerVariantPositionTypes.DRAWER_BOTTOM]: {
     border_top_right_radius: RADIUS.radius_50,
     border_top_left_radius: RADIUS.radius_50,
+    background: COLORS.NEUTRAL.color_neutral_bg_250,
   },
 };
 const commonIconContainerProps: CommonStyleType = {
@@ -122,6 +131,11 @@ export const DRAWER_STYLES: DrawerStylesType<DrawerVariantType> = {
     [DeviceBreakpointsType.TABLET]: {
       container: {
         ...containerCommonProps,
+        [DrawerVariantPositionTypes.DRAWER_BOTTOM]: {
+          ...containerCommonProps.DRAWER_BOTTOM,
+          min_height: 'var(--100svh, 100vh)',
+          background_color: COLORS.NEUTRAL.color_neutral_bg_250,
+        },
       },
       iconContainer: {
         ...commonIconContainerProps,
@@ -165,6 +179,14 @@ export const DRAWER_STYLES: DrawerStylesType<DrawerVariantType> = {
       },
     },
     [DeviceBreakpointsType.MOBILE]: {
+      container: {
+        ...containerCommonProps,
+        [DrawerVariantPositionTypes.DRAWER_BOTTOM]: {
+          ...containerCommonProps.DRAWER_BOTTOM,
+          min_height: 'var(--100svh, 100vh)',
+          background_color: COLORS.NEUTRAL.color_neutral_bg_250,
+        },
+      },
       iconContainer: {
         ...commonIconContainerProps,
         padding_top: SPACINGS.spacing_300,

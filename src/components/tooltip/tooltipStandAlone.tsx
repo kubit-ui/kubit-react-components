@@ -39,6 +39,10 @@ const TooltipStandAlone = ({
   const contentId = `${uniqueId}Content`;
   const isTextContent = typeof props.content?.content === 'string';
 
+  const isDesktop = props.mediaDevice === DeviceBreakpointsType.DESKTOP;
+  const isMobile = props.mediaDevice === DeviceBreakpointsType.MOBILE;
+  const isTablet = props.mediaDevice === DeviceBreakpointsType.TABLET;
+
   if (props.disabled) {
     return (
       <TooltipStyled data-testid={`${props.dataTestId}Tooltip`}>
@@ -67,18 +71,15 @@ const TooltipStandAlone = ({
       })}
       data-testid={`${props.dataTestId}TooltipContent`}
       id={uniqueId}
-      role={
-        props.mediaDevice === DeviceBreakpointsType.DESKTOP && !props.tooltipAsModal
-          ? ROLES.TOOLTIP
-          : undefined
-      }
+      role={isDesktop && !props.tooltipAsModal ? ROLES.TOOLTIP : undefined}
       styles={props.styles}
       onFocus={props.onTooltipFocus}
       onKeyDown={props.onTooltipKeyDown}
     >
       <TooltipInternalContainerStyled styles={props.styles}>
-        {props.dragIcon && (
+        {(isMobile || isTablet) && props.dragIcon && (
           <TooltipDragIconStyled
+            ref={props.dragIconRef}
             data-testid={`${props.dataTestId}TooltipDrag`}
             styles={props.styles}
           >
@@ -142,7 +143,7 @@ const TooltipStandAlone = ({
           )}
         </TooltipInnerContentStyled>
       </TooltipInternalContainerStyled>
-      <TooltipArrowStyled styles={props.styles}>
+      <TooltipArrowStyled align={props.align} styles={props.styles}>
         <TooltipArrowContentStyled styles={props.styles} />
       </TooltipArrowStyled>
     </TooltipExternalContainerStyled>
@@ -167,16 +168,13 @@ const TooltipStandAlone = ({
         // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tooltip_role
         // or https://dequeuniversity.com/library/aria/tooltip
         ariaDescribedBy={
-          !props.tooltipAsModal &&
-          (props.mediaDevice === DeviceBreakpointsType.DESKTOP || props.popoverOpen)
-            ? ariaDescriptorsBy
-            : undefined
+          !props.tooltipAsModal && (isDesktop || props.popoverOpen) ? ariaDescriptorsBy : undefined
         }
         childrenAsButton={childrenAsButton}
       >
         {props.children}
       </TooltipTrigger>
-      {props.mediaDevice === DeviceBreakpointsType.DESKTOP ? (
+      {isDesktop ? (
         Tooltip
       ) : (
         <Popover

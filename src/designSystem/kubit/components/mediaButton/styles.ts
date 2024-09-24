@@ -25,24 +25,39 @@ const commonDefaultProps = {
   icon: {
     color: COLORS.BRAND.color_brand_bg_50,
     disabled: {
-      color: COLORS.ACCENT.color_accent_default_bg_100,
+      color: COLORS.DISABLED.color_accentDisabled_font_100,
     },
   },
   iconToTransition: {
     color: COLORS.BRAND.color_brand_bg_50,
   },
   loader: {
-    variant: LoaderVariantType.PRIMARY_WHITE,
+    variant: LoaderVariantType.PRIMARY_RED,
+    cursor: 'not-allowed',
   },
 };
 
 export const MEDIA_BUTTON_STYLES: MediaButtonStylesType<MediaButtonVariantType> = {
   [MediaButtonVariantType.DEFAULT]: {
+    [MediaButtonSizeType.EXTRA_LARGE]: {
+      ...commonDefaultProps,
+      container: {
+        ...commonContainerProps,
+        background_color: COLORS.NEUTRAL.color_neutral_bg_250,
+      },
+      buttonContainer: {
+        ...commonButtonContainerProps,
+        width: SPACINGS.spacing_650,
+        height: SPACINGS.spacing_650,
+        min_width: SPACINGS.spacing_650,
+        min_height: SPACINGS.spacing_650,
+      },
+    },
     [MediaButtonSizeType.LARGE]: {
       ...commonDefaultProps,
       container: {
         ...commonContainerProps,
-        background_color: COLORS.NEUTRAL.color_neutral_bg_100,
+        background_color: COLORS.NEUTRAL.color_neutral_bg_250,
       },
       buttonContainer: {
         ...commonButtonContainerProps,
@@ -56,7 +71,7 @@ export const MEDIA_BUTTON_STYLES: MediaButtonStylesType<MediaButtonVariantType> 
       ...commonDefaultProps,
       container: {
         ...commonContainerProps,
-        background_color: COLORS.NEUTRAL.color_neutral_bg_100,
+        border_radius: RADIUS.radius_00,
       },
       buttonContainer: {
         ...commonButtonContainerProps,
@@ -64,6 +79,7 @@ export const MEDIA_BUTTON_STYLES: MediaButtonStylesType<MediaButtonVariantType> 
         height: SPACINGS.spacing_400,
         min_width: SPACINGS.spacing_400,
         min_height: SPACINGS.spacing_400,
+        margin: SPACINGS.spacing_0,
       },
     },
   },

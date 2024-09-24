@@ -1,9 +1,16 @@
+import { splitDate } from '@/components/inputDate/utils/verifyDate';
+
 const DD = 'DD';
 const MM = 'MM';
 const YYYY = 'YYYY';
 
-export const formatDateToNative = (value: string, format: string): string => {
-  if (value.length > 5) {
+export const formatDateToNative = (value: string, format: string, hasRange: boolean): string => {
+  const { dateToCheck } = splitDate(value, format, '', hasRange);
+
+  // Check if year is the last position in the format to trigger zeros autocomplete
+  const isYearLastPosition = format.slice(-4) === 'YYYY' && value.length > 5;
+
+  if (isYearLastPosition || dateToCheck) {
     const regex = /[a-zA-Z0-9\s]/g;
     const symbol = format.replace(regex, '').split('')[0];
 

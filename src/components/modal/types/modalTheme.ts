@@ -16,6 +16,8 @@ export type ModalBaseStylesType = {
   closeButton?: {
     buttonVariant?: string;
   };
+  dragIconContainer?: CommonStyleType;
+  dragIcon?: IconTypes;
 };
 
 export type ModalStylesType<P extends string | number | symbol> = {

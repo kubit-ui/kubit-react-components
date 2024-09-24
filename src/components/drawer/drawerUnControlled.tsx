@@ -24,7 +24,7 @@ const DrawerUnControlledComponent = <V extends string | unknown>(
     closeIcon?.onClick?.(e);
   };
 
-  const handlePopoverCloseInterllay = () => {
+  const handlePopoverCloseInternally = () => {
     handleCloseDrawer();
     popover?.onCloseInternally?.();
   };
@@ -35,7 +35,7 @@ const DrawerUnControlledComponent = <V extends string | unknown>(
       ref={ref}
       closeIcon={{ ...closeIcon, onClick: handleCloseIconClick }}
       open={open}
-      popover={{ ...popover, onCloseInternally: handlePopoverCloseInterllay }}
+      popover={{ ...popover, onCloseInternally: handlePopoverCloseInternally }}
     />
   );
 };

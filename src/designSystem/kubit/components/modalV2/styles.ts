@@ -29,8 +29,10 @@ const commonTokens = {
   headerContainer: {
     width: SPACINGS.spacing_100_percent,
     display: 'flex',
+    flex_direction: 'column',
     justify_content: 'space-between',
     align_items: 'center',
+    gap: SPACINGS.spacing_150,
   },
   title: {
     font_weight: FONT_WEIGHT.font_weight_600,
@@ -47,7 +49,7 @@ const commonTokens = {
   closeButtonContainer: {
     display: 'flex',
     justify_content: 'end',
-    margin_bottom: SPACINGS.spacing_150,
+    width: '100%',
   },
   closeButtonIcon: {
     color: COLORS.NEUTRAL.color_neutral_icon_50,
