@@ -26,6 +26,18 @@ export const argtypes = (
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    align: {
+      description: 'Align of text',
+      type: { name: 'string', required: true },
+      control: { type: 'select' },
+      options: ['left', 'right', 'center', 'justify'],
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     component: {
       description: 'Component type to transform text to',
       type: { name: 'TextComponentType | GenericLinkType' },
