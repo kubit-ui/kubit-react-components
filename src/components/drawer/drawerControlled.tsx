@@ -30,6 +30,11 @@ const DrawerControlledComponent = React.forwardRef(
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
     useDeviceHeight();
+
+    const handleScroll = (e: Event) => {
+      props.onContentScroll?.(e);
+    };
+
     const styles = useStylesV2<DrawerVariantStylesType, V>({
       styleName: STYLES_NAME.DRAWER,
       variantName: props.variant,
@@ -41,6 +46,7 @@ const DrawerControlledComponent = React.forwardRef(
     const { scrollableRef, shadowRef } = useScrollEffect({
       shadowStyles: stylesByDevice.titleContainer?.box_shadow,
       shadowVisible: SCROLL_DISTANCE,
+      scrollCallback: handleScroll,
     });
 
     const footerRef = useZoomEffect(FOOTER_EDIT_STYLES, MAX_ZOOM);
@@ -49,9 +55,9 @@ const DrawerControlledComponent = React.forwardRef(
       <DrawerStandAlone
         {...props}
         ref={ref}
+        contentRef={scrollableRef}
         device={device}
         footerRef={footerRef}
-        scrollableRef={scrollableRef}
         shadowRef={shadowRef}
         styles={stylesByDevice}
       />

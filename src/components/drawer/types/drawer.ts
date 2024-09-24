@@ -38,14 +38,14 @@ export interface IDrawerStandAlone {
   blocked?: boolean;
   popover?: DrawerPopoverType;
   /* To useScrollableEffect */
-  scrollableRef: (node) => void;
   shadowRef: (node) => void;
   /* To useZoomEffect */
   footerRef?: (node) => void;
   contentRef?: (node) => void;
+  onContentScroll?: (e: Event) => void;
 }
 
-type OmitProps = 'styles' | 'device' | 'scrollableRef' | 'shadowRef' | 'footerRef' | 'contentRef';
+type OmitProps = 'styles' | 'device' | 'shadowRef' | 'footerRef' | 'contentRef';
 
 export interface IDrawerControlled<V = undefined extends string ? unknown : string>
   extends Omit<IDrawerStandAlone, OmitProps>,

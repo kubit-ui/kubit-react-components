@@ -20,7 +20,6 @@ import { IDrawerStandAlone } from './types';
 const DrawerStandAloneComponent = (
   {
     blocked = false,
-    scrollableRef,
     shadowRef,
     footerRef,
     contentRef,
@@ -61,11 +60,7 @@ const DrawerStandAloneComponent = (
             />
           </DrawerNavigationStyled>
         )}
-        <DrawerTitleContentFooterContainerStyled
-          ref={contentRef}
-          blocked={blocked}
-          styles={props.styles}
-        >
+        <DrawerTitleContentFooterContainerStyled blocked={blocked} styles={props.styles}>
           <DrawerTitleStyled
             ref={shadowRef}
             as={Text as unknown as React.ElementType}
@@ -77,7 +72,7 @@ const DrawerStandAloneComponent = (
           >
             {props.title?.content}
           </DrawerTitleStyled>
-          <DrawerContentStyled ref={scrollableRef} styles={props.styles}>
+          <DrawerContentStyled ref={contentRef} styles={props.styles}>
             {props.children}
           </DrawerContentStyled>
           {props.footer?.content && props.styles.footer?.variant && (

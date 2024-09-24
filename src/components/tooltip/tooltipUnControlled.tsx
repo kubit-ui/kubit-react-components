@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useMediaDevice } from '@/hooks';
+import { useMediaDevice, useSwipeDown } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 import { DeviceBreakpointsType } from '@/types';
@@ -141,13 +141,23 @@ const TooltipUnControlledComponent = React.forwardRef(
       hideTooltip();
     };
 
+    const { setDragIconRef, setPopoverRef } = useSwipeDown(
+      props.popover?.animationOptions,
+      hideTooltip
+    );
+
     // It is used TooltipStandAlone instead of TooltipControlled
     // The reason is that TooltipControlled only provides the styles and mediaDevice props that are used and needed in this component
     return (
       <TooltipStandAlone
         {...props}
+        dragIconRef={setDragIconRef}
         labelRef={labelRef}
         mediaDevice={mediaDevice}
+        popover={{
+          ...props.popover,
+          forwardedRef: setPopoverRef,
+        }}
         popoverOpen={open}
         styles={styles}
         tooltipAriaLabel={tooltipAriaLabel}

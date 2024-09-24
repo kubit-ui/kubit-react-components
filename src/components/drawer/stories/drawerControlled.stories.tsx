@@ -72,7 +72,14 @@ export const DrawerControlled: Story = {
     closeIcon: { icon: ICONS.ICON_CLOSE, altText: 'alt text icon', ['aria-label']: 'close icon' },
     level: DrawerLevelPositionTypes.FIRST_LEVEL,
     open: false,
-    children: <ReplaceContent />,
+    children: (
+      <>
+        <ReplaceContent />
+        <ReplaceContent />
+        <ReplaceContent />
+        <ReplaceContent />
+      </>
+    ),
     blocked: false,
     popover: {
       blockBack: true,

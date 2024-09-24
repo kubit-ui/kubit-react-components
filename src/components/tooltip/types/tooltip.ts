@@ -56,6 +56,7 @@ export interface ITooltipStandAlone {
   onTooltipKeyDown?: React.KeyboardEventHandler<HTMLElement>;
   popover?: TooltipPopoverType;
   dragIcon?: IElementOrIcon;
+  dragIconRef?: (node) => void;
   tooltipAriaLabel?: string;
 }
 
@@ -85,7 +86,8 @@ type propsToOmitUnControlled =
   | 'labelRef'
   | 'onTooltipFocus'
   | 'onKeyDown'
-  | 'onTooltipKeyDown';
+  | 'onTooltipKeyDown'
+  | 'dragIconRef';
 
 /**
  * @name ITooltipUnControlled
