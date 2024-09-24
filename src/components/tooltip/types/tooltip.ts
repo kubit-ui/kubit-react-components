@@ -31,6 +31,7 @@ export type TooltipPopoverType = Omit<IPopoverControlled, 'children' | 'open'>;
 export interface ITooltipStandAlone {
   disabled?: boolean;
   mediaDevice: DeviceBreakpointsType;
+  align?: TooltipAlignType;
   title?: TooltipTitleType;
   content?: TooltipContentType;
   onFocus?: React.FocusEventHandler<HTMLElement>;
@@ -94,5 +95,4 @@ type propsToOmitUnControlled =
 export interface ITooltipUnControlled<V = undefined extends string ? unknown : string>
   extends Omit<ITooltipControlled<V>, propsToOmitUnControlled> {
   onOpenClose?: (open: boolean) => void;
-  align?: TooltipAlignType;
 }

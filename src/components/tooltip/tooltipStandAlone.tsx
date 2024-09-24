@@ -142,7 +142,7 @@ const TooltipStandAlone = ({
           )}
         </TooltipInnerContentStyled>
       </TooltipInternalContainerStyled>
-      <TooltipArrowStyled styles={props.styles}>
+      <TooltipArrowStyled align={props.align} styles={props.styles}>
         <TooltipArrowContentStyled styles={props.styles} />
       </TooltipArrowStyled>
     </TooltipExternalContainerStyled>

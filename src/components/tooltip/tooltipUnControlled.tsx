@@ -19,7 +19,6 @@ const TooltipUnControlledComponent = React.forwardRef(
     {
       ctv,
       tooltipAsModal,
-      align,
       onOpenClose,
       variant,
       tooltipAriaLabel,
@@ -49,7 +48,7 @@ const TooltipUnControlledComponent = React.forwardRef(
       tooltipRef,
       variant,
       onOpenClose,
-      align,
+      align: props.align,
       ctv,
     });
 
