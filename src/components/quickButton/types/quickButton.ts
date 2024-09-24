@@ -26,6 +26,7 @@ export interface IQuickButtonStandAlone {
   dataTestId?: string;
   type?: ButtonType;
   ['aria-label']?: string;
+  role?: string;
 }
 
 /**
