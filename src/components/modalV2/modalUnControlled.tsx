@@ -51,6 +51,7 @@ const ModalUnControlledComponent = <V extends string | unknown>(
       open={open}
       popover={{ ...popover, onCloseInternally: handlePopoverCloseInternally }}
       variant={variant}
+      onClose={onClose}
       onKeyDown={onKeyDown}
     />
   );

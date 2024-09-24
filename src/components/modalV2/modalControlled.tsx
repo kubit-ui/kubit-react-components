@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { STYLES_NAME } from '@/constants';
-import { useMediaDevice, useScrollEffect, useStylesV2 } from '@/hooks';
+import { useMediaDevice, useScrollEffect, useStylesV2, useSwipeDown } from '@/hooks';
 import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
 import { FallbackComponent } from '@/provider/errorBoundary/fallbackComponent';
 
@@ -26,14 +26,26 @@ const ModalControlledComponent = React.forwardRef(
       shadowStyles: styles?.headerContainer?.box_shadow,
     });
 
+    const { setPopoverRef, setDragIconRef } = useSwipeDown(props.popover?.animationOptions, () =>
+      props.onClose?.()
+    );
+
+    const handlePopoverCloseInternally = () => {
+      props.popover?.onCloseInternally?.();
+      props.onClose?.();
+    };
+
     const modalStructure = (
       <ModalStandAlone
         {...props}
         ref={ref}
         device={device}
+        dragIconRef={setDragIconRef}
+        popover={{ ...props.popover, forwardedRef: setPopoverRef }}
         scrollableRef={scrollableRef}
         shadowRef={shadowRef}
         styles={styles as ModalBaseStylesType}
+        onPopoverCloseInternally={handlePopoverCloseInternally}
       />
     );
 

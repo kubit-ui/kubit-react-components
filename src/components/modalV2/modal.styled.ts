@@ -83,10 +83,6 @@ export const ModalHeaderStyled = styled.div<IModalStyled>`
   ${props => getStyles(props.$styles.headerContainer)}
 `;
 
-export const ModalFilledContainer = styled.div<IModalStyled>`
-  ${props => getStyles(props.$styles.closeButtonIcon)};
-`;
-
 export const TitleHiddenContainer = styled.span`
   display: none;
 `;
@@ -104,4 +100,8 @@ export const ModalContentStyled = styled.div<IModalStyled & ModalShowScrollType>
 
 export const ModalFooterStyled = styled.div<IModalStyled>`
   ${props => getStyles(props.$styles.footer)}
+`;
+
+export const DraggableIcon = styled.div<IModalStyled>`
+  ${props => getStyles(props.$styles?.dragIconContainer)}
 `;
