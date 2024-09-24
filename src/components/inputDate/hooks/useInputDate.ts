@@ -270,14 +270,16 @@ export const useInputDate = ({
         ? dateValue.split(props.dateSeparator as string)
         : dateValue.split(' ');
 
-      const firstDate = formatDateToNative(dates[0], props.format);
-      const secondDate = secondDateExists ? formatDateToNative(dates[1], props.format) : '';
+      const firstDate = formatDateToNative(dates[0].trim(), props.format, true);
+      const secondDate = secondDateExists
+        ? formatDateToNative(dates[1].trim(), props.format, true)
+        : '';
 
-      const firstValueAsNumber = firstDate.length && new Date(firstDate).getTime();
-      const secondValueAsNumber = secondDate.length && new Date(secondDate).getTime();
+      const firstValueAsNumber = firstDate.length && formatDateToUTC(firstDate).getTime();
+      const secondValueAsNumber = secondDate.length && formatDateToUTC(secondDate).getTime();
 
-      const firstValueAsDate = firstDate.length && new Date(firstDate);
-      const secondValueAsDate = secondDate.length && new Date(secondDate);
+      const firstValueAsDate = firstDate.length && formatDateToUTC(firstDate);
+      const secondValueAsDate = secondDate.length && formatDateToUTC(secondDate);
 
       adaptEvent = {
         target: {
@@ -346,14 +348,16 @@ export const useInputDate = ({
         ? dateValue.split(props.dateSeparator as string)
         : dateValue.split(' ');
 
-      const firstDate = formatDateToNative(dates[0], props.format);
-      const secondDate = secondDateExists ? formatDateToNative(dates[1], props.format) : '';
+      const firstDate = formatDateToNative(dates[0].trim(), props.format, true);
+      const secondDate = secondDateExists
+        ? formatDateToNative(dates[1].trim(), props.format, true)
+        : '';
 
-      const firstValueAsNumber = firstDate.length && new Date(firstDate).getTime();
-      const secondValueAsNumber = secondDate.length && new Date(secondDate).getTime();
+      const firstValueAsNumber = firstDate.length && formatDateToUTC(firstDate).getTime();
+      const secondValueAsNumber = secondDate.length && formatDateToUTC(secondDate).getTime();
 
-      const firstValueAsDate = firstDate.length && new Date(firstDate);
-      const secondValueAsDate = secondDate.length && new Date(secondDate);
+      const firstValueAsDate = firstDate.length && formatDateToUTC(firstDate);
+      const secondValueAsDate = secondDate.length && formatDateToUTC(secondDate);
 
       adaptEvent = {
         target: {
@@ -395,10 +399,10 @@ export const useInputDate = ({
     let adaptEvent;
 
     if (hasSecondaDate) {
-      const firstNativeDate = formatDateToNative(getDate(orderedDates[0]), props.format);
-      const secondNativeDate = formatDateToNative(getDate(orderedDates[1]), props.format);
-      const firstValueAsNumber = new Date(orderedDates[0]).getTime();
-      const secondValueAsNumber = new Date(orderedDates[1]).getTime();
+      const firstNativeDate = formatDateToNative(getDate(orderedDates[0]), props.format, true);
+      const secondNativeDate = formatDateToNative(getDate(orderedDates[1]), props.format, true);
+      const firstValueAsNumber = formatDateToUTC(orderedDates[0]).getTime();
+      const secondValueAsNumber = formatDateToUTC(orderedDates[1]).getTime();
 
       adaptEvent = {
         target: {

@@ -88,7 +88,7 @@ const commonArgs: IInputDate = {
     backToMonthAriaLabel: 'Back to month view',
   },
   disabledDates: [new Date('2020-01-01'), new Date('2020-01-05')],
-  errorExecution: ERROR_EXECUTION.ON_BLUR,
+  errorExecution: ERROR_EXECUTION.ON_CHANGE,
 };
 
 export const InputDate: Story = {
