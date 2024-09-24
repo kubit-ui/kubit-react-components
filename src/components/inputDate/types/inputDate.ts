@@ -31,6 +31,7 @@ export type InputDateTextType = Omit<IText<string>, 'children'> & {
 export interface IConfigAccesibilityPopover extends IConfigAccesibility {
   openInputIconAriaLabel?: string;
   closeInputIconAriaLabel?: string;
+  calendarAriaLabel?: string;
 }
 
 export interface IPopoverCalendar {

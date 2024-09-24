@@ -46,6 +46,7 @@ const PopoverCalendarComponent = (
   return (
     <Popover
       hasBackDrop
+      aria-label={props.configAccesibility?.calendarAriaLabel}
       aria-modal={props.calendarOpen}
       component={PopoverComponentType.DIV}
       dataTestId={`${props.dataTestId}Popover`}
