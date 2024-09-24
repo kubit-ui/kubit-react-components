@@ -11,7 +11,11 @@ import { ButtonSizeType, ButtonVariantType } from '@/designSystem/kubit/componen
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
 import { DrawerControlled as Story } from '../index';
-import { DrawerLevelPositionTypes, DrawerTitleComponentType } from '../types';
+import {
+  DrawerLevelPositionTypes,
+  DrawerTitleComponentType,
+  DrawerVariantPositionTypes,
+} from '../types';
 import { argtypes } from './controlledArgtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
@@ -109,6 +113,12 @@ export const DrawerControlledWithCtv: Story = {
       DESKTOP: {
         title: {
           color: 'red',
+        },
+        container: {
+          [DrawerVariantPositionTypes.DRAWER_RIGHT]: {
+            min_width: '80vw',
+            max_width: '80vw',
+          },
         },
       },
       TABLET: {
