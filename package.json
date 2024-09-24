@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/react-components",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
   "author": {
     "name": "Kubit",
@@ -159,7 +159,7 @@
     "typedoc-plugin-markdown": "^4.2.8",
     "typescript": "^5.6.2",
     "vite": "^5.4.7",
-    "vite-tsconfig-paths": "^5.0.1",
+    "vite-tsconfig-paths": "^4.3.2",
     "yarn-deduplicate": "^6.0.2"
   },
   "dependencies": {
