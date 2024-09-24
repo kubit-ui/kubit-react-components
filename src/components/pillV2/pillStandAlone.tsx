@@ -7,7 +7,7 @@ import { useId } from '@/hooks';
 import { ROLES } from '@/types';
 import { InputTypeType } from '@/types/inputType';
 
-import { ButtonType } from '../button';
+import { ButtonType } from '../button/types';
 import {
   PillAsButton,
   PillContentContainerStyled,
@@ -18,7 +18,7 @@ import { IPillStandAlone, PillType } from './types';
 
 const PillStandAloneComponent = (
   { dataTestId = 'pill', type = PillType.BUTTON, ...props }: IPillStandAlone,
-  ref: React.ForwardedRef<HTMLButtonElement> | undefined | null
+  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const id = useId('pill');
   const pillContentId = `${id}-content`;

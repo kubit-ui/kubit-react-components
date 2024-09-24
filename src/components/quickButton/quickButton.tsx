@@ -6,7 +6,7 @@ import { States, useManageState } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
-import { ButtonType } from '../button';
+import { ButtonType } from '../button/types';
 //components
 import { QuickButtonStandAlone } from './quickButtonStandAlone';
 import {

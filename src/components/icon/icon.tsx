@@ -4,7 +4,7 @@ import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { useMediaDevice } from '@/hooks/index';
 import { pickAriaProps } from '@/utils/aria/aria';
 
-import { ButtonType } from '../button';
+import { ButtonType } from '../button/types/type';
 import { IconButtonStyled } from './icon.styled';
 import { IconStandAlone } from './iconStandAlone';
 import { IIcon } from './types';
