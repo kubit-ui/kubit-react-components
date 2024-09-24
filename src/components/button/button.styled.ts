@@ -49,7 +49,6 @@ export const ButtonStyled = styled.button<IButtonStyled>`
   align-items: center;
   justify-content: center;
   text-align: ${({ alignText }) => alignText ?? 'left'};
-  min-width: ${props => props.minWidth};
   cursor: pointer;
   flex-direction: ${props =>
     props.$iconPosition === IconPositionType.LEFT ? 'row' : 'row-reverse'};
@@ -86,7 +85,7 @@ export const ButtonStyled = styled.button<IButtonStyled>`
       ${({ $styles, $sizeStyles }) => setTokens(ButtonStateType.DEFAULT, $styles, $sizeStyles)}
     }
   }
-
+  min-width: ${props => props.minWidth};
   width: ${props => (props.$fullWidth ? '100%' : 'auto')};
 
   &::after {
