@@ -15,15 +15,23 @@ describe('syntheticDate test', () => {
     const date = '11-02-2020';
     const format = 'DD-MM-YYYY';
 
-    const rightFormatDate = formatDateToNative(date, format);
+    const rightFormatDate = formatDateToNative(date, format, false);
 
     expect(rightFormatDate).toBe('2020-02-11');
   });
-  it('fill in the year with zeros when it is less than four digits', () => {
+  it('empty date when it doesnt comply with valid format', () => {
+    const date = '2024-09-1';
+    const format = 'YYYY-MM-DD';
+
+    const rightFormatDate = formatDateToNative(date, format, false);
+
+    expect(rightFormatDate).toBe('');
+  });
+  it('fill in the year with zeros when year is in the last position and value is less than four digits', () => {
     const date = '11-02-2';
     const format = 'DD-MM-YYYY';
 
-    const rightFormatDate = formatDateToNative(date, format);
+    const rightFormatDate = formatDateToNative(date, format, false);
 
     expect(rightFormatDate).toBe('0002-02-11');
   });
