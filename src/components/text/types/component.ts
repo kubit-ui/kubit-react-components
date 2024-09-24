@@ -27,4 +27,5 @@ export enum TextComponentType {
   DL = 'dl',
   DT = 'dt',
   DD = 'dd',
+  DIV = 'div',
 }
