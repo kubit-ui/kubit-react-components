@@ -76,6 +76,7 @@ export const PopoverSearchListComponent = (
       loader={props.loader}
       loading={props.loading}
       loadingText={props.loadingText}
+      optionCheckedIcon={props.optionCheckedIcon}
       optionVariant={section?.optionVariant}
       options={section?.options || []}
       searchText={labelInResultTextWrittenByUser}
@@ -165,6 +166,7 @@ export const PopoverSearchListComponent = (
       variant={props.styles?.[props.state]?.popoverVariant?.[props.device]}
       onCloseInternally={() => {
         props.onOpenOptions(false);
+        refInput?.current?.focus();
       }}
     >
       {useActionBottomSheet ? (

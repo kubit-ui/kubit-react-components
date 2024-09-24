@@ -58,6 +58,9 @@ export type PopoverSearchInputType = {
   placeholder?: string;
   value?: string;
   variant?: string;
+  error?: boolean;
+  errorIcon?: IElementOrIcon;
+  errorMessage?: InputSearchLoadingTextType;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   onIconClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -91,6 +94,7 @@ export interface IPopoverSearchList {
   regex?: string | RegExp;
   value?: string;
   caseSensitive?: boolean;
+  optionCheckedIcon?: IElementOrIcon;
   // Functions
   onOpenOptions: (value: boolean) => void;
   onValueSelected: (value: string) => void;
@@ -116,6 +120,7 @@ export interface IOptionsListSearchList extends OptionGroupAriasTypes {
   loadingText?: InputSearchLoadingTextType;
   value?: string;
   searchText?: string;
+  optionCheckedIcon?: IElementOrIcon;
 }
 
 export interface ILoadingIcon {
@@ -154,6 +159,7 @@ export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOm
   // Modifiers
   inputVariant?: string;
   open: boolean;
+  error?: boolean;
   searchText?: string;
   value?: string;
   titleActionBottomSheet?: string;
@@ -163,6 +169,7 @@ export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOm
   listOptionsHeight: string;
   optionList: IOptionGroup[];
   optionsListDefaultArias?: OptionGroupAriasTypes;
+  optionCheckedIcon?: IElementOrIcon;
   loadingList?: boolean;
   loadingText?: InputSearchLoadingTextType;
   elementsToShow?: number;
@@ -223,7 +230,6 @@ export interface IInputSearch<V = undefined extends string ? unknown : string>
   variant: V;
   open?: boolean;
   disabled?: boolean;
-  error?: boolean;
   searchFilterConfig?: SearchFilterConfig;
   disableErrorInvalidOption?: boolean;
   regex?: string | RegExp;

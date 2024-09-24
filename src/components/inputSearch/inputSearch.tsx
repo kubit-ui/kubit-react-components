@@ -117,6 +117,7 @@ const InputSearchComponent = React.forwardRef(
         blockBackPopover={blockBackPopover}
         caseSensitive={caseSensitive}
         device={device}
+        error={error}
         hasHighlightedOption={showHighlightedOption}
         hasResultTextWrittenByUser={hasResultTextWrittenByUser}
         highlightedOption={highlightedOption}
