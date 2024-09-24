@@ -88,6 +88,27 @@ const MessageStandAloneComponent = (
     );
   };
 
+  const buildTitle = () => {
+    return typeof props.title?.content === 'string' ? (
+      <MessageTextStyled
+        aria-errormessage={props.ariaMessageId}
+        extraPaddingGap={!!props.closeIcon}
+        styles={props.styles.closeIcon}
+      >
+        <Text
+          component={TextComponentType.PARAGRAPH}
+          customTypography={props.styles.title}
+          dataTestId={`${props.dataTestId}Title`}
+          {...props.title}
+        >
+          {props.title.content}
+        </Text>
+      </MessageTextStyled>
+    ) : (
+      props.title?.content
+    );
+  };
+
   return (
     <ParentContainerStyled aria-live={ariaLive} styles={props.styles}>
       {props.open && (
@@ -118,22 +139,7 @@ const MessageStandAloneComponent = (
             withIcon={!!props.closeIcon}
             onClick={props.titleAndContentContainerProps?.onClick}
           >
-            {props.title && (
-              <MessageTextStyled
-                aria-errormessage={props.ariaMessageId}
-                extraPaddingGap={!!props.closeIcon}
-                styles={props.styles.closeIcon}
-              >
-                <Text
-                  component={TextComponentType.PARAGRAPH}
-                  customTypography={props.styles.title}
-                  dataTestId={`${props.dataTestId}Title`}
-                  {...props.title}
-                >
-                  {props.title.content}
-                </Text>
-              </MessageTextStyled>
-            )}
+            {props.title && buildTitle()}
             {props.tag?.content && buildTag()}
             <MessageContentStyled isLargeMessage={isLargeMessage} styles={props.styles}>
               {buildContent()}
