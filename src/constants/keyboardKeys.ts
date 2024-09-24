@@ -67,8 +67,8 @@ const ARROW_DOWN = {
 
 const DELETE = {
   key: 'Delete',
-  which: 46,
-  keyCode: 46,
+  which: 8,
+  keyCode: 8,
   code: 'ArrowDecimal',
 };
 

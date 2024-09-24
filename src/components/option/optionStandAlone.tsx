@@ -43,6 +43,7 @@ const OptionStandAlone = React.forwardRef(
     const hasCheckedIcon = [
       OptionStateType.MULTIPLE_SELECTED,
       OptionStateType.MULTIPLE_SELECTED_HOVER,
+      OptionStateType.SELECTED,
     ].includes(state);
 
     const { firstHighlightedIndex, lastHighlightedIndex } = getHighlightedIndexes(

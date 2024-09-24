@@ -82,6 +82,8 @@ export * from './tableCaption';
 export * from './tableDivider';
 export * from './tableV2';
 export * from './dataTable';
+export * from './video';
+export * from './progressBar';
 export * from './virtualKeyboard';
 
 /**

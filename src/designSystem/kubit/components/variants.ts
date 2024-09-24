@@ -89,4 +89,6 @@ export * from './tableCaption/variants';
 export * from './tableDivider/variants';
 export * from './tableV2/variants';
 export * from './dataTable/variants';
+export * from './video/variants';
 export * from './virtualKeyboard/variants';
+export * from './progressBar/variants';
