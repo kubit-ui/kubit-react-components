@@ -12,7 +12,12 @@ export type OptionSublabelType = Omit<IText<string>, 'children'> & {
 
 type OptionAriaAttributes = Pick<
   React.AriaAttributes,
-  'aria-label' | 'aria-labelledby' | 'aria-describedby' | 'aria-hidden' | 'aria-selected'
+  | 'aria-label'
+  | 'aria-labelledby'
+  | 'aria-describedby'
+  | 'aria-hidden'
+  | 'aria-selected'
+  | 'aria-current'
 >;
 
 /**
