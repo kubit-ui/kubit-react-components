@@ -22,12 +22,11 @@ export const buildAriaDescribedBy = ({
   if (ariaDescribedBy) {
     res += ` ${ariaDescribedBy}`;
   }
-  if (helpMessageId && helpMessage) {
-    res += ` ${helpMessageId}`;
-  }
-
   if (errorMessageId && errorMessage && hasError(state)) {
     res += ` ${errorMessageId}`;
+  }
+  if (helpMessageId && helpMessage) {
+    res += ` ${helpMessageId}`;
   }
   return res;
 };

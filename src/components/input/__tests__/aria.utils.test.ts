@@ -17,6 +17,6 @@ describe('Utils aria', () => {
         errorMessageId,
         state,
       })
-    ).toBe(' 1234 56789');
+    ).toBe(' 56789 1234');
   });
 });
