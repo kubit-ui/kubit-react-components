@@ -47,8 +47,9 @@ const menuSection: OliveMenuListOptions[] = [
 
 describe('Olive Menu utils', () => {
   test('Should get ariaControls', async () => {
-    expect(getAriaControls(menuSection, 'ariaControls')).toStrictEqual(
-      'ariaControls0number1 ariaControls1number2'
-    );
+    expect(getAriaControls(menuSection, 'ariaControls')).toStrictEqual([
+      'ariaControls0number1',
+      'ariaControls1number2',
+    ]);
   });
 });

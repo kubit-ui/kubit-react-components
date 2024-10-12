@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useEscPressed, useMediaDevice } from '@/hooks';
+import { useEscPressedV2, useMediaDevice } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
@@ -30,7 +30,7 @@ const OliveMenuComponent = React.forwardRef(
       onOpenClose?.(false);
     }, [open]);
 
-    useEscPressed({ execute: handlePressScape, element: innerRef });
+    useEscPressedV2({ ref: innerRef, onEscPress: handlePressScape });
 
     const handleTriggerClick = e => {
       setOpen(!open);
