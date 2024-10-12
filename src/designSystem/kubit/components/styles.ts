@@ -64,6 +64,7 @@ export * from './toggle/styles';
 export * from './toggleWithLabel/styles';
 export * from './tooltip/styles';
 export * from './badge/styles';
+export * from './badgeV2/styles';
 export * from './calendar/styles';
 export * from './cardImage/styles';
 export * from './layout/styles';

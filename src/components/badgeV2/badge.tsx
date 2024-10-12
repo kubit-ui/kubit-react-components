@@ -5,40 +5,56 @@ import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
 import { BadgeStandAlone } from './badgeStandAlone';
-import { BadgeStatus } from './types';
-import { IBadgeControlled, IBadgeStandAlone } from './types/badge';
+import { BadgeState } from './types';
+import { IBadge, IBadgeStandAlone } from './types/badge';
 import { BadgeSizePropsType, BadgeVariantStylesType } from './types/badgeTheme';
 
-const BadgeControlledComponent = React.forwardRef(
+const BadgeComponent = React.forwardRef(
   <
     V = undefined extends string | unknown ? string | undefined : string | unknown,
     S = undefined extends string | unknown ? string | undefined : string | unknown,
   >(
-    { ctv, cts, ...props }: IBadgeControlled<V, S>,
+    { hasDot = true, ctv, cts, ...props }: IBadge<V, S>,
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
-    const styles = useStyles<BadgeVariantStylesType, V>(STYLES_NAME.BADGE, props.variant, ctv);
-    const iconStyles = styles[props.open ? BadgeStatus.OPEN : BadgeStatus.CLOSE];
-    const sizeStyles = useStyles<BadgeSizePropsType, S>(STYLES_NAME.BADGE, props.size, cts);
+    const [active, setActive] = React.useState<boolean>(false);
+
+    const styles = useStyles<BadgeVariantStylesType, V>(STYLES_NAME.BADGE_V2, props.variant, ctv);
+    const stateStyles = styles[active ? BadgeState.ACTIVE : BadgeState.DEFAULT];
+    const sizeStyles = useStyles<BadgeSizePropsType, S>(STYLES_NAME.BADGE_V2, props.size, cts);
+
+    const handleIconClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      props.onClick?.(e);
+      setActive(!active);
+    };
+
+    const handleOnBadgeBlur: React.FocusEventHandler<HTMLDivElement> = event => {
+      if (!event.currentTarget.contains(event.relatedTarget)) {
+        setActive(false);
+      }
+    };
 
     return (
       <BadgeStandAlone
         {...props}
         ref={ref}
-        iconStyles={iconStyles}
+        active={active}
+        hasDot={hasDot}
         sizeStyles={sizeStyles}
-        styles={styles}
+        styles={stateStyles}
+        onBadgeBlur={handleOnBadgeBlur}
+        onClick={handleIconClick}
       />
     );
   }
 );
-BadgeControlledComponent.displayName = 'BadgeControlledComponent';
+BadgeComponent.displayName = 'BadgeComponent';
 
 const BagdeBoundary = <
   V = undefined extends string | unknown ? string | undefined : string | unknown,
   S = undefined extends string | unknown ? string | undefined : string | unknown,
 >(
-  props: IBadgeControlled<V, S>,
+  props: IBadge<V, S>,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => (
   <ErrorBoundary
@@ -48,25 +64,23 @@ const BagdeBoundary = <
       </FallbackComponent>
     }
   >
-    <BadgeControlledComponent {...props} ref={ref} />
+    <BadgeComponent {...props} ref={ref} />
   </ErrorBoundary>
 );
 
 /**
- * @deprecated Try the new BadgeV2 component
- *
  * @description
  * Badge component is a component that shows a badge with a number or a dot.
- * @param {React.PropsWithChildren<IBadgeControlled<V>>} props
+ * @param {React.PropsWithChildren<IBadge<V>>} props
  * @returns {JSX.Element}
  */
-const BadgeControlled = React.forwardRef(BagdeBoundary) as <
+const Badge = React.forwardRef(BagdeBoundary) as <
   V = undefined extends string | unknown ? string | undefined : string | unknown,
   S = undefined extends string | unknown ? string | undefined : string | unknown,
 >(
-  props: React.PropsWithChildren<IBadgeControlled<V, S>> & {
+  props: React.PropsWithChildren<IBadge<V, S>> & {
     ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
   }
 ) => JSX.Element;
 
-export { BadgeControlled };
+export { Badge };
