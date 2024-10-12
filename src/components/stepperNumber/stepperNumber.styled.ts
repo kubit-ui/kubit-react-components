@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { srOnlyMixin } from '@/styles';
 import { getStyles } from '@/utils';
 
 import {
@@ -15,11 +16,11 @@ export const StepsContainerStyled = styled.ol<{ styles?: StepperNumberStateStyle
 `;
 
 export const BuilStepContainerStyled = styled.li<{
-  orientation: StepperNumberOrientationType;
+  $orientation: StepperNumberOrientationType;
   horizontalOrientationWidth?: string;
 }>`
-  ${({ orientation, horizontalOrientationWidth }) =>
-    orientation === StepperNumberOrientationType.VERTICAL
+  ${({ $orientation, horizontalOrientationWidth }) =>
+    $orientation === StepperNumberOrientationType.VERTICAL
       ? css`
           display: flex;
         `
@@ -28,36 +29,38 @@ export const BuilStepContainerStyled = styled.li<{
         `}
 `;
 
-export const StepContainerStyled = styled.div<{
+export const StepContainerStyled = styled.span<{
   styles?: StepperNumberStateStylesType;
   state: StepperNumberStateType;
 }>`
   ${({ styles, state }) => getStyles(styles?.[state]?.stepContainer)};
 `;
 
-export const StepCircleBarWrapperStyled = styled.div<{ orientation: StepperNumberOrientationType }>`
+export const StepCircleBarWrapperStyled = styled.span<{
+  $orientation: StepperNumberOrientationType;
+}>`
   display: flex;
-  flex-direction: ${({ orientation }) =>
-    orientation === StepperNumberOrientationType.VERTICAL ? 'column' : 'row'};
+  flex-direction: ${({ $orientation }) =>
+    $orientation === StepperNumberOrientationType.VERTICAL ? 'column' : 'row'};
   align-items: center;
   flex: 1;
 `;
 
-export const StepCircleStyled = styled.div<{
+export const StepCircleStyled = styled.span<{
   styles?: StepperNumberStateStylesType;
   state: StepperNumberStateType;
 }>`
   ${({ styles, state }) => getStyles(styles?.[state]?.stepCircle)};
 `;
 
-export const StepBarStyled = styled.div<{
+export const StepBarStyled = styled.span<{
   styles?: StepperNumberStateStylesType;
   state: StepperNumberStateType;
 }>`
   ${({ styles, state }) => getStyles(styles?.[state]?.stepBar)};
 `;
 
-export const StepperNumberContainerVerticalStep = styled.div<{
+export const StepperNumberContainerVerticalStep = styled.span<{
   styles?: StepperNumberStateStylesType;
   state: StepperNumberStateType;
   isLastStep: boolean;
@@ -65,4 +68,12 @@ export const StepperNumberContainerVerticalStep = styled.div<{
   ${({ styles, state }) => getStyles(styles?.[state]?.stepNameContainer)};
   ${({ styles, state, isLastStep }) =>
     isLastStep && getStyles(styles?.[state]?.stepNameContainer?.isLast)};
+`;
+
+export const ScreenReaderTitle = styled.h2`
+  ${srOnlyMixin}
+`;
+
+export const ScreenReaderCompletedStep = styled.span`
+  ${srOnlyMixin}
 `;

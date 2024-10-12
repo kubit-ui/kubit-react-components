@@ -1,4 +1,5 @@
 import { IElementOrIcon } from '@/components/elementOrIcon';
+import { IText } from '@/components/text';
 import { CustomTokenTypes } from '@/types';
 
 import { StepperNumberOrientationType } from './orientation';
@@ -14,6 +15,10 @@ export interface StepStateType {
   state: StepperNumberStateType;
 }
 
+export type StepperNumberScreenReaderTextType = Pick<IText<string>, 'component' | 'dataTestId'> & {
+  content?: string;
+};
+
 export interface IStepperNumberStandAlone {
   styles?: StepperNumberStateStylesType;
   orientation: StepperNumberOrientationType;
@@ -22,7 +27,12 @@ export interface IStepperNumberStandAlone {
   steps?: string[];
   currentStep?: number;
   ['aria-label']?: string;
+  /**
+   * @deprecated use screenReaderTitle and screenReaderCompletedStep instead
+   */
   screenReaderTextBuilder?: StepperNumberprefixSuffixType;
+  screenReaderTitle?: StepperNumberScreenReaderTextType;
+  screenReaderCompletedStep?: StepperNumberScreenReaderTextType;
   dataTestId?: string;
 }
 

@@ -108,7 +108,28 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
-
+    screenReaderTitle: {
+      description: 'Stepper number section title',
+      control: { type: 'object' },
+      type: { name: 'object' },
+      table: {
+        type: {
+          summary: 'StepperNumberScreenReaderTextType',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    screenReaderCompletedStep: {
+      description: 'Screen reader text for completed step',
+      control: { type: 'object' },
+      type: { name: 'object' },
+      table: {
+        type: {
+          summary: 'StepperNumberScreenReaderTextType',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     dataTestId: {
       description: 'String used for testing',
       control: { type: 'text' },

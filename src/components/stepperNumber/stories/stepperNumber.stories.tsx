@@ -29,12 +29,13 @@ type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
 const commonArgs: IStepperNumber = {
   variant: Object.values(variantsObject[themeSelected].StepperNumberVariantType || {})[0] as string,
-  orientation: StepperNumberOrientationType.HORIZONTAL,
+  orientation: StepperNumberOrientationType.VERTICAL,
   horizontalOrientationWidth: '5.75rem',
   completedStepIcon: { icon: ICONS.ICON_PLACEHOLDER },
-  steps: ['Step 1', 'Step 2', 'Step 3'],
+  steps: ['User Registration', 'Role Validation', 'Tutorial'],
   currentStep: 0,
-  ['aria-label']: 'ariaLabel',
+  screenReaderTitle: { content: 'Screen reader title' },
+  screenReaderCompletedStep: { content: 'COMPLETED' },
 };
 
 export const StepperNumber: Story = {
