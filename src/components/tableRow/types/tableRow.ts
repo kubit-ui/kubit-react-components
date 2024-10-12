@@ -7,10 +7,13 @@ export interface ITableRowStandAlone {
   id?: string;
   active?: boolean;
   hoverable?: boolean;
+  role?: string;
+  tabIndex?: number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   component?: string | React.ComponentType<any>;
   dataTestId?: string;
   onClick?: React.MouseEventHandler<HTMLTableRowElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLTableRowElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLTableRowElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLTableRowElement>;
 }

@@ -11,8 +11,11 @@ const TableRowStandAloneComponent = (
     id,
     active,
     hoverable = true,
+    role,
+    tabIndex,
     component,
     onClick,
+    onKeyDown,
     onMouseEnter,
     onMouseLeave,
   }: React.PropsWithChildren<ITableRowStandAlone>,
@@ -29,7 +32,10 @@ const TableRowStandAloneComponent = (
       data-hoverable={hoverable}
       data-testid={dataTestId}
       id={id}
+      role={role}
+      tabIndex={tabIndex}
       onClick={onClick}
+      onKeyDown={onKeyDown}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
