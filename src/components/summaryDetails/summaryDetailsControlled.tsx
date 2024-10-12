@@ -31,7 +31,6 @@ const SummaryDetailsControlledComponent = React.forwardRef(
     );
 
     const handleBodyClick: React.MouseEventHandler<HTMLDivElement> = event => {
-      event.preventDefault();
       event.stopPropagation();
     };
 

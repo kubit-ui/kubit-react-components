@@ -97,8 +97,8 @@ const SnackbarStandAloneComponent = (
       variant={props.styles?.popoverVariants?.[align]}
     >
       <SnackbarStyled
-        data-testid={props.dataTestId}
         ref={ref}
+        data-testid={props.dataTestId}
         styles={props.styles}
         onBlur={props.onBlur}
         onFocus={props.onFocus}

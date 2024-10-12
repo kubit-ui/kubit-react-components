@@ -74,7 +74,7 @@ describe('NavigationRow component', () => {
   });
   it('Should show component with decorativeElement', () => {
     const decorativeElement = (
-      <ElementOrIcon icon={'ICON_PLACEHOLDER'} altText="decorativeElement" />
+      <ElementOrIcon altText="decorativeElement" icon={'ICON_PLACEHOLDER'} />
     );
     renderProvider(
       <NavigationRow

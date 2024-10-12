@@ -41,7 +41,7 @@ export const mockCustomizableTable = {
             <div>{value.surname}</div>
           </div>
         ) : (
-          value.name.value ?? value.name
+          (value.name.value ?? value.name)
         ),
     },
     {
