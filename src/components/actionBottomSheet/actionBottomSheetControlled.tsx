@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import { PopoverControlled as Popover } from '@/components/popover';
+import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
 import { STYLES_NAME } from '@/constants';
 import { useDeviceHeight, useId, useMediaDevice, useScrollEffect } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType, ROLES } from '@/types';
 
 import { ActionBottomSheetStandAlone } from './actionBottomSheetStandAlone';
 import {
@@ -85,7 +85,7 @@ const ActionBottomSheetControlledComponent = React.forwardRef(
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
     const uniqueTitleId = useId('actionSheet-title');
-    const titleId = title?.id ?? uniqueTitleId;
+    const titleId = (title?.id ?? title?.content) ? uniqueTitleId : undefined;
     const styles = useStyles<ActionBottomSheetVariantStylesType>(
       STYLES_NAME.ACTION_BOTTOM_SHEET,
       props.variant,
@@ -95,10 +95,13 @@ const ActionBottomSheetControlledComponent = React.forwardRef(
     return (
       <Popover
         aria-labelledby={titleId}
+        aria-modal={true}
         clickOverlayClose={!blocked}
+        component={PopoverComponentType.DIV}
         dataTestId={`${props.dataTestId}Popover`}
         hasBackDrop={true}
         open={open}
+        role={ROLES.DIALOG}
         trapFocusInsideModal={true}
         variant={styles.popoverVariant}
         {...popover}
