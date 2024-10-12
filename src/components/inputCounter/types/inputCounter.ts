@@ -8,6 +8,9 @@ export type InputCounterTextCountType = Omit<ITextCountControlled, 'variant' | '
   variant?: string;
 };
 
+export const INPUT_COUNTER_BUILD_SCREEN_READER_CURRENT_CHARACTERS_KEY = '{{currentCharacters}}';
+export const INPUT_COUNTER_BUILD_SCREEN_READER_MAX_LENGTH_KEY = '{{maxLength}}';
+
 type propsToOmitInputBasic =
   | 'styles'
   | 'inputId'
@@ -24,11 +27,13 @@ export interface IInputCounterStandAlone<V = undefined extends string ? unknown 
   variant: V;
   inputVariant?: string;
   screenReaderTextCount: string;
+  screenReaderCurrentCharacters?: string;
   maxLength: number;
+  showMessage?: boolean;
   textCount?: InputCounterTextCountType;
 }
 
-type propsToOmit = 'styles' | 'state';
+type propsToOmit = 'styles' | 'state' | 'showMessage';
 
 export interface IInputCounter<V = undefined extends string ? unknown : string>
   extends Omit<IInputCounterStandAlone<V>, propsToOmit>,

@@ -12,8 +12,6 @@ import { DeviceBreakpointsType } from '@/types';
 
 import { Header } from '../header';
 
-window.matchMedia = windowMatchMedia();
-
 const mockProps = {
   variant: 'DEFAULT',
   children: [

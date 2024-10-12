@@ -73,11 +73,8 @@ const mockProps: IOliveMenu = {
   onOptionClick: jest.fn(),
 };
 
-window.matchMedia = windowMatchMedia();
-
 describe('OliveMenu component', () => {
   afterEach(() => {
-    window.matchMedia = windowMatchMedia();
     jest.clearAllMocks();
     jest.resetAllMocks();
     jest.restoreAllMocks();
@@ -246,7 +243,8 @@ describe('OliveMenu component', () => {
 
     // Press escape when is already close
     await act(async () => {
-      fireEvent.keyDown(window, {
+      // Internal popover element fire the escape keydown
+      fireEvent.keyDown(openButton[0], {
         key: 'Escape',
         code: 'Escape',
         keyCode: 27,
@@ -267,7 +265,8 @@ describe('OliveMenu component', () => {
 
     // Press escape
     await act(async () => {
-      fireEvent.keyDown(window, {
+      // Internal popover element fire the escape keydown
+      fireEvent.keyDown(openButton[0], {
         key: 'Escape',
         code: 'Escape',
         keyCode: 27,

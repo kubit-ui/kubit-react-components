@@ -21,6 +21,7 @@ const ImageStandAloneComponent = (
         fallbackRatio={props.ratio && getFallbackRatio(props.ratio)}
         objectFit={props?.objectFit}
         ratio={props.ratio}
+        tabIndex={props.tabIndex}
       >
         <PictureSourceStandAlone mediaSource={props.images[DeviceBreakpointsType.LARGE_DESKTOP]} />
         <PictureSourceStandAlone mediaSource={props.images[DeviceBreakpointsType.DESKTOP]} />

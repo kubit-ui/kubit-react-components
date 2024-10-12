@@ -72,12 +72,44 @@ export const argtypes = (
         category: CATEGORY_CONTROL.CUSTOMIZATION,
       },
     },
+    role: {
+      description: 'Role',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    tabIndex: {
+      description: 'Tab index',
+      type: { name: 'number' },
+      control: { type: 'number' },
+      table: {
+        type: {
+          summary: 'number',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     onClick: {
       description: 'Click event',
       type: { name: 'function' },
       table: {
         type: {
           summary: 'React.MouseEventHandler<HTMLTableRowElement>',
+        },
+        category: CATEGORY_CONTROL.FUNCTIONS,
+      },
+    },
+    onKeyDown: {
+      description: 'Key down event',
+      type: { name: 'function' },
+      table: {
+        type: {
+          summary: 'React.KeyboardEventHandler<HTMLTableRowElement>',
         },
         category: CATEGORY_CONTROL.FUNCTIONS,
       },

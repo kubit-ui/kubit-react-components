@@ -8,6 +8,7 @@ import { IconHighlightedType } from './type';
 export interface IIconHighlightedStyled {
   styles: IconHighlightedVariantStylesType;
   backgroundColor?: string;
+  disabled?: boolean;
 }
 
 export interface IIconHighlightedStandAlone extends IElementOrIcon, IIconHighlightedStyled {

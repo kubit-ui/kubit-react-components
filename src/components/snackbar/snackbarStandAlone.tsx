@@ -98,6 +98,7 @@ const SnackbarStandAloneComponent = (
     >
       <SnackbarStyled
         ref={ref}
+        data-testid={props.dataTestId}
         styles={props.styles}
         onBlur={props.onBlur}
         onFocus={props.onFocus}

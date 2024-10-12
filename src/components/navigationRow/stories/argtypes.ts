@@ -54,6 +54,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    decorativeElement: {
+      description: 'Decorative element',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'React.ReactNode',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     iconHighlighted: {
       description: 'Highlighted icon',
       type: { name: 'object' },

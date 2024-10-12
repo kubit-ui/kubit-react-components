@@ -25,8 +25,15 @@ export interface INavigationRowStandAlone {
   description?: NavigationRowTextAndDescriptionType;
   // icons
   arrowIcon: IElementOrIcon;
+  /**
+   * @deprecated this prop will be removed in the next major version. Use decorativeElement to send the IconHighlighted
+   */
   iconHighlighted?: NavigationRowIconHighlightedType;
+  /**
+   * @deprecated this prop will be removed in the next major version. Use decorativeElement to send the ElementOrIcon
+   */
   decorativeIcon?: IElementOrIcon;
+  decorativeElement?: React.ReactNode;
   // lines
   topLine?: boolean;
   bottomLine?: boolean;

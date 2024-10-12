@@ -5,6 +5,7 @@ import { useMediaDevice } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 import { hasScroll as checkHasScroll } from '@/utils';
+import { ResizeObserver } from '@/utils/resizeObserver';
 
 import { TableStandAlone } from './tableStandAlone';
 import { ITable, ITableStandAlone, TableRowHeaderTypes } from './types';

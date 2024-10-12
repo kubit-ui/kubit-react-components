@@ -63,6 +63,7 @@ export * from './toggle/variants';
 export * from './toggleWithLabel/variants';
 export * from './tooltip/variants';
 export * from './badge/variants';
+export * from './badgeV2/variants';
 export * from './calendar/variants';
 export * from './cardImage/variants';
 export * from './layout/variants';

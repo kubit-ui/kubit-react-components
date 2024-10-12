@@ -9,6 +9,7 @@ import { PaddingTypes } from './padding';
 import { PointerTypes } from './pointer';
 import { PositionTypes } from './position';
 import { BoxShadowTypes } from './shadow';
+import { TypographyTypes } from './typography';
 import { WordWrapTypes } from './wordWrap';
 
 type BreakPointsStyleType = {
@@ -33,6 +34,19 @@ type PseudoElementsType = {
   after?: AfterOrBeforeType;
   before?: AfterOrBeforeType;
   backdrop?: GenericStyleType;
+  placeholder?: TypographyTypes;
+  placeholderShown?: TypographyTypes;
+  notPlaceholderShown?: TypographyTypes;
+  disabled?: CommonStyleType;
+  filled?: CommonStyleType;
+  focus?: CommonStyleType;
+  focusVisible?: CommonStyleType;
+  ariaInvalid?: CommonStyleType;
+  dataTruncate?: CommonStyleType;
+  dataFilled?: CommonStyleType;
+  passwordRevealButton?: CommonStyleType;
+  webkitInnerSpinButton?: CommonStyleType;
+  webkitOuterSpinButton?: CommonStyleType;
 };
 
 export type CommonStyleType = GenericStyleType & BreakPointsStyleType & PseudoElementsType;

@@ -14,4 +14,4 @@ export { TooltipAlignType } from './types';
 export { TooltipControlled } from './tooltipControlled';
 export { TooltipUnControlled as Tooltip } from './tooltipUnControlled';
 
-export { useTooltip } from './hooks';
+export { useTooltip, useTooltipAsModal } from './hooks';

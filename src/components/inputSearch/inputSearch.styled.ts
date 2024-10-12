@@ -115,3 +115,7 @@ export const NoResultsTextWrapper = styled.div<{ styles?: InputSearchStateProps 
   display: flex;
   ${({ styles }) => getStyles(styles?.noResultsTextContainer)};
 `;
+
+export const NumMatchesScreenReader = styled.div`
+  ${srOnlyMixin}
+`;

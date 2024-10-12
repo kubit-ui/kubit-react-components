@@ -6,7 +6,6 @@ import * as React from 'react';
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 import { ROLES } from '@/types';
 
 import { InputDigitSequence } from '../index';
@@ -33,8 +32,6 @@ const MOCK_PROPS = {
     { blockedBySystem: true, ['aria-label']: 'input8' },
   ],
 };
-
-window.matchMedia = windowMatchMedia();
 
 describe('InputDigitSequence component', () => {
   it('Should render InputDigitSequence', async () => {

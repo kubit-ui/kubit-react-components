@@ -13,8 +13,6 @@ import { DeviceBreakpointsType } from '@/types';
 import { HeaderStructure } from '../headerStructure';
 import { HeaderStructureContentPositionType } from '../types';
 
-window.matchMedia = windowMatchMedia();
-
 const mockProps = {
   variant: 'DEFAULT',
   children: [

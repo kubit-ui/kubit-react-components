@@ -47,6 +47,7 @@ const DataTableStandAloneComponent = (
         tabIndex={hasScroll ? 0 : undefined}
       >
         <TableV2
+          aria-hidden={usingRowGroups ? true : undefined}
           autoLeftStickyCalc={false}
           autoRightStickyCalc={false}
           component={usingRowGroups ? 'div' : undefined}

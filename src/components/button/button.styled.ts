@@ -58,33 +58,8 @@ export const ButtonStyled = styled.button<IButtonStyled>`
 
   &:disabled {
     cursor: default;
-    ${({ $styles, $sizeStyles, $loading }) =>
-      setTokens(
-        $loading ? ButtonStateType.LOADING : ButtonStateType.DISABLED,
-        $styles,
-        $sizeStyles
-      )};
   }
 
-  @media (hover: hover) {
-    &:hover:not(:disabled) {
-      ${({ $styles, $sizeStyles }) => setTokens(ButtonStateType.HOVER, $styles, $sizeStyles)}
-    }
-  }
-
-  &:active:not(:disabled) {
-    ${({ $styles, $sizeStyles }) => setTokens(ButtonStateType.PRESSED, $styles, $sizeStyles)}
-  }
-
-  &:focus-visible {
-    ${({ $styles, $sizeStyles }) => setTokens(ButtonStateType.DEFAULT, $styles, $sizeStyles)}
-  }
-
-  @media (hover: none) {
-    &:hover {
-      ${({ $styles, $sizeStyles }) => setTokens(ButtonStateType.DEFAULT, $styles, $sizeStyles)}
-    }
-  }
   min-width: ${props => props.minWidth};
   width: ${props => (props.$fullWidth ? '100%' : 'auto')};
 

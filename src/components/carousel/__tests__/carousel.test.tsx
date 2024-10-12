@@ -479,4 +479,20 @@ describe('Carousel component', () => {
 
     expect(indicator1).toBeInTheDocument();
   });
+
+  it('Should have aria-label in the document when prop is set', async () => {
+    const { getByLabelText } = renderProvider(
+      <CarouselUnControlled {...mockProps} aria-label="Mock aria-label" />
+    );
+
+    const label = getByLabelText('Mock aria-label');
+    expect(label).toBeInTheDocument();
+  });
+
+  it('Should not have aria-label in the document when prop is not set', async () => {
+    const { queryByLabelText } = renderProvider(<CarouselUnControlled {...mockProps} />);
+
+    const label = queryByLabelText('');
+    expect(label).not.toBeInTheDocument();
+  });
 });

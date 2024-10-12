@@ -2,8 +2,11 @@ import * as React from 'react';
 import { ForwardedRef, forwardRef, useCallback, useMemo } from 'react';
 
 import { ListOptions } from '@/components/listOptions/listOptions';
+import { ROLES } from '@/types';
 
+import { buildOptionsScreenReaderText } from '../helpers';
 import { MultipleRef } from '../hooks/useInputSearch';
+import { NumMatchesScreenReader } from '../inputSearch.styled';
 import { IOptionsListSearchList } from '../types';
 import { LoadingIcon } from './loadingIcon';
 
@@ -69,6 +72,15 @@ export const OptionsListComponent = (
           }}
         />
       )}
+      <NumMatchesScreenReader role={ROLES.STATUS}>
+        {buildOptionsScreenReaderText({
+          numOptions: props.hightlightedOption
+            ? props.initialOptionsLength + 1
+            : props.initialOptionsLength,
+          numOptionsFiltered: _options.length,
+          optionsScreenReaderText: props.optionsScreenReaderText,
+        })}
+      </NumMatchesScreenReader>
       <LoadingIcon
         expanded={_options.length === 0}
         loader={props.loader}

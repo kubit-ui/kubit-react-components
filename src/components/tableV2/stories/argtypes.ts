@@ -68,6 +68,17 @@ export const argtypes = (
         category: CATEGORY_CONTROL.CUSTOMIZATION,
       },
     },
+    ['aria-hidden']: {
+      description: 'Aria hidden',
+      type: { name: 'boolean' },
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     ['aria-label']: {
       description: 'Only when it has scroll, scrollable container aria label',
       type: { name: 'string' },

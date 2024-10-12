@@ -12,8 +12,6 @@ import { FunctionalitiesModuleControlled } from '../functionalitiesModuleControl
 import { FunctionalitiesModuleUnControlled } from '../functionalitiesModuleUnControlled';
 import { IFunctionalitiesModuleUnControlled } from '../types';
 
-window.matchMedia = windowMatchMedia();
-
 const mockProps: IFunctionalitiesModuleUnControlled = {
   variant: 'DEFAULT_NO_ANIMATION',
   tabsConfig: {
@@ -267,7 +265,8 @@ describe('FunctionalitiesModule component', () => {
 
     expect(closeButton).toBeInTheDocument();
     await act(async () => {
-      fireEvent.keyDown(window, {
+      // Internal popover element fire the escape keydown
+      fireEvent.keyDown(closeButton, {
         key: 'Escape',
         code: 'Escape',
       });

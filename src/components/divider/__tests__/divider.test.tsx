@@ -4,12 +4,9 @@ import * as React from 'react';
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 
 import { Divider } from '../divider';
 import { IDivider } from '../types';
-
-window.matchMedia = windowMatchMedia();
 
 const mockProps: IDivider = {
   variant: 'DEFAULT',

@@ -36,6 +36,7 @@ const TableStandAloneComponent = (
         data-table-scrollable-container
         $hasScrollDisabled={hasScrollDisabled}
         $styles={styles}
+        aria-hidden={props['aria-hidden']}
         aria-label={hasScroll ? props['aria-label'] : undefined}
         aria-labelledby={hasScroll ? props['aria-labelledby'] : undefined}
         data-testid={`${dataTestId}ScrollableContainer`}

@@ -23,7 +23,7 @@ import { LinkTargetType } from './target';
 
 type LinkAriaAttributes = Pick<
   React.AriaAttributes,
-  'aria-label' | 'aria-describedby' | 'aria-disabled'
+  'aria-label' | 'aria-describedby' | 'aria-disabled' | 'aria-current'
 >;
 export interface ILinkStandAlone extends LinkAriaAttributes {
   action?: LinkActionType;

@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { act, fireEvent, screen } from '@testing-library/react';
 import * as React from 'react';
 
 import { axe } from 'jest-axe';
@@ -9,18 +9,18 @@ import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { windowMatchMedia } from '@/tests/windowMatchMedia';
 import { DeviceBreakpointsType, ROLES } from '@/types';
-import * as focusHandlers from '@/utils/focusHandlers/focusHandlers';
 
 import { TooltipUnControlled as Tooltip } from '../tooltipUnControlled';
 import { ITooltipUnControlled, TooltipAlignType } from '../types';
-
-window.matchMedia = windowMatchMedia();
 
 const mockProps: ITooltipUnControlled = {
   children: 'text',
   variant: 'DEFAULT',
   title: { content: 'title' },
   content: { content: 'content' },
+  triggerAsButton: {
+    'aria-label': 'Tooltip trigger',
+  },
   closeIcon: { icon: 'UNICORN', altText: 'close icon' },
 };
 
@@ -162,6 +162,23 @@ describe('Tooltip', () => {
     expect(closeIcon).toBeVisible();
   });
 
+  it('Tooltip - it does not show tooltip on focus label if its being clicked at the same time', () => {
+    renderProvider(<Tooltip {...mockProps} tooltipAsModal={false} />);
+    const label = screen.getByText(mockProps.children as string);
+
+    act(() => {
+      // Open and close the tooltip first in order the inline styles to be applied
+      fireEvent.mouseEnter(label);
+      fireEvent.mouseLeave(label);
+      fireEvent.mouseDown(label);
+      fireEvent.focus(label);
+      fireEvent.mouseUp(label);
+    });
+
+    const title = screen.getByText(mockProps.title?.content as string);
+    expect(title).not.toBeVisible();
+  });
+
   it('Tooltip - it hides tooltip on blur tooltip', () => {
     renderProvider(<Tooltip {...mockProps} tooltipAsModal={false} />);
     const label = screen.getByText(mockProps.children as string);
@@ -215,23 +232,7 @@ describe('Tooltip', () => {
     expect(closeIcon).not.toBeVisible();
   });
 
-  it('Tooltip - it traps the focus', () => {
-    const spyTrapFocus = jest.spyOn(focusHandlers, 'trapFocus');
-    renderProvider(<Tooltip {...mockProps} dataTestId={'testId'} tooltipAsModal={false} />);
-    const label = screen.getByText(mockProps.children as string);
-
-    fireEvent.mouseEnter(label);
-    const content = screen.getByTestId('testIdTooltipContent');
-    // press tab
-    fireEvent.keyDown(content, {
-      key: 'Tab',
-      code: 'Tab',
-    });
-
-    expect(spyTrapFocus).toHaveBeenCalled();
-  });
-
-  it('Tooltip - onClick will not produce any effect if desktop', () => {
+  it('Tooltip - onClick will not produce any effect if desktop and tooltip is not a modal', () => {
     renderProvider(<Tooltip {...mockProps} tooltipAsModal={false} />);
     const label = screen.getByText(mockProps.children as string);
     // Have to show and hide the tooltip first because it does not detect the tooltip as invisible when starting due to styled-component
@@ -243,6 +244,24 @@ describe('Tooltip', () => {
 
     const title = screen.getByText(mockProps.title?.content as string);
     const content = screen.getByText(mockProps.content?.content as string);
+
+    expect(title).not.toBeVisible();
+    expect(content).not.toBeVisible();
+  });
+
+  it('Tooltip - onClick in the label will open / close the tooltip in desktop if configured as modal', () => {
+    renderProvider(<Tooltip {...mockProps} tooltipAsModal={true} />);
+    const label = screen.getByText(mockProps.children as string);
+
+    fireEvent.click(label);
+
+    const title = screen.getByText(mockProps.title?.content as string);
+    const content = screen.getByText(mockProps.content?.content as string);
+
+    expect(title).toBeVisible();
+    expect(content).toBeVisible();
+
+    fireEvent.click(label);
 
     expect(title).not.toBeVisible();
     expect(content).not.toBeVisible();
@@ -433,7 +452,8 @@ describe('Tooltip', () => {
     const title = screen.getByText(mockProps.title?.content as string);
     expect(title).toBeInTheDocument();
 
-    fireEvent.keyDown(window, {
+    // Internal popover element fire the escape keydown
+    fireEvent.keyDown(title, {
       key: 'Escape',
       code: 'Escape',
     });

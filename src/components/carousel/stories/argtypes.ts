@@ -244,6 +244,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
+    ['aria-label']: {
+      description: 'Carousel aria label',
+      control: { type: 'text' },
+      type: { name: 'string' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     displayArrowsOnCarousel: {
       description: 'Show the arrows on the carousel or on the Page Control',
       type: { name: 'boolean' },

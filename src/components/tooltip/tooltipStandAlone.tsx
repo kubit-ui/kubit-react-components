@@ -120,7 +120,16 @@ const TooltipStandAlone = ({
             </TooltipTitleStyled>
           )}
         </TooltipHeaderContentStyled>
-        <TooltipInnerContentStyled styles={props.styles}>
+        <TooltipInnerContentStyled
+          ref={props.contentRef}
+          aria-label={props.contentHasScroll ? props.contentScrollArias?.['aria-label'] : undefined}
+          aria-labelledby={
+            props.contentHasScroll ? props.contentScrollArias?.['aria-labelledby'] : undefined
+          }
+          role={props.contentHasScroll ? ROLES.REGION : undefined}
+          styles={props.styles}
+          tabIndex={props.contentHasScroll ? 0 : undefined}
+        >
           {props.content && (
             <TooltipParagraphStyled
               hasBorder={!!props.title?.content}
@@ -161,6 +170,7 @@ const TooltipStandAlone = ({
       onMouseDown={props.onMouseDown}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
+      onMouseUp={props.onMouseUp}
     >
       <TooltipTrigger
         // Aria describedby is used when the tooltip is not used as a modal
@@ -171,6 +181,7 @@ const TooltipStandAlone = ({
           !props.tooltipAsModal && (isDesktop || props.popoverOpen) ? ariaDescriptorsBy : undefined
         }
         childrenAsButton={childrenAsButton}
+        triggerAsButton={props.triggerAsButton}
       >
         {props.children}
       </TooltipTrigger>

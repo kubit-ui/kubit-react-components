@@ -75,7 +75,7 @@ const InputStandAloneComponent = (
         }
         aria-haspopup={props['aria-haspopup']}
         aria-invalid={hasError(state)}
-        aria-labelledby={props.extraAriaLabelledBy}
+        aria-labelledby={props.extraAriaLabelledBy ? props.extraAriaLabelledBy : undefined}
         {...ariaProps}
         aria-describedby={buildAriaDescribedBy({
           ariaDescribedBy: props['aria-describedby'],

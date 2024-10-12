@@ -5,6 +5,7 @@ import { STYLES_NAME } from '@/constants';
 import { useMediaDevice, useStyles } from '@/hooks';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { getLength } from './helpers';
 import { useInputSearch } from './hooks/useInputSearch';
 import { InputSearchStandAlone } from './inputSearchStandAlone';
 import { InputSearchStylesProps } from './types';
@@ -33,6 +34,7 @@ const InputSearchComponent = React.forwardRef(
       regex,
       onClick,
       onInputPopoverIconClick,
+      onInputPopoverEnterKeyDown,
       onBlur,
       onChange,
       onFocus,
@@ -88,6 +90,7 @@ const InputSearchComponent = React.forwardRef(
       onRightIconClick: props.rightIcon?.onClick,
       executeInternalOpenOptions,
       onInputPopoverIconClick,
+      onInputPopoverEnterKeyDown,
       elementsToShow,
       disabled,
       error,
@@ -123,6 +126,7 @@ const InputSearchComponent = React.forwardRef(
         highlightedOption={highlightedOption}
         icon={{ ...props.icon, onClick: handleIconClick }}
         informationAssociatedValue={informationAssociatedValue}
+        initialOptionsLength={getLength(optionList)}
         inputPopoverValue={inputPopoverText}
         listOptionsHeight={listOptionsHeight}
         maxLength={maxLength}

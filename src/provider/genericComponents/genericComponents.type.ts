@@ -2,6 +2,11 @@ import React from 'react';
 
 import { ROLES } from '@/types/role';
 
+type GenericLinkAriaAttributes = Pick<
+  React.AriaAttributes,
+  'aria-label' | 'aria-describedby' | 'aria-disabled' | 'aria-current'
+>;
+
 /**
  * Defines the properties for a generic link component.
  * @property {string} url - The URL the link points to.
@@ -10,6 +15,8 @@ import { ROLES } from '@/types/role';
  * @property {string} [target] - Specifies where to open the linked document.
  * @property {boolean} [aria-disabled] - Indicates that the element is perceivable but disabled.
  * @property {string} [aria-label] - Defines a string value that labels the current element.
+ * @property {string} [aria-describedby] - Defines a string value that labels the current element.
+ * @property {string} [aria-current] - Defines value for the current element.
  * @property {() => void} [onClick] - Function to call when the link is clicked.
  * @property {() => void} [onFocus] - Function to call when the link is focused.
  * @property {() => void} [onMouseEnter] - Function to call when the mouse enters the link area.
@@ -23,8 +30,6 @@ export type IGenericLink = {
   children: string | JSX.Element;
   className?: string;
   target?: string;
-  ['aria-disabled']?: boolean;
-  ['aria-label']?: string;
   onClick?: () => void;
   onFocus?: () => void;
   onMouseEnter?: () => void;
@@ -32,7 +37,7 @@ export type IGenericLink = {
   role?: ROLES;
   dataTestId?: string;
   draggable?: boolean;
-};
+} & GenericLinkAriaAttributes;
 
 /**
  * Defines the type for a generic link component, which can be either a functional component or a forward ref component.

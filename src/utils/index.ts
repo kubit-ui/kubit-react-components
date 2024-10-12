@@ -4,7 +4,6 @@ export {
   focusNextFocusableElement,
   focusPreviousFocusableElement,
   getFocusableDescendants,
-  trapFocus,
 } from './focusHandlers/focusHandlers';
 export { getSizeWindowRem } from './getSizeWindowRem/getSizeWindowRem';
 export { checkRegex } from './validations/checkRegex';

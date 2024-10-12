@@ -56,7 +56,6 @@ function backspace(element) {
 
 const writeText = jest.fn();
 
-// eslint-disable-next-line n/no-unsupported-features/node-builtins
 Object.assign(navigator, {
   clipboard: {
     writeText,
@@ -503,5 +502,14 @@ describe('New Input Component', () => {
     const results = await axe(container);
     expect(container).toHTMLValidate();
     expect(results).toHaveNoViolations();
+  });
+  it('Should  have ariaLabelledby when is set the prop extraAriaLabelledBy', async () => {
+    const extraAriabelledBy = 'extraAriaLabelledBy';
+    const { getByTestId } = renderProvider(
+      <Input {...commonProps} extraAriaLabelledBy={extraAriabelledBy} />
+    );
+
+    const input = getByTestId(`${commonProps.dataTestId}Input`);
+    expect(input).toHaveAttribute('aria-labelledby', extraAriabelledBy);
   });
 });

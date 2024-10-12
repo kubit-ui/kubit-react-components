@@ -149,6 +149,12 @@ export const BottomContainerStyled = styled.div<
   ${({ styles }) => getStyles(styles?.bottomContainer)}
 `;
 
+export const LinkContainerStyled = styled.div<VideoPropsStyleType>`
+  > * {
+    ${({ styles }) => getStyles(styles?.linkContainer)}
+  }
+`;
+
 export const VideoSkeletonContainerStyled = styled.div<VideoPropsStyleType>`
   ${({ styles }) => getStyles(styles?.videoSkeletonContainer)}
 `;

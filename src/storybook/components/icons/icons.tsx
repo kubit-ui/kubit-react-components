@@ -10,6 +10,7 @@ import { IconNameStyled, IconsDataStyled, IconsInputStyled, IconsStyled } from '
 export const Icons = (): JSX.Element => {
   const [searchValue, setSearchValue] = React.useState('');
 
+  // eslint-disable-next-line n/no-unsupported-features/node-builtins
   const theme = localStorage.getItem('themeSelected') || 'kubit';
   const themeObject = themesObject[theme]['ICONS'];
 

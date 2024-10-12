@@ -41,8 +41,6 @@ const mockProps = {
   onInputPopoverIconClick: jest.fn(),
 };
 
-window.matchMedia = windowMatchMedia();
-
 describe('New Input Search Component', () => {
   it('Should render InputSearch component', async () => {
     const { container } = renderProvider(<InputSearch {...mockProps} open={true} />);
@@ -369,5 +367,20 @@ describe('New Input Search Component', () => {
     const noResultText = screen.getByText('No results');
     expect(userText).toBeInTheDocument();
     expect(noResultText).toBeInTheDocument();
+  });
+
+  it('optionListScreenReaderText can be used to announce the number of available options', () => {
+    renderProvider(
+      <InputSearch
+        {...mockProps}
+        hasResultTextWrittenByUser={false}
+        optionList={[{ options: ['option 1', 'option 2', 'other'] }]}
+        optionsScreenReaderText="{{numOptionsFiltered}} of {{numOptions}}"
+        value="option"
+      />
+    );
+
+    const screenReaderText = screen.getByText('2 of 3');
+    expect(screenReaderText).toBeInTheDocument();
   });
 });

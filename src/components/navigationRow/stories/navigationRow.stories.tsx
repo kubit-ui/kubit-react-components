@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import * as React from 'react';
 
 import { ICONS } from '@/assets';
+import { ElementOrIcon } from '@/components/elementOrIcon';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
@@ -26,7 +28,7 @@ const commonArgs: INavigationRow = {
   text: { content: 'Text' },
   description: { content: 'Lorem ipsum dolor sit amet lorem' },
   arrowIcon: { icon: ICONS.ICON_PLACEHOLDER },
-  decorativeIcon: { icon: ICONS.ICON_PLACEHOLDER },
+  decorativeElement: <ElementOrIcon altText="decorativeElement" icon={ICONS.ICON_PLACEHOLDER} />,
 };
 
 export const NavigationRow: Story = {

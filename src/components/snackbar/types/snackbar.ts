@@ -59,6 +59,7 @@ export interface ISnackbarControlled<V = undefined extends string ? unknown : st
 export interface ISnackbarUnControlled<V = undefined extends string ? unknown : string>
   extends Omit<ISnackbarControlled<V>, 'onCloseButtonClick'> {
   closeTimeout?: number;
+  onCloseButton?: React.MouseEventHandler<HTMLButtonElement>;
   onOpenClose?: (open: boolean, event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 

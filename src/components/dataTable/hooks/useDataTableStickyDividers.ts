@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { hasHorizontalScroll } from '@/utils';
+import { ResizeObserver } from '@/utils/resizeObserver';
 
 type UseDataTableStickyDividersParamsType = {
   ref: React.RefObject<HTMLDivElement>;

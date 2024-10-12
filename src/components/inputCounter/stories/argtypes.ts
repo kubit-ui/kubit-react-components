@@ -37,6 +37,18 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    screenReaderCurrentCharacters: {
+      type: { name: 'string' },
+      description:
+        'The counter information has to be announce to screen reader users when the input receives the focus',
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     maxLength: {
       type: { name: 'string', required: true },
       description:

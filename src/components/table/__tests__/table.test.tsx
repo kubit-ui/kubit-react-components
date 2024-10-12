@@ -380,25 +380,6 @@ const mockDividerFromHeader = {
 };
 
 describe('Table component', () => {
-  beforeAll(() => {
-    global.ResizeObserver = class ResizeObserver {
-      callback;
-      constructor(callback) {
-        this.callback = callback;
-      }
-      observe() {
-        // Call the callback
-        this.callback();
-      }
-      unobserve() {
-        // do nothing
-      }
-      disconnect() {
-        // do nothing
-      }
-    };
-  });
-
   it('Renders with a valid HTML structure', async () => {
     const { container } = renderProvider(
       <Table

@@ -39,6 +39,42 @@ const StoryWithHooks = args => {
         called when snackbar should close, either because the close icon has been clicked, or
         because the &quot;closeTimeout&quot; time for displaying the snackbar has expired.
       </p>
+      <p style={{ marginTop: '10px' }}>
+        <strong>Note: </strong>Snackbar does not have an internal state. In order to open or close
+        it, &quot;isOpen&quot; prop must be used. Moreover &quot;onHandleOpen&quot; function will be
+        called when snackbar should close, either because the close icon has been clicked, or
+        because the &quot;closeTimeout&quot; time for displaying the snackbar has expired.
+      </p>
+      <p style={{ marginTop: '10px' }}>
+        <strong>Note: </strong>Snackbar does not have an internal state. In order to open or close
+        it, &quot;isOpen&quot; prop must be used. Moreover &quot;onHandleOpen&quot; function will be
+        called when snackbar should close, either because the close icon has been clicked, or
+        because the &quot;closeTimeout&quot; time for displaying the snackbar has expired.
+      </p>
+      <p style={{ marginTop: '10px' }}>
+        <strong>Note: </strong>Snackbar does not have an internal state. In order to open or close
+        it, &quot;isOpen&quot; prop must be used. Moreover &quot;onHandleOpen&quot; function will be
+        called when snackbar should close, either because the close icon has been clicked, or
+        because the &quot;closeTimeout&quot; time for displaying the snackbar has expired.
+      </p>
+      <p style={{ marginTop: '10px' }}>
+        <strong>Note: </strong>Snackbar does not have an internal state. In order to open or close
+        it, &quot;isOpen&quot; prop must be used. Moreover &quot;onHandleOpen&quot; function will be
+        called when snackbar should close, either because the close icon has been clicked, or
+        because the &quot;closeTimeout&quot; time for displaying the snackbar has expired.
+      </p>
+      <p style={{ marginTop: '10px' }}>
+        <strong>Note: </strong>Snackbar does not have an internal state. In order to open or close
+        it, &quot;isOpen&quot; prop must be used. Moreover &quot;onHandleOpen&quot; function will be
+        called when snackbar should close, either because the close icon has been clicked, or
+        because the &quot;closeTimeout&quot; time for displaying the snackbar has expired.
+      </p>
+      <p style={{ marginTop: '10px' }}>
+        <strong>Note: </strong>Snackbar does not have an internal state. In order to open or close
+        it, &quot;isOpen&quot; prop must be used. Moreover &quot;onHandleOpen&quot; function will be
+        called when snackbar should close, either because the close icon has been clicked, or
+        because the &quot;closeTimeout&quot; time for displaying the snackbar has expired.
+      </p>
     </>
   );
 };
@@ -58,6 +94,7 @@ export const Snackbar: Story = {
     description: { content: 'This is the description' },
     closeIcon: { icon: ICONS.ICON_PLACEHOLDER },
     secondaryActionContent: 'Link',
+    dataTestId: 'Snackbar',
     themeArgs: themesObject[themeSelected][STYLES_NAME.SNACKBAR],
   },
   parameters: {

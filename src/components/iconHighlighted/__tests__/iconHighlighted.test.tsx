@@ -37,6 +37,20 @@ describe('IconHighlighted Component', () => {
     expect(results).toHaveNoViolations();
   });
 
+  it('Should render IconHighlighted with decorative icon and disabled=true', async () => {
+    const { getByRole, container } = renderProvider(
+      <IconHighlighted {...mockPropsInformative} disabled={true} />
+    );
+
+    const iconHighlighted = getByRole('img', { name: 'icon label', hidden: false });
+
+    expect(iconHighlighted).toBeDefined();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
+
   it('Should render IconHighlighted with informative icon', async () => {
     const { getByRole, container } = renderProvider(<IconHighlighted {...mockPropsDecorative} />);
 

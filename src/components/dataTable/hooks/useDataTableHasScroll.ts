@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { hasScroll as checkHasSroll } from '@/utils';
+import { ResizeObserver } from '@/utils/resizeObserver';
 
 type UseDataTableHasScrollParamsType = {
   ref: React.RefObject<HTMLDivElement>;

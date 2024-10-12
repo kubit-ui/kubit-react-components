@@ -3,6 +3,7 @@ import { CustomTokenTypes } from '@/types';
 import { TablePropsStylesTypeV2 } from './tableTheme';
 
 type TableScrollAriasType = {
+  ['aria-hidden']?: boolean;
   ['aria-label']?: string;
   ['aria-labelledby']?: string;
 };

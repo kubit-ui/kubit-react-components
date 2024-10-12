@@ -53,6 +53,8 @@ const BagdeBoundary = <
 );
 
 /**
+ * @deprecated Try the new BadgeV2 component
+ *
  * @description
  * Badge component is a component that shows a badge with a number or a dot.
  * @param {React.PropsWithChildren<IBadgeControlled<V>>} props

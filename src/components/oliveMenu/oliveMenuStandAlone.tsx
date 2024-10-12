@@ -30,6 +30,8 @@ const OliveMenuStandAloneComponent = (
 
   const titleId = actionBottomSheetTitle?.id ?? `${uniqueId}Title`;
 
+  const ariaControlIds = getAriaControls(props.sections, ariaControls);
+
   return (
     <OliveMenuStyled
       ref={ref}
@@ -41,7 +43,7 @@ const OliveMenuStandAloneComponent = (
         (props.styles.button?.[props.device]?.size || props.trigger?.size) && (
           <ButtonContainer ref={buttonRef} styles={props.styles}>
             <Button
-              aria-controls={props.open ? getAriaControls(props.sections, ariaControls) : undefined}
+              aria-controls={props.open ? ariaControlIds?.join(' ') : undefined}
               aria-expanded={props.open}
               dataTestId={`${props.dataTestId}Button`}
               size={props.styles.button?.[props.device]?.size}
@@ -93,7 +95,6 @@ const OliveMenuStandAloneComponent = (
                 <ListOptions
                   key={section.id}
                   dataTestId={props.dataTestId}
-                  id={`${ariaControls}${index}${section.id ? `${section.id}` : ''}`}
                   optionVariant={props.styles.listOptions?.optionVariant as string}
                   selectedValue={props.selectedValue}
                   title={{ component: TextComponentType.H6, ...title }}
@@ -101,6 +102,7 @@ const OliveMenuStandAloneComponent = (
                   variant={props.styles.listOptions?.variant as string}
                   onOptionClick={props.onOptionClick}
                   {...section}
+                  id={ariaControlIds?.[index]}
                 />
               ))}
           </ListboxStyled>

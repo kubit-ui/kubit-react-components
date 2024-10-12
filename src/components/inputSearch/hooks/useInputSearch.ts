@@ -26,6 +26,7 @@ import {
   dispatchSyntheticEvent,
   isArrowDownPressed,
   isArrowUpPressed,
+  isKeyEnterPressed,
   isKeyEscapePressed,
   matchInputValue,
 } from '@/utils';
@@ -71,6 +72,7 @@ type ParamsType = {
   onIconClick?: React.MouseEventHandler<HTMLButtonElement>;
   executeInternalOpenOptions?: boolean;
   onInputPopoverIconClick?: () => void;
+  onInputPopoverEnterKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: FocusEventHandler<HTMLInputElement>;
   onFocus?: FocusEventHandler<HTMLInputElement>;
@@ -219,6 +221,9 @@ export const useInputSearch = ({
   };
 
   const handleInputPopoverKeyDown: KeyboardEventHandler<HTMLInputElement> = event => {
+    if (isKeyEnterPressed(event.key) && props.onInputPopoverEnterKeyDown) {
+      props.onInputPopoverEnterKeyDown(event);
+    }
     // Focus first element of the list
     if (isArrowDownPressed(event.key)) {
       (optionsListCollectionRef?.current?.[0]?.firstElementChild as HTMLElement)?.focus();

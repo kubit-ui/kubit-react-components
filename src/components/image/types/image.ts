@@ -25,6 +25,7 @@ export interface IImageStandAlone {
   borderRadius?: string;
   objectFit?: ImageObjectFitType;
   component?: GenericImageType;
+  tabIndex?: number;
 }
 
 export type IImage = IImageStandAlone;

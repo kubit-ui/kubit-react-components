@@ -33,31 +33,29 @@ interface ISubtitleFullScreenButtons extends IButtonBarSubtitles, IButtonBarFull
 export const SubtitleFullScreenButtons = (props: ISubtitleFullScreenButtons): JSX.Element => {
   const device = useMediaDevice();
 
-  const ButtonBarSubtitles = (props: IButtonBarSubtitles): JSX.Element | null =>
-    props.styles.buttonsBarSubtitlesIcon?.size?.[device] ? (
-      <MediaButton
-        hasBackground={false}
-        icon={props.buttonsBarSubtitlesIcon}
-        size={props.styles.buttonsBarSubtitlesIcon?.size?.[device] as MediaButtonSizeType}
-        twisted={props.subtitlesActivated}
-        twistedIcon={props.buttonsBarSubtitlesIconToTransition}
-        variant={props.styles.buttonsBarSubtitlesIcon?.variant}
-        onClick={props.onSubtitlesClick}
-      />
-    ) : null;
+  const ButtonBarSubtitles = props.styles.buttonsBarSubtitlesIcon?.size?.[device] ? (
+    <MediaButton
+      hasBackground={false}
+      icon={props.buttonsBarSubtitlesIcon}
+      size={props.styles.buttonsBarSubtitlesIcon?.size?.[device] as MediaButtonSizeType}
+      twisted={props.subtitlesActivated}
+      twistedIcon={props.buttonsBarSubtitlesIconToTransition}
+      variant={props.styles.buttonsBarSubtitlesIcon?.variant}
+      onClick={props.onSubtitlesClick}
+    />
+  ) : null;
 
-  const ButtonBarFullScreen = (props: IButtonBarFullScreen): JSX.Element | null =>
-    props.styles.buttonsBarFullScreenIcon?.size?.[device] ? (
-      <MediaButton
-        hasBackground={false}
-        icon={props.buttonsBarFullScreenIcon}
-        size={props.styles.buttonsBarFullScreenIcon?.size?.[device] as MediaButtonSizeType}
-        twisted={props.fullScreen}
-        twistedIcon={props.buttonsBarFullScreenIconToTransition}
-        variant={props.styles.buttonsBarFullScreenIcon?.variant}
-        onClick={props.onFullScreenClick}
-      />
-    ) : null;
+  const ButtonBarFullScreen = props.styles.buttonsBarFullScreenIcon?.size?.[device] ? (
+    <MediaButton
+      hasBackground={false}
+      icon={props.buttonsBarFullScreenIcon}
+      size={props.styles.buttonsBarFullScreenIcon?.size?.[device] as MediaButtonSizeType}
+      twisted={props.fullScreen}
+      twistedIcon={props.buttonsBarFullScreenIconToTransition}
+      variant={props.styles.buttonsBarFullScreenIcon?.variant}
+      onClick={props.onFullScreenClick}
+    />
+  ) : null;
 
   return device === DeviceBreakpointsType.DESKTOP ? (
     <>
@@ -67,7 +65,7 @@ export const SubtitleFullScreenButtons = (props: ISubtitleFullScreenButtons): JS
         tooltipAsModal={false}
         variant={props.styles.tooltip?.variant}
       >
-        <ButtonBarSubtitles {...props} />
+        {ButtonBarSubtitles}
       </Tooltip>
       <Tooltip
         childrenAsButton={false}
@@ -75,13 +73,13 @@ export const SubtitleFullScreenButtons = (props: ISubtitleFullScreenButtons): JS
         tooltipAsModal={false}
         variant={props.styles.tooltip?.variant}
       >
-        <ButtonBarFullScreen {...props} />
+        {ButtonBarFullScreen}
       </Tooltip>
     </>
   ) : (
     <>
-      <ButtonBarSubtitles {...props} />
-      <ButtonBarFullScreen {...props} />
+      {ButtonBarSubtitles}
+      {ButtonBarFullScreen}
     </>
   );
 };

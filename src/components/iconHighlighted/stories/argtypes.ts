@@ -96,6 +96,18 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    disabled: {
+      description: 'Specifies if the IconHighlighted element is disabled or not',
+      type: { name: 'boolean' },
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: { summary: false },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     dataTestId: {
       description: 'String used for testing',
       control: { type: 'text' },

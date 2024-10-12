@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 const FOCUSABLE_QUERY_SELECTOR =
   'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]):not([tabindex="-1"]), summary, [tabindex]:not([tabindex="-1"])';
 
@@ -32,13 +30,25 @@ export const getFocusableDescendantsV2 = ({
 }): HTMLElement[] => {
   const focusableNodes = Array.from(
     element.querySelectorAll<HTMLElement>(FOCUSABLE_QUERY_SELECTOR)
-  ).filter(
-    node =>
-      !node.hasAttribute('aria-disabled:true') &&
-      !node.getAttribute('aria-hidden:true') &&
-      !node.hasAttribute('disabled') &&
-      !elementsToOmit?.some(elementToOmit => elementToOmit.contains(node))
-  );
+  ).filter(node => {
+    // It is not focusable if it is disabled
+    if (node.getAttribute('aria-disabled') === 'true' || node.hasAttribute('disabled')) {
+      return false;
+    }
+    // It is not focusable if it is aria-hidden
+    if (node.getAttribute('aria-hidden') === 'true') {
+      return false;
+    }
+    // It is not focusable if it is inside elements to omit
+    if (elementsToOmit?.some(elementToOmit => elementToOmit.contains(node))) {
+      return false;
+    }
+    // It is not focusable if it is not a summary element and it is inside details closed element
+    if (node.tagName !== 'SUMMARY' && node.closest('details:not([open])')) {
+      return false;
+    }
+    return true;
+  });
   return focusableNodes;
 };
 
@@ -184,26 +194,5 @@ export const focusFirstDescendantV2 = ({
     if (focusableElements.length) {
       focusableElements[0].focus();
     }
-  }
-};
-
-export const trapFocus = (element: HTMLElement, e: React.KeyboardEvent<HTMLElement>): void => {
-  const focusableElements = getFocusableDescendants(element);
-  if (typeof focusableElements !== 'boolean' && focusableElements.length) {
-    const firstFocusableElement = focusableElements[0];
-    const lastFocusableElement = focusableElements[focusableElements.length - 1];
-    if (e.shiftKey) {
-      if (document.activeElement === firstFocusableElement) {
-        lastFocusableElement?.focus();
-        e.preventDefault();
-      }
-    } else {
-      if (document.activeElement === lastFocusableElement) {
-        firstFocusableElement?.focus();
-        e.preventDefault();
-      }
-    }
-  } else {
-    e.preventDefault();
   }
 };

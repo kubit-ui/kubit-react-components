@@ -1,4 +1,4 @@
-import { act } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 
 import { renderHookProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { windowMatchMedia } from '@/tests/windowMatchMedia';
@@ -180,12 +180,11 @@ describe('useTooltip', () => {
       .spyOn(useMediaDevice, 'useMediaDevice')
       .mockImplementation(() => DeviceBreakpointsType.DESKTOP);
 
-    const onOpenClose = jest.fn();
     tooltipRef.current && jest.spyOn(tooltipRef.current, 'contains').mockReturnValueOnce(false);
+    tooltipRef.current &&
+      jest.spyOn(tooltipRef.current, 'style', 'get').mockReturnValueOnce({} as CSSStyleDeclaration);
 
-    const { result } = renderHookProvider(() =>
-      useTooltip({ labelRef, tooltipRef, variant, onOpenClose })
-    );
+    const { result } = renderHookProvider(() => useTooltip({ labelRef, tooltipRef, variant }));
 
     act(() => {
       result.current.showTooltip();
@@ -194,6 +193,75 @@ describe('useTooltip', () => {
       window.dispatchEvent(new Event('scroll'));
     });
 
-    expect(onOpenClose).toHaveBeenCalledWith(false);
+    expect(tooltipRef.current?.style).not.toEqual({});
+  });
+
+  it('Use Tooltip - will be hided esc is pressed', () => {
+    window.matchMedia = windowMatchMedia('onlyDesktop');
+    jest
+      .spyOn(useMediaDevice, 'useMediaDevice')
+      .mockImplementation(() => DeviceBreakpointsType.DESKTOP);
+
+    tooltipRef.current && jest.spyOn(tooltipRef.current, 'contains').mockReturnValueOnce(false);
+    tooltipRef.current &&
+      jest.spyOn(tooltipRef.current, 'style', 'get').mockReturnValueOnce({} as CSSStyleDeclaration);
+
+    const { result } = renderHookProvider(() => useTooltip({ labelRef, tooltipRef, variant }));
+
+    act(() => {
+      result.current.showTooltip();
+    });
+    act(() => {
+      fireEvent.keyDown(labelRef.current, { key: 'Escape', code: 'Escape' });
+    });
+
+    expect(tooltipRef.current?.style).not.toEqual({});
+  });
+
+  it('Use Tooltip - if press esc, but already hidden, onOpenClose wont be called', () => {
+    window.matchMedia = windowMatchMedia('onlyDesktop');
+    jest
+      .spyOn(useMediaDevice, 'useMediaDevice')
+      .mockImplementation(() => DeviceBreakpointsType.DESKTOP);
+
+    const onOpenClose = jest.fn();
+
+    tooltipRef.current && jest.spyOn(tooltipRef.current, 'contains').mockReturnValueOnce(false);
+    tooltipRef.current &&
+      jest.spyOn(tooltipRef.current, 'style', 'get').mockReturnValueOnce({} as CSSStyleDeclaration);
+
+    const { result } = renderHookProvider(() =>
+      useTooltip({ labelRef, tooltipRef, variant, onOpenClose })
+    );
+    act(() => {
+      fireEvent.keyDown(labelRef.current, { key: 'Escape', code: 'Escape' });
+    });
+
+    expect(onOpenClose).not.toHaveBeenCalled();
+  });
+
+  it('Use Tooltip - when tooltip is a modal, when hidding focus in the last focusable element before opening the modal', () => {
+    window.matchMedia = windowMatchMedia('onlyDesktop');
+    jest
+      .spyOn(useMediaDevice, 'useMediaDevice')
+      .mockImplementation(() => DeviceBreakpointsType.DESKTOP);
+
+    const { result } = renderHookProvider(() =>
+      useTooltip({ labelRef, tooltipRef, variant, tooltipAsModal: true })
+    );
+
+    const focusableElement1 = document.createElement('button');
+    document.body.appendChild(focusableElement1);
+    focusableElement1.focus();
+    const focusSpy = jest.spyOn(focusableElement1, 'focus');
+
+    act(() => {
+      result.current.showTooltip();
+    });
+    act(() => {
+      result.current.hideTooltip();
+    });
+
+    expect(focusSpy).toHaveBeenCalled();
   });
 });

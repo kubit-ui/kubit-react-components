@@ -39,6 +39,7 @@ export type VideoStyleType = {
   buttonsBarFirstSubcontainer?: CommonStyleType;
   buttonsBarSecondSubcontainer?: CommonStyleType;
   bottomContainer?: CommonStyleType;
+  linkContainer?: CommonStyleType;
   link?: TypographyTypes;
   actionButton?: {
     size?: string;

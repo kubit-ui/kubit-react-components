@@ -71,6 +71,7 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
   const eventKeyPressRef = useRef<EventKeyPressRefType>();
   const positionRef = useRef(0);
   const inputRef = useRef<HTMLInputElement | undefined>();
+  const pasteRef = useRef<boolean>(false);
 
   // Return ref of the input element
   useImperativeHandle(
@@ -117,6 +118,11 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
   }, []);
 
   useEffect(() => {
+    // prevent the behaviour, when the value is changed by paste method
+    if (pasteRef.current) {
+      pasteRef.current = false;
+      return;
+    }
     if (eventKeyPressRef.current && props.mask && inputRef?.current && value) {
       const { start, end } = eventKeyPressRef.current.cursor;
       // if multiple digits are selected, recovery the selected area
@@ -357,6 +363,7 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
       event.preventDefault();
       return;
     }
+    pasteRef.current = true;
     props.onPaste?.(event);
   };
 

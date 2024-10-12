@@ -52,5 +52,6 @@ export const Image: Story = {
       },
     },
     themeArgs: themesObject[themeSelected][STYLES_NAME.IMAGE],
+    tabIndex: 1,
   },
 };

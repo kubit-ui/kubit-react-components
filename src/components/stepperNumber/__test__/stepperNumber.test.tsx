@@ -123,4 +123,45 @@ describe('StepperNumber component', () => {
     const firstStep = screen.getAllByText(StepperNumberSteps[0]);
     expect(firstStep.length).not.toBe(0);
   });
+
+  it('screenReaderTitle can be used as hidden title section of the stepper number', () => {
+    const screenReaderTitle = {
+      content: 'Stepper number title',
+    };
+
+    renderProvider(
+      <StepperNumber
+        {...mockProps}
+        orientation={StepperNumberOrientationType.VERTICAL}
+        screenReaderTextBuilder={undefined}
+        screenReaderTitle={screenReaderTitle}
+      />
+    );
+
+    const section = screen.getByLabelText(screenReaderTitle.content);
+    expect(section).toBeInTheDocument();
+  });
+
+  it('screenReaderCompletedStep, when vertical and no screenReaderTextBuilder, is used as screen reader text for the completed steps', () => {
+    const screenReaderTitle = {
+      content: 'Stepper number title',
+    };
+    const screenReaderCompletedStep = {
+      content: 'Completed step',
+    };
+
+    renderProvider(
+      <StepperNumber
+        {...mockProps}
+        currentStep={3}
+        orientation={StepperNumberOrientationType.VERTICAL}
+        screenReaderCompletedStep={screenReaderCompletedStep}
+        screenReaderTextBuilder={undefined}
+        screenReaderTitle={screenReaderTitle}
+      />
+    );
+
+    const completeSteps = screen.getAllByText(screenReaderCompletedStep.content);
+    expect(completeSteps.length).toBe(3);
+  });
 });

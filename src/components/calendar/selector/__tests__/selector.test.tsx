@@ -4,11 +4,8 @@ import { fireEvent, screen } from '@testing-library/react';
 import * as React from 'react';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 
 import { Selector } from '../selector';
-
-window.matchMedia = windowMatchMedia();
 
 const mockProps = {
   maxDate: new Date(),

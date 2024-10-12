@@ -7,6 +7,7 @@ export * from './useCheckbox/useCheckbox';
 export { useCustomHeightFromChildrens } from './useCustomHeightFromChildrens/useCustomHeightFromChildren';
 export * from './useClickOutside';
 export * from './useKeyPressed/useEscPressed';
+export * from './useEscPressedV2';
 export * from './useKeyPressed/useKeyPressed';
 export * from './useScrollBlock/useScrollBlock';
 export * from './useRoveFocus/useRoveFocus';

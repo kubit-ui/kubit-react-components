@@ -7,6 +7,7 @@ import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 import { INTERNAL_ERROR_EXECUTION, InputTypeType } from '../input/types';
 import { InputCounterStandAlone } from './inputCounterStandAlone';
 import { IInputCounter, IInputCounterStandAlone, InputCounterStylesProps } from './types';
+import { buildScreenReaderText } from './utils';
 
 const InputCounterComponent = React.forwardRef(
   <V extends string | unknown>(
@@ -41,13 +42,14 @@ const InputCounterComponent = React.forwardRef(
     }: IInputCounter<V>,
     ref: React.ForwardedRef<HTMLInputElement | undefined>
   ): JSX.Element => {
+    const uniqueId = useId('inputCounter');
+    const inputId = props.id ?? uniqueId;
+
     const styles = useStyles<InputCounterStylesProps, V>(
       STYLES_NAME.INPUT_COUNTER,
       props.variant,
       ctv
     );
-    const uniqueId = useId('inputCounter');
-    const inputId = props.id ?? uniqueId;
 
     const {
       value,
@@ -87,6 +89,18 @@ const InputCounterComponent = React.forwardRef(
       onPaste,
     });
 
+    const [showMessage, setShowMessage] = React.useState(false);
+
+    const handleChange = e => {
+      handleChangeInternal?.(e);
+      setShowMessage(false);
+    };
+
+    const handleBlur = e => {
+      handleBlurInternal?.(e);
+      setShowMessage(true);
+    };
+
     return (
       <InputCounterStandAlone
         {...props}
@@ -97,13 +111,20 @@ const InputCounterComponent = React.forwardRef(
         maxLength={maxLength}
         min={min}
         minLength={minLength}
+        screenReaderCurrentCharacters={buildScreenReaderText(
+          value,
+          ref as React.MutableRefObject<HTMLInputElement>,
+          maxLength,
+          props.screenReaderCurrentCharacters
+        )}
+        showMessage={showMessage}
         state={state}
         styles={styles}
         truncate={truncate}
         type={type}
         value={value}
-        onBlur={handleBlurInternal}
-        onChange={handleChangeInternal}
+        onBlur={handleBlur}
+        onChange={handleChange}
         onFocus={handleFocusInternal}
         onKeyDown={handleKeyDownInternal}
         onPaste={handlePasteInternal}

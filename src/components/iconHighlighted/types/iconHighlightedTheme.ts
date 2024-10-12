@@ -3,8 +3,12 @@ import { CommonStyleType, IconTypes } from '@/types';
 import { IconHighlightedSizeType } from './size';
 
 export type IconHighlightedSizePropsType = {
-  container?: CommonStyleType;
-  icon?: IconTypes;
+  container?: CommonStyleType & {
+    disabled?: CommonStyleType;
+  };
+  icon?: IconTypes & {
+    disabled?: IconTypes;
+  };
 };
 
 export type IconHighlightedVariantStylesType = {

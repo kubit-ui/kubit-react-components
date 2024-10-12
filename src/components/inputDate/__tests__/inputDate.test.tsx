@@ -11,8 +11,6 @@ import { formatDateToUTC } from '@/utils';
 
 import { InputDate } from '../inputDate';
 
-window.matchMedia = windowMatchMedia();
-
 const mockProps = {
   format: 'DD-MM-YYYY',
   showCalendar: false,
@@ -141,7 +139,8 @@ describe('New Input Date Component', () => {
     });
     expect(selectMonthButton).toBeInTheDocument();
 
-    fireEvent.keyDown(window, {
+    // Internal popover element fire the escape keydown
+    fireEvent.keyDown(selectMonthButton, {
       key: 'Escape',
       code: 'Escape',
     });

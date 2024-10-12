@@ -1,7 +1,9 @@
-export const windowMatchMedia = (matcher = 'onlyDesktop'): ((query: string) => MediaQueryList) => {
+export const windowMatchMedia = (
+  matcher: string | string[] = 'onlyDesktop'
+): ((query: string) => MediaQueryList) => {
   return (query: string): MediaQueryList => {
     return {
-      matches: query === matcher,
+      matches: Array.isArray(matcher) ? matcher.includes(query) : matcher === query,
       addListener: () => null,
       removeListener: () => null,
       media: '',

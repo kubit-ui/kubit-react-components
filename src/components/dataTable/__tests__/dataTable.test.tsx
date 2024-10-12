@@ -14,25 +14,6 @@ const mockProps = {
 };
 
 describe('DataTable', () => {
-  beforeAll(() => {
-    global.ResizeObserver = class ResizeObserver {
-      callback;
-      constructor(callback) {
-        this.callback = callback;
-      }
-      observe() {
-        // Call the callback
-        this.callback();
-      }
-      unobserve() {
-        // do nothing
-      }
-      disconnect() {
-        // do nothing
-      }
-    };
-  });
-
   it('Should render a unique table component when no rowGroups are used', async () => {
     const columns = [
       { field: 'field1', headerContent: 'Header 1' },

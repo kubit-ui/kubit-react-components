@@ -4,12 +4,9 @@ import React from 'react';
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 
 import { DrawerUnControlled as Drawer } from '../drawerUnControlled';
 import { DrawerLevelPositionTypes, IDrawerUncontrolled } from '../types/';
-
-window.matchMedia = windowMatchMedia();
 
 const mockProps: IDrawerUncontrolled = {
   title: { content: 'drawer' },

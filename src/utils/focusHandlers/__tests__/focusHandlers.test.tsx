@@ -1,11 +1,9 @@
-import * as React from 'react';
-
 import {
   focusFirstDescendant,
   focusNextFocusableElement,
   focusPreviousFocusableElement,
   getFocusableDescendants,
-  trapFocus,
+  getFocusableDescendantsV2,
 } from '../focusHandlers';
 
 test('focusFirstDescendant - It focuses a button', () => {
@@ -87,61 +85,6 @@ test('focusFirstDescendant - It does not focus on an element with negative tabin
   expect(button).not.toHaveFocus();
 });
 
-test('trapFocus - will focus on the first element when try to scape from forward or backward', () => {
-  const focusableSection = document.createElement('section');
-  focusableSection.id = 'test-section';
-
-  const button1Focusable = document.createElement('button');
-  button1Focusable.id = 'button1Focusable';
-
-  const button2Focusable = document.createElement('button');
-  button2Focusable.id = 'button2Focusable';
-
-  const button3Focusable = document.createElement('button');
-  button3Focusable.id = 'button3Focusable';
-
-  focusableSection.appendChild(button1Focusable);
-  focusableSection.appendChild(button2Focusable);
-  focusableSection.appendChild(button3Focusable);
-
-  document.body.appendChild(focusableSection);
-
-  // Focus last element
-  button3Focusable.focus();
-
-  // Trying to forward scape redirect the focus to the first one
-  const mockEventForwardScape = {
-    shiftKey: false,
-    preventDefault: jest.fn(),
-  } as unknown as React.KeyboardEvent<HTMLElement>;
-  trapFocus(focusableSection, mockEventForwardScape);
-  expect(document.activeElement).toBe(button1Focusable);
-
-  // Focus in the first element
-  button1Focusable.focus();
-
-  // Trying to backward scape redirect the focus to the first one
-  const mockEventBackwardScape = {
-    shiftKey: true,
-    preventDefault: jest.fn(),
-  } as unknown as React.KeyboardEvent<HTMLElement>;
-  trapFocus(focusableSection, mockEventBackwardScape);
-  expect(document.activeElement).toBe(button3Focusable);
-});
-
-test('trapFocus - It executes preventDefault if there are nothing to get the focus', () => {
-  const element = document.createElement('div');
-
-  const mockPreventDefault = jest.fn();
-  const event = {
-    key: 'ArrowDown',
-    preventDefault: mockPreventDefault,
-  } as unknown as React.KeyboardEvent<HTMLInputElement>;
-
-  trapFocus(element, event);
-  expect(mockPreventDefault).toHaveBeenCalled();
-});
-
 test('focusNextFocusableElement - The next element focusable is the brother', () => {
   const element = document.createElement('div');
   const button1 = document.createElement('button');
@@ -207,4 +150,67 @@ test('focusPreviousFocusableElement - The previous element focusable is the brot
 
   const result = focusPreviousFocusableElement(button2);
   expect(result).toBeTruthy();
+});
+
+describe('getFocusableDescendantsV2', () => {
+  it('Filter disabled', () => {
+    const element = document.createElement('div');
+    const button = document.createElement('button');
+    button.disabled = true;
+    element.appendChild(button);
+
+    const result = getFocusableDescendantsV2({ element });
+    expect(result).toHaveLength(0);
+  });
+
+  it('Filter aria-disabled elements', () => {
+    const element = document.createElement('div');
+    const button = document.createElement('button');
+    button.setAttribute('aria-disabled', 'true');
+    element.appendChild(button);
+
+    const result = getFocusableDescendantsV2({ element });
+    expect(result).toHaveLength(0);
+  });
+
+  it('Filter aria-hidden attributes', () => {
+    const element = document.createElement('div');
+    const button = document.createElement('button');
+    button.setAttribute('aria-hidden', 'true');
+    element.appendChild(button);
+
+    const result = getFocusableDescendantsV2({ element });
+    expect(result).toHaveLength(0);
+  });
+
+  it('Filter elements to omit', () => {
+    const element = document.createElement('div');
+    const button = document.createElement('button');
+    const omit = document.createElement('div');
+    omit.appendChild(button);
+    element.appendChild(omit);
+
+    const result = getFocusableDescendantsV2({ element, elementsToOmit: [omit] });
+    expect(result).toHaveLength(0);
+  });
+
+  it('Filter elements that are not summary and are inside a closed details', () => {
+    const element = document.createElement('div');
+    const button = document.createElement('button');
+    const details = document.createElement('details');
+    details.appendChild(button);
+    element.appendChild(details);
+
+    const result = getFocusableDescendantsV2({ element });
+    expect(result).toHaveLength(0);
+  });
+
+  it('Return focusable elements', () => {
+    const element = document.createElement('div');
+    const button = document.createElement('button');
+    element.appendChild(button);
+
+    const result = getFocusableDescendantsV2({ element });
+    expect(result).toHaveLength(1);
+  });
 });

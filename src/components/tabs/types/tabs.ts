@@ -22,6 +22,9 @@ export interface ITabsStandAlone {
   rightIcon?: IElementOrIcon;
   allowFocusTabPanel?: boolean;
   autoWidth?: boolean;
+  /**
+   * @deprecated `minTabsInView` will be removed in the next major version
+   */
   minTabsInView?: number;
   maxTabsInView?: number;
   hideLabelForSingleTab?: boolean;

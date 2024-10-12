@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useId } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { ResizeObserver } from '@/utils/resizeObserver';
 
 import { PillSelectorStandAlone } from './pillSelectorStandAlone';
 import type { IPillSelectorControlled, IPillSelectorStandAlone } from './types/pillSelector';

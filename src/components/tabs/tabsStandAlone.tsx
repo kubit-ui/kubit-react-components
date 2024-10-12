@@ -27,6 +27,7 @@ import { TabsStateTypes } from './types/state';
 import { ITabsStandAlone } from './types/tabs';
 
 const MAX_TABS_IN_VIEW = 3;
+// deprecated - Remove `MIN_TABS_IN_VIEW` when `minTabsInView` prop is removed from `Tabs`
 const MIN_TABS_IN_VIEW = 2;
 const PRIMARY_TABS_BASE_ID = 'Tabs';
 
@@ -35,6 +36,7 @@ const TabsStandAloneComponent = (
     autoWidth = false,
     allowFocusTabPanel = true,
     dataTestId = 'primaryTab',
+    // deprecated - Remove when `minTabsInView` prop is removed from `Tabs`
     minTabsInView = MIN_TABS_IN_VIEW,
     maxTabsInView = MAX_TABS_IN_VIEW,
     unMountContent = true,
@@ -47,11 +49,9 @@ const TabsStandAloneComponent = (
   const TAB_PANEL_ID = `${BASE_ID}-tab-panel`;
 
   const tabsLength = props.tabs?.length ?? 0;
-  const compacted = tabsLength <= minTabsInView;
-  const numTabsInView = compacted ? minTabsInView : maxTabsInView;
-
+  const numTabsInView = Math.min(tabsLength, maxTabsInView);
   const { position, handleClickIcon, focus, handleClickTab, listEl } = useTabs({
-    numTabsInView,
+    numTabsInView: numTabsInView,
     tabsLength: tabsLength,
     selectedTab: props.selectedTab,
   });
@@ -135,9 +135,9 @@ const TabsStandAloneComponent = (
                 <TabStyled
                   key={index}
                   autoWidth={autoWidth}
-                  compacted={compacted}
                   data-testid={`${dataTestId}Tab${index}`}
                   empty={props.hideLabelForSingleTab}
+                  numTabsInViewMobile={numTabsInView}
                   state={stateTab}
                   styles={props.styles}
                   tabsLength={tabsLength}
