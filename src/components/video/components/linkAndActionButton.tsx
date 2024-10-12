@@ -7,7 +7,7 @@ import { GenericLinkType } from '@/provider/genericComponents';
 
 import { LinkAndActionButtonAlignment, VideoButtonType } from '../types';
 import { VideoStyleType } from '../types/videoTheme';
-import { BottomContainerStyled } from '../video.styled';
+import { BottomContainerStyled, LinkContainerStyled } from '../video.styled';
 
 interface ILinkAndActionButton {
   styles: VideoStyleType;
@@ -40,16 +40,18 @@ export const LinkAndActionButton = ({
           </Button>
         )}
       {props.linkUrl && (
-        <Text
-          component={props.componentLink}
-          customTypography={props.styles.link}
-          decoration={TextDecorationType.UNDERLINE}
-          target={linkTarget}
-          url={props.linkUrl}
-          onClick={props.onLinkClick}
-        >
-          {props.linkText}
-        </Text>
+        <LinkContainerStyled styles={props.styles}>
+          <Text
+            component={props.componentLink}
+            customTypography={props.styles.link}
+            decoration={TextDecorationType.UNDERLINE}
+            target={linkTarget}
+            url={props.linkUrl}
+            onClick={props.onLinkClick}
+          >
+            {props.linkText}
+          </Text>
+        </LinkContainerStyled>
       )}
     </BottomContainerStyled>
   ) : null;

@@ -18,20 +18,19 @@ interface IPlayStopButton {
   handlePlayStopVideo?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const PlayStopButton = (props: IPlayStopButton): JSX.Element => {
+export const PlayStopButton = (props: IPlayStopButton): JSX.Element | null => {
   const device = useMediaDevice();
-  const ButtonBarPlay = (): JSX.Element | null =>
-    props.styles.buttonsBarPlayIcon?.size?.[device] ? (
-      <MediaButton
-        hasBackground={false}
-        icon={props.buttonsBarPlayIcon}
-        size={props.styles.buttonsBarPlayIcon?.size?.[device] as MediaButtonSizeType}
-        twisted={props.playing}
-        twistedIcon={props.buttonsBarPlayIconToTransition}
-        variant={props.styles.buttonsBarPlayIcon?.variant}
-        onClick={props.handlePlayStopVideo}
-      />
-    ) : null;
+  const ButtonBarPlay = props.styles.buttonsBarPlayIcon?.size?.[device] ? (
+    <MediaButton
+      hasBackground={false}
+      icon={props.buttonsBarPlayIcon}
+      size={props.styles.buttonsBarPlayIcon?.size?.[device] as MediaButtonSizeType}
+      twisted={props.playing}
+      twistedIcon={props.buttonsBarPlayIconToTransition}
+      variant={props.styles.buttonsBarPlayIcon?.variant}
+      onClick={props.handlePlayStopVideo}
+    />
+  ) : null;
   return device === DeviceBreakpointsType.DESKTOP ? (
     <Tooltip
       childrenAsButton={false}
@@ -39,9 +38,9 @@ export const PlayStopButton = (props: IPlayStopButton): JSX.Element => {
       tooltipAsModal={false}
       variant={props.styles.tooltip?.variant}
     >
-      <ButtonBarPlay />
+      {ButtonBarPlay}
     </Tooltip>
   ) : (
-    <ButtonBarPlay />
+    ButtonBarPlay
   );
 };
