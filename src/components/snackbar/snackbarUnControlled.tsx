@@ -60,6 +60,10 @@ const SnackbarUnControlledComponent = <V extends string | unknown>(
   const handleCloseButton: (_open: boolean) => React.MouseEventHandler<HTMLButtonElement> =
     _open => event => {
       props.onOpenClose?.(_open, event);
+      if (props.onCloseButton) {
+        props.onCloseButton(event);
+        return;
+      }
       // After manually closing the popover, focus the last focused element
       // If the last focused element is not available, focus the first focusable element
       if (

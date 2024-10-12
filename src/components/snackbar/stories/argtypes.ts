@@ -168,6 +168,15 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.FUNCTIONS,
       },
     },
+    onCloseButton: {
+      description: 'Funtion to handle the entire close button function If it is needed',
+      type: { name: 'function', required: true },
+      control: false,
+      table: {
+        type: { summary: 'React.MouseEventHandler<HTMLButtonElement>' },
+        category: CATEGORY_CONTROL.FUNCTIONS,
+      },
+    },
     onOpenClose: {
       description: 'Callback to be be called when the snackbar is opened or closed',
       type: { name: 'function' },
