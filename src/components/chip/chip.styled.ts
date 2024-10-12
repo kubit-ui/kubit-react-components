@@ -8,16 +8,16 @@ type IChipStyled = {
   styles?: ChipPropsStylesType;
 };
 
-export const ChipStyled = styled.div<IChipStyled>`
+export const ChipStyled = styled.span<IChipStyled>`
   ${props => getStyles(props.styles?.chipContainer)}
 `;
 
-export const RangeItemWrapperStyled = styled.p<IChipStyled>`
+export const RangeItemWrapperStyled = styled.span<IChipStyled>`
   ${props => getStyles(props.styles?.rangeItemWrapper)}
 `;
 
-export const ErrorStyled = styled.div<IChipStyled>`
+export const ErrorStyled = styled.span<IChipStyled>`
   ${props => getStyles(props.styles?.errorContainer)}
 `;
 
-export const RangeContainerStyled = styled.div``;
+export const RangeContainerStyled = styled.span``;
