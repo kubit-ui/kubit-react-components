@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useEscPressed, useMediaDevice, useStyles } from '@/hooks';
+import { useClickOutside, useEscPressedV2, useMediaDevice, useStyles } from '@/hooks';
 import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
 import { focusElementOrFirstDescendant } from '@/utils';
 
@@ -16,6 +16,7 @@ type UseTooltipType<V> = {
   variant: V;
   onOpenClose?: (open: boolean) => void;
   align?: TooltipAlignType;
+  tooltipAsModal?: boolean;
 } & Omit<CustomTokenTypes<TooltipVariantStylesProps>, 'cts' | 'extraCt'>;
 
 type UseTooltipReturnType = {
@@ -62,7 +63,7 @@ export const useTooltip = <V>({
 
   const onScroll = (e: Event) => {
     if (!props.tooltipRef.current?.contains(e.target as Node)) {
-      hideTooltip();
+      updateTooltipPosition();
     }
   };
 
@@ -92,7 +93,10 @@ export const useTooltip = <V>({
     // Apply focus in last focusable element
     openRef.current = false;
     allowFocusOpenTooltip.current = false;
-    lastFocus.current?.focus();
+    // Only focus in the last element if the tooltip is a modal
+    if (props.tooltipAsModal) {
+      lastFocus.current?.focus();
+    }
     allowFocusOpenTooltip.current = true;
     if (mediaDevice === DeviceBreakpointsType.DESKTOP) {
       if (!props.tooltipRef.current) {
@@ -102,10 +106,28 @@ export const useTooltip = <V>({
     }
     setOpen(false);
     props.onOpenClose?.(false);
-  }, [mediaDevice, props.onOpenClose]);
+  }, [mediaDevice, props.onOpenClose, props.tooltipAsModal]);
 
-  // Because desktop do not use popover component, we need to manually call manually to close on scape functionality
-  useEscPressed({ element: props.labelRef, execute: hideTooltip });
+  const handleEscPress = React.useCallback(
+    (event: KeyboardEvent) => {
+      if (!openRef.current) {
+        return;
+      }
+      // Only stop propagation if the tooltip is opened and its going to be closed
+      event.stopPropagation();
+      hideTooltip();
+    },
+    [hideTooltip]
+  );
+
+  // Because desktop do not use popover component, we need to manually call manually to close on scape and click outside functionality
+  useEscPressedV2({
+    ref: props.labelRef,
+    onEscPress: handleEscPress,
+    disableStopPropagation: true,
+  });
+  // Prevent to be closed when clicking the label, it will be handled by the tooltip label click in order to open/close the tooltip
+  useClickOutside(props.tooltipRef, hideTooltip, [props.labelRef.current]);
 
   // This function calc the position position where the tooltip should be displayed
 

@@ -1,7 +1,7 @@
 import { PopoverComponentType } from '@/components/popover';
 import { DeviceBreakpointsType } from '@/types';
 
-import { getAriaDescriptorsBy, getHtmlTagForTooltip, useTooltipAsModal } from '../utils';
+import { getAriaDescriptorsBy, getHtmlTagForTooltip } from '../utils';
 
 describe('getAriaDescriptorsBy utility', () => {
   it('should return both titleId and contentId when title and content are provided', () => {
@@ -80,38 +80,5 @@ describe('getHtmlTagForTooltip utility', () => {
     });
 
     expect(result).toBeUndefined();
-  });
-});
-
-describe('useTooltipAsModal utility', () => {
-  it('should return propTooltipAsModal when both propTooltipAsModal and styleTooltipAsModal are provided', () => {
-    const result = useTooltipAsModal({
-      propTooltipAsModal: true,
-      styleTooltipAsModal: false,
-    });
-
-    expect(result).toBe(true);
-  });
-
-  it('should return propTooltipAsModal when only propTooltipAsModal is provided', () => {
-    const result = useTooltipAsModal({
-      propTooltipAsModal: true,
-    });
-
-    expect(result).toBe(true);
-  });
-
-  it('should return styleTooltipAsModal when only styleTooltipAsModal is provided', () => {
-    const result = useTooltipAsModal({
-      styleTooltipAsModal: true,
-    });
-
-    expect(result).toBe(true);
-  });
-
-  it('should return false when neither propTooltipAsModal nor styleTooltipAsModal is provided', () => {
-    const result = useTooltipAsModal({});
-
-    expect(result).toBe(false);
   });
 });

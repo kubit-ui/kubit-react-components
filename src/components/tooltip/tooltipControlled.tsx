@@ -5,13 +5,12 @@ import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
 import { TOOLTIP_STYLES } from './constants';
-import { useTooltipAsModalAriaLabel } from './hooks/useTooltipAsModalAriaLabel';
+import { useTooltipAsModal, useTooltipAsModalAriaLabel, useTooltipContentScroll } from './hooks';
 import { TooltipStandAlone } from './tooltipStandAlone';
 import { ITooltipControlled, TooltipVariantStylesProps } from './types';
-import { useTooltipAsModal } from './utils';
 
 const TooltipControlledComponent = <V extends string | unknown>({
-  tooltipAsModal,
+  tooltipAsModal: propTooltipAsModal,
   ctv,
   tooltipRef,
   tooltipAriaLabel,
@@ -21,6 +20,14 @@ const TooltipControlledComponent = <V extends string | unknown>({
   const mediaDevice = useMediaDevice();
   const innerTooltipRef = React.useRef<HTMLDivElement>(null);
   const helpAriaLabel = useTooltipAsModalAriaLabel(innerTooltipRef);
+  const tooltipAsModal = useTooltipAsModal({
+    propTooltipAsModal: propTooltipAsModal,
+    styleTooltipAsModal: styles.tooltipAsModal,
+  });
+
+  const { contentHasScroll, contentRefHandler } = useTooltipContentScroll({
+    tooltipRef: innerTooltipRef,
+  });
 
   React.useImperativeHandle(tooltipRef, () => {
     return innerTooltipRef.current as HTMLDivElement;
@@ -29,13 +36,12 @@ const TooltipControlledComponent = <V extends string | unknown>({
   return (
     <TooltipStandAlone
       {...props}
+      contentHasScroll={contentHasScroll}
+      contentRef={contentRefHandler}
       mediaDevice={mediaDevice}
       styles={styles}
       tooltipAriaLabel={tooltipAriaLabel ?? helpAriaLabel}
-      tooltipAsModal={useTooltipAsModal({
-        propTooltipAsModal: tooltipAsModal,
-        styleTooltipAsModal: styles.tooltipAsModal,
-      })}
+      tooltipAsModal={tooltipAsModal}
       tooltipRef={innerTooltipRef}
     />
   );

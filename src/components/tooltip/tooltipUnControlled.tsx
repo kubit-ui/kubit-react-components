@@ -2,17 +2,15 @@ import * as React from 'react';
 
 import { useMediaDevice, useSwipeDown } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
+import { useTrapFocus } from '@/hooks/useTrapFocus/useTrapFocus';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 import { DeviceBreakpointsType } from '@/types';
-import { isKeyEnterPressed, isKeyTabPressed } from '@/utils';
-import { trapFocus } from '@/utils/focusHandlers/focusHandlers';
+import { isKeyEnterPressed } from '@/utils';
 
 import { TOOLTIP_STYLES } from './constants';
-import { useTooltip } from './hooks';
-import { useTooltipAsModalAriaLabel } from './hooks/useTooltipAsModalAriaLabel';
+import { useTooltip, useTooltipAsModal, useTooltipContentScroll } from './hooks';
 import { TooltipStandAlone } from './tooltipStandAlone';
 import { ITooltipStandAlone, ITooltipUnControlled, TooltipVariantStylesProps } from './types';
-import { useTooltipAsModal } from './utils';
 
 const TooltipUnControlledComponent = React.forwardRef(
   <V extends string | unknown>(
@@ -32,8 +30,6 @@ const TooltipUnControlledComponent = React.forwardRef(
     const labelRef = React.useRef<HTMLDivElement>(null);
     const tooltipRef = React.useRef<HTMLDivElement>(null);
 
-    const helpAriaLabel = useTooltipAsModalAriaLabel(tooltipRef);
-
     const tooltipAsModalValue = useTooltipAsModal({
       propTooltipAsModal: tooltipAsModal,
       styleTooltipAsModal: styles.tooltipAsModal,
@@ -49,14 +45,25 @@ const TooltipUnControlledComponent = React.forwardRef(
       variant,
       onOpenClose,
       align: props.align,
+      tooltipAsModal: tooltipAsModalValue,
       ctv,
     });
 
+    const { contentHasScroll, contentRefHandler } = useTooltipContentScroll({ tooltipRef });
+
+    // When !tooltipAsModal, in tablet/mobile, onFocus and onClick are executed at the same time
+    // So onFocus will open the tooltip, and onClick will close it (because it was opened)
+    // To avoid calling onFocus when onClick, onMouseDown -> preventDefoult could be used,
+    // But this approach will lead to the focus-visible pseudo class being applied (strange, but true)
+    // So the approach is to use a flag to avoid calling onFocus when onClick
+    const isBeingClicked = React.useRef(false);
+
     const handleFocus: React.FocusEventHandler<HTMLElement> = () => {
-      // Avoid tooltip is opened automatically after closing the tooltip
-      if (!tooltipAsModalValue && allowFocusOpenTooltip.current) {
-        showTooltip();
+      // allowFocusOpenTooltip Avoid tooltip is opened automatically after closing the tooltip
+      if (isBeingClicked.current || tooltipAsModalValue || !allowFocusOpenTooltip.current) {
+        return;
       }
+      showTooltip();
     };
 
     const handleBlur: React.FocusEventHandler<HTMLElement> = event => {
@@ -96,16 +103,25 @@ const TooltipUnControlledComponent = React.forwardRef(
       hideTooltip();
     };
 
-    const handleMouseDown: React.MouseEventHandler<HTMLElement> = event => {
-      // Avoid onFocus and onClick are executed at the same time
-      event.preventDefault();
+    const handleMouseDown: React.MouseEventHandler<HTMLElement> = () => {
+      isBeingClicked.current = true;
+    };
+
+    const handleMouseUp: React.MouseEventHandler<HTMLElement> = () => {
+      isBeingClicked.current = false;
     };
 
     const handleClick: React.MouseEventHandler<HTMLElement> = event => {
       if (mediaDevice === DeviceBreakpointsType.DESKTOP) {
-        if (tooltipAsModalValue && !open) {
-          //this condition is needed because tooltip would close if you clicked on tooltip container beeing tooltip a modal
+        if (!tooltipAsModalValue) {
+          return;
+        }
+        if (!open) {
           showTooltip();
+          return;
+        }
+        if (!tooltipRef.current?.contains(event.target as Node)) {
+          hideTooltip();
         }
         return;
       }
@@ -126,16 +142,6 @@ const TooltipUnControlledComponent = React.forwardRef(
       }
     };
 
-    const handleKeyDownTooltip: React.KeyboardEventHandler<HTMLElement> = event => {
-      if (
-        mediaDevice === DeviceBreakpointsType.DESKTOP &&
-        isKeyTabPressed(event.key) &&
-        tooltipRef.current
-      ) {
-        trapFocus(tooltipRef.current, event);
-      }
-    };
-
     const handlePopoverCloseInternally = () => {
       props.popover?.onCloseInternally?.();
       hideTooltip();
@@ -146,11 +152,15 @@ const TooltipUnControlledComponent = React.forwardRef(
       hideTooltip
     );
 
+    useTrapFocus({ element: tooltipRef, hasFocusTrap: tooltipAsModalValue });
+
     // It is used TooltipStandAlone instead of TooltipControlled
     // The reason is that TooltipControlled only provides the styles and mediaDevice props that are used and needed in this component
     return (
       <TooltipStandAlone
         {...props}
+        contentHasScroll={contentHasScroll}
+        contentRef={contentRefHandler}
         dragIconRef={setDragIconRef}
         labelRef={labelRef}
         mediaDevice={mediaDevice}
@@ -171,9 +181,9 @@ const TooltipUnControlledComponent = React.forwardRef(
         onMouseDown={handleMouseDown}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onMouseUp={handleMouseUp}
         onPopoverCloseInternally={handlePopoverCloseInternally}
         onTooltipFocus={handleFocusTooltip}
-        onTooltipKeyDown={handleKeyDownTooltip}
       />
     );
   }

@@ -33,17 +33,13 @@ export const Tooltip: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].TooltipVariantType || {})[0] as string,
     title: { content: 'Tootltip title' },
-    content: {
-      content: (
-        <div style={{ color: '#fff' }}>
-          <div>content first line</div>
-          <div>content second line</div>
-        </div>
-      ),
-    },
+    content: { content: 'Tooltip content' },
     children: 'Hover me',
     align: TooltipAlignType.TOP,
-    closeIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Close icon', title: 'Close' },
+    triggerAsButton: {
+      'aria-label': 'Tooltip trigger',
+    },
+    closeIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Close icon' },
     tooltipAsModal: false,
     themeArgs: themesObject[themeSelected][STYLES_NAME.TOOLTIP],
   },
@@ -53,14 +49,11 @@ export const TooltipSimple: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].TooltipVariantType || {})[0] as string,
     title: { content: 'Tootltip title' },
-    content: {
-      content: (
-        <div style={{ color: '#fff' }}>
-          <div>content first line</div>
-        </div>
-      ),
-    },
+    content: { content: 'Tooltip content' },
     children: 'Hover me',
+    triggerAsButton: {
+      'aria-label': 'Tooltip trigger',
+    },
     align: TooltipAlignType.TOP,
     tooltipAsModal: false,
     themeArgs: themesObject[themeSelected][STYLES_NAME.TOOLTIP],
@@ -71,15 +64,11 @@ export const TooltipComplex: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].TooltipVariantType || {})[0] as string,
     title: { content: 'Tootltip title' },
-    content: {
-      content: (
-        <div style={{ color: '#fff' }}>
-          <div>content first line</div>
-          <div>content second line</div>
-        </div>
-      ),
-    },
+    content: { content: 'Tooltip content' },
     children: 'Hover me',
+    triggerAsButton: {
+      'aria-label': 'Tooltip trigger',
+    },
     align: TooltipAlignType.TOP,
     closeIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Close icon' },
     tooltipAsModal: true,
@@ -93,6 +82,9 @@ export const TooltipWithCtv: Story = {
     title: { content: 'Tootltip title' },
     content: { content: 'Tooltip content' },
     children: 'Hover me',
+    triggerAsButton: {
+      'aria-label': 'Tooltip trigger',
+    },
     align: TooltipAlignType.TOP,
     closeIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Close icon' },
     tooltipAsModal: false,

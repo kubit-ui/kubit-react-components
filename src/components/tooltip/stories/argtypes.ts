@@ -45,11 +45,11 @@ export const argtypes = (
     },
     content: {
       description: 'Aria label text for progress bar',
-      type: { name: 'JSX.Element | string' },
-      control: { type: 'text' },
+      type: { name: 'TooltipContentType' },
+      control: { type: 'object' },
       table: {
         type: {
-          summary: 'JSX.Element | string',
+          summary: 'TooltipContentType',
         },
         category: CATEGORY_CONTROL.CONTENT,
       },
@@ -110,6 +110,19 @@ export const argtypes = (
       table: {
         type: {
           summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    contentScrollArias: {
+      description: 'Aria label for content when scroll',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'TooltipContentScrollAriasType',
+          detail:
+            'TooltipContentScrollAriasType: { ["aria-label"]?: string; ["aria-labelledby"]?: string; }',
         },
         category: CATEGORY_CONTROL.ACCESIBILITY,
       },
