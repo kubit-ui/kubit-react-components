@@ -30,6 +30,7 @@ export * from './accordion';
 export * from './avatar';
 export * from './backToTop';
 export * from './badge';
+export * from './badgeV2';
 export * from './breadcrumbs';
 export * from './drawer';
 export * from './message';
