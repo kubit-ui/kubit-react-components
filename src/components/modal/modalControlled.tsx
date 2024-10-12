@@ -90,6 +90,10 @@ const ModalBoundary = <V extends string | unknown>(
   );
 };
 
+/**
+ * @deprecated Try the new ModalV2 component
+ *
+ **/
 const ModalControlled = React.forwardRef(ModalBoundary) as <V extends string | unknown>(
   props: React.PropsWithChildren<IModalControlled<V>> & {
     ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;

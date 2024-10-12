@@ -57,6 +57,10 @@ const ModalUnControlledComponent = <V extends string | unknown>(
   );
 };
 
+/**
+ * @deprecated Try the new ModalV2 component
+ *
+ **/
 const ModalUnControlled = React.forwardRef(ModalUnControlledComponent) as <
   V extends string | unknown,
 >(
