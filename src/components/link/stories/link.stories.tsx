@@ -40,6 +40,7 @@ const args = {
   },
   iconPosition: LinkPositionType.RIGHT,
   draggable: false,
+  ['aria-current']: true,
   themeArgs: themesObject[themeSelected][STYLES_NAME.LINK],
 };
 
