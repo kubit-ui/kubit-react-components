@@ -80,9 +80,9 @@ const CarouselStandAloneComponent = (
     <RootStyled
       ref={ref}
       allowModifySliceWidth={allowModifySliceWidth}
+      aria-label={props['aria-label']}
       aria-labelledby={props['aria-labelledby']}
       aria-roledescription="carousel"
-      aria-label={props['aria-label']}
       data-testid={`${dataTestId}Wrapper`}
       styles={styles}
       onKeyDown={onKeyDown}
