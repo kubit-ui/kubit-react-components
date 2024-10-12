@@ -7,7 +7,7 @@ import { themesObject, variantsObject } from '@/designSystem/themesObject';
 import { additionalInfoAction, labelSecondary } from '../components/stories/stories';
 import { InputUnControlled as Story } from '../inputUnControlled';
 import { IInputUnControlled, InputTitleComponentType } from '../types';
-import { InputIconPosition } from '../types/inputTheme';
+import { InputIconPosition, InputState } from '../types/inputTheme';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
@@ -74,6 +74,24 @@ export const InputWithCtv: Story = {
           padding_bottom: '10px',
         },
       },
+    },
+  },
+};
+
+const TEXT_TRANSFORM = {
+  input: {
+    text_transform: 'uppercase',
+  },
+  placeholder: {
+    text_transform: 'capitalize',
+  },
+};
+
+export const InputAutoCapitalize: Story = {
+  args: {
+    ...commonArgs,
+    ctv: {
+      [InputState.FILLED]: TEXT_TRANSFORM,
     },
   },
 };
