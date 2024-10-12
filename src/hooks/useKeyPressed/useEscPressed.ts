@@ -5,6 +5,7 @@ type ParamsType = {
   element: RefObject<HTMLElement>;
 };
 
+// @deprecated - try the new useEscPressedV2 instead
 export const useEscPressed = ({ execute, element }: ParamsType): void => {
   useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
