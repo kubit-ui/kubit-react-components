@@ -6,6 +6,7 @@ const Link = React.forwardRef(function Link(props: IGenericLink, ref: unknown) {
   return (
     <a
       ref={ref as React.LegacyRef<HTMLAnchorElement> | undefined}
+      aria-current={props['aria-current']}
       aria-describedby={props['aria-describedby']}
       aria-disabled={props['aria-disabled']}
       aria-label={props['aria-label']}
