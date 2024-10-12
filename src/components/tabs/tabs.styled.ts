@@ -16,7 +16,7 @@ type StylesType = {
 type TabStylesType = StylesType & {
   tabsLength: number;
   state: TabsStateTypes;
-  compacted: boolean;
+  numTabsInViewMobile: number;
   right?: boolean;
   autoWidth?: boolean;
   empty?: boolean;
@@ -108,13 +108,13 @@ export const TabStyled = styled.div<TabStylesType>`
   }
   ${({
     styles,
-    compacted,
+    numTabsInViewMobile,
     theme: {
       MEDIA_QUERIES: { onlyMobile },
     },
   }) => css`
     ${onlyMobile} {
-      min-width: calc(100% / ${compacted ? TWO_TABS : THREE_TABS});
+      min-width: calc(100% / ${numTabsInViewMobile});
       :focus-within {
         ${getStyles(styles.tabContainer?.MOBILE?.focusWithin)}
       }
