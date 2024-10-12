@@ -4,7 +4,6 @@ import * as React from 'react';
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 import { ROLES } from '@/types';
 
 import { Snackbar, SnackbarMessageType } from '../index';
@@ -37,8 +36,6 @@ const mockWithActionButtonVariant = {
   ...MOCK,
   variant: 'TESTING_WITH_ACTION_BUTTON_VARIANT',
 };
-
-window.matchMedia = windowMatchMedia();
 
 describe('Snackbar component', () => {
   afterEach(() => {
@@ -95,7 +92,7 @@ describe('Snackbar component', () => {
       </div>
     );
   };
-  it('after closing manually, if the element foucsed before the snackbar is open exist, this element will be focused', () => {
+  it('after closing manually, if the element focused before the snackbar is open exist, this element will be focused', () => {
     renderProvider(<MockSnackbarFocusLastElement />);
 
     act(() => {
@@ -130,7 +127,7 @@ describe('Snackbar component', () => {
       </div>
     );
   };
-  it('after closing manually, if the element that opens the snackbar does not exist, first element of the page should have the focus', () => {
+  it('after closing manually with a mouseClick It shouldnt focus the first element of the page', () => {
     renderProvider(<MockSnackbarCloseManuallyFocusFirstDescentand />);
 
     act(() => {
@@ -150,6 +147,20 @@ describe('Snackbar component', () => {
 
     // first element of the page should have the focus
     expect(screen.getByTestId('firstPageElement')).toHaveFocus();
+  });
+
+  it('Call onCloseButton function', () => {
+    const onCloseButtonMock = jest.fn();
+    renderProvider(
+      <Snackbar {...MOCK} closeIcon={{ icon: 'UNICORN' }} onCloseButton={onCloseButtonMock} />
+    );
+
+    act(() => {
+      // Close snackbar bar
+      fireEvent.click(screen.getByTestId(`${MOCK.dataTestId}Icon`));
+    });
+
+    expect(onCloseButtonMock).toHaveBeenCalled();
   });
 
   it('Should render icon, link, button and description when passed props', async () => {

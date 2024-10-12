@@ -4,12 +4,9 @@ import * as React from 'react';
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 
 import { BadgeUnControlled as Badge } from '../badgeUnControlled';
 import { IBadgeUnControlled } from '../types';
-
-window.matchMedia = windowMatchMedia();
 
 // Mocks
 const mockProps: IBadgeUnControlled = {
@@ -129,7 +126,8 @@ describe('Badge component', () => {
     expect(contentExpand).toBeInTheDocument();
 
     await act(async () => {
-      fireEvent.keyDown(window, {
+      // Internal popover element fire the escape keydown
+      fireEvent.keyDown(contentExpand, {
         key: 'Escape',
         code: 'Escape',
       });

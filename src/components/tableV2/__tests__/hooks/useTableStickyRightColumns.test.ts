@@ -12,25 +12,6 @@ describe('useTableStickyRightColumns', () => {
   let rightBoxShadowContainer: HTMLDivElement;
   let ref: React.RefObject<HTMLDivElement>;
 
-  beforeAll(() => {
-    global.ResizeObserver = class ResizeObserver {
-      callback;
-      constructor(callback) {
-        this.callback = callback;
-      }
-      observe() {
-        // Call the callback
-        this.callback();
-      }
-      unobserve() {
-        // do nothing
-      }
-      disconnect() {
-        // do nothing
-      }
-    };
-  });
-
   beforeEach(() => {
     wrapper = document.createElement('div');
     scrollableContainer = document.createElement('div');

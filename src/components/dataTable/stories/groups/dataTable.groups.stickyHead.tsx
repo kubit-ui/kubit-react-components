@@ -19,7 +19,7 @@ export const DataTableGroupsStickyHeadStory: IDataTable = {
   rowGroups: [
     {
       divider: {
-        content: <Divider leftLabel={{ content: 'STAK FAMILY' }} variant="DEFAULT" />,
+        content: <Divider leftLabel={{ content: 'STARK FAMILY' }} variant="DEFAULT" />,
       },
       rows: [
         { id: '1', ref: '1', firstName: 'John', lastName: 'Snow', profile: 'Admin' },

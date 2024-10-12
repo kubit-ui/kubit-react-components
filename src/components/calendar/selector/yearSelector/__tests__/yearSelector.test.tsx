@@ -4,11 +4,8 @@ import { fireEvent, screen } from '@testing-library/react';
 import * as React from 'react';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 
 import { YearSelector } from '../yearSelector';
-
-window.matchMedia = windowMatchMedia();
 
 const mockProps = {
   currentDate: new Date(2022, 0, 17),

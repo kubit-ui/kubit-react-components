@@ -37,8 +37,6 @@ const mockProps = {
   onClick: jest.fn(),
 };
 
-window.matchMedia = windowMatchMedia();
-
 describe('New Input Dropdown Component', () => {
   it('Should render InputDropdown component', async () => {
     const { container } = renderProvider(<InputDropdown {...mockProps} open={true} />);

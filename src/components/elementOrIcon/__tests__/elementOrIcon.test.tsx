@@ -4,12 +4,9 @@ import * as React from 'react';
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 import { ROLES } from '@/types';
 
 import { ElementOrIcon } from '../elementOrIcon';
-
-window.matchMedia = windowMatchMedia();
 
 const mockProps = {
   icon: 'CLOSE',

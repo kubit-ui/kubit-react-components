@@ -6,14 +6,11 @@ import * as React from 'react';
 import { axe } from 'jest-axe';
 import { renderProvider } from 'tests/renderProvider/renderProvider.utility';
 
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 import { ROLES } from '@/types';
 
 import { Slider } from '../slider';
 import { SliderButtonType } from '../types';
 import * as SliderUtils from '../utils/slider.utils';
-
-window.matchMedia = windowMatchMedia();
 
 const mockSimpleSliderProps = {
   variant: 'PRIMARY',

@@ -6,12 +6,9 @@ import * as React from 'react';
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 
 import { List } from '../list';
 import { IList } from '../types/list';
-
-window.matchMedia = windowMatchMedia();
 
 const mockProps: IList = {
   selectedDate: [new Date(), new Date()],

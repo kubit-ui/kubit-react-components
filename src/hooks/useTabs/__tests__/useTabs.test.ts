@@ -13,8 +13,6 @@ let selectedTab;
 
 describe('useTabs Hook', () => {
   beforeEach(() => {
-    window.matchMedia = windowMatchMedia();
-
     tabsLength = 5;
     numTabsInView = 3;
     selectedTab = 0;

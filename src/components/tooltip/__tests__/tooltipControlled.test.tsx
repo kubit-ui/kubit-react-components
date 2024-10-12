@@ -2,12 +2,9 @@ import { fireEvent, screen } from '@testing-library/react';
 import * as React from 'react';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 
 import { useTooltip } from '../hooks';
 import { TooltipControlled } from '../tooltipControlled';
-
-window.matchMedia = windowMatchMedia();
 
 const mockProps = {
   children: 'children',

@@ -7,13 +7,10 @@ import { axe } from 'jest-axe';
 
 import { UtilsProvider } from '@/provider';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 import { ROLES } from '@/types';
 
 import { IconBasic } from '../icon';
 import { IconHost } from '../iconHost';
-
-window.matchMedia = windowMatchMedia();
 
 const mockProps = {
   icon: 'CLOSE',

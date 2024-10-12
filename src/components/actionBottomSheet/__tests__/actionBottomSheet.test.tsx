@@ -4,11 +4,8 @@ import * as React from 'react';
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 
 import { ActionBottomSheetUnControlled as ActionBottomSheet } from '../actionBottomSheetUnControlled';
-
-window.matchMedia = windowMatchMedia();
 
 describe('ActionBottomSheet component', () => {
   it('Should render ActionBottomSheet component', async () => {
@@ -28,6 +25,30 @@ describe('ActionBottomSheet component', () => {
 
     const title = screen.getByText('title');
     expect(title).toBeInTheDocument();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate({
+      rules: {
+        'no-inline-style': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
+  });
+
+  it('When no title is used, an aria-dialog-name should be provided', async () => {
+    const { container } = renderProvider(
+      <ActionBottomSheet
+        closeIcon={{ icon: 'UNICORN', ['aria-label']: 'ariaLabelButton' }}
+        open={true}
+        popover={{ ['aria-label']: 'ariaLabel' }}
+        variant={'DEFAULT'}
+      >
+        Hello
+      </ActionBottomSheet>
+    );
+
+    const popover = screen.getByText('Hello');
+    expect(popover).toBeInTheDocument();
 
     const results = await axe(container);
     expect(container).toHTMLValidate({
@@ -68,12 +89,15 @@ describe('ActionBottomSheet component', () => {
         title={{ content: 'title' }}
         variant={'DEFAULT'}
       >
-        Hello
+        Internal content
       </ActionBottomSheet>
     );
     const triggerIcon = screen.getByLabelText('ariaLabelButton');
+
+    const internalContent = screen.getByText('Internal content');
     await act(async () => {
-      fireEvent.keyDown(window, {
+      // Internal popover element fire the escape keydown
+      fireEvent.keyDown(internalContent, {
         key: 'Escape',
         code: 'Escape',
       });

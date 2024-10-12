@@ -5,15 +5,11 @@ import { axe } from 'jest-axe';
 
 import { CssAnimationTimingFunction, CssAnimationVariants } from '@/components/cssAnimation';
 import { TAB } from '@/constants';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
 import { ROLES } from '@/types';
-import * as Utils from '@/utils/focusHandlers/focusHandlers';
 
 import { renderProvider } from '../../../tests/renderProvider/renderProvider.utility';
 import { PopoverControlled } from '../popoverControlled';
 import { PopoverUnControlled as Popover } from '../popoverUnControlled';
-
-window.matchMedia = windowMatchMedia();
 
 const mockProps = {
   open: true,
@@ -21,6 +17,7 @@ const mockProps = {
   hasBackDrop: true,
   forwardedRef: jest.fn(),
   onHandleCloseInternally: jest.fn(),
+  ref: jest.fn(),
 };
 
 describe('Popover component', () => {
@@ -84,9 +81,11 @@ describe('Popover component', () => {
     );
 
     // Focus in an inner component
-    fireEvent.focus(screen.getByRole(ROLES.BUTTON, { name: 'toFocus' }));
+    const internalButton = screen.getByRole(ROLES.BUTTON, { name: 'toFocus' });
+    fireEvent.focus(internalButton);
     await act(async () => {
-      fireEvent.keyDown(window, {
+      // Internal popover element fire the escape keydown
+      fireEvent.keyDown(internalButton, {
         key: 'Escape',
         code: 'Escape',
         keyCode: 27,
@@ -116,20 +115,17 @@ describe('Popover component', () => {
     expect(popover).not.toBeInTheDocument();
   });
 
-  it('When trapFocusInsideModal, popover will trap the focus when tab', () => {
-    const mockTrapFocus = jest.fn();
-    jest.spyOn(Utils, 'trapFocus').mockImplementation(mockTrapFocus);
-    renderProvider(
-      <Popover {...mockProps} trapFocusInsideModal>
-        content
+  it('should call handleKeyDown when tab key is pressed', async () => {
+    const handleKeyDown = jest.fn();
+    const { getByRole } = renderProvider(
+      <Popover {...mockProps} onKeyDown={handleKeyDown}>
+        <button>toFocus</button>
       </Popover>
     );
 
-    const popover = screen.getByRole(ROLES.DIALOG);
+    fireEvent.keyDown(getByRole(ROLES.DIALOG), TAB);
 
-    fireEvent.keyDown(popover, TAB);
-
-    expect(mockTrapFocus).toHaveBeenCalled();
+    expect(handleKeyDown).toHaveBeenCalled();
   });
 
   it('When popover opens, it is focus the first element inside the popover, and when closes it is retrieved to the previous focus (focusLastElementFocusedAfterClose true)', async () => {
@@ -158,7 +154,8 @@ describe('Popover component', () => {
 
     // close
     await act(async () => {
-      fireEvent.keyDown(window, {
+      // Internal popover element fire the escape keydown
+      fireEvent.keyDown(internalButton, {
         key: 'Escape',
         code: 'Escape',
         keyCode: 27,
@@ -190,7 +187,8 @@ describe('Popover component', () => {
 
     // close
     await act(async () => {
-      fireEvent.keyDown(window, {
+      // Internal popover element fire the escape keydown
+      fireEvent.keyDown(internalButton, {
         key: 'Escape',
         code: 'Escape',
         keyCode: 27,
@@ -236,9 +234,12 @@ describe('Popover component', () => {
     const popover = screen.getByRole(ROLES.DIALOG);
     expect(popover).toBeInTheDocument();
 
+    const internalButton = screen.getByRole(ROLES.BUTTON, { name: 'internal' });
+
     // close
     await act(async () => {
-      fireEvent.keyDown(window, {
+      // Internal popover element fire the escape keydown
+      fireEvent.keyDown(internalButton, {
         key: 'Escape',
         code: 'Escape',
         keyCode: 27,

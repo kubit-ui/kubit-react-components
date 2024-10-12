@@ -11,8 +11,6 @@ import { DeviceBreakpointsType, ROLES } from '@/types';
 
 import { ModalUnControlled as Modal } from '../modalUnControlled';
 
-window.matchMedia = windowMatchMedia();
-
 const mockProps = {
   title: { content: 'title', variant: 'PARAGRAPH_MEDIUM_EXPANDED' },
   onClose: jest.fn(),
@@ -162,8 +160,10 @@ describe('Modal component', () => {
     const modal = screen.getByTestId('modalTestId');
     const button = screen.getByRole('button');
     expect(button).toHaveFocus();
+
     await act(async () => {
-      fireEvent.keyDown(window, {
+      // Internal popover element fire the escape keydown
+      fireEvent.keyDown(button, {
         key: 'Escape',
         code: 'Escape',
       });
