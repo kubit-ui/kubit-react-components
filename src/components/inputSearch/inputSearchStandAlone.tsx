@@ -8,6 +8,7 @@ import { isKeyTabPressed } from '@/utils';
 
 import { AUTOCOMPLETE_TYPE } from '../input/types/input';
 import { PopoverSearchList } from './components';
+import { shouldOpenPopover } from './helpers';
 // helpers
 import { MultipleRef } from './hooks/useInputSearch';
 // styles
@@ -25,6 +26,16 @@ export const InputSearchStandAloneComponent = (
   const { refInput, refIcon } = ref as unknown as MultipleRef;
 
   const sendRef = { refInput: refInput, refIcon: refIcon };
+
+  const popoverOpen = shouldOpenPopover({
+    open: props.open,
+    useActionBottomSheet: props.styles?.[props.state]?.useActionBottomSheet?.[props.device],
+    options: props.optionList,
+    loadingList: props.loadingList,
+    noResultText: props.noResultsText,
+    hasHighlightedOption: props.hasHighlightedOption && props.highlightedOption !== '',
+  });
+
   return (
     <InputSearchStyled
       data-testid={`${props.dataTestId}InputSearch`}
@@ -38,8 +49,8 @@ export const InputSearchStandAloneComponent = (
         <Input
           {...props}
           ref={sendRef as unknown as ForwardedRef<HTMLInputElement | undefined | null> | undefined}
-          aria-controls={props.open ? ariaControls : undefined}
-          aria-expanded={props.open}
+          aria-controls={popoverOpen ? ariaControls : undefined}
+          aria-expanded={popoverOpen}
           aria-haspopup={PopoverComponentType.DIALOG}
           autocomplete={props.autocomplete || AUTOCOMPLETE_TYPE.OFF}
           icon={{
@@ -70,6 +81,7 @@ export const InputSearchStandAloneComponent = (
         hasHighlightedOption={props.hasHighlightedOption}
         hasResultTextWrittenByUser={props.hasResultTextWrittenByUser}
         highlightedOption={props.highlightedOption}
+        initialOptionsLength={props.initialOptionsLength}
         inputConfiguration={{
           additionalInfo: props.additionalInfo,
           label: props.label,
@@ -95,10 +107,11 @@ export const InputSearchStandAloneComponent = (
         loading={props.loadingList}
         loadingText={props.loadingText}
         noResultsText={props.noResultsText}
-        open={props.open}
+        open={popoverOpen}
         optionCheckedIcon={props.optionCheckedIcon}
         optionList={props.optionList}
         optionsListDefaultArias={props.optionsListDefaultArias}
+        optionsScreenReaderText={props.optionsScreenReaderText}
         preventCloseOnClickElements={[
           (refInput as MutableRefObject<HTMLInputElement | null | undefined>)?.current,
           (refIcon as MutableRefObject<HTMLSpanElement | null | undefined>)?.current,

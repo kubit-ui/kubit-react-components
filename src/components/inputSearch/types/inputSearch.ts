@@ -95,6 +95,8 @@ export interface IPopoverSearchList {
   value?: string;
   caseSensitive?: boolean;
   optionCheckedIcon?: IElementOrIcon;
+  optionsScreenReaderText?: string;
+  initialOptionsLength: number;
   // Functions
   onOpenOptions: (value: boolean) => void;
   onValueSelected: (value: string) => void;
@@ -121,6 +123,8 @@ export interface IOptionsListSearchList extends OptionGroupAriasTypes {
   value?: string;
   searchText?: string;
   optionCheckedIcon?: IElementOrIcon;
+  optionsScreenReaderText?: string;
+  initialOptionsLength: number;
 }
 
 export interface ILoadingIcon {
@@ -188,6 +192,9 @@ export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOm
   inputPopoverRightIcon?: IElementOrIcon;
   inputPopoverValue?: string;
   inputPopoverVariant?: string;
+  // Screen readers
+  optionsScreenReaderText?: string;
+  initialOptionsLength: number;
   // Functions
   onOpenOptions: (value: boolean) => void;
   onValueSelected: (value: string) => void;
@@ -207,6 +214,7 @@ type propsToOmit =
   | 'open'
   | 'listOptionsHeight'
   | 'hasHighlightedOption'
+  | 'initialOptionsLength'
   | 'onOpenOptions'
   | 'onChange'
   | 'onInputPopoverChange'
@@ -242,6 +250,7 @@ export interface IInputSearch<V = undefined extends string ? unknown : string>
   clearTextInputPopoverIconClick?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onInputPopoverIconClick?: () => void;
+  onInputPopoverEnterKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   onOptionsListKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
   onPopoverOpen?: (open: boolean) => void;
   onOptionClick?: IInputSearchStandAlone['onValueSelected'];

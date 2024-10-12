@@ -37,7 +37,8 @@ const commonArgs: IInputCounter = {
   placeholder: 'Counter',
   secondaryLabel: labelSecondary(themeSelected),
   additionalInfo: additionalInfoAction(themeSelected),
-  screenReaderTextCount: 'screenReaderTextCount',
+  screenReaderTextCount: 'screen reader text min / max reached',
+  screenReaderCurrentCharacters: '{{currentCharacters}} of {{maxLength}} characters filled',
 };
 
 export const Inputcounter: Story = {

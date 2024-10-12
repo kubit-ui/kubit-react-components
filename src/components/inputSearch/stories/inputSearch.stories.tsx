@@ -5,6 +5,7 @@ import {
   additionalInfoAction,
   labelSecondary,
 } from '@/components/input/components/stories/stories';
+import { InputState } from '@/components/input/types';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
@@ -45,7 +46,8 @@ const commonArgs: IInputSearch = {
   rightIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'alternative' },
   placeholder: 'Select an option',
   closeIcon: { icon: ICONS.ICON_CLOSE },
-  value: 'option5',
+  value: '',
+  optionsScreenReaderText: '{{numOptionsFiltered}} options are shown of {{numOptions}}',
   inputPopoverIcon: { icon: 'CLOSE' },
   titleActionBottomSheet: 'Title List',
   optionList: options,
@@ -57,6 +59,9 @@ const commonArgs: IInputSearch = {
     altText: 'loading',
   },
   noResultsText: { content: 'noResultsText' },
+  optionCheckedIcon: {
+    icon: ICONS.ICON_CHECKMARK_THICK,
+  },
 };
 export const InputSearch: Story = {
   args: {
@@ -76,6 +81,24 @@ export const InputSearchWithCtv: Story = {
           padding_bottom: '10px',
         },
       },
+    },
+  },
+};
+
+const TEXT_TRANSFORM = {
+  input: {
+    text_transform: 'uppercase',
+  },
+  placeholder: {
+    text_transform: 'capitalize',
+  },
+};
+
+export const InputSearchAutoCapitalize: Story = {
+  args: {
+    ...commonArgs,
+    ctv: {
+      [InputState.FILLED]: TEXT_TRANSFORM,
     },
   },
 };

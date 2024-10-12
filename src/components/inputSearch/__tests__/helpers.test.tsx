@@ -1,4 +1,11 @@
-import { filterOptions, getAriaControls, getLength, hasMatchWithOptions } from '../helpers';
+import {
+  buildOptionsScreenReaderText,
+  filterOptions,
+  getAriaControls,
+  getLength,
+  hasMatchWithOptions,
+  shouldOpenPopover,
+} from '../helpers';
 
 const optionsToFilter = [
   {
@@ -63,5 +70,57 @@ describe('Input Search Helpers', () => {
 
     expect(hasMatchWithOptions(correctValue, options)).toBeTruthy();
     expect(hasMatchWithOptions(wrongValue, options)).toBeFalsy();
+  });
+});
+
+describe('shouldOpenPopover', () => {
+  it('returns false when open is false', () => {
+    expect(shouldOpenPopover({ open: false, options: [] })).toBe(false);
+  });
+
+  it('returns true when useActionBottomSheet is true', () => {
+    expect(shouldOpenPopover({ open: true, useActionBottomSheet: true, options: [] })).toBe(true);
+  });
+
+  it('returns true when options array length is greater than 0', () => {
+    expect(shouldOpenPopover({ open: true, options: [{ options: ['Option 1'] }] })).toBe(true);
+  });
+
+  it('returns true when loadingList is true', () => {
+    expect(shouldOpenPopover({ open: true, options: [], loadingList: true })).toBe(true);
+  });
+
+  it('returns true when noResultText has content', () => {
+    expect(
+      shouldOpenPopover({ open: true, options: [], noResultText: { content: 'No results found' } })
+    ).toBe(true);
+  });
+
+  it('returns true when hasHighlightedOption is true', () => {
+    expect(shouldOpenPopover({ open: true, options: [], hasHighlightedOption: true })).toBe(true);
+  });
+
+  it('returns false when none of the conditions are met', () => {
+    expect(shouldOpenPopover({ open: true, options: [] })).toBe(false);
+  });
+});
+
+describe('screenReader', () => {
+  it('buildOptionsScreenReaderText - should return falsy if optionsScreenReaderText does not exist', () => {
+    const result = buildOptionsScreenReaderText({
+      numOptions: 1,
+      numOptionsFiltered: 1,
+      optionsScreenReaderText: undefined,
+    });
+    expect(result).toBeFalsy();
+  });
+
+  it('buildOptionsScreenReaderText - should return optionsScreenReaderText with replaced values', () => {
+    const result = buildOptionsScreenReaderText({
+      numOptions: 1,
+      numOptionsFiltered: 1,
+      optionsScreenReaderText: '{{numOptionsFiltered}} of {{numOptions}}',
+    });
+    expect(result).toBe('1 of 1');
   });
 });

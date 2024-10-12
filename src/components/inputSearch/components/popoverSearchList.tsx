@@ -3,11 +3,11 @@ import { ForwardedRef, forwardRef, useMemo } from 'react';
 
 import { Input } from '@/components/input';
 //  components
-import { PopoverControlled as Popover } from '@/components/popover';
+import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
 import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text } from '@/components/text';
 import { useId } from '@/hooks';
-import { AriaLiveOptionType } from '@/types';
+import { AriaLiveOptionType, ROLES } from '@/types';
 
 import { ActionBottomSheetControlledStructure as ActionBottomSheet } from '../../actionBottomSheet/actionBottomSheetControlled';
 // helpers
@@ -73,12 +73,14 @@ export const PopoverSearchListComponent = (
       dataTestId={`${props.dataTestId}OptionsList${index}`}
       hightlightedOption={showTextWritten || showHighlightedOption}
       index={index}
+      initialOptionsLength={props.initialOptionsLength}
       loader={props.loader}
       loading={props.loading}
       loadingText={props.loadingText}
       optionCheckedIcon={props.optionCheckedIcon}
       optionVariant={section?.optionVariant}
       options={section?.options || []}
+      optionsScreenReaderText={props.optionsScreenReaderText}
       searchText={labelInResultTextWrittenByUser}
       stylesListOption={props.styles.listOptions}
       stylesState={props.styles?.[props.state]}
@@ -156,12 +158,15 @@ export const PopoverSearchListComponent = (
   return (
     <Popover
       hasBackDrop
+      aria-modal={useActionBottomSheet ? true : undefined}
       blockBack={props.blockBackPopover}
+      component={useActionBottomSheet ? PopoverComponentType.DIV : undefined}
       dataTestId={`${props.dataTestId}Popover`}
       focusFirstDescendantAutomatically={false}
       focusLastElementFocusedAfterClose={false}
       open={props.open}
       preventCloseOnClickElements={props.preventCloseOnClickElements}
+      role={useActionBottomSheet ? ROLES.DIALOG : undefined}
       trapFocusInsideModal={useActionBottomSheet}
       variant={props.styles?.[props.state]?.popoverVariant?.[props.device]}
       onCloseInternally={() => {

@@ -259,6 +259,18 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    optionsScreenReaderText: {
+      description:
+        'Screen reader hidden and live text to indicate the number of options filtered by the user. You may use the keys {{numOptions}} and {{numOptionsFiltered}} to build the string. Example: "There are {{numOptions}} options, {{numOptionsFiltered}} are shown"',
+      control: { type: 'text' },
+      type: { name: 'string' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     onInputSearchChange: {
       description:
         'Function that is called when writting on the component and get the actual input value',
