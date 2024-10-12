@@ -7,6 +7,7 @@ import { TextComponentType } from '@/components/text/types/component';
 
 import { IconHighlighted } from '../iconHighlighted';
 import {
+  DecorativeElementContainerStyled,
   IconAndIconHighlightedContainerStyled,
   NavigationRowStyled,
   TextSectionStyled,
@@ -53,6 +54,9 @@ const NavigationRowStandaloneComponent = (
           />
         )}
       </IconAndIconHighlightedContainerStyled>
+      <DecorativeElementContainerStyled styles={props.styles}>
+        {props.decorativeElement}
+      </DecorativeElementContainerStyled>
       <TextSectionStyled styles={props.styles}>
         {props.text && (
           <Text

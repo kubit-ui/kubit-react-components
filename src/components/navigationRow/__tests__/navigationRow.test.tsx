@@ -5,6 +5,7 @@ import * as React from 'react';
 
 import { axe } from 'jest-axe';
 
+import { ElementOrIcon } from '@/components/elementOrIcon';
 import { IconHighlightedSizeType, IconHighlightedType } from '@/components/iconHighlighted';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
@@ -69,6 +70,20 @@ describe('NavigationRow component', () => {
       />
     );
     const iconHighlighted = screen.getByRole('img', { name: 'Alt Text', hidden: false });
+    expect(iconHighlighted).toBeDefined();
+  });
+  it('Should show component with decorativeElement', () => {
+    const decorativeElement = (
+      <ElementOrIcon icon={'ICON_PLACEHOLDER'} altText="decorativeElement" />
+    );
+    renderProvider(
+      <NavigationRow
+        {...mockProps}
+        decorativeElement={decorativeElement}
+        description={{ content: 'Description' }}
+      />
+    );
+    const iconHighlighted = screen.getByRole('img', { name: 'decorativeElement' });
     expect(iconHighlighted).toBeDefined();
   });
 });

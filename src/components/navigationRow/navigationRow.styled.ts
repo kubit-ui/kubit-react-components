@@ -29,3 +29,7 @@ export const TextSectionStyled = styled.span<INavigationRowStyled>`
 export const IconAndIconHighlightedContainerStyled = styled.span<INavigationRowStyled>`
   ${({ styles }) => getStyles(styles?.iconTextContainer)}
 `;
+
+export const DecorativeElementContainerStyled = styled.span<INavigationRowStyled>`
+  ${({ styles }) => getStyles(styles?.decorativeElementContainer)}
+`;

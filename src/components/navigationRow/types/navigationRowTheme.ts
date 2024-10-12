@@ -10,9 +10,16 @@ export type NavigationRowStylesPropsType = {
   // description
   descriptionContainer?: CommonStyleType;
   description?: TypographyTypes;
+  decorativeElementContainer?: CommonStyleType;
   // icons
   arrowIcon?: IconTypes;
+  /**
+   * @deprecated remove when deconrativeIcon props is removed in the next major version.
+   */
   decorativeIcon?: IconTypes;
+  /**
+   * @deprecated remove when deconrativeIcon props is removed in the next major version.
+   */
   iconHighlighted?: {
     variant: string;
     color: string;
