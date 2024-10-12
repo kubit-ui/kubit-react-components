@@ -576,37 +576,66 @@ const getGenericStyles = (styles?: CommonStyleType): CSSProp => {
   `;
 };
 
-export const getPseudoElementStyles = (
-  pseudoElement: string,
+export const getPseudoStyles = (
+  pseudoKey: string,
   { content, ...styles }: AfterOrBeforeType
 ): CSSProp => {
-  const isAfterOrBefore = pseudoElement.includes('after') || pseudoElement.includes('before');
+  const isAfterOrBefore = pseudoKey.includes('after') || pseudoKey.includes('before');
+
   return css`
-    ${pseudoElement} {
-      ${isAfterOrBefore && `content: '${content}'`};
+    ${pseudoKey} {
+      ${isAfterOrBefore && `content: '${content}'`}
       ${getGenericStyles(styles)}
+      ${getTypographyStyles(styles)}
     }
   `;
 };
-const getAfterBeforeKeys = (styles?: CommonStyleType): CSSProp => {
+
+const getPseudoElementOrClassKeys = (styles?: CommonStyleType): CSSProp => {
   if (!styles) {
     return css``;
   }
+
+  // pseudo elements
   const afterKey = '&::after';
   const beforeKey = '&::before';
   const backdropKey = '&::backdrop';
+  const placeholderKey = '&::placeholder';
+  const passwordRevealButtonKey = '&::-ms-reveal';
+  const webkitInnerSpinButtonKey = '&::-webkit-inner-spin-button';
+  const webkitOuterSpinButtonKey = '&::-webkit-outer-spin-button';
+  const ariaInvalidKey = '&:is([aria-invalid="true"])';
+  const focusVisibleKey = '&:focus-visible';
+  // pseudo classes
+  const disabledKey = '&:disabled';
+  const focusKey = '&:focus';
+  // others
+  const dataTruncateKey = '&[data-truncate="true"]';
+  const dataFilledKey = '&[data-filled="true"]';
+
   return css`
-    ${styles.after && getPseudoElementStyles(afterKey, styles.after)}
-    ${styles.before && getPseudoElementStyles(beforeKey, styles.before)}
-    ${styles.backdrop && getPseudoElementStyles(backdropKey, styles.backdrop)}
+    ${styles.after && getPseudoStyles(afterKey, styles.after)}
+    ${styles.before && getPseudoStyles(beforeKey, styles.before)}
+    ${styles.backdrop && getPseudoStyles(backdropKey, styles.backdrop)}
+    ${styles.focusVisible && getPseudoStyles(focusVisibleKey, styles.focusVisible)}
+    ${styles.ariaInvalid && getPseudoStyles(ariaInvalidKey, styles.ariaInvalid)}
+    ${styles.passwordRevealButton &&
+    getPseudoStyles(passwordRevealButtonKey, styles.passwordRevealButton)}
+    ${styles.webkitInnerSpinButton &&
+    getPseudoStyles(webkitInnerSpinButtonKey, styles.webkitInnerSpinButton)}
+    ${styles.webkitOuterSpinButton &&
+    getPseudoStyles(webkitOuterSpinButtonKey, styles.webkitOuterSpinButton)}
+    ${styles.disabled && getPseudoStyles(disabledKey, styles.disabled)} 
+    ${styles.focus && getPseudoStyles(focusKey, styles.focus)}
+    ${styles.dataTruncate && getPseudoStyles(dataTruncateKey, styles.dataTruncate)}
+    ${styles.dataFilled && getPseudoStyles(dataFilledKey, styles.dataFilled)}
   `;
 };
 
 export const getStyles = (styles?: CommonStyleType): CSSProp => {
-  //all styles except TypographyTypes and IconTypes
   return css`
     ${getGenericStyles(styles)}
-    ${getAfterBeforeKeys(styles)}
+    ${getPseudoElementOrClassKeys(styles)}
     ${({
       theme: {
         MEDIA_QUERIES: { onlyDesktop, onlyTablet, onlyMobile },
@@ -614,15 +643,15 @@ export const getStyles = (styles?: CommonStyleType): CSSProp => {
     }) => css`
       ${onlyDesktop} {
         ${getGenericStyles(styles?.DESKTOP)}
-        ${getAfterBeforeKeys(styles?.DESKTOP)}
+        ${getPseudoElementOrClassKeys(styles?.DESKTOP)}
       }
       ${onlyTablet} {
         ${getGenericStyles(styles?.TABLET)}
-        ${getAfterBeforeKeys(styles?.TABLET)}
+        ${getPseudoElementOrClassKeys(styles?.TABLET)}
       }
       ${onlyMobile} {
         ${getGenericStyles(styles?.MOBILE)}
-        ${getAfterBeforeKeys(styles?.MOBILE)}
+        ${getPseudoElementOrClassKeys(styles?.MOBILE)}
       }
     `}
   `;
