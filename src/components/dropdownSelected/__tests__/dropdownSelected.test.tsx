@@ -204,4 +204,63 @@ describe('DropdownSelected component', () => {
 
     expect(option1).not.toBeInTheDocument();
   });
+
+  it('The container should open the dropdown on focus if openAndCloseOnHover', () => {
+    const { getByTestId } = renderProvider(
+      <DropdownSelected
+        {...mockProps}
+        openAndCloseOnHover
+        dataTestIdComponent="container-test-id"
+      />
+    );
+
+    const container = getByTestId('container-test-id');
+
+    act(() => {
+      fireEvent.focus(container);
+    });
+
+    const optionsAfterOpened = getByTestId(mockProps.dataTestIdListOptionsContainer);
+    expect(optionsAfterOpened).toBeInTheDocument();
+  });
+
+  it('The container should close the dropdown on blur if openAndCloseOnHover', () => {
+    const { queryByTestId, getByTestId } = renderProvider(
+      <DropdownSelected
+        {...mockProps}
+        openAndCloseOnHover
+        dataTestIdComponent="container-test-id"
+        defaultOpen={true}
+      />
+    );
+
+    const container = getByTestId('container-test-id');
+
+    act(() => {
+      fireEvent.blur(container);
+    });
+
+    const optionsAfterOpened = queryByTestId(mockProps.dataTestIdListOptionsContainer);
+    expect(optionsAfterOpened).not.toBeInTheDocument();
+  });
+
+  it('The container should close the dropdown on escape keydown', () => {
+    const { queryByTestId, getByTestId } = renderProvider(
+      <DropdownSelected
+        {...mockProps}
+        openAndCloseOnHover
+        dataTestIdComponent="container-test-id"
+        defaultOpen={true}
+      />
+    );
+
+    const container = getByTestId('container-test-id');
+
+    act(() => {
+      fireEvent.keyDown(container, { key: 'Escape' });
+    });
+
+    const optionsAfterOpened = queryByTestId(mockProps.dataTestIdListOptionsContainer);
+    expect(optionsAfterOpened).not.toBeInTheDocument();
+  });
 });

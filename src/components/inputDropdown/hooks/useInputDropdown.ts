@@ -306,7 +306,7 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
 
   // Uses effects
 
-  // Update value when new prop value
+  // Update value when value or optionList options changes
   useEffect(() => {
     setValueSearchSelected(props.value);
     const searchText = findOptionByValue(props.value, props.optionList.options)?.label ?? '';
@@ -314,7 +314,7 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
     setLabelSearchSelected(searchText);
     setSearchText(searchText);
     setInputPopoverText(searchText);
-  }, [props.value]);
+  }, [props.value, props.optionList.options]);
 
   const actionBottomSheetRefCb = useCallback(node => {
     // Focus in the input popover if exists
