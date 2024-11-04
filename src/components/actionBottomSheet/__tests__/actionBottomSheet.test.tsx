@@ -35,6 +35,23 @@ describe('ActionBottomSheet component', () => {
     expect(results).toHaveNoViolations();
   });
 
+  it('Should render ActionBottomSheet component but closed', async () => {
+    const { container } = renderProvider(
+      <ActionBottomSheet variant={'DEFAULT'}>Hello</ActionBottomSheet>
+    );
+
+    const popover = screen.queryByText('Hello');
+    expect(popover).not.toBeInTheDocument();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate({
+      rules: {
+        'no-inline-style': 'off',
+      },
+    });
+    expect(results).toHaveNoViolations();
+  });
+
   it('When no title is used, an aria-dialog-name should be provided', async () => {
     const { container } = renderProvider(
       <ActionBottomSheet

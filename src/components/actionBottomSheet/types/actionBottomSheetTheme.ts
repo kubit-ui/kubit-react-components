@@ -19,6 +19,7 @@ export type ActionBottomSheetVariantStylesType = {
   headerContent?: CommonStyleType;
   content?: CommonStyleType;
   popoverVariant?: string;
+  dragIconContainer?: CommonStyleType;
 };
 
 /**

@@ -133,6 +133,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    dragIcon: {
+      description: 'Add drag icon to swipe down gesture',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'IElementOrIcon',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     dataTestId: {
       description: 'String used for testing',
       control: { type: 'text' },

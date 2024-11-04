@@ -3,6 +3,7 @@ import * as React from 'react';
 import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
+import { DeviceBreakpointsType } from '@/types';
 
 import { Link } from '../link';
 import {
@@ -14,6 +15,7 @@ import {
   ActionBottomSheetIconSyled,
   ActionBottomSheetStyled,
   ActionBottomSheetTitleSyled,
+  DraggableIcon,
 } from './actionBottomSheet.styled';
 import { IActionBottomSheetStandAlone } from './types';
 
@@ -34,6 +36,10 @@ const ActionBottomSheetStandAloneComponent = (
     scrollableRef(actionBottomRef.current);
   }, []);
 
+  const isMobileOrTablet = [DeviceBreakpointsType.MOBILE, DeviceBreakpointsType.TABLET].includes(
+    props.device
+  );
+
   return (
     <ActionBottomSheetStyled
       ref={actionBottomRef}
@@ -41,6 +47,11 @@ const ActionBottomSheetStandAloneComponent = (
       data-testid={`${props.dataTestId}Container`}
       styles={props.styles.container}
     >
+      {props.dragIcon && isMobileOrTablet && (
+        <DraggableIcon ref={props.dragIconRef} data-drag-icon styles={props.styles}>
+          <ElementOrIcon {...props.dragIcon} />
+        </DraggableIcon>
+      )}
       {hasHeader && (
         <>
           <ActionBottomSheetControlStyled ref={shadowRef} styles={props.styles.controlContainer}>
