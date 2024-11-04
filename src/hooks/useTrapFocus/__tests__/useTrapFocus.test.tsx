@@ -1,33 +1,48 @@
-// hook
 import userEvent from '@testing-library/user-event';
 
 import { renderHook } from '@testing-library/react-hooks';
 
 import { useTrapFocus } from '../useTrapFocus';
 
-const container = document.createElement('div');
-container.id = 'test-container';
-
-const button1Focusable = document.createElement('button');
-button1Focusable.id = 'button1Focusable';
-
-const button2Focusable = document.createElement('button');
-button2Focusable.id = 'button2Focusable';
-
-const button3Focusable = document.createElement('button');
-button3Focusable.id = 'button3Focusable';
-
-container.appendChild(button1Focusable);
-container.appendChild(button2Focusable);
-container.appendChild(button3Focusable);
-
-document.body.appendChild(container);
-
-const ref = { current: container };
-
 describe('useTrapFocus', () => {
-  it('not trap focus when hasFocusTrap is false', async () => {
-    renderHook(() => useTrapFocus({ element: ref, hasFocusTrap: false }));
+  let container: HTMLDivElement;
+  let button1Focusable: HTMLButtonElement;
+  let button2Focusable: HTMLButtonElement;
+  let button3Focusable: HTMLButtonElement;
+  let ref: React.RefObject<HTMLElement>;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+
+    button1Focusable = document.createElement('button');
+    button2Focusable = document.createElement('button');
+    button3Focusable = document.createElement('button');
+
+    container.appendChild(button1Focusable);
+    container.appendChild(button2Focusable);
+    container.appendChild(button3Focusable);
+    document.body.appendChild(container);
+    ref = { current: container };
+  });
+
+  afterEach(() => {
+    document.body.removeChild(container);
+  });
+
+  it('does not trap focus when trapFocus is false (default value)', async () => {
+    renderHook(() => useTrapFocus({ ref }));
+
+    const user = userEvent.setup();
+
+    button3Focusable.focus();
+
+    await user.tab();
+
+    expect(document.body).toHaveFocus();
+  });
+
+  it('does not trap focus if element is not defined', async () => {
+    renderHook(() => useTrapFocus({ ref: { current: null }, trapFocus: true }));
 
     const user = userEvent.setup();
 
@@ -39,58 +54,125 @@ describe('useTrapFocus', () => {
     expect(document.body).toHaveFocus();
   });
 
-  it('traps focus on the first element when last element is focused and tab is pressed', async () => {
-    renderHook(() => useTrapFocus({ element: ref }));
+  it('will not change focus if key pressed is different from tab', async () => {
+    renderHook(() => useTrapFocus({ ref, trapFocus: true }));
 
     const user = userEvent.setup();
 
-    // Focus last element
     button3Focusable.focus();
-    expect(button3Focusable).toHaveFocus();
+    await user.type(button3Focusable, '{enter}');
 
-    // Press Tab
+    expect(button3Focusable).toHaveFocus();
+  });
+
+  it('does not trap focus if the element does not have focusable elements', async () => {
+    const externalButton1 = document.createElement('button');
+    const _container = document.createElement('div');
+    const internalContainer = document.createElement('div');
+    _container.appendChild(internalContainer);
+    const externalButton2 = document.createElement('button');
+    document.body.appendChild(externalButton1);
+    document.body.appendChild(_container);
+    document.body.appendChild(externalButton2);
+
+    renderHook(() => useTrapFocus({ ref: { current: _container }, trapFocus: true }));
+
+    const user = userEvent.setup();
+
+    externalButton1.focus();
+
     await user.tab();
 
-    // Focus first element
-    expect(button1Focusable).toHaveFocus();
-
-    // Press shift + Tab
-    await user.tab({ shift: true });
-    // Focus last element
-    expect(button3Focusable).toHaveFocus();
+    expect(externalButton2).toHaveFocus();
   });
 
-  // when blur and key tab is no pressed, focus to the next focusable element
-  it('focuses on the next focusable element when blur and key tab is not pressed', () => {
-    renderHook(() => useTrapFocus({ element: ref }));
+  it('will focus to the first focusable element if the current active element is the last one, and tab (no shift) is pressed', async () => {
+    renderHook(() => useTrapFocus({ ref, trapFocus: true }));
 
-    button1Focusable.focus();
-    expect(button1Focusable).toHaveFocus();
-
-    button1Focusable.blur();
-
-    // waiting for document.activeElement to be updated
-    setTimeout(() => {
-      expect(button2Focusable).toHaveFocus();
-    }, 0);
-  });
-  it('focuses on the first focusable element when blur and key tab is not pressed if last element is disabled', () => {
-    renderHook(() => useTrapFocus({ element: ref }));
-
-    const button4Focusable = document.createElement('button');
-    button4Focusable.id = 'button4Focusable';
-    button4Focusable.disabled = true;
-
-    container.appendChild(button4Focusable);
+    const user = userEvent.setup();
 
     button3Focusable.focus();
+    await user.tab();
+
+    expect(button1Focusable).toHaveFocus();
+  });
+
+  it('will focus to the last focusable element if the current active element is the first one, and tab + shift is pressed', async () => {
+    renderHook(() => useTrapFocus({ ref, trapFocus: true }));
+
+    const user = userEvent.setup();
+
+    button1Focusable.focus();
+    await user.tab({ shift: true });
+
     expect(button3Focusable).toHaveFocus();
+  });
 
-    button3Focusable.blur();
+  it('will focus to the first focusable element if the current active element is before the first focusable element, and tab is pressed', async () => {
+    renderHook(() => useTrapFocus({ ref, trapFocus: true }));
 
-    // waiting for document.activeElement to be updated
-    setTimeout(() => {
-      expect(button1Focusable).toHaveFocus();
-    }, 0);
+    const user = userEvent.setup();
+
+    document.body.focus();
+
+    await user.tab();
+
+    expect(button1Focusable).toHaveFocus();
+  });
+
+  it('will focus to the last focusable element if the current active element is before the first focusable element, and tab + shift is pressed', async () => {
+    renderHook(() => useTrapFocus({ ref, trapFocus: true }));
+
+    const user = userEvent.setup();
+
+    document.body.focus();
+
+    await user.tab({ shift: true });
+
+    expect(button3Focusable).toHaveFocus();
+  });
+
+  it('will focus to the first focusable element if the current active element is after the last focusable element, and tab is pressed', async () => {
+    const container = document.createElement('div');
+    const firstFocusableElement = document.createElement('button');
+    const lastFocusableElement = document.createElement('button');
+    const optionElement = document.createElement('div');
+    optionElement.setAttribute('tabIndex', '-1');
+    container.appendChild(firstFocusableElement);
+    container.appendChild(lastFocusableElement);
+    container.appendChild(optionElement);
+    document.body.appendChild(container);
+
+    renderHook(() => useTrapFocus({ ref: { current: container }, trapFocus: true }));
+
+    const user = userEvent.setup();
+
+    optionElement.focus();
+
+    await user.tab();
+
+    expect(firstFocusableElement).toHaveFocus();
+  });
+
+  it('will focus to the last focusable element if the current active element is after the last focusable element, and tab + shift is pressed', async () => {
+    const container = document.createElement('div');
+    const firstFocusableElement = document.createElement('button');
+    const lastFocusableElement = document.createElement('button');
+    const optionElement = document.createElement('div');
+    optionElement.setAttribute('tabIndex', '-1');
+    container.appendChild(firstFocusableElement);
+    container.appendChild(lastFocusableElement);
+    container.appendChild(optionElement);
+    document.body.appendChild(container);
+
+    renderHook(() => useTrapFocus({ ref: { current: container }, trapFocus: true }));
+
+    const user = userEvent.setup();
+
+    optionElement.focus();
+
+    await user.tab({ shift: true });
+
+    expect(lastFocusableElement).toHaveFocus();
   });
 });

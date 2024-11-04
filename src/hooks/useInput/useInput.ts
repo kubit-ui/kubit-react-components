@@ -371,6 +371,7 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
     value,
     state,
     inputRef,
+    eventKeyPressRef,
     handleChangeInternal,
     handleBlurInternal,
     handleFocusInternal,

@@ -3,110 +3,69 @@ import * as React from 'react';
 import { getFocusableDescendantsV2 } from '@/utils/focusHandlers/focusHandlers';
 
 export const useTrapFocus = ({
-  element,
-  hasFocusTrap = true,
-  tabPressed,
+  ref,
+  // Default false in order to only active the window listener when needed
+  trapFocus = false,
 }: {
-  element: React.MutableRefObject<HTMLElement | null>;
-  hasFocusTrap?: boolean;
-  tabPressed?: boolean;
+  ref: React.MutableRefObject<HTMLElement | null>;
+  trapFocus?: boolean;
 }): void | null => {
-  const tabPressRef = React.useRef(false);
-
-  const POSSIBLE_FOCUSABLE_QUERY_SELECTOR =
-    'a[href], area[href], input, select, textarea, button, summary, iframe, embed, [tabindex="0"]';
-
-  const getAllPossibleFocusableElements = (element: HTMLElement): HTMLElement[] => {
-    const focusableNodes = Array.from(
-      element.querySelectorAll<HTMLElement>(POSSIBLE_FOCUSABLE_QUERY_SELECTOR)
-    );
-
-    return focusableNodes;
-  };
-
-  const findNextFocusableElement = (
-    startIndex: number,
-    elements: HTMLElement[]
-  ): HTMLElement | null => {
-    for (let i = startIndex; i < elements.length; i++) {
-      const isFocusable =
-        !elements[i].hasAttribute('disabled') &&
-        !elements[i].getAttribute('aria-hidden:true') &&
-        !elements[i].getAttribute('aria-disabled:true');
-      if (isFocusable) {
-        return elements[i];
-      }
-    }
-    return null;
-  };
-
   React.useEffect(() => {
-    if (!hasFocusTrap) {
-      return;
-    }
-    const allPossibleFocusableElements =
-      element.current && getAllPossibleFocusableElements(element.current);
+    const handleKeyDown = (e: KeyboardEvent): void => {
+      // Do nothing is ref is not defined
+      // Do nothing if tab is not pressed
+      if (!ref.current || e.key !== 'Tab') {
+        return;
+      }
+      const focusableElements = getFocusableDescendantsV2({ element: ref.current });
+      // Do nothing if the ref does not contain focusable elements
+      if (!focusableElements.length) {
+        return;
+      }
+      const firstFocusableElement = focusableElements[0];
+      const lastFocusableElement = focusableElements[focusableElements.length - 1];
 
-    const handleFocus = (e: KeyboardEvent): void => {
-      if (element.current && e.key === 'Tab') {
-        tabPressRef.current = true;
-        const focusableElements = getFocusableDescendantsV2({ element: element.current });
+      // If we are at the last focusable element and we press tab (without shift), change the focus to the first focusable element
+      if (!e.shiftKey && document.activeElement === lastFocusableElement) {
+        firstFocusableElement?.focus();
+        e.preventDefault();
+        return;
+      }
 
-        if (focusableElements.length) {
-          const firstFocusableElement = focusableElements[0];
-          const lastFocusableElement = focusableElements[focusableElements.length - 1];
-          if (e.shiftKey) {
-            if (document.activeElement === firstFocusableElement) {
-              lastFocusableElement?.focus();
-              e.preventDefault();
-            }
-          } else {
-            if (document.activeElement === lastFocusableElement) {
-              firstFocusableElement?.focus();
-              e.preventDefault();
-            }
-          }
-        } else {
+      // If we are at the first focusable element and we press shift + tab, change the focus to the last focusable element
+      if (e.shiftKey && document.activeElement === firstFocusableElement) {
+        lastFocusableElement?.focus();
+        e.preventDefault();
+        return;
+      }
+
+      // If we have preceded or passed the focusable elements, then:
+      // When tab -> focus first element
+      // When shift + tab -> focus last element
+      // preceded or passed how ? -> Imagine no focusable elements inside the element container with tabIndex="-1", but they are focused manually with focus()
+      if (
+        firstFocusableElement?.compareDocumentPosition(e.target as Node) &
+          Node.DOCUMENT_POSITION_PRECEDING ||
+        lastFocusableElement?.compareDocumentPosition(e.target as Node) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ) {
+        if (e.shiftKey) {
+          lastFocusableElement?.focus();
           e.preventDefault();
+          return;
         }
+        firstFocusableElement?.focus();
+        e.preventDefault();
       }
     };
-    const handleBlur = (e): void => {
-      if (!tabPressRef.current && element.current) {
-        // Necessary timeout to update properly the new focusable elements
-        setTimeout(() => {
-          const focusableElements =
-            element.current && getFocusableDescendantsV2({ element: element.current });
 
-          if (allPossibleFocusableElements?.length && focusableElements?.length) {
-            const activeElementIndex = allPossibleFocusableElements.findIndex(
-              focusableElement => focusableElement === e.target
-            );
-
-            // If next focusable element exists, focus it
-            if (activeElementIndex !== -1) {
-              const nextFocusableElement = findNextFocusableElement(
-                activeElementIndex + 1,
-                allPossibleFocusableElements
-              );
-              if (nextFocusableElement) {
-                nextFocusableElement.focus();
-              } else if (activeElementIndex + 1 >= allPossibleFocusableElements.length) {
-                // If active element is the last one, focus the first focusable element
-                focusableElements[0]?.focus();
-              }
-            }
-          }
-        }, 0);
-      }
-      tabPressRef.current = false;
-    };
-    document.addEventListener('keydown', handleFocus);
-    document.addEventListener('focusout', handleBlur);
-
+    // It is being used window event listener instead of ref.eventListener because the focus is redirected to the body when a focused element disappears or is marked as disabled
+    // In these cases, the handleKeyDown would not be triggered if the event listener is attached to the ref
+    if (trapFocus) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
     return () => {
-      document.removeEventListener('keydown', handleFocus);
-      document.removeEventListener('focusout', handleBlur);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [element, tabPressRef.current, hasFocusTrap, tabPressed]);
+  }, [trapFocus]);
 };

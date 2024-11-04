@@ -7,6 +7,7 @@ import {
 } from 'react';
 
 import { FormatNumber, InputState, InputTypeType, MASK_TYPE } from '@/components/input/types';
+import { EventKeyPressRefType } from '@/types';
 
 export type ParamsTypeInputHook = {
   ref?: ForwardedRef<HTMLInputElement | undefined>;
@@ -45,6 +46,7 @@ export type ParamsTypeInputHook = {
 export type ReturnTypeInputHook = {
   value: string | number;
   state: InputState;
+  eventKeyPressRef: MutableRefObject<EventKeyPressRefType | undefined>;
   inputRef?: MutableRefObject<HTMLInputElement | undefined>;
   handleBlurInternal: FocusEventHandler<HTMLInputElement>;
   handleChangeInternal: ChangeEventHandler<HTMLInputElement>;

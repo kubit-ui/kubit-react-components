@@ -102,11 +102,17 @@ export const useScrollEffect = ({
   );
 
   const resizeRef = useCallback(node => {
+    const handleLoad = () => {
+      if (innerResizeRef.current) {
+        resizeHeight.current = innerResizeRef.current.clientHeight;
+        resizeWidth.current = innerResizeRef.current.clientWidth;
+      }
+    };
     if (node) {
       innerResizeRef.current = node;
-      resizeHeight.current = node.clientHeight;
-      resizeWidth.current = node.clientWidth;
+      innerResizeRef.current?.addEventListener('load', handleLoad);
     } else {
+      innerResizeRef.current?.removeEventListener('load', handleLoad);
       innerResizeRef.current = null;
     }
   }, []);
