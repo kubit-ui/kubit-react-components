@@ -66,6 +66,19 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    contentScrollArias: {
+      description: 'Aria label for content when scroll',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'DrawerContentScrollAriasType',
+          detail:
+            'DrawerContentScrollAriasType: { ["aria-label"]?: string; ["aria-labelledby"]?: string; }',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     footer: {
       description: 'Footer of the Drawer',
       type: { name: 'object' },

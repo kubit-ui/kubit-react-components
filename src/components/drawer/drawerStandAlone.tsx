@@ -2,10 +2,11 @@ import * as React from 'react';
 
 import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Footer } from '@/components/footer/footer';
-import { PopoverControlled as Popover } from '@/components/popover';
+import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 import { useId } from '@/hooks';
+import { ROLES } from '@/types';
 
 import {
   DrawerContentStyled,
@@ -18,14 +19,7 @@ import {
 import { IDrawerStandAlone } from './types';
 
 const DrawerStandAloneComponent = (
-  {
-    blocked = false,
-    shadowRef,
-    footerRef,
-    contentRef,
-    titleComponent = TextComponentType.H3,
-    ...props
-  }: IDrawerStandAlone,
+  { blocked = false, titleComponent = TextComponentType.H3, ...props }: IDrawerStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const uniqueTitleId = useId('drawer-title');
@@ -34,13 +28,14 @@ const DrawerStandAloneComponent = (
 
   return (
     <Popover
-      aria-label={!props.title?.content ? `${props.popover?.['aria-label']}` : undefined}
       aria-labelledby={props.title?.content ? titleIdFinal : undefined}
       aria-modal={props.open}
       clickOverlayClose={!blocked}
+      component={PopoverComponentType.DIV}
       dataTestId={`${props.dataTestId}Popover`}
       hasBackDrop={true}
       open={props.open}
+      role={ROLES.DIALOG}
       trapFocusInsideModal={true}
       variant={position}
       {...props.popover}
@@ -62,8 +57,8 @@ const DrawerStandAloneComponent = (
         )}
         <DrawerTitleContentFooterContainerStyled blocked={blocked} styles={props.styles}>
           <DrawerTitleStyled
-            ref={shadowRef}
-            as={Text as unknown as React.ElementType}
+            data-drawer-title
+            as={Text}
             component={titleComponent as unknown as TextComponentType}
             customTypography={props.styles.title}
             dataTestId={`${titleIdFinal}Title`}
@@ -72,13 +67,24 @@ const DrawerStandAloneComponent = (
           >
             {props.title?.content}
           </DrawerTitleStyled>
-          <DrawerContentStyled ref={contentRef} styles={props.styles}>
+          <DrawerContentStyled
+            data-drawer-content
+            aria-label={
+              props.contentHasScroll ? props.contentScrollArias?.['aria-label'] : undefined
+            }
+            aria-labelledby={
+              props.contentHasScroll ? props.contentScrollArias?.['aria-labelledby'] : undefined
+            }
+            role={props.contentHasScroll ? ROLES.REGION : undefined}
+            styles={props.styles}
+            tabIndex={props.contentHasScroll ? 0 : undefined}
+          >
             {props.children}
           </DrawerContentStyled>
-          {props.footer?.content && props.styles.footer?.variant && (
+          {props.footer?.content && (props.styles.footer?.variant || props.footer.variant) && (
             <DrawerFooterStyled
-              ref={footerRef}
-              as={Footer as unknown as React.ElementType}
+              data-drawer-footer
+              as={Footer}
               customFooterStyles={props.styles}
               variant={props.styles.footer?.variant}
               {...props.footer}
