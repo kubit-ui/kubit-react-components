@@ -362,6 +362,7 @@ export type IInputStandAlone = IInputComponents & {
   truncate?: boolean;
   disabledArrowUpDownInputNumber?: boolean;
   placeholder?: string;
+  spellCheck?: boolean;
   autocomplete?: AUTOCOMPLETE_TYPE;
   autoCapitalize?:
     | 'off'

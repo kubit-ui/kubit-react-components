@@ -220,6 +220,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    spellCheck: {
+      description: 'Specifies whether the value of the input should be checked for spelling errors',
+      control: { type: 'boolean' },
+      type: { name: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     inputMode: {
       description: 'inputMode for the input',
       type: { name: 'string' },

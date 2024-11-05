@@ -105,6 +105,7 @@ const InputStandAloneComponent = (
         required={props.required}
         rightIcon={props.rightIcon}
         role={props.role}
+        spellCheck={props.spellCheck}
         state={state}
         styles={styles}
         type={props.type}

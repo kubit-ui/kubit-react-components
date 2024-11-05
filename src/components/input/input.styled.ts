@@ -176,7 +176,10 @@ export const InputStyled = styled.input<InputStyledProps>`
   }
 
   &:focus-visible {
-    ${inputFocusWidthMixin}
+    ${({ styles, state }) =>
+      styles?.[state]?.focusVisibleCustom
+        ? getStyles(styles?.[state]?.focusVisibleCustom)
+        : inputFocusWidthMixin}
   }
 
   &[data-truncate='true'] {
