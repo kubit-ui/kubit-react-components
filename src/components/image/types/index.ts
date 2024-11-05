@@ -1,6 +1,6 @@
 export type { IImageStandAlone, IImage } from './image';
 export type { ImageStylesPropsType } from './imageTheme';
-export type { IPictureSourceSandAlone } from './pictureSource';
+export type { PictureSourceType, IPictureSourceSandAlone } from './pictureSource';
 
 //enums
 export { ImageLoadingType } from './loading';
