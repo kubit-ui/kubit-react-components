@@ -28,7 +28,7 @@ import {
   TooltipTitleStyled,
 } from './tooltip.styled';
 import { ITooltipStandAlone } from './types';
-import { getAriaDescriptorsBy, getHtmlTagForTooltip } from './utils';
+import { getAriaDescriptorsBy } from './utils';
 
 const TooltipStandAlone = ({
   childrenAsButton = true,
@@ -63,15 +63,12 @@ const TooltipStandAlone = ({
   const Tooltip = (
     <TooltipExternalContainerStyled
       ref={props.tooltipRef}
-      aria-label={props.tooltipAriaLabel}
-      aria-labelledby={titleId}
-      as={getHtmlTagForTooltip({
-        mediaDevice: props.mediaDevice,
-        tooltipAsModal: props.tooltipAsModal,
-      })}
+      aria-label={isDesktop ? props.tooltipAriaLabel : undefined}
+      aria-labelledby={isDesktop ? titleId : undefined}
+      aria-modal={isDesktop && props.tooltipAsModal ? true : undefined}
       data-testid={`${props.dataTestId}TooltipContent`}
       id={uniqueId}
-      role={isDesktop && !props.tooltipAsModal ? ROLES.TOOLTIP : undefined}
+      role={isDesktop ? (props.tooltipAsModal ? ROLES.DIALOG : ROLES.TOOLTIP) : undefined}
       styles={props.styles}
       onFocus={props.onTooltipFocus}
       onKeyDown={props.onTooltipKeyDown}
@@ -189,18 +186,19 @@ const TooltipStandAlone = ({
         Tooltip
       ) : (
         <Popover
-          component={!props.tooltipAsModal ? PopoverComponentType.DIV : PopoverComponentType.DIALOG}
+          component={PopoverComponentType.DIV}
           dataTestId={`${props.dataTestId}Popover`}
           focusLastElementFocusedAfterClose={false}
           hasBackDrop={props.styles.showOverlay?.[props.mediaDevice]}
           open={props.popoverOpen}
           positionVariant={PopoverPositionVariantType.ABSOLUTE}
           preventCloseOnClickElements={[props.labelRef?.current]}
-          role={!props.tooltipAsModal ? ROLES.TOOLTIP : undefined}
+          role={props.tooltipAsModal ? ROLES.DIALOG : ROLES.TOOLTIP}
           trapFocusInsideModal={true}
           variant={props.styles.popoverVariant?.[props.mediaDevice]}
           {...props.popover}
           aria-label={props.popover?.['aria-label'] || props.tooltipAriaLabel}
+          aria-labelledby={titleId}
           aria-modal={props.tooltipAsModal || undefined}
           onCloseInternally={props.onPopoverCloseInternally}
         >

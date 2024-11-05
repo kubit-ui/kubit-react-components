@@ -33,6 +33,9 @@ export const Tooltip: Story = {
     variant: Object.values(variantsObject[themeSelected].TooltipVariantType || {})[0] as string,
     title: { content: 'Tootltip title' },
     content: { content: 'Tooltip content' },
+    contentScrollArias: {
+      'aria-label': 'Tooltip content scroll',
+    },
     children: 'Hover me',
     align: TooltipAlignType.TOP,
     triggerAsButton: {
@@ -49,6 +52,9 @@ export const TooltipSimple: Story = {
     variant: Object.values(variantsObject[themeSelected].TooltipVariantType || {})[0] as string,
     title: { content: 'Tootltip title' },
     content: { content: 'Tooltip content' },
+    contentScrollArias: {
+      'aria-label': 'Tooltip content scroll',
+    },
     children: 'Hover me',
     triggerAsButton: {
       'aria-label': 'Tooltip trigger',

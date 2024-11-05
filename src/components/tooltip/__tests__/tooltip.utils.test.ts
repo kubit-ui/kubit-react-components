@@ -1,7 +1,4 @@
-import { PopoverComponentType } from '@/components/popover';
-import { DeviceBreakpointsType } from '@/types';
-
-import { getAriaDescriptorsBy, getHtmlTagForTooltip } from '../utils';
+import { getAriaDescriptorsBy } from '../utils';
 
 describe('getAriaDescriptorsBy utility', () => {
   it('should return both titleId and contentId when title and content are provided', () => {
@@ -39,44 +36,6 @@ describe('getAriaDescriptorsBy utility', () => {
     const result = getAriaDescriptorsBy({
       titleId: 'title1',
       contentId: 'content1',
-    });
-
-    expect(result).toBeUndefined();
-  });
-});
-
-describe('getHtmlTagForTooltip utility', () => {
-  it('should return DIALOG when mediaDevice is DESKTOP and tooltipAsModal is true', () => {
-    const result = getHtmlTagForTooltip({
-      mediaDevice: DeviceBreakpointsType.DESKTOP,
-      tooltipAsModal: true,
-    });
-
-    expect(result).toBe(PopoverComponentType.DIALOG);
-  });
-
-  it('should return undefined when mediaDevice is not DESKTOP', () => {
-    const result = getHtmlTagForTooltip({
-      mediaDevice: DeviceBreakpointsType.MOBILE,
-      tooltipAsModal: true,
-    });
-
-    expect(result).toBeUndefined();
-  });
-
-  it('should return undefined when tooltipAsModal is not true', () => {
-    const result = getHtmlTagForTooltip({
-      mediaDevice: DeviceBreakpointsType.DESKTOP,
-      tooltipAsModal: false,
-    });
-
-    expect(result).toBeUndefined();
-  });
-
-  it('should return undefined when neither condition is met', () => {
-    const result = getHtmlTagForTooltip({
-      mediaDevice: DeviceBreakpointsType.MOBILE,
-      tooltipAsModal: false,
     });
 
     expect(result).toBeUndefined();
