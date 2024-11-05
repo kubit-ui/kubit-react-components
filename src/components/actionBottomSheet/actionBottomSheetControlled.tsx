@@ -85,7 +85,7 @@ const ActionBottomSheetControlledComponent = React.forwardRef(
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
     const uniqueTitleId = useId('actionSheet-title');
-    const titleId = title?.id ?? title?.content ? uniqueTitleId : undefined;
+    const titleId = (title?.id ?? title?.content) ? uniqueTitleId : undefined;
     const styles = useStyles<ActionBottomSheetVariantStylesType>(
       STYLES_NAME.ACTION_BOTTOM_SHEET,
       props.variant,
