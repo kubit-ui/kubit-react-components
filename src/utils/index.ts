@@ -39,3 +39,4 @@ export * from './syntheticComponents';
 export * from './aria/aria';
 export * from './structuredClone';
 export * from './scroll';
+export * from './translateValue/translateValue';
