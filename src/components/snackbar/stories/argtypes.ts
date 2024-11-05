@@ -150,6 +150,15 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    popover: {
+      description: 'Override popover configuration',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: { summary: 'SnackbarPopoverType' },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     onSecondaryActionClick: {
       description: 'Click of the link',
       type: { name: 'function' },

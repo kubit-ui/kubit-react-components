@@ -95,6 +95,7 @@ const SnackbarStandAloneComponent = (
       open={props.open}
       pressEscapeClose={false}
       variant={props.styles?.popoverVariants?.[align]}
+      {...props.popover}
     >
       <SnackbarStyled
         ref={ref}

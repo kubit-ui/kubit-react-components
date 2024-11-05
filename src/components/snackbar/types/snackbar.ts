@@ -1,6 +1,7 @@
 import { IButton } from '@/components/button';
 import { IElementOrIcon } from '@/components/elementOrIcon';
 import { ILink } from '@/components/link';
+import { IPopoverControlled } from '@/components/popover';
 import { IText } from '@/components/text';
 import { CustomTokenTypes } from '@/types';
 import { POSITIONS } from '@/types/positions';
@@ -28,6 +29,8 @@ export type SnackbarActionButtonType = Omit<
   size?: string;
 };
 
+export type SnackbarPopoverType = Omit<IPopoverControlled, 'children' | 'open'>;
+
 export interface ISnackbarStandAlone {
   icon?: IElementOrIcon;
   closeIcon?: SnackbarCloseIconType;
@@ -41,6 +44,7 @@ export interface ISnackbarStandAlone {
   secondaryActionAriaLabel?: string;
   onSecondaryActionClick?: React.MouseEventHandler<HTMLButtonElement>;
   align?: POSITIONS.TOP_CENTER_FIXED | POSITIONS.BOTTOM_CENTER_FIXED;
+  popover?: SnackbarPopoverType;
   styles?: SnackbarProps;
   dataTestId?: string;
   onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
