@@ -2,8 +2,8 @@
   "extends": "./tsconfig-build",
   "compilerOptions": {
     "module": "CommonJS" /* Specify what module code is generated. */,
-    "outDir": "./dist/cjs",
-    "declaration": false
+    "outDir": "./dist/cjs"
   },
-  "exclude": ["./vite.config.ts"]
+  "exclude": ["./vite.config.ts"],
+  "include": ["./src/**/*", "./src/designSystem/kubit/assets/animations/loaderPrimary.json"]
 }
