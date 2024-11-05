@@ -6,6 +6,11 @@ import { getStyles } from '@/utils/getStyles/getStyles';
 
 import { SelectorBoxFilePropsStylesType, SelectorBoxFileStateType } from './types';
 
+type SelectorBoxFileStyles = {
+  styles: SelectorBoxFilePropsStylesType;
+  state: SelectorBoxFileStateType;
+};
+
 export const WrapperStyled = styled.div`
   width: 100%;
   display: flex;
@@ -45,28 +50,23 @@ export const SubtitleTooltipIconWrapperStyled = styled.div<{
   ${({ styles }) => getStyles(styles.tooltipIconContainer)}
 `;
 
-export const ContainerBoxStyled = styled.label<{
-  styles: SelectorBoxFilePropsStylesType;
-  state: SelectorBoxFileStateType;
-}>`
+export const BorderContainerStyled = styled.div<SelectorBoxFileStyles>`
+  ${({ styles, state }) => getStyles(styles?.states?.[state]?.borderAnimationContainer)}
+`;
+
+export const ContainerBoxStyled = styled.label<SelectorBoxFileStyles>`
   ${({ styles, state }) => getStyles(styles?.states?.[state]?.containerBoxContainer)}
   &[data-focus='true'] {
     ${({ theme }) => theme.FOCUS_STYLES};
   }
 `;
 
-export const ContainerBoxTextWrapper = styled.span<{
-  styles: SelectorBoxFilePropsStylesType;
-  state: SelectorBoxFileStateType;
-}>`
+export const ContainerBoxTextWrapper = styled.span<SelectorBoxFileStyles>`
   word-break: break-word;
   ${({ styles, state }) => getStyles(styles?.states?.[state]?.containerBoxTextsContainer)}
 `;
 
-export const ActionIconAndActionTextContainerStyled = styled.div<{
-  styles: SelectorBoxFilePropsStylesType;
-  state: SelectorBoxFileStateType;
-}>`
+export const ActionIconAndActionTextContainerStyled = styled.span<SelectorBoxFileStyles>`
   ${({ styles, state }) => getStyles(styles?.states?.[state]?.actionIconAndActionTextContainer)}
 `;
 
@@ -83,4 +83,28 @@ export const ErrorWrapperStyled = styled.div<{
   styles: SelectorBoxFilePropsStylesType;
 }>`
   ${({ styles }) => getStyles(styles.errorMessageContainer)}
+`;
+
+// Animations
+export const AnimationContainerStyled = styled.div<SelectorBoxFileStyles>`
+  ${({ styles, state }) => getStyles(styles?.states?.[state]?.animationContainer)}
+  &[data-focus='true'] {
+    ${({ theme }) => theme.FOCUS_STYLES};
+  }
+`;
+
+export const TopAnimationStyled = styled.div<SelectorBoxFileStyles>`
+  ${({ styles, state }) => getStyles(styles?.states?.[state]?.topAnimationContainer)}
+`;
+
+export const RightAnimationStyled = styled.div<SelectorBoxFileStyles>`
+  ${({ styles, state }) => getStyles(styles?.states?.[state]?.rightAnimationContainer)}
+`;
+
+export const BottomAnimationStyled = styled.div<SelectorBoxFileStyles>`
+  ${({ styles, state }) => getStyles(styles?.states?.[state]?.bottomAnimationContainer)}
+`;
+
+export const LeftAnimationStyled = styled.div<SelectorBoxFileStyles>`
+  ${({ styles, state }) => getStyles(styles?.states?.[state]?.leftAnimationContainer)}
 `;

@@ -17,16 +17,18 @@ import {
   SelectorBoxFileStateType,
 } from '../types';
 
-interface ISelectorBoxFileContainerBox {
+export interface ISelectorBoxFileContainerBox {
   styles: SelectorBoxFilePropsStylesType;
   htmlFor: string;
   state: SelectorBoxFileStateType;
   containerBoxStateContent: SelectorBoxFileContainerBoxStateContentType;
   filename?: string;
-  focus: boolean;
+  focus?: boolean;
 }
 
-export const SelectorBoxFileContainerBox = (props: ISelectorBoxFileContainerBox): JSX.Element => {
+export const SelectorBoxFileContainerBox = ({
+  ...props
+}: ISelectorBoxFileContainerBox): JSX.Element => {
   return (
     <ContainerBoxStyled
       data-focus={props.focus}
@@ -35,22 +37,22 @@ export const SelectorBoxFileContainerBox = (props: ISelectorBoxFileContainerBox)
       styles={props.styles}
     >
       <span>
-        <Loader
-          altText={props.containerBoxStateContent[props.state]?.icon?.altText}
-          variant={
-            props.styles?.states?.[SelectorBoxFileStateType.LOADING]?.containerBoxLoader?.variant
-          }
-          visible={props.state === SelectorBoxFileStateType.LOADING}
-          width={
-            props.styles?.states?.[SelectorBoxFileStateType.LOADING]?.containerBoxLoader?.width
-          }
-        />
-        {props.state !== SelectorBoxFileStateType.LOADING && (
-          <ElementOrIcon
-            customIconStyles={props.styles?.states?.[props.state]?.containerBoxIcon}
-            {...props.containerBoxStateContent[props.state]?.icon}
+        {props.styles?.states?.[SelectorBoxFileStateType.LOADING]?.containerBoxLoader?.variant && (
+          <Loader
+            altText={props.containerBoxStateContent[props.state]?.icon?.altText}
+            variant={
+              props.styles?.states?.[SelectorBoxFileStateType.LOADING]?.containerBoxLoader?.variant
+            }
+            visible={props.state === SelectorBoxFileStateType.LOADING}
+            width={
+              props.styles?.states?.[SelectorBoxFileStateType.LOADING]?.containerBoxLoader?.width
+            }
           />
         )}
+        <ElementOrIcon
+          customIconStyles={props.styles?.states?.[props.state]?.containerBoxIcon}
+          {...props.containerBoxStateContent[props.state]?.icon}
+        />
       </span>
       <ContainerBoxTextWrapper state={props.state} styles={props.styles}>
         {props.filename &&
@@ -70,7 +72,6 @@ export const SelectorBoxFileContainerBox = (props: ISelectorBoxFileContainerBox)
           {props.containerBoxStateContent[props.state]?.actionText?.content ? (
             <ActionIconAndActionTextContainerStyled state={props.state} styles={props.styles}>
               <ElementOrIcon
-                altText={props.containerBoxStateContent[props.state]?.icon?.altText}
                 customIconStyles={props.styles?.states?.[props.state]?.actionIcon}
                 {...props.containerBoxStateContent[props.state]?.actionIcon}
               />
@@ -94,6 +95,14 @@ export const SelectorBoxFileContainerBox = (props: ISelectorBoxFileContainerBox)
           ) : null}
         </ContainerBoxActionDescriptionTextWrapper>
       </ContainerBoxTextWrapper>
+      {props.containerBoxStateContent[props.state]?.iconRight && (
+        <span>
+          <ElementOrIcon
+            customIconStyles={props.styles?.states?.[props.state]?.containerBoxIcon}
+            {...props.containerBoxStateContent[props.state]?.iconRight}
+          />
+        </span>
+      )}
     </ContainerBoxStyled>
   );
 };

@@ -19,7 +19,6 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: argtypes(variantsObject, themeSelected),
-  render: ({ ...args }) => <StoryWithHooks {...args} />,
 } satisfies Meta<typeof Story>;
 
 export default meta;
@@ -109,6 +108,7 @@ const commonArgs: ISelectorBoxFile = {
 };
 
 export const SelectorBoxFile: Story = {
+  render: ({ ...args }) => <StoryWithHooks {...args} />,
   args: {
     ...commonArgs,
     themeArgs: themesObject[themeSelected][STYLES_NAME.SELECTOR_BOX_FILE],
@@ -116,6 +116,7 @@ export const SelectorBoxFile: Story = {
 };
 
 export const SelectorBoxFileWithCtv: Story = {
+  render: ({ ...args }) => <StoryWithHooks {...args} />,
   args: {
     ...commonArgs,
     ctv: {
@@ -123,5 +124,83 @@ export const SelectorBoxFileWithCtv: Story = {
         color: 'red',
       },
     },
+  },
+};
+
+const StoryWithHooksValidation = args => {
+  const [filename, setFilename] = React.useState<string | undefined>(undefined);
+  const [success, setSuccess] = React.useState(false);
+  const [error, setError] = React.useState(false);
+
+  const onClick = e => {
+    if (success) {
+      e.preventDefault();
+      e.target.value = '';
+      setFilename(undefined);
+      setSuccess(false);
+    }
+  };
+
+  const isValidExtension = (file: File) => {
+    if (file) {
+      const validExtensions = ['pdf', 'jpeg', 'heic'];
+      const fileExtension = file.type;
+      if (fileExtension) {
+        return validExtensions.some(substring => fileExtension.includes(substring));
+      }
+      // if extension is not available natively...
+      const extension = file.name.split('.').pop();
+      return extension ? validExtensions.includes(extension) : false;
+    }
+    return false;
+  };
+
+  const onChangeWithValidation = e => {
+    setError(false);
+    const file: File = e.target.files?.[0];
+    if (file) {
+      setFilename(file.name);
+      if (isValidExtension(file)) {
+        setSuccess(true);
+      } else {
+        setError(true);
+      }
+    }
+  };
+
+  return (
+    <Story
+      {...args}
+      error={error}
+      filename={filename}
+      multiple={false}
+      success={success}
+      onChange={onChangeWithValidation}
+      onClick={onClick}
+    />
+  );
+};
+
+export const SelectorBoxFileExtensionValidation: Story = {
+  render: ({ ...args }) => <StoryWithHooksValidation {...args} />,
+  args: {
+    ...commonArgs,
+    fileExtension: undefined,
+    title: { content: 'Example for custom file extension handling' },
+    subtitle: {
+      content: 'Do not add fileExtension prop and use onChange to validate the file extension',
+    },
+    description: {
+      content:
+        'This way you can put whatever you want to check the file with onChange prop. \
+      This is useful for some edge cases where extensions are not supported natively by the OS, \
+      like it happens with .heic files for Windows. \
+      This example allows .pdf, .jpeg and .heic files.',
+    },
+    errorMessage: {
+      content: 'This is a custom error message that launches when error property is set to true',
+    },
+    maxSize: 20,
+    errorMaxSizeMessage: { content: 'The error message for maxSize can still be displayed' },
   },
 };

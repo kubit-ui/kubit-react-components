@@ -4,6 +4,7 @@ import { useId } from '@/hooks';
 
 // internal components
 import {
+  SelectorBoxFileAnimation,
   SelectorBoxFileContainerBox,
   SelectorBoxFileErrorMessage,
   SelectorBoxFileHeader,
@@ -51,14 +52,23 @@ const SelectorBoxFileStandAloneComponent = (
               tooltipIcon={props.tooltipIcon}
             />
           )}
-          <SelectorBoxFileContainerBox
-            containerBoxStateContent={props.containerBoxStateContent}
-            filename={props.filename}
+          {/* The data-focus is controlled in SelectorBoxFileAnimation */}
+          <SelectorBoxFileAnimation
+            dataTestId={dataTestId}
             focus={props.focus}
-            htmlFor={inputId}
+            percentage={props.percentage}
             state={props.state}
             styles={props.styles}
-          />
+            onAnimationCompleted={props.onAnimationCompleted}
+          >
+            <SelectorBoxFileContainerBox
+              containerBoxStateContent={props.containerBoxStateContent}
+              filename={props.filename}
+              htmlFor={inputId}
+              state={props.state}
+              styles={props.styles}
+            />
+          </SelectorBoxFileAnimation>
         </HeaderContainerBoxWrapperStyled>
         <SelectorBoxFileErrorMessage
           errorMessage={props.errorMessage}
@@ -75,7 +85,7 @@ const SelectorBoxFileStandAloneComponent = (
         id={inputId}
         multiple={props.multiple}
         name={props.name}
-        type="file"
+        type={'file'}
         onBlur={props.onBlur}
         onChange={props.onChange}
         onClick={props.onClick}

@@ -24,6 +24,7 @@ export type SelectorBoxFileTooltipType = Omit<ITooltipUnControlled, 'children' |
 export type SelectorBoxFileContainerBoxStateContentType = {
   [key in SelectorBoxFileStateType]: {
     icon?: IElementOrIcon;
+    iconRight?: IElementOrIcon;
     actionText?: SelectorBoxFileTextType;
     actionIcon?: IElementOrIcon;
     description?: SelectorBoxFileTextType;
@@ -53,22 +54,25 @@ export interface ISelectorBoxFileStandAlone {
   multiple?: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onClick?: React.MouseEventHandler<HTMLInputElement>;
+  onAnimationCompleted?: () => void;
   description?: SelectorBoxFileTextType;
   button?: SelectorBoxFileButtonType;
   maxSize?: number;
   fileExtension?: string[];
+  percentage: number;
 }
 
 export interface ISelectorBoxFile<V = undefined extends string ? unknown : string>
   extends Omit<
       ISelectorBoxFileStandAlone,
-      'styles' | 'state' | 'focus' | 'onFocus' | 'onBlur' | 'onChange'
+      'styles' | 'state' | 'focus' | 'onFocus' | 'onBlur' | 'onChange' | 'percentage'
     >,
     Omit<CustomTokenTypes<SelectorBoxFilePropsStylesType>, 'cts' | 'extraCt'> {
   loading?: boolean;
   success?: boolean;
   error?: boolean;
   disabled?: boolean;
+  percentage?: number;
   variant: V;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onSizeError?: (status: boolean) => void;
