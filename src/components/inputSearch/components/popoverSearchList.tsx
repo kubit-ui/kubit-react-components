@@ -160,7 +160,7 @@ export const PopoverSearchListComponent = (
       hasBackDrop
       aria-modal={useActionBottomSheet ? true : undefined}
       blockBack={props.blockBackPopover}
-      component={useActionBottomSheet ? PopoverComponentType.DIV : undefined}
+      component={PopoverComponentType.DIV}
       dataTestId={`${props.dataTestId}Popover`}
       focusFirstDescendantAutomatically={false}
       focusLastElementFocusedAfterClose={false}

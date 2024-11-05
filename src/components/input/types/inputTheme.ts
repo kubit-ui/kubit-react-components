@@ -48,6 +48,7 @@ export type InputBasicStateProps = {
   label?: TypographyTypes & {
     type?: LABEL_TYPE;
   };
+  focusVisibleCustom?: CommonStyleType;
   labelContainer?: CommonStyleType;
   placeholder?: TypographyTypes;
   asterisk?: TypographyTypes;
