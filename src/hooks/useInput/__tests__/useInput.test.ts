@@ -1,6 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import React, { ChangeEvent } from 'react';
 
+import { FormatNumber } from '@/components';
 import * as validationsProvider from '@/provider/validations/validationsProvider';
 
 import { useInput } from '../useInput';
@@ -8,7 +9,7 @@ import { useInput } from '../useInput';
 describe('useInput Hook', () => {
   it('useInput - on internal change should call parent onChange', () => {
     const onChange = jest.fn();
-    const formatNumber = { style: 'decimal' };
+    const formatNumber = { style: 'decimal' } as FormatNumber;
     const ref = React.createRef<HTMLInputElement | undefined>();
     const currentValue = '123234';
     const regex = new RegExp('^[0-9]*$');
@@ -43,7 +44,7 @@ describe('useInput Hook', () => {
   });
   it('useInput - on internal blur should call parent onBlur', () => {
     const onBlur = jest.fn();
-    const formatNumber = { style: 'decimal' };
+    const formatNumber = { style: 'decimal' } as FormatNumber;
     const { result } = renderHook(() => useInput({ onBlur, formatNumber }));
 
     act(() => {

@@ -36,7 +36,6 @@ const NavigationCardStandaloneComponent = (
   return (
     // Can not be spread -> styled component breaks
     <NavigationCardStyled
-      ref={ref as React.ForwardedRef<HTMLButtonElement>}
       aria-disabled={props['aria-disabled']}
       as={props.url ? props.component : 'button'}
       className={props.className}
