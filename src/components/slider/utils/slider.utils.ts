@@ -1,3 +1,5 @@
+import { translateValue } from '@/utils';
+
 import { SliderOffsetBoundaries, SliderType } from '../types';
 
 export const calculateChange = ({
@@ -237,46 +239,6 @@ export const getScale = ({
     );
   }
   return { showScale, scaleOffsets };
-};
-
-/**
- * Translates a value from one range to another.
- *
- * @param inputMin - The minimum value of the input range.
- * @param inputMax - The maximum value of the input range.
- * @param outputMin - The minimum value of the output range.
- * @param outputMax - The maximum value of the output range.
- * @param value - The input value to be translated.
- *
- * @returns The translated value in the output range.
- *
- * @example
- * // Translates 50 from the range [0, 100] to the range [5, 10]
- * const output = translateValue({inputMin: 0, inputMax: 100, outputMin: 5, outputMax: 10, value: 50});
- * console.log(output); // 7.5
- */
-const translateValue = ({
-  inputMin,
-  inputMax,
-  outputMin,
-  outputMax,
-  value,
-}: {
-  inputMin: number;
-  inputMax: number;
-  outputMin: number;
-  outputMax: number;
-  value: number;
-}): number => {
-  const inputRange = inputMax - inputMin;
-  const outputRange = outputMax - outputMin;
-
-  const scaledInputValue = (value - inputMin) / inputRange;
-
-  let outputValue = outputMin + scaledInputValue * outputRange;
-  outputValue = Math.min(outputMax, Math.max(outputMin, outputValue));
-
-  return outputValue;
 };
 
 export const getOffset = ({
