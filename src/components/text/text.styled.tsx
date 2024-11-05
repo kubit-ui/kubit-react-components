@@ -12,6 +12,7 @@ const applyDevicePropsTextStyles = (props: TextPropsStylesType) => css`
   text-transform: ${props.$transform};
   text-align: ${props.align};
   font-weight: ${props.weight};
+  filter: ${props.filter};
   ${props.isDisabled &&
   css`
     pointer-events: none;

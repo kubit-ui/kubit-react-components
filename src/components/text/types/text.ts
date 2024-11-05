@@ -32,6 +32,7 @@ export interface ITextStandAlone extends ITextStyled, TextAriaAttributes {
   onClick?: React.MouseEventHandler<HTMLElement>;
   role?: React.AriaRole;
   color?: string;
+  filter?: string;
   display?: TextDisplayType;
   decoration?: TextDecorationType;
   cursor?: string;

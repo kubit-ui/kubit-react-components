@@ -81,6 +81,7 @@ const TextAreaStandAloneComponent = (
           maxLength={props.maxLength}
           placeholder={props.placeholder}
           required={props.required}
+          spellCheck={props.spellCheck}
           styles={stateStyles}
           value={props.value}
           onBlur={props.onBlur}

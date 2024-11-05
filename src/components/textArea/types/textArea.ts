@@ -46,6 +46,7 @@ export interface ITextAreaStandAlone extends ITextAreaStyled {
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
   height?: string;
   dataTestId?: string;
+  spellCheck?: boolean;
 }
 
 export interface ITextArea<V = undefined extends string ? unknown : string>
