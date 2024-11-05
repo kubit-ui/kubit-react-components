@@ -44,7 +44,7 @@ describe('Table Cell', () => {
       </TableCell>
     );
 
-    const cell = screen.getByTestId('tableCell');
+    const cell = screen.getByTestId('table-cell');
 
     expect(cell).toHaveAttribute('data-hidden');
     expect(cell.firstChild?.nodeName).toBe('DIV');

@@ -22,7 +22,7 @@ import {
 import { DotUseStateType, IBadgeStandAlone } from './types';
 
 const BadgeStandAloneComponent = (
-  { ...props }: IBadgeStandAlone,
+  { dataTestId = 'badge', ...props }: IBadgeStandAlone,
   ref: React.ForwardedRef<unknown> | undefined | null
 ): JSX.Element => {
   const badgeButtonRef = React.useRef(null);
@@ -72,7 +72,7 @@ const BadgeStandAloneComponent = (
   return (
     <BadgeContainerStyled
       ref={containerRef}
-      data-testid={`${props.dataTestId}BadgeContainer`}
+      data-testid={`${dataTestId}-container`}
       onBlur={props.onBadgeBlur}
     >
       <BadgeStyled
@@ -80,7 +80,7 @@ const BadgeStandAloneComponent = (
         aria-controls={`${id}-popover`}
         aria-expanded={props.open}
         aria-label={props['aria-label']}
-        data-testid={`${props.dataTestId}Badge`}
+        data-testid={dataTestId}
         styles={props.styles}
         type={ButtonType.BUTTON}
         onClick={props.onClick}
@@ -92,7 +92,7 @@ const BadgeStandAloneComponent = (
               customDotTranslate={getCustomDotTranslate()}
               dotWidthHeight={dotWidthHeight}
             >
-              <Dot ref={dotRef} dataTestId={`${props.dataTestId}Dot`} {...props.dot} />
+              <Dot ref={dotRef} {...props.dot} />
             </BadgeDotStyled>
           )}
           <ElementOrIcon
@@ -107,7 +107,7 @@ const BadgeStandAloneComponent = (
               color={props.iconStyles?.labelFontColor}
               component={TextComponentType.SPAN}
               customTypography={labelStyles}
-              dataTestId={`${props.dataTestId}Label`}
+              dataTestId={`${dataTestId}-label`}
               {...props.label}
             >
               {props.label.content}
@@ -120,10 +120,7 @@ const BadgeStandAloneComponent = (
             />
           </BadgeLabelStyled>
         )}
-        <ScreenReaderOnly
-          ariaLive={AriaLiveOptionType.POLITE}
-          dataTestId={`${props.dataTestId}ScreenReader`}
-        >
+        <ScreenReaderOnly ariaLive={AriaLiveOptionType.POLITE}>
           {props.ariaLiveText}
         </ScreenReaderOnly>
       </BadgeStyled>
@@ -131,7 +128,6 @@ const BadgeStandAloneComponent = (
         <Popover
           ref={callbackRef}
           align={POSITIONS.BOTTOM_GAP_RIGHT}
-          dataTestId={`${props.dataTestId}Popover`}
           id={`${id}-popover`}
           open={props.open}
           preventCloseOnClickElements={[badgeButtonRef.current]}

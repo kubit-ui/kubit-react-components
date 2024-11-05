@@ -14,7 +14,7 @@ import {
 } from './virtualKeyboard.styled';
 
 export const VirtualKeyboardStandAloneComponent = (
-  { dataTestId, ...props }: IVirtualKeyboardStandAlone,
+  { dataTestId = 'virtual-keyboard', ...props }: IVirtualKeyboardStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const uniqueId = useId('virtualKeyboard');
@@ -34,7 +34,7 @@ export const VirtualKeyboardStandAloneComponent = (
           return (
             <DigitButton
               key={digit}
-              dataTestId={`${dataTestId}DigitButton${index}`}
+              dataTestId={`${dataTestId}-digit-button-${index}`}
               digit={digit}
               styles={props.styles?.[props.state]}
               onClick={props.onDigitButtonClick}
@@ -49,7 +49,6 @@ export const VirtualKeyboardStandAloneComponent = (
       >
         <ElementOrIcon
           customIconStyles={props.styles?.[props.state]?.container?.icon}
-          dataTestId={`${dataTestId}RemoveButton`}
           {...props.icon}
         />
       </RemoveButtonStyled>

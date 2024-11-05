@@ -28,7 +28,7 @@ const commonArgs: INavigationRow = {
   text: { content: 'Text' },
   description: { content: 'Lorem ipsum dolor sit amet lorem' },
   arrowIcon: { icon: ICONS.ICON_PLACEHOLDER },
-  decorativeElement: <ElementOrIcon altText="decorativeElement" icon={ICONS.ICON_PLACEHOLDER} />,
+  decorativeElement: <ElementOrIcon icon={ICONS.ICON_PLACEHOLDER} altText="decorativeElement" />,
 };
 
 export const NavigationRow: Story = {

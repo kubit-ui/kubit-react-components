@@ -23,7 +23,6 @@ export const InputCounterStandAloneComponent = <V extends string | unknown>(
           props.value,
           ref as React.MutableRefObject<HTMLInputElement>
         )}
-        dataTestId={`${props.dataTestId}TextCount`}
         id={`${props.id}Counter`}
         leftColor={props.styles?.[props.state]?.textCountLeftColor}
         leftWeight={props.styles?.[props.state]?.textCountLeftWeight}

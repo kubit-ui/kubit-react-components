@@ -30,6 +30,7 @@ const ACCORDION_BASE_ID = 'AccordionComponent';
 
 const AccordionStandAloneComponent = (
   {
+    dataTestId = 'accordion',
     hasHeaderLineSeparator = true,
     open = false,
     ...props
@@ -41,19 +42,19 @@ const AccordionStandAloneComponent = (
   const HEADER_ID = `${BASE_ID}-header`;
   const PANEL_ID = `${BASE_ID}-panel`;
 
-  const getDataTestId = (uniqueId = ''): string => `${props.dataTestId}${uniqueId}`;
+  const getDataTestId = (uniqueId = ''): string => `${dataTestId}-${uniqueId}`;
 
   return (
     <AccordionContainerStyled
       ref={ref}
-      data-testid={getDataTestId()}
+      data-testid={dataTestId}
       id={BASE_ID}
       styles={props.styles.container}
     >
       <AccordionDecorativeBackgroundStyled styles={props.styles.decorative} />
       <AccordionHeaderExternalContainerStyled styles={props.styles.headerExternalContainer}>
         <AccordionHeaderInternalContainerStyled
-          data-testid={getDataTestId('Header')}
+          data-testid={getDataTestId('header')}
           id={HEADER_ID}
           styles={props.styles.headerInternalContainer}
         >
@@ -65,7 +66,7 @@ const AccordionStandAloneComponent = (
               <AccordionTriggerStyled
                 aria-controls={PANEL_ID}
                 aria-expanded={open}
-                data-testid={getDataTestId('TriggerButton')}
+                data-testid={getDataTestId('trigger-button')}
                 id={TRIGGER_ID}
                 styles={props.styles[typeof props.title?.content !== 'string' ? 'link' : 'trigger']}
                 type={ButtonType.BUTTON}
@@ -73,12 +74,11 @@ const AccordionStandAloneComponent = (
               >
                 <AccordionTriggerIconContainerStyled
                   $rotate={open}
-                  data-testid={`${props.dataTestId}TriggerIconWrapper`}
+                  data-testid={`${dataTestId}-trigger-icon-wrapper`}
                   styles={props.styles.triggerIconContainer}
                 >
                   <ElementOrIcon
                     customIconStyles={props.styles.triggerIcon}
-                    dataTestId={getDataTestId('TriggerIcon')}
                     {...props.triggerIcon}
                   />
                 </AccordionTriggerIconContainerStyled>
@@ -87,7 +87,6 @@ const AccordionStandAloneComponent = (
                     <AccordionTitleIconWrapper styles={props.styles.titleIconContainer}>
                       <ElementOrIcon
                         customIconStyles={props.styles.titleIcon}
-                        dataTestId={getDataTestId('TitleIcon')}
                         {...props.titleIcon}
                       />
                     </AccordionTitleIconWrapper>
@@ -95,7 +94,6 @@ const AccordionStandAloneComponent = (
                   <Text
                     component={TextComponentType.SPAN}
                     customTypography={props.styles.title}
-                    dataTestId={getDataTestId('TriggerText')}
                     {...props.title}
                   >
                     {props.title?.content}
@@ -105,7 +103,7 @@ const AccordionStandAloneComponent = (
             </AccordionHeaderTitleHeadlineStyled>
             {props.headerRightContent && (
               <AccordionHeaderRightContentStyled
-                data-testid={`${props.dataTestId}RightContent`}
+                data-testid={`${dataTestId}-right-content`}
                 styles={props.styles.headerRightContentContainer}
               >
                 {props.headerRightContent}
@@ -114,7 +112,7 @@ const AccordionStandAloneComponent = (
           </AccordionHeaderMainContainerStyled>
           {props.subHeaderContent && (
             <AccordionSubHeaderContainerStyled
-              data-testid={`${props.dataTestId}SubHeader`}
+              data-testid={`${dataTestId}-subheader`}
               styles={props.styles.subHeader}
             >
               {props.subHeaderContent}
@@ -134,11 +132,11 @@ const AccordionStandAloneComponent = (
             styles={props.styles.lineSeparatorContainer}
           />
         )}
-        <AccordionPanelStyled data-testid={getDataTestId('Panel')} styles={props.styles.panel}>
+        <AccordionPanelStyled data-testid={getDataTestId('panel')} styles={props.styles.panel}>
           {props.children}
         </AccordionPanelStyled>
         {props.footerContent && (
-          <AccordionFooterStyled data-testid={getDataTestId('Footer')} styles={props.styles.footer}>
+          <AccordionFooterStyled data-testid={getDataTestId('footer')} styles={props.styles.footer}>
             {props.footerContent}
           </AccordionFooterStyled>
         )}

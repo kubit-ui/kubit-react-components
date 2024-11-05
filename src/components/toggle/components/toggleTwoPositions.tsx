@@ -14,7 +14,7 @@ import { IToggleStandAlone } from '../types';
 interface IToggleTwoPosition extends IToggleStandAlone {}
 
 const ToggleTwoPositionComponent = (
-  { ...props }: IToggleTwoPosition,
+  { dataTestId = 'toggle', ...props }: IToggleTwoPosition,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const buildTextOrIcon = (position: POSITIONS) => {
@@ -30,7 +30,7 @@ const ToggleTwoPositionComponent = (
           $width={props.styles?.thumb?.width}
         />
         <IconWrapperStyled
-          data-testid={`${props.dataTestId}${position === POSITIONS.RIGHT ? 'On' : 'Off'}Option`}
+          data-testid={`${dataTestId}-${position === POSITIONS.RIGHT ? 'on' : 'off'}-option`}
           hasThreePositions={props.hasThreePositions}
           showLabel={position === props.togglePosition}
           styles={props.styles}
@@ -49,13 +49,13 @@ const ToggleTwoPositionComponent = (
       aria-describedby={props['aria-describedby']}
       aria-label={props['aria-label']}
       aria-labelledby={props['aria-labelledby']}
-      data-testid={props.dataTestId}
+      data-testid={dataTestId}
       disabled={props.disabled}
       hasThreePositions={props.hasThreePositions}
       id={props.id}
       role={ROLES.SWITCH}
       styles={props.styles}
-      tabIndex={!props.disabled ? (props.tabIndex ?? 0) : undefined}
+      tabIndex={!props.disabled ? props.tabIndex ?? 0 : undefined}
       togglePosition={props.togglePosition}
       onClick={e => {
         e.persist();
@@ -72,7 +72,7 @@ const ToggleTwoPositionComponent = (
       {buildContent(POSITIONS.RIGHT)}
       <SliderContainerStyled
         aria-hidden="true"
-        data-testid={`${props.dataTestId}Thumb`}
+        data-testid={`${dataTestId}-thumb`}
         hasThreePositions={props.hasThreePositions}
         styles={props.styles}
         togglePosition={props.togglePosition}

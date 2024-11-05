@@ -14,7 +14,7 @@ import {
 import { IPageControlAutomateStandAlone } from './types';
 
 const dataTestIdIndicator = 'indicator';
-const dataTestIdIndicatorProgress = 'indicatorProgress';
+const dataTestIdIndicatorProgress = 'indicator-progress';
 
 const PageControlAutomateStandAloneComponent = (
   props: IPageControlAutomateStandAlone,

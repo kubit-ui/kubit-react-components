@@ -24,7 +24,6 @@ export const HelpMessageStandAlone = ({
     <Text
       color={styles?.helpMessage?.color}
       component={TextComponentType.SMALL}
-      dataTestId={dataTestId}
       id={id}
       variant={styles?.helpMessage?.font_variant}
       weight={styles?.helpMessage?.font_weight}

@@ -17,7 +17,7 @@ import {
 import { ISelectorBoxFileStandAlone, SelectorBoxFileStateType } from './types';
 
 const SelectorBoxFileStandAloneComponent = (
-  { dataTestId = 'selectorBoxFile', ...props }: ISelectorBoxFileStandAlone,
+  { dataTestId = 'selector-box-file', ...props }: ISelectorBoxFileStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const uniqueId = useId('selectorBoxFile');

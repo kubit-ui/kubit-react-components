@@ -325,7 +325,7 @@ describe('SelectorBoxFile', () => {
     };
     jest.spyOn(stylesHook, 'useStyles').mockImplementation(() => mockStyles);
     const { getByTestId } = renderProvider(<SelectorBoxFile {...mockProps} percentage={10} />);
-    const animationContainer = getByTestId(dataTestId);
+    const animationContainer = getByTestId('selector-box-file-animations');
     expect(animationContainer).toBeInTheDocument();
   });
 

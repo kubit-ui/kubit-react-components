@@ -20,7 +20,13 @@ import {
 import { IActionBottomSheetStandAlone } from './types';
 
 const ActionBottomSheetStandAloneComponent = (
-  { hasHeader = true, scrollableRef, shadowRef, ...props }: IActionBottomSheetStandAlone,
+  {
+    dataTestId = 'action-bottom-sheet',
+    hasHeader = true,
+    scrollableRef,
+    shadowRef,
+    ...props
+  }: IActionBottomSheetStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   // Parent container Ref
@@ -44,7 +50,7 @@ const ActionBottomSheetStandAloneComponent = (
     <ActionBottomSheetStyled
       ref={actionBottomRef}
       $height={props.height}
-      data-testid={`${props.dataTestId}Container`}
+      data-testid={dataTestId}
       styles={props.styles.container}
     >
       {props.dragIcon && isMobileOrTablet && (
@@ -59,11 +65,7 @@ const ActionBottomSheetStandAloneComponent = (
               {props.actionLink && <Link {...props.actionLink} />}
             </ActionBottomSheetActionStyled>
             <ActionBottomSheetIconSyled styles={props.styles.closeIconContainer}>
-              <ElementOrIcon
-                customIconStyles={props.styles.closeIcon}
-                dataTestId={`${props.dataTestId}Icon`}
-                {...props.closeIcon}
-              />
+              <ElementOrIcon customIconStyles={props.styles.closeIcon} {...props.closeIcon} />
             </ActionBottomSheetIconSyled>
           </ActionBottomSheetControlStyled>
           <ActionBottomSheetHeaderStyled styles={props.styles.header}>
@@ -71,7 +73,6 @@ const ActionBottomSheetStandAloneComponent = (
               <Text
                 component={TextComponentType.H5}
                 customTypography={props.styles.title}
-                dataTestId={`${props.dataTestId}Title`}
                 {...props.title}
               >
                 {props.title?.content}

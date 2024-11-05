@@ -200,7 +200,7 @@ describe('OliveMenu component', () => {
       <OliveMenu {...mockProps} dataTestId="OliveMenu" onOpenClose={handleOpenClose} />
     );
 
-    const container = screen.getByTestId('OliveMenuContainer');
+    const container = screen.getByTestId('OliveMenu');
 
     // Lossing the focus when the popover is closed
     act(() => {

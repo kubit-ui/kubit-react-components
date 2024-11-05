@@ -25,18 +25,18 @@ const PaginationStandAloneComponent = (
     paginationRightButtonControl,
     leftDisabled,
     rightDisabled,
-    dataTestId,
+    dataTestId = 'pagination',
   }: IPaginationStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   return (
-    <PaginationContainerStyled ref={ref} data-testid={`${dataTestId}Container`} styles={styles}>
+    <PaginationContainerStyled ref={ref} data-testid={dataTestId} styles={styles}>
       <PaginationButtonControl
         disabled={leftDisabled}
         paginationButtonControl={paginationLeftButtonControl as IPaginationButtonControl}
         styles={styles.paginationLeftArrowIcon}
       />
-      <PaginationPagesContainerStyled data-testid={`${dataTestId}StepsContent`} styles={styles}>
+      <PaginationPagesContainerStyled data-testid={`${dataTestId}-steps-content`} styles={styles}>
         {stepsNumber.map((value, index) => {
           const state = stepActive === index ? PaginationState.SELECTED : PaginationState.DEFAULT;
           const isClickable = typeof value === 'number';

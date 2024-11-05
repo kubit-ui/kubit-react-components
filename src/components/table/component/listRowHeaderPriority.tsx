@@ -54,7 +54,6 @@ export const ListRowHeaderPriority = (props: IListRowHeaderPriority): JSX.Elemen
           <Text
             component={TextComponentType.SPAN}
             customTypography={props.styles.header?.[rowHeader.variant]?.typography}
-            dataTestId={`${props.dataTestId}ItemListRowHeader${rowHeader.label}`}
           >
             {rowHeader.label}
           </Text>
@@ -86,7 +85,6 @@ export const ListRowHeaderPriority = (props: IListRowHeaderPriority): JSX.Elemen
                     <Text
                       component={TextComponentType.SPAN}
                       customTypography={props.styles.header?.[props.headerVariant]?.typography}
-                      dataTestId={`${props.dataTestId}ItemListRowHeader${header.label}`}
                     >
                       {header.label}
                     </Text>
@@ -107,7 +105,7 @@ export const ListRowHeaderPriority = (props: IListRowHeaderPriority): JSX.Elemen
                       props.value.backgroundColor
                     }
                     customWidth={header?.config?.width}
-                    data-testid={`${props.dataTestId}ItemList${indexHeader}`}
+                    data-testid={`${props.dataTestId}-item-list-${indexHeader}`}
                     flexWidth={header?.config?.flexWidth}
                     hasSomeExpandedContent={props.hasSomeExpandedContent}
                     lineSeparatorLineStyles={props.lineSeparatorLineStyles}

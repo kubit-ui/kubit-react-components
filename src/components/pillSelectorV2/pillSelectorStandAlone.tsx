@@ -6,7 +6,7 @@ import { RootContainerStyled } from './pillSelector.styled';
 import { IPillSelectorStandAlone, PillSelectorType } from './types';
 
 const PillSelectorStandAloneComponent = (
-  { dataTestId = 'pillSelector', ...props }: IPillSelectorStandAlone,
+  { dataTestId = 'pill-selector', ...props }: IPillSelectorStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   return (

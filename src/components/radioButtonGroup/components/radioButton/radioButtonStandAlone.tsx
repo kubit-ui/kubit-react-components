@@ -20,7 +20,10 @@ import { IRadioButtonStandAlone } from './types/radioButton';
 const CURSOR_POINTER = 'pointer';
 const CURSOR_DEFAULT = 'default';
 
-export const RadioButtonStandAlone = (props: IRadioButtonStandAlone): JSX.Element => {
+export const RadioButtonStandAlone = ({
+  dataTestId = 'radio-button',
+  ...props
+}: IRadioButtonStandAlone): JSX.Element => {
   let inputId = useId('RadioButton');
   inputId = props.id ?? inputId;
   const descriptionId = props.subTitle?.content && `${inputId}__description`;
@@ -33,6 +36,7 @@ export const RadioButtonStandAlone = (props: IRadioButtonStandAlone): JSX.Elemen
 
   return (
     <RadioButtonStyled
+      data-testid={dataTestId}
       hasLabel={!!props.label}
       lastChild={props.lastChild}
       state={props.state}
@@ -54,7 +58,7 @@ export const RadioButtonStandAlone = (props: IRadioButtonStandAlone): JSX.Elemen
           aria-label={props['aria-label']}
           aria-labelledby={props['aria-labelledby']}
           checked={props.checked}
-          data-testid={`${props.dataTestId}Input`}
+          data-testid={`${dataTestId}-input`}
           disabled={props.disabled}
           id={inputId}
           name={props.name}
@@ -72,7 +76,6 @@ export const RadioButtonStandAlone = (props: IRadioButtonStandAlone): JSX.Elemen
           <Label
             color={props.styles?.[props.state]?.label?.color}
             cursor={props.disabled ? CURSOR_DEFAULT : CURSOR_POINTER}
-            dataTestId={`${props.dataTestId}Label`}
             inputId={inputId}
             textVariant={props.styles?.[props.state]?.label?.font_variant}
             weight={getLabelFontWeight()}
@@ -103,10 +106,7 @@ export const RadioButtonStandAlone = (props: IRadioButtonStandAlone): JSX.Elemen
           id={errorMessageId}
           styles={props.styles?.[props.state]}
         >
-          <Text
-            customTypography={props.styles?.[props.state]?.errorMessage}
-            dataTestId={`${props.dataTestId}ErrorMessage`}
-          >
+          <Text customTypography={props.styles?.[props.state]?.errorMessage}>
             {props.errorIcon && (
               <ErrorIconWrapperStyled styles={props.styles?.[props.state]}>
                 <ElementOrIcon

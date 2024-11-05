@@ -7,7 +7,7 @@ export const ScreenReaderOnly = ({
   children,
   id,
   ariaLive,
-  dataTestId,
+  dataTestId = 'screen-reader',
 }: IScreenReaderOnly): JSX.Element => {
   return (
     <ScreenReaderOnlyStyled aria-live={ariaLive} data-testid={dataTestId} id={id}>

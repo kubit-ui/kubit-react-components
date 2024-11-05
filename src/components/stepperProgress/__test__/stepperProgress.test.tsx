@@ -43,14 +43,14 @@ describe('StepperProgress component', () => {
     renderProvider(<StepperProgress {...mockProps} />);
 
     const helpTextContent = `${mockProps.currentStep} steps of ${mockProps.maxSteps} completed`;
-    const helpText = screen.getByTestId(mockProps.dataTestId + 'HelpText');
+    const helpText = screen.getByTestId(mockProps.dataTestId + '-help-text');
     expect(helpText.textContent).toBe(helpTextContent);
   });
   it('Should have a defaulta configuration', () => {
     renderProvider(<StepperProgress {...mockPropsDefault} />);
 
     const helpTextContent = `${mockProps.currentStep} steps of ${mockProps.maxSteps} completed`;
-    const helpText = screen.getByTestId(mockProps.dataTestId + 'HelpText');
+    const helpText = screen.getByTestId(mockProps.dataTestId + '-help-text');
     expect(helpText.textContent).toBe(helpTextContent);
   });
 });

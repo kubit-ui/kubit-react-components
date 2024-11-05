@@ -32,6 +32,7 @@ import { getAriaDescriptorsBy } from './utils';
 
 const TooltipStandAlone = ({
   childrenAsButton = true,
+  dataTestId = 'tooltip',
   ...props
 }: ITooltipStandAlone): JSX.Element => {
   const uniqueId = useId('tooltip');
@@ -45,7 +46,7 @@ const TooltipStandAlone = ({
 
   if (props.disabled) {
     return (
-      <TooltipStyled data-testid={`${props.dataTestId}Tooltip`}>
+      <TooltipStyled data-testid={dataTestId}>
         <TooltipTrigger disabled childrenAsButton={childrenAsButton}>
           {props.children}
         </TooltipTrigger>
@@ -66,7 +67,7 @@ const TooltipStandAlone = ({
       aria-label={isDesktop ? props.tooltipAriaLabel : undefined}
       aria-labelledby={isDesktop ? titleId : undefined}
       aria-modal={isDesktop && props.tooltipAsModal ? true : undefined}
-      data-testid={`${props.dataTestId}TooltipContent`}
+      data-testid={`${dataTestId}-content`}
       id={uniqueId}
       role={isDesktop ? (props.tooltipAsModal ? ROLES.DIALOG : ROLES.TOOLTIP) : undefined}
       styles={props.styles}
@@ -77,7 +78,7 @@ const TooltipStandAlone = ({
         {(isMobile || isTablet) && props.dragIcon && (
           <TooltipDragIconStyled
             ref={props.dragIconRef}
-            data-testid={`${props.dataTestId}TooltipDrag`}
+            data-testid={`${dataTestId}-drag`}
             styles={props.styles}
           >
             <ElementOrIcon customIconStyles={props.styles?.dragIcon} {...props.dragIcon} />
@@ -93,7 +94,6 @@ const TooltipStandAlone = ({
             <TooltipCloseIconStyled styles={props.styles}>
               <Icon
                 customIconStyles={props.styles?.closeButtonIcon}
-                dataTestId={`${props.dataTestId}TooltipContentCloseIcon`}
                 {...props.closeIcon}
                 onClick={props.onCloseIconClick}
               />
@@ -108,7 +108,6 @@ const TooltipStandAlone = ({
               <Text
                 component={TextComponentType.H2}
                 customTypography={props.styles?.title}
-                dataTestId={`${props.dataTestId}TooltipContentTitle`}
                 variant={props.styles.title?.font_variant}
                 {...props.title}
               >
@@ -136,7 +135,6 @@ const TooltipStandAlone = ({
               {isTextContent ? (
                 <Text
                   customTypography={props.styles?.paragraph}
-                  dataTestId={`${props.dataTestId}TooltipContentContent`}
                   variant={props.styles.paragraph?.font_variant}
                   {...props.content}
                 >
@@ -158,7 +156,7 @@ const TooltipStandAlone = ({
   return (
     <TooltipStyled
       ref={props.labelRef}
-      data-testid={`${props.dataTestId}Tooltip`}
+      data-testid={dataTestId}
       tooltipAsModal={props.tooltipAsModal}
       onBlur={props.onBlur}
       onClick={props.onClick}
@@ -187,7 +185,6 @@ const TooltipStandAlone = ({
       ) : (
         <Popover
           component={PopoverComponentType.DIV}
-          dataTestId={`${props.dataTestId}Popover`}
           focusLastElementFocusedAfterClose={false}
           hasBackDrop={props.styles.showOverlay?.[props.mediaDevice]}
           open={props.popoverOpen}

@@ -5,7 +5,7 @@ import { ITableRowStandAlone } from './types';
 
 const TableRowStandAloneComponent = (
   {
-    dataTestId = 'tableRow',
+    dataTestId = 'table-row',
     children,
     styles,
     id,

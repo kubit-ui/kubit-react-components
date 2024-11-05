@@ -335,7 +335,7 @@ describe('New Input Component', () => {
       <Input {...commonProps} loading loader={{ altText: 'loader alt text' }} />
     );
 
-    const loaderVariant = getByTestId('loaderStandaloneTestId');
+    const loaderVariant = getByTestId('loader');
     expect(loaderVariant).toBeDefined();
 
     // A11Y and w3c validator
@@ -509,7 +509,7 @@ describe('New Input Component', () => {
       <Input {...commonProps} extraAriaLabelledBy={extraAriabelledBy} />
     );
 
-    const input = getByTestId(`${commonProps.dataTestId}Input`);
+    const input = getByTestId(commonProps.dataTestId);
     expect(input).toHaveAttribute('aria-labelledby', extraAriabelledBy);
   });
 });

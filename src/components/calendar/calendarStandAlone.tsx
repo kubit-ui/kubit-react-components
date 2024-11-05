@@ -12,7 +12,12 @@ import { YearSelector } from './selector/yearSelector/yearSelector';
 import { ICalendarStandAlone } from './types';
 
 const CalendarStandAloneComponent = (
-  { maxDate = new Date(), customBackText = 'Back', ...props }: ICalendarStandAlone,
+  {
+    dataTestId = 'calendar',
+    maxDate = new Date(),
+    customBackText = 'Back',
+    ...props
+  }: ICalendarStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): React.JSX.Element => {
   const [showMonthSelector, setShowMonthSelector] = React.useState(false);
@@ -21,12 +26,7 @@ const CalendarStandAloneComponent = (
   const today = new Date();
 
   return (
-    <CalendarStyled
-      ref={ref}
-      data-testid={`${props.dataTestId}Calendar`}
-      id={props.id}
-      styles={props.styles}
-    >
+    <CalendarStyled ref={ref} data-testid={dataTestId} id={props.id} styles={props.styles}>
       <Selector
         configAccesibility={props.configAccesibility}
         configCalendar={props.configCalendar}
@@ -65,7 +65,7 @@ const CalendarStandAloneComponent = (
             />
             <List
               currentDate={props.currentDate}
-              dataTestId={`${props.dataTestId}ItemList`}
+              dataTestId={`${dataTestId}-item-list`}
               disabledDates={props.disabledDates}
               hasRange={props.hasRange}
               maxDate={maxDate}
@@ -81,7 +81,7 @@ const CalendarStandAloneComponent = (
         {showMonthSelector && (
           <MonthSelector
             currentDate={props.currentDate}
-            dataTestId={`${props.dataTestId}Month`}
+            dataTestId={`${dataTestId}-month`}
             maxDate={maxDate}
             minDate={props.minDate}
             setCurrentDate={props.setCurrentDate}
@@ -93,7 +93,7 @@ const CalendarStandAloneComponent = (
         {showYearSelector && (
           <YearSelector
             currentDate={props.currentDate}
-            dataTestId={`${props.dataTestId}Year`}
+            dataTestId={`${dataTestId}-year`}
             maxDate={maxDate}
             minDate={props.minDate}
             setCurrentDate={props.setCurrentDate}

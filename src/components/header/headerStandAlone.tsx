@@ -14,7 +14,7 @@ import { IHeaderStandAlone } from './types/header';
 import { HeaderContentPositionType } from './types/position';
 
 const HeaderStandAloneComponent = (
-  { ...props }: IHeaderStandAlone,
+  { dataTestId = 'header', ...props }: IHeaderStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const getPositionContent = (position: HeaderContentPositionType) => {
@@ -27,11 +27,7 @@ const HeaderStandAloneComponent = (
   const rightContent = getPositionContent(HeaderContentPositionType.RIGHT);
 
   return (
-    <HeaderContainerStyled
-      ref={ref}
-      data-testid={`${props.dataTestId}Header`}
-      styles={props.styles}
-    >
+    <HeaderContainerStyled ref={ref} data-testid={dataTestId} styles={props.styles}>
       {props.crumbs && props.device === DeviceBreakpointsType.DESKTOP && (
         <BreadcrumbsWrapper styles={props.styles}>
           <Breadcrumbs

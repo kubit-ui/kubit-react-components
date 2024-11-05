@@ -39,7 +39,7 @@ describe('Badge component', () => {
     const ref = jest.fn();
     const { container } = renderProvider(<Badge ref={ref} {...mockProps} />);
 
-    const badge = screen.getByTestId(mockProps.dataTestId + 'Dot');
+    const badge = screen.getByTestId('dot');
     expect(badge).toBeInTheDocument();
 
     const results = await axe(container);
@@ -53,7 +53,7 @@ describe('Badge component', () => {
       <Badge ref={ref} {...mockProps} customDotTranslate="translate(2px, 2px)" />
     );
 
-    const badge = screen.getByTestId(mockProps.dataTestId + 'Dot');
+    const badge = screen.getByTestId('dot');
     expect(badge).toBeInTheDocument();
 
     const results = await axe(container);
@@ -64,7 +64,7 @@ describe('Badge component', () => {
   it('Should be displayed correctly without label', async () => {
     const { container } = renderProvider(<Badge {...mockProps} label={undefined} />);
 
-    const badge = screen.getByTestId(mockProps.dataTestId + 'Dot');
+    const badge = screen.getByTestId('dot');
     expect(badge).toBeInTheDocument();
 
     const results = await axe(container);
@@ -78,7 +78,7 @@ describe('Badge component', () => {
     const triggerButton = screen.getByLabelText('Open menu');
     fireEvent.click(triggerButton);
 
-    const badge = screen.getByTestId(mockProps.dataTestId + 'Dot');
+    const badge = screen.getByTestId('dot');
     expect(badge).toBeInTheDocument();
 
     const results = await axe(container);
@@ -150,7 +150,7 @@ describe('Badge component', () => {
     const contentExpand = screen.getByText('Hello');
     expect(contentExpand).toBeInTheDocument();
 
-    const badgeContainer = screen.getByTestId(mockProps.dataTestId + 'BadgeContainer');
+    const badgeContainer = screen.getByTestId(mockProps.dataTestId + '-container');
     fireEvent.blur(badgeContainer);
 
     expect(contentExpand).not.toBeInTheDocument();

@@ -7,14 +7,14 @@ import { QuickButtonContainerStyled, QuickButtonStyled } from './quickButton.sty
 import { IQuickButtonStandAlone, QuickButtonState } from './types';
 
 const QuickButtonStandAloneComponent = (
-  props: IQuickButtonStandAlone,
+  { dataTestId = 'quick-button', ...props }: IQuickButtonStandAlone,
   ref: React.ForwardedRef<HTMLButtonElement> | undefined | null
 ): JSX.Element => {
   const button = (
     <QuickButtonStyled
       ref={ref}
       aria-label={props.label ? '' : props['aria-label']}
-      data-testid={props.dataTestId}
+      data-testid={dataTestId}
       disabled={props.state === QuickButtonState.DISABLED}
       id={props.buttonId}
       role={props.role}

@@ -17,7 +17,7 @@ import { ISummaryDetailsStandAlone } from './types';
 
 const SummaryDetailsStandAloneComponent = (
   {
-    dataTestId = 'summaryDetails',
+    dataTestId = 'summary-details',
     rotateOpenIcon = '180deg',
     hasLineSeparator = true,
     ...props
@@ -36,14 +36,14 @@ const SummaryDetailsStandAloneComponent = (
   return (
     <ContainerStyled
       ref={ref}
-      data-testid={`${dataTestId}Details`}
+      data-testid={dataTestId}
       open={props.open}
       styles={props.styles}
       onClick={props.onClick}
     >
       <HeaderStyled
         $isOpen={props.open}
-        data-testid={`${dataTestId}Summary`}
+        data-testid={`${dataTestId}-summary`}
         hasLineSeparator={hasLineSeparator}
         lineSeparatorLineStyles={props.lineSeparatorLineStyles}
         styles={props.styles}
@@ -53,7 +53,6 @@ const SummaryDetailsStandAloneComponent = (
             <LeftIconWrapper styles={props.styles}>
               <ElementOrIcon
                 customIconStyles={leftIconStyles}
-                dataTestId={`${dataTestId}SummaryLeftIcon`}
                 rotate={
                   props.styles.leftIconContainer?.allowRotate && props.open
                     ? leftRotateOpen
@@ -66,7 +65,6 @@ const SummaryDetailsStandAloneComponent = (
           <TitleWrapper styles={props.styles}>
             <Text
               customTypography={props.styles.title}
-              dataTestId={`${dataTestId}SummaryTitle`}
               {...props.title}
               component={TextComponentType.SPAN}
             >
@@ -77,7 +75,6 @@ const SummaryDetailsStandAloneComponent = (
             <RightIconWrapper styles={props.styles}>
               <ElementOrIcon
                 customIconStyles={rightIconStyles}
-                dataTestId={`${dataTestId}SummaryIcon`}
                 rotate={
                   props.styles.rightIconContainer?.allowRotate && props.open
                     ? rightRotateOpen
@@ -91,14 +88,13 @@ const SummaryDetailsStandAloneComponent = (
         <Text
           component={TextComponentType.SPAN}
           customTypography={props.styles.description}
-          dataTestId={`${dataTestId}SummaryDescription`}
           {...props.description}
         >
           {props.description?.content}
         </Text>
       </HeaderStyled>
       <BodyStyled
-        data-testid={`${dataTestId}Content`}
+        data-testid={`${dataTestId}-content`}
         styles={props.styles}
         onClick={props.onBodyClick}
       >

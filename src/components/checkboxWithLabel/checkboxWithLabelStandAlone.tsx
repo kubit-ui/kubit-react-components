@@ -26,7 +26,7 @@ const CheckboxWithLabelStandAloneComponent = <V extends string | unknown>(
     required,
     styles,
     variant,
-    dataTestId,
+    dataTestId = 'checkbox-with-label',
     state,
     helperText,
     checkedIcon,
@@ -44,18 +44,18 @@ const CheckboxWithLabelStandAloneComponent = <V extends string | unknown>(
       : styles?.[state]?.label;
 
   return (
-    <CheckBoxWithLabelContainerStyled ref={ref} state={state} styles={styles}>
-      <CheckboxWithLabelStyled
-        data-testid={`${dataTestId}CheckboxWithLabel`}
-        state={state}
-        styles={styles}
-      >
+    <CheckBoxWithLabelContainerStyled
+      ref={ref}
+      data-testid={dataTestId}
+      state={state}
+      styles={styles}
+    >
+      <CheckboxWithLabelStyled state={state} styles={styles}>
         <CheckboxControlled
           aria-label={props['aria-label']}
           aria-labelledby={props['aria-labelledby']}
           checked={checked}
           checkedIcon={checkedIcon}
-          dataTestId={dataTestId}
           disabled={disabled}
           extraAriaDescribedBy={checkBoxDescriptionId}
           id={checkBoxId}
@@ -68,7 +68,6 @@ const CheckboxWithLabelStandAloneComponent = <V extends string | unknown>(
 
         <Label
           color={labelTypography?.color}
-          dataTestId={`${dataTestId}Label`}
           inputId={checkBoxId}
           required={required}
           textVariant={labelTypography?.font_variant}
@@ -83,7 +82,6 @@ const CheckboxWithLabelStandAloneComponent = <V extends string | unknown>(
           <Text
             component={TextComponentType.SMALL}
             customTypography={styles?.[state]?.description}
-            dataTestId={`${dataTestId}Description`}
             {...description}
           >
             {description?.content}
@@ -91,7 +89,6 @@ const CheckboxWithLabelStandAloneComponent = <V extends string | unknown>(
           <Text
             component={TextComponentType.SMALL}
             customTypography={styles?.[state]?.helperText}
-            dataTestId={`${dataTestId}HelperText`}
             {...helperText}
           >
             {helperText?.content}

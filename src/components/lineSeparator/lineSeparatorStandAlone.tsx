@@ -16,7 +16,7 @@ const LineSeparatorStandAloneComponent = (
     label,
     externalNodeTag,
     internalNodeTag,
-    dataTestId,
+    dataTestId = 'line-separator',
   }: ILineSeparatorStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {

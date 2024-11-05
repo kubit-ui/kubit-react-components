@@ -8,7 +8,13 @@ import { PopoverAnimationStyled, PopoverStyled } from './popover.styled';
 import { IPopoverStandAlone } from './types';
 
 const PopoverStandAloneComponent = (
-  { children, animationExecution, animationConfig, dataTestId, ...props }: IPopoverStandAlone,
+  {
+    children,
+    animationExecution,
+    animationConfig,
+    dataTestId = 'popover',
+    ...props
+  }: IPopoverStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element | null => {
   const ariaProps = pickAriaProps(props);

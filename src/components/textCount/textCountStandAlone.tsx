@@ -30,7 +30,7 @@ const TextCountStandAloneComponent = (
     leftColor,
     rightColor,
     marginTop,
-    dataTestId = 'textCount',
+    dataTestId = 'text-count',
   }: ITextCountStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {

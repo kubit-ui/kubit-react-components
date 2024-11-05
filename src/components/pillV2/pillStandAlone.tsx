@@ -25,8 +25,7 @@ const PillStandAloneComponent = (
 
   return (
     <PillRootContainerStyled
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ref={ref as any}
+      ref={ref}
       aria-controls={props['aria-controls']}
       aria-selected={type === PillType.TAB ? props.selected : undefined}
       as={[PillType.BUTTON, PillType.TAB].includes(type) ? PillAsButton : undefined}

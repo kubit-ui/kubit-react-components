@@ -62,7 +62,7 @@ describe('Slider without range', () => {
 
   it('should render a tooltip if configured and it is not been grabbed on desktop device', () => {
     renderProvider(<Slider {...mockSimpleSliderProps} tooltip={{ title: 'tooltip' }} />);
-    const thumb = screen.getByTestId('sliderThumb');
+    const thumb = screen.getByTestId('slider-thumb');
     fireEvent.mouseEnter(thumb);
 
     const tooltipTitle = screen.getByText('tooltip');
@@ -175,7 +175,7 @@ describe('Slider without range', () => {
     const { getByTestId } = renderProvider(
       <Slider {...mockSimpleSliderProps} onChange={onChange} />
     );
-    await userEvent.click(getByTestId('sliderContainer'));
+    await userEvent.click(getByTestId('slider-container'));
     await waitFor(() => expect(onChange).toHaveBeenCalled(), { timeout: 150 });
   });
 
@@ -185,7 +185,7 @@ describe('Slider without range', () => {
     const { getByTestId } = renderProvider(
       <Slider {...mockSimpleSliderProps} onChange={onChange} />
     );
-    fireEvent.touchStart(getByTestId('sliderContainer'));
+    fireEvent.touchStart(getByTestId('slider-container'));
     await waitFor(() => expect(onChange).toHaveBeenCalled(), { timeout: 150 });
   });
 
@@ -195,7 +195,7 @@ describe('Slider without range', () => {
     const { getByTestId } = renderProvider(
       <Slider {...mockSimpleSliderProps} disabled onChange={onChange} />
     );
-    fireEvent.touchStart(getByTestId('sliderContainer'));
+    fireEvent.touchStart(getByTestId('slider-container'));
     await waitFor(() => expect(onChange).not.toHaveBeenCalled(), { timeout: 150 });
   });
 
@@ -377,7 +377,7 @@ const mockRangeSliderProps = {
 describe('Slider with range', () => {
   it('should render a right tooltip if configured and it is not been grabbed on desktop device', () => {
     renderProvider(<Slider {...mockRangeSliderProps} rightTooltip={{ title: 'tooltip' }} />);
-    const rightThumb = screen.getByTestId('sliderRightThumb');
+    const rightThumb = screen.getByTestId('slider-right-thumb');
     fireEvent.mouseEnter(rightThumb);
 
     const tooltipTitle = screen.getByText('tooltip');
@@ -433,7 +433,7 @@ describe('Slider with range', () => {
     );
     // Make active left thumb
     await userEvent.click(getAllByRole(ROLES.SLIDER)[0]);
-    await userEvent.click(getByTestId('sliderContainer'));
+    await userEvent.click(getByTestId('slider-container'));
     await waitFor(() => expect(onChange).toHaveBeenCalled(), { timeout: 150 });
   });
 
@@ -445,7 +445,7 @@ describe('Slider with range', () => {
     );
     // Make active right thumb
     await userEvent.click(getAllByRole(ROLES.SLIDER)[1]);
-    await userEvent.click(getByTestId('sliderContainer'));
+    await userEvent.click(getByTestId('slider-container'));
     await waitFor(() => expect(onChange).toHaveBeenCalled(), { timeout: 150 });
   });
 

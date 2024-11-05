@@ -67,7 +67,7 @@ it('should be show the iconhighlighted when its set', () => {
       }}
     />
   );
-  const iconhighlighted = getByTestId(`${dataTestId}${DecorativeType.ICON_HIGHLIGHTED}`);
+  const iconhighlighted = getByTestId(dataTestId);
 
   expect(iconhighlighted).toBeInTheDocument();
 });
@@ -80,7 +80,7 @@ it('should be show the avatar when its set', () => {
       }}
     />
   );
-  const avatar = getByTestId(`${dataTestId}${DecorativeType.AVATAR}`);
+  const avatar = getByTestId(dataTestId);
 
   expect(avatar).toBeInTheDocument();
 });

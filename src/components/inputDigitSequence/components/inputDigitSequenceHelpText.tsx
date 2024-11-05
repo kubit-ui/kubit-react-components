@@ -18,12 +18,8 @@ export const InputDigitSequenceHelpText = (
     return null;
   }
   return (
-    <HelpTextContainerStyled data-testid={`${props.dataTestId}Wrapper`} styles={props.styles}>
-      <Text
-        customTypography={props.styles?.helpText}
-        dataTestId={`${props.dataTestId}Message`}
-        {...props.helpText}
-      >
+    <HelpTextContainerStyled data-testid={`${props.dataTestId}-wrapper`} styles={props.styles}>
+      <Text customTypography={props.styles?.helpText} {...props.helpText}>
         {props.helpText.content}
       </Text>
     </HelpTextContainerStyled>

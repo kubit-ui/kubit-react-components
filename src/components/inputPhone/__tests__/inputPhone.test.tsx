@@ -26,7 +26,7 @@ describe('New Input Phone Component', () => {
     const { container, getByText, getByTestId } = renderProvider(
       <InputPhone {...mockProps} mask={'###-###-###'} />
     );
-    const phoneInput = getByTestId('IPInputInput');
+    const phoneInput = getByTestId('input');
     const prefixBox = getByText(mockProps.prefix?.content as string);
 
     expect(phoneInput).toBeInTheDocument();
@@ -41,7 +41,7 @@ describe('New Input Phone Component', () => {
     const { container, getByTestId } = renderProvider(
       <InputPhone {...mockProps} prefixNode="prefixNode" />
     );
-    const phoneInput = getByTestId('IPInputInput');
+    const phoneInput = getByTestId('input');
 
     expect(phoneInput).toBeInTheDocument();
 
@@ -59,7 +59,7 @@ describe('New Input Phone Component', () => {
         variant="AFFIX_OUT"
       />
     );
-    const phoneInput = getByTestId('IPInputInput');
+    const phoneInput = getByTestId('input');
     const prefixBox = getByText(mockProps.prefix?.content as string);
 
     expect(phoneInput).toBeInTheDocument();

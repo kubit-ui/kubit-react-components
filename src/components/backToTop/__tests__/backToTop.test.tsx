@@ -26,7 +26,7 @@ describe('BackToTop component', () => {
       </div>
     );
 
-    const buttonBackToTop = screen.getByTestId('backToTopButton');
+    const buttonBackToTop = screen.getByTestId('back-to-top');
     expect(buttonBackToTop).toBeInTheDocument();
 
     fireEvent.click(buttonBackToTop);
@@ -45,7 +45,7 @@ describe('BackToTop component', () => {
       </div>
     );
 
-    const buttonBackToTop = screen.getByTestId('backToTopButton');
+    const buttonBackToTop = screen.getByTestId('back-to-top');
     expect(buttonBackToTop).toHaveStyle('display: flex');
   });
 });

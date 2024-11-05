@@ -16,7 +16,12 @@ import {
 } from './utils/mediaProgressBarUtils';
 
 const MediaProgressBarStandaloneComponent = (
-  { barsNum, ...props }: IMediaProgressBarStandAlone,
+  {
+    dataTestIdBar = 'bar',
+    dataTestIdProgressBar = 'progress-bar',
+    barsNum,
+    ...props
+  }: IMediaProgressBarStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const device = useMediaDevice();
@@ -47,7 +52,7 @@ const MediaProgressBarStandaloneComponent = (
       >
         <BarStyled
           barFocused={newIndex === props.currentBar}
-          data-testid={`${props.dataTestIdBar}-${newIndex}`}
+          data-testid={`${dataTestIdBar}-${newIndex}`}
           styles={props.styles}
         >
           {newIndex === props.currentBar && (
@@ -55,7 +60,7 @@ const MediaProgressBarStandaloneComponent = (
               ref={props.progressBarRef}
               barFocused={newIndex === props.currentBar}
               barProgressDuration={props.barProgressDuration}
-              data-testid={`${props.dataTestIdProgressBar}-${newIndex}`}
+              data-testid={`${dataTestIdProgressBar}-${newIndex}`}
               playing={props.playing}
               styles={props.styles}
             />

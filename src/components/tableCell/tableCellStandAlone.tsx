@@ -5,7 +5,7 @@ import { ITableCellStandAlone } from './types';
 
 const TableCellStandAloneComponent = (
   {
-    dataTestId = 'tableCell',
+    dataTestId = 'table-cell',
     children,
     styles,
     id,

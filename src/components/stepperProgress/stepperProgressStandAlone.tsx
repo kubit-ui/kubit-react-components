@@ -19,7 +19,7 @@ const maxProgress = 100;
 
 const StepperProgressStandAloneComponent = (
   {
-    dataTestId,
+    dataTestId = 'stepper-progress',
     id,
     styles,
     initialStep,
@@ -54,7 +54,7 @@ const StepperProgressStandAloneComponent = (
       <StepperProgressHelpText
         aria-describedby={stepperProgressId}
         aria-live={AriaLiveOptionType.POLITE}
-        data-testid={dataTestId + 'HelpText'}
+        data-testid={dataTestId + '-help-text'}
         styles={styles}
       >
         <Text component={TextComponentType.SPAN} customTypography={styles.currentStep}>

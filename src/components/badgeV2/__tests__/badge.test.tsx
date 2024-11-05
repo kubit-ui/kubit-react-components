@@ -31,7 +31,7 @@ describe('Badge component', () => {
     const ref = jest.fn();
     const { container } = renderProvider(<Badge ref={ref} {...mockProps} />);
 
-    const badge = screen.getByTestId(mockProps.dataTestId + 'Badge');
+    const badge = screen.getByTestId(mockProps.dataTestId as string);
     expect(badge).toBeInTheDocument();
 
     const results = await axe(container);
@@ -43,7 +43,7 @@ describe('Badge component', () => {
     const ref = jest.fn();
     renderProvider(<Badge ref={ref} {...mockProps} customDotTranslate="translate(2px, 2px)" />);
 
-    const badge = screen.getByTestId(mockProps.dataTestId + 'Badge');
+    const badge = screen.getByTestId(mockProps.dataTestId as string);
     expect(badge).toBeInTheDocument();
   });
 
@@ -53,14 +53,14 @@ describe('Badge component', () => {
       <Badge ref={ref} {...mockProps} cts={{ customDotNumberTranslate: '"translate(2px, 2px)' }} />
     );
 
-    const badge = screen.getByTestId(mockProps.dataTestId + 'Badge');
+    const badge = screen.getByTestId(mockProps.dataTestId as string);
     expect(badge).toBeInTheDocument();
   });
 
   it('Should be displayed correctly without label', async () => {
     const { container } = renderProvider(<Badge {...mockProps} label={undefined} />);
 
-    const badge = screen.getByTestId(mockProps.dataTestId + 'Badge');
+    const badge = screen.getByTestId(mockProps.dataTestId as string);
     expect(badge).toBeInTheDocument();
 
     const results = await axe(container);
@@ -74,7 +74,7 @@ describe('Badge component', () => {
     const triggerButton = screen.getByLabelText('Open menu');
     fireEvent.click(triggerButton);
 
-    const badge = screen.getByTestId(mockProps.dataTestId + 'Badge');
+    const badge = screen.getByTestId(mockProps.dataTestId as string);
     expect(badge).toBeInTheDocument();
   });
 
@@ -100,7 +100,7 @@ describe('Badge component', () => {
     const triggerButton = screen.getByLabelText('Open menu');
     fireEvent.blur(triggerButton);
 
-    const badge = screen.getByTestId(mockProps.dataTestId + 'Badge');
+    const badge = screen.getByTestId(mockProps.dataTestId as string);
     expect(badge).toBeInTheDocument();
   });
 });

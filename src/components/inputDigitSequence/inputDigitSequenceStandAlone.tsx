@@ -23,7 +23,7 @@ const InputDigitSequenceStandAloneComponent = (
   {
     error = false,
     inputMode = 'numeric',
-    dataTestId = 'inputDigitSequence',
+    dataTestId = 'input-digit-sequence',
     ...props
   }: IInputDigitSequenceStandAlone,
   ref: React.ForwardedRef<HTMLDivElement>
@@ -114,7 +114,7 @@ const InputDigitSequenceStandAloneComponent = (
         )}
       </IconAndErrorTextContainer>
       <InputDigitSequenceHelpText
-        dataTestId={`${dataTestId}HelpText`}
+        dataTestId={`${dataTestId}-help-text`}
         helpText={props.helpText}
         styles={stateStyles}
       />

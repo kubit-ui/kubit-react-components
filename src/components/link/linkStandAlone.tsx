@@ -9,7 +9,7 @@ import { LabelIconWrapper, TextStyledExtended } from './link.styled';
 import { ILinkStandAlone, LinkStateType } from './types';
 
 const LinkStandAloneComponent = (
-  { url, ...props }: ILinkStandAlone,
+  { dataTestId = 'link', url, ...props }: ILinkStandAlone,
   ref: React.ForwardedRef<HTMLElement> | undefined | null
 ): JSX.Element => {
   const ariaProps = pickAriaProps(props);
@@ -22,7 +22,7 @@ const LinkStandAloneComponent = (
       as={Text}
       color={props.color}
       component={props.component}
-      dataTestId={props.dataTestId}
+      dataTestId={dataTestId}
       decoration={props.decoration}
       draggable={props.draggable}
       isDisabled={props.state === LinkStateType.DISABLED}

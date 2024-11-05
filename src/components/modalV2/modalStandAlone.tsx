@@ -16,7 +16,7 @@ import { onlyDesktopSize } from './utils';
 
 const ModalStandAloneComponent = <V extends string | unknown>(
   {
-    dataTestId = 'modalDataTestId',
+    dataTestId = 'modal',
     customHeightAllDevices = false,
     customWidthAllDevices = false,
     ...props
@@ -35,7 +35,6 @@ const ModalStandAloneComponent = <V extends string | unknown>(
       aria-modal={props.open}
       clickOverlayClose={!props.blocked}
       component={PopoverComponentType.DIV}
-      dataTestId={`${dataTestId}Popover`}
       hasBackDrop={true}
       id={modalId}
       open={props.open}
@@ -66,7 +65,6 @@ const ModalStandAloneComponent = <V extends string | unknown>(
           blocked={props.blocked}
           closeButton={props.closeButton}
           closeIcon={props.closeIcon}
-          dataTestId={dataTestId}
           device={props.device}
           dragIcon={props.dragIcon}
           styles={props.styles}
@@ -82,7 +80,7 @@ const ModalStandAloneComponent = <V extends string | unknown>(
           aria-labelledby={
             props.contentHasScroll ? props.contentScrollArias?.['aria-labelledby'] : undefined
           }
-          data-testid={`${dataTestId}Content`}
+          data-testid={`${dataTestId}-content`}
           role={props.contentHasScroll ? ROLES.REGION : undefined}
           tabIndex={props.contentHasScroll ? 0 : undefined}
         >
@@ -91,11 +89,7 @@ const ModalStandAloneComponent = <V extends string | unknown>(
         {/* Footer Section */}
         {modalFooterVariant && props.footer?.content && (
           <ModalFooterStyled $styles={props.styles}>
-            <Footer
-              dataTestId={`${dataTestId}Navbar`}
-              variant={modalFooterVariant}
-              {...props.footer}
-            >
+            <Footer variant={modalFooterVariant} {...props.footer}>
               {props.footer?.content}
             </Footer>
           </ModalFooterStyled>

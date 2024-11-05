@@ -1,3 +1,6 @@
+import { PopoverComponentType } from '@/components/popover';
+import { DeviceBreakpointsType } from '@/types';
+
 // build descriptive id for aria-describedby or aria-labelledby
 export const getAriaDescriptorsBy = ({
   title,

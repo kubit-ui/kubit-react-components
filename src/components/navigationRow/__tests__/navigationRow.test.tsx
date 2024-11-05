@@ -33,7 +33,7 @@ describe('NavigationRow component', () => {
   it('Should call onClick function when provided', async () => {
     const onClick = jest.fn();
     renderProvider(<NavigationRow {...mockProps} onClick={onClick} />);
-    const navigationRow = screen.getByTestId('NavigationRow');
+    const navigationRow = screen.getByTestId('navigation-row');
     await userEvent.click(navigationRow);
     expect(onClick).toHaveBeenCalled();
   });

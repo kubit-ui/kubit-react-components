@@ -42,6 +42,7 @@ const InputStandAloneComponent = (
     inputMode = 'text',
     autocomplete = AUTOCOMPLETE_TYPE.ON,
     autoCapitalize = 'off',
+    dataTestId = 'input',
     ...props
   }: IInputStandAlone,
   ref: React.ForwardedRef<unknown>
@@ -88,7 +89,7 @@ const InputStandAloneComponent = (
         autoCapitalize={autoCapitalize}
         autoComplete={autocomplete}
         cursorPointer={styles?.[state]?.inputContainer?.cursor}
-        data-testid={`${props.dataTestId}Input`}
+        data-testid={dataTestId}
         data-truncate={props.truncate}
         disabled={isDisabled(state)}
         icon={props.icon?.icon}
@@ -143,7 +144,7 @@ const InputStandAloneComponent = (
             : undefined
         }
         disabled={isDisabled(state)}
-        icon={{ dataTestId: `${props.dataTestId}Icon`, ...props.icon }}
+        icon={{ ...props.icon }}
         iconPosition={props.iconPosition}
         leftIcon={props.leftIcon}
         loading={props.loading}
@@ -158,14 +159,12 @@ const InputStandAloneComponent = (
     <TopContentWrapperStyled styles={styles?.[state]}>
       <TitleStandAlone
         additionalInfo={props.label ? undefined : props.additionalInfo}
-        dataTestId={props.dataTestId}
         state={state}
         styles={styles?.[state]}
         title={props.title}
       />
       <LabelStandAlone
         additionalInfo={props.additionalInfo}
-        dataTestId={props.dataTestId}
         id={labelId}
         inputId={props.inputId}
         label={props.label}
@@ -183,7 +182,6 @@ const InputStandAloneComponent = (
       />
       {styles?.[state]?.helpMessage?.position === InputHelpMessagePosition.TOP ? (
         <HelpMessageStandAlone
-          dataTestId={props.dataTestId}
           helpMessage={helpMessage}
           helpMessageId={helpMessageId}
           styles={styles?.[state]}
@@ -195,7 +193,7 @@ const InputStandAloneComponent = (
   const buildBottomContent = () => (
     <BottomContentWrapperStyled isExpanded={!!props['aria-expanded']}>
       <InformationAssociatedStandAlone
-        dataTestId={props.dataTestId}
+        dataTestId={dataTestId}
         highlightedInformationAssociatedIcon={props.highlightedInformationAssociatedIcon}
         informationAssociatedButton={props.informationAssociatedButton}
         informationAssociatedIcon={props.informationAssociatedIcon}
@@ -206,7 +204,6 @@ const InputStandAloneComponent = (
       <MessagesAndCounterWrapperStyled>
         <InputErrorAndHelpMessageWrapperStyled styles={styles?.[state]}>
           <ErrorMessageStandAlone
-            dataTestId={props.dataTestId}
             errorAriaLiveType={props.errorAriaLiveType}
             errorIcon={props.errorIcon}
             errorMessage={errorMessage}
@@ -217,7 +214,6 @@ const InputStandAloneComponent = (
 
           {styles?.[state]?.helpMessage?.position === InputHelpMessagePosition.BOTTOM ? (
             <HelpMessageStandAlone
-              dataTestId={props.dataTestId}
               helpMessage={helpMessage}
               helpMessageId={helpMessageId}
               styles={styles?.[state]}

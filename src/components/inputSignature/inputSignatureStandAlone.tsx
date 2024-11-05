@@ -9,7 +9,7 @@ import {
 import { IInputSignatureStandAlone, InputSignatureState } from './types';
 
 export const InputSignatureStandAloneComponent = (
-  { styles, canvasRef, ...props }: IInputSignatureStandAlone,
+  { styles, canvasRef, dataTestid = 'input-signature', ...props }: IInputSignatureStandAlone,
   ref: React.ForwardedRef<HTMLDivElement>
 ): JSX.Element => {
   const hasPlaceholder =
@@ -25,13 +25,13 @@ export const InputSignatureStandAloneComponent = (
   return (
     <InputSignatureContainerStyled
       ref={ref}
-      data-testid={props.dataTestid}
+      data-testid={dataTestid}
       styles={styles.container}
       tabIndex={-1}
       onBlur={props.onBlurContainer}
       onClick={props.onClickContainer}
     >
-      <InputSignatureCanvasStyled ref={canvasRef} data-testid={`${props.dataTestid}Canvas`} />
+      <InputSignatureCanvasStyled ref={canvasRef} data-testid={`${dataTestid}-canvas`} />
       {hasPlaceholder && (
         <InputSignaturePlaceholderStyled styles={styles.placeholderContainer}>
           <Text {...styles.placeholderText} {...currentText}>

@@ -20,7 +20,10 @@ import { IOptionStandAlone, OptionStateType } from './types';
 import { getHighlightedIndexes, getState } from './utils';
 
 const OptionStandAlone = React.forwardRef(
-  (props: IOptionStandAlone, ref: React.ForwardedRef<HTMLElement | undefined>) => {
+  (
+    { dataTestId = 'option', ...props }: IOptionStandAlone,
+    ref: React.ForwardedRef<HTMLElement | undefined>
+  ) => {
     const ariaProps = pickAriaProps(props);
     const filling = !!props.labelCharsHighlighted && props.labelCharsHighlighted?.length > 0;
     const state = getState(
@@ -61,7 +64,7 @@ const OptionStandAlone = React.forwardRef(
         $stateStyles={stateStyles}
         $styles={props.styles}
         as={props.url ? props.componentLink : (props.as ?? OptionDivStyled)}
-        data-testid={props.dataTestId}
+        data-testid={dataTestId}
         role={props.role}
         tabIndex={props.tabIndex}
         url={props.url}
@@ -80,7 +83,6 @@ const OptionStandAlone = React.forwardRef(
           <OptionLabelIconWrapper stateStyles={stateStyles}>
             <ElementOrIcon
               color={stateStyles?.icon?.color}
-              dataTestId={`${props.dataTestId}Icon`}
               height={stateStyles?.icon?.height}
               width={stateStyles?.icon?.width}
               {...props.icon}
@@ -90,7 +92,6 @@ const OptionStandAlone = React.forwardRef(
                 <Text
                   color={stateStyles?.sublabel?.color}
                   component={TextComponentType.SPAN}
-                  dataTestId={`${props.dataTestId}Sublabel`}
                   decoration={stateStyles?.sublabel?.text_decoration as TextDecorationType}
                   variant={stateStyles?.sublabel?.font_variant}
                   weight={stateStyles?.sublabel?.font_weight}
@@ -104,7 +105,7 @@ const OptionStandAlone = React.forwardRef(
               <OptionLabelSlice
                 color={stateStyles?.label?.color}
                 component={TextComponentType.SPAN}
-                dataTestId={`${props.dataTestId}FirstNoHightlightedLabel`}
+                dataTestId={`${dataTestId}-first-no-hightlighted-label`}
                 decoration={stateStyles?.label?.text_decoration as TextDecorationType}
                 variant={stateStyles?.label?.font_variant}
                 weight={stateStyles?.label?.font_weight}
@@ -114,7 +115,7 @@ const OptionStandAlone = React.forwardRef(
               <OptionLabelSlice
                 color={stateStyles?.label?.color}
                 component={TextComponentType.SPAN}
-                dataTestId={`${props.dataTestId}HighlightedLabel`}
+                dataTestId={`${dataTestId}-highlighted-label`}
                 decoration={stateStyles?.labelHightlighted?.text_decoration as TextDecorationType}
                 variant={stateStyles?.labelHightlighted?.font_variant}
                 weight={stateStyles?.labelHightlighted?.font_weight}
@@ -124,7 +125,7 @@ const OptionStandAlone = React.forwardRef(
               <OptionLabelSlice
                 color={stateStyles?.label?.color}
                 component={TextComponentType.SPAN}
-                dataTestId={`${props.dataTestId}LastNoHightlightedLabel`}
+                dataTestId={`${dataTestId}-last-no-hightlighted-label`}
                 decoration={stateStyles?.label?.text_decoration as TextDecorationType}
                 variant={stateStyles?.label?.font_variant}
                 weight={stateStyles?.label?.font_weight}
@@ -136,7 +137,6 @@ const OptionStandAlone = React.forwardRef(
           {hasCheckedIcon && (
             <ElementOrIcon
               color={stateStyles?.checkedIcon?.color}
-              dataTestId={`${props.dataTestId}IconChecked`}
               height={stateStyles?.checkedIcon?.height}
               width={stateStyles?.checkedIcon?.width}
               {...props.checkedIcon}

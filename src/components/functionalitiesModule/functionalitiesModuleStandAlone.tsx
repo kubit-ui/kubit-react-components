@@ -17,7 +17,11 @@ import {
 import { IFunctionalitiesModuleStandAlone } from './types';
 
 const FunctionalitiesModuleStandAloneComponent = (
-  { hasTitleSection = false, ...props }: IFunctionalitiesModuleStandAlone,
+  {
+    hasTitleSection = false,
+    dataTestId = 'functionalities-module',
+    ...props
+  }: IFunctionalitiesModuleStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const mergeList = (): ListOptionsOptionType[] => {
@@ -30,14 +34,9 @@ const FunctionalitiesModuleStandAloneComponent = (
   };
 
   const buildContentMergeList = () => [
-    <ContentContainerStyled
-      key={0}
-      data-testid={`${props.dataTestId}ContentTab`}
-      styles={props.styles}
-    >
+    <ContentContainerStyled key={0} data-testid={`${dataTestId}-content-tab`} styles={props.styles}>
       {props.styles.listOptions?.optionVariant && props.styles.listOptions.variant && (
         <ListOptions
-          dataTestId={`${props.dataTestId}ListOptions`}
           optionVariant={props.styles.listOptions.optionVariant}
           options={mergeList()}
           selectedValue={props.selectedValue}
@@ -54,13 +53,12 @@ const FunctionalitiesModuleStandAloneComponent = (
       return (
         <ContentContainerStyled
           key={index}
-          data-testid={`${props.dataTestId}ContentTab${index}`}
+          data-testid={`${dataTestId}-content-tab-${index}`}
           styles={props.styles}
         >
           {props.styles.listOptions?.optionVariant && props.styles.listOptions.variant && (
             <ListOptions
               content={section.optionsContent}
-              dataTestId={`${props.dataTestId}ListOptions`}
               optionVariant={props.styles.listOptions.optionVariant}
               options={section.options || []}
               selectedValue={props.selectedValue}
@@ -91,7 +89,7 @@ const FunctionalitiesModuleStandAloneComponent = (
         <TabsContainerStyled
           ref={ref}
           aria-label={props.tabsContainerAriaLabel}
-          data-testid={`${props.dataTestId}Tabs`}
+          data-testid={`${dataTestId}-tabs`}
           styles={props.styles}
         >
           <Tabs
@@ -106,9 +104,7 @@ const FunctionalitiesModuleStandAloneComponent = (
         <>
           {props.trigger?.content && (
             <ButtonContainerStyled styles={props.styles}>
-              <Button dataTestId={`${props.dataTestId}Button`} {...props.trigger}>
-                {props.trigger?.content}
-              </Button>
+              <Button {...props.trigger}>{props.trigger?.content}</Button>
             </ButtonContainerStyled>
           )}
           <ActionBottomSheetContainerStyled styles={props.styles}>

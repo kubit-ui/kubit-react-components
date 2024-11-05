@@ -240,7 +240,7 @@ export const List = ({
                   day: 'numeric',
                 })}
                 asElement={ElementStyled}
-                dataTestId={dataTestId + (dayIndex + WEEK_DAYS * index)}
+                dataTestId={`${dataTestId}-${dayIndex + WEEK_DAYS * index}`}
                 focus={handleFocus(dayIndex + WEEK_DAYS * index)}
                 index={dayIndex + WEEK_DAYS * index}
                 type={ButtonType.BUTTON}

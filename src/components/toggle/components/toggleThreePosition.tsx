@@ -28,6 +28,7 @@ const ToggleThreePositionComponent = (
     },
     radioButtonToggleName = 'groupe-toggle',
     blockCenter = false,
+    dataTestId = 'toggle',
     ...props
   }: IToggleThreePosition,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
@@ -36,8 +37,8 @@ const ToggleThreePositionComponent = (
     position === POSITIONS.CENTER
       ? inputValues.centerInputValue
       : position === POSITIONS.RIGHT
-        ? (inputValues.rightInputValue ?? props.onIcon?.altText)
-        : (inputValues.leftInputValue ?? props.offIcon?.altText);
+        ? inputValues.rightInputValue ?? props.onIcon?.altText
+        : inputValues.leftInputValue ?? props.offIcon?.altText;
 
   const buildTextOrIcon = (position: POSITIONS) => {
     return (
@@ -89,9 +90,9 @@ const ToggleThreePositionComponent = (
         >
           <Label
             color={props.styles?.label?.color}
-            dataTestId={`${props.dataTestId}${
-              position === POSITIONS.RIGHT ? 'On' : position === POSITIONS.CENTER ? 'Na' : 'Off'
-            }LabelOption`}
+            dataTestId={`${dataTestId}-${
+              position === POSITIONS.RIGHT ? 'on' : position === POSITIONS.CENTER ? 'Na' : 'off'
+            }-label-option`}
             inputId={`${position.toLowerCase()}Input`}
             textVariant={
               (position === POSITIONS.LEFT && props.offText?.content) ||
@@ -116,7 +117,6 @@ const ToggleThreePositionComponent = (
             aria-hidden={true}
             color={props.styles?.label?.color}
             component={TextComponentType.LABEL}
-            dataTestId={`${props.dataTestId}OffLabel`}
             variant={props.styles?.label?.font_variant}
             weight={props.styles?.label?.font_weight}
           >
@@ -134,7 +134,6 @@ const ToggleThreePositionComponent = (
             aria-hidden={true}
             color={props.styles?.label?.color}
             component={TextComponentType.LABEL}
-            dataTestId={`${props.dataTestId}OnLabel`}
             variant={props.styles?.label?.font_variant}
             weight={props.styles?.label?.font_weight}
           >
@@ -149,12 +148,12 @@ const ToggleThreePositionComponent = (
     <ToggleWrapperStyled
       ref={ref}
       aria-label={props['aria-label']}
-      data-testid={props.dataTestId}
+      data-testid={dataTestId}
       disabled={props.disabled}
       hasThreePositions={props.hasThreePositions}
       id={props.id}
       styles={props.styles}
-      tabIndex={!props.disabled ? (props.tabIndex ?? 0) : undefined}
+      tabIndex={!props.disabled ? props.tabIndex ?? 0 : undefined}
       togglePosition={props.togglePosition}
       onKeyDown={e => {
         e.persist();
@@ -169,7 +168,7 @@ const ToggleThreePositionComponent = (
       {buildRadioButton(POSITIONS.RIGHT)}
       <SliderContainerStyled
         aria-hidden="true"
-        data-testid={`${props.dataTestId}Thumb`}
+        data-testid={`${dataTestId}-thumb`}
         hasThreePositions={props.hasThreePositions}
         styles={props.styles}
         togglePosition={props.togglePosition}

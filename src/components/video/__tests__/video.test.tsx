@@ -432,7 +432,7 @@ describe('Video component', () => {
       });
     }
 
-    await userEvent.click(getByTestId('sliderContainer'));
+    await userEvent.click(getByTestId('slider-container'));
     await waitFor(() => expect(mockOnChange).toHaveBeenCalled(), { timeout: 150 });
   });
 });

@@ -14,7 +14,7 @@ import { IRadioButtonGroupStandAlone, RadioButtonGroupStateType } from './types'
 
 const RadioButtonGroupStandAloneComponent = (
   {
-    dataTestId = 'radioButtonGroup',
+    dataTestId = 'radio-button-group',
     requiredSymbol = '*',
     state = RadioButtonGroupStateType.DEFAULT,
     legendComponent = TextComponentType.LEGEND,
@@ -29,7 +29,7 @@ const RadioButtonGroupStandAloneComponent = (
     <RadioButtonGroupStyled
       ref={ref}
       aria-errormessage={props.errorMessageId}
-      data-testid={`${dataTestId}RadioGroup`}
+      data-testid={dataTestId}
       disabled={state === RadioButtonGroupStateType.DISABLED || props.disabled}
       name={props.name}
       styles={props.styles}
@@ -39,7 +39,6 @@ const RadioButtonGroupStandAloneComponent = (
           <Text component={legendComponent} customTypography={props.styles?.[state]?.title}>
             {props.legend}
             <InfoIconWithTooltipStandAlone
-              dataTestId={`${dataTestId}InfoIcon`}
               infoIcon={props.infoIcon}
               styles={props.styles}
               tooltip={props.tooltip}
@@ -57,7 +56,6 @@ const RadioButtonGroupStandAloneComponent = (
         <RadioButton
           key={o.value}
           checked={props.selectedOption?.value === o.value}
-          dataTestId={`${dataTestId}RadioButton${index}`}
           disabled={o.disabled}
           error={o.error}
           errorAriaLiveType={o.errorAriaLiveType}
@@ -76,9 +74,7 @@ const RadioButtonGroupStandAloneComponent = (
           onChange={props.onChange}
         />
       ))}
-      <ScreenReaderOnly dataTestId={`${dataTestId}ScreenReader`} id={screenReaderId}>
-        {props.screenReaderText}
-      </ScreenReaderOnly>
+      <ScreenReaderOnly id={screenReaderId}>{props.screenReaderText}</ScreenReaderOnly>
     </RadioButtonGroupStyled>
   );
 };

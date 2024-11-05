@@ -64,7 +64,6 @@ export const InputCurrencyStandAloneComponent = (
         aria-hidden={props.screenReaderCurrencyName ? true : false}
         component={TextComponentType.SPAN}
         customTypography={props.styles?.[props.state]?.currencyName}
-        dataTestId={`${props.dataTestId}CurrencyName`}
         {...props.currencyName}
       >
         {props.currencyName.content}

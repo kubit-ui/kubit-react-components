@@ -91,7 +91,7 @@ describe('CssAnimation component', () => {
       />
     );
 
-    const cssAnimation = screen.getByTestId('cssAnimation');
+    const cssAnimation = screen.getByTestId('css-animation');
 
     expect(cssAnimation).toBeInTheDocument();
   });
@@ -104,7 +104,7 @@ describe('CssAnimation component', () => {
         }}
       />
     );
-    expect(screen.queryByTestId('cssAnimation')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('css-animation')).not.toBeInTheDocument();
   });
 
   it('Can receive a callback ref', () => {

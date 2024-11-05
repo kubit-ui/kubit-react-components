@@ -60,7 +60,7 @@ export const InformationAssociatedStandAlone = (
       {props.informationAssociatedValue && (
         <InformationAssociatedWrapperStyled
           aria-live={AriaLiveOptionType.POLITE}
-          data-testid={`${props.dataTestId}InfoAssociated`}
+          data-testid={`${props.dataTestId}-information-associated`}
           iconPosition={
             props.informationAssociatedIcon?.position ||
             props.highlightedInformationAssociatedIcon?.position

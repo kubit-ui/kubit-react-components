@@ -96,12 +96,12 @@ describe('Tabs component', () => {
 
     expect(tab).toBeDisabled();
 
-    const rightArrow = screen.getByTestId('tabIconRight');
+    const rightArrow = screen.getByTestId('tab-icon-right');
     fireEvent.click(rightArrow);
 
     expect(tab).not.toBeDisabled();
 
-    const leftArrow = screen.getByTestId('tabIconLeft');
+    const leftArrow = screen.getByTestId('tab-icon-left');
     fireEvent.click(leftArrow);
 
     expect(tab).toBeDisabled();

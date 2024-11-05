@@ -114,7 +114,7 @@ const SliderStandAloneComponent = (
         <StyledWrap styles={styles}>
           <StyledContainer
             ref={containerRef}
-            data-testid={`${dataTestId}Container`}
+            data-testid={`${dataTestId}-container`}
             styles={styles}
             onMouseDown={onMouseDown}
             onTouchMove={onChange}
@@ -128,7 +128,7 @@ const SliderStandAloneComponent = (
                   data-disabled={disabled}
                   data-hover={hover}
                   data-pressed={pressed}
-                  data-testid={`${dataTestId}InactiveLeftTrack`}
+                  data-testid={`${dataTestId}-inactive-left-track`}
                   style={{ width: `${offsetLeft}%`, left: 0 }}
                   styles={styles}
                 />
@@ -137,7 +137,7 @@ const SliderStandAloneComponent = (
                   data-disabled={disabled}
                   data-hover={hover}
                   data-pressed={pressed}
-                  data-testid={`${dataTestId}ActiveTrack`}
+                  data-testid={`${dataTestId}-active-track`}
                   style={{ left: `${offsetLeft}%`, right: `${offsetRight}%` }}
                   styles={styles}
                 />
@@ -146,7 +146,7 @@ const SliderStandAloneComponent = (
                   data-disabled={disabled}
                   data-hover={hover}
                   data-pressed={pressed}
-                  data-testid={`${dataTestId}InactiveRightTrack`}
+                  data-testid={`${dataTestId}-inactive-right-track`}
                   style={{ width: `${offsetRight}%`, right: 0 }}
                   styles={styles}
                 />
@@ -158,7 +158,7 @@ const SliderStandAloneComponent = (
                   ])}
                   ariaLabel={ariaLabel}
                   ariaLabelBy={ariaLabelBy}
-                  dataTestId={`${dataTestId}LeftThumb`}
+                  dataTestId={`${dataTestId}-left-thumb`}
                   disabled={disabled}
                   hover={isActive(hover, activePointer.current, 'left')}
                   icon={thumbIcon}
@@ -189,7 +189,7 @@ const SliderStandAloneComponent = (
                   ])}
                   ariaLabel={rightAriaLabel}
                   ariaLabelBy={rightAriaLabelBy}
-                  dataTestId={`${dataTestId}RightThumb`}
+                  dataTestId={`${dataTestId}-right-thumb`}
                   disabled={disabled}
                   hover={isActive(hover, activePointer.current, 'right')}
                   icon={rightThumbIcon}
@@ -221,7 +221,7 @@ const SliderStandAloneComponent = (
                   data-disabled={disabled}
                   data-hover={hover}
                   data-pressed={pressed}
-                  data-testid={`${dataTestId}ActiveTrack`}
+                  data-testid={`${dataTestId}-active-track`}
                   style={{ width: `${offset}%` }}
                   styles={styles}
                 />
@@ -230,7 +230,7 @@ const SliderStandAloneComponent = (
                   data-disabled={disabled}
                   data-hover={hover}
                   data-pressed={pressed}
-                  data-testid={`${dataTestId}InactiveTrack`}
+                  data-testid={`${dataTestId}-inactive-track`}
                   style={{ width: `calc(${100 - offset}%)`, right: 0 }}
                   styles={styles}
                 />
@@ -242,7 +242,7 @@ const SliderStandAloneComponent = (
                   ])}
                   ariaLabel={ariaLabel}
                   ariaLabelBy={ariaLabelBy}
-                  dataTestId={`${dataTestId}Thumb`}
+                  dataTestId={`${dataTestId}-thumb`}
                   disabled={disabled}
                   hover={hover}
                   icon={thumbIcon}

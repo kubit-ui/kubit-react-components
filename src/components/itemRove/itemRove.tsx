@@ -15,7 +15,7 @@ const ItemRove = ({
   asElement,
   role,
   onMouseOver,
-  dataTestId,
+  dataTestId = 'item-rove',
   type,
   disabled = false,
   ariaSelected,

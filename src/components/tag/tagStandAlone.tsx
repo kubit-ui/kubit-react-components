@@ -12,7 +12,7 @@ import { TagStyled, TagWrapperStyled } from './tag.styled';
 import { type ITagStandAlone, TAG_VARIANT_TYPE } from './types';
 
 const TagStandAloneComponent = (
-  props: ITagStandAlone,
+  { dataTestId = 'tag', ...props }: ITagStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const ariaProps = pickAriaProps(props);
@@ -40,7 +40,7 @@ const TagStandAloneComponent = (
     <TagWrapperStyled ref={ref}>
       {props.variant === TAG_VARIANT_TYPE.RIBBON && (
         <RibbonShape
-          dataTestId={props.dataTestId}
+          dataTestId={dataTestId}
           height={height}
           optionStyles={props.optionStyles}
           variant={props.variant}
@@ -50,7 +50,7 @@ const TagStandAloneComponent = (
       )}
       <TagStyled
         ref={tagRef}
-        data-testid={props.dataTestId}
+        data-testid={dataTestId}
         isArrowStyle={IS_ARROW_STYLE}
         optionStyles={props.optionStyles}
         styles={wrapper}
@@ -74,7 +74,7 @@ const TagStandAloneComponent = (
 
       {props.variant === TAG_VARIANT_TYPE.ARROW && (
         <ArrowShape
-          dataTestId={props.dataTestId}
+          dataTestId={dataTestId}
           height={height}
           optionStyles={props.optionStyles}
           variant={props.variant}

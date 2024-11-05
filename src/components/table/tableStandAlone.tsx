@@ -11,7 +11,7 @@ const TableStandAloneComponent = (
     accordionIconCollapsedAriaLabel = 'Expand current last cell',
     accordionIconExpandedAriaLabel = 'Collapse current las cell',
     initialExpanded = false,
-    dataTestId = 'tableDataTestId',
+    dataTestId = 'table',
     headerVariant = 'PRIMARY',
     // deprecated - use formatList instead
     formatListInMobile = false,

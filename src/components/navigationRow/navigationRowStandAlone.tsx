@@ -16,7 +16,7 @@ import { INavigationRowStandAlone } from './types';
 
 const NavigationRowStandaloneComponent = (
   {
-    dataTestId = 'NavigationRow',
+    dataTestId = 'navigation-row',
     topLine = false,
     bottomLine = false,
     ...props
@@ -37,17 +37,12 @@ const NavigationRowStandaloneComponent = (
     >
       <IconAndIconHighlightedContainerStyled styles={props.styles}>
         {props.decorativeIcon && !props.iconHighlighted && (
-          <ElementOrIcon
-            customIconStyles={props.styles.decorativeIcon}
-            dataTestId={`${dataTestId}DecorativeIcon`}
-            {...props.decorativeIcon}
-          />
+          <ElementOrIcon customIconStyles={props.styles.decorativeIcon} {...props.decorativeIcon} />
         )}
         {props.iconHighlighted && props.styles.iconHighlighted && iconHighlightedSize && (
           <IconHighlighted
             backgroundColor={props.styles.iconHighlighted?.backgroundColor}
             color={props.styles.iconHighlighted?.color}
-            dataTestId={`${dataTestId}IconHighlighted`}
             variant={props.styles.iconHighlighted?.variant}
             {...props.iconHighlighted}
             size={iconHighlightedSize}
@@ -62,7 +57,6 @@ const NavigationRowStandaloneComponent = (
           <Text
             component={TextComponentType.SPAN}
             customTypography={props.styles.text}
-            dataTestId={`${dataTestId}Text`}
             {...props.text}
           >
             {props.text.content}
@@ -71,18 +65,13 @@ const NavigationRowStandaloneComponent = (
         <Text
           component={TextComponentType.SPAN}
           customTypography={props.styles.description}
-          dataTestId={`${dataTestId}Description`}
           {...props.description}
         >
           {props.description?.content}
         </Text>
       </TextSectionStyled>
 
-      <ElementOrIcon
-        customIconStyles={props.styles.arrowIcon}
-        dataTestId={`${dataTestId}ArrowIcon`}
-        {...props.arrowIcon}
-      />
+      <ElementOrIcon customIconStyles={props.styles.arrowIcon} {...props.arrowIcon} />
     </NavigationRowStyled>
   );
 };

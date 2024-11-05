@@ -7,14 +7,14 @@ import { IIconHighlightedStandAlone } from './types/iconHighlighted';
 import { IconHighlightedType } from './types/type';
 
 const IconHighlightedStandAloneComponent = (
-  { disabled = false, ...props }: IIconHighlightedStandAlone,
+  { disabled = false, dataTestId = 'icon-highlighted', ...props }: IIconHighlightedStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   return (
     <IconHighlightedContainerStyled
       ref={ref}
       backgroundColor={props.backgroundColor}
-      data-testid={props.dataTestId}
+      data-testid={dataTestId}
       disabled={disabled}
       styles={props.styles[props.size]}
     >

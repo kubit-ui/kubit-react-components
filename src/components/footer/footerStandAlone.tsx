@@ -26,7 +26,12 @@ const DEFAULT_SORT: MobileSort = {
 };
 
 const FooterStandAloneComponent = (
-  { orderInverse = [], footerMobileSortConfig = DEFAULT_SORT, ...props }: IFooterStandAlone,
+  {
+    orderInverse = [],
+    footerMobileSortConfig = DEFAULT_SORT,
+    dataTestId = 'footer',
+    ...props
+  }: IFooterStandAlone,
   ref: React.ForwardedRef<HTMLElement> | undefined | null
 ): JSX.Element | null => {
   if (!props.children) {
@@ -122,7 +127,7 @@ const FooterStandAloneComponent = (
       $flexReverse={orderConfiguration[props.device].flexReverse}
       $setVertical={setVertical}
       as={asFooter}
-      data-testid={props.dataTestId}
+      data-testid={dataTestId}
       lineSeparatorLineStyles={props.lineSeparatorLineStyles}
       role={props.role}
       styles={props.styles}

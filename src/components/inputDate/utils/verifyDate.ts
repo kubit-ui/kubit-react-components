@@ -18,7 +18,7 @@ export const splitDate = (
   const formatRegex = /[^\p{L}]+/gu;
   const dateRegex = /[^\d]+/g;
 
-  const formattedDate = formatValueDate(date, today);
+  const formattedDate = formatValueDate(date, today, format);
 
   // we want always this YYYY-MM-DD format
   const formatToOrderDate = 'YYYY-MM-DD';

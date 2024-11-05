@@ -36,7 +36,6 @@ export const OptionsListComponent = (
         <ListOptions
           ref={sendRef}
           charsHighlighted={props.searchText?.toString()}
-          dataTestId={props.dataTestId}
           id={props['aria-controls']}
           optionVariant={props.stylesListOption.optionVariant}
           options={props.optionList.options}

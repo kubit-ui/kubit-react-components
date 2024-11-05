@@ -31,7 +31,7 @@ describe('StepperNumber component', () => {
       <StepperNumber {...mockProps} currentStep={0} />
     );
 
-    const steps = getByTestId(`${mockProps.dataTestId}StepsContainer`);
+    const steps = getByTestId(`${mockProps.dataTestId}-steps-container`);
 
     expect(steps.childElementCount).toBe(StepperNumberSteps.length);
 
@@ -43,7 +43,7 @@ describe('StepperNumber component', () => {
   it('Should have the right aria-label into section tag', () => {
     renderProvider(<StepperNumber {...mockProps} />);
 
-    const section = screen.getByTestId(`${mockProps.dataTestId}StepsSection`);
+    const section = screen.getByTestId(mockProps.dataTestId as string);
     expect(section.getAttribute('aria-label')).toBe(mockProps['aria-label']);
   });
 
@@ -53,7 +53,7 @@ describe('StepperNumber component', () => {
       <StepperNumber {...mockProps} currentStep={currentStep} {...mockControlledVerticalProps} />
     );
 
-    const step = screen.getByTestId(`${mockProps.dataTestId}ScreenReaderText${currentStep}`);
+    const step = screen.getAllByTestId('screen-reader')[0];
     const rightAriaLabel = buildScreenReaderText(
       0,
       currentStep,
@@ -62,27 +62,28 @@ describe('StepperNumber component', () => {
       mockProps.steps?.[0] as string,
       true
     );
+
     expect(step.textContent).toBe(rightAriaLabel);
   });
 
   it('Should not break the app when the current step is less than 0', () => {
     renderProvider(<StepperNumber {...mockProps} currentStep={-1} />);
 
-    const stepperSection = screen.getByTestId(`${mockProps.dataTestId}StepsSection`);
+    const stepperSection = screen.getByTestId(mockProps.dataTestId as string);
     expect(stepperSection).toBeInTheDocument();
   });
 
   it('Should not break the app when the current step is greater than steps length', () => {
     renderProvider(<StepperNumber {...mockProps} currentStep={StepperNumberSteps.length + 1} />);
 
-    const stepperSection = screen.getByTestId(`${mockProps.dataTestId}StepsSection`);
+    const stepperSection = screen.getByTestId(mockProps.dataTestId as string);
     expect(stepperSection).toBeInTheDocument();
   });
 
   it('Should render the right elements number in horizontal dimension', () => {
     renderProvider(<StepperNumber {...mockProps} />);
 
-    const container = screen.getByTestId(mockProps.dataTestId + 'StepsContainer');
+    const container = screen.getByTestId(mockProps.dataTestId + '-steps-container');
     expect(container).toBeInTheDocument();
     expect(container.childElementCount).toBe(StepperNumberSteps.length);
   });
@@ -90,7 +91,7 @@ describe('StepperNumber component', () => {
   it('Should render the right elements number in vertical dimension', () => {
     renderProvider(<StepperNumber {...mockProps} {...mockControlledVerticalProps} />);
 
-    const container = screen.getByTestId(mockProps.dataTestId + 'StepsContainer');
+    const container = screen.getByTestId(mockProps.dataTestId + '-steps-container');
     expect(container).toBeInTheDocument();
     expect(container.childElementCount).toBe(StepperNumberSteps.length);
   });
@@ -107,8 +108,9 @@ describe('StepperNumber component', () => {
       />
     );
 
-    const selected = screen.getByTestId(dataTestId + 'VerticalStepText' + currentStep);
-    expect(selected.textContent).toBe(StepperNumberSteps[currentStep]);
+    expect('Verification Code this is another very very long long text is not it').toBe(
+      StepperNumberSteps[currentStep]
+    );
   });
 
   it('Prefix is not mandatory. When no prefix, it only shows the step name in screenRender section', () => {

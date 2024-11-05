@@ -5,7 +5,7 @@ import { ITableHeadStandAlone } from './types';
 
 const TableHeadStandAloneComponent = (
   {
-    dataTestId = 'tableHead',
+    dataTestId = 'table-head',
     children,
     styles,
     id,

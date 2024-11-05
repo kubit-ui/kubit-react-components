@@ -117,7 +117,7 @@ describe('HeaderStructure Component', () => {
       />
     );
 
-    const header = screen.getByTestId('testIdHeader');
+    const header = screen.getByTestId('testId');
 
     expect(header).toBeInTheDocument();
 

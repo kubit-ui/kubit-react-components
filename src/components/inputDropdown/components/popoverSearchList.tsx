@@ -35,10 +35,7 @@ export const PopoverSearchListComponent = (
     if (!props.loading && props.noResultsText?.content) {
       return (
         <NoResultsTextWrapper styles={props.styles?.[props.state]}>
-          <Text
-            customTypography={props.styles?.[props.state]?.noResultsText}
-            dataTestId={`${props.dataTestId}noResultsText`}
-          >
+          <Text customTypography={props.styles?.[props.state]?.noResultsText}>
             {props.noResultsText?.content}
           </Text>
         </NoResultsTextWrapper>
@@ -71,7 +68,6 @@ export const PopoverSearchListComponent = (
           <OptionsList
             ref={ref}
             aria-controls={props['aria-controls']}
-            dataTestId={`${props.dataTestId}OptionsList`}
             loader={props.loader}
             loading={props.loading}
             loadingText={props.loadingText}
@@ -94,7 +90,6 @@ export const PopoverSearchListComponent = (
     <Popover
       hasBackDrop
       component={PopoverComponentType.DIV}
-      dataTestId={`${props.dataTestId}Popover`}
       focusFirstDescendantAutomatically={false}
       focusLastElementFocusedAfterClose={false}
       open={props.open}
@@ -117,11 +112,9 @@ export const PopoverSearchListComponent = (
               props.closeIcon?.onClick?.(e);
             },
           }}
-          dataTestId={`${props.dataTestId}ActionBottomSheet`}
           headerContent={
             showHeaderInput && (
               <Input
-                dataTestId={`${props.dataTestId}HeaderContentInput`}
                 icon={{
                   ...props.inputPopoverIcon,
                   onClick: event => {

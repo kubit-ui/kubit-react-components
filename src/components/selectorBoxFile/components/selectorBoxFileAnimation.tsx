@@ -46,7 +46,7 @@ export const SelectorBoxFileAnimation = ({
   return animationContainer ? (
     <AnimationContainerStyled
       data-focus={props.focus}
-      data-testid={`${props.dataTestId}Animations`}
+      data-testid={`${props.dataTestId}-animations`}
       state={props.state}
       styles={props.styles}
     >

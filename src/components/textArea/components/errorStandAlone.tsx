@@ -38,7 +38,6 @@ export const ErrorStandAlone = ({
           <Text
             color={styles?.errorMessage?.color}
             component={TextComponentType.PARAGRAPH}
-            dataTestId={dataTestId}
             variant={styles?.errorMessage?.font_variant}
             weight={styles?.errorMessage?.font_weight}
             {...errorMessage}

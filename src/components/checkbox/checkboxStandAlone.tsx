@@ -41,7 +41,7 @@ const CheckboxStandAloneComponent = (
     errorIcon,
     errorAriaLiveType = AriaLiveOptionType.ASSERTIVE,
     helperContent,
-    dataTestId,
+    dataTestId = 'checkbox',
     helperText,
     extraAriaDescribedBy = '',
     screenReaderText,
@@ -70,7 +70,6 @@ const CheckboxStandAloneComponent = (
           <Label
             color={labelTypography?.color}
             cursor={isDisabled ? CURSOR_DEFAULT : CURSOR_POINTER}
-            dataTestId={`${dataTestId}Label`}
             id={checkBoxLabelId}
             inputId={checkBoxId}
             required={required}
@@ -99,7 +98,6 @@ const CheckboxStandAloneComponent = (
             <Text
               component={TextComponentType.SMALL}
               customTypography={styles?.helpContent}
-              dataTestId={`${dataTestId}Description`}
               id={`${checkBoxId}Description`}
               {...helperContent}
             >
@@ -108,7 +106,6 @@ const CheckboxStandAloneComponent = (
             <Text
               color={helperTextTypography?.color}
               component={TextComponentType.SMALL}
-              dataTestId={`${dataTestId}HelperText`}
               id={`${checkBoxId}HelperText`}
               variant={helperTextTypography?.font_variant}
               weight={helperTextTypography?.font_weight}
@@ -123,7 +120,7 @@ const CheckboxStandAloneComponent = (
   };
 
   return (
-    <CheckboxContainerStyled styles={styles}>
+    <CheckboxContainerStyled data-testid={dataTestId} styles={styles}>
       <CheckboxIconLabelWrapperStyled styles={styles}>
         <CheckboxFrameStyled styles={styles}>
           <CheckboxStyled
@@ -145,7 +142,7 @@ const CheckboxStandAloneComponent = (
             aria-label={props['aria-label']}
             aria-labelledby={props['aria-labelledby']}
             checked={isChecked}
-            data-testid={`${dataTestId}Input`}
+            data-testid={`${dataTestId}-input`}
             disabled={isDisabled}
             id={checkBoxId}
             name={name}
@@ -160,15 +157,13 @@ const CheckboxStandAloneComponent = (
           <CheckedIcon $isChecked={isChecked} styles={styles}>
             <ElementOrIcon color={styles?.checkedIcon?.color} complex={true} {...checkedIcon} />
           </CheckedIcon>
-          <ScreenReaderOnly dataTestId={`${dataTestId}ScreenReader`} id={screenReaderId}>
-            {screenReaderText}
-          </ScreenReaderOnly>
+          <ScreenReaderOnly id={screenReaderId}>{screenReaderText}</ScreenReaderOnly>
         </CheckboxFrameStyled>
         {getLabel()}
       </CheckboxIconLabelWrapperStyled>
       <CheckboxHelperContentStyled styles={styles}>
         <CheckboxErrorStandAlone
-          dataTestId={`${dataTestId}ErrorMessage`}
+          dataTestId={`${dataTestId}-error-message`}
           error={hasError}
           errorAriaLiveType={errorAriaLiveType}
           errorIcon={errorIcon}

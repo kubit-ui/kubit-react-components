@@ -63,7 +63,7 @@ describe('ProgressBar', () => {
     jest.spyOn(SliderUtils, 'calculateChange').mockImplementation(() => 50);
     renderProvider(<ProgressBar {...MOCK_PROPS} variant="INTERACTIVE" onChange={onChange} />);
 
-    await userEvent.click(screen.getByTestId('sliderContainer'));
+    await userEvent.click(screen.getByTestId('slider-container'));
     await waitFor(() => expect(onChange).toHaveBeenCalled(), { timeout: 150 });
   });
 });

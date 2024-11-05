@@ -11,11 +11,11 @@ import { IImageStandAlone, ImageLoadingType } from './types';
 import { getFallbackRatio } from './utils/getFallbackRatio';
 
 const ImageStandAloneComponent = (
-  { loading = ImageLoadingType.LAZY, ...props }: IImageStandAlone,
+  { dataTestId = 'image', loading = ImageLoadingType.LAZY, ...props }: IImageStandAlone,
   ref: React.ForwardedRef<HTMLElement> | undefined | null
 ): JSX.Element => {
   return (
-    <figure ref={ref} data-testid={props.dataTestId}>
+    <figure ref={ref} data-testid={dataTestId}>
       <ImagePictureStyled
         borderRadius={props?.borderRadius}
         fallbackRatio={props.ratio && getFallbackRatio(props.ratio)}

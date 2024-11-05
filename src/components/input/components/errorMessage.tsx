@@ -20,11 +20,7 @@ export const ErrorMessageStandAlone = (props: IErrorMessage): JSX.Element => {
           <ErrorIconWrapperStyled styles={props.styles}>
             <ElementOrIcon customIconStyles={props.styles?.errorMessageIcon} {...props.errorIcon} />
           </ErrorIconWrapperStyled>
-          <Text
-            customTypography={props.styles?.errorMessage}
-            dataTestId={`${props.dataTestId}ErrorMessage`}
-            {...props.errorMessage}
-          >
+          <Text customTypography={props.styles?.errorMessage} {...props.errorMessage}>
             {props.errorMessage?.content}
           </Text>
         </>

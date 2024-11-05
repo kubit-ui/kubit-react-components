@@ -16,7 +16,7 @@ import { ChipStateType, IChipStandAlone } from './types';
 const ChipStandAloneComponent = (
   {
     styles,
-    dataTestId,
+    dataTestId = 'chip',
     range,
     rangeIcon,
     state,

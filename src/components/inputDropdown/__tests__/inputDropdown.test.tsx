@@ -67,7 +67,7 @@ describe('New Input Dropdown Component', () => {
     await act(async () => {
       fireEvent.click(input);
     });
-    const inputContainer = queryByText('testidInputDropdown');
+    const inputContainer = queryByText('testId');
     expect(inputContainer).toBeNull();
     const results = await axe(container, {
       rules: {
@@ -89,7 +89,7 @@ describe('New Input Dropdown Component', () => {
       <InputDropdown {...mockProps} open={true} onOpenCloseOptions={mockOnOpenCloseOptions} />
     );
 
-    const inputContainer = getByTestId('testidInputDropdown');
+    const inputContainer = getByTestId('testid');
     expect(inputContainer).toBeDefined();
     await act(async () => {
       fireEvent.keyDown(inputContainer, TAB);
@@ -218,7 +218,7 @@ describe('New Input Dropdown Component', () => {
     const listOptions = screen.getByRole(ROLES.LISTBOX);
     expect(listOptions).toBeInTheDocument();
 
-    const inputOption = screen.getByTestId('testidOptionsListOption0option1');
+    const inputOption = screen.getByTestId('list-options-option-0-option1');
     expect(inputOption).toHaveFocus();
   });
 
@@ -251,7 +251,7 @@ describe('New Input Dropdown Component', () => {
     });
 
     const inputOption = screen.getByTestId(
-      'testidOptionsListOption0option1LastNoHightlightedLabel'
+      'list-options-option-0-option1-last-no-hightlighted-label'
     );
 
     await act(async () => {

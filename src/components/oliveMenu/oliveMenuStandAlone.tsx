@@ -14,7 +14,7 @@ import { IOliveMenuStandAlone } from './types';
 import { getAriaControls } from './utils';
 
 const OliveMenuStandAloneComponent = (
-  props: IOliveMenuStandAlone,
+  { dataTestId = 'olive-menu', ...props }: IOliveMenuStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const uniqueId = useId('oliveMenu');
@@ -33,19 +33,13 @@ const OliveMenuStandAloneComponent = (
   const ariaControlIds = getAriaControls(props.sections, ariaControls);
 
   return (
-    <OliveMenuStyled
-      ref={ref}
-      data-testid={`${props.dataTestId}Container`}
-      styles={props.styles}
-      onBlur={props.onBlur}
-    >
+    <OliveMenuStyled ref={ref} data-testid={dataTestId} styles={props.styles} onBlur={props.onBlur}>
       {props.trigger?.content &&
         (props.styles.button?.[props.device]?.size || props.trigger?.size) && (
           <ButtonContainer ref={buttonRef} styles={props.styles}>
             <Button
               aria-controls={props.open ? ariaControlIds?.join(' ') : undefined}
               aria-expanded={props.open}
-              dataTestId={`${props.dataTestId}Button`}
               size={props.styles.button?.[props.device]?.size}
               {...props.trigger}
             >
@@ -53,10 +47,7 @@ const OliveMenuStandAloneComponent = (
             </Button>
           </ButtonContainer>
         )}
-      <ScreenReaderOnly
-        ariaLive={AriaLiveOptionType.POLITE}
-        dataTestId={`${props.dataTestId}ScreenReader`}
-      >
+      <ScreenReaderOnly ariaLive={AriaLiveOptionType.POLITE}>
         {props.screenReaderText}
       </ScreenReaderOnly>
       <Popover
@@ -64,7 +55,6 @@ const OliveMenuStandAloneComponent = (
         aria-modal={popoverAsModal ? props.open : undefined}
         clickOverlayClose={true}
         component={PopoverComponentType.DIV}
-        dataTestId={`${props.dataTestId}Popover`}
         extraAlignGap={props.styles.buttonContainer?.[props.device]?.margin_bottom}
         focusFirstDescendantAutomatically={popoverAsModal}
         focusLastElementFocusedAfterClose={popoverAsModal}
@@ -80,7 +70,6 @@ const OliveMenuStandAloneComponent = (
       >
         <ActionBottomSheetControlledStructure
           ref={actionBottomSheet.forwardedRef}
-          dataTestId={`${props.dataTestId}ActionButtonSheet`}
           title={{
             component: TextComponentType.H5,
             align: props.styles.actionBottomSheet?.[props.device]?.alignTitle,
@@ -96,7 +85,6 @@ const OliveMenuStandAloneComponent = (
               props.sections?.map(({ title, ...section }, index) => (
                 <ListOptions
                   key={section.id}
-                  dataTestId={props.dataTestId}
                   optionVariant={props.styles.listOptions?.optionVariant as string}
                   selectedValue={props.selectedValue}
                   title={{ component: TextComponentType.H6, ...title }}

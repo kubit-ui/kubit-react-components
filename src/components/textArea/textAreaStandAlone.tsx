@@ -20,7 +20,11 @@ import { ITextAreaStandAlone, TextAreaStateType } from './types';
 import { buildAriaDescribedBy } from './utils';
 
 const TextAreaStandAloneComponent = (
-  { errorAriaLiveType = AriaLiveOptionType.ASSERTIVE, ...props }: ITextAreaStandAlone,
+  {
+    dataTestId = 'text-area',
+    errorAriaLiveType = AriaLiveOptionType.ASSERTIVE,
+    ...props
+  }: ITextAreaStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const uniqueId = useId('textArea');
@@ -35,11 +39,7 @@ const TextAreaStandAloneComponent = (
   );
 
   return (
-    <TextAreaContainerStyled
-      ref={ref}
-      data-testid={`${props.dataTestId}TextArea`}
-      styles={stateStyles}
-    >
+    <TextAreaContainerStyled ref={ref} data-testid={dataTestId} styles={stateStyles}>
       <TitleStandAlone styles={stateStyles} title={props.title} />
       <TextAreaBoxStyled
         height={props.styles?.labelInsideTextArea ? props.height : undefined}
@@ -56,7 +56,6 @@ const TextAreaStandAloneComponent = (
             asteriskVariant={stateStyles?.required?.font_variant}
             asteriskWeight={stateStyles?.required?.font_weight}
             color={stateStyles?.label?.color}
-            dataTestId={`${props.dataTestId}Label`}
             inputId={textAreaId}
             required={props.required}
             textVariant={stateStyles?.label?.font_variant}
@@ -94,7 +93,6 @@ const TextAreaStandAloneComponent = (
       <TextAreaBottomStyled styles={stateStyles}>
         <HelperTextAndErrorWrapperStyled styles={stateStyles}>
           <ErrorStandAlone
-            dataTestId={`${props.dataTestId}Error`}
             errorAriaLiveType={errorAriaLiveType}
             errorIcon={props.errorIcon}
             errorMessage={props.errorMessage}
@@ -103,7 +101,6 @@ const TextAreaStandAloneComponent = (
             styles={stateStyles}
           />
           <HelpMessageStandAlone
-            dataTestId={`${props.dataTestId}HelpMessage`}
             helpMessage={props.helpMessage}
             id={textAreaHelpTextId}
             styles={stateStyles}
@@ -112,7 +109,6 @@ const TextAreaStandAloneComponent = (
         {stateStyles?.counterVariant && (
           <TextCount
             currentCharacters={props.value?.length ?? 0}
-            dataTestId={`${props.dataTestId}TextCount`}
             id={textAreaTextCountId}
             leftColor={stateStyles?.counterLeft?.color}
             leftWeight={stateStyles?.counterLeft?.font_weight}

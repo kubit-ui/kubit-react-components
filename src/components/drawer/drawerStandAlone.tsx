@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 
 import { ElementOrIcon } from '@/components/elementOrIcon';
@@ -20,7 +19,12 @@ import {
 import { IDrawerStandAlone } from './types';
 
 const DrawerStandAloneComponent = (
-  { blocked = false, titleComponent = TextComponentType.H3, ...props }: IDrawerStandAlone,
+  {
+    blocked = false,
+    titleComponent = TextComponentType.H3,
+    dataTestId = 'drawer',
+    ...props
+  }: IDrawerStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const uniqueTitleId = useId('drawer-title');
@@ -33,7 +37,6 @@ const DrawerStandAloneComponent = (
       aria-modal={props.open}
       clickOverlayClose={!blocked}
       component={PopoverComponentType.DIV}
-      dataTestId={`${props.dataTestId}Popover`}
       hasBackDrop={true}
       open={props.open}
       role={ROLES.DIALOG}
@@ -41,28 +44,18 @@ const DrawerStandAloneComponent = (
       variant={position}
       {...props.popover}
     >
-      <DrawerStyled
-        ref={ref}
-        data-testid={`${props.dataTestId}Drawer`}
-        position={position}
-        styles={props.styles}
-      >
+      <DrawerStyled ref={ref} data-testid={dataTestId} position={position} styles={props.styles}>
         {!blocked && (
           <DrawerNavigationStyled level={props.level} styles={props.styles}>
-            <ElementOrIcon
-              customIconStyles={props.styles.icon}
-              {...props.closeIcon}
-              dataTestId={`${props.dataTestId}CloseIcon`}
-            />
+            <ElementOrIcon customIconStyles={props.styles.icon} {...props.closeIcon} />
           </DrawerNavigationStyled>
         )}
         <DrawerTitleContentFooterContainerStyled blocked={blocked} styles={props.styles}>
           <DrawerTitleStyled
             data-drawer-title
-            as={Text as any}
+            as={Text}
             component={titleComponent as unknown as TextComponentType}
             customTypography={props.styles.title}
-            dataTestId={`${titleIdFinal}Title`}
             id={titleIdFinal}
             {...props.title}
           >
@@ -85,7 +78,7 @@ const DrawerStandAloneComponent = (
           {props.footer?.content && (props.styles.footer?.variant || props.footer.variant) && (
             <DrawerFooterStyled
               data-drawer-footer
-              as={Footer as any}
+              as={Footer}
               customFooterStyles={props.styles}
               variant={props.styles.footer?.variant}
               {...props.footer}

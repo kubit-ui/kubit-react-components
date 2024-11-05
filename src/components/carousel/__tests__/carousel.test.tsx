@@ -63,7 +63,7 @@ describe('Carousel component', () => {
   it('Carousel', async () => {
     const { container, getByTestId } = renderProvider(<CarouselUnControlled {...mockProps} />);
 
-    const carousel = getByTestId('dataTestIdCarouselWrapper');
+    const carousel = getByTestId('carousel');
     expect(carousel).toBeInTheDocument();
 
     const results = await axe(container);
@@ -81,7 +81,7 @@ describe('Carousel component', () => {
       <CarouselUnControlled {...mockProps} elements={[]} />
     );
 
-    const carousel = getByTestId('dataTestIdCarouselWrapper');
+    const carousel = getByTestId('carousel');
     expect(carousel).toBeInTheDocument();
 
     const results = await axe(container);
@@ -107,7 +107,7 @@ describe('Carousel component', () => {
       <CarouselUnControlled {...mockProps} elements={elements} numElementsPerPage={2} />
     );
 
-    const carousel = getByTestId('dataTestIdCarouselWrapper');
+    const carousel = getByTestId('carousel');
     fireEvent.keyDown(carousel, ARROW_LEFT);
     expect(carousel).toBeInTheDocument();
     const results = await axe(container);
@@ -234,7 +234,7 @@ describe('Carousel component', () => {
     });
     jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
     const { getByTestId } = renderProvider(<CarouselUnControlled {...mockProps} />);
-    const carousel = getByTestId('dataTestIdCarouselWrapper');
+    const carousel = getByTestId('carousel');
     // key press right arrow
     fireEvent.keyDown(carousel, ARROW_RIGHT);
     expect(mockHandlePageChange).toHaveBeenCalledWith(1);

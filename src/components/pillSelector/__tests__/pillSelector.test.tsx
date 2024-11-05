@@ -105,8 +105,8 @@ describe('PillSelector component', () => {
   it('Pills can receive focus', () => {
     renderProvider(<PillSelectorUnControlled {...mockProps} multiSelect />);
 
-    const firstPill = screen.getByTestId(`${mockProps.dataTestId}Pill0`);
-    const secondPill = screen.getByTestId(`${mockProps.dataTestId}Pill1`);
+    const firstPill = screen.getByTestId(`${mockProps.dataTestId}-pill-0`);
+    const secondPill = screen.getByTestId(`${mockProps.dataTestId}-pill-1`);
     const firstPillInput = screen.getByRole(ROLES.CHECKBOX, {
       name: mockProps.pills[0].label?.toString(),
     });
@@ -125,7 +125,7 @@ describe('PillSelector component', () => {
     jest.spyOn(stylesHook, 'useStyles').mockImplementation(() => mockStyles);
     renderProvider(<PillSelectorUnControlled {...mockProps} />);
 
-    const thumb = screen.getByTestId(`${mockProps.dataTestId}Thumb`);
+    const thumb = screen.getByTestId(`${mockProps.dataTestId}-thumb`);
 
     expect(thumb).toBeInTheDocument();
 

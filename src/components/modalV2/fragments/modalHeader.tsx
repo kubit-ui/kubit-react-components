@@ -15,7 +15,6 @@ import { IModalStandAlone } from '../types';
 
 type PickedProps =
   | 'styles'
-  | 'dataTestId'
   | 'blocked'
   | 'closeIcon'
   | 'closeButton'
@@ -38,11 +37,7 @@ export const ModalHeader = (props: ModalHeaderProps): JSX.Element => {
       )}
       {!props.blocked && props.closeIcon?.icon && (
         <ModalCloseButtonStyled $styles={props.styles}>
-          <ElementOrIcon
-            customIconStyles={props.styles?.closeButtonIcon}
-            dataTestId={`${props.dataTestId}CloseIcon`}
-            {...props.closeIcon}
-          />
+          <ElementOrIcon customIconStyles={props.styles?.closeButtonIcon} {...props.closeIcon} />
         </ModalCloseButtonStyled>
       )}
       {!props.blocked &&
@@ -57,7 +52,6 @@ export const ModalHeader = (props: ModalHeaderProps): JSX.Element => {
           <Text
             component={TextComponentType.H1}
             customTypography={props.styles.title}
-            dataTestId={`${props.dataTestId}Title`}
             id={props.titleIdFinal}
             {...props.title}
           >

@@ -64,7 +64,7 @@ describe('InputSignature', () => {
   it('Should set the data, when the container blur and the data is not empty [DESKTOP]', async () => {
     const { getByTestId, container } = renderProvider(<InputSignature {...mockProps} />);
     const inputSignature = getByTestId(mockProps.dataTestid as string);
-    const canvas = getByTestId(`${mockProps.dataTestid}Canvas`);
+    const canvas = getByTestId(`${mockProps.dataTestid}-canvas`);
 
     fireEvent.click(inputSignature);
     fireEvent.mouseDown(canvas);
@@ -79,7 +79,7 @@ describe('InputSignature', () => {
   it('Should set the data, when the container blur and the data is not empty [MOBILE]', async () => {
     const { getByTestId, container } = renderProvider(<InputSignature {...mockProps} />);
     const inputSignature = getByTestId(mockProps.dataTestid as string);
-    const canvas = getByTestId(`${mockProps.dataTestid}Canvas`);
+    const canvas = getByTestId(`${mockProps.dataTestid}-canvas`);
 
     fireEvent.click(inputSignature);
     fireEvent.touchStart(canvas, { touches: [{ clientX: 0, clientY: 0 }] });

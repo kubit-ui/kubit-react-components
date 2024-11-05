@@ -9,7 +9,7 @@ const TextStandAloneComponent = (
   {
     children,
     component,
-    dataTestId,
+    dataTestId = 'text',
     htmlFor,
     id,
     onClick,

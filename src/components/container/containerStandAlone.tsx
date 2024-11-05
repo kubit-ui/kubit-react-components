@@ -7,7 +7,7 @@ import { ContainerStyled, HeaderStyled, ParentContainerStyled } from './containe
 import { IContainerStandAlone } from './types';
 
 const ContainerStandAloneComponent = (
-  props: React.PropsWithChildren<IContainerStandAlone>,
+  { dataTestId = 'container', ...props }: React.PropsWithChildren<IContainerStandAlone>,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   return (
@@ -21,7 +21,7 @@ const ContainerStandAloneComponent = (
           {props.title?.content}
         </Text>
       </HeaderStyled>
-      <ContainerStyled ref={ref} data-testid={props.dataTestId} styles={props.styles}>
+      <ContainerStyled ref={ref} data-testid={dataTestId} styles={props.styles}>
         {props.children}
       </ContainerStyled>
     </ParentContainerStyled>

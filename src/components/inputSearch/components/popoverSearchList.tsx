@@ -70,7 +70,6 @@ export const PopoverSearchListComponent = (
         section?.['aria-labelledby'] ?? props.optionsListDefaultArias?.['aria-labelledby']
       }
       caseSensitive={props.caseSensitive}
-      dataTestId={`${props.dataTestId}OptionsList${index}`}
       hightlightedOption={showTextWritten || showHighlightedOption}
       index={index}
       initialOptionsLength={props.initialOptionsLength}
@@ -100,7 +99,6 @@ export const PopoverSearchListComponent = (
             <NoResultsTextWrapper styles={props.styles?.[props.state]}>
               <Text
                 customTypography={props.styles?.[props.state]?.noResultsText}
-                dataTestId={`${props.dataTestId}noResultsText`}
                 {...props.noResultsText}
               >
                 {props.noResultsText.content}
@@ -113,10 +111,7 @@ export const PopoverSearchListComponent = (
         <div>
           {showTextWritten && getOptionsList()}
           {props.noResultsText.content}
-          <ScreenReaderOnly
-            ariaLive={AriaLiveOptionType.ASSERTIVE}
-            data-testid={`${props.dataTestId}ScreenReaderOnly`}
-          >
+          <ScreenReaderOnly ariaLive={AriaLiveOptionType.ASSERTIVE}>
             {props.loadingText?.content}
           </ScreenReaderOnly>
         </div>
@@ -136,7 +131,7 @@ export const PopoverSearchListComponent = (
   const renderSearchList = () => (
     <ListContainerStyled
       $height={getLength(props.optionList) ? props.listOptionsHeight : ''}
-      data-testid={`${props.dataTestId}InputSearchList`}
+      data-testid={`${props.dataTestId}-list`}
       styles={props.styles?.[props.state]}
       useActionBottomSheet={useActionBottomSheet}
     >
@@ -161,7 +156,6 @@ export const PopoverSearchListComponent = (
       aria-modal={useActionBottomSheet ? true : undefined}
       blockBack={props.blockBackPopover}
       component={PopoverComponentType.DIV}
-      dataTestId={`${props.dataTestId}Popover`}
       focusFirstDescendantAutomatically={false}
       focusLastElementFocusedAfterClose={false}
       open={props.open}
@@ -185,10 +179,8 @@ export const PopoverSearchListComponent = (
               refInput?.current?.focus();
             },
           }}
-          dataTestId={`${props.dataTestId}ActionBottomSheet`}
           headerContent={
             <Input
-              dataTestId={`${props.dataTestId}HeaderContentInput`}
               id={inputPopoverId}
               variant={props.inputConfiguration?.variant}
               {...props.inputConfiguration}

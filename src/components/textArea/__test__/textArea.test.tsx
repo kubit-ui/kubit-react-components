@@ -21,7 +21,7 @@ const mockProps: ITextArea = {
 describe('TextArea component', () => {
   it('should render', () => {
     renderProvider(<TextArea {...mockProps} />);
-    const textArea = screen.getByTestId(mockProps.dataTestId + 'TextArea');
+    const textArea = screen.getByTestId(mockProps.dataTestId as string);
     expect(textArea).toBeInTheDocument();
   });
 

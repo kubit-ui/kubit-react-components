@@ -8,7 +8,7 @@ import { LoaderStyled, LoaderWrapperStyled } from './loader.styled';
 import { ILoaderStandAlone } from './types';
 
 const LoaderStandaloneComponent = (
-  { dataTestId = 'loaderStandaloneTestId', ...props }: ILoaderStandAlone,
+  { dataTestId = 'loader', ...props }: ILoaderStandAlone,
   ref: React.ForwardedRef<HTMLSpanElement> | undefined | null
 ): JSX.Element => {
   return (
@@ -22,9 +22,7 @@ const LoaderStandaloneComponent = (
             position={props.position}
             styles={props.styles}
           />
-          <ScreenReaderOnly dataTestId={`${dataTestId}ScreenReader`}>
-            {props.altText}
-          </ScreenReaderOnly>
+          <ScreenReaderOnly>{props.altText}</ScreenReaderOnly>
         </>
       )}
     </LoaderWrapperStyled>

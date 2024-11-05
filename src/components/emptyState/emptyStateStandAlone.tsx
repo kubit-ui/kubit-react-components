@@ -20,7 +20,7 @@ import {
 import { IEmptyStateStandAlone } from './types';
 
 const EmptyStateStandAloneComponent = <V extends string | unknown>(
-  props: IEmptyStateStandAlone<V>,
+  { dataTestId = 'empty-state', ...props }: IEmptyStateStandAlone<V>,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const isHorizontalOrientation = props.variant === 'HORIZONTAL';
@@ -42,7 +42,7 @@ const EmptyStateStandAloneComponent = <V extends string | unknown>(
   return (
     <EmptyStateStyled
       ref={ref}
-      data-testid={`${props.dataTestId}EmptyState`}
+      data-testid={dataTestId}
       isHorizontalOrientation={isHorizontalOrientation}
       styles={props.styles}
     >
@@ -53,7 +53,6 @@ const EmptyStateStandAloneComponent = <V extends string | unknown>(
             <Text
               component={TextComponentType.STRONG}
               customTypography={props.styles?.title}
-              dataTestId={`${props.dataTestId}Title`}
               {...props.title}
             >
               {props.title.content}
@@ -65,7 +64,6 @@ const EmptyStateStandAloneComponent = <V extends string | unknown>(
             <Text
               component={TextComponentType.PARAGRAPH}
               customTypography={props.styles?.subtitle}
-              dataTestId={`${props.dataTestId}Description`}
               {...props.subtitle}
             >
               {props.subtitle.content}
@@ -79,7 +77,6 @@ const EmptyStateStandAloneComponent = <V extends string | unknown>(
         {props.button?.content && (
           <ButtonWrapperStyled styles={props.styles}>
             <Button
-              dataTestId={`${props.dataTestId}Button`}
               iconPosition={IconPositionType.LEFT}
               size={props.styles?.buttonSize}
               {...props.button}
@@ -90,11 +87,7 @@ const EmptyStateStandAloneComponent = <V extends string | unknown>(
         )}
         {props.link?.content && (
           <div>
-            <Link
-              dataTestId={`${props.dataTestId}Link`}
-              decoration={TextDecorationType.UNDERLINE}
-              {...props.link}
-            >
+            <Link decoration={TextDecorationType.UNDERLINE} {...props.link}>
               {props.link.content}
             </Link>
           </div>

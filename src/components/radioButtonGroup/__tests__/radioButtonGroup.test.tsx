@@ -57,7 +57,7 @@ describe('RadioButtonGroup component', () => {
     renderProvider(<RadioButtonGroupUnControlled {...mockProps} />);
 
     const radioButtonGroup = screen.getByTestId(
-      `${mockProps.dataTestId}RadioGroup`
+      mockProps.dataTestId as string
     ) as HTMLFieldSetElement;
     const radioButtons = screen.getAllByRole('radio');
 
@@ -112,7 +112,7 @@ describe('RadioButtonGroup component', () => {
   it('Should select an option when clicked', async () => {
     renderProvider(<RadioButtonGroupUnControlled {...mockProps} />);
 
-    const radioButtonGroup = screen.getByTestId(`${mockProps.dataTestId}RadioGroup`);
+    const radioButtonGroup = screen.getByTestId(mockProps.dataTestId as string);
     const [firstOption] = mockProps.options;
     const firstRadioButton = screen.getByRole('radio', { name: firstOption.label });
 
@@ -125,7 +125,7 @@ describe('RadioButtonGroup component', () => {
   it('Should allow selecting an option with the keyboard', async () => {
     renderProvider(<RadioButtonGroupUnControlled {...mockProps} infoIcon={undefined} />);
 
-    const radioButtonGroup = screen.getByTestId(`${mockProps.dataTestId}RadioGroup`);
+    const radioButtonGroup = screen.getByTestId(mockProps.dataTestId as string);
     const [, secondOption] = mockProps.options;
     const secondRadioButton = screen.getByRole('radio', { name: secondOption.label });
 
@@ -188,10 +188,10 @@ describe('RadioButtonGroup component', () => {
     expect(requiredSymbol).not.toBeInTheDocument();
   });
 
-  it('DataTestId is optional, and its default value is the prefix radioButtonGroup', () => {
+  it('DataTestId is optional, and its default value is radio-button-group', () => {
     renderProvider(<RadioButtonGroupUnControlled {...mockProps} dataTestId={undefined} />);
 
-    const radioButtonGroup = screen.getByTestId('radioButtonGroupRadioGroup');
+    const radioButtonGroup = screen.getByTestId('radio-button-group');
     expect(radioButtonGroup).toBeInTheDocument();
   });
 });

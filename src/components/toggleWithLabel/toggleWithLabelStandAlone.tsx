@@ -22,6 +22,7 @@ const ToggleWithLabelStandAloneComponent = (
     toggleVariant,
     labelPosition,
     onClick,
+    dataTestId = 'toggle-with-label',
     ...props
   }: IToggleWithLabelStandAlone,
   ref: React.ForwardedRef<HTMLFieldSetElement> | undefined | null
@@ -38,6 +39,7 @@ const ToggleWithLabelStandAloneComponent = (
     <ToggleWithLabelStyled
       ref={ref}
       as={label ? 'fieldset' : 'div'}
+      data-tesid={dataTestId}
       displayRow={displayRow}
       labelPosition={labelPosition}
       styles={styles}
@@ -47,7 +49,6 @@ const ToggleWithLabelStandAloneComponent = (
         <Text
           component={TextComponentType.LEGEND}
           customTypography={legendStyles}
-          dataTestId={`${props.dataTestId}Label`}
           id={labelId}
           variant={textVariant ?? styles?.legend?.font_variant}
           {...label}
@@ -58,7 +59,6 @@ const ToggleWithLabelStandAloneComponent = (
               aria-hidden={true}
               color={styles?.required?.color}
               component={TextComponentType.SPAN}
-              dataTestId={`${props.dataTestId}Required`}
               variant={styles?.required?.font_variant}
               weight={styles?.required?.font_weight}
               {...requiredSymbol}
@@ -76,9 +76,7 @@ const ToggleWithLabelStandAloneComponent = (
         screenReaderId={screenReaderId}
         variant={toggleVariant}
       />
-      <ScreenReaderOnly dataTestId={`${props.dataTestId}ScreenReader`} id={screenReaderId}>
-        {screenReaderText}
-      </ScreenReaderOnly>
+      <ScreenReaderOnly id={screenReaderId}>{screenReaderText}</ScreenReaderOnly>
     </ToggleWithLabelStyled>
   );
 };

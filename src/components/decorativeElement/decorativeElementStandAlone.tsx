@@ -33,11 +33,10 @@ import { DecorativeType, IDecorativeElementStandAlone } from './types';
 const DecorativeElementStandAlone = ({
   element,
   additionalProps = {},
-  dataTestId,
+  dataTestId = 'decorative-element',
 }: IDecorativeElementStandAlone): JSX.Element | null => {
   const elementKey = Object.keys(element)[0];
   const elementProps = element[elementKey];
-  const elementDataTestId = dataTestId?.concat('', elementKey);
 
   const elementsAvailable = {
     [DecorativeType.ICON]: ElementOrIcon,
@@ -49,7 +48,7 @@ const DecorativeElementStandAlone = ({
 
   const Element = elementsAvailable[elementKey];
 
-  return <Element dataTestId={elementDataTestId} {...elementProps} {...additionalProps} />;
+  return <Element dataTestId={dataTestId} {...elementProps} {...additionalProps} />;
 };
 
 export const DecorativeElement = (props: IDecorativeElementStandAlone): JSX.Element => (

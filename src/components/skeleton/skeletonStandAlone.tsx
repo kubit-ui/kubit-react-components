@@ -6,7 +6,7 @@ import { SkeletonStyled } from './skeleton.styled';
 import { ISkeletonStandAlone } from './types';
 
 const SkeletonStandAloneComponent = (
-  { duration = '1.2s', ...props }: ISkeletonStandAlone,
+  { dataTestId = 'skeleton', duration = '1.2s', ...props }: ISkeletonStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const ariaProps = pickAriaProps(props);
@@ -15,7 +15,7 @@ const SkeletonStandAloneComponent = (
       ref={ref}
       $height={props.height}
       $width={props.width}
-      data-testid={props.dataTestId}
+      data-testid={dataTestId}
       duration={duration}
       styles={props.styles}
       {...ariaProps}

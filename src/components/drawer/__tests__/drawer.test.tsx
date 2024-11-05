@@ -123,7 +123,7 @@ describe('Drawer component', () => {
         <button type="button">testButton</button>
       </Drawer>
     );
-    const popover = screen.getByTestId('drawerPopover');
+    const popover = screen.getByTestId('popover');
 
     const closeButton = screen.getByLabelText(mockProps.closeIcon?.['aria-label'] as string);
     expect(closeButton).toHaveFocus();
