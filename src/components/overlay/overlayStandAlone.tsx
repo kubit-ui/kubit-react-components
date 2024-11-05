@@ -4,10 +4,10 @@ import { OverlayStyled } from './overlay.styled';
 import { IOverlayStandAlone } from './types';
 
 const OverlayStandAloneComponent = (
-  props: IOverlayStandAlone,
+  { dataTestId = 'overlay', ...props }: IOverlayStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
-  return <OverlayStyled ref={ref} data-testid={props.dataTestId} styles={props.styles} />;
+  return <OverlayStyled ref={ref} data-testid={dataTestId} styles={props.styles} />;
 };
 
 /**

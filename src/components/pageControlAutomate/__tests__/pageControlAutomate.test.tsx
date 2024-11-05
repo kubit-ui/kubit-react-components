@@ -42,7 +42,7 @@ describe('PageControlAutomate Component', () => {
     const rightArrow = screen.getByLabelText(mockProps.rightArrow.icon.altText);
     const mediaButtonPlay = screen.getByLabelText(mockProps.playStop.icon.altText);
     const indicator0 = screen.getByTestId('indicator-0');
-    const indicatorProgress0 = screen.getByTestId('indicatorProgress-0');
+    const indicatorProgress0 = screen.getByTestId('indicator-progress-0');
 
     expect(leftArrow).toBeInTheDocument();
     expect(rightArrow).toBeInTheDocument();

@@ -3,6 +3,7 @@ import * as React from 'react';
 import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
+import { DeviceBreakpointsType } from '@/types';
 
 import { Link } from '../link';
 import {
@@ -14,11 +15,18 @@ import {
   ActionBottomSheetIconSyled,
   ActionBottomSheetStyled,
   ActionBottomSheetTitleSyled,
+  DraggableIcon,
 } from './actionBottomSheet.styled';
 import { IActionBottomSheetStandAlone } from './types';
 
 const ActionBottomSheetStandAloneComponent = (
-  { hasHeader = true, scrollableRef, shadowRef, ...props }: IActionBottomSheetStandAlone,
+  {
+    dataTestId = 'action-bottom-sheet',
+    hasHeader = true,
+    scrollableRef,
+    shadowRef,
+    ...props
+  }: IActionBottomSheetStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   // Parent container Ref
@@ -34,13 +42,22 @@ const ActionBottomSheetStandAloneComponent = (
     scrollableRef(actionBottomRef.current);
   }, []);
 
+  const isMobileOrTablet = [DeviceBreakpointsType.MOBILE, DeviceBreakpointsType.TABLET].includes(
+    props.device
+  );
+
   return (
     <ActionBottomSheetStyled
       ref={actionBottomRef}
       $height={props.height}
-      data-testid={`${props.dataTestId}Container`}
+      data-testid={dataTestId}
       styles={props.styles.container}
     >
+      {props.dragIcon && isMobileOrTablet && (
+        <DraggableIcon ref={props.dragIconRef} data-drag-icon styles={props.styles}>
+          <ElementOrIcon {...props.dragIcon} />
+        </DraggableIcon>
+      )}
       {hasHeader && (
         <>
           <ActionBottomSheetControlStyled ref={shadowRef} styles={props.styles.controlContainer}>
@@ -48,11 +65,7 @@ const ActionBottomSheetStandAloneComponent = (
               {props.actionLink && <Link {...props.actionLink} />}
             </ActionBottomSheetActionStyled>
             <ActionBottomSheetIconSyled styles={props.styles.closeIconContainer}>
-              <ElementOrIcon
-                customIconStyles={props.styles.closeIcon}
-                dataTestId={`${props.dataTestId}Icon`}
-                {...props.closeIcon}
-              />
+              <ElementOrIcon customIconStyles={props.styles.closeIcon} {...props.closeIcon} />
             </ActionBottomSheetIconSyled>
           </ActionBottomSheetControlStyled>
           <ActionBottomSheetHeaderStyled styles={props.styles.header}>
@@ -60,7 +73,6 @@ const ActionBottomSheetStandAloneComponent = (
               <Text
                 component={TextComponentType.H5}
                 customTypography={props.styles.title}
-                dataTestId={`${props.dataTestId}Title`}
                 {...props.title}
               >
                 {props.title?.content}

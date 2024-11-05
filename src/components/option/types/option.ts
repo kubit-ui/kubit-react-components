@@ -18,6 +18,7 @@ type OptionAriaAttributes = Pick<
   | 'aria-hidden'
   | 'aria-selected'
   | 'aria-current'
+  | 'aria-checked'
 >;
 
 /**

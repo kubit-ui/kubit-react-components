@@ -13,14 +13,18 @@ import { ValidationStatusFrame, ValidationStatusRow } from './validationStatus.s
 const maxItems = 6;
 
 const ValidationStatusStandAloneComponent = (
-  { maxItemsAllowed = maxItems, ...props }: IValidationStatusStandAlone,
+  {
+    maxItemsAllowed = maxItems,
+    dataTestId = 'validation-status',
+    ...props
+  }: IValidationStatusStandAlone,
   ref: React.ForwardedRef<HTMLUListElement> | undefined | null
 ): JSX.Element => {
   const itemsLimited: ValidationStatusItemType[] =
     props.items.length > maxItemsAllowed ? props.items.slice(0, maxItemsAllowed) : props.items;
 
   return (
-    <ValidationStatusFrame ref={ref} data-testid={props.dataTestId} styles={props.styles}>
+    <ValidationStatusFrame ref={ref} data-testid={dataTestId} styles={props.styles}>
       {itemsLimited.map((item, index) => {
         const checked = item.state === ValidationStatusState.SUCCESS;
         return (

@@ -52,7 +52,7 @@ export const TableComponent = (
       <TableStyled
         ref={ref}
         aria-describedby={uniqueId}
-        data-testid={`${props.dataTestId}Table`}
+        data-testid={props.dataTestId}
         styles={props.styles.table}
         {...ariaProps}
       >
@@ -89,7 +89,6 @@ export const TableComponent = (
                 <Text
                   component={TextComponentType.SPAN}
                   customTypography={props.styles.header?.[props.headerVariant]?.typography}
-                  dataTestId={`${props.dataTestId}HeaderDividerContent`}
                 >
                   {DIVIDER_CONTENT}
                 </Text>
@@ -127,7 +126,6 @@ export const TableComponent = (
                     }
                     component={TextComponentType.SPAN}
                     customTypography={props.styles.header?.[headerVariant]?.typography}
-                    dataTestId={`${props.dataTestId}Header${index}`}
                   >
                     {headerValue.label}
                   </Text>
@@ -144,7 +142,6 @@ export const TableComponent = (
                 <Text
                   component={TextComponentType.SPAN}
                   customTypography={props.styles.header?.[props.headerVariant]?.typography}
-                  dataTestId={`${props.dataTestId}HeaderExpandedContent`}
                 >
                   {'ExpandedContent'}
                 </Text>
@@ -178,12 +175,7 @@ export const TableComponent = (
         </TableRowGroupBodyStyled>
       </TableStyled>
       {props.footer?.content && footerVariant && (
-        <Footer
-          dataTestId={`${props.dataTestId}Navbar`}
-          simpleContainer={false}
-          {...props.footer}
-          variant={footerVariant}
-        >
+        <Footer simpleContainer={false} {...props.footer} variant={footerVariant}>
           {props.footer.content}
         </Footer>
       )}

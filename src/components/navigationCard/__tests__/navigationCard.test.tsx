@@ -46,7 +46,7 @@ const decorativeItems: DecorativePropsType = {
 const mockProps = {
   onClick: jest.fn(),
   title: { content: 'text' },
-  arrowIcon: { icon: 'CLOSE' },
+  arrowIcon: { icon: 'CLOSE', altText: 'arrow alt text' },
   arrowIconText: { content: 'arrowIconAltText' },
   dataTestId: 'NavigationCard',
   url: 'www.google.com',
@@ -68,7 +68,7 @@ describe('NavigationCard component', () => {
 
   it('Should render an arrow icon if its a simple variant', () => {
     renderProvider(<NavigationCard {...mockProps} variant="PRIMARY_ICON" />);
-    const arrowIcon = screen.getByTestId(`${mockProps.dataTestId}ArrowIcon`);
+    const arrowIcon = screen.getByLabelText('arrow alt text');
 
     expect(arrowIcon).toBeInTheDocument();
   });
@@ -82,7 +82,7 @@ describe('NavigationCard component', () => {
         variant="PRIMARY_ICON_HIGHLIGHTED"
       />
     );
-    const description = screen.getByTestId(`${mockProps.dataTestId}Description`);
+    const description = screen.getByText('The description, to expand the info');
 
     expect(description).toBeInTheDocument();
   });
@@ -95,7 +95,7 @@ describe('NavigationCard component', () => {
         variant="PRIMARY_ICON_HIGHLIGHTED"
       />
     );
-    const tag = screen.getByTestId(`${mockProps.dataTestId}Tag`);
+    const tag = screen.getByTestId('tag');
 
     expect(tag).toBeInTheDocument();
   });
@@ -149,7 +149,7 @@ describe('NavigationCard component', () => {
       />
     );
 
-    const iconHighlighted = screen.getByTestId(`${mockProps.dataTestId}IconHighlighted`);
+    const iconHighlighted = screen.getByTestId('decorative-element');
 
     expect(iconHighlighted).toBeInTheDocument();
   });
@@ -172,7 +172,7 @@ describe('NavigationCard component', () => {
       />
     );
 
-    const iconHighlighted = screen.getByTestId(`${mockProps.dataTestId}IconHighlighted`);
+    const iconHighlighted = screen.getByTestId('decorative-element');
 
     expect(iconHighlighted).toBeInTheDocument();
   });

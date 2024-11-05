@@ -42,7 +42,7 @@ export const ListRowPriority = (props: IListRowPriority): JSX.Element => {
             return (
               <ListItemStyled
                 key={indexHeader}
-                data-testid={`${props.dataTestId}ItemList${indexHeader}`}
+                data-testid={`${props.dataTestId}-item-list-${indexHeader}`}
                 hasSomeExpandedContent={
                   hasExpandedIcon && props.hasSomeExpandedContent && hasExpandedContentRow
                 }

@@ -24,12 +24,16 @@ export const LayoutStandAlone = ({
   const { header, main, aside, footer } = columnsConfiguration ?? {};
 
   return (
-    <LayoutContainer $paddingBottom={styles.padding_botom_size} backgroundColor={backgroundColor}>
+    <LayoutContainer
+      $paddingBottom={styles.padding_botom_size}
+      backgroundColor={backgroundColor}
+      data-testid={dataTestId}
+    >
       {headerContent && (
         <Grid
           addPaddingForLayout
           config={gridConfiguration}
-          data-testid={`${dataTestId}Header`}
+          data-testid={`${dataTestId}-header`}
           styles={gridConfiguration?.[device]?.headerStyles}
         >
           <GridItem
@@ -45,7 +49,7 @@ export const LayoutStandAlone = ({
       <Grid
         addPaddingForLayout
         config={gridConfiguration}
-        data-testid={`${dataTestId}Main`}
+        data-testid={`${dataTestId}-main`}
         styles={gridConfiguration?.[device]?.mainStyles}
       >
         <GridItem
@@ -59,7 +63,7 @@ export const LayoutStandAlone = ({
         {asideContent && (
           <GridItem
             as={LayoutRoleType.aside}
-            data-testid={`${dataTestId}Aside`}
+            data-testid={`${dataTestId}-aside`}
             desktop={aside?.[DeviceBreakpointsType.DESKTOP]}
             mobile={aside?.[DeviceBreakpointsType.MOBILE]}
             tablet={aside?.[DeviceBreakpointsType.TABLET]}
@@ -72,7 +76,7 @@ export const LayoutStandAlone = ({
         <Grid
           addPaddingForLayout
           config={gridConfiguration}
-          data-testid={`${dataTestId}Footer`}
+          data-testid={`${dataTestId}-footer`}
           styles={gridConfiguration?.[device]?.footerStyles}
         >
           <GridItem

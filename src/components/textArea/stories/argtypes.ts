@@ -158,6 +158,18 @@ export const argtypes = (
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    spellCheck: {
+      description: 'Specifies whether the value of the input should be checked for spelling errors',
+      control: { type: 'boolean' },
+      type: { name: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: { summary: true },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     height: {
       description: 'It allows to set the textArea height',
       type: { name: 'string' },

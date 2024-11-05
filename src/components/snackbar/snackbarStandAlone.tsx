@@ -25,11 +25,9 @@ import {
 import { ISnackbarStandAlone } from './types';
 
 const SnackbarStandAloneComponent = (
-  { align = POSITIONS.TOP_CENTER_FIXED, ...props }: ISnackbarStandAlone,
+  { align = POSITIONS.TOP_CENTER_FIXED, dataTestId = 'snackbar', ...props }: ISnackbarStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
-  const dataTestIdSecondaryAction = `${props.dataTestId}SecondaryAction`;
-
   const buildAction = () =>
     props.secondaryActionContent && (
       <SnackbarLinkWrapper styles={props.styles} withIcon={!!props.icon}>
@@ -37,7 +35,6 @@ const SnackbarStandAloneComponent = (
         (props.styles?.actionButton?.size || props.secondaryActionButton?.size) ? (
           <Button
             aria-label={props.secondaryActionAriaLabel}
-            dataTestId={dataTestIdSecondaryAction}
             size={props.styles?.actionButton?.size}
             variant={props.styles?.actionButton?.variant}
             onClick={props.onSecondaryActionClick}
@@ -49,7 +46,6 @@ const SnackbarStandAloneComponent = (
           (props.styles?.link?.variant || props.secondaryActionLink?.variant) && (
             <Link
               aria-label={props.secondaryActionAriaLabel}
-              dataTestId={dataTestIdSecondaryAction}
               decoration={props.styles?.link?.decoration}
               url={''}
               variant={props.styles?.link?.variant || ''}
@@ -73,7 +69,6 @@ const SnackbarStandAloneComponent = (
           <Text
             component={TextComponentType.PARAGRAPH}
             customTypography={props.styles?.description}
-            dataTestId={`${props.dataTestId}Description`}
             {...restDescriptionProps}
           >
             {content}
@@ -89,16 +84,16 @@ const SnackbarStandAloneComponent = (
       transparentBackground
       clickOverlayClose={false}
       component={PopoverComponentType.DIV}
-      dataTestId={`${props.dataTestId}Popover`}
       focusLastElementFocusedAfterClose={false}
       focusScreenFirstDescendantAfterClose={false}
       open={props.open}
       pressEscapeClose={false}
       variant={props.styles?.popoverVariants?.[align]}
+      {...props.popover}
     >
       <SnackbarStyled
         ref={ref}
-        data-testid={props.dataTestId}
+        data-testid={dataTestId}
         styles={props.styles}
         onBlur={props.onBlur}
         onFocus={props.onFocus}
@@ -107,7 +102,7 @@ const SnackbarStandAloneComponent = (
       >
         <SnackbarTextAndActionWrapper>
           <SnackbarTextWrapper
-            data-testid={`${props.dataTestId}Alert`}
+            data-testid={`${dataTestId}-alert`}
             role={ROLES.ALERT}
             styles={props.styles}
           >
@@ -119,7 +114,6 @@ const SnackbarStandAloneComponent = (
                 <Text
                   component={TextComponentType.PARAGRAPH}
                   customTypography={props.styles?.title}
-                  dataTestId={`${props.dataTestId}Title`}
                   {...props.title}
                 >
                   {/* Put here in order to NVDA read altIcon when opening the snackbar. */}
@@ -137,7 +131,6 @@ const SnackbarStandAloneComponent = (
         <ButtonWrapper>
           <ElementOrIcon
             customIconStyles={props.styles?.closeIcon}
-            dataTestId={`${props.dataTestId}Icon`}
             onClick={e => props.onCloseButtonClick(false)(e)}
             {...props.closeIcon}
           />

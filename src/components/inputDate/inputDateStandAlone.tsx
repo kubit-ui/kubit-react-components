@@ -10,7 +10,7 @@ import { InputDateStyled } from './inputDate.styled';
 import { IInputDateStandAlone } from './types';
 
 export const InputDateStandAloneComponent = (
-  { maxDate, ...props }: IInputDateStandAlone,
+  { dataTestId = 'input-data', maxDate, ...props }: IInputDateStandAlone,
   ref: React.ForwardedRef<HTMLInputElement | undefined>
 ): React.JSX.Element => {
   const uniqueId = useId('inputDate');
@@ -19,7 +19,7 @@ export const InputDateStandAloneComponent = (
   const { onWrapperBlur, ...innerInputProps } = props;
 
   return (
-    <InputDateStyled data-testid={`${props.dataTestId}InputDate`} onBlur={onWrapperBlur}>
+    <InputDateStyled data-testid={dataTestId} onBlur={onWrapperBlur}>
       <Input
         {...innerInputProps}
         ref={ref}

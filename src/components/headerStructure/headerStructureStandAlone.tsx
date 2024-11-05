@@ -12,7 +12,7 @@ import {
 import { HeaderStructureContentPositionType, IHeaderStructureStandAlone } from './types';
 
 const HeaderStructureStandAloneComponent = (
-  { ...props }: IHeaderStructureStandAlone,
+  { dataTestId = 'header-structure', ...props }: IHeaderStructureStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): React.JSX.Element => {
   const getPositionContent = (position: HeaderStructureContentPositionType) => {
@@ -30,7 +30,7 @@ const HeaderStructureStandAloneComponent = (
       ref={ref}
       backgroundColor={props.backgroundColor}
       containerHeight={props.containerHeight}
-      data-testid={`${props.dataTestId}Header`}
+      data-testid={dataTestId}
       scrolling={props.scrolling}
       styles={props.styles}
     >

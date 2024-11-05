@@ -20,6 +20,7 @@ const SelectorBoxFileComponent = React.forwardRef(
       success = false,
       error = false,
       disabled = false,
+      percentage = 0,
       maxSize,
       fileExtension,
       errorMaxSizeMessage = { content: '' },
@@ -93,6 +94,7 @@ const SelectorBoxFileComponent = React.forwardRef(
         ref={ref}
         errorMessage={getErrorMessage()}
         focus={focus}
+        percentage={percentage}
         state={getState(loading, success, hasError(), disabled)}
         styles={styles}
         onBlur={onBlur}

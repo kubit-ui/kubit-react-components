@@ -251,7 +251,7 @@ export const useInputSearch = ({
         }
       }
       // Focus the item
-      (options[selectedOption] as HTMLElement).focus();
+      (options[selectedOption] as HTMLElement | undefined)?.focus();
     };
 
     // When arrow down
@@ -303,6 +303,11 @@ export const useInputSearch = ({
     setSearchText(props.value ?? '');
     setInputPopoverText(props.value ?? '');
   }, [props.value]);
+
+  // Open or close the popover from external props
+  useEffect(() => {
+    handleOpenOptions(props.open);
+  }, [props.open]);
 
   // Set focus on popover input when show
   const actionBottomSheetRefCb = useCallback(node => {

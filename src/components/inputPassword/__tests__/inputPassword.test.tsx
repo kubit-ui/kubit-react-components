@@ -22,7 +22,7 @@ describe('New Input Password Component', () => {
   it('Should render InputPassword component', async () => {
     const { container, getByTestId } = renderProvider(<InputPassword {...mockProps} />);
 
-    expect(getByTestId(mockProps.dataTestId + 'Input')).toBeInTheDocument();
+    expect(getByTestId(mockProps.dataTestId)).toBeInTheDocument();
 
     const results = await axe(container);
     expect(container).toHTMLValidate();
@@ -47,7 +47,7 @@ describe('New Input Password Component', () => {
       <InputPassword {...mockProps} onInputTypeChange={onChange} />
     );
 
-    expect(getByTestId(mockProps.dataTestId + 'Input')).toBeInTheDocument();
+    expect(getByTestId(mockProps.dataTestId)).toBeInTheDocument();
 
     const results = await axe(container);
     expect(container).toHTMLValidate();
@@ -61,15 +61,15 @@ describe('New Input Password Component', () => {
     );
 
     // Default type
-    expect(getByTestId(mockProps.dataTestId + 'Input').getAttribute('type')).toBe('password');
+    expect(getByTestId(mockProps.dataTestId).getAttribute('type')).toBe('password');
 
     const iconButton = getByRole('button');
     fireEvent.click(iconButton);
 
-    expect(getByTestId(mockProps.dataTestId + 'Input').getAttribute('type')).toBe('text');
+    expect(getByTestId(mockProps.dataTestId).getAttribute('type')).toBe('text');
 
     fireEvent.click(iconButton);
-    expect(getByTestId(mockProps.dataTestId + 'Input').getAttribute('type')).toBe('password');
+    expect(getByTestId(mockProps.dataTestId).getAttribute('type')).toBe('password');
 
     expect(onInputTypeChangeMock).toHaveBeenCalledTimes(2);
     const results = await axe(container);

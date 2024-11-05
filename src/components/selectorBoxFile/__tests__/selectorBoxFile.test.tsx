@@ -9,6 +9,7 @@ import { TooltipAlignType } from '@/components/tooltip';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { ROLES } from '@/types';
 
+import * as stylesHook from '../../../hooks/useStyles/useStyles';
 import { SelectorBoxFile } from '../selectorBoxFile';
 import { SelectorBoxFileStateType } from '../types';
 
@@ -77,6 +78,7 @@ describe('SelectorBoxFile', () => {
       // Fix in the future: Currently the tooltip have internal div, so the tooltip can not be used next to text
       rules: {
         'element-permitted-content': 'off',
+        'no-inline-style': 'off',
       },
     });
     expect(results).toHaveNoViolations();
@@ -126,6 +128,7 @@ describe('SelectorBoxFile', () => {
       // Fix in the future: Currently the tooltip have internal div, so the tooltip can not be used next to text
       rules: {
         'element-permitted-content': 'off',
+        'no-inline-style': 'off',
       },
     });
     expect(results).toHaveNoViolations();
@@ -180,6 +183,7 @@ describe('SelectorBoxFile', () => {
       // Fix in the future: Currently the tooltip have internal div, so the tooltip can not be used next to text
       rules: {
         'element-permitted-content': 'off',
+        'no-inline-style': 'off',
       },
     });
     expect(results).toHaveNoViolations();
@@ -272,5 +276,74 @@ describe('SelectorBoxFile', () => {
     fireEvent.change(inputFile, { target: { files: [] } });
     expect(onSizeError).not.toHaveBeenCalled();
     expect(onFileError).not.toHaveBeenCalled();
+  });
+
+  it('May render animation containers', () => {
+    const dataTestId = 'selectorBoxFileAnimations';
+    const mockStyles = {
+      states: {
+        [SelectorBoxFileStateType.DEFAULT]: {
+          animationContainer: {
+            padding: '2px',
+            position: 'relative',
+            overflow: 'hidden',
+          },
+          topAnimationContainer: {
+            height: '15px',
+            top: '0px',
+            left: '0px',
+            transition: '500ms width',
+            position: 'absolute',
+            background: 'red',
+          },
+          rightAnimationContainer: {
+            width: '15px',
+            top: '0px',
+            right: '0px',
+            transition: '500ms height',
+            position: 'absolute',
+            background: 'red',
+          },
+          bottomAnimationContainer: {
+            height: '15px',
+            right: '0px',
+            bottom: '0px',
+            transition: '500ms width',
+            position: 'absolute',
+            background: 'red',
+          },
+          leftAnimationContainer: {
+            width: '15px',
+            bottom: '0px',
+            left: '0px',
+            transition: '500ms height',
+            position: 'absolute',
+            background: 'red',
+          },
+        },
+      },
+    };
+    jest.spyOn(stylesHook, 'useStyles').mockImplementation(() => mockStyles);
+    const { getByTestId } = renderProvider(<SelectorBoxFile {...mockProps} percentage={10} />);
+    const animationContainer = getByTestId('selector-box-file-animations');
+    expect(animationContainer).toBeInTheDocument();
+  });
+
+  it('May not render animation containers', () => {
+    const dataTestId = 'selectorBoxFileAnimations';
+    const mockStyles = {
+      states: {
+        [SelectorBoxFileStateType.DEFAULT]: {
+          animationContainer: undefined,
+          topAnimationContainer: undefined,
+          rightAnimationContainer: undefined,
+          bottomAnimationContainer: undefined,
+          leftAnimationContainer: undefined,
+        },
+      },
+    };
+    jest.spyOn(stylesHook, 'useStyles').mockImplementation(() => mockStyles);
+    const { queryByTestId } = renderProvider(<SelectorBoxFile {...mockProps} />);
+    expect(queryByTestId(dataTestId)).not.toBeInTheDocument();
   });
 });

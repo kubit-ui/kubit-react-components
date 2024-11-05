@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { ICONS } from '@/assets';
 import { STYLES_NAME } from '@/constants';
 import { themesObject, variantsObject } from '@/designSystem/themesObject';
 
@@ -80,6 +81,7 @@ const commonArgs: IOliveMenu = {
   screenReaderText: 'textReaderOpen',
   actionBottomSheetStructure: {
     hasHeader: false,
+    dragIcon: { icon: ICONS.ICON_DRAG, ['aria-label']: 'drag icon' },
   },
 };
 

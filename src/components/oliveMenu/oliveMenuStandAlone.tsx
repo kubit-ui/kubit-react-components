@@ -7,14 +7,14 @@ import { PopoverControlled as Popover, PopoverComponentType } from '@/components
 import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { TextComponentType } from '@/components/text/types';
 import { useId } from '@/hooks';
-import { AriaLiveOptionType, DeviceBreakpointsType } from '@/types';
+import { AriaLiveOptionType, DeviceBreakpointsType, ROLES } from '@/types';
 
 import { ButtonContainer, ListboxStyled, OliveMenuStyled } from './oliveMenu.styled';
 import { IOliveMenuStandAlone } from './types';
 import { getAriaControls } from './utils';
 
 const OliveMenuStandAloneComponent = (
-  props: IOliveMenuStandAlone,
+  { dataTestId = 'olive-menu', ...props }: IOliveMenuStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const uniqueId = useId('oliveMenu');
@@ -33,19 +33,13 @@ const OliveMenuStandAloneComponent = (
   const ariaControlIds = getAriaControls(props.sections, ariaControls);
 
   return (
-    <OliveMenuStyled
-      ref={ref}
-      data-testid={`${props.dataTestId}Container`}
-      styles={props.styles}
-      onBlur={props.onBlur}
-    >
+    <OliveMenuStyled ref={ref} data-testid={dataTestId} styles={props.styles} onBlur={props.onBlur}>
       {props.trigger?.content &&
         (props.styles.button?.[props.device]?.size || props.trigger?.size) && (
           <ButtonContainer ref={buttonRef} styles={props.styles}>
             <Button
               aria-controls={props.open ? ariaControlIds?.join(' ') : undefined}
               aria-expanded={props.open}
-              dataTestId={`${props.dataTestId}Button`}
               size={props.styles.button?.[props.device]?.size}
               {...props.trigger}
             >
@@ -53,19 +47,14 @@ const OliveMenuStandAloneComponent = (
             </Button>
           </ButtonContainer>
         )}
-      <ScreenReaderOnly
-        ariaLive={AriaLiveOptionType.POLITE}
-        dataTestId={`${props.dataTestId}ScreenReader`}
-      >
+      <ScreenReaderOnly ariaLive={AriaLiveOptionType.POLITE}>
         {props.screenReaderText}
       </ScreenReaderOnly>
       <Popover
         aria-labelledby={popoverAsModal ? titleId : undefined}
         aria-modal={popoverAsModal ? props.open : undefined}
-        // It is handled internally by the onBlur function of the container
-        clickOverlayClose={false}
-        component={popoverAsModal ? PopoverComponentType.DIALOG : PopoverComponentType.DIV}
-        dataTestId={`${props.dataTestId}Popover`}
+        clickOverlayClose={true}
+        component={PopoverComponentType.DIV}
         extraAlignGap={props.styles.buttonContainer?.[props.device]?.margin_bottom}
         focusFirstDescendantAutomatically={popoverAsModal}
         focusLastElementFocusedAfterClose={popoverAsModal}
@@ -73,12 +62,14 @@ const OliveMenuStandAloneComponent = (
         open={props.open}
         // It is handled internally by the controlled component to allow close when the focus is on the button
         pressEscapeClose={false}
+        preventCloseOnClickElements={[buttonRef.current]}
+        role={popoverAsModal ? ROLES.DIALOG : undefined}
         trapFocusInsideModal={popoverAsModal}
         variant={props.styles.popoverVariant}
         {...props.popover}
       >
         <ActionBottomSheetControlledStructure
-          dataTestId={`${props.dataTestId}ActionButtonSheet`}
+          ref={actionBottomSheet.forwardedRef}
           title={{
             component: TextComponentType.H5,
             align: props.styles.actionBottomSheet?.[props.device]?.alignTitle,
@@ -94,7 +85,6 @@ const OliveMenuStandAloneComponent = (
               props.sections?.map(({ title, ...section }, index) => (
                 <ListOptions
                   key={section.id}
-                  dataTestId={props.dataTestId}
                   optionVariant={props.styles.listOptions?.optionVariant as string}
                   selectedValue={props.selectedValue}
                   title={{ component: TextComponentType.H6, ...title }}

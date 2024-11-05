@@ -66,7 +66,7 @@ describe('New Input Search Component', () => {
       <InputSearch {...mockProps} onPopoverOpen={mockOnPopoverOpen} />
     );
 
-    const inputContainer = getByTestId('testidInputSearch');
+    const inputContainer = getByTestId('testid');
     expect(inputContainer).toBeDefined();
     fireEvent.keyDown(inputContainer, TAB);
 
@@ -206,7 +206,7 @@ describe('New Input Search Component', () => {
   });
 
   it('Should focus second option with arrow down', async () => {
-    const { debug } = renderProvider(
+    renderProvider(
       <InputSearch
         {...mockProps}
         optionList={[
@@ -228,14 +228,13 @@ describe('New Input Search Component', () => {
     const listOptions = screen.getByRole(ROLES.LISTBOX);
     expect(listOptions).toBeInTheDocument();
 
-    const inputOption1 = screen.getByTestId('testidOptionsList0Option1option1');
-    const inputOption2 = screen.getByTestId('testidOptionsList0Option2option2');
+    const inputOption1 = screen.getByTestId('list-options-option-1-option1');
+    const inputOption2 = screen.getByTestId('list-options-option-2-option2');
 
     fireEvent.keyDown(inputOption1, ARROW_DOWN);
     fireEvent.keyUp(inputOption2, ARROW_DOWN);
     fireEvent.keyDown(inputOption1, ARROW_DOWN);
 
-    debug();
     expect(inputOption2).toHaveFocus();
     fireEvent.keyDown(inputOption2, ARROW_UP);
     expect(inputOption1).toHaveFocus();

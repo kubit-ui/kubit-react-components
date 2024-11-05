@@ -22,7 +22,7 @@ const PillStandAloneComponent = (
     styles,
     decorativeIcon,
     selectedIcon,
-    dataTestId,
+    dataTestId = 'pill',
     children,
     multiSelect = false,
     disabled,
@@ -57,7 +57,7 @@ const PillStandAloneComponent = (
           aria-checked={selected}
           {...ariaProps}
           checked={selected}
-          data-testid={`${dataTestId}Input`}
+          data-testid={`${dataTestId}-input`}
           disabled={disabled}
           id={id}
           name={name}
@@ -72,7 +72,6 @@ const PillStandAloneComponent = (
           <IconContainerStyled styles={stateStyles}>
             <ElementOrIcon
               color={stateStyles?.decorativeIcon?.color}
-              dataTestId={dataTestId + 'DecorativeIcon'}
               height={stateStyles?.decorativeIcon?.height}
               width={stateStyles?.decorativeIcon?.width}
               {...decorativeIcon}
@@ -85,7 +84,6 @@ const PillStandAloneComponent = (
         {selectedIcon && selected && (
           <ElementOrIcon
             color={stateStyles?.selectedIcon?.color}
-            dataTestId={dataTestId + 'SelectedIcon'}
             height={stateStyles?.selectedIcon?.height}
             width={stateStyles?.selectedIcon?.width}
             {...selectedIcon}

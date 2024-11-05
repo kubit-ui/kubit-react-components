@@ -28,7 +28,7 @@ import {
 const defaultStep = 0;
 
 const StepperNumberStandAloneComponent = (
-  { currentStep = defaultStep, ...props }: IStepperNumberStandAlone,
+  { currentStep = defaultStep, dataTestId = 'stepper-number', ...props }: IStepperNumberStandAlone,
   ref: React.ForwardedRef<HTMLElement> | undefined | null
 ): JSX.Element => {
   const id = useId('stepperNumber');
@@ -45,18 +45,14 @@ const StepperNumberStandAloneComponent = (
       aria-hidden={!isVertical}
       aria-label={props['aria-label']}
       aria-labelledby={ariaLabelledBy}
-      data-testid={`${props.dataTestId}StepsSection`}
+      data-testid={dataTestId}
     >
       {props.screenReaderTitle?.content && (
-        <ScreenReaderTitle
-          as={props.screenReaderTitle.component}
-          data-testid={props.screenReaderTitle.dataTestId ?? `${props.dataTestId}ScreenReaderTitle`}
-          id={screenReaderTitleId}
-        >
+        <ScreenReaderTitle as={props.screenReaderTitle.component} id={screenReaderTitleId}>
           {props.screenReaderTitle?.content}
         </ScreenReaderTitle>
       )}
-      <StepsContainerStyled data-testid={`${props.dataTestId}StepsContainer`} styles={props.styles}>
+      <StepsContainerStyled data-testid={`${dataTestId}-steps-container`} styles={props.styles}>
         {steps.map((step, index) => {
           const isLastStep = index === steps.length - 1;
           return (
@@ -64,11 +60,11 @@ const StepperNumberStandAloneComponent = (
               key={'stepContainer' + index}
               $orientation={props.orientation}
               aria-current={buildAriaCurrent(currentStep, index, props.orientation)}
-              data-testid={`${props.dataTestId}Li${index}`}
+              data-testid={`${dataTestId}-li-${index}`}
               horizontalOrientationWidth={isLastStep ? 'auto' : props.horizontalOrientationWidth}
             >
               {usingScreenReaderTextBuilder && (
-                <ScreenReaderOnly dataTestId={`${props.dataTestId}ScreenReaderText${index}`}>
+                <ScreenReaderOnly>
                   {buildScreenReaderText(
                     index,
                     currentStep,
@@ -117,7 +113,6 @@ const StepperNumberStandAloneComponent = (
                     <Text
                       component={TextComponentType.SPAN}
                       customTypography={props.styles?.[step.state]?.stepName}
-                      dataTestId={`${props.dataTestId}VerticalStepText${index}`}
                     >
                       {step.name}
                     </Text>

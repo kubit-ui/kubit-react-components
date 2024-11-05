@@ -34,6 +34,7 @@ export type TypographyMediaType = {
  */
 export type TextPropsStylesType = {
   color?: string;
+  filter?: string;
   cursor?: string;
   decoration?: TextDecorationType;
   display?: TextDisplayType;

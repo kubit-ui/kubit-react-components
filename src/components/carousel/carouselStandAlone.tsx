@@ -39,7 +39,7 @@ const CarouselStandAloneComponent = (
     pageControlVariant,
     pageControlArrowsControlVariant,
     onKeyDown,
-    dataTestId = 'dataTestIdCarousel',
+    dataTestId = 'carousel',
     displayArrowsOnCarousel,
     disableSwipe,
     allowModifySliceWidth,
@@ -83,7 +83,7 @@ const CarouselStandAloneComponent = (
       aria-label={props['aria-label']}
       aria-labelledby={props['aria-labelledby']}
       aria-roledescription="carousel"
-      data-testid={`${dataTestId}Wrapper`}
+      data-testid={dataTestId}
       styles={styles}
       onKeyDown={onKeyDown}
     >
@@ -95,7 +95,6 @@ const CarouselStandAloneComponent = (
               customIconStyles={
                 !leftArrowDisabled ? styles.leftArrowIcon : styles.leftArrowIconDisabled
               }
-              dataTestId={`${dataTestId}LeftArrow`}
               disabled={leftArrowDisabled}
               {...props.leftArrow}
               onClick={onLeftArrowClick}
@@ -104,7 +103,7 @@ const CarouselStandAloneComponent = (
         )}
         <CarouselContainerStyled
           ref={carouselContainerRef}
-          data-testid={`${dataTestId}Container`}
+          data-testid={`${dataTestId}-container`}
           styles={styles}
           tabIndex={-1}
           onMouseOutCapture={onMouseOut}
@@ -116,7 +115,7 @@ const CarouselStandAloneComponent = (
               props['aria-live'] ?? (playing ? AriaLiveOptionType.OFF : AriaLiveOptionType.POLITE)
             }
             centerMode={centerMode}
-            data-testid={`${dataTestId}Content`}
+            data-testid={`${dataTestId}-content`}
             disableSwipe={disableSwipe}
             id={id}
             styles={styles}
@@ -126,7 +125,7 @@ const CarouselStandAloneComponent = (
           <ExtraPaddingArrowStandAlone
             ariaControls={id}
             ariaLabel={props.leftArrow?.['aria-label']}
-            dataTestId={`${dataTestId}LeftArrow`}
+            dataTestId={`${dataTestId}-left-arrow`}
             extraPadding={extraPadding}
             extraPaddingAsArrow={extraPaddingAsArrow}
             styles={styles}
@@ -136,7 +135,7 @@ const CarouselStandAloneComponent = (
             right
             ariaControls={id}
             ariaLabel={props.rightArrow?.['aria-label']}
-            dataTestId={`${dataTestId}RightArrow`}
+            dataTestId={`${dataTestId}-right-arrow`}
             extraPadding={extraPadding}
             extraPaddingAsArrow={extraPaddingAsArrow}
             styles={styles}
@@ -150,7 +149,6 @@ const CarouselStandAloneComponent = (
               customIconStyles={
                 !rightArrowDisabled ? styles.rightArrowIcon : styles.rightArrowIconDisabled
               }
-              dataTestId={`${dataTestId}RightArrow`}
               disabled={rightArrowDisabled}
               {...props.rightArrow}
               onClick={onRightArrowClick}
@@ -163,7 +161,6 @@ const CarouselStandAloneComponent = (
           <PageControl
             arrowsControlVariant={pageControlArrowsControlVariant}
             currentPosition={currentPage}
-            dataTestId={`${dataTestId}PageControl`}
             leftArrowControl={leftArrowControlPageControl}
             pages={numPages}
             rightArrowControl={rightArrowControlPageControl}
@@ -187,10 +184,7 @@ const CarouselStandAloneComponent = (
           />
         </PageControlAutomateContainerStyled>
       )}
-      <ScreenReaderOnly
-        ariaLive={playing ? AriaLiveOptionType.OFF : AriaLiveOptionType.POLITE}
-        dataTestId={`${dataTestId}CarouselScreenReader`}
-      >
+      <ScreenReaderOnly ariaLive={playing ? AriaLiveOptionType.OFF : AriaLiveOptionType.POLITE}>
         {buildScreenReaderText(currentPage, numPages, screenReaderText)}
       </ScreenReaderOnly>
     </RootStyled>

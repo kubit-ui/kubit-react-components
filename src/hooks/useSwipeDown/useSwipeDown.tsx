@@ -6,8 +6,8 @@ import { convertDurationToNumber } from '@/utils/stringUtility/string.utility';
 const distanceToTriggerClose = 30;
 
 type ReturnType = {
-  setPopoverRef?: (node: HTMLElement) => void;
-  setDragIconRef?: (node: HTMLElement) => void;
+  setPopoverRef: (node: HTMLElement) => void;
+  setDragIconRef: (node: HTMLElement | null | undefined) => void;
 };
 
 export const useSwipeDown = (
@@ -93,7 +93,9 @@ export const useSwipeDown = (
     swiperContent.style.bottom = `${currentBottom.current + currentMove}px`;
   };
 
-  const endMove = () => {
+  const waitForAnimation = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  const endMove = async () => {
     const swiperContent = containerRef?.current;
     if (!swiperContent || !yEnd.current) {
       return;
@@ -108,9 +110,8 @@ export const useSwipeDown = (
     // Move modal
     const distance = currentBottom.current + swiperContent.scrollHeight;
     swiperContent.style.bottom = `-${distance}px`;
-    setTimeout(() => {
-      handleClose?.();
-    }, animationExitDuration);
+    await waitForAnimation(animationExitDuration);
+    handleClose?.();
   };
 
   return { setPopoverRef, setDragIconRef };

@@ -10,6 +10,7 @@ export type {
   IModalUnControlled as IModalUnControlledV2,
   ModalBaseStylesType as ModalBaseStylesTypeV2,
   ModalStylesType as ModalStylesTypeV2,
+  ModalContentScrollAriasType as ModalContentScrollAriasTypeV2,
 } from './types';
 
 // components

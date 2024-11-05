@@ -21,9 +21,16 @@ export type DrawerFooterType = Omit<IFooter, 'children' | 'variant'> & {
 
 export type DrawerPopoverType = Omit<IPopoverControlled, 'children' | 'open'>;
 
+export type DrawerContentScrollAriasType = {
+  ['aria-label']?: string;
+  ['aria-labelledby']?: string;
+};
+
 export interface IDrawerStandAlone {
   styles: DrawerDeviceStyleType;
   children: ReactNode;
+  contentScrollArias?: DrawerContentScrollAriasType;
+  contentHasScroll: boolean;
   footer?: DrawerFooterType;
   closeIcon?: IElementOrIcon;
   title?: DrawerTextType;
@@ -37,15 +44,10 @@ export interface IDrawerStandAlone {
   device?: DeviceBreakpointsType;
   blocked?: boolean;
   popover?: DrawerPopoverType;
-  /* To useScrollableEffect */
-  shadowRef: (node) => void;
-  /* To useZoomEffect */
-  footerRef?: (node) => void;
-  contentRef?: (node) => void;
   onContentScroll?: (e: Event) => void;
 }
 
-type OmitProps = 'styles' | 'device' | 'shadowRef' | 'footerRef' | 'contentRef';
+type OmitProps = 'styles' | 'device' | 'contentHasScroll';
 
 export interface IDrawerControlled<V = undefined extends string ? unknown : string>
   extends Omit<IDrawerStandAlone, OmitProps>,

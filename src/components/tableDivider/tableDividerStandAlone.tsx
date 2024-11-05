@@ -5,7 +5,7 @@ import { ITableDividerStandAlone } from './types';
 
 const TableDividerStandAloneComponent = (
   {
-    dataTestId = 'tableDivider',
+    dataTestId = 'table-divider',
     children,
     styles,
     id,

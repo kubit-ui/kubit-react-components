@@ -43,7 +43,7 @@ export const ButtonStandAloneStructure = (props: IButtonStandAlone): JSX.Element
 };
 
 const ButtonStandAloneComponent = (
-  props: IButtonStandAlone,
+  { dataTestId = 'button', ...props }: IButtonStandAlone,
   ref: React.ForwardedRef<HTMLButtonElement> | undefined | null
 ): JSX.Element => {
   const ariaProps = pickAriaProps(props);
@@ -66,7 +66,7 @@ const ButtonStandAloneComponent = (
       $state={props.state}
       $styles={props.styles}
       alignText={props.alignText}
-      data-testid={props.dataTestId}
+      data-testid={dataTestId}
       disabled={disabled}
       form={props.form}
       id={props.id}

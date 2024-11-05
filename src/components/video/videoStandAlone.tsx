@@ -27,7 +27,13 @@ import {
 const VIDEO_BASE_ID = 'video';
 
 const VideoStandAloneComponent = (
-  props: IVideoStandAlone,
+  {
+    dataTestIdOverlay = 'overlay',
+    dataTestIdParentContainer = 'video',
+    dataTestIdVideoSkeleton = 'skeleton',
+    dataTestIdVolumeInput = 'volume-input',
+    ...props
+  }: IVideoStandAlone,
   ref: React.ForwardedRef<HTMLDivElement>
 ): React.JSX.Element => {
   const BASE_ID = useId(VIDEO_BASE_ID);
@@ -47,7 +53,7 @@ const VideoStandAloneComponent = (
   if (props.hasSkeleton) {
     return (
       <VideoSkeleton
-        dataTestIdVideoSkeleton={props.dataTestIdVideoSkeleton}
+        dataTestIdVideoSkeleton={dataTestIdVideoSkeleton}
         skeletonText={props.skeletonText}
         styles={props.styles}
       />
@@ -55,10 +61,10 @@ const VideoStandAloneComponent = (
   }
 
   return (
-    <ContainerStyled ref={ref} data-testid={props.dataTestIdParentContainer} styles={props.styles}>
+    <ContainerStyled ref={ref} data-testid={dataTestIdParentContainer} styles={props.styles}>
       <VideoContainerStyled ref={props.videoContainerRef} styles={props.styles}>
         {props.hasOverlay && (
-          <OverlayStyled data-testid={props.dataTestIdOverlay} styles={props.styles} />
+          <OverlayStyled data-testid={dataTestIdOverlay} styles={props.styles} />
         )}
         <VideoElement
           ref={props.videoRef}
@@ -127,7 +133,7 @@ const VideoStandAloneComponent = (
                   buttonsBarVolumeIcon={props.buttonsBarVolumeIcon}
                   buttonsBarVolumeIconToTransition={props.buttonsBarVolumeIconToTransition}
                   buttonsBarVolumeIconTooltip={props.buttonsBarVolumeIconTooltip}
-                  dataTestIdVolumeInput={props.dataTestIdVolumeInput}
+                  dataTestIdVolumeInput={dataTestIdVolumeInput}
                   styles={props.styles}
                   volume={props.volume}
                   volumeBarAriaLabel={props.volumeBarAriaLabel}

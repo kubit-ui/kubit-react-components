@@ -107,8 +107,8 @@ describe('Toggle component', () => {
     jest.spyOn(keyboard, 'isKeyEnterPressed').mockReturnValueOnce(true);
     const { container } = renderProvider(<Toggle {...mockProps} />);
 
-    expect(screen.getByTestId('toggleIdOnOption')).toBeInTheDocument();
-    expect(screen.getByTestId('toggleIdOffOption')).toBeInTheDocument();
+    expect(screen.getByTestId('toggleId-on-option')).toBeInTheDocument();
+    expect(screen.getByTestId('toggleId-off-option')).toBeInTheDocument();
 
     const group = screen.getByTestId('toggleId');
     expect(group).toBeInTheDocument();
@@ -171,7 +171,7 @@ describe('Toggle component', () => {
     const onClick = jest.fn();
     renderProvider(<Toggle {...mockProps} onClick={onClick} />);
 
-    const thumb = screen.getByTestId('toggleIdThumb');
+    const thumb = screen.getByTestId('toggleId-thumb');
 
     fireEvent.click(thumb);
 
@@ -209,7 +209,7 @@ describe('Toogle Three Positions', () => {
       />
     );
 
-    const onLabelOption = screen.getByTestId('toggleIdOnLabelOption');
+    const onLabelOption = screen.getByTestId('toggleId-on-label-option');
     expect(onLabelOption).toBeInTheDocument();
     fireEvent.click(onLabelOption);
     expect(onClick).toHaveBeenCalled();
@@ -233,7 +233,7 @@ describe('Toogle Three Positions', () => {
       />
     );
 
-    const onLabelOption = screen.getByTestId('toggleIdOnLabelOption');
+    const onLabelOption = screen.getByTestId('toggleId-on-label-option');
     expect(onLabelOption).toBeInTheDocument();
     fireEvent.click(onLabelOption);
     expect(onClick).not.toHaveBeenCalled();
@@ -248,7 +248,7 @@ describe('Toogle Three Positions', () => {
     jest.spyOn(keyboard, 'isKeySpacePressed').mockReturnValueOnce(true);
     renderProvider(<Toggle {...mockPropsThreePositions} />);
 
-    const offLabelOption = screen.getByTestId('toggleIdOffLabelOption');
+    const offLabelOption = screen.getByTestId('toggleId-off-label-option');
     expect(offLabelOption).toBeInTheDocument();
     fireEvent.click(offLabelOption);
 

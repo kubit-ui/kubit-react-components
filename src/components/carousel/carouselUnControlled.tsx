@@ -42,16 +42,13 @@ const CarouselUnControlledComponent = <V extends string | unknown>(
   };
 
   const onLeftSwipe = () => {
-    setCurrentPage(prevPage => {
-      let newPage = prevPage;
-      if (allowShift.current && (circular || prevPage !== 0)) {
-        newPage = prevPage === 0 ? numPages - 1 : prevPage - 1;
-        handlePageChange(-1);
-        onPageChange?.(newPage);
-        // onTransition is called internally when drag starts
-      }
-      return newPage;
-    });
+    if (allowShift.current && (circular || innerCurrentPage.current !== 0)) {
+      const newPage = innerCurrentPage.current === 0 ? numPages - 1 : innerCurrentPage.current - 1;
+      handlePageChange(-1);
+      onPageChange?.(newPage);
+      // onTransition is called internally when drag starts
+      setCurrentPage(newPage);
+    }
   };
 
   const handleClickRightArrow = e => {
@@ -67,16 +64,13 @@ const CarouselUnControlledComponent = <V extends string | unknown>(
   };
 
   const onRightSwipe = () => {
-    setCurrentPage(prevPage => {
-      let newPage = prevPage;
-      if (allowShift.current && (circular || prevPage !== numPages - 1)) {
-        newPage = (newPage + 1) % numPages;
-        handlePageChange(1);
-        onPageChange?.(newPage);
-        // onTransition is called internally when drag starts
-      }
-      return newPage;
-    });
+    if (allowShift.current && (circular || innerCurrentPage.current !== numPages - 1)) {
+      const newPage = (innerCurrentPage.current + 1) % numPages;
+      handlePageChange(1);
+      onPageChange?.(newPage);
+      setCurrentPage(newPage);
+      // onTransition is called internally when drag starts
+    }
   };
 
   const onKeyDown: React.KeyboardEventHandler<HTMLDivElement> = event => {

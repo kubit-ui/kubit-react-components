@@ -13,6 +13,7 @@ interface IReplaceContent extends AriaType {
   id?: string;
   role?: ROLES;
   as?: React.ElementType;
+  tabIndex?: number;
 }
 
 export const ReplaceContent = React.forwardRef(

@@ -4,6 +4,7 @@ import { STYLES_NAME } from '@/constants';
 import {
   useDeviceHeight,
   useMediaDevice,
+  useScrollDetectionWithAutoFocus,
   useScrollEffect,
   useStylesV2,
   useZoomEffect,
@@ -29,6 +30,33 @@ const DrawerControlledComponent = React.forwardRef(
     { portalId, ...props }: IDrawerControlled<V>,
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
+    const innerRef = React.useRef<HTMLDivElement | null>(null);
+
+    const handleInnerRef = React.useCallback(node => {
+      innerRef.current = node;
+      const drawerTitle = innerRef.current?.querySelector('[data-drawer-title]') as
+        | HTMLElement
+        | null
+        | undefined;
+      const drawerContent = innerRef.current?.querySelector('[data-drawer-content]') as
+        | HTMLElement
+        | null
+        | undefined;
+      const drawerFooter = innerRef.current?.querySelector('[data-drawer-footer]') as
+        | HTMLElement
+        | null
+        | undefined;
+
+      handleTitleShadowEffect(drawerTitle);
+      handleContentScrollEffect(drawerContent);
+      handleFooterZoomEffect(drawerFooter);
+      handleContentScrollDetection(drawerContent);
+    }, []);
+
+    React.useImperativeHandle(ref, () => {
+      return innerRef?.current as HTMLDivElement;
+    }, []);
+
     useDeviceHeight();
 
     const handleScroll = (e: Event) => {
@@ -43,22 +71,26 @@ const DrawerControlledComponent = React.forwardRef(
     const device = useMediaDevice();
     const stylesByDevice = styles?.[device];
 
-    const { scrollableRef, shadowRef } = useScrollEffect({
-      shadowStyles: stylesByDevice.titleContainer?.box_shadow,
-      shadowVisible: SCROLL_DISTANCE,
-      scrollCallback: handleScroll,
-    });
+    const { scrollableRef: handleContentScrollEffect, shadowRef: handleTitleShadowEffect } =
+      useScrollEffect({
+        shadowStyles: stylesByDevice.titleContainer?.box_shadow,
+        shadowVisible: SCROLL_DISTANCE,
+        scrollCallback: handleScroll,
+      });
 
-    const footerRef = useZoomEffect(FOOTER_EDIT_STYLES, MAX_ZOOM);
+    const handleFooterZoomEffect = useZoomEffect(FOOTER_EDIT_STYLES, MAX_ZOOM);
+
+    const { hasScroll: contentHasScroll, handleScrollDetection: handleContentScrollDetection } =
+      useScrollDetectionWithAutoFocus({
+        parentElementRef: innerRef,
+      });
 
     const drawerStructure = (
       <DrawerStandAlone
         {...props}
-        ref={ref}
-        contentRef={scrollableRef}
+        ref={handleInnerRef}
+        contentHasScroll={contentHasScroll}
         device={device}
-        footerRef={footerRef}
-        shadowRef={shadowRef}
         styles={stylesByDevice}
       />
     );

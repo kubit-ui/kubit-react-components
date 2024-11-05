@@ -24,7 +24,6 @@ interface INavigationCardInfo {
   description?: NavigationCardTextType;
   tag?: NavigationCardTagType;
   device: DeviceBreakpointsType;
-  dataTestId?: string;
   customHeight?: string;
 }
 
@@ -41,7 +40,6 @@ export const NavigationCardInfo = (props: INavigationCardInfo): JSX.Element => (
           TextComponentType.SPAN
         }
         customTypography={props.styles.title}
-        dataTestId={`${props.dataTestId}Text`}
         decoration={TextDecorationType.NONE}
         {...props.title}
       >
@@ -63,7 +61,6 @@ export const NavigationCardInfo = (props: INavigationCardInfo): JSX.Element => (
           <Text
             component={TextComponentType.SPAN}
             customTypography={props.styles.description}
-            dataTestId={`${props.dataTestId}Description`}
             decoration={TextDecorationType.NONE}
             {...props.description}
           >
@@ -74,12 +71,7 @@ export const NavigationCardInfo = (props: INavigationCardInfo): JSX.Element => (
     )}
     {props.tag && props.styles.containerExpandedContent && (
       <NavigationCardTagContainer as={props.innerContainersComponent} styles={props.styles}>
-        <Tag
-          dataTestId={`${props.dataTestId}Tag`}
-          option={props.styles.tag?.option}
-          variant={props.styles.tag?.variant}
-          {...props.tag}
-        >
+        <Tag option={props.styles.tag?.option} variant={props.styles.tag?.variant} {...props.tag}>
           <ScreenReaderOnly>{props.tag?.screenReaderText}</ScreenReaderOnly>
           {props.tag?.content}
         </Tag>

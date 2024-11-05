@@ -6,5 +6,6 @@
     "declaration": true,
     "declarationDir": "./dist/esm"
   },
-  "exclude": ["./vite.config.ts"]
+  "exclude": ["./vite.config.ts"],
+  "include": ["./src/**/*", "./src/designSystem/kubit/assets/animations/loaderPrimary.json"]
 }

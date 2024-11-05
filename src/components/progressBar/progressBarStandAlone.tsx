@@ -15,7 +15,11 @@ const SLIDER_MIN_VALUE = 0;
 const SLIDER_PERCENTAGE_CONVERSION = 10;
 
 const ProgressBarStandaloneComponent = (
-  props: IProgressBarStandAlone,
+  {
+    dataTestIdBar = 'bar',
+    dataTestIdProgressBar = 'progress-bar',
+    ...props
+  }: IProgressBarStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   return (
@@ -43,12 +47,12 @@ const ProgressBarStandaloneComponent = (
         ) : (
           <>
             <BarStyled
-              data-testid={`${props.dataTestIdBar}`}
+              data-testid={dataTestIdBar}
               sizeStyles={props.sizeStyles}
               styles={props.styles}
             />
             <ProgressBarStyled
-              data-testid={`${props.dataTestIdProgressBar}`}
+              data-testid={dataTestIdProgressBar}
               progressCompleted={props.progressCompleted}
               sizeStyles={props.sizeStyles}
               styles={props.styles}

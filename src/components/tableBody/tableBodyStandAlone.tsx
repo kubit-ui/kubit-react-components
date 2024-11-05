@@ -5,7 +5,7 @@ import { ITableBodyStandAlone } from './types';
 
 const TableBodyStandAloneComponent = (
   {
-    dataTestId = 'tableBody',
+    dataTestId = 'table-body',
     children,
     styles,
     id,

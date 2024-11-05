@@ -20,3 +20,5 @@ export { useZoomEffect } from './useZoomEffect/useZoomEffect';
 export { useDeviceHeight } from './useDeviceHeight/useDeviceHeight';
 export { useElementBoundingClientRect } from './useElementBoundingClientRect/useElementBoundingClientRect';
 export { useSwipeDown } from './useSwipeDown/useSwipeDown';
+export * from './useScrollDetection';
+export * from './useScrollDetectionWithAutoFocus';

@@ -64,3 +64,7 @@ export const ActionBottomSheetContentStyled = styled.div<IActionBottomSheetStyle
     }
   `}
 `;
+
+export const DraggableIcon = styled.div<ActionBottomSheetStylesTypes>`
+  ${props => getStyles(props.styles.dragIconContainer)}
+`;

@@ -29,7 +29,7 @@ const TableStandAloneComponent = (
       ref={ref}
       $styles={styles}
       data-sticky={sticky}
-      data-testid={`${dataTestId}Wrapper`}
+      data-testid={`${dataTestId}-wrapper`}
     >
       {/* display table, by default does not allow scroll, that's why we need to add a wrapper */}
       <TableScrollableContainerStyled
@@ -39,7 +39,7 @@ const TableStandAloneComponent = (
         aria-hidden={props['aria-hidden']}
         aria-label={hasScroll ? props['aria-label'] : undefined}
         aria-labelledby={hasScroll ? props['aria-labelledby'] : undefined}
-        data-testid={`${dataTestId}ScrollableContainer`}
+        data-testid={`${dataTestId}-scrollable-container`}
         role={hasScroll ? ROLES.REGION : undefined}
         tabIndex={hasScroll ? 0 : undefined}
       >

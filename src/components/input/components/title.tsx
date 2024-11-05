@@ -23,7 +23,6 @@ export const TitleStandAlone = (props: ITitle): JSX.Element | null => {
         $titleStyles={props.styles}
         as={Text}
         customTypography={props.styles?.title}
-        dataTestId={`${props.dataTestId}Title`}
         {...props.title}
         component={
           (props.title.component

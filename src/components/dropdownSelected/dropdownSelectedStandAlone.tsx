@@ -23,7 +23,11 @@ import { IDropdownSelectedStandAlone } from './types';
 const DROPDOWN_SELECTED_BASE_ID = 'DropdownSelected';
 
 const DropdownSelectedStandAloneComponent = (
-  props: IDropdownSelectedStandAlone,
+  {
+    dataTestIdComponent = 'dropdown-selected',
+    dataTestIdListOptionsContainer = 'list-options-container',
+    ...props
+  }: IDropdownSelectedStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const BASE_ID = useId(DROPDOWN_SELECTED_BASE_ID);
@@ -69,7 +73,7 @@ const DropdownSelectedStandAloneComponent = (
   return (
     <DropdrownSelectedContainerStyled
       ref={ref}
-      data-testid={props.dataTestIdComponent}
+      data-testid={dataTestIdComponent}
       styles={props.styles}
       onBlur={props.onBlur}
       onFocus={props.onFocus}
@@ -107,7 +111,6 @@ const DropdownSelectedStandAloneComponent = (
         <Popover
           hasBackDrop
           component={PopoverComponentType.DIV}
-          dataTestId={POPOVER_ID}
           focusFirstDescendantAutomatically={false}
           focusLastElementFocusedAfterClose={false}
           id={ariaControls}
@@ -124,7 +127,7 @@ const DropdownSelectedStandAloneComponent = (
           }}
         >
           <ListOptionsContainerStyled
-            data-testid={props.dataTestIdListOptionsContainer}
+            data-testid={dataTestIdListOptionsContainer}
             styles={props.styles}
           >
             {props.styles?.listOptions?.optionVariant && props.styles.listOptions?.variant && (

@@ -13,7 +13,7 @@ const IllustrationStandAloneComponent = (
     height,
     rotate = '0deg',
     transitionDuration = '0.2s',
-    dataTestId,
+    dataTestId = 'illustration',
     'aria-hidden': ariaHidden,
   }: IIllustrationStandAlone,
   ref: React.ForwardedRef<HTMLImageElement> | undefined | null

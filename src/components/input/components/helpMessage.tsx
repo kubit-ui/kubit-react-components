@@ -20,7 +20,6 @@ export const HelpMessageStandAlone = (props: IHelpMessage): JSX.Element | null =
       <Text
         component={TextComponentType.PARAGRAPH}
         customTypography={props.styles?.helpMessage}
-        dataTestId={`${props.dataTestId}HelpMessage`}
         {...props.helpMessage}
       >
         {props.helpMessage.content}

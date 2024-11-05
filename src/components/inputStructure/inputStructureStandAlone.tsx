@@ -19,9 +19,12 @@ import { IInputStructure } from './types/inputStructure';
  * @param {IInputStructure} props
  * @returns {JSX.Element}
  */
-export const InputStructureStandAlone = (props: IInputStructure): JSX.Element => (
+export const InputStructureStandAlone = ({
+  dataTestIdParentContainer = 'input-structure-parent-container',
+  ...props
+}: IInputStructure): JSX.Element => (
   <InputStructureContainerStyled
-    data-testid={props.dataTestIdParentContainer}
+    data-testid={dataTestIdParentContainer}
     onBlur={props.onBlurStructure}
     onFocus={props.onFocusStructure}
   >

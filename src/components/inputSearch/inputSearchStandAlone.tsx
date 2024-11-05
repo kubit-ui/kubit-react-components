@@ -16,7 +16,7 @@ import { InputSearchStyled } from './inputSearch.styled';
 import { IInputSearchStandAlone } from './types';
 
 export const InputSearchStandAloneComponent = (
-  { error, ...props }: IInputSearchStandAlone,
+  { error, dataTestId = 'input-search', ...props }: IInputSearchStandAlone,
   ref: ForwardedRef<HTMLInputElement | undefined | null>
 ): JSX.Element => {
   const inputWrapperRef = useRef(null);
@@ -38,7 +38,7 @@ export const InputSearchStandAloneComponent = (
 
   return (
     <InputSearchStyled
-      data-testid={`${props.dataTestId}InputSearch`}
+      data-testid={dataTestId}
       onKeyDown={e => {
         if (props.device === DeviceBreakpointsType.DESKTOP && isKeyTabPressed(e.key)) {
           props.onOpenOptions(false);
@@ -75,7 +75,7 @@ export const InputSearchStandAloneComponent = (
         blockBackPopover={props.blockBackPopover}
         caseSensitive={props.caseSensitive}
         closeIcon={props.closeIcon}
-        dataTestId={props.dataTestId}
+        dataTestId={dataTestId}
         device={props.device}
         elementsToShow={props.elementsToShow}
         hasHighlightedOption={props.hasHighlightedOption}

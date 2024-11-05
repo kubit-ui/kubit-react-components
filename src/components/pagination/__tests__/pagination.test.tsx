@@ -39,7 +39,7 @@ describe('Pagination Component', () => {
 
     const leftButton = screen.getByLabelText('left button');
     const rightButton = screen.getByLabelText('right button');
-    const anyCounter = screen.getByTestId(`${mockProps.dataTestId}StepsContent`).children[0];
+    const anyCounter = screen.getByTestId(`${mockProps.dataTestId}-steps-content`).children[0];
 
     fireEvent.click(leftButton);
     expect(mockProps.paginationLeftButtonControl.onClick).toHaveBeenCalled();
@@ -72,7 +72,7 @@ describe('Pagination Component', () => {
     );
 
     const childsNumber = screen.getByTestId(
-      `${mockProps.dataTestId}StepsContent`
+      `${mockProps.dataTestId}-steps-content`
     ).childElementCount;
     const ellipsis = screen.getAllByText('...').length;
 

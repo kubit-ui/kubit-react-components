@@ -11,7 +11,6 @@ export const InfoIconWithTooltipStandAlone = ({
   styles,
   infoIcon,
   tooltip,
-  dataTestId,
 }: IInfoIconWithTooltipStandAlone): JSX.Element | null => {
   if (!infoIcon) {
     return null;
@@ -20,7 +19,6 @@ export const InfoIconWithTooltipStandAlone = ({
     <InfoIconWrapperStyled styles={styles}>
       <ElementOrIcon
         customIconStyles={styles[RadioButtonGroupStateType.DEFAULT]?.tooltip?.icon}
-        dataTestId={dataTestId}
         {...infoIcon}
       />
     </InfoIconWrapperStyled>
@@ -33,7 +31,6 @@ export const InfoIconWithTooltipStandAlone = ({
   return (
     <Tooltip
       align={styles[RadioButtonGroupStateType.DEFAULT]?.tooltip?.align}
-      dataTestId={`${dataTestId}Tooltip`}
       {...tooltip}
       variant={tooltipVariant}
     >

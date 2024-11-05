@@ -20,7 +20,7 @@ const ACTION_BUTTON_SHEET_TOKENS = {
     box_shadow: SHADOW.shadow_10,
     background_color: COLORS.NEUTRAL.color_neutral_bg_250,
     border_radius: `${RADIUS.radius_50} ${RADIUS.radius_50} ${RADIUS.radius_00} ${RADIUS.radius_00}`,
-    padding: `${SPACINGS.spacing_0} ${SPACINGS.spacing_300} ${SPACINGS.spacing_400}`,
+    padding: `${SPACINGS.spacing_150} ${SPACINGS.spacing_250} ${SPACINGS.spacing_250}`,
     display: 'flex',
     flex_direction: 'column',
     overflow_y: 'auto',
@@ -82,6 +82,10 @@ const ACTION_BUTTON_SHEET_TOKENS = {
   },
   content: {
     max_height: '100vh',
+  },
+  dragIconContainer: {
+    display: 'flex',
+    justify_content: 'center',
   },
 };
 

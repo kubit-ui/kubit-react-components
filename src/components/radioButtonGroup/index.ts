@@ -7,6 +7,8 @@ export type {
   IRadioButtonGroupUncontrolled,
   RadioButtonGroupBaseStyles,
 } from './types';
+export * from './components/radioButton/types/radioButton';
+export * from './components/radioButton/types/radioButtonTheme';
 
 // enums
 export { RadioButtonGroupStateType, RadioButtonStateType } from './types';

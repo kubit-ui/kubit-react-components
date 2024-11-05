@@ -3,7 +3,13 @@ import { CommonStyleType, IconTypes, TypographyTypes } from '@/types/styles';
 
 import { SelectorBoxFileStateType } from './state';
 
-type SelectorBoxFileStateStylesType = {
+export type SelectorBoxFileStateStylesType = {
+  animationContainer?: CommonStyleType;
+  topAnimationContainer?: CommonStyleType;
+  leftAnimationContainer?: CommonStyleType;
+  bottomAnimationContainer?: CommonStyleType;
+  rightAnimationContainer?: CommonStyleType;
+  borderAnimationContainer?: CommonStyleType;
   containerBoxContainer?: CommonStyleType;
   containerBoxIcon?: IconTypes;
   containerBoxLoader?: {

@@ -13,7 +13,6 @@ const mockProps = {
   maxDate: new Date(),
   defaultDate: new Date(),
   open: true,
-  dataTestId: 'test',
   onChangeSelectedDate: jest.fn(),
   configCalendar: {
     leftArrowIcon: { icon: 'CLOSE', altText: 'Previous month' },
@@ -32,7 +31,7 @@ describe('Calendar', () => {
   it('Calendar Component', () => {
     renderProvider(<Calendar {...mockProps} />);
 
-    const calendar = screen.getByTestId('testCalendar');
+    const calendar = screen.getByTestId('calendar');
 
     expect(calendar).toBeInTheDocument();
   });
@@ -40,7 +39,7 @@ describe('Calendar', () => {
   it('Calendar with Range Component', () => {
     renderProvider(<Calendar hasRange={true} {...mockProps} />);
 
-    const calendar = screen.getByTestId('testCalendar');
+    const calendar = screen.getByTestId('calendar');
 
     expect(calendar).toBeInTheDocument();
   });
@@ -50,7 +49,7 @@ describe('Calendar', () => {
       <Calendar hasRange={true} selectedDate={new Date(2023, 0, 15)} {...mockProps} />
     );
 
-    const calendar = screen.getByTestId('testCalendar');
+    const calendar = screen.getByTestId('calendar');
 
     expect(calendar).toBeInTheDocument();
   });
@@ -60,7 +59,7 @@ describe('Calendar', () => {
       <Calendar hasRange={false} selectedDate={new Date(2023, 0, 15)} {...mockProps} />
     );
 
-    const calendar = screen.getByTestId('testCalendar');
+    const calendar = screen.getByTestId('calendar');
 
     expect(calendar).toBeInTheDocument();
   });

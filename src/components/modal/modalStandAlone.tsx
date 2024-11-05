@@ -9,7 +9,7 @@ import { PopoverComponentType, PopoverPositionVariantType } from '@/components/p
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 import { useId } from '@/hooks';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType, ROLES } from '@/types';
 
 import {
   DraggableIcon,
@@ -26,11 +26,6 @@ import { IModalStandAlone } from './types';
 const ModalStandAloneComponent = (
   {
     dataTestId = 'modalDataTestId',
-    scrollableRef,
-    resizeRef,
-    shadowRef,
-    zoomRef,
-    zoomRefChild,
     customHeightAllDevices = false,
     customWidthAllDevices = false,
     ...props
@@ -41,19 +36,16 @@ const ModalStandAloneComponent = (
   const modalId = props.id ?? uniqueModalId;
   const uniqueTitleId = useId('modal-title');
   const titleIdFinal = props.title?.id ?? uniqueTitleId;
-  const modalRef = React.useRef<HTMLDivElement | null>(null);
-
-  React.useImperativeHandle(ref, () => {
-    zoomRef(modalRef.current);
-    return modalRef.current as HTMLDivElement;
-  });
 
   const buildIconOrIllustration = () => {
     if (props.imageIllustrationHeader?.illustration) {
       return (
-        <ModalImageStyled $styles={props.styles} data-testid={`${dataTestId}ImageHeader`}>
+        <ModalImageStyled
+          data-modal-ilustration-container
+          $styles={props.styles}
+          data-testid={`${dataTestId}ImageHeader`}
+        >
           <ElementOrIllustration
-            ref={resizeRef}
             customIllustrationStyles={props.styles.imageIllustrationHeader}
             data-testid={`${dataTestId}ImageHeader`}
             {...props.imageIllustrationHeader}
@@ -88,19 +80,20 @@ const ModalStandAloneComponent = (
       aria-labelledby={titleIdFinal}
       aria-modal={props.open}
       clickOverlayClose={!props.blocked}
-      component={PopoverComponentType.DIALOG}
+      component={PopoverComponentType.DIV}
       dataTestId={`${dataTestId}Popover`}
       hasBackDrop={true}
       id={modalId}
       open={props.open}
       positionVariant={PopoverPositionVariantType.FIXED}
+      role={ROLES.DIALOG}
       trapFocusInsideModal={true}
       variant={props.styles.popoverVariant}
       onCloseInternally={props.onPopoverCloseInternally}
       {...props.popover}
     >
       <ModalStyled
-        ref={modalRef}
+        ref={ref}
         $maxHeight={props.maxHeight}
         $maxWidth={props.maxWidth}
         $minHeight={customHeightAllDevices ? props.minHeight : onlyDesktopSize(props.minHeight)}
@@ -110,9 +103,9 @@ const ModalStandAloneComponent = (
         hasFooter={!!props.footer?.content}
         onKeyDown={event => props.onKeyDown?.(event)}
       >
-        <ModalHeaderStyled ref={shadowRef} $styles={props.styles}>
+        <ModalHeaderStyled data-modal-header $styles={props.styles}>
           {!props.blocked && props.dragIcon && (
-            <DraggableIcon ref={props.dragIconRef} $styles={props.styles}>
+            <DraggableIcon data-modal-draggable-icon $styles={props.styles}>
               <ElementOrIcon customIconStyles={props.styles?.dragIcon} {...props.dragIcon} />
             </DraggableIcon>
           )}
@@ -148,13 +141,16 @@ const ModalStandAloneComponent = (
           )}
         </ModalHeaderStyled>
         <ModalContentStyled
-          ref={ref => {
-            scrollableRef(ref);
-            zoomRefChild(ref);
-          }}
+          data-modal-content
           $minContentHeight={props.minContentHeight}
           $styles={props.styles}
+          aria-label={props.contentHasScroll ? props.contentScrollArias?.['aria-label'] : undefined}
+          aria-labelledby={
+            props.contentHasScroll ? props.contentScrollArias?.['aria-labelledby'] : undefined
+          }
           data-testid={`${dataTestId}Content`}
+          role={props.contentHasScroll ? ROLES.REGION : undefined}
+          tabIndex={props.contentHasScroll ? 0 : undefined}
         >
           {props.content}
         </ModalContentStyled>

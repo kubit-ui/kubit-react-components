@@ -10,7 +10,16 @@ import { ILinkAsButtonStandAlone } from '../types/link';
 import { LinkAsButtonWrapperStyled } from './linkAsButton.styled';
 
 export const LinkAsButtonStandAloneComponent = (
-  { children, url, component, target, role, onClick, ...props }: ILinkAsButtonStandAlone,
+  {
+    dataTestId = 'link-as-button',
+    children,
+    url,
+    component,
+    target,
+    role,
+    onClick,
+    ...props
+  }: ILinkAsButtonStandAlone,
   ref: React.ForwardedRef<HTMLElement> | undefined
 ): JSX.Element => {
   return (
@@ -20,12 +29,12 @@ export const LinkAsButtonStandAloneComponent = (
       $sizeStyles={props.sizeStyles}
       $state={props.state}
       $styles={props.styles}
+      data-testid={dataTestId}
     >
       <Text
         ref={ref}
         aria-label={props['aria-label']}
         component={component}
-        dataTestId={props.dataTestId}
         decoration={TextDecorationType.NONE}
         isDisabled={props.state === ButtonStateType.DISABLED}
         role={role}

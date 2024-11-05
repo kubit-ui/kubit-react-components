@@ -15,7 +15,7 @@ const MOCK = {
   open: true,
   closeIcon: {
     icon: 'UNICORN',
-    altText: 'Aria label',
+    altText: 'close icon',
   },
   icon: {
     icon: 'ADD',
@@ -72,8 +72,8 @@ describe('Snackbar component', () => {
   });
 
   it('Should toggle visibility of Snackbar panel content correctly', () => {
-    renderProvider(<Snackbar {...MOCK} closeIcon={{ icon: 'UNICORN' }} />);
-    const triggerButton = screen.getByTestId(`${MOCK.dataTestId}Icon`);
+    renderProvider(<Snackbar {...MOCK} closeIcon={{ icon: 'UNICORN', altText: 'close icon' }} />);
+    const triggerButton = screen.getByLabelText('close icon');
 
     fireEvent.click(triggerButton);
 
@@ -88,7 +88,7 @@ describe('Snackbar component', () => {
         <button data-testid="openSnackbar" onClick={() => setOpen(true)}>
           Open Snackbar
         </button>
-        <Snackbar {...MOCK} closeIcon={{ icon: 'UNICORN' }} open={open} />
+        <Snackbar {...MOCK} closeIcon={{ icon: 'UNICORN', altText: 'close icon' }} open={open} />
       </div>
     );
   };
@@ -107,7 +107,7 @@ describe('Snackbar component', () => {
 
     act(() => {
       // Close snackbar bar
-      fireEvent.click(screen.getByTestId(`${MOCK.dataTestId}Icon`));
+      fireEvent.click(screen.getByLabelText('close icon'));
     });
     // open snackbar should have the focus back
     expect(screen.getByTestId('openSnackbar')).toHaveFocus();
@@ -123,7 +123,7 @@ describe('Snackbar component', () => {
             Open Snackbar
           </button>
         )}
-        <Snackbar {...MOCK} closeIcon={{ icon: 'UNICORN' }} open={open} />
+        <Snackbar {...MOCK} closeIcon={{ icon: 'UNICORN', altText: 'close icon' }} open={open} />
       </div>
     );
   };
@@ -142,7 +142,7 @@ describe('Snackbar component', () => {
 
     act(() => {
       // Close snackbar bar
-      fireEvent.click(screen.getByTestId(`${MOCK.dataTestId}Icon`));
+      fireEvent.click(screen.getByLabelText('close icon'));
     });
 
     // first element of the page should have the focus
@@ -152,12 +152,16 @@ describe('Snackbar component', () => {
   it('Call onCloseButton function', () => {
     const onCloseButtonMock = jest.fn();
     renderProvider(
-      <Snackbar {...MOCK} closeIcon={{ icon: 'UNICORN' }} onCloseButton={onCloseButtonMock} />
+      <Snackbar
+        {...MOCK}
+        closeIcon={{ icon: 'UNICORN', altText: 'close icon' }}
+        onCloseButton={onCloseButtonMock}
+      />
     );
 
     act(() => {
       // Close snackbar bar
-      fireEvent.click(screen.getByTestId(`${MOCK.dataTestId}Icon`));
+      fireEvent.click(screen.getByLabelText('close icon'));
     });
 
     expect(onCloseButtonMock).toHaveBeenCalled();

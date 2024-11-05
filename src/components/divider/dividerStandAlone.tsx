@@ -9,7 +9,7 @@ import { DividerRowLabelIconGroupStyled, DividerRowStyled, DividerStyled } from 
 import { IDividerStandAlone } from './types';
 
 const DividerStandAloneComponent = (
-  { styles, dataTestId, customComponent, embebed, ...props }: IDividerStandAlone,
+  { styles, dataTestId = 'divider', customComponent, embebed, ...props }: IDividerStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | null
 ): JSX.Element => {
   return (

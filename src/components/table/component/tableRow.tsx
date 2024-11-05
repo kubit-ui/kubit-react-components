@@ -48,7 +48,7 @@ export const TableRow = (props: ITableRow): JSX.Element => {
     <>
       <TableRowBodyStyled
         borderPosition={props.value.rowBorderPosition}
-        data-testid={`${props.dataTestId}Row${props.indexRow}`}
+        data-testid={`${props.dataTestId}-row-${props.indexRow}`}
         hasDivider={!!dividerValue()}
         hasDividerContent={!!props.value.dividerContent}
         hasFooter={hasFooter}
@@ -75,7 +75,6 @@ export const TableRow = (props: ITableRow): JSX.Element => {
             <Text
               component={TextComponentType.SPAN}
               customTypography={props.styles.header?.[rowHeader.variant]?.typography}
-              dataTestId={`${props.dataTestId}RowHeader${props.indexRow}`}
             >
               {rowHeader.label}
             </Text>
@@ -101,7 +100,7 @@ export const TableRow = (props: ITableRow): JSX.Element => {
                   props.value.backgroundColor
                 }
                 customWidth={headerValue?.config?.width}
-                data-testid={`${props.dataTestId}Row${props.indexRow}Content${indexHeader}`}
+                data-testid={`${props.dataTestId}-row-${props.indexRow}-content-${indexHeader}`}
                 flexWidth={headerValue?.config?.flexWidth}
                 hasSomeExpandedContent={props.hasSomeExpandedContent && hasExpandedIcon}
                 styles={props.styles.bodyRows?.[rowVariant]}
@@ -137,7 +136,7 @@ export const TableRow = (props: ITableRow): JSX.Element => {
           })}
         {props.hasSomeExpandedContent && (
           <TableExpandedCellStyled
-            data-testid={`${props.dataTestId}Row${props.indexRow}ExpandedContent`}
+            data-testid={`${props.dataTestId}-row-${props.indexRow}-expanded-content`}
             showExpandedContent={showExpandedContent}
             styles={props.styles.bodyRows?.[rowVariant]}
           >

@@ -19,7 +19,7 @@ import {
 import { INavigationCardStandAlone } from './types';
 
 const NavigationCardStandaloneComponent = (
-  { type = ButtonType.BUTTON, ...props }: INavigationCardStandAlone,
+  { dataTestId = 'navigation-card', type = ButtonType.BUTTON, ...props }: INavigationCardStandAlone,
   ref: React.ForwardedRef<HTMLAnchorElement | HTMLButtonElement> | undefined | null
 ): JSX.Element => {
   const infoId = useId('infoId');
@@ -28,7 +28,7 @@ const NavigationCardStandaloneComponent = (
     props.styles,
     props.decorative,
     props.device,
-    props.dataTestId
+    dataTestId
   );
 
   const innerContainersComponent = props.url ? 'div' : 'span';
@@ -41,7 +41,7 @@ const NavigationCardStandaloneComponent = (
       aria-disabled={props['aria-disabled']}
       as={props.url ? props.component : 'button'}
       className={props.className}
-      dataTestId={props.dataTestId}
+      dataTestId={dataTestId}
       draggable={props.draggable}
       role={props.role}
       styles={props.styles}
@@ -73,7 +73,6 @@ const NavigationCardStandaloneComponent = (
             isExpanded={props.styles.containerExpandedContent}
           >
             <NavigationCardInfo
-              dataTestId={props.dataTestId}
               description={props.description}
               device={props.device}
               innerContainersComponent={innerContainersComponent}
@@ -96,11 +95,7 @@ const NavigationCardStandaloneComponent = (
                 {props.arrowIconText?.content}
               </Text>
             )}
-            <ElementOrIcon
-              customIconStyles={props.styles.arrowIcon}
-              dataTestId={`${props.dataTestId}ArrowIcon`}
-              {...props.arrowIcon}
-            />
+            <ElementOrIcon customIconStyles={props.styles.arrowIcon} {...props.arrowIcon} />
           </NavigationCardRightContentStyled>
         </NavigationCardInfoContentStyled>
       </>

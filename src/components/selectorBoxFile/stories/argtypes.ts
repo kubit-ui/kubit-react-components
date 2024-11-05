@@ -267,6 +267,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    onAnimationCompleted: {
+      description: 'Callback function when animation ends',
+      control: false,
+      table: {
+        type: {
+          summary: '() => void;',
+        },
+        category: CATEGORY_CONTROL.FUNCTIONS,
+      },
+    },
+
     onChange: {
       description: 'Input file onChange',
       control: false,

@@ -29,6 +29,8 @@ export interface IActionBottomSheetStandAlone {
   device: DeviceBreakpointsType;
   headerContent?: React.ReactNode;
   height?: string;
+  dragIcon?: IElementOrIcon;
+  dragIconRef?: (node: HTMLDivElement) => void;
   /* to useScrollEffect */
   scrollableRef: (node) => void;
   shadowRef: (node) => void;
@@ -58,7 +60,7 @@ export interface IActionBottomSheetControlledStructure<
  * @extends {IActionBottomSheetControlledStructure<V>}
  */
 export interface IActionBottomSheetControlled<V = undefined extends string ? unknown : string>
-  extends IActionBottomSheetControlledStructure<V> {
+  extends Omit<IActionBottomSheetControlledStructure<V>, 'dragIconRef'> {
   open: boolean;
   popover?: ActionBottomPopoverType;
 }
@@ -69,5 +71,7 @@ export interface IActionBottomSheetControlled<V = undefined extends string ? unk
  * @interface ActionBottomSheetPropsStylesType
  * @template V
  */
-export type ActionBottomSheetUnControlledType<V = undefined extends string ? unknown : string> =
-  IActionBottomSheetControlled<V>;
+export interface ActionBottomSheetUnControlledType<V = undefined extends string ? unknown : string>
+  extends Omit<IActionBottomSheetControlled<V>, 'open'> {
+  open?: boolean;
+}

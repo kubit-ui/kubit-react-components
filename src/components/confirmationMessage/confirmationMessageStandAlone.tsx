@@ -29,7 +29,11 @@ const alignValue: AlignTypeConfirmationMessage = {
 };
 
 const ConfirmationMessageStandAloneComponent = (
-  { align = ALIGN_TYPE.CENTER, ...props }: IConfirmationMessageStandAlone,
+  {
+    align = ALIGN_TYPE.CENTER,
+    dataTestId = 'confirmation-message',
+    ...props
+  }: IConfirmationMessageStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const footerVariant = props.stylesState?.footer?.variant || props.footer?.variant;
@@ -42,7 +46,6 @@ const ConfirmationMessageStandAloneComponent = (
           <Text
             component={TextComponentType.PARAGRAPH}
             customTypography={props.stylesState?.description}
-            dataTestId={`${props.dataTestId}Description`}
             {...props.description}
           >
             {props.description.content}
@@ -55,22 +58,21 @@ const ConfirmationMessageStandAloneComponent = (
   };
 
   return (
-    <ConfirmationMessageStyled ref={ref} styles={props.stylesState}>
+    <ConfirmationMessageStyled ref={ref} data-testid={dataTestId} styles={props.stylesState}>
       <TitleAndDescriptionStyled
         align={alignValue[align.toLocaleLowerCase()]}
-        data-testid={`${props.dataTestId}TitleAndDescriptionContainer`}
+        data-testid={`${dataTestId}-title-and-description-container`}
         styles={props.stylesState}
       >
         {props.title && (
           <TitleTextStyled
             align={alignValue[align.toLocaleLowerCase()]}
-            data-testid={`${props.dataTestId}TitleContainer`}
+            data-testid={`${dataTestId}-title-container`}
             styles={props.stylesState}
           >
             {props.decorativeElement?.element && (
               <DecorativeElement
                 {...props.decorativeElement}
-                dataTestId={`${props.dataTestId}DecorativeElement`}
                 element={buildPropsDecorativeElement<
                   ConfirmationMessagePropsStylesType | undefined
                 >(props.decorativeElement?.element, props.stylesState)}
@@ -80,7 +82,6 @@ const ConfirmationMessageStandAloneComponent = (
               align={align}
               component={props.title?.component || TextComponentType.H2}
               customTypography={props.stylesState?.title}
-              dataTestId={`${props.dataTestId}Title`}
               {...props.title}
             >
               {props.title.content}
@@ -89,14 +90,13 @@ const ConfirmationMessageStandAloneComponent = (
         )}
         <DescriptionTextStyled
           align={alignValue[align.toLocaleLowerCase()]}
-          data-testid={`${props.dataTestId}DescriptionContainer`}
+          data-testid={`${dataTestId}-description-container`}
           styles={props.stylesState}
         >
           {buildDescription()}
           <Text
             component={TextComponentType.PARAGRAPH}
             customTypography={props.stylesState?.secondaryDescription}
-            dataTestId={`${props.dataTestId}SecondaryDescription`}
             {...props.secondaryDescription}
           >
             {props.secondaryDescription?.content}
@@ -106,7 +106,7 @@ const ConfirmationMessageStandAloneComponent = (
       {props.content && (
         <ContentContainerStyled
           align={alignValue[align.toLocaleLowerCase()]}
-          data-testid={`${props.dataTestId}Content`}
+          data-testid={`${dataTestId}-content`}
           styles={props.stylesState}
         >
           {props.content}
@@ -122,7 +122,7 @@ const ConfirmationMessageStandAloneComponent = (
                 : ContentDirectionType.HORIZONTAL
             }
             customFooterStyles={props.stylesState}
-            dataTestId={`${props.dataTestId}Navbar`}
+            dataTestId={`${dataTestId}-navbar`}
             forceVertical={alignValue[align.toLocaleLowerCase()] === ALIGN_TYPE.CENTER}
             variant={footerVariant}
             {...props.footer}

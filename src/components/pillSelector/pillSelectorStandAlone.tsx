@@ -12,7 +12,7 @@ import { keyLeftMove, keyRightMove } from './utils';
 const MAX_PILLS = 3;
 
 const PillSelectorStandAloneComponent = (
-  { dataTestId, maxPills = MAX_PILLS, ...props }: IPillSelectorStandAlone,
+  { dataTestId = 'pill-selector', maxPills = MAX_PILLS, ...props }: IPillSelectorStandAlone,
   ref: React.ForwardedRef<HTMLDivElement>
 ): React.JSX.Element => {
   const ariaProps = pickAriaProps(props);
@@ -41,14 +41,14 @@ const PillSelectorStandAloneComponent = (
     <PillSelectorWrapper
       {...ariaProps}
       ref={listEl as React.RefObject<HTMLDivElement>}
-      data-testid={`${dataTestId}PillSelector`}
+      data-testid={dataTestId}
       hasThumb={!!(!props.multiSelect && props.styles?.thumb)}
       isSelected={isPillSelected}
       role={ROLES.RADIOGROUP}
       styles={props.styles}
     >
       {!props.multiSelect && props.styles?.thumb && (
-        <ThumbStyled data-testid={`${dataTestId}Thumb`} styles={props.styles} />
+        <ThumbStyled data-testid={`${dataTestId}-thumb`} styles={props.styles} />
       )}
       {props.pills.length > 1 && props.pills.length <= maxPills
         ? props.pills.map((pill, index) => {
@@ -59,7 +59,7 @@ const PillSelectorStandAloneComponent = (
               (props.pillSize || pill?.size) && (
                 <Pill
                   key={pill.value}
-                  dataTestId={`${dataTestId}Pill${index}`}
+                  dataTestId={`${dataTestId}-pill-${index}`}
                   focus={focus === index}
                   label={externalLabel}
                   multiSelect={props.multiSelect}

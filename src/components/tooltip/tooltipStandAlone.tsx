@@ -28,10 +28,11 @@ import {
   TooltipTitleStyled,
 } from './tooltip.styled';
 import { ITooltipStandAlone } from './types';
-import { getAriaDescriptorsBy, getHtmlTagForTooltip } from './utils';
+import { getAriaDescriptorsBy } from './utils';
 
 const TooltipStandAlone = ({
   childrenAsButton = true,
+  dataTestId = 'tooltip',
   ...props
 }: ITooltipStandAlone): JSX.Element => {
   const uniqueId = useId('tooltip');
@@ -45,7 +46,7 @@ const TooltipStandAlone = ({
 
   if (props.disabled) {
     return (
-      <TooltipStyled data-testid={`${props.dataTestId}Tooltip`}>
+      <TooltipStyled data-testid={dataTestId}>
         <TooltipTrigger disabled childrenAsButton={childrenAsButton}>
           {props.children}
         </TooltipTrigger>
@@ -63,15 +64,12 @@ const TooltipStandAlone = ({
   const Tooltip = (
     <TooltipExternalContainerStyled
       ref={props.tooltipRef}
-      aria-label={props.tooltipAriaLabel}
-      aria-labelledby={titleId}
-      as={getHtmlTagForTooltip({
-        mediaDevice: props.mediaDevice,
-        tooltipAsModal: props.tooltipAsModal,
-      })}
-      data-testid={`${props.dataTestId}TooltipContent`}
+      aria-label={isDesktop ? props.tooltipAriaLabel : undefined}
+      aria-labelledby={isDesktop ? titleId : undefined}
+      aria-modal={isDesktop && props.tooltipAsModal ? true : undefined}
+      data-testid={`${dataTestId}-content`}
       id={uniqueId}
-      role={isDesktop && !props.tooltipAsModal ? ROLES.TOOLTIP : undefined}
+      role={isDesktop ? (props.tooltipAsModal ? ROLES.DIALOG : ROLES.TOOLTIP) : undefined}
       styles={props.styles}
       onFocus={props.onTooltipFocus}
       onKeyDown={props.onTooltipKeyDown}
@@ -80,7 +78,7 @@ const TooltipStandAlone = ({
         {(isMobile || isTablet) && props.dragIcon && (
           <TooltipDragIconStyled
             ref={props.dragIconRef}
-            data-testid={`${props.dataTestId}TooltipDrag`}
+            data-testid={`${dataTestId}-drag`}
             styles={props.styles}
           >
             <ElementOrIcon customIconStyles={props.styles?.dragIcon} {...props.dragIcon} />
@@ -96,7 +94,6 @@ const TooltipStandAlone = ({
             <TooltipCloseIconStyled styles={props.styles}>
               <Icon
                 customIconStyles={props.styles?.closeButtonIcon}
-                dataTestId={`${props.dataTestId}TooltipContentCloseIcon`}
                 {...props.closeIcon}
                 onClick={props.onCloseIconClick}
               />
@@ -111,7 +108,6 @@ const TooltipStandAlone = ({
               <Text
                 component={TextComponentType.H2}
                 customTypography={props.styles?.title}
-                dataTestId={`${props.dataTestId}TooltipContentTitle`}
                 variant={props.styles.title?.font_variant}
                 {...props.title}
               >
@@ -139,7 +135,6 @@ const TooltipStandAlone = ({
               {isTextContent ? (
                 <Text
                   customTypography={props.styles?.paragraph}
-                  dataTestId={`${props.dataTestId}TooltipContentContent`}
                   variant={props.styles.paragraph?.font_variant}
                   {...props.content}
                 >
@@ -161,7 +156,7 @@ const TooltipStandAlone = ({
   return (
     <TooltipStyled
       ref={props.labelRef}
-      data-testid={`${props.dataTestId}Tooltip`}
+      data-testid={dataTestId}
       tooltipAsModal={props.tooltipAsModal}
       onBlur={props.onBlur}
       onClick={props.onClick}
@@ -189,18 +184,18 @@ const TooltipStandAlone = ({
         Tooltip
       ) : (
         <Popover
-          component={!props.tooltipAsModal ? PopoverComponentType.DIV : PopoverComponentType.DIALOG}
-          dataTestId={`${props.dataTestId}Popover`}
+          component={PopoverComponentType.DIV}
           focusLastElementFocusedAfterClose={false}
           hasBackDrop={props.styles.showOverlay?.[props.mediaDevice]}
           open={props.popoverOpen}
           positionVariant={PopoverPositionVariantType.ABSOLUTE}
           preventCloseOnClickElements={[props.labelRef?.current]}
-          role={!props.tooltipAsModal ? ROLES.TOOLTIP : undefined}
+          role={props.tooltipAsModal ? ROLES.DIALOG : ROLES.TOOLTIP}
           trapFocusInsideModal={true}
           variant={props.styles.popoverVariant?.[props.mediaDevice]}
           {...props.popover}
           aria-label={props.popover?.['aria-label'] || props.tooltipAriaLabel}
+          aria-labelledby={titleId}
           aria-modal={props.tooltipAsModal || undefined}
           onCloseInternally={props.onPopoverCloseInternally}
         >

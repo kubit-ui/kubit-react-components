@@ -1,6 +1,3 @@
-import { PopoverComponentType } from '@/components/popover';
-import { DeviceBreakpointsType } from '@/types';
-
 // build descriptive id for aria-describedby or aria-labelledby
 export const getAriaDescriptorsBy = ({
   title,
@@ -24,17 +21,4 @@ export const getAriaDescriptorsBy = ({
     return undefined;
   }
   return descriptorsId.join(' ');
-};
-
-export const getHtmlTagForTooltip = ({
-  mediaDevice,
-  tooltipAsModal,
-}: {
-  mediaDevice: DeviceBreakpointsType;
-  tooltipAsModal?: boolean;
-}): PopoverComponentType | undefined => {
-  if (mediaDevice === DeviceBreakpointsType.DESKTOP && tooltipAsModal) {
-    return PopoverComponentType.DIALOG;
-  }
-  return undefined;
 };

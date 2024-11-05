@@ -3,6 +3,14 @@ import { CarouselArrowStateType, CarouselStylesType } from '@/components/carouse
 import { COLORS, SIZES, SPACINGS } from '../../foundations';
 import { CarouselVariantType } from './variants';
 
+const iconContainerTokens = {
+  display: 'flex',
+  align_items: 'center',
+  position: 'relative',
+  width: SIZES.size_250,
+  height: SIZES.size_250,
+};
+
 export const CAROUSEL_STYLES: CarouselStylesType<CarouselVariantType> = {
   [CarouselVariantType.DEFAULT]: {
     container: {
@@ -26,10 +34,34 @@ export const CAROUSEL_STYLES: CarouselStylesType<CarouselVariantType> = {
     },
     [CarouselArrowStateType.DEFAULT]: {
       arrowLeftIconContainer: {
-        width: SPACINGS.spacing_400,
+        ...iconContainerTokens,
       },
       arrowRightIconContainer: {
-        width: SPACINGS.spacing_400,
+        ...iconContainerTokens,
+      },
+    },
+    [CarouselArrowStateType.HOVER]: {
+      arrowLeftIconContainer: {
+        ...iconContainerTokens,
+      },
+      arrowRightIconContainer: {
+        ...iconContainerTokens,
+      },
+    },
+    [CarouselArrowStateType.PRESSED]: {
+      arrowLeftIconContainer: {
+        ...iconContainerTokens,
+      },
+      arrowRightIconContainer: {
+        ...iconContainerTokens,
+      },
+    },
+    [CarouselArrowStateType.DISABLED]: {
+      arrowLeftIconContainer: {
+        ...iconContainerTokens,
+      },
+      arrowRightIconContainer: {
+        ...iconContainerTokens,
       },
     },
   },

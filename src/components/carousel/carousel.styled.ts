@@ -158,6 +158,10 @@ export const ArrowRightIconContainer = styled.div<{
     top: 0;
     ${({ styles }) =>
       getStyles(styles[CarouselArrowStateType.DEFAULT]?.arrowRightIconButtonContainer)};
+    &:focus {
+      ${props =>
+        getStyles(props.styles[CarouselArrowStateType.DEFAULT]?.arrowLeftIconButtonContainer)}
+    }
     &:hover {
       ${props =>
         getStyles(props.styles[CarouselArrowStateType.HOVER]?.arrowRightIconButtonContainer)}

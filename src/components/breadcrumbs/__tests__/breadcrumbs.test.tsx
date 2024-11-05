@@ -58,7 +58,6 @@ const mockProps = {
 
 const mockEmptyProps = {
   variant: 'DEFAULT',
-  dataTestId: 'breadcrumbsComponent',
   ['aria-label']: 'navegación rápida',
   crumbs: [
     {
@@ -92,7 +91,7 @@ describe('Breadcrumbs component', () => {
   test('should render Breadcrumbs component', async () => {
     const { container } = renderProvider(<Breadcrumbs {...mockProps} />);
 
-    const breadcrumbs = screen.getByTestId('breadcrumbsComponentBreadcrumb');
+    const breadcrumbs = screen.getByTestId('breadcrumbs');
 
     expect(breadcrumbs).toBeInTheDocument();
 
@@ -104,7 +103,7 @@ describe('Breadcrumbs component', () => {
   test('Breadcrumbs component without not mandatory props', async () => {
     const { container } = renderProvider(<Breadcrumbs {...mockEmptyProps} />);
 
-    const breadcrumbs = screen.getByTestId('breadcrumbsComponentBreadcrumb');
+    const breadcrumbs = screen.getByTestId('breadcrumbs');
 
     expect(breadcrumbs).toBeInTheDocument();
 
@@ -118,7 +117,7 @@ describe('Breadcrumbs component', () => {
 
     const { container } = renderProvider(<Breadcrumbs {...mockProps} />);
 
-    const breadcrumbs = screen.getByTestId('breadcrumbsComponentBreadcrumb');
+    const breadcrumbs = screen.getByTestId('breadcrumbs');
 
     const links = getAllByRole(breadcrumbs, ROLES.LISTITEM);
 
@@ -132,7 +131,7 @@ describe('Breadcrumbs component', () => {
   test('it should have an aria-label', async () => {
     const { container } = renderProvider(<Breadcrumbs {...mockProps} />);
 
-    const breadcrumbs = screen.getByTestId('breadcrumbsComponentBreadcrumb');
+    const breadcrumbs = screen.getByTestId('breadcrumbs');
 
     const nav = getByRole(breadcrumbs, ROLES.NAVIGATION);
 
@@ -148,7 +147,7 @@ describe('Breadcrumbs component', () => {
 
     const { container } = renderProvider(<Breadcrumbs {...mockProps} />);
 
-    const breadcrumbs = screen.getByTestId('breadcrumbsComponentBreadcrumb');
+    const breadcrumbs = screen.getByTestId('breadcrumbs');
 
     const lastLi = getAllByRole(breadcrumbs, ROLES.LISTITEM)[crumbsLength - 1];
 
@@ -191,7 +190,7 @@ describe('Breadcrumbs component', () => {
   // Testing useEffect - Only change styles (filler test)
   test('CrumbStandAlone - when onMouseOver and onMouseLeave styles may change', async () => {
     const { getByTestId, container } = renderProvider(<Breadcrumbs {...mockProps} />);
-    const crumb = getByTestId('breadcrumbsComponent0');
+    const crumb = getByTestId('breadcrumbs-0');
 
     fireEvent.mouseOver(crumb);
     fireEvent.mouseLeave(crumb);

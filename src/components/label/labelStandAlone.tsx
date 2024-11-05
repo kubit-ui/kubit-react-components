@@ -19,7 +19,7 @@ export const LabelStandAloneComponent = (
     asteriskVariant,
     asteriskWeight,
     asteriskColor,
-    dataTestId,
+    dataTestId = 'label',
     id,
   }: ILabelStandAlone,
   ref: React.ForwardedRef<HTMLElement> | undefined | null
@@ -45,7 +45,6 @@ export const LabelStandAloneComponent = (
           aria-hidden={true}
           color={asteriskColor}
           component={TextComponentType.SPAN}
-          dataTestId={`${dataTestId}Required`}
           variant={asteriskVariant}
           weight={asteriskWeight}
         >

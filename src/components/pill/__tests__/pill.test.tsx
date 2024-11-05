@@ -74,11 +74,15 @@ describe('Pill component', () => {
 
   it('Should show the selected icon, when the pill status is selected', () => {
     renderProvider(
-      <Pill {...mockProps} initialState={true} selectedIcon={{ icon: 'UNICORN' }}>
+      <Pill
+        {...mockProps}
+        initialState={true}
+        selectedIcon={{ icon: 'UNICORN', altText: 'selectedIcon' }}
+      >
         Pill
       </Pill>
     );
-    const selectedIcon = screen.getByTestId(mockProps.dataTestId + 'SelectedIcon');
+    const selectedIcon = screen.getByLabelText('selectedIcon');
     expect(selectedIcon).toBeInTheDocument();
   });
 

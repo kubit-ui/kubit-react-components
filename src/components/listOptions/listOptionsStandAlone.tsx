@@ -19,7 +19,7 @@ export const ListOptionsStandAlone = React.forwardRef(
   (
     {
       type = ListOptionsType.SELECTION,
-      dataTestId = 'listOptions',
+      dataTestId = 'list-options',
       ...props
     }: IListOptionsStandAlone,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -49,14 +49,10 @@ export const ListOptionsStandAlone = React.forwardRef(
     const hasOptions = props.options && props.options.length > 0;
 
     return (
-      <ListOptionsWrapperStyled styles={props.styles}>
+      <ListOptionsWrapperStyled data-testid={dataTestId} styles={props.styles}>
         {props.title?.content && props.options.length > 0 && (
           <TitleWrapperStyled styles={props.styles}>
-            <Text
-              customTypography={props.styles.title}
-              dataTestId={`${dataTestId}Title`}
-              {...props.title}
-            >
+            <Text customTypography={props.styles.title} {...props.title}>
               {props.title.content}
             </Text>
           </TitleWrapperStyled>
@@ -79,8 +75,8 @@ export const ListOptionsStandAlone = React.forwardRef(
                 props.multiSelect,
                 props.caseSensitive
               );
-              const title = props.title?.content || '';
-              const dataTestIdOption = `${dataTestId}${title}Option${index}${option.value || ''}`;
+              const title = props.title?.content ? `-${props.title.content}` : '';
+              const dataTestIdOption = `${dataTestId}${title}-option-${index}-${option.value || ''}`;
 
               const optionComponent = (
                 <Option

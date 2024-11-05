@@ -111,7 +111,7 @@ describe('Button component', () => {
     const loader = queryByText(mockPropsLoaderAsVariant.loader.variant);
     expect(loader).toBeNull();
 
-    const loaderVariant = getByTestId('loaderStandaloneTestId');
+    const loaderVariant = getByTestId('loader');
     expect(loaderVariant).toBeDefined();
 
     const results = await axe(container);

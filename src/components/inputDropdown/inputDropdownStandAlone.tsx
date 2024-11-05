@@ -13,7 +13,7 @@ import { InputDropdownStyled } from './inputDropdown.styled';
 import { IInputDropdownStandAlone } from './types';
 
 export const InputDropdownStandAloneComponent = (
-  props: IInputDropdownStandAlone,
+  { dataTestId = 'input-dropdown', ...props }: IInputDropdownStandAlone,
   ref: React.ForwardedRef<unknown>
 ): JSX.Element => {
   const inputWrapperRef = React.useRef(null);
@@ -25,7 +25,7 @@ export const InputDropdownStandAloneComponent = (
 
   return (
     <InputDropdownStyled
-      data-testid={`${props.dataTestId}InputDropdown`}
+      data-testid={dataTestId}
       styles={props.styles?.[props.state]}
       onKeyDown={e => {
         if (props.device === DeviceBreakpointsType.DESKTOP && isKeyTabPressed(e.key)) {
@@ -67,7 +67,6 @@ export const InputDropdownStandAloneComponent = (
         ref={ref}
         aria-controls={ariaControls}
         closeIcon={props.closeIcon}
-        dataTestId={props.dataTestId}
         device={props.device}
         elementsToShow={props.elementsToShow}
         hasInputInSearchList={props.hasInputInSearchList}

@@ -18,7 +18,7 @@ import { applyPositionToWrapper, applyZIndexToWrapper } from './utils';
 
 const DataTableStandAloneComponent = (
   {
-    dataTestId = 'dataTable',
+    dataTestId = 'data-table',
     styles,
     hasScroll,
     columns,

@@ -35,7 +35,7 @@ const TabsStandAloneComponent = (
   {
     autoWidth = false,
     allowFocusTabPanel = true,
-    dataTestId = 'primaryTab',
+    dataTestId = 'tabs',
     // deprecated - Remove when `minTabsInView` prop is removed from `Tabs`
     minTabsInView = MIN_TABS_IN_VIEW,
     maxTabsInView = MAX_TABS_IN_VIEW,
@@ -60,7 +60,7 @@ const TabsStandAloneComponent = (
     position !== 0 && (
       <TabsLeftArrowContainerStyled
         aria-label={props.leftControlAriaLabel}
-        data-testid={`${dataTestId}IconLeft`}
+        data-testid={`${dataTestId}-icon-left`}
         styles={props.styles}
         tabIndex={0}
         type={ButtonType.BUTTON}
@@ -74,7 +74,7 @@ const TabsStandAloneComponent = (
     position < tabsLength - numTabsInView && (
       <TabsRightArrowContainerStyled
         aria-label={props.rightControlAriaLabel}
-        data-testid={`${dataTestId}IconRight`}
+        data-testid={`${dataTestId}-icon-right`}
         styles={props.styles}
         tabIndex={0}
         type={ButtonType.BUTTON}
@@ -116,7 +116,7 @@ const TabsStandAloneComponent = (
   };
 
   return (
-    <TabsContainerStyled ref={ref} styles={props.styles}>
+    <TabsContainerStyled ref={ref} data-testid={dataTestId} styles={props.styles}>
       <TabsStyled styles={props.styles}>
         {buildIconLeft()}
         <TabsTabListStyled
@@ -135,7 +135,7 @@ const TabsStandAloneComponent = (
                 <TabStyled
                   key={index}
                   autoWidth={autoWidth}
-                  data-testid={`${dataTestId}Tab${index}`}
+                  data-testid={`${dataTestId}-tab-${index}`}
                   empty={props.hideLabelForSingleTab}
                   numTabsInViewMobile={numTabsInView}
                   state={stateTab}

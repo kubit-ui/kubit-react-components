@@ -127,7 +127,7 @@ describe('Option component', () => {
         selected={true}
       />
     );
-    const iconChecked = screen.getByTestId('optionTestIdIconChecked');
+    const iconChecked = screen.getByTestId('icon');
     expect(iconChecked).toBeInTheDocument();
   });
 

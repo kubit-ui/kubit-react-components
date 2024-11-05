@@ -11,7 +11,7 @@ import {
 } from '@/hooks';
 import { useTrapFocus } from '@/hooks/useTrapFocus/useTrapFocus';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { focusFirstDescendant, isKeyTabPressed } from '@/utils';
+import { focusFirstDescendant } from '@/utils';
 import { convertDurationToNumber } from '@/utils/stringUtility/string.utility';
 
 import { PopoverStandAlone } from './popoverStandAlone';
@@ -34,6 +34,7 @@ const PopoverControlledComponent = React.forwardRef(
       clickOverlayClose = true,
       pressEscapeClose = true,
       preventScrollOnCloseFocus = false,
+      trapFocusInsideModal = true,
       ctv,
       ...props
     }: IPopoverControlled,
@@ -43,6 +44,7 @@ const PopoverControlledComponent = React.forwardRef(
     const currentFocus = React.useRef<HTMLElement | null>(null);
     const innerRef = React.useRef<HTMLDivElement | null>(null);
     const forwardedRef = React.useRef<HTMLDivElement | null>(null);
+    const [forwardedElementInitialized, setForwardedElementInitialized] = React.useState(false);
     const setForwareddRef = React.useCallback(
       node => {
         if (node && focusFirstDescendantAutomatically) {
@@ -57,6 +59,7 @@ const PopoverControlledComponent = React.forwardRef(
         if (!node && blockBack) {
           allowScroll();
         }
+        setForwardedElementInitialized(!!node);
         forwardedRef.current = node;
       },
       [props.forwardedRef, focusFirstDescendantAutomatically]
@@ -120,7 +123,12 @@ const PopoverControlledComponent = React.forwardRef(
     };
 
     useClickOutside(forwardedRef, handleClickOutside, props.preventCloseOnClickElements);
-    useEscPressedV2({ ref: innerRef, onEscPress: handlePressScape });
+    useEscPressedV2({
+      ref: innerRef,
+      onEscPress: handlePressScape,
+      disablePreventDefault: !pressEscapeClose,
+      disableStopPropagation: !pressEscapeClose,
+    });
 
     const beforeModalFocus = () => {
       currentFocus.current = document.activeElement as HTMLElement;
@@ -137,17 +145,10 @@ const PopoverControlledComponent = React.forwardRef(
       }
     };
 
-    // to force rerender to update ref in useTrapFocus
-    const [tabPressed, setTabPressed] = React.useState(false);
-
-    const handleKeyDown: React.KeyboardEventHandler<HTMLElement> = event => {
-      if (isKeyTabPressed(event.key) && forwardedRef.current) {
-        setTabPressed(true);
-        props.onKeyDown?.(event);
-      }
-    };
-
-    useTrapFocus({ element: forwardedRef, hasFocusTrap: props.trapFocusInsideModal, tabPressed });
+    useTrapFocus({
+      ref: forwardedRef,
+      trapFocus: forwardedElementInitialized && trapFocusInsideModal,
+    });
 
     React.useEffect(() => {
       if (!props.open && openAnimationRef.current) {
@@ -207,7 +208,6 @@ const PopoverControlledComponent = React.forwardRef(
         forwardedRef={setForwareddRef}
         open={openAnimation}
         styles={styles}
-        onKeyDown={handleKeyDown}
       />
     );
   }

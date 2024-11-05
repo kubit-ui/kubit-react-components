@@ -8,7 +8,7 @@ import { themesObject, variantsObject } from '@/designSystem/themesObject';
 import { DeviceBreakpointsType, ROLES } from '@/types';
 
 import { CarouselUnControlled as Story } from '../carouselUnControlled';
-import { CarouselAlignType } from '../types';
+import { CarouselAlignType, ICarouselUnControlled } from '../types';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
@@ -30,96 +30,106 @@ export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
-const storyArgs = {
+const storyArgs: ICarouselUnControlled = {
   variant: Object.values(variantsObject[themeSelected].CarouselVariantType || {})[0] as string,
   elements: [
     <ReplaceContent
       key={0}
-      aria-label="1 of 10"
+      aria-label="Slide 1 of 10"
       aria-roledescription="slide"
       id="carousel-item-1"
       role={ROLES.GROUP}
+      tabIndex={0}
     >
       First Slide
     </ReplaceContent>,
     <ReplaceContent
       key={1}
-      aria-label="2 of 10"
+      aria-label="Slide 2 of 10"
       aria-roledescription="slide"
       id="carousel-item-2"
       role={ROLES.GROUP}
+      tabIndex={0}
     >
       Second Slide
     </ReplaceContent>,
     <ReplaceContent
       key={2}
-      aria-label="3 of 10"
+      aria-label="Slide 3 of 10"
       aria-roledescription="slide"
       id="carousel-item-3"
       role={ROLES.GROUP}
+      tabIndex={0}
     >
       Third Slide
     </ReplaceContent>,
     <ReplaceContent
       key={3}
-      aria-label="4 of 10"
+      aria-label="Slide 4 of 10"
       aria-roledescription="slide"
       id="carousel-item-4"
       role={ROLES.GROUP}
+      tabIndex={0}
     >
       Fourth Slide
     </ReplaceContent>,
     <ReplaceContent
       key={4}
-      aria-label="5 of 10"
+      aria-label="Slide 5 of 10"
       aria-roledescription="slide"
       id="carousel-item-5"
       role={ROLES.GROUP}
+      tabIndex={0}
     >
-      Fifth Slice
+      Fifth Slide
     </ReplaceContent>,
     <ReplaceContent
       key={5}
-      aria-label="6 of 10"
+      aria-label="Slide 6 of 10"
       aria-roledescription="slide"
       id="carousel-item-6"
       role={ROLES.GROUP}
+      tabIndex={0}
     >
       Sixth Slide
     </ReplaceContent>,
     <ReplaceContent
       key={6}
-      aria-label="7 of 10"
+      aria-label="Slide 7 of 10"
       aria-roledescription="slide"
       id="carousel-item-7"
       role={ROLES.GROUP}
+      tabIndex={0}
     >
       Seventh Slide
     </ReplaceContent>,
     <ReplaceContent
       key={7}
-      aria-label="8 of 10"
+      aria-label="Slide 8 of 10"
       aria-roledescription="slide"
       id="carousel-item-8"
       role={ROLES.GROUP}
+      tabIndex={0}
     >
       Eighth Slide
     </ReplaceContent>,
     <ReplaceContent
       key={8}
-      aria-label="9 of 10"
+      aria-label="Slide 9 of 10"
       aria-roledescription="slide"
       id="carousel-item-9"
       role={ROLES.GROUP}
+      tabIndex={0}
     >
       Ninth Slide
     </ReplaceContent>,
     <ReplaceContent
       key={9}
-      aria-label="10 of 10"
+      aria-label="Slide 10 of 10"
       aria-roledescription="slide"
       id="carousel-item-10"
       role={ROLES.GROUP}
+      tabIndex={0}
     >
       Tenth Slide
     </ReplaceContent>,

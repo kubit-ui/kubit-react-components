@@ -62,6 +62,7 @@ const mockProps = {
 
 const mockUseInputValues = {
   value: 'op',
+  eventKeyPressRef: { current: undefined },
   inputRef: { current: document.createElement('input') },
   state: InputState.ACTIVE,
   handleBlurInternal: jest.fn(),

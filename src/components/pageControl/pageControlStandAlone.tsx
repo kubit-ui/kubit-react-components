@@ -19,7 +19,7 @@ const PageControlStandAloneComponent = (
     dots,
     firstVisiblePosition,
     lastVisiblePosition,
-    dataTestId,
+    dataTestId = 'page-control',
     arrowsControlStyles,
     leftArrowControl,
     rightArrowControl,

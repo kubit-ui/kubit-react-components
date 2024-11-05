@@ -21,7 +21,7 @@ const CssAnimationComponent = (
     variant,
     options,
     exec = CssAnimationExecuteOption.HIDDEN,
-    dataTestId = 'cssAnimation',
+    dataTestId = 'css-animation',
   }: ICssAnimation,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {

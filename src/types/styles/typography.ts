@@ -23,6 +23,7 @@ type GenericDeviceTypographyType = {
   text_justify?: string;
   color?: string;
   overflow?: string;
+  filter?: string;
 } & TypographyCustomType &
   WordWrapTypes;
 

@@ -9,7 +9,7 @@ import { crumbMaxCharName, useIsOverflow } from './utils';
 const BreadcrumbsStandAloneComponent = (
   {
     id,
-    dataTestId = 'breadcrumbsComponent',
+    dataTestId = 'breadcrumbs',
     crumbs,
     styles,
     minCharLimit = 20,
@@ -21,7 +21,7 @@ const BreadcrumbsStandAloneComponent = (
   const { innerRef, isOverflow } = useIsOverflow();
 
   return (
-    <BreadcrumbsStyled ref={ref} data-testid={`${dataTestId}Breadcrumb`} id={id}>
+    <BreadcrumbsStyled ref={ref} data-testid={dataTestId} id={id}>
       <BreadcrumbsNavStyled ref={innerRef} aria-label={props['aria-label']}>
         <ol>
           {crumbs?.length &&
@@ -31,7 +31,7 @@ const BreadcrumbsStandAloneComponent = (
                 <CrumbStandAlone
                   key={crumb.name}
                   crumb={crumbMaxCharName(crumb, minCharLimit, isOverflow, lastCrumb)}
-                  dataTestId={`${dataTestId}${index}`}
+                  dataTestId={`${dataTestId}-${index}`}
                   dividerIcon={props.dividerIcon}
                   lastCrumb={lastCrumb}
                   lastOneCrumbComponent={lastOneCrumbComponent}

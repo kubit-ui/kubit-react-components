@@ -10,7 +10,7 @@ import { IconStandAlone } from './iconStandAlone';
 import { IIcon } from './types';
 
 const IconBasicComponent = (
-  { ...props }: IIcon,
+  { dataTestId = 'icon', ...props }: IIcon,
   ref: React.ForwardedRef<HTMLSpanElement>
 ): JSX.Element | null => {
   const device = useMediaDevice();
@@ -33,7 +33,7 @@ const IconBasicComponent = (
         $width={props.width}
         aria-disabled={disabled}
         aria-label={props['aria-label'] || altText}
-        data-testid={iconProps.dataTestId}
+        data-testid={dataTestId}
         disabled={disabled}
         id={props.id}
         tabIndex={props.tabIndex}
@@ -53,7 +53,15 @@ const IconBasicComponent = (
     );
   }
 
-  return <IconStandAlone {...iconProps} ref={ref} altText={altText} linearIcon={isLinearIcon} />;
+  return (
+    <IconStandAlone
+      {...iconProps}
+      ref={ref}
+      altText={altText}
+      dataTestId={dataTestId}
+      linearIcon={isLinearIcon}
+    />
+  );
 };
 
 export const IconBasic = React.forwardRef(IconBasicComponent);

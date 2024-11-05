@@ -331,7 +331,7 @@ const mockDivider = {
       dividerContent: {
         leftLabel: { content: '18 DIC Lorem ipsum' },
         icon: { icon: 'UNICORN', altText: 'Icon alt text' },
-        tooltip: {
+        iconTooltip: {
           title: { content: 'Tooltip title' },
           content: { content: 'Tooltip content' },
         },
@@ -352,7 +352,7 @@ const mockDividerFromHeader = {
         dividerContent: {
           leftLabel: { content: val.date },
           icon: { icon: 'UNICORN', altText: 'Icon alt text' },
-          tooltip: {
+          iconTooltip: {
             title: { content: 'Tooltip title' },
             content: { content: 'Tooltip content' },
           },

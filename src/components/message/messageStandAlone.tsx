@@ -25,7 +25,12 @@ import {
 import { IMessageStandAlone } from './types';
 
 const MessageStandAloneComponent = (
-  { maxContentLength = 246, ariaLive = AriaLiveOptionType.OFF, ...props }: IMessageStandAlone,
+  {
+    dataTestId = 'message',
+    maxContentLength = 246,
+    ariaLive = AriaLiveOptionType.OFF,
+    ...props
+  }: IMessageStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element | null => {
   const isLargeMessage = (() =>
@@ -50,11 +55,7 @@ const MessageStandAloneComponent = (
     props.actionButton?.content &&
     (props.styles.actionButton?.size || props.actionButton?.size) && (
       <ActioButtonWrapperStyled styles={props.styles}>
-        <Button
-          dataTestId={`${props.dataTestId}ActionButton`}
-          size={props.styles.actionButton?.size}
-          {...props.actionButton}
-        >
+        <Button size={props.styles.actionButton?.size} {...props.actionButton}>
           {props.actionButton?.content}
         </Button>
       </ActioButtonWrapperStyled>
@@ -78,7 +79,6 @@ const MessageStandAloneComponent = (
       <Text
         component={TextComponentType.PARAGRAPH}
         customTypography={props.styles.description}
-        dataTestId={`${props.dataTestId}Description`}
         {...props.content}
       >
         {props.content.content}
@@ -98,7 +98,6 @@ const MessageStandAloneComponent = (
         <Text
           component={TextComponentType.PARAGRAPH}
           customTypography={props.styles.title}
-          dataTestId={`${props.dataTestId}Title`}
           {...props.title}
         >
           {props.title.content}
@@ -115,7 +114,7 @@ const MessageStandAloneComponent = (
         <MessageStyled
           ref={ref}
           as={props.messageContainerProps?.url ? props.linkComponent : 'div'}
-          data-testid={`${props.dataTestId}Message`}
+          data-testid={dataTestId}
           id={props.id}
           role={props.role}
           styles={props.styles}
@@ -124,7 +123,7 @@ const MessageStandAloneComponent = (
           onClick={props.messageContainerProps?.onClick}
         >
           {buildIconOrIllustration()}
-          {props.closeIcon?.onClick && (
+          {props.closeIcon && (
             <CloseButtonSectionStyled styles={props.styles}>
               <ElementOrIcon customIconStyles={props.styles.closeIcon} {...props.closeIcon} />
             </CloseButtonSectionStyled>
@@ -144,11 +143,7 @@ const MessageStandAloneComponent = (
             <MessageContentStyled isLargeMessage={isLargeMessage} styles={props.styles}>
               {buildContent()}
               {props.inlineLink?.content && (
-                <Link
-                  dataTestId={`${props.dataTestId}Link`}
-                  decoration={TextDecorationType.UNDERLINE}
-                  {...props.inlineLink}
-                >
+                <Link decoration={TextDecorationType.UNDERLINE} {...props.inlineLink}>
                   {props.inlineLink.content}
                 </Link>
               )}
@@ -162,11 +157,7 @@ const MessageStandAloneComponent = (
 
             {props.link?.content && (
               <LinkContainerStyled styles={props.styles}>
-                <Link
-                  dataTestId={`${props.dataTestId}Link`}
-                  decoration={TextDecorationType.UNDERLINE}
-                  {...props.link}
-                >
+                <Link decoration={TextDecorationType.UNDERLINE} {...props.link}>
                   {props.link.content}
                 </Link>
               </LinkContainerStyled>
@@ -176,11 +167,7 @@ const MessageStandAloneComponent = (
                 {props.links.map((link, index) =>
                   link.content ? (
                     <LinkContainerStyled key={index} styles={props.styles}>
-                      <Link
-                        dataTestId={`${props.dataTestId}Link${index}`}
-                        decoration={TextDecorationType.UNDERLINE}
-                        {...link}
-                      >
+                      <Link decoration={TextDecorationType.UNDERLINE} {...link}>
                         {link.content}
                       </Link>
                     </LinkContainerStyled>

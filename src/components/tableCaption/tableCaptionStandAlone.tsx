@@ -5,7 +5,7 @@ import { ITableCaptionStandAlone } from './types';
 
 const TableCaptionStandAloneComponent = (
   {
-    dataTestId = 'tableCaption',
+    dataTestId = 'table-caption',
     children,
     styles,
     id,

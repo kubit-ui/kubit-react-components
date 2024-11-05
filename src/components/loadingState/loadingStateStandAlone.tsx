@@ -20,7 +20,7 @@ const LoadingStateStandAloneComponent = (
     title,
     screenReaderText,
     state,
-    dataTestId,
+    dataTestId = 'loading-state',
     ...props
   }: React.PropsWithChildren<ILoadingStateStandAlone>,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
@@ -29,13 +29,12 @@ const LoadingStateStandAloneComponent = (
   const hasTitle = title && !hideText;
 
   return (
-    <LoadingStateStyled ref={ref}>
+    <LoadingStateStyled ref={ref} data-testid={dataTestId}>
       {stateStyles?.thirdPartyAnimation?.height &&
         stateStyles?.thirdPartyAnimation?.variant &&
         stateStyles?.thirdPartyAnimation?.width && (
           <ThirdPartyAnimation
             aria-label={props['aria-label']}
-            dataTestId={`${dataTestId}Animation`}
             height={stateStyles.thirdPartyAnimation.height}
             variant={stateStyles.thirdPartyAnimation.variant}
             width={stateStyles.thirdPartyAnimation.width}
@@ -43,7 +42,7 @@ const LoadingStateStandAloneComponent = (
         )}
       {hasTitle && (
         <TitleWrapperStyled styles={styles}>
-          <Text customTypography={styles.title} dataTestId={`${dataTestId}Title`} {...title}>
+          <Text customTypography={styles.title} {...title}>
             {title.content}
           </Text>
         </TitleWrapperStyled>
@@ -53,16 +52,13 @@ const LoadingStateStandAloneComponent = (
           <Text
             component={TextComponentType.PARAGRAPH}
             customTypography={styles.description}
-            dataTestId={`${dataTestId}Description`}
             {...description}
           >
             {description.content}
           </Text>
         </DescriptionWrapperStyled>
       )}
-      <ScreenReaderOnly dataTestId={`${dataTestId}ScreenReader`} show={!hasTitle}>
-        {screenReaderText}
-      </ScreenReaderOnly>
+      <ScreenReaderOnly show={!hasTitle}>{screenReaderText}</ScreenReaderOnly>
     </LoadingStateStyled>
   );
 };

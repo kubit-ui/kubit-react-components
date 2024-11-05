@@ -19,7 +19,7 @@ const MessageUnControlledComponent = <V extends string | unknown>(
     <MessageControlled
       {...props}
       ref={ref}
-      closeIcon={{ ...props.closeIcon, onClick: handleCloseButton }}
+      closeIcon={props.closeIcon ? { ...props.closeIcon, onClick: handleCloseButton } : undefined}
       open={open}
     />
   );

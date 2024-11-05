@@ -50,7 +50,6 @@ export const ListColumnHeaderPriority = (props: IListComponent): JSX.Element => 
                   <Text
                     component={TextComponentType.SPAN}
                     customTypography={props.styles.header?.[props.headerVariant]?.typography}
-                    dataTestId={`${props.dataTestId}ItemListRowHeader${header.label}`}
                   >
                     {header.label}
                   </Text>
@@ -115,7 +114,6 @@ const ListColumnHeaderValue = (props: IListColumnHeaderValue): JSX.Element => {
           <Text
             component={TextComponentType.SPAN}
             customTypography={props.styles.header?.[rowHeader.variant]?.typography}
-            dataTestId={`${props.dataTestId}ItemListRowHeader${rowHeader.label}`}
           >
             {rowHeader.label}
           </Text>

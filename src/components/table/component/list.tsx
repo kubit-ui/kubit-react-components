@@ -17,7 +17,7 @@ export const List = ({
   return (
     <>
       {formatListHeaderPriority === FormatListHeaderPriorityType.ROW && (
-        <ListContainerStyled data-testid={`${props.dataTestId}Table`} styles={props.styles}>
+        <ListContainerStyled data-testid={props.dataTestId} styles={props.styles}>
           {formatListHeaderPriority === FormatListHeaderPriorityType.ROW &&
             props.values.map((value, indexValue) => {
               return (
@@ -27,10 +27,7 @@ export const List = ({
         </ListContainerStyled>
       )}
       {formatListHeaderPriority === FormatListHeaderPriorityType.ROW_HEADER && (
-        <ListContainerHeaderPriorityStyled
-          data-testid={`${props.dataTestId}Table`}
-          styles={props.styles}
-        >
+        <ListContainerHeaderPriorityStyled data-testid={props.dataTestId} styles={props.styles}>
           {props.values.map((value, indexValue) => {
             return (
               <ListRowHeaderPriority key={indexValue} {...props} index={indexValue} value={value} />
@@ -39,20 +36,12 @@ export const List = ({
         </ListContainerHeaderPriorityStyled>
       )}
       {formatListHeaderPriority === FormatListHeaderPriorityType.COLUMN_HEADER && (
-        <ListContainerHeaderPriorityStyled
-          data-testid={`${props.dataTestId}Table`}
-          styles={props.styles}
-        >
+        <ListContainerHeaderPriorityStyled data-testid={props.dataTestId} styles={props.styles}>
           <ListColumnHeaderPriority {...props} />
         </ListContainerHeaderPriorityStyled>
       )}
       {props.footer?.content && footerVariant && (
-        <Footer
-          dataTestId={`${props.dataTestId}Navbar`}
-          simpleContainer={false}
-          {...props.footer}
-          variant={footerVariant}
-        >
+        <Footer simpleContainer={false} {...props.footer} variant={footerVariant}>
           {props.footer.content}
         </Footer>
       )}

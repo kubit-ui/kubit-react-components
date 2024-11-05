@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 
 import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Footer } from '@/components/footer/footer';
-import { PopoverControlled as Popover } from '@/components/popover';
+import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 import { useId } from '@/hooks';
+import { ROLES } from '@/types';
 
 import {
   DrawerContentStyled,
@@ -20,10 +22,8 @@ import { IDrawerStandAlone } from './types';
 const DrawerStandAloneComponent = (
   {
     blocked = false,
-    shadowRef,
-    footerRef,
-    contentRef,
     titleComponent = TextComponentType.H3,
+    dataTestId = 'drawer',
     ...props
   }: IDrawerStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
@@ -34,51 +34,52 @@ const DrawerStandAloneComponent = (
 
   return (
     <Popover
-      aria-label={!props.title?.content ? `${props.popover?.['aria-label']}` : undefined}
       aria-labelledby={props.title?.content ? titleIdFinal : undefined}
       aria-modal={props.open}
       clickOverlayClose={!blocked}
-      dataTestId={`${props.dataTestId}Popover`}
+      component={PopoverComponentType.DIV}
       hasBackDrop={true}
       open={props.open}
+      role={ROLES.DIALOG}
       trapFocusInsideModal={true}
       variant={position}
       {...props.popover}
     >
-      <DrawerStyled
-        ref={ref}
-        data-testid={`${props.dataTestId}Drawer`}
-        position={position}
-        styles={props.styles}
-      >
+      <DrawerStyled ref={ref} data-testid={dataTestId} position={position} styles={props.styles}>
         {!blocked && (
           <DrawerNavigationStyled level={props.level} styles={props.styles}>
-            <ElementOrIcon
-              customIconStyles={props.styles.icon}
-              {...props.closeIcon}
-              dataTestId={`${props.dataTestId}CloseIcon`}
-            />
+            <ElementOrIcon customIconStyles={props.styles.icon} {...props.closeIcon} />
           </DrawerNavigationStyled>
         )}
         <DrawerTitleContentFooterContainerStyled blocked={blocked} styles={props.styles}>
           <DrawerTitleStyled
-            ref={shadowRef}
-            as={Text as unknown as React.ElementType}
+            data-drawer-title
+            as={Text as any}
             component={titleComponent as unknown as TextComponentType}
             customTypography={props.styles.title}
-            dataTestId={`${titleIdFinal}Title`}
             id={titleIdFinal}
             {...props.title}
           >
             {props.title?.content}
           </DrawerTitleStyled>
-          <DrawerContentStyled ref={contentRef} styles={props.styles}>
+          <DrawerContentStyled
+            data-drawer-content
+            aria-label={
+              props.contentHasScroll ? props.contentScrollArias?.['aria-label'] : undefined
+            }
+            aria-labelledby={
+              props.contentHasScroll ? props.contentScrollArias?.['aria-labelledby'] : undefined
+            }
+            role={props.contentHasScroll ? ROLES.REGION : undefined}
+            styles={props.styles}
+            tabIndex={props.contentHasScroll ? 0 : undefined}
+          >
             {props.children}
           </DrawerContentStyled>
-          {props.footer?.content && props.styles.footer?.variant && (
+          {props.footer?.content && (props.styles.footer?.variant || props.footer.variant) && (
             <DrawerFooterStyled
-              ref={footerRef}
-              as={Footer as unknown as React.ElementType}
+              data-drawer-footer
+              as={Footer as any}
               customFooterStyles={props.styles}
               variant={props.styles.footer?.variant}
               {...props.footer}

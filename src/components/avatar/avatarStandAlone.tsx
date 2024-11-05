@@ -18,7 +18,7 @@ export const AvatarStandAloneComponent = (
     image,
     onClick,
     styles,
-    dataTestId,
+    dataTestId = 'avatar',
     maxLengthInitials = 2,
     ...props
   }: IAvatarStandAlone,

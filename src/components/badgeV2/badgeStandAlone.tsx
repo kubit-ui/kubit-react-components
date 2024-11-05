@@ -20,7 +20,7 @@ import {
 import { IBadgeStandAlone } from './types';
 
 const BadgeStandAloneComponent = (
-  { ...props }: IBadgeStandAlone,
+  { dataTestId = 'badge', ...props }: IBadgeStandAlone,
   ref: React.ForwardedRef<unknown> | undefined | null
 ): JSX.Element => {
   const badgeButtonRef = React.useRef(null);
@@ -46,12 +46,12 @@ const BadgeStandAloneComponent = (
   return (
     <BadgeContainerStyled
       ref={containerRef}
-      data-testid={`${props.dataTestId}BadgeContainer`}
+      data-testid={`${dataTestId}-container`}
       onBlur={props.onBadgeBlur}
     >
       <BadgeStyled
         ref={badgeButtonRef}
-        data-testid={`${props.dataTestId}Badge`}
+        data-testid={dataTestId}
         role={props.role}
         styles={props.styles}
         type={ButtonType.BUTTON}
@@ -61,7 +61,7 @@ const BadgeStandAloneComponent = (
         <SpanContainerIconAndDot>
           {props.hasDot && props.dot && (
             <BadgeDotStyled aria-hidden customDotTranslate={getCustomDotTranslate()}>
-              <Dot dataTestId={`${props.dataTestId}Dot`} {...props.dot} />
+              <Dot {...props.dot} />
             </BadgeDotStyled>
           )}
           <ElementOrIcon
@@ -76,7 +76,6 @@ const BadgeStandAloneComponent = (
               color={props.styles?.label?.color}
               component={TextComponentType.SPAN}
               customTypography={labelStyles}
-              dataTestId={`${props.dataTestId}Label`}
               {...props.label}
             >
               {props.label.content}
@@ -89,10 +88,7 @@ const BadgeStandAloneComponent = (
             />
           </BadgeLabelStyled>
         )}
-        <ScreenReaderOnly
-          ariaLive={AriaLiveOptionType.POLITE}
-          dataTestId={`${props.dataTestId}ScreenReader`}
-        >
+        <ScreenReaderOnly ariaLive={AriaLiveOptionType.POLITE}>
           {props.ariaLiveText}
         </ScreenReaderOnly>
       </BadgeStyled>

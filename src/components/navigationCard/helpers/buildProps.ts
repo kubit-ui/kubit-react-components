@@ -21,7 +21,6 @@ export const buildProps = (
         width: styles.icon?.[device]?.width ?? styles.icon?.width,
         height: styles.icon?.[device]?.height ?? styles.icon?.height,
         color: styles.icon?.[device]?.color ?? styles.icon?.color,
-        dataTestId: `${dataTestId}Icon`,
         ...element[DecorativeType.ICON],
       },
     };
@@ -34,14 +33,12 @@ export const buildProps = (
       additionalProps: {
         ...styles.iconHighlighted,
         size,
-        dataTestId: `${dataTestId}IconHighlighted`,
       },
     };
   } else if (element?.[DecorativeType.ILLUSTRATION]) {
     return {
       marginRight: styles.illustration?.margin_right,
       additionalProps: {
-        dataTestId: `${dataTestId}Illustration`,
         height: `${styles.illustration?.[device]?.height ?? styles.illustration?.height}`,
         width: `${styles.illustration?.[device]?.width ?? styles.illustration?.width}`,
       },
@@ -49,9 +46,7 @@ export const buildProps = (
   } else if (element?.[DecorativeType.AVATAR]) {
     return {
       marginRight: styles.avatar?.margin_right,
-      additionalProps: {
-        dataTestId: `${dataTestId}Avatar`,
-      },
+      additionalProps: {},
     };
   }
   return { marginRight: undefined, additionalProps: undefined };

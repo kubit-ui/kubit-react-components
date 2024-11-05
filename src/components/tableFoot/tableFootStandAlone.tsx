@@ -5,7 +5,7 @@ import { ITableFootStandAlone } from './types';
 
 const TableFootStandAloneComponent = (
   {
-    dataTestId = 'tableFoot',
+    dataTestId = 'table-foot',
     children,
     styles,
     id,

@@ -94,8 +94,8 @@ export const mockTableWithDivider = {
       transactionNumber: '0000',
       dividerContent: {
         leftLabel: { content: '18 DIC Lorem ipsum' },
-        icon: { icon: 'UNICORN', altText: 'Icon alt text' },
-        tooltip: {
+        icon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Icon alt text' },
+        iconTooltip: {
           title: { content: 'Tooltip title' },
           content: { content: 'Tooltip content' },
         },
@@ -110,8 +110,8 @@ export const mockTableWithDivider = {
       transactionNumber: '0000',
       dividerContent: {
         leftLabel: { content: '18 DIC Lorem ipsum' },
-        icon: { icon: 'UNICORN', altText: 'Icon alt text' },
-        tooltip: {
+        icon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Icon alt text' },
+        iconTooltip: {
           title: { content: 'Tooltip title' },
           content: { content: 'Tooltip content' },
         },
@@ -124,8 +124,8 @@ export const mockTableWithDivider = {
       accountNumber: '****333333',
       dividerContent: {
         leftLabel: { content: '19 DIC Lorem ipsum' },
-        icon: { icon: 'UNICORN', altText: 'Icon alt text' },
-        tooltip: {
+        icon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Icon alt text' },
+        iconTooltip: {
           title: { content: 'Tooltip title' },
           content: { content: 'Tooltip content' },
         },

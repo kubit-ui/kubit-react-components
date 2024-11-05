@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useMediaDevice, useSwipeDown } from '@/hooks';
+import { useMediaDevice, useScrollDetectionWithAutoFocus, useSwipeDown } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { useTrapFocus } from '@/hooks/useTrapFocus/useTrapFocus';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
@@ -8,7 +8,7 @@ import { DeviceBreakpointsType } from '@/types';
 import { isKeyEnterPressed } from '@/utils';
 
 import { TOOLTIP_STYLES } from './constants';
-import { useTooltip, useTooltipAsModal, useTooltipContentScroll } from './hooks';
+import { useTooltip, useTooltipAsModal } from './hooks';
 import { TooltipStandAlone } from './tooltipStandAlone';
 import { ITooltipStandAlone, ITooltipUnControlled, TooltipVariantStylesProps } from './types';
 
@@ -49,7 +49,8 @@ const TooltipUnControlledComponent = React.forwardRef(
       ctv,
     });
 
-    const { contentHasScroll, contentRefHandler } = useTooltipContentScroll({ tooltipRef });
+    const { hasScroll: contentHasScroll, handleScrollDetection: contentRefHandler } =
+      useScrollDetectionWithAutoFocus({ parentElementRef: tooltipRef });
 
     // When !tooltipAsModal, in tablet/mobile, onFocus and onClick are executed at the same time
     // So onFocus will open the tooltip, and onClick will close it (because it was opened)
@@ -152,7 +153,7 @@ const TooltipUnControlledComponent = React.forwardRef(
       hideTooltip
     );
 
-    useTrapFocus({ element: tooltipRef, hasFocusTrap: tooltipAsModalValue });
+    useTrapFocus({ ref: tooltipRef, trapFocus: open && tooltipAsModalValue });
 
     // It is used TooltipStandAlone instead of TooltipControlled
     // The reason is that TooltipControlled only provides the styles and mediaDevice props that are used and needed in this component

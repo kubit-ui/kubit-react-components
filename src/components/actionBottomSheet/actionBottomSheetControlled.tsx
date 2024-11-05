@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
 import { STYLES_NAME } from '@/constants';
-import { useDeviceHeight, useId, useMediaDevice, useScrollEffect } from '@/hooks';
+import { useDeviceHeight, useId, useMediaDevice, useScrollEffect, useSwipeDown } from '@/hooks';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 import { DeviceBreakpointsType, ROLES } from '@/types';
@@ -92,6 +92,24 @@ const ActionBottomSheetControlledComponent = React.forwardRef(
       props.ctv
     );
 
+    const innerRef = React.useRef<HTMLDivElement | null>(null);
+    React.useImperativeHandle(ref, () => {
+      return innerRef.current as HTMLDivElement;
+    }, []);
+
+    const { setPopoverRef, setDragIconRef } = useSwipeDown(
+      popover?.animationOptions,
+      popover?.onCloseInternally
+    );
+
+    const setInnerRef = React.useCallback(node => {
+      innerRef.current = node;
+      const dragIcon = innerRef.current?.querySelector('[data-drag-icon]');
+      if (dragIcon instanceof HTMLElement) {
+        setDragIconRef(dragIcon);
+      }
+    }, []);
+
     return (
       <Popover
         aria-labelledby={titleId}
@@ -99,6 +117,7 @@ const ActionBottomSheetControlledComponent = React.forwardRef(
         clickOverlayClose={!blocked}
         component={PopoverComponentType.DIV}
         dataTestId={`${props.dataTestId}Popover`}
+        forwardedRef={setPopoverRef}
         hasBackDrop={true}
         open={open}
         role={ROLES.DIALOG}
@@ -108,7 +127,7 @@ const ActionBottomSheetControlledComponent = React.forwardRef(
       >
         <ActionBottomSheetControlledStructure
           {...props}
-          ref={ref}
+          ref={setInnerRef}
           title={{ ...title, id: titleId }}
         />
       </Popover>

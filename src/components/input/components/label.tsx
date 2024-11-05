@@ -47,7 +47,6 @@ export const LabelStandAlone = (props: ILabel): JSX.Element | null => {
         )}
         asteriskWeight={props.styles?.[props.state]?.asterisk?.font_weight}
         color={props.styles?.[props.state]?.label?.color}
-        dataTestId={`${props.dataTestId}Label`}
         id={props.id}
         inputId={props.inputId}
         required={props.required}

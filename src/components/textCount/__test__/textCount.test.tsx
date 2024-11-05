@@ -29,7 +29,7 @@ describe('TextCount component', () => {
   it('Should be displayed correctly', async () => {
     const { container } = renderProvider(<TextCount {...mockProps} />);
 
-    const textCount = screen.getByTestId('textCount');
+    const textCount = screen.getByTestId('text-count');
     expect(textCount).toBeInTheDocument();
 
     const results = await axe(container);
@@ -40,7 +40,7 @@ describe('TextCount component', () => {
   it('Should be displayed correctly max Error', async () => {
     const { container } = renderProvider(<TextCount {...mockPropsCurrentCharacterMajor} />);
 
-    const textCount = screen.getByTestId('textCount');
+    const textCount = screen.getByTestId('text-count');
     expect(textCount).toBeInTheDocument();
 
     const results = await axe(container);

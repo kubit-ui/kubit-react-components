@@ -56,7 +56,14 @@ const StoryWithHooks = args => {
       >
         Open Drawer
       </Button>
-      <Story {...args} level={level} open={open} onClickBackFirstLevel={onClickBackFirstLevel} />
+      <Story
+        {...args}
+        closeIcon={{ ...args.closeIcon, onClick: () => setOpen(false) }}
+        level={level}
+        open={open}
+        popover={{ ...args.popover, onCloseInternally: () => setOpen(false) }}
+        onClickBackFirstLevel={onClickBackFirstLevel}
+      />
     </>
   );
 };
@@ -80,6 +87,9 @@ export const DrawerControlled: Story = {
         <ReplaceContent />
       </>
     ),
+    contentScrollArias: {
+      'aria-label': 'Drawer content scroll',
+    },
     blocked: false,
     popover: {
       blockBack: true,
@@ -106,6 +116,9 @@ export const DrawerControlledWithCtv: Story = {
     level: DrawerLevelPositionTypes.FIRST_LEVEL,
     open: false,
     children: <ReplaceContent />,
+    contentScrollArias: {
+      'aria-label': 'Drawer content scroll',
+    },
     blocked: false,
     popover: {
       blockBack: true,

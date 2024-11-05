@@ -1,7 +1,13 @@
 import * as React from 'react';
 
 import { STYLES_NAME } from '@/constants';
-import { useMediaDevice, useScrollEffect, useStylesV2, useSwipeDown } from '@/hooks';
+import {
+  useMediaDevice,
+  useScrollDetectionWithAutoFocus,
+  useScrollEffect,
+  useStylesV2,
+  useSwipeDown,
+} from '@/hooks';
 import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
 import { FallbackComponent } from '@/provider/errorBoundary/fallbackComponent';
 
@@ -21,14 +27,46 @@ const ModalControlledComponent = React.forwardRef(
     });
     const device = useMediaDevice();
 
-    const { scrollableRef, shadowRef } = useScrollEffect({
-      // The box_shadow token is need for the shadow effect
-      shadowStyles: styles?.headerContainer?.box_shadow,
-    });
+    const innerRef = React.useRef<HTMLDivElement | null>(null);
 
-    const { setPopoverRef, setDragIconRef } = useSwipeDown(props.popover?.animationOptions, () =>
-      props.onClose?.()
-    );
+    const handleInnerRef = React.useCallback(node => {
+      innerRef.current = node;
+      const modalHeader = innerRef.current?.querySelector('[data-modal-header]') as
+        | HTMLElement
+        | null
+        | undefined;
+      const modalContent = innerRef.current?.querySelector('[data-modal-content]') as
+        | HTMLElement
+        | null
+        | undefined;
+      const modalDraggableIcon = innerRef.current?.querySelector('[data-modal-draggable-icon]') as
+        | HTMLElement
+        | null
+        | undefined;
+
+      handleHeaderShadowEffect(modalHeader);
+      handleContentScrollEffect(modalContent);
+      handleContentScrollDetection(modalContent);
+      handleDraggableIconSwipeDown(modalDraggableIcon);
+    }, []);
+
+    React.useImperativeHandle(ref, () => {
+      return innerRef?.current as HTMLDivElement;
+    }, []);
+
+    const { scrollableRef: handleContentScrollEffect, shadowRef: handleHeaderShadowEffect } =
+      useScrollEffect({
+        // The box_shadow token is need for the shadow effect
+        shadowStyles: styles?.headerContainer?.box_shadow,
+      });
+
+    const { setPopoverRef: handlePopoverSwipeDown, setDragIconRef: handleDraggableIconSwipeDown } =
+      useSwipeDown(props.popover?.animationOptions, () => props.onClose?.());
+
+    const { hasScroll: contentHasScroll, handleScrollDetection: handleContentScrollDetection } =
+      useScrollDetectionWithAutoFocus({
+        parentElementRef: innerRef,
+      });
 
     const handlePopoverCloseInternally = () => {
       props.popover?.onCloseInternally?.();
@@ -38,12 +76,10 @@ const ModalControlledComponent = React.forwardRef(
     const modalStructure = (
       <ModalStandAlone
         {...props}
-        ref={ref}
+        ref={handleInnerRef}
+        contentHasScroll={contentHasScroll}
         device={device}
-        dragIconRef={setDragIconRef}
-        popover={{ ...props.popover, forwardedRef: setPopoverRef }}
-        scrollableRef={scrollableRef}
-        shadowRef={shadowRef}
+        popover={{ ...props.popover, forwardedRef: handlePopoverSwipeDown }}
         styles={styles as ModalBaseStylesType}
         onPopoverCloseInternally={handlePopoverCloseInternally}
       />

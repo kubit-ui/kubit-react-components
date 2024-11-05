@@ -37,7 +37,7 @@ type ParamsType = ParamsTypeInputHook & {
   onWrapperBlur?: FocusEventHandler<HTMLDivElement>;
 };
 
-type ReturnType = ReturnTypeInputHook & {
+type ReturnType = Omit<ReturnTypeInputHook, 'eventKeyPressRef'> & {
   // modifiers
   dateFormatted: Date[];
   calendarOpen: boolean;
@@ -393,6 +393,19 @@ export const useInputDate = ({
     if (props.hasRange) {
       handleSetValue(`${getDate(orderedDates[0])} ${getDate(orderedDates[1])}`);
     } else if (dateValue?.length === props.format?.length) {
+      if (inputRef?.current) {
+        // Inner input value should be set before the rerendering
+        // This avoid calling onChange event when input.value is different from the current value when picking a date
+        inputRef.current.value = dateValue;
+        // When selecting a date from the calendar, set the cursor to the end of the input
+        eventKeyPressRef.current = {
+          key: '',
+          cursor: {
+            start: dateValue.length,
+            end: dateValue.length,
+          },
+        };
+      }
       handleSetValue(dateValue);
     }
 
@@ -431,6 +444,7 @@ export const useInputDate = ({
   const {
     value,
     state,
+    eventKeyPressRef,
     inputRef,
     handleChangeInternal,
     handleBlurInternal,

@@ -51,6 +51,7 @@ const commonArgs: IFunctionalitiesModuleUnControlled = {
   actionBottomSheet: {
     title: { content: 'Options' },
     closeIcon: { icon: ICONS.ICON_CLOSE, ['aria-label']: 'ariaLabelCloseIcon' },
+    dragIcon: { icon: ICONS.ICON_DRAG, ['aria-label']: 'ariaLabelDragIcon' },
   },
 };
 

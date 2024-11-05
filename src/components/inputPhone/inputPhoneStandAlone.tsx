@@ -15,7 +15,7 @@ import { AffixIconWrapperStyled, AffixStyled } from './inputPhone.styled';
 import { IInputPhoneStandAlone } from './types';
 
 export const InputPhoneStandAloneComponent = (
-  props: IInputPhoneStandAlone,
+  { dataTestId = 'input-phone', ...props }: IInputPhoneStandAlone,
   ref: ForwardedRef<HTMLInputElement | undefined>
 ): JSX.Element => {
   const [width, setWidth] = useState(0);
@@ -70,11 +70,7 @@ export const InputPhoneStandAloneComponent = (
               />
             )}
           </AffixIconWrapperStyled>
-          <Text
-            customTypography={props.styles?.[props.state]?.affix}
-            dataTestId={`${props.dataTestId}Suffix`}
-            {...props.prefix}
-          >
+          <Text customTypography={props.styles?.[props.state]?.affix} {...props.prefix}>
             {props.prefix?.content}
           </Text>
         </>
@@ -85,7 +81,7 @@ export const InputPhoneStandAloneComponent = (
   // The extra styles are for the input structure atom
   // In this way we do not have to pass references or ids of the elements to get the measurements
   return (
-    <div data-testid={`${props.dataTestId}InputPhone`}>
+    <div data-testid={dataTestId}>
       <Input
         {...props}
         ref={ref}
