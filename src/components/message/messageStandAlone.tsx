@@ -124,7 +124,7 @@ const MessageStandAloneComponent = (
           onClick={props.messageContainerProps?.onClick}
         >
           {buildIconOrIllustration()}
-          {props.closeIcon?.onClick && (
+          {props.closeIcon && (
             <CloseButtonSectionStyled styles={props.styles}>
               <ElementOrIcon customIconStyles={props.styles.closeIcon} {...props.closeIcon} />
             </CloseButtonSectionStyled>

@@ -24,7 +24,6 @@ const MOCK = {
   },
   variant: 'ERROR',
   open: true,
-  closeIcon: { onClick: jest.fn() },
   link: { content: 'Link', variant: 'SECONDARY', url: '#' },
   dataTestId: 'dataTestId',
 };
