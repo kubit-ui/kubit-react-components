@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { useId } from '@/hooks';
+import { ROLES } from '@/types';
 
 import { Footer } from '../footer';
 import {
@@ -16,8 +17,6 @@ import { onlyDesktopSize } from './utils';
 const ModalStandAloneComponent = <V extends string | unknown>(
   {
     dataTestId = 'modalDataTestId',
-    scrollableRef,
-    shadowRef,
     customHeightAllDevices = false,
     customWidthAllDevices = false,
     ...props
@@ -28,7 +27,6 @@ const ModalStandAloneComponent = <V extends string | unknown>(
   const modalId = props.id ?? uniqueModalId;
   const uniqueTitleId = useId('modal-title');
   const titleIdFinal = props.title?.id ?? uniqueTitleId;
-  const modalRef = React.useRef<HTMLDivElement | null>(null);
   const modalFooterVariant = props.footer?.variant ?? props.styles.footerVariant;
 
   return (
@@ -36,19 +34,20 @@ const ModalStandAloneComponent = <V extends string | unknown>(
       aria-labelledby={titleIdFinal}
       aria-modal={props.open}
       clickOverlayClose={!props.blocked}
-      component={PopoverComponentType.DIALOG}
+      component={PopoverComponentType.DIV}
       dataTestId={`${dataTestId}Popover`}
       hasBackDrop={true}
       id={modalId}
       open={props.open}
       positionVariant={PopoverPositionVariantType.FIXED}
+      role={ROLES.DIALOG}
       trapFocusInsideModal={true}
       variant={props.styles.popoverVariant}
       onCloseInternally={props.onPopoverCloseInternally}
       {...props.popover}
     >
       <ModalStyled
-        ref={modalRef}
+        ref={ref}
         $maxHeight={props.maxHeight}
         $maxWidth={props.maxWidth}
         $minHeight={
@@ -60,30 +59,32 @@ const ModalStandAloneComponent = <V extends string | unknown>(
         $styles={props.styles}
         data-testid={dataTestId}
         hasFooter={!!props.footer?.content}
-        onKeyDown={event => props.onKeyDown?.(event)}
+        onKeyDown={props.onKeyDown}
       >
         {/* Header Section */}
         <ModalHeader
-          ref={shadowRef}
           blocked={props.blocked}
           closeButton={props.closeButton}
           closeIcon={props.closeIcon}
           dataTestId={dataTestId}
           device={props.device}
           dragIcon={props.dragIcon}
-          dragIconRef={props.dragIconRef}
           styles={props.styles}
           title={props.title}
           titleIdFinal={titleIdFinal}
         />
         {/* Content Section */}
         <ModalContentStyled
-          ref={ref => {
-            scrollableRef(ref);
-          }}
+          data-modal-content
           $minContentHeight={props.minContentHeight}
           $styles={props.styles}
+          aria-label={props.contentHasScroll ? props.contentScrollArias?.['aria-label'] : undefined}
+          aria-labelledby={
+            props.contentHasScroll ? props.contentScrollArias?.['aria-labelledby'] : undefined
+          }
           data-testid={`${dataTestId}Content`}
+          role={props.contentHasScroll ? ROLES.REGION : undefined}
+          tabIndex={props.contentHasScroll ? 0 : undefined}
         >
           {props.content}
         </ModalContentStyled>

@@ -34,6 +34,11 @@ export interface IModalStyled {
   hasFooter?: boolean;
 }
 
+export type ModalContentScrollAriasType = {
+  ['aria-label']?: string;
+  ['aria-labelledby']?: string;
+};
+
 export interface IModalStandAlone {
   styles: ModalBaseStylesType;
   maxHeight?: string;
@@ -53,31 +58,17 @@ export interface IModalStandAlone {
   imageIllustrationHeader?: IElementOrillustration;
   imageHeader?: IElementOrIcon;
   content?: React.ReactNode;
+  contentScrollArias?: ModalContentScrollAriasType;
+  contentHasScroll: boolean;
   footer?: ModalFooterType;
   device: DeviceBreakpointsType;
   dataTestId?: string;
   onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
   onPopoverCloseInternally?: () => void;
   dragIcon?: IElementOrIcon;
-  dragIconRef?: (node) => void;
-  /* To useScrollableEffect */
-  scrollableRef: (node) => void;
-  resizeRef: (node) => void;
-  shadowRef: (node) => void;
-  /* to useZoomEffect */
-  zoomRef: (node) => void;
-  zoomRefChild: (node) => void;
 }
 
-type OmitProps =
-  | 'styles'
-  | 'device'
-  | 'scrollableRef'
-  | 'resizeRef'
-  | 'shadowRef'
-  | 'zoomRef'
-  | 'zoomRefChild'
-  | 'dragIconRef';
+type OmitProps = 'styles' | 'device' | 'contentHasScroll';
 
 export interface IModalControlled<V = undefined extends string ? unknown : string>
   extends Omit<IModalStandAlone, OmitProps>,

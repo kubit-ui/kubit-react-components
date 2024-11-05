@@ -1,7 +1,14 @@
 import * as React from 'react';
 
 import { STYLES_NAME } from '@/constants';
-import { useMediaDevice, useScrollEffect, useStyles, useSwipeDown, useZoomEffect } from '@/hooks';
+import {
+  useMediaDevice,
+  useScrollDetectionWithAutoFocus,
+  useScrollEffect,
+  useStyles,
+  useSwipeDown,
+  useZoomEffect,
+} from '@/hooks';
 import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
 import { FallbackComponent } from '@/provider/errorBoundary/fallbackComponent';
 import { DeviceBreakpointsType } from '@/types';
@@ -26,23 +33,64 @@ const ModalControlledComponent = React.forwardRef(
   ): JSX.Element => {
     const styles = useStyles<ModalBaseStylesType, V>(STYLES_NAME.MODAL, variant, ctv);
     const device = useMediaDevice();
+    const innerRef = React.useRef<HTMLDivElement | null>(null);
 
-    const conditional = React.useMemo(
+    const handleInnerRef = React.useCallback(node => {
+      innerRef.current = node;
+      const modalHeader = innerRef.current?.querySelector('[data-modal-header]') as
+        | HTMLElement
+        | null
+        | undefined;
+      const modalContent = innerRef.current?.querySelector('[data-modal-content]') as
+        | HTMLElement
+        | null
+        | undefined;
+      const modalDraggableIcon = innerRef.current?.querySelector('[data-modal-draggable-icon]') as
+        | HTMLElement
+        | null
+        | undefined;
+      const modalIllustration = innerRef.current?.querySelector(
+        '[data-modal-ilustration-container]'
+      )?.firstElementChild as HTMLElement | null | undefined;
+
+      handleModalZoomEffect(innerRef.current);
+      handleHeaderShadowEffect(modalHeader);
+      handleContentScrollEffect(modalContent);
+      handleIllustrationResizeEffect(modalIllustration);
+      handleContentZoomEffect(modalContent);
+      handleContentScrollDetection(modalContent);
+      handleDraggableIconSwipeDown(modalDraggableIcon);
+    }, []);
+
+    React.useImperativeHandle(ref, () => {
+      return innerRef?.current as HTMLDivElement;
+    }, []);
+
+    const isTabletOrMobile = React.useMemo(
       () =>
         device !== DeviceBreakpointsType.DESKTOP && device !== DeviceBreakpointsType.LARGE_DESKTOP,
       [device]
     );
-    const { scrollableRef, resizeRef, shadowRef } = useScrollEffect({
-      conditional,
+
+    const {
+      scrollableRef: handleContentScrollEffect,
+      resizeRef: handleIllustrationResizeEffect,
+      shadowRef: handleHeaderShadowEffect,
+    } = useScrollEffect({
+      conditional: isTabletOrMobile,
       shadowStyles: styles.headerContainer?.box_shadow,
     });
 
-    const zoomRef = useZoomEffect(CONTAINER_STYLES_EDIT, MAX_ZOOM);
-    const zoomRefChild = useZoomEffect(CONTENT_STYLES_EDIT, MAX_ZOOM);
+    const handleModalZoomEffect = useZoomEffect(CONTAINER_STYLES_EDIT, MAX_ZOOM);
+    const handleContentZoomEffect = useZoomEffect(CONTENT_STYLES_EDIT, MAX_ZOOM);
 
-    const { setPopoverRef, setDragIconRef } = useSwipeDown(props.popover?.animationOptions, () =>
-      props.onClose?.()
-    );
+    const { setPopoverRef: handlePopoverSwipeDown, setDragIconRef: handleDraggableIconSwipeDown } =
+      useSwipeDown(props.popover?.animationOptions, () => props.onClose?.());
+
+    const { hasScroll: contentHasScroll, handleScrollDetection: handleContentScrollDetection } =
+      useScrollDetectionWithAutoFocus({
+        parentElementRef: innerRef,
+      });
 
     const handlePopoverCloseInternally = () => {
       props.popover?.onCloseInternally?.();
@@ -52,16 +100,11 @@ const ModalControlledComponent = React.forwardRef(
     const modalStructure = (
       <ModalStandAlone
         {...props}
-        ref={ref}
+        ref={handleInnerRef}
+        contentHasScroll={contentHasScroll}
         device={device}
-        dragIconRef={setDragIconRef}
-        popover={{ ...props.popover, forwardedRef: setPopoverRef }}
-        resizeRef={resizeRef}
-        scrollableRef={scrollableRef}
-        shadowRef={shadowRef}
+        popover={{ ...props.popover, forwardedRef: handlePopoverSwipeDown }}
         styles={styles}
-        zoomRef={zoomRef}
-        zoomRefChild={zoomRefChild}
         onPopoverCloseInternally={handlePopoverCloseInternally}
       />
     );

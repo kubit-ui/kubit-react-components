@@ -60,6 +60,9 @@ export const Modal: Story = {
     title: { content: 'Modal title' },
     dataTestId: 'modal',
     content: <ReplaceContent width={'100%'} />,
+    contentScrollArias: {
+      'aria-label': 'Modal content scroll',
+    },
     open: true,
     closeIcon: { icon: ICONS.ICON_CLOSE },
     footer: {
@@ -100,6 +103,9 @@ export const ModalWithCtv: Story = {
     title: { content: 'Modal title' },
     dataTestId: 'modal',
     content: <ReplaceContent width={'100%'} />,
+    contentScrollArias: {
+      'aria-label': 'Modal content scroll',
+    },
     open: true,
     closeIcon: { icon: ICONS.ICON_CLOSE },
     footer: {

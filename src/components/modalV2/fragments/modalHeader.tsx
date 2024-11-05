@@ -21,22 +21,18 @@ type PickedProps =
   | 'closeButton'
   | 'title'
   | 'dragIcon'
-  | 'dragIconRef'
   | 'device';
 type ModalHeaderProps = Pick<IModalStandAlone, PickedProps> & {
   titleIdFinal: string;
 };
 
-const ModalHeaderComponent = (
-  props: ModalHeaderProps,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => {
+export const ModalHeader = (props: ModalHeaderProps): JSX.Element => {
   const isMobile = props.device === DeviceBreakpointsType.MOBILE;
 
   return (
-    <ModalHeaderStyled ref={ref} $styles={props.styles}>
+    <ModalHeaderStyled data-modal-header $styles={props.styles}>
       {isMobile && !props.blocked && props.dragIcon && (
-        <DraggableIcon ref={props.dragIconRef} $styles={props.styles}>
+        <DraggableIcon data-modal-draggable-icon $styles={props.styles}>
           <ElementOrIcon customIconStyles={props.styles?.dragIcon} {...props.dragIcon} />
         </DraggableIcon>
       )}
@@ -74,5 +70,3 @@ const ModalHeaderComponent = (
     </ModalHeaderStyled>
   );
 };
-
-export const ModalHeader = React.forwardRef(ModalHeaderComponent);
