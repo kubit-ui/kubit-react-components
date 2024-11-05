@@ -9,7 +9,7 @@ import { argtypes } from './argtypes';
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 
 const meta = {
-  title: 'Components/Resources/ActionBottomSheet',
+  title: 'Components/Resources/Dot',
   component: Story,
   parameters: {
     layout: 'centered',
