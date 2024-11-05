@@ -15,9 +15,10 @@ export type OliveMenuTriggerType = Omit<IButton, 'children' | 'size'> & {
 
 export type OliveMenuActionBottomSheetStructure = Omit<
   IActionBottomSheetControlledStructure,
-  'children' | 'variant'
+  'children' | 'variant' | 'dragIconRef'
 > & {
   variant?: string;
+  forwardedRef?: (node: HTMLDivElement) => void;
 };
 
 export type OliveMenuListOptions = Omit<

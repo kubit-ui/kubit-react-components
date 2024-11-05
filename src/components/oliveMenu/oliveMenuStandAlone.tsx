@@ -7,7 +7,7 @@ import { PopoverControlled as Popover, PopoverComponentType } from '@/components
 import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { TextComponentType } from '@/components/text/types';
 import { useId } from '@/hooks';
-import { AriaLiveOptionType, DeviceBreakpointsType } from '@/types';
+import { AriaLiveOptionType, DeviceBreakpointsType, ROLES } from '@/types';
 
 import { ButtonContainer, ListboxStyled, OliveMenuStyled } from './oliveMenu.styled';
 import { IOliveMenuStandAlone } from './types';
@@ -62,9 +62,8 @@ const OliveMenuStandAloneComponent = (
       <Popover
         aria-labelledby={popoverAsModal ? titleId : undefined}
         aria-modal={popoverAsModal ? props.open : undefined}
-        // It is handled internally by the onBlur function of the container
-        clickOverlayClose={false}
-        component={popoverAsModal ? PopoverComponentType.DIALOG : PopoverComponentType.DIV}
+        clickOverlayClose={true}
+        component={PopoverComponentType.DIV}
         dataTestId={`${props.dataTestId}Popover`}
         extraAlignGap={props.styles.buttonContainer?.[props.device]?.margin_bottom}
         focusFirstDescendantAutomatically={popoverAsModal}
@@ -73,11 +72,14 @@ const OliveMenuStandAloneComponent = (
         open={props.open}
         // It is handled internally by the controlled component to allow close when the focus is on the button
         pressEscapeClose={false}
+        preventCloseOnClickElements={[buttonRef.current]}
+        role={popoverAsModal ? ROLES.DIALOG : undefined}
         trapFocusInsideModal={popoverAsModal}
         variant={props.styles.popoverVariant}
         {...props.popover}
       >
         <ActionBottomSheetControlledStructure
+          ref={actionBottomSheet.forwardedRef}
           dataTestId={`${props.dataTestId}ActionButtonSheet`}
           title={{
             component: TextComponentType.H5,

@@ -6,7 +6,7 @@ import { axe } from 'jest-axe';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType, ROLES } from '@/types';
 
 import { OliveMenu } from '../oliveMenu';
 import { IOliveMenu, OliveMenuListOptions } from '../types';
@@ -14,6 +14,7 @@ import { IOliveMenu, OliveMenuListOptions } from '../types';
 const mockSections: OliveMenuListOptions[] = [
   {
     title: { content: 'list 1' },
+    id: 'section1',
     options: [
       {
         label: 'option 1',
@@ -33,6 +34,7 @@ const mockSections: OliveMenuListOptions[] = [
   },
   {
     title: { content: 'list 2' },
+    id: 'section2',
     options: [
       {
         label: 'option 1',
@@ -54,6 +56,9 @@ const mockSections: OliveMenuListOptions[] = [
 
 const mockProps: IOliveMenu = {
   actionBottomSheetStructure: {
+    title: {
+      content: 'title',
+    },
     closeIcon: {
       icon: 'UNICORN',
       altText: 'Close Menu',
@@ -66,6 +71,7 @@ const mockProps: IOliveMenu = {
     },
     variant: 'PRIMARY',
     ['aria-label']: 'Open menu',
+    size: 'MEDIUM',
   },
   variant: 'DEFAULT',
   screenReaderText: 'Menu openned',
@@ -146,9 +152,8 @@ describe('OliveMenu component', () => {
     const openButton = screen.getAllByText('Options');
     fireEvent.click(openButton[0]);
 
-    // Element in the popover
-    const popover = container.querySelector('[data-popover]');
-    expect(popover?.tagName).toBe('DIALOG');
+    const popover = screen.getByRole(ROLES.DIALOG);
+    expect(popover).toBeInTheDocument();
 
     const results = await axe(container);
     expect(container).toHTMLValidate({
@@ -277,5 +282,34 @@ describe('OliveMenu component', () => {
     expect(handleOpenClose).toHaveBeenCalledWith(false);
 
     expect(popoverElement).not.toBeInTheDocument();
+  });
+
+  // desktop will close because of the blur
+  it('Should close the menu when clicking outside if mobile/tablet', async () => {
+    const handleOpenClose = jest.fn();
+    window.matchMedia = windowMatchMedia('onlyMobile');
+    jest.useFakeTimers();
+    jest.spyOn(mediaHooks, 'useMediaDevice').mockImplementation(() => DeviceBreakpointsType.MOBILE);
+    renderProvider(
+      <div>
+        <button>external</button>
+        <OliveMenu {...mockProps} onOpenClose={handleOpenClose} />
+      </div>
+    );
+
+    // Open the popover
+    const openButton = screen.getAllByText('Options');
+    act(() => {
+      fireEvent.click(openButton[0]);
+    });
+
+    // Close popover
+    const externalElement = screen.getByText('external');
+    await act(() => {
+      fireEvent.mouseUp(externalElement);
+      jest.runAllTimers();
+    });
+
+    expect(handleOpenClose).toHaveBeenCalledWith(false);
   });
 });
