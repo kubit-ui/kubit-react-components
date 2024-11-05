@@ -461,6 +461,7 @@ export const getGenericTypographyStyles = (prop?: TypographyTypes): CSSProp => {
     text_justify,
     color,
     overflow,
+    filter,
   } = prop;
 
   return css`
@@ -482,6 +483,7 @@ export const getGenericTypographyStyles = (prop?: TypographyTypes): CSSProp => {
     ${text_justify && `text-justify: ${text_justify};`}
     ${color && `color: ${color};`}
     ${overflow && `overflow: ${overflow};`}
+    ${filter && `filter: ${filter};`}
   `;
 };
 
@@ -584,9 +586,9 @@ export const getPseudoStyles = (
 
   return css`
     ${pseudoKey} {
-      ${isAfterOrBefore && `content: '${content}'`}
-      ${getGenericStyles(styles)}
-      ${getTypographyStyles(styles)}
+      ${isAfterOrBefore && `content: '${content}'`};
+      ${getGenericStyles(styles)};
+      ${getTypographyStyles(styles)};
     }
   `;
 };
