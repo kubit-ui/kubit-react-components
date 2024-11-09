@@ -1,11 +1,9 @@
 import React from 'react';
 
-import {
-  FONTS_KUBIT_GLOBAL_STYLES,
-  FONTS_KUBIT_WIREFRAME_GLOBAL_STYLES,
-  KUBIT_GLOBAL_STYLES,
-  KUBIT_WIREFRAME_GLOBAL_STYLES,
-} from '../../src/designSystem';
+import { FONTS_KUBIT_GLOBAL_STYLES } from '../../src/designSystem/kubit/globalStyles/fonts';
+import { KUBIT_GLOBAL_STYLES } from '../../src/designSystem/kubit/globalStyles/globalStyle';
+import { FONTS_KUBIT_WIREFRAME_GLOBAL_STYLES } from '../../src/designSystem/kubitWireframe/commons/globalStyles/fonts';
+import { KUBIT_WIREFRAME_GLOBAL_STYLES } from '../../src/designSystem/kubitWireframe/commons/globalStyles/globalStyle';
 import {
   ThemeProvider as BaseThemeProvider,
   IGenericLink,
@@ -96,7 +94,7 @@ export const ThemeProvider = ({ children, theme, themeName = 'kubit' }) => {
           return getAllMonthNames();
         },
         getAllWeekdayName: () => {
-          return getAllWeekdayNames();
+          return getAllWeekdayNames('long', false);
         },
       }}
       formatDate={(date: Date, format: string | DateFormatOptions) => {
