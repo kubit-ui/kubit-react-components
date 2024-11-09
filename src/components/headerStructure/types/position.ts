@@ -1,4 +1,4 @@
-import { POSITIONS } from '@/types/positions';
+import { POSITIONS } from '@/types/positions/positions';
 
 export enum HeaderStructureContentPositionType {
   RIGHT = POSITIONS.RIGHT,

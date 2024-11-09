@@ -1,4 +1,4 @@
-import { TableCellStylesType } from '@/components';
+import { TableCellStylesType } from '@/components/tableCell/types/tableCellTheme';
 
 import { TableCaptionVariantType } from './variants';
 

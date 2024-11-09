@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
-import { DeviceBreakpointsType } from '@/types';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { Layout as Story } from '../layout';
 import { argtypes } from './argtypes';

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { ChipPropsStylesType } from './types';
+import { ChipPropsStylesType } from './types/chipTheme';
 
 type IChipStyled = {
   styles?: ChipPropsStylesType;

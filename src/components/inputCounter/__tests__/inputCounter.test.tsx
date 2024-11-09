@@ -1,12 +1,13 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { InputState, InputTypeType } from '@/components/input/types';
+import * as stylesHook from '@/hooks/useStyles/useStyles';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import * as stylesHook from '../../../hooks/useStyles/useStyles';
+import { InputState } from '../../input/types/inputTheme';
+import { InputTypeType } from '../../input/types/inputType';
 import { InputCounter } from '../inputCounter';
 
 const mockProps = {

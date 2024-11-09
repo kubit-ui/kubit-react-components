@@ -1,4 +1,4 @@
-import { formatDateToUTC } from '@/utils';
+import { formatDateToUTC } from '../../../utils/date/formatDate';
 
 const checkYear = (minYear: Date, maxYear: Date, currentDate: string) => {
   return formatDateToUTC(currentDate) >= minYear && formatDateToUTC(currentDate) <= maxYear;

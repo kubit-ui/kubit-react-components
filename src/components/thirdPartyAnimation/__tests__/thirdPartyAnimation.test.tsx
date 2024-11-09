@@ -1,10 +1,11 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import lottie from 'lottie-web';
 
-import { renderProvider } from '../../../tests/renderProvider/renderProvider.utility';
-import { ThirdPartyAnimation } from '../index';
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+
+import { ThirdPartyAnimation } from '../thirdPartyAnimation';
 
 // mocks
 jest.mock('lottie-web', () => ({

@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
+
+import { ROLES } from '@/types/role/role';
 
 //types
-import { ROLES } from '@/types/index';
-
 // styles
 import { IconComplexStyled, IconSVGStyled, IconStyled } from './icon.styled';
-import { IIconComplex, IIconStandAlone } from './types';
+import { IIconComplex, IIconStandAlone } from './types/icon';
 
 const IconComplexComponent = (
   {

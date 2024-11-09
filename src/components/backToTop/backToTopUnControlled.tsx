@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
-import { focusFirstDescendant } from '@/utils';
-
+import { focusFirstDescendant } from '../../utils/focusHandlers/focusHandlers';
 import { BackToTopControlled } from './backToTopControlled';
 import { IBackToTopUncontrolled } from './types/backToTop';
 
@@ -25,3 +24,5 @@ const BackToTopUnControlled = React.forwardRef(BackToTopUnControlledComponent) a
 ) => ReturnType<typeof BackToTopUnControlledComponent>;
 
 export { BackToTopUnControlled };
+
+export { BackToTopUnControlled as BackToTop };

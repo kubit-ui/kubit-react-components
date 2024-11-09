@@ -1,4 +1,4 @@
-import { IIcon } from '@/components/icon/types';
+import { IIcon } from '../../icon/types/icon';
 
 /**
  * @name IElementOrIcon

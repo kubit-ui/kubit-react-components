@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { useGenericComponents } from '@/provider';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { useGenericComponents } from '../../provider/genericComponents/genericComponentsProvider';
 // styles
 import { MessageStandAlone } from './messageStandAlone';
-import { IMessageControlled, IMessageStandAlone, MessagePropsThemeType } from './types';
+import { IMessageControlled, IMessageStandAlone } from './types/message';
+import { MessagePropsThemeType } from './types/messageTheme';
 
 const MessageControlledComponent = React.forwardRef(
   <V extends string | unknown>(

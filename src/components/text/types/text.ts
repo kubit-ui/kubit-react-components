@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { GenericLinkType } from '@/provider/genericComponents';
-import { CustomTokenTypes, TypographyTypes } from '@/types/index';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { TypographyTypes } from '@/types/styles/typography';
 
+import { GenericLinkType } from '../../../provider/genericComponents/genericComponents.type';
 import { TextComponentType } from './component';
 import { TextDecorationType } from './decoration';
 import { TextDisplayType } from './display';

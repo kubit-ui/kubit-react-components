@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ILLUSTRATIONS } from '@/assets';
-import { STYLES_NAME } from '@/constants';
-import { themesObject } from '@/designSystem/themesObject';
+import { ILLUSTRATIONS } from '@/assets/storybook/illustrations/illustrations';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject } from '@/designSystem/themesObject/themesObject';
 
 import { IllustrationBasic as Story } from '../illustration';
 import { argtypes } from './argtypes';

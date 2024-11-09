@@ -1,12 +1,15 @@
 import React from 'react';
 
-import { ElementOrIcon, IElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { AriaLiveOptionType } from '@/types';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
 
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import { ErrorWrapperStyled } from '../textArea.styled';
-import { TextAreaPropsThemeType, TextAreaStateType, TextAreaTextType } from '../types';
+import { TextAreaStateType } from '../types/state';
+import { TextAreaTextType } from '../types/textArea';
+import { TextAreaPropsThemeType } from '../types/textAreaTheme';
 
 export const ErrorStandAlone = ({
   id,

@@ -1,7 +1,12 @@
-import { TabsStateTypes, TabsStylesType } from '@/components/tabs/types';
-import { DeviceBreakpointsType } from '@/types';
+import { TabsStateTypes } from '@/components/tabs/types/state';
+import { TabsStylesType } from '@/components/tabs/types/tabsTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { COLORS, FONT_WEIGHT, SIZES, SPACINGS, Z_INDEX } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { Z_INDEX } from '../../foundations/zIndex';
 import { TextVariantType } from '../text/variants';
 import { TabsVariantType } from './variants';
 

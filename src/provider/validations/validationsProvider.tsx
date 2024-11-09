@@ -1,7 +1,6 @@
 import React, { PropsWithChildren, createContext, useContext } from 'react';
 
-import { checkRegex } from '@/utils/';
-
+import { checkRegex } from '../../utils/validations/checkRegex';
 import { IUseValidations, IValidationsProvider, ValidationsType } from './validations.type';
 
 export const ValidationsContext = createContext<ValidationsType | null>(null);

@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { getStyles, getTypographyStyles } from '@/utils';
-
-import { IToggleWithLabelStyled, LABEL_POSITION } from './types';
+import { getStyles, getTypographyStyles } from '../../utils/getStyles/getStyles';
+import { IToggleWithLabelStyled, LABEL_POSITION } from './types/toggleWithLabel';
 
 const getLabelPositionStyles = (labelPosition: LABEL_POSITION) => {
   if (labelPosition === LABEL_POSITION.LEFT) {

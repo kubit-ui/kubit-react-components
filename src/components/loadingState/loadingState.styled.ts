@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { getStyles } from '@/utils';
-
-import { LoadingStateGlobalStateStylesType } from './types';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import { LoadingStateGlobalStateStylesType } from './types/loadingStateTheme';
 
 export const LoadingStateStyled = styled.div`
   display: flex;

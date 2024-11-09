@@ -1,5 +1,9 @@
-import { TextDecorationType } from '@/components/text';
-import { CommonStyleType, IconTypes, POSITIONS, TypographyTypes } from '@/types';
+import { POSITIONS } from '@/types/positions/positions';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
+
+import { TextDecorationType } from '../../text/types/decoration';
 
 export type SnackbarProps = {
   actionButton?: {

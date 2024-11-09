@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
 // type
-import { ButtonKeyboardStateType, VirtualKeyboardPropsStylesType } from './types';
+import { ButtonKeyboardStateType } from './types/state';
+import { VirtualKeyboardPropsStylesType } from './types/virtualKeyboardTheme';
 
 interface ButtonsStyledPropsTypes {
   styles?: VirtualKeyboardPropsStylesType;

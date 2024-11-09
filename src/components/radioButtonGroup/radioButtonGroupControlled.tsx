@@ -1,16 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
 // styles
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { VariantStyles } from '@/types/variantStyles';
+import { VariantStyles } from '@/types/variantStyles/variantStyles';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { RadioButtonGroupStandAlone } from './radioButtonGroupStandAlone';
 import {
   IRadioButtonGroupControlled,
   IRadioButtonGroupStandAlone,
   RadioButtonGroupStylesType,
-} from './types';
+} from './types/radioButtonGroup';
 
 const STYLES_NAME = 'RADIO_BUTTON_GROUP_STYLES';
 

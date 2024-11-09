@@ -1,15 +1,15 @@
 import { CSSProp, css } from 'styled-components';
 
+import { InputStyledProps, LabelStyledProps } from '@/components/input/types/inputStyledPropsType';
 import {
   InputBasicStateProps,
   InputIconPosition,
   InputState,
   LABEL_TYPE,
-} from '@/components/input/types';
-import { InputStyledProps, LabelStyledProps } from '@/components/input/types/inputStyledPropsType';
-import { getTypographyStyles } from '@/utils';
+} from '@/components/input/types/inputTheme';
 import { pxToRem } from '@/utils/pxToRem/pxToRem';
 
+import { getTypographyStyles } from '../../utils/getStyles/getStyles';
 import { getPaddingLeftFromContainer, getPaddingRightFromContainer } from './input.mixin.utils';
 
 const isStandardLabel = (labelType: string | undefined): boolean => {

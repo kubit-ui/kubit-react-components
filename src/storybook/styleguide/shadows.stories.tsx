@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import React from 'react';
 
-import { Shadows as BaseShadows } from '../components';
+import { Shadows as BaseShadows } from '../components/shadows/shadows';
 
 export const Shadows = (): JSX.Element => {
   return <BaseShadows />;

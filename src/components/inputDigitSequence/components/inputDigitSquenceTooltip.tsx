@@ -1,9 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon, IElementOrIcon } from '@/components/elementOrIcon';
 import { TooltipUnControlled as Tooltip } from '@/components/tooltip/tooltipUnControlled';
 
-import { InputDigitSequenceStyles, InputDigitSequenceTooltipType } from '../types';
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { InputDigitSequenceTooltipType } from '../types/inputDigitSequence';
+import { InputDigitSequenceStyles } from '../types/inputDigitSequenceTheme';
 
 interface IInputDigitSequenceTooltip {
   stateStyles?: InputDigitSequenceStyles;

@@ -1,6 +1,10 @@
-import { TagStylesTypeV2 } from '@/components';
+import { TagStylesType as TagStylesTypeV2 } from '@/components/tagV2/types/tagTheme';
 
-import { BORDERS, COLORS, FONT_WEIGHT, SIZES, SPACINGS } from '../../foundations';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import { TextVariantType } from '../text/variants';
 import { TagVariantTypeV2 } from './variants';
 

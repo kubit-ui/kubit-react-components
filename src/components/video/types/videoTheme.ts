@@ -1,6 +1,7 @@
 import { MediaButtonSizeType } from '@/components/mediaButton/types/sizes';
-import { DeviceBreakpointsType } from '@/types';
-import { CommonStyleType, TypographyTypes } from '@/types/styles';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { TypographyTypes } from '@/types/styles/typography';
 
 export type MediaButtonType = {
   variant?: string;

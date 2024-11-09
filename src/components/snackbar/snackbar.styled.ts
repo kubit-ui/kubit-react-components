@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import { getStyles } from '@/utils';
-
+import { getStyles } from '../../utils/getStyles/getStyles';
 import { SnackbarProps } from './types/snackbarTheme';
 
 type ThemeStylesType = {

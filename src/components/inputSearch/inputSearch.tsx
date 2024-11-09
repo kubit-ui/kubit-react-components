@@ -1,15 +1,18 @@
-import * as React from 'react';
+import React from 'react';
 
-import { INTERNAL_ERROR_EXECUTION, InputTypeType } from '@/components/input';
-import { STYLES_NAME } from '@/constants';
-import { useMediaDevice, useStyles } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useStyles } from '@/hooks/useStyles/useStyles';
 
-import { getLength } from './helpers';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { INTERNAL_ERROR_EXECUTION } from '../input/types/input';
+import { InputTypeType } from '../input/types/inputType';
+import { getLength } from './helpers/options';
 import { useInputSearch } from './hooks/useInputSearch';
 import { InputSearchStandAlone } from './inputSearchStandAlone';
-import { InputSearchStylesProps } from './types';
 import { IInputSearch, IInputSearchStandAlone } from './types/inputSearch';
+import { InputSearchStylesProps } from './types/inputSearchTheme';
 
 const DEFAULT_LIMIT = 4;
 

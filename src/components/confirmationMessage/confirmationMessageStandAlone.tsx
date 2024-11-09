@@ -1,11 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ContentDirectionType, Footer } from '@/components/footer';
-import { Text } from '@/components/text';
-import { TextComponentType } from '@/components/text/types';
-import { buildPropsDecorativeElement } from '@/utils';
+import { Text } from '@/components/text/text';
 
+import { buildPropsDecorativeElement } from '../../utils/buildPropsDecorativeElement/buildPropsDecorativeElement';
 import { DecorativeElement } from '../decorativeElement/decorativeElementStandAlone';
+import { Footer } from '../footer/footer';
+import { ContentDirectionType } from '../footer/types/direction';
+import { TextComponentType } from '../text/types/component';
 import {
   ConfirmationMessageStyled,
   ContentContainerStyled,
@@ -18,9 +19,9 @@ import {
 import {
   ALIGN_TYPE,
   AlignTypeConfirmationMessage,
-  ConfirmationMessagePropsStylesType,
   IConfirmationMessageStandAlone,
-} from './types';
+} from './types/confirmationMessage';
+import { ConfirmationMessagePropsStylesType } from './types/confirmationMessageTheme';
 
 const alignValue: AlignTypeConfirmationMessage = {
   center: 'center',

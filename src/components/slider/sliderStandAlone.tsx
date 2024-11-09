@@ -1,14 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useId } from '@/hooks';
+import { useId } from '@/hooks/useId/useId';
 
-import { Text, TextComponentType } from '../text';
-import {
-  SliderButtonStandAlone,
-  SliderHelperTextStandAlone,
-  SliderScaleStandAlone,
-  SliderThumbStandAlone,
-} from './components';
+import { Text } from '../text/text';
+import { TextComponentType } from '../text/types/component';
+import { SliderButtonStandAlone } from './components/sliderButtonStandAlone';
+import { SliderHelperTextStandAlone } from './components/sliderHelperTextStandAlone';
+import { SliderScaleStandAlone } from './components/sliderScaleStandAlone';
+import { SliderThumbStandAlone } from './components/sliderThumbStandAlone';
 import {
   StyledActiveTrack,
   StyledButtonsTracksContainer,
@@ -18,8 +17,10 @@ import {
   StyledTrack,
   StyledWrap,
 } from './slider.styled';
-import { ISliderStandAlone } from './types';
-import { buildAriaDescribedBy, getState, isActive } from './utils';
+import { ISliderStandAlone } from './types/slider';
+import { buildAriaDescribedBy } from './utils/accessibility.utils';
+import { getState } from './utils/state.utils';
+import { isActive } from './utils/ui.utils';
 
 const SliderStandAloneComponent = (
   {

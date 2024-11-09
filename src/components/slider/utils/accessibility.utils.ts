@@ -1,4 +1,11 @@
-import { ARROW_DOWN, ARROW_LEFT, ARROW_RIGHT, ARROW_UP, END, HOME } from '@/constants';
+import {
+  ARROW_DOWN,
+  ARROW_LEFT,
+  ARROW_RIGHT,
+  ARROW_UP,
+  END,
+  HOME,
+} from '@/constants/keyboardKeys/keyboardKeys';
 
 type KeyPressResultTypeValue = number | number[] | undefined;
 

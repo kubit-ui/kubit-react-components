@@ -1,16 +1,15 @@
-import { TableStylesType } from '@/components/table/types';
-import { DeviceBreakpointsType } from '@/types';
-
+import { TableStylesType } from '@/components/table/types/tableTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import {
-  BORDERS,
   FONT_WEIGHT,
   PARAGRAPH,
-  RADIUS,
-  SIZES,
-  SPACINGS,
   TEXT_ALIGN,
-} from '../../foundations';
-import { TextVariantType } from '../text';
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+
+import { TextVariantType } from '../../../../kubit/components/text/variants';
 import {
   DividerVariantType,
   FooterVariants,

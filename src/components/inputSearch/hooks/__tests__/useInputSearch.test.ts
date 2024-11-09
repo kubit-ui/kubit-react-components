@@ -2,13 +2,13 @@ import { act } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import React from 'react';
 
-import { InputState } from '@/components/input/types';
+import * as inputHooks from '@/hooks/useInput/useInput';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType } from '@/types';
-import { InputTypeType } from '@/types/inputType';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { InputTypeType } from '@/types/inputType/inputType';
 
-import * as inputHooks from '../../../../hooks/useInput/useInput';
+import { windowMatchMedia } from '../../../../tests/windowMatchMedia/windowMatchMedia';
+import { InputState } from '../../../input/types/inputTheme';
 import { useInputSearch } from '../useInputSearch';
 
 const options = [

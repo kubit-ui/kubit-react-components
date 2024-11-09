@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { getStyles } from '@/utils/getStyles/getStyles';
+
 // mixins
 import {
   getIconPadding,
@@ -8,11 +10,9 @@ import {
   mapBaseStyles,
   mapLabelTypeStyles,
   mapVariableStyles,
-} from '@/styles/mixins';
-import { getStyles } from '@/utils/getStyles/getStyles';
-
+} from '../../styles/mixins/input.mixin';
 import { InputCounterStateProps } from '../inputCounter/types/inputCounterTheme';
-import { InputIconPosition, InputState, InputStateProps } from './types';
+import { InputStateProps } from './types/input';
 import {
   ErrorAndHelpMessageWrapperStyledProps,
   ErrorMessageStyledProps,
@@ -26,6 +26,7 @@ import {
   TitleStyledProps,
   TopContentWrapperStyledProps,
 } from './types/inputStyledPropsType';
+import { InputIconPosition, InputState } from './types/inputTheme';
 
 // Component styles
 export const TitleWrapperStyled = styled.div.withConfig({

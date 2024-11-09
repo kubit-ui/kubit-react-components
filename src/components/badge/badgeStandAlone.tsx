@@ -1,17 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
 import { Dot } from '@/components/dot/dot';
-//components
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { PopoverControlled as Popover } from '@/components/popover';
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useId } from '@/hooks';
-import { POSITIONS } from '@/types';
-import { AriaLiveOptionType } from '@/types/ariaLiveOption';
+import { useId } from '@/hooks/useId/useId';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
 
+import { POSITIONS } from '../../types/positions/positions';
+import { ButtonType } from '../button/types/type';
+//components
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { PopoverControlled as Popover } from '../popover/popoverControlled';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
 import {
   BadgeContainerStyled,
   BadgeDotStyled,
@@ -19,7 +19,7 @@ import {
   BadgeStyled,
   SpanContainerIconAndDot,
 } from './badge.styled';
-import { DotUseStateType, IBadgeStandAlone } from './types';
+import { DotUseStateType, IBadgeStandAlone } from './types/badge';
 
 const BadgeStandAloneComponent = (
   { dataTestId = 'badge', ...props }: IBadgeStandAlone,

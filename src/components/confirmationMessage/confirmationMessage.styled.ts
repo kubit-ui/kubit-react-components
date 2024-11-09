@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { ALIGN_TYPE, AlignTypeConfirmationMessage } from './types';
+import { ALIGN_TYPE, AlignTypeConfirmationMessage } from './types/confirmationMessage';
 import { ConfirmationMessagePropsStylesType } from './types/confirmationMessageTheme';
 
 type DescriptionPropsStyles = {

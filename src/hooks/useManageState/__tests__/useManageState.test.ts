@@ -1,8 +1,8 @@
 import { waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 
-import { ButtonStateType } from '@/components/button';
-import { STATES } from '@/types';
+import { ButtonStateType } from '@/components/button/types/state';
+import { STATES } from '@/types/states/states';
 
 import { States, useManageState } from '../useManageState';
 

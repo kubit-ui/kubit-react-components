@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Button } from '@/components/button/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { ElementOrIllustration } from '@/components/elementOrIllustration/elementOrIllustration';
 import { Tag } from '@/components/tag/tag';
-import { Text, TextComponentType, TextDecorationType } from '@/components/text';
-import { AriaLiveOptionType } from '@/types';
+import { Text } from '@/components/text/text';
 
-import { Link } from '../link';
+import { AriaLiveOptionType } from '../../types/ariaLiveOption/ariaLiveOption';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { Link } from '../link/link';
+import { TextComponentType } from '../text/types/component';
+import { TextDecorationType } from '../text/types/decoration';
 // styles
 import {
   ActioButtonWrapperStyled,
@@ -22,7 +24,7 @@ import {
   MessageTextStyled,
   ParentContainerStyled,
 } from './message.styled';
-import { IMessageStandAlone } from './types';
+import { IMessageStandAlone } from './types/message';
 
 const MessageStandAloneComponent = (
   {

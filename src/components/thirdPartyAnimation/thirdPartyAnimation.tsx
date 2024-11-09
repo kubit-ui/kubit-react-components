@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 import lottie, { AnimationItem } from 'lottie-web';
 
 import { useStyles } from '@/hooks/useStyles/useStyles';
 
 import { ThirdPartyAnimationStandAlone } from './thirdPartyAnimationStandAlone';
-import { IThirdPartyAnimation } from './types';
+import { IThirdPartyAnimation } from './types/thirdPartyAnimation';
 
 const THIRD_PARTY_ANIMATION_STYLES = 'THIRD_PARTY_ANIMATION_STYLES';
 

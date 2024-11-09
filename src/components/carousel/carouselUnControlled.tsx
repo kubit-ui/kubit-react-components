@@ -1,11 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { isArrowLeftPressed, isArrowRightPressed } from '@/utils';
-
+import { isArrowLeftPressed, isArrowRightPressed } from '../../utils/keyboard/keyboard.utility';
 import { CarouselControlled } from './carouselControlled';
-import { useCarousel } from './hooks';
 import { useAutomateControl } from './hooks/useAutomateControl';
-import { ICarouselUnControlled } from './types';
+import { useCarousel } from './hooks/useCarousel';
+import { ICarouselUnControlled } from './types/carousel';
 
 const CarouselUnControlledComponent = <V extends string | unknown>(
   {
@@ -172,3 +171,5 @@ const CarouselUnControlled = React.forwardRef(CarouselUnControlledComponent) as 
 ) => ReturnType<typeof CarouselUnControlledComponent>;
 
 export { CarouselUnControlled };
+
+export { CarouselUnControlled as Carousel };

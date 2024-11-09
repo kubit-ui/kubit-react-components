@@ -1,5 +1,7 @@
 // external types
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types/index';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
 
 import { ChipStateType } from './state';
 

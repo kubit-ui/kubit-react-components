@@ -7,7 +7,7 @@ import {
   ESCAPE,
   SPACE,
   TAB,
-} from '@/constants';
+} from '@/constants/keyboardKeys/keyboardKeys';
 
 export const isKeyEnterPressed = (key: string): boolean => key === ENTER.key;
 export const isKeySpacePressed = (key: string): boolean => key === SPACE.key;

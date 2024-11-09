@@ -6,7 +6,9 @@ import {
   InputContentPosition,
   InputState,
 } from '@/components/input/types/inputTheme';
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
 
 export type InputPhoneStateProps = InputBasicStateProps & {
   inputVariant?: string;

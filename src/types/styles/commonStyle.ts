@@ -1,4 +1,4 @@
-import { DeviceBreakpointsType } from '../breakpoints';
+import { DeviceBreakpointsType } from '../breakpoints/breakpoints';
 import { AnimationType } from './animation';
 import { BackgroundTypes } from './background';
 import { BorderTypes } from './border';

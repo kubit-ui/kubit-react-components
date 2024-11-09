@@ -1,20 +1,21 @@
 import userEvent from '@testing-library/user-event';
 
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import { Button } from '@/components/button/button';
-import { Icon } from '@/components/icon';
+import { IconBasic as Icon } from '@/components/icon/icon';
 import * as useMediaDevice from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType, ROLES } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { ROLES } from '@/types/role/role';
 import * as hasScrollUtils from '@/utils/scroll/hasScroll';
 
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
 import { Table } from '../table';
-import { FormatListHeaderPriorityType } from '../types';
+import { FormatListHeaderPriorityType } from '../types/formatListHeaderPriority';
 
 const mockBaseNoOneExpanded = {
   variant: 'DEFAULT',

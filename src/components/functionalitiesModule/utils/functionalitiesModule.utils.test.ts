@@ -1,4 +1,4 @@
-import { FunctionalitiesModuleSectionType } from '../types';
+import { FunctionalitiesModuleSectionType } from '../types/functionalitiesModule';
 import { getDefaultTabSeleted } from './functionalitiesModule.utils';
 
 describe('getDefaultTabSeleted utility', () => {

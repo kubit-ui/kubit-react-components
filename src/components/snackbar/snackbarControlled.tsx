@@ -1,10 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { SnackbarStandAlone } from './snackbarStandAlone';
-import { ISnackbarControlled, ISnackbarStandAlone, SnakbarTypeStyleProps } from './types';
+import { ISnackbarControlled, ISnackbarStandAlone } from './types/snackbar';
+import { SnakbarTypeStyleProps } from './types/snackbarTheme';
 
 const SNACKBAR_STYLES = 'SNACKBAR_STYLES';
 

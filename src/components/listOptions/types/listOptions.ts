@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IOption, OptionSublabelType } from '@/components/option';
-import { IText } from '@/components/text';
 import { UseRoveFocusProps } from '@/hooks/useRoveFocus/useRoveFocus';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IOption, OptionSublabelType } from '../../option/types/option';
+import { IText } from '../../text/types/text';
 import { ListOptionsPropsStylesType } from './listOptionsTheme';
 import { ListOptionsType } from './type';
 

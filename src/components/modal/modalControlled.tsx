@@ -1,22 +1,21 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import {
-  useMediaDevice,
-  useScrollDetectionWithAutoFocus,
-  useScrollEffect,
-  useStyles,
-  useSwipeDown,
-  useZoomEffect,
-} from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useScrollDetectionWithAutoFocus } from '@/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
+import { useScrollEffect } from '@/hooks/useScrollEffect/useScrollEffect';
+import { useStyles } from '@/hooks/useStyles/useStyles';
+import { useSwipeDown } from '@/hooks/useSwipeDown/useSwipeDown';
+import { useZoomEffect } from '@/hooks/useZoomEffect/useZoomEffect';
 import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
 import { FallbackComponent } from '@/provider/errorBoundary/fallbackComponent';
-import { DeviceBreakpointsType } from '@/types';
-import { CssProperty } from '@/utils';
 
-import { Portal } from '../portal';
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { CssProperty } from '../../utils/changeCssProperty/changeCssProperty';
+import { Portal } from '../portal/portal';
 import { ModalStandAlone } from './modalStandAlone';
-import type { IModalControlled, IModalStandAlone, ModalBaseStylesType } from './types';
+import { IModalControlled, IModalStandAlone } from './types/modal';
+import { ModalBaseStylesType } from './types/modalTheme';
 
 const MAX_ZOOM = 2.9;
 const CONTAINER_STYLES_EDIT: CssProperty[] = [

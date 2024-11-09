@@ -1,8 +1,8 @@
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn } from '@/types';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { ArgTypesReturn } from '@/types/type/type';
 
-import { TooltipAlignType } from '../types';
+import { TooltipAlignType } from '../types/tooltipAlign';
 
 export const argtypes = (
   variantsObject: IThemeObjectVariants,

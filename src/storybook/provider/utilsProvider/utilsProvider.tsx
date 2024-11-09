@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { UtilsProvider } from '@/provider';
+import { UtilsProvider } from '@/provider/utils/provider';
 import { DateFormatOptions } from '@/provider/utils/types';
-import { FormatWeekdayOptionType } from '@/types';
+import { FormatWeekdayOptionType } from '@/types/date/date';
+import { formatDate } from '@/utils/date/formatDate';
+
 import {
-  formatDate,
   getAddDays,
   getAddMonths,
   getAddYears,
@@ -16,8 +17,8 @@ import {
   isAfter,
   isBefore,
   isDatesEqual,
-  transformDate,
-} from '@/utils/date';
+} from '../../../utils/date/date';
+import { transformDate } from '../../../utils/date/transformDate';
 
 //delete on kubit
 const folder = {

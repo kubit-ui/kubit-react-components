@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 import { useId } from '@/hooks/useId/useId';
-import { AriaLiveOptionType } from '@/types/ariaLiveOption';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
 
-import { ScreenReaderOnly } from '../screenReaderOnly';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
 import {
   CheckboxContainerStyled,
   CheckboxFrameStyled,
@@ -18,9 +18,10 @@ import {
   CheckboxStyled,
   CheckedIcon,
 } from './checkbox.styled';
-import { CheckboxErrorStandAlone } from './components';
-import { ICheckboxStandAlone } from './types';
-import { buildAriaDescribedBy, checkboxState } from './utils';
+import { CheckboxErrorStandAlone } from './components/checkboxErrorStandAlone';
+import { ICheckboxStandAlone } from './types/checkbox';
+import { buildAriaDescribedBy } from './utils/aria.utils';
+import { checkboxState } from './utils/state.utils';
 
 const CURSOR_POINTER = 'pointer';
 const CURSOR_DEFAULT = 'default';

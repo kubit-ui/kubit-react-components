@@ -1,8 +1,8 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { AriaLiveOptionType } from '@/types';
-import { OptionType } from '@/types/option';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
+import { OptionType } from '@/types/option/option';
 
-import { RadioButtonStateType } from '../components/radioButton/types';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { RadioButtonStateType } from '../components/radioButton/types/state';
 
 export type RadioButtonOptionType = OptionType & {
   description?: JSX.Element | string;

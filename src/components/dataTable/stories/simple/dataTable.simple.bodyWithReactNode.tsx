@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { TagV2 } from '@/components/tagV2';
-import { variantsObject } from '@/designSystem/themesObject';
+import { TagV2 } from '@/components/tagV2/tag';
+import { variantsObject } from '@/designSystem/themesObject/themesObject';
 
-import { IDataTable } from '../../types';
+import { IDataTable } from '../../types/dataTable';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 

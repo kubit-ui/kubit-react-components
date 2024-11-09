@@ -1,6 +1,7 @@
 import { CSSProp, css } from 'styled-components';
 
-import { InputHelpMessagePosition } from '@/components/input/types';
+import { POSITIONS } from '@/types/positions/positions';
+
 // mixins
 import {
   contentBottomMargin,
@@ -8,8 +9,8 @@ import {
   innerRightContentPosition,
   inputPadding,
   labelInTopStyles,
-} from '@/styles/mixins';
-import { POSITIONS } from '@/types/positions';
+} from '../../../styles/mixins/input.mixin';
+import { InputHelpMessagePosition } from '../types/inputTheme';
 
 const getLeftExtraStyles = (
   affixPosition?: POSITIONS,

@@ -1,7 +1,8 @@
-import { PillSelectorThemeType } from '@/components/pillSelector/types';
+import { PillSelectorThemeType } from '@/components/pillSelector/types/pillSelectorTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, RADIUS, SPACINGS } from '../../foundations';
 import { PillSelectorVariant } from './variants';
 
 export const getPillSelectorStyles = (COLORS: {

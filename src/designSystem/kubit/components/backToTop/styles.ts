@@ -1,9 +1,14 @@
 // types
-import { BackToTopStateType, BackToTopVariantStyles } from '@/components/backToTop/types';
-import { DeviceBreakpointsType } from '@/types';
+import { BackToTopVariantStyles } from '@/components/backToTop/types/backToTopTheme';
+import { BackToTopStateType } from '@/components/backToTop/types/state';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 //constants
-import { COLORS, SHADOW, SIZES, SPACINGS, Z_INDEX } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SHADOW } from '../../foundations/shadow';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { Z_INDEX } from '../../foundations/zIndex';
 import { BackToTopVariantsType } from './variants';
 
 export const BACK_TO_TOP_STYLES: BackToTopVariantStyles<BackToTopVariantsType> = {

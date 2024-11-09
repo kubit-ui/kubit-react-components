@@ -1,10 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ROLES } from '@/types';
-
+import { ROLES } from '../../types/role/role';
 // styles
 import { ThirdPartyAnimationStyled } from './thirdPartyAnimation.styled';
-import { IThirdPartyAnimationStandAlone } from './types';
+import { IThirdPartyAnimationStandAlone } from './types/thirdPartyAnimation';
 
 const ThirdPartyAnimationStandAloneComponent = (
   { dataTestId = 'third-party-animation', height, width, ...props }: IThirdPartyAnimationStandAlone,

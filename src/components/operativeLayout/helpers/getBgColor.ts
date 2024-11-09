@@ -1,6 +1,6 @@
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { IOperativeLayoutBiColor } from '../types';
+import { IOperativeLayoutBiColor } from '../types/operativeLayout';
 
 const MAX_PERCENTAGE = 100;
 

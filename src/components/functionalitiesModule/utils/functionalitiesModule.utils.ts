@@ -1,4 +1,4 @@
-import { FunctionalitiesModuleSectionType } from '../types';
+import { FunctionalitiesModuleSectionType } from '../types/functionalitiesModule';
 
 export const getDefaultTabSeleted = (
   selectedValue?: string | number,

@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { PillTypeV2, PillV2 } from '@/components/pillV2';
-
+import { Pill as PillV2 } from '../pillV2/pill';
+import { PillType } from '../pillV2/types/pillType';
 import { RootContainerStyled } from './pillSelector.styled';
-import { IPillSelectorStandAlone, PillSelectorType } from './types';
+import { IPillSelectorStandAlone } from './types/pillSelector';
+import { PillSelectorType } from './types/pillSelectorType';
 
 const PillSelectorStandAloneComponent = (
   { dataTestId = 'pill-selector', ...props }: IPillSelectorStandAlone,
@@ -31,8 +32,8 @@ const PillSelectorStandAloneComponent = (
             size={pill.size ?? props.styles?.pill?.size}
             type={
               props.type === PillSelectorType.SELECTOR_MULTIPLE
-                ? PillTypeV2.SELECTOR_MULTIPLE
-                : PillTypeV2.SELECTOR_SIMPLE
+                ? PillType.SELECTOR_MULTIPLE
+                : PillType.SELECTOR_SIMPLE
             }
             value={pill.value}
             variant={pill.variant ?? props.styles?.pill?.variant}

@@ -1,9 +1,9 @@
-import { IDot } from '@/components/dot';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IPopoverControlled } from '@/components/popover';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IDot } from '../../dot/types/dot';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IPopoverControlled } from '../../popover/types/popover';
+import { IText } from '../../text/types/text';
 import { BadgeSizePropsType, BadgeStatusIcon, BadgeVariantStylesType } from './badgeTheme';
 
 export type BadgeLabelType = Omit<IText<string>, 'children'> & {

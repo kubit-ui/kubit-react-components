@@ -1,7 +1,8 @@
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { ArgTypesReturn } from '@/types';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { ArgTypesReturn } from '@/types/type/type';
 
-import { CssAnimationExecuteOption, CssAnimationVariants } from '../types';
+import { CssAnimationExecuteOption } from '../types/cssAnimation';
+import { CssAnimationVariants } from '../types/variant';
 
 export const argtypes = (): ArgTypesReturn => {
   return {

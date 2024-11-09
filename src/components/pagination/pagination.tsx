@@ -1,14 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useMediaDevice, useStyles } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useStyles } from '@/hooks/useStyles/useStyles';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 // helpers
-import { buildstepsNumber } from './helpers';
+import { buildstepsNumber } from './helpers/getMaxCountersNumber';
 import { PaginationStandAlone } from './paginationStandAlone';
-import { PaginationStyledProps } from './types';
 // interfaces
 import { IPagination, IPaginationStandAlone } from './types/pagination';
+import { PaginationStyledProps } from './types/paginationTheme';
 
 const PAGINATION_STYLES = 'PAGINATION_STYLES';
 

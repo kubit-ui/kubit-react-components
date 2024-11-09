@@ -1,13 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
-import { INTERNAL_ERROR_EXECUTION, InputTypeType, MASK_TYPE } from '@/components/input/types';
-import { useStyles } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useStyles } from '@/hooks/useStyles/useStyles';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { INTERNAL_ERROR_EXECUTION, MASK_TYPE } from '../input/types/input';
+import { InputTypeType } from '../input/types/inputType';
 import { useInputDate } from './hooks/useInputDate';
 import { InputDateStandAlone } from './inputDateStandAlone';
-import { IInputDate, IInputDateStandAlone, InputDateStylesProps } from './types';
-import { getMask, getPlaceholder } from './utils';
+import { IInputDate, IInputDateStandAlone } from './types/inputDate';
+import { InputDateStylesProps } from './types/inputDateTheme';
+import { getMask } from './utils/getMask';
+import { getPlaceholder } from './utils/getPlaceholder';
 
 const INPUT_DATE_STYLES = 'INPUT_DATE_STYLES';
 

@@ -1,20 +1,14 @@
-import {
-  InputDigitSequenceStateType,
-  InputDigitSequenceStylesType,
-} from '@/components/inputDigitSequence/types';
-import { DeviceBreakpointsType } from '@/types';
+import { InputDigitSequenceStylesType } from '@/components/inputDigitSequence/types/inputDigitSequenceTheme';
+import { InputDigitSequenceStateType } from '@/components/inputDigitSequence/types/state';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import {
-  BORDERS,
-  COLORS,
-  FONT_FAMILY,
-  FONT_WEIGHT,
-  PARAGRAPH,
-  SIZES,
-  SPACINGS,
-} from '../../foundations';
-import { ButtonSizeType } from '../button';
-import { TextVariantType } from '../text';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_FAMILY, FONT_WEIGHT, PARAGRAPH } from '../../foundations/typography';
+import { ButtonSizeType } from '../button/variants';
+import { TextVariantType } from '../text/variants';
 import { InputDigitSequenceVariant } from './variants';
 
 const commonProps = {

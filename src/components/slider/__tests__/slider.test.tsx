@@ -1,15 +1,15 @@
 import userEvent from '@testing-library/user-event';
 
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
-import { renderProvider } from 'tests/renderProvider/renderProvider.utility';
 
-import { ROLES } from '@/types';
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+import { ROLES } from '@/types/role/role';
 
 import { Slider } from '../slider';
-import { SliderButtonType } from '../types';
+import { SliderButtonType } from '../types/slider';
 import * as SliderUtils from '../utils/slider.utils';
 
 const mockSimpleSliderProps = {

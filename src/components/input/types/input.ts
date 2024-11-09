@@ -1,10 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { CSSProp } from 'styled-components';
 
-import { IButton } from '@/components/button/types';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IIconHighlighted, IconHighlightedSizeType } from '@/components/iconHighlighted';
 import {
   InputCounterStateProps,
   InputCounterStylesProps,
@@ -29,11 +26,18 @@ import {
   InputSearchStateProps,
   InputSearchStylesProps,
 } from '@/components/inputSearch/types/inputSearchTheme';
-import { ILabelStandAlone } from '@/components/label';
-import { ILoader } from '@/components/loader/types';
-import { IText } from '@/components/text';
-import { AriaLiveOptionType, CustomTokenTypes, InputModeType, ROLES } from '@/types';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { InputModeType } from '@/types/inputMode/inputMode';
+import { ROLES } from '@/types/role/role';
 
+import { IButton } from '../../button/types/button';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IIconHighlighted } from '../../iconHighlighted/types/iconHighlighted';
+import { IconHighlightedSizeType } from '../../iconHighlighted/types/size';
+import { ILabelStandAlone } from '../../label/types/label';
+import { ILoader } from '../../loader/types/loader';
+import { IText } from '../../text/types/text';
 // themes
 import { InputIconPosition, InputState } from './inputTheme';
 import { InputTypeType } from './inputType';

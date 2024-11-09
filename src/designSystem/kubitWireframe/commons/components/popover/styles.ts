@@ -1,8 +1,11 @@
-import { CssAnimationTimingFunction, CssAnimationVariants } from '@/components/cssAnimation/types';
-import { PopoverPositionVariantType, PopoverStylesType } from '@/components/popover/types';
-import { DeviceBreakpointsType, POSITIONS } from '@/types';
+import { CssAnimationTimingFunction } from '@/components/cssAnimation/types/cssAnimation';
+import { CssAnimationVariants } from '@/components/cssAnimation/types/variant';
+import { PopoverStylesType } from '@/components/popover/types/popoverTheme';
+import { PopoverPositionVariantType } from '@/components/popover/types/positionVariant';
+import { Z_INDEX } from '@/designSystem/kubitWireframe/commons/foundations/zIndex';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { POSITIONS } from '@/types/positions/positions';
 
-import { Z_INDEX } from '../../foundations';
 import { PopoverVariantType } from './variants';
 
 export const POPOVER_STYLES: PopoverStylesType<PopoverVariantType> = {

@@ -1,6 +1,6 @@
 // helper
-import { CheckboxStateType } from '../types';
-import { checkboxState } from '../utils';
+import { CheckboxStateType } from '../types/state';
+import { checkboxState } from '../utils/state.utils';
 
 it('Should return isChecked = true and isDisabled = false, when the state is DEFAULT_SELECTED', () => {
   const { isChecked, isDisabled } = checkboxState(CheckboxStateType.DEFAULT_SELECTED);

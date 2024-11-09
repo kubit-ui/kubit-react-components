@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Button } from '@/components/button/button';
 import { IconPositionType } from '@/components/button/types/buttonIconPosition';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { AriaLiveOptionType } from '@/types';
 
-import { InputDigit, InputDigitSequenceHelpText, InputDigitSequenceTooltip } from './components';
+import { AriaLiveOptionType } from '../../types/ariaLiveOption/ariaLiveOption';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { InputDigit } from './components/inputDigit';
+import { InputDigitSequenceHelpText } from './components/inputDigitSequenceHelpText';
+import { InputDigitSequenceTooltip } from './components/inputDigitSquenceTooltip';
 import {
   AnimationInputsContainer,
   ButtonContainer,
@@ -17,7 +19,7 @@ import {
   ParentContainer,
   TitleTooltipContainer,
 } from './inputDigitSequence.styled';
-import { IInputDigitSequenceStandAlone } from './types';
+import { IInputDigitSequenceStandAlone } from './types/inputDigitSequence';
 
 const InputDigitSequenceStandAloneComponent = (
   {

@@ -1,4 +1,4 @@
-import { PillStateType } from '../types';
+import { PillStateType } from '../types/state';
 
 export const getPillState = (isSelected = false, disabled = false): PillStateType => {
   if (isSelected && !disabled) {

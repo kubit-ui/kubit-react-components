@@ -1,4 +1,4 @@
-import { translateValue } from '@/utils';
+import { translateValue } from '../../../utils/translateValue/translateValue';
 
 const FIRST_QUARTER = 25;
 const SECOND_QUARTER = 50;

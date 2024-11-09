@@ -1,12 +1,13 @@
 import { ReactNode } from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IFooter } from '@/components/footer';
-import { IPopoverControlled } from '@/components/popover';
-import { IText, TextComponentType } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IFooter } from '../../footer/types/footer';
+import { IPopoverControlled } from '../../popover/types/popover';
+import { TextComponentType } from '../../text/types/component';
+import { IText } from '../../text/types/text';
 import { DrawerDeviceStyleType, DrawerVariantStylesType } from './drawerTheme';
 import { DrawerLevelPositionTypes } from './level';
 

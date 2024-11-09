@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import React from 'react';
 
-import { Radius as BaseBorders } from '../components';
+import { Radius as BaseBorders } from '../components/radius/radius';
 
 export const Radius = (): JSX.Element => {
   return <BaseBorders />;

@@ -1,4 +1,4 @@
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
 import { TableFootPropsStylesType } from './tableFootTheme';
 

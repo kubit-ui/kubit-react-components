@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { ILoaderStyled } from './types';
+import { ILoaderStyled } from './types/loader';
 
 export const LoaderStyled = styled.span<ILoaderStyled>`
   ${props => getStyles(props.styles.container)}

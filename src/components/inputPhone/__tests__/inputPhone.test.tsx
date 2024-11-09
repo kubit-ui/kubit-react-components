@@ -1,14 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { IconHighlightedType } from '@/components/iconHighlighted';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
+import { IconHighlightedType } from '../../iconHighlighted/types/type';
 // fixture
 import { prefixOptions } from '../fixture/prefixOptions';
 import { InputPhone } from '../inputPhone';
-import { IInputPhone } from '../types';
+import { IInputPhone } from '../types/inputPhone';
 
 const mockProps: IInputPhone = {
   flag: { icon: prefixOptions.flag, altText: 'flag' },

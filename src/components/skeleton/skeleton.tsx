@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { SkeletonStandAlone } from './skeletonStandAlone';
-import { ISkeleton, ISkeletonStandAlone } from './types';
+import { ISkeleton, ISkeletonStandAlone } from './types/skeleton';
 import { SkeletonShapeStylesType } from './types/skeletonTheme';
 
 const SKELETON_STYLES = 'SKELETON_STYLES';

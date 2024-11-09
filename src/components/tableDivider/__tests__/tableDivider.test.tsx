@@ -5,7 +5,7 @@ import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { TableDivider } from '../index';
+import { TableDivider } from '../tableDivider';
 
 const mockProps = {
   variant: 'DEFAULT',

@@ -1,19 +1,19 @@
 // types
-import { BreadcrumbsStateType, BreadcrumbsStylesType } from '@/components/breadcrumbs/types';
-import { TextDecorationType } from '@/components/text/types';
-import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
-import { DeviceBreakpointsType } from '@/types';
-
 // constants
+import { BreadcrumbsStylesType } from '@/components/breadcrumbs/types/breadcrumbsTheme';
+import { BreadcrumbsStateType } from '@/components/breadcrumbs/types/state';
+import { TextDecorationType } from '@/components/text/types/decoration';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import {
-  BORDERS,
   FONT_WEIGHT,
   PARAGRAPH,
-  RADIUS,
-  SIZES,
-  SPACINGS,
   TEXT_ALIGN,
-} from '../../foundations';
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
+import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+
 import { BreadcrumbsVariantType } from './variants';
 
 export const getBreadcrumbsStyles = (COLORS: {

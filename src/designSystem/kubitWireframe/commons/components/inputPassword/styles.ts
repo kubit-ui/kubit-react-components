@@ -1,5 +1,5 @@
-import { InputState } from '@/components/input/types';
-import { InputPasswordStylesType } from '@/components/inputPassword/types';
+import { InputState } from '@/components/input/types/inputTheme';
+import { InputPasswordStylesType } from '@/components/inputPassword/types/inputPasswordTheme';
 
 import { InputPasswordVariant } from './variants';
 

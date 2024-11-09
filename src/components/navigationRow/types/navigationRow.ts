@@ -1,9 +1,10 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IIconHighlighted, IconHighlightedSizeType } from '@/components/iconHighlighted/types';
-import { LineSeparatorLinePropsStylesType } from '@/components/lineSeparator';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IIconHighlighted } from '../../iconHighlighted/types/iconHighlighted';
+import { IconHighlightedSizeType } from '../../iconHighlighted/types/size';
+import { LineSeparatorLinePropsStylesType } from '../../lineSeparator/types/lineSeparatorTheme';
+import { IText } from '../../text/types/text';
 import { NavigationRowStylesPropsType } from './navigationRowTheme';
 
 export interface INavigationRowStyled {

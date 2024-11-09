@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
 /**
  * @name IItemRove

@@ -1,6 +1,7 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { CustomTokenTypes, FormatWeekdayOptionType } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { FormatWeekdayOptionType } from '@/types/date/date';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import { CalendarContainerStylesType } from './calendarTheme';
 import { CalendarVariantType } from './variant';
 

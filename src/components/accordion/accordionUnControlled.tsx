@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { AccordionControlled } from './accordionControlled';
-import type { IAccordion } from './types';
+import type { IAccordion } from './types/accordion';
 
 const AccordionUnControlledComponent = <V extends string | undefined>(
   { children, defaultOpen = false, triggerButton, onOpenClose, ...props }: IAccordion<V>,
@@ -42,3 +42,5 @@ const AccordionUnControlled = React.forwardRef(AccordionUnControlledComponent) a
 ) => ReturnType<typeof AccordionUnControlledComponent>;
 
 export { AccordionUnControlled };
+
+export { AccordionUnControlled as Accordion };

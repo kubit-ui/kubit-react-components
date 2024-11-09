@@ -1,4 +1,7 @@
-import { DecorativePropsType, DecorativeType } from '@/components/decorativeElement/types';
+import {
+  DecorativePropsType,
+  DecorativeType,
+} from '@/components/decorativeElement/types/decorativeElement';
 
 export const buildPropsDecorativeElement = <T, S = undefined>(
   element?: DecorativePropsType,

@@ -4,12 +4,12 @@ import {
   additionalInfoAction,
   labelSecondary,
 } from '@/components/input/components/stories/stories';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
-import { POSITIONS } from '@/types';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
+import { POSITIONS } from '@/types/positions/positions';
 
 import { InputCurrency as Story } from '../inputCurrency';
-import { IInputCurrency } from '../types';
+import { IInputCurrency } from '../types/inputCurrency';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

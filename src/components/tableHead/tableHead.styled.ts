@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-import { srOnlyMixin } from '@/styles';
-import { getStyles, getTypographyStyles } from '@/utils';
-
-import { TableHeadPropsStylesType } from './types';
+import { srOnlyMixin } from '../../styles/mixins/srOnly.mixin';
+import { getStyles, getTypographyStyles } from '../../utils/getStyles/getStyles';
+import { TableHeadPropsStylesType } from './types/tableHeadTheme';
 
 export const THeadStyled = styled.thead<{
   $styles?: TableHeadPropsStylesType;

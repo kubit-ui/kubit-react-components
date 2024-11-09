@@ -2,9 +2,9 @@ import '@testing-library/jest-dom';
 
 import { RenderResult, render } from '@testing-library/react';
 import { RenderHookResult, renderHook } from '@testing-library/react-hooks';
-import * as React from 'react';
+import React from 'react';
 
-import { KubitProvider } from '@/provider/kubitProvider';
+import { KubitProvider } from '@/provider/kubitProvider/kubitProvider';
 
 export const renderProvider = (node: React.ReactElement): RenderResult => {
   const Wrapper = ({ children }: React.PropsWithChildren) => (

@@ -1,21 +1,18 @@
-import {
-  DrawerLevelPositionTypes,
-  DrawerStylesType,
-  DrawerVariantPositionTypes,
-} from '@/components/drawer/types';
-import { CommonStyleType, DeviceBreakpointsType, IconTypes, TypographyTypes } from '@/types';
+import { DrawerStylesType } from '@/components/drawer/types/drawerTheme';
+import { DrawerLevelPositionTypes } from '@/components/drawer/types/level';
+import { DrawerVariantPositionTypes } from '@/components/drawer/types/variantPosition';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
 
-import {
-  BORDERS,
-  COLORS,
-  FONT_WEIGHT,
-  RADIUS,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-  Z_INDEX,
-} from '../../foundations';
-import { TextVariantType } from '../text';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
+import { Z_INDEX } from '../../foundations/zIndex';
+import { TextVariantType } from '../text/variants';
 import { FooterVariants } from '../variants';
 import { DrawerVariantType } from './variants';
 

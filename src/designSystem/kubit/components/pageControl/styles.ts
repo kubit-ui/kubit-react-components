@@ -1,12 +1,17 @@
 import {
-  ArrowsControlCommonProps,
   ArrowsControlState,
-  PageControlCommonProps,
   PageControlState,
+} from '@/components/pageControl/types/pageControlStates';
+import {
+  ArrowsControlCommonProps,
+  PageControlCommonProps,
   PageControlStylesType,
-} from '@/components/pageControl/types';
+} from '@/components/pageControl/types/pageControlTheme';
 
-import { COLORS, RADIUS, SIZES, SPACINGS } from '../../foundations';
+import { RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
 import { ArrowsControlVariant, PageControlVariant } from './variants';
 
 const commonProps: PageControlCommonProps = {

@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonStateType } from '@/components/button';
 import { ButtonStyled } from '@/components/button/button.styled';
 import { ButtonStandAloneStructure } from '@/components/button/buttonStandAlone';
-import { Text } from '@/components/text';
-import { TextDecorationType } from '@/components/text/types';
+import { Text } from '@/components/text/text';
 
+import { ButtonStateType } from '../../button/types/state';
+import { TextDecorationType } from '../../text/types/decoration';
 import { ILinkAsButtonStandAlone } from '../types/link';
 import { LinkAsButtonWrapperStyled } from './linkAsButton.styled';
 

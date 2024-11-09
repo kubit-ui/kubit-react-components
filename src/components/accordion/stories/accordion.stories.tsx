@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { TextComponentType } from '@/components/text';
 import { ToggleUnControlled } from '@/components/toggle/toggleUnControlled';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
+import { TextComponentType } from '../../text/types/component';
 import { AccordionUnControlled as AccordionStory } from '../accordionUnControlled';
 import { argtypes } from './argtypes';
 

@@ -1,7 +1,8 @@
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { getBgColor, getHorizontalMargin } from '../helpers';
-import { IOperativeLayoutHorizontalMargin } from '../types';
+import { getBgColor } from '../helpers/getBgColor';
+import { getHorizontalMargin } from '../helpers/getHorizontalMargin';
+import { IOperativeLayoutHorizontalMargin } from '../types/operativeLayout';
 
 describe('OperativeLayout helpers - getBgColor', () => {
   const mainContainerWidth = 1080;

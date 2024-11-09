@@ -1,9 +1,9 @@
-import { IDot } from '@/components/dot';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILink } from '@/components/link';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IDot } from '../../dot/types/dot';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { ILink } from '../../link/types/link';
+import { IText } from '../../text/types/text';
 import { AvatarContentStylesType, AvatarSizeStylesType } from './avatarTheme';
 import { AvatarBackgroundColor, AvatarContentType } from './content';
 

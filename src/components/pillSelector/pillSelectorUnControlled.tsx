@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { PillSelectorControlled } from './pillSelectorControlled';
-import type { IPillSelectorUnControlled } from './types';
+import type { IPillSelectorUnControlled } from './types/pillSelector';
 
 const PillSelectorUnControlledComponent = <V extends string | unknown>(
   { defaultSelected = [], multiSelect = false, ...props }: IPillSelectorUnControlled<V>,
@@ -49,3 +49,5 @@ const PillSelectorUnControlled = React.forwardRef(PillSelectorUnControlledCompon
  * @deprecated Try the new PillSelectorV2 component
  */
 export { PillSelectorUnControlled };
+
+export { PillSelectorUnControlled as PillSelector };

@@ -1,6 +1,10 @@
-import { TableCellStylesType } from '@/components';
+import { TableCellStylesType } from '@/components/tableCell/types/tableCellTheme';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import {
+  FONT_WEIGHT,
+  PARAGRAPH,
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
 
-import { FONT_WEIGHT, PARAGRAPH, SPACINGS } from '../../foundations';
 import { TableCellVariantType } from './variants';
 
 export const getTableCellStyles = (COLORS: {

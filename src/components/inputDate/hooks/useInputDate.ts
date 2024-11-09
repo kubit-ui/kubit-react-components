@@ -8,15 +8,18 @@ import {
   useState,
 } from 'react';
 
-import { useInternalValidations } from '@/components/input/hooks';
-import { ERROR_EXECUTION, InternalErrorType } from '@/components/input/types';
-import { verifyDate } from '@/components/inputDate/utils';
 import { ParamsTypeInputHook, ReturnTypeInputHook } from '@/hooks/useInput/types/inputHook';
 import { useInput } from '@/hooks/useInput/useInput';
-import { useUtilsProvider } from '@/provider/utils';
-import { formatDateToNative, formatDateToUTC, syntheticDate } from '@/utils';
+import { useUtilsProvider } from '@/provider/utils/provider';
 
-import { SelectedDate } from '../types';
+import { formatDateToUTC } from '../../../utils/date/formatDate';
+import { formatDateToNative } from '../../../utils/syntheticComponents/syntheticDate/helper/formatDateToNative';
+import { syntheticDate } from '../../../utils/syntheticComponents/syntheticDate/syntheticDate';
+import { useInternalValidations } from '../../input/hooks/useInternalValidations';
+import { ERROR_EXECUTION } from '../../input/types/input';
+import { InternalErrorType } from '../../input/types/internalErrors';
+import { SelectedDate } from '../types/inputDate';
+import { verifyDate } from '../utils/verifyDate';
 
 type ParamsType = ParamsTypeInputHook & {
   // modifiers

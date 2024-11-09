@@ -1,4 +1,5 @@
-import { CommonStyleType, POSITIONS } from '@/types';
+import { POSITIONS } from '@/types/positions/positions';
+import { CommonStyleType } from '@/types/styles/commonStyle';
 
 export type FunctionalitiesModuleVariantStylesType = {
   tabsContainer?: CommonStyleType;

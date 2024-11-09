@@ -1,17 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
 import { CheckboxControlled } from '@/components/checkbox/checkboxControlled';
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
-import { Text } from '@/components/text';
-import { TextComponentType } from '@/components/text/types';
+import { Text } from '@/components/text/text';
 import { useId } from '@/hooks/useId/useId';
 
+import { TextComponentType } from '../text/types/component';
 import {
   CheckBoxWithLabelContainerStyled,
   CheckboxWithLabelContentStyled,
   CheckboxWithLabelStyled,
 } from './checkboxWithLabelStyled';
-import type { ICheckboxWithLabelStandAlone } from './types';
+import type { ICheckboxWithLabelStandAlone } from './types/checkboxWithLabel';
 
 const CheckboxWithLabelStandAloneComponent = <V extends string | unknown>(
   {

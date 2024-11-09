@@ -1,11 +1,11 @@
 import userEvent from '@testing-library/user-event';
 
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { CssAnimation } from '../index';
+import { CssAnimation } from '../cssAnimation';
 import { CssAnimationExecuteOption, CssAnimationTimingFunction } from '../types/cssAnimation';
 import { CssAnimationVariants } from '../types/variant';
 

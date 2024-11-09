@@ -1,17 +1,16 @@
-import { TooltipStylesType } from '@/components/tooltip/types';
-import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
-import { DeviceBreakpointsType } from '@/types';
-
+import { TooltipStylesType } from '@/components/tooltip/types/tooltipTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import {
-  BORDERS,
   FONT_WEIGHT,
-  RADIUS,
-  SIZES,
-  SPACINGS,
   TEXT_ALIGN,
-  Z_INDEX,
-} from '../../foundations';
-import { TextVariantType } from '../text';
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
+import { Z_INDEX } from '@/designSystem/kubitWireframe/commons/foundations/zIndex';
+import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+
+import { TextVariantType } from '../../../../kubit/components/text/variants';
 import { PopoverVariantType } from '../variants';
 import { TooltipVariantType } from './variants';
 

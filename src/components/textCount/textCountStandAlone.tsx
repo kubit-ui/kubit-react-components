@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { AriaLiveOptionType } from '@/types/ariaLiveOption';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
 
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
 import { TextCountContainerStyled } from './textCount.styled';
 import { ITextCountStandAlone } from './types/textCount';
 

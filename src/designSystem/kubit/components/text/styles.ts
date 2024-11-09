@@ -1,6 +1,6 @@
-import { TextStylesType } from '@/components/text/types';
+import { TextStylesType } from '@/components/text/types/textTheme';
 
-import { FONT_FAMILY, HEADING, PARAGRAPH } from '../../foundations';
+import { FONT_FAMILY, HEADING, PARAGRAPH } from '../../foundations/typography';
 import { TextVariantType } from './variants';
 
 export const TEXT_STYLES: TextStylesType<TextVariantType> = {

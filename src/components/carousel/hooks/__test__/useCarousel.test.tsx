@@ -1,6 +1,6 @@
 import { act, fireEvent } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
-import * as React from 'react';
+import React from 'react';
 
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
 import * as focusHandlers from '@/utils/focusHandlers/focusHandlers';

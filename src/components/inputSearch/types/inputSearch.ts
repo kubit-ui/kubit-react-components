@@ -1,20 +1,21 @@
 import { ReactNode } from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import {
   IInputStandAlone,
   INTERNAL_ERROR_EXECUTION,
   InputHelpMessageType,
   InputLabelType,
-  InputState,
   InputStylesProps,
-} from '@/components/input/types';
-import { ListOptionsOptionType } from '@/components/listOptions';
-import { ILoader } from '@/components/loader/types';
-import { OptionSublabelType } from '@/components/option';
-import { IText } from '@/components/text/types';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
-
+} from '../../input/types/input';
+import { InputState } from '../../input/types/inputTheme';
+import { ListOptionsOptionType } from '../../listOptions/types/listOptions';
+import { ILoader } from '../../loader/types/loader';
+import { OptionSublabelType } from '../../option/types/option';
+import { IText } from '../../text/types/text';
 import {
   InputSearchListOptionsProps,
   InputSearchStateProps,

@@ -1,7 +1,11 @@
-import { DividerEmbebed, DividerStylesType } from '@/components/divider/types';
+import { DividerEmbebed } from '@/components/divider/types/dividerEmbebed';
+import { DividerStylesType } from '@/components/divider/types/dividerTheme';
+import { RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 
-import { FONT_WEIGHT, RADIUS, SIZES, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { TextVariantType } from '../../../../kubit/components/text/variants';
 import { TooltipVariantType } from '../variants';
 import { DividerVariantType } from './variants';
 

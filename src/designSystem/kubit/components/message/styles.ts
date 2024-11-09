@@ -1,7 +1,11 @@
-import { MessageStylesType } from '@/components/message/types';
-import { DeviceBreakpointsType } from '@/types';
+import { MessageStylesType } from '@/components/message/types/messageTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { BORDERS, COLORS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS } from '../../foundations';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import { TextVariantType } from '../text/variants';
 import { MessageVariantType } from './variants';
 

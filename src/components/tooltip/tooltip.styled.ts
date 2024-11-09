@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { focusVisibleAlt } from '@/styles/mixins';
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { TooltipAlignType, TooltipVariantStylesProps } from './types';
+import { focusVisibleAlt } from '../../styles/mixins/focusAlt.mixin';
+import { TooltipAlignType } from './types/tooltipAlign';
+import { TooltipVariantStylesProps } from './types/tooltipTheme';
 
 type TooltipStylesPropsTypes = {
   styles: TooltipVariantStylesProps;

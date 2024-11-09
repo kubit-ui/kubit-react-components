@@ -1,5 +1,8 @@
 // External types
-import { CommonStyleType, IconTypes, PaddingTypes, TypographyTypes } from '@/types/styles';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { PaddingTypes } from '@/types/styles/padding';
+import { TypographyTypes } from '@/types/styles/typography';
 
 import type { ButtonStateType } from './state';
 

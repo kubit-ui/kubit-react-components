@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import { IButton } from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IElementOrillustration } from '@/components/elementOrIllustration';
-import { ILink } from '@/components/link';
-import type { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IButton } from '../../button/types/button';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IElementOrillustration } from '../../elementOrIllustration/types/elementOrIllustration';
+import { ILink } from '../../link/types/link';
+import type { IText } from '../../text/types/text';
 import { EmptyStatePropsStylesType, EmptyStateVariantStylesType } from './emptyStateTheme';
 
 export type EmptyStateTitleType = Omit<IText<string>, 'children'> & {

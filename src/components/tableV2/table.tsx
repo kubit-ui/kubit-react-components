@@ -1,16 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStylesV2 } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
 
-import {
-  useTableHasScroll,
-  useTableShadow,
-  useTableStickyLeftColumns,
-  useTableStickyRightColumns,
-} from './hooks';
+import { useTableHasScroll } from './hooks/useTableHasScroll';
+import { useTableShadow } from './hooks/useTableShadow';
+import { useTableStickyLeftColumns } from './hooks/useTableStickyLeftColumns';
+import { useTableStickyRightColumns } from './hooks/useTableStickyRightColumns';
 import { TableStandAlone } from './tableStandAlone';
-import { ITableV2, TablePropsStylesTypeV2 } from './types';
+import { ITableV2 } from './types/table';
+import { TablePropsStylesTypeV2 } from './types/tableTheme';
 
 const TableComponent = (
   {
@@ -52,3 +51,5 @@ const TableComponent = (
 };
 
 export const Table = React.forwardRef(TableComponent);
+
+export { Table as TableV2 };

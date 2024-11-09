@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { DotStyled } from './dot.styled';
 import { IDotStandAlone } from './types/dot';

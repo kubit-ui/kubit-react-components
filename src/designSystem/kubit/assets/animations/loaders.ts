@@ -1,6 +1,6 @@
 import { CSSProp, css, keyframes } from 'styled-components';
 
-import { SIZES } from '../../foundations';
+import { SIZES } from '../../foundations/sizes';
 
 const rotate = keyframes`
   from {

@@ -1,10 +1,10 @@
 import React, { ForwardedRef, forwardRef, useCallback, useMemo } from 'react';
 
 import { ListOptions } from '@/components/listOptions/listOptions';
-import { keyDownMove, keyUpMove } from '@/components/listOptions/utils';
+import { keyDownMove, keyUpMove } from '@/components/listOptions/utils/listOptions.utils';
 
 import { MultipleRef } from '../hooks/useInputDropdown';
-import { IOptionsListDropdownList } from '../types';
+import { IOptionsListDropdownList } from '../types/inputDropdown';
 import { LoadingIcon } from './loadingIcon';
 
 export const OptionsListComponent = (

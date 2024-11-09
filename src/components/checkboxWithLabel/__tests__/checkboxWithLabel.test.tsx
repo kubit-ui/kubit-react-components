@@ -1,9 +1,10 @@
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { renderProvider } from '../../../tests/renderProvider/renderProvider.utility';
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+
 import { CheckboxWithLabelUncontrolled } from '../checkboxWithLabelUncontrolled';
 
 describe('Checkbox with label', () => {

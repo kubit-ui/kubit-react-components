@@ -1,16 +1,12 @@
-import { TableStylesType } from '@/components/table/types';
-import { DeviceBreakpointsType } from '@/types';
+import { TableStylesType } from '@/components/table/types/tableTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import {
-  BORDERS,
-  COLORS,
-  FONT_WEIGHT,
-  PARAGRAPH,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-} from '../../foundations';
-import { TextVariantType } from '../text';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, PARAGRAPH, TEXT_ALIGN } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import {
   DividerVariantType,
   FooterVariants,

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 //utils
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import type { IModalStyled } from './types';
+import type { IModalStyled } from './types/modal';
 
 type ModalShowScrollType = {
   $minContentHeight?: string;

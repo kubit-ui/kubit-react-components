@@ -1,13 +1,14 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { FormatNumber, InputContentPosition, InputState } from '@/components/input/types';
+import { FormatNumber } from '@/components/input/types/input';
+import * as stylesHook from '@/hooks/useStyles/useStyles';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { POSITIONS } from '@/types/positions';
+import { POSITIONS } from '@/types/positions/positions';
 
-import * as stylesHook from '../../../hooks/useStyles/useStyles';
+import { InputContentPosition, InputState } from '../../input/types/inputTheme';
 import { InputCurrency } from '../inputCurrency';
 
 const mockProps = {

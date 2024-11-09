@@ -1,4 +1,6 @@
-import { CommonStyleType, PointerTypes, TypographyTypes } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { PointerTypes } from '@/types/styles/pointer';
+import { TypographyTypes } from '@/types/styles/typography';
 
 export type ToggleWithLabelStylePropsType = {
   container?: CommonStyleType & TypographyTypes & PointerTypes;

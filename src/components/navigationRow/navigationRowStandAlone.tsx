@@ -1,18 +1,18 @@
 import React, { forwardRef } from 'react';
 
-import { ButtonType } from '@/components/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 
-import { IconHighlighted } from '../iconHighlighted';
+import { ButtonType } from '../button/types/type';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { IconHighlighted } from '../iconHighlighted/iconHighlighted';
 import {
   DecorativeElementContainerStyled,
   IconAndIconHighlightedContainerStyled,
   NavigationRowStyled,
   TextSectionStyled,
 } from './navigationRow.styled';
-import { INavigationRowStandAlone } from './types';
+import { INavigationRowStandAlone } from './types/navigationRow';
 
 const NavigationRowStandaloneComponent = (
   {

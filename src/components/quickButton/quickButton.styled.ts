@@ -2,7 +2,8 @@ import styled, { css } from 'styled-components';
 
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
-import { QuickButtonState, QuickButtonVariantStylesType } from './types';
+import { QuickButtonVariantStylesType } from './types/quickButtonTheme';
+import { QuickButtonState } from './types/state';
 
 export const QuickButtonContainerStyled = styled.div<{
   maxWidth?: string;

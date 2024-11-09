@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { CommonStyleType } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
 
 import { HeaderContentStyled } from '../headerStructure.styled';
-import { HeaderStructureContentPositionType } from '../types';
+import { HeaderStructureContentPositionType } from '../types/position';
 
 interface IHeaderContent {
   styles?: CommonStyleType;

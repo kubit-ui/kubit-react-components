@@ -1,18 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Option } from '@/components/option';
-import { Text } from '@/components/text';
-import { useId } from '@/hooks';
+import { Text } from '@/components/text/text';
+import { useId } from '@/hooks/useId/useId';
 import { useRoveFocus } from '@/hooks/useRoveFocus/useRoveFocus';
-import { ROLES } from '@/types';
 
+import { ROLES } from '../../types/role/role';
+import { Option } from '../option/option';
 import {
   ListOptionsWrapperStyled,
   OptionsWrapperStyled,
   TitleWrapperStyled,
 } from './listOptions.styled';
-import { IListOptionsStandAlone, ListOptionsType } from './types';
-import { getOptionVariant, isSelected, keyDownMove, keyUpMove } from './utils';
+import { IListOptionsStandAlone } from './types/listOptions';
+import { ListOptionsType } from './types/type';
+import { getOptionVariant, isSelected, keyDownMove, keyUpMove } from './utils/listOptions.utils';
 
 // eslint-disable-next-line react/display-name
 export const ListOptionsStandAlone = React.forwardRef(

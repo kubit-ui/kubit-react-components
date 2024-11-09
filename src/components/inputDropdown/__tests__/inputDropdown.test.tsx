@@ -1,16 +1,17 @@
 import userEvent from '@testing-library/user-event';
 
 import { act, fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ARROW_DOWN, ENTER, SPACE, TAB } from '@/constants';
+import { ARROW_DOWN, ENTER, SPACE, TAB } from '@/constants/keyboardKeys/keyboardKeys';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType, ROLES } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { ROLES } from '@/types/role/role';
 
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
 import { InputDropdown } from '../inputDropdown';
 
 const mockProps = {

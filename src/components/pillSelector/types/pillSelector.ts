@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { IPillUnControlled, PillTextType } from '@/components/pill/types';
-import { CustomTokenTypes } from '@/types';
+import { IPillUnControlled, PillTextType } from '@/components/pill/types/pill';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
 import { PillSelectorStyles } from './pillSelectorTheme';
 

@@ -1,14 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import * as useMediaDevice from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType, ROLES } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { ROLES } from '@/types/role/role';
 
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
 import { Footer } from '../footer';
-import { FooterMobileColumnFlow, FooterPositionType } from '../types';
+import { FooterMobileColumnFlow } from '../types/footer';
+import { FooterPositionType } from '../types/position';
 
 const mockBase = { variant: 'DEFAULT' };
 

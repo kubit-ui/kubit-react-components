@@ -1,4 +1,4 @@
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 export const FONT_FAMILY = {
   font_family_gt_america_expanded: '"GT-America-Expanded Font", sans-serif',

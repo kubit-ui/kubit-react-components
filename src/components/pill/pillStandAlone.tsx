@@ -1,11 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { InputTypeType } from '@/components/input';
-import { useId } from '@/hooks';
+import { Text } from '@/components/text/text';
+import { useId } from '@/hooks/useId/useId';
 import { pickAriaProps } from '@/utils/aria/aria';
 
-import { Text, TextComponentType } from '../text';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { InputTypeType } from '../input/types/inputType';
+import { TextComponentType } from '../text/types/component';
 import {
   IconContainerStyled,
   LabelContainerStyled,
@@ -14,8 +15,8 @@ import {
   PillLabelStyled,
   PillStyled,
 } from './pill.styled';
-import { IPillStandAlone } from './types';
-import { getPillState } from './utils';
+import { IPillStandAlone } from './types/pill';
+import { getPillState } from './utils/state.utils';
 
 const PillStandAloneComponent = (
   {

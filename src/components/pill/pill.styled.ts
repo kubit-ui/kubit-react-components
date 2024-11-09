@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-// mixin
-import { focusVisibleAlt } from '@/styles/mixins';
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
-import type { IPillStyled } from './types';
+// mixin
+import { focusVisibleAlt } from '../../styles/mixins/focusAlt.mixin';
+import type { IPillStyled } from './types/pill';
 
 export const ParentContainerStyled = styled.div<IPillStyled>`
   ${props => getStyles(props.styles?.parentContainer)}

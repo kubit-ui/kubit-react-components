@@ -1,9 +1,14 @@
 // fundations
-import { ConfirmationMessageStylesType } from '@/components/confirmationMessage/types';
+import { ConfirmationMessageStylesType } from '@/components/confirmationMessage/types/confirmationMessageTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import {
+  FONT_WEIGHT,
+  TEXT_ALIGN,
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SPACINGS, TEXT_ALIGN } from '../../foundations';
-import { TextVariantType } from '../text';
+import { TextVariantType } from '../../../../kubit/components/text/variants';
 import { FooterVariants } from '../variants';
 import { ConfirmationMessageStateType, ConfirmationMessageVariantType } from './variants';
 

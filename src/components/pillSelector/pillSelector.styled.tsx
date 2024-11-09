@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { getStyles } from '@/utils';
-
+import { getStyles } from '../../utils/getStyles/getStyles';
 import { PillSelectorStyles } from './types/pillSelectorTheme';
 
 type PillSelectorStylesProp = {

@@ -1,5 +1,4 @@
-import { ListOptionsOptionType } from '@/components/listOptions';
-
+import { ListOptionsOptionType } from '../../../listOptions/types/listOptions';
 import { filterOptions, findOptionByLabel, findOptionByValue } from '../filterOptions';
 
 describe('Filter options inputDropdown', () => {

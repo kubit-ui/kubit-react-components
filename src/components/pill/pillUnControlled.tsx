@@ -1,9 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
-import { isKeyEnterPressed, isKeySpacePressed } from '@/utils';
-
+import { isKeyEnterPressed, isKeySpacePressed } from '../../utils/keyboard/keyboard.utility';
 import { PillControlled } from './pillControlled';
-import { IPillUnControlled } from './types';
+import { IPillUnControlled } from './types/pill';
 
 /**
  * @deprecated Try the new PillV2 component
@@ -46,3 +45,5 @@ export const PillUnControlled = ({
     </PillControlled>
   );
 };
+
+export { PillUnControlled as Pill };

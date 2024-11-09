@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import * as React from 'react';
+import React, { useState } from 'react';
 
-import { ICONS } from '@/assets';
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { variantsObject } from '@/designSystem/themesObject/themesObject';
 
+import { ElementOrIcon } from '../../../elementOrIcon/elementOrIcon';
 import { DataTable } from '../../dataTable';
-import { DataTableColumnType } from '../../types';
+import { DataTableColumnType } from '../../types/dataTable';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 

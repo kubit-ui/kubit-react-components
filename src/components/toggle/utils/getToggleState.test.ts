@@ -1,6 +1,6 @@
-import { POSITIONS } from '@/types';
+import { POSITIONS } from '@/types/positions/positions';
 
-import { ToggleStateType } from '../types';
+import { ToggleStateType } from '../types/state';
 import { getToggleState } from './getToggleState';
 
 describe('getToggleState utility', () => {

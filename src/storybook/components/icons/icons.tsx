@@ -1,16 +1,15 @@
 import React from 'react';
 
-import { Icon } from '@/components/icon';
-import { themesObject } from '@/designSystem/themesObject';
+import { IconBasic as Icon } from '@/components/icon/icon';
+import { themesObject } from '@/designSystem/themesObject/themesObject';
 import { UtilsProviderDocStorybook } from '@/storybook/provider/utilsProvider/utilsProvider';
 
-import { FoundationStyled } from '../common';
+import { FoundationStyled } from '../common/structure.styled';
 import { IconNameStyled, IconsDataStyled, IconsInputStyled, IconsStyled } from './icons.styled';
 
 export const Icons = (): JSX.Element => {
   const [searchValue, setSearchValue] = React.useState('');
 
-  // eslint-disable-next-line n/no-unsupported-features/node-builtins
   const theme = localStorage.getItem('themeSelected') || 'kubit';
   const themeObject = themesObject[theme]['ICONS'];
 

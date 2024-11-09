@@ -1,9 +1,11 @@
 // constants
-import { EmptyStateStylesType } from '@/components/emptyState/types';
+import { EmptyStateStylesType } from '@/components/emptyState/types/emptyStateTheme';
 
-import { COLORS, FONT_WEIGHT, SPACINGS, TEXT_ALIGN } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
 // types
-import { TextVariantType } from '../text';
+import { TextVariantType } from '../text/variants';
 import { ButtonSizeType } from '../variants';
 import { EmptyStateStateType, EmptyStateVariantType } from './variants';
 

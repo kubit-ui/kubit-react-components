@@ -1,4 +1,4 @@
-import { FormatNumber } from '../types';
+import { FormatNumber } from '../types/input';
 import {
   checkValidFormattedNumber,
   formatNumber,

@@ -1,10 +1,8 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { isKeyEscapePressed } from '@/utils';
-
-import { ModalControlled } from './modalControlled';
-import { IModalUnControlled } from './types';
+import { isKeyEscapePressed } from '../../utils/keyboard/keyboard.utility';
+import { ModalControlledV2 as ModalControlled } from './modalControlled';
+import { IModalUnControlled } from './types/modal';
 
 const ModalUnControlledComponent = <V extends string | unknown>(
   { variant, onClose, closeIcon, closeButton, popover, ...props }: IModalUnControlled<V>,
@@ -65,4 +63,4 @@ const ModalUnControlled = React.forwardRef(ModalUnControlledComponent) as <
   }
 ) => ReturnType<typeof ModalUnControlledComponent>;
 
-export { ModalUnControlled };
+export { ModalUnControlled as ModalV2 };

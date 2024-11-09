@@ -1,8 +1,12 @@
 import { CardImageStylesType } from '@/components/cardImage/types/cardImageTheme';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { COLORS, FONT_WEIGHT, RADIUS, SHADOW, SPACINGS, TEXT_ALIGN } from '../../foundations';
-import { TextVariantType } from '../text';
+import { RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SHADOW } from '../../foundations/shadow';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { CardImageStateVariantType } from './variants';
 
 export const CARD_IMAGE_STYLES: CardImageStylesType<CardImageStateVariantType> = {

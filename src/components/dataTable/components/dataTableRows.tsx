@@ -1,15 +1,16 @@
 import React from 'react';
 
-import { TableCell } from '@/components/tableCell';
-import { TableRow } from '@/components/tableRow';
+import { TableCell } from '@/components/tableCell/tableCell';
+import { TableRow } from '@/components/tableRow/tableRow';
 
 import {
   DataTableCellValueType,
   DataTableColumnType,
   DataTableRowType,
   DataTableTableRowConfigType,
-} from '../types';
-import { applyGridToRow, isRowHoverable } from '../utils';
+} from '../types/dataTable';
+import { isRowHoverable } from '../utils/hoverable';
+import { applyGridToRow } from '../utils/rowConfig';
 
 interface IDataTableRows {
   columns?: DataTableColumnType[];

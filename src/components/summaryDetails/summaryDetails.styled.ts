@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
+// styles
+import { getStyles } from '../../utils/getStyles/getStyles';
 import {
   LineSeparatorLinePropsStylesType,
   LineSeparatorPositionType,
-} from '@/components/lineSeparator';
-// styles
-import { getStyles } from '@/utils';
-
-import { SummaryDetailsPropsStylesType } from './types';
+} from '../lineSeparator/types/lineSeparatorTheme';
+import { SummaryDetailsPropsStylesType } from './types/summaryDetailsTheme';
 
 export const ContainerStyled = styled.details<{ styles: SummaryDetailsPropsStylesType }>`
   ${({ styles }) => getStyles(styles.container)};

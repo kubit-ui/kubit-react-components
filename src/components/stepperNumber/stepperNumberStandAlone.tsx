@@ -1,12 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useId } from '@/hooks';
+import { useId } from '@/hooks/useId/useId';
 
-import { ElementOrIcon } from '../elementOrIcon';
-import { buildAriaCurrent, buildScreenReaderText, mapToStepState } from './helpers';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
+import { buildAriaCurrent } from './helpers/aria';
+import { buildScreenReaderText } from './helpers/screnReader';
+import { mapToStepState } from './helpers/stepState';
 import {
   BuilStepContainerStyled,
   ScreenReaderCompletedStep,
@@ -19,11 +21,9 @@ import {
   StepperNumberContainerVerticalStep,
   StepsContainerStyled,
 } from './stepperNumber.styled';
-import {
-  IStepperNumberStandAlone,
-  StepperNumberOrientationType,
-  StepperNumberStateType,
-} from './types';
+import { StepperNumberOrientationType } from './types/orientation';
+import { StepperNumberStateType } from './types/state';
+import { IStepperNumberStandAlone } from './types/stepperNumber';
 
 const defaultStep = 0;
 

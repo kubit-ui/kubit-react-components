@@ -1,4 +1,4 @@
-import { NEUTRAL_DATE } from '@/types';
+import { NEUTRAL_DATE } from '@/types/date/date';
 
 import { ListDaysStateType } from '../list/types/state';
 

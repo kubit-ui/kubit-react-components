@@ -1,6 +1,8 @@
-import { CssAnimationType, ICssAnimationOptions } from '@/components/cssAnimation';
-import type { DeviceBreakpointsType } from '@/types/breakpoints';
-import { POSITIONS } from '@/types/positions';
+import type { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { POSITIONS } from '@/types/positions/positions';
+
+import { ICssAnimationOptions } from '../../cssAnimation/types/cssAnimation';
+import { CssAnimationType } from '../../cssAnimation/types/variant';
 
 export type PopoverBackDropStylesType = {
   backDropColor?: string;

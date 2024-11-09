@@ -1,4 +1,4 @@
-import { InputSignatureState } from '../../types';
+import { InputSignatureState } from '../../types/inputSignatureState';
 import { getInputSignatureState } from '../getInputSignatureState';
 
 describe('getInputSignatureState', () => {

@@ -1,19 +1,18 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import {
-  useMediaDevice,
-  useScrollDetectionWithAutoFocus,
-  useScrollEffect,
-  useStylesV2,
-  useSwipeDown,
-} from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useScrollDetectionWithAutoFocus } from '@/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
+import { useScrollEffect } from '@/hooks/useScrollEffect/useScrollEffect';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
+import { useSwipeDown } from '@/hooks/useSwipeDown/useSwipeDown';
 import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
 import { FallbackComponent } from '@/provider/errorBoundary/fallbackComponent';
 
-import { Portal } from '../portal';
+import { Portal } from '../portal/portal';
 import { ModalStandAlone } from './modalStandAlone';
-import type { IModalControlled, IModalStandAlone, ModalBaseStylesType } from './types';
+import { IModalControlled, IModalStandAlone } from './types/modal';
+import { ModalBaseStylesType } from './types/modalTheme';
 
 const ModalControlledComponent = React.forwardRef(
   <V extends string | unknown>(
@@ -115,4 +114,4 @@ const ModalControlled = React.forwardRef(ModalBoundary) as <V extends string | u
   }
 ) => ReturnType<typeof ModalBoundary>;
 
-export { ModalControlled };
+export { ModalControlled as ModalControlledV2 };

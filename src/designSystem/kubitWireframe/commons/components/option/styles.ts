@@ -1,7 +1,11 @@
-import { OptionStateType, OptionStylesType } from '@/components/option/types';
+import { OptionStylesType } from '@/components/option/types/optionTheme';
+import { OptionStateType } from '@/components/option/types/state';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS } from '../../foundations';
 import { TextVariantType } from '../text/variants';
 import { OptionVariantType } from './variants';
 

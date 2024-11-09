@@ -4,6 +4,7 @@ export type {
   StepperNumberPropsStylesType,
   StepperNumberStylesType,
   StepperNumberprefixSuffixType,
+  StepperNumberStateStylesType,
 } from './types';
 
 // enums

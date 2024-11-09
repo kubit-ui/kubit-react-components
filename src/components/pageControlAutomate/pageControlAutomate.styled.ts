@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { getStyles } from '@/utils';
-
-import { PageControlAutomatePropsStylesType } from './types';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import { PageControlAutomatePropsStylesType } from './types/pageControlAutomateTheme';
 
 type ComponentStylesProps = {
   styles: PageControlAutomatePropsStylesType;

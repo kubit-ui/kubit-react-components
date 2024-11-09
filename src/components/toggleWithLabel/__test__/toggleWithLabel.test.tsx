@@ -1,14 +1,14 @@
 import userEvent from '@testing-library/user-event';
 
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { InputTypeType } from '@/components/input';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
+import { InputTypeType } from '../../input/types/inputType';
 import { ToggleWithLabelUncontrolled as ToggleWithLabel } from '../toggleWithLabelUncontrolled';
 
 const mockProps = {

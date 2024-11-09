@@ -1,4 +1,4 @@
-import { OptionStateType } from '../types';
+import { OptionStateType } from '../types/state';
 
 const getState = (
   disabled: boolean | undefined,

@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text } from '@/components/text';
+import { Text } from '@/components/text/text';
 
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 // styles
 import { ErrorIconWrapperStyled, InputErrorStyled } from '../input.styled';
 import { IErrorMessage } from '../types/input';
-import { hasError } from '../utils';
+import { hasError } from '../utils/state.utils';
 
 export const ErrorMessageStandAlone = (props: IErrorMessage): JSX.Element => {
   return (

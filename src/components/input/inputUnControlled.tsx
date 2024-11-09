@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useInput } from '@/hooks/useInput/useInput';
 
 import { InputControlled } from './inputControlled';
-import { IInputUnControlled, INTERNAL_ERROR_EXECUTION, InputTypeType } from './types';
+import { IInputUnControlled, INTERNAL_ERROR_EXECUTION } from './types/input';
+import { InputTypeType } from './types/inputType';
 
 const InputUnControlledComponent = <V extends string | unknown>(
   {
@@ -116,3 +117,5 @@ const InputUnControlled = React.forwardRef(InputUnControlledComponent) as <
 ) => JSX.Element;
 
 export { InputUnControlled };
+
+export { InputUnControlled as Input };

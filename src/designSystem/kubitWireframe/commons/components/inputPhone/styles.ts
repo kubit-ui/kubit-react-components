@@ -1,13 +1,16 @@
-import { IconHighlightedSizeType } from '@/components/iconHighlighted/types';
+import { IconHighlightedSizeType } from '@/components/iconHighlighted/types/size';
 import {
   InputContentPosition,
   InputHelpMessagePosition,
   InputState,
-} from '@/components/input/types';
-import { InputPhoneVariantProps } from '@/components/inputPhone/types';
+} from '@/components/input/types/inputTheme';
+import { InputPhoneVariantProps } from '@/components/inputPhone/types/inputPhoneTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS } from '../../foundations';
 import { IconHighlightedVariantType } from '../iconHighlighted/variants';
 import { TextVariantType } from '../text/variants';
 import { InputPhoneVariant } from './variants';

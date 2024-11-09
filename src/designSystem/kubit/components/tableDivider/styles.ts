@@ -1,4 +1,4 @@
-import { TableDividerStylesTypeV2 } from '@/components';
+import { TableDividerStylesTypeV2 } from '@/components/tableDivider/types/tableDividerTheme';
 
 import { TableDividerVariantType } from './variants';
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { PillPropsStylesType } from './types';
+import { PillPropsStylesType } from './types/pillTheme';
 
 export const PillAsButton = styled.button``;
 

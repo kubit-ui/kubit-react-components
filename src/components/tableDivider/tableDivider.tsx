@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStylesV2 } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
 
 import { TableDividerStandAlone } from './tableDividerStandAlone';
-import { ITableDivider, TableDividerPropsStylesType } from './types';
+import { ITableDivider } from './types/tableDivider';
+import { TableDividerPropsStylesType } from './types/tableDividerTheme';
 
 const TableDividerComponent = (
   { variant, ctv, ...props }: React.PropsWithChildren<ITableDivider>,

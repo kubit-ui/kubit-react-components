@@ -1,9 +1,11 @@
-import { InputState } from '@/components/input/types';
-import { InputSearchVariantType } from '@/components/inputSearch/types';
+import { InputState } from '@/components/input/types/inputTheme';
+import { InputSearchVariantType } from '@/components/inputSearch/types/inputSearchTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SPACINGS } from '../../foundations';
 import { InputVariantType } from '../input/variants';
 import { PopoverVariantType } from '../popover/variants';
 import { ListOptionsVariantType, OptionVariantType, TextVariantType } from '../variants';

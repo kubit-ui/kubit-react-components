@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { TableCell } from '@/components/tableCell';
-import { TableRow } from '@/components/tableRow';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
+import { TableCell } from '../../tableCell/tableCell';
+import { TableRow } from '../../tableRow/tableRow';
 import { TableFoot as Story } from '../tableFoot';
-import { ITableFoot } from '../types';
+import { ITableFoot } from '../types/tableFoot';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

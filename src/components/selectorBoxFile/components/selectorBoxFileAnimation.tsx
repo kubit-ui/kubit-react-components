@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useBorderAnimation } from '../hooks';
+import { useBorderAnimation } from '../hooks/useBorderAnimation';
 import {
   AnimationContainerStyled,
   BorderContainerStyled,
@@ -9,7 +9,8 @@ import {
   RightAnimationStyled,
   TopAnimationStyled,
 } from '../selectorBoxFile.styled';
-import { SelectorBoxFilePropsStylesType, SelectorBoxFileStateType } from '../types';
+import { SelectorBoxFilePropsStylesType } from '../types/selectorBoxFileTheme';
+import { SelectorBoxFileStateType } from '../types/state';
 import { ISelectorBoxFileContainerBox } from './selectorBoxFileContainerBox';
 
 interface ISelectorBoxFileAnimation {

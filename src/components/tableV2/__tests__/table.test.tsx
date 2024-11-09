@@ -4,10 +4,10 @@ import React from 'react';
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
 import * as hooks from '../hooks/useTableHasScroll';
-import { TableV2 } from '../index';
+import { Table as TableV2 } from '../table';
 
 const mockProps = {
   variant: 'DEFAULT',

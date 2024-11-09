@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ICONS, IMAGES } from '@/assets';
-import { LinkActionType } from '@/components/link';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
-import { DeviceBreakpointsType } from '@/types';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { IMAGES } from '@/assets/storybook/images/images';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
+import { LinkActionType } from '../../link/types/action';
 import { CardImage as Story } from '../cardImage';
-import { ICardImage } from '../types';
+import { ICardImage } from '../types/cardImage';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

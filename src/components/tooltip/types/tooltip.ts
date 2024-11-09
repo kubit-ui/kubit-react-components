@@ -1,11 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IIcon } from '@/components/icon';
-import { IPopoverControlled } from '@/components/popover';
-import { IText } from '@/components/text';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IIcon } from '../../icon/types/icon';
+import { IPopoverControlled } from '../../popover/types/popover';
+import { IText } from '../../text/types/text';
 import { TooltipAlignType } from './tooltipAlign';
 import { TooltipVariantStylesProps } from './tooltipTheme';
 
@@ -53,13 +54,41 @@ export interface ITooltipStandAlone {
   content?: TooltipContentType;
   contentRef?: React.ForwardedRef<HTMLDivElement> | undefined;
   contentScrollArias?: TooltipContentScrollAriasType;
+  /**
+   * @deprecated - use onWrapperFocus instead
+   */
   onFocus?: React.FocusEventHandler<HTMLElement>;
+  onWrapperFocus?: React.FocusEventHandler<HTMLElement>;
+  /**
+   * @deprecated - use onWrapperFocus instead
+   */
   onBlur?: React.FocusEventHandler<HTMLElement>;
+  onWrapperBlur?: React.FocusEventHandler<HTMLElement>;
+  /**
+   * @deprecated - use onWrapperMouseEnter instead
+   */
   onMouseEnter?: React.MouseEventHandler<HTMLElement>;
+  onWrapperMouseEnter?: React.MouseEventHandler<HTMLElement>;
+  /**
+   * @deprecated - use onWrapperMouseLeave instead
+   */
   onMouseLeave?: React.MouseEventHandler<HTMLElement>;
+  onWrapperMouseLeave?: React.MouseEventHandler<HTMLElement>;
+  /**
+   * @deprecated - use onTriggerClick instead
+   */
   onClick?: React.MouseEventHandler<HTMLElement>;
+  onTriggerClick?: React.MouseEventHandler<HTMLElement>;
+  /**
+   * @deprecated - use onTriggerMouseDown instead
+   */
   onMouseDown?: React.MouseEventHandler<HTMLElement>;
+  onTriggerMouseDown?: React.MouseEventHandler<HTMLElement>;
+  /**
+   * @deprecated - use onTriggerMouseUp instead
+   */
   onMouseUp?: React.MouseEventHandler<HTMLElement>;
+  onTriggerMouseUp?: React.MouseEventHandler<HTMLElement>;
   onCloseIconClick?: React.MouseEventHandler<HTMLElement>;
   children: JSX.Element | string | React.ReactNode;
   popoverOpen?: boolean;
@@ -73,7 +102,11 @@ export interface ITooltipStandAlone {
   labelRef?: React.MutableRefObject<HTMLDivElement | null>;
   dataTestId?: string;
   onTooltipFocus?: React.FocusEventHandler<HTMLElement>;
+  /**
+   * @deprecated - use onTriggerKeyDown instead
+   */
   onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
+  onTriggerKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
   onTooltipKeyDown?: React.KeyboardEventHandler<HTMLElement>;
   popover?: TooltipPopoverType;
   dragIcon?: IElementOrIcon;
@@ -95,12 +128,19 @@ export interface ITooltipControlled<V = undefined extends string ? unknown : str
 
 type propsToOmitUnControlled =
   | 'onFocus'
+  | 'onWrapperFocus'
   | 'onBlur'
+  | 'onWrapperBlur'
   | 'onMouseEnter'
+  | 'onWrapperMouseEnter'
   | 'onMouseLeave'
+  | 'onWrapperMouseLeave'
   | 'onClick'
+  | 'onTriggerClick'
   | 'onMouseDown'
+  | 'onTriggerMouseDown'
   | 'onMouseUp'
+  | 'onTriggerMouseUp'
   | 'onCloseIconClick'
   | 'popoverOpen'
   | 'onPopoverCloseInternally'
@@ -108,6 +148,7 @@ type propsToOmitUnControlled =
   | 'labelRef'
   | 'onTooltipFocus'
   | 'onKeyDown'
+  | 'onTriggerKeyDown'
   | 'onTooltipKeyDown'
   | 'dragIconRef';
 
@@ -120,3 +161,7 @@ export interface ITooltipUnControlled<V = undefined extends string ? unknown : s
   extends Omit<ITooltipControlled<V>, propsToOmitUnControlled> {
   onOpenClose?: (open: boolean) => void;
 }
+
+export type ITooltip<V = undefined extends string ? unknown : string> =
+  | ITooltipControlled<V>
+  | ITooltipUnControlled<V>;

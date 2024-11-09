@@ -1,4 +1,7 @@
-import { CommonStyleType, IconTypes, IllustrationTypes, TypographyTypes } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { IllustrationTypes } from '@/types/styles/illustration';
+import { TypographyTypes } from '@/types/styles/typography';
 
 export type MessagePropsThemeType = {
   parentContainer?: CommonStyleType;

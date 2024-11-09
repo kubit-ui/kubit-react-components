@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import React from 'react';
 
-import { Colors as BaseColors } from '../components';
+import { Colors as BaseColors } from '../components/colors/colors';
 
 export const Colors = (): JSX.Element => {
   return <BaseColors />;

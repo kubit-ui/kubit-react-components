@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { Tag } from '../tag';
+import { TagV2 as Tag } from '../tag';
 
 const mockProps = {
   variant: 'HEALTHY',

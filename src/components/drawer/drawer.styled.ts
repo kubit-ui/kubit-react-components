@@ -2,11 +2,9 @@ import styled, { css } from 'styled-components';
 
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
-import {
-  DrawerDeviceStyleType,
-  DrawerLevelPositionTypes,
-  DrawerVariantPositionTypes,
-} from './types';
+import { DrawerDeviceStyleType } from './types/drawerTheme';
+import { DrawerLevelPositionTypes } from './types/level';
+import { DrawerVariantPositionTypes } from './types/variantPosition';
 
 type DrawerStylesType = {
   level?: DrawerLevelPositionTypes;

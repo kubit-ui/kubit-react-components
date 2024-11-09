@@ -1,18 +1,19 @@
 import React, { ForwardedRef, forwardRef, useCallback, useState } from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text } from '@/components/text';
-import { useId } from '@/hooks';
+import { Text } from '@/components/text/text';
 import { useElementBoundingClientRect } from '@/hooks/useElementBoundingClientRect/useElementBoundingClientRect';
-import { POSITIONS } from '@/types';
-import { pxToRem } from '@/utils';
+import { useId } from '@/hooks/useId/useId';
 
-import { IconHighlighted, IconHighlightedSizeType } from '../iconHighlighted';
-import { InputControlled as Input } from '../input';
-import { InputContentPosition } from '../input/types';
-import { getExtraStyles } from '../input/utils';
+import { POSITIONS } from '../../types/positions/positions';
+import { pxToRem } from '../../utils/pxToRem/pxToRem';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { IconHighlighted } from '../iconHighlighted/iconHighlighted';
+import { IconHighlightedSizeType } from '../iconHighlighted/types/size';
+import { InputControlled as Input } from '../input/inputControlled';
+import { InputContentPosition } from '../input/types/inputTheme';
+import { getExtraStyles } from '../input/utils/extraStyles.utils';
 import { AffixIconWrapperStyled, AffixStyled } from './inputPhone.styled';
-import { IInputPhoneStandAlone } from './types';
+import { IInputPhoneStandAlone } from './types/inputPhone';
 
 export const InputPhoneStandAloneComponent = (
   { dataTestId = 'input-phone', ...props }: IInputPhoneStandAlone,

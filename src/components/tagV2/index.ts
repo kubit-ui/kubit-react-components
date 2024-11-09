@@ -5,4 +5,4 @@ export type {
   TagLabelType as TagLabelTypeV2,
 } from './types';
 
-export { Tag as TagV2 } from './tag';
+export { TagV2 } from './tag';

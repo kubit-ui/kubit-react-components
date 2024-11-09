@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ICONS, ILLUSTRATIONS } from '@/assets';
-import { DecorativeType } from '@/components/decorativeElement';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IconHighlightedSizeType } from '@/components/iconHighlighted';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { ILLUSTRATIONS } from '@/assets/storybook/illustrations/illustrations';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
+import { DecorativeType } from '../../decorativeElement/types/decorativeElement';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IconHighlightedSizeType } from '../../iconHighlighted/types/size';
 import { NavigationCard as Story } from '../navigationCard';
-import { INavigationCard } from '../types';
+import { INavigationCard } from '../types/navigationCard';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

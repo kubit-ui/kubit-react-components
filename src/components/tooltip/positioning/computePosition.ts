@@ -1,4 +1,4 @@
-import { TooltipAlignType } from '../types';
+import { TooltipAlignType } from '../types/tooltipAlign';
 import { Coords, Middleware, MiddlewareData, Strategy } from './types';
 import { computeCoordsFromPlacement } from './utils/computeCoordsFromPlacement';
 import { getElementRects } from './utils/getElementRects';

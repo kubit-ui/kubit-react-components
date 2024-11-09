@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ButtonType } from '../../button';
+import { ButtonType } from '../../button/types/type';
 import { TooltipTriggerWrapperStyled } from '../tooltip.styled';
 import { TooltipTriggerAsButtonType } from '../types/tooltip';
 
@@ -9,6 +9,10 @@ interface ITooltipTrigger {
   childrenAsButton: boolean;
   ariaDescribedBy?: string;
   triggerAsButton?: TooltipTriggerAsButtonType;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
+  onMouseDown?: React.MouseEventHandler<HTMLElement>;
+  onMouseUp?: React.MouseEventHandler<HTMLElement>;
 }
 
 export const TooltipTrigger = (
@@ -22,10 +26,24 @@ export const TooltipTrigger = (
         {...props.triggerAsButton}
         disabled={props.disabled}
         type={ButtonType.BUTTON}
+        onClick={props.onClick}
+        onKeyDown={props.onKeyDown}
+        onMouseDown={props.onMouseDown}
+        onMouseUp={props.onMouseUp}
       >
         {props.children}
       </TooltipTriggerWrapperStyled>
     );
   }
-  return props.children;
+  return (
+    <TooltipTriggerWrapperStyled
+      as="div"
+      onClick={props.onClick}
+      onKeyDown={props.onKeyDown}
+      onMouseDown={props.onMouseDown}
+      onMouseUp={props.onMouseUp}
+    >
+      {props.children}
+    </TooltipTriggerWrapperStyled>
+  );
 };

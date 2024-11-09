@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { CssAnimationTimingFunction, CssAnimationVariants } from '@/components/cssAnimation';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
-import { POSITIONS } from '@/types';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
+import { POSITIONS } from '@/types/positions/positions';
 
+import { CssAnimationTimingFunction } from '../../cssAnimation/types/cssAnimation';
+import { CssAnimationVariants } from '../../cssAnimation/types/variant';
 import { PopoverControlled as Story } from '../popoverControlled';
-import { PopoverPositionVariantType } from '../types';
+import { PopoverPositionVariantType } from '../types/positionVariant';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

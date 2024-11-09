@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useCheckbox } from '@/hooks';
+import { useCheckbox } from '@/hooks/useCheckbox/useCheckbox';
 
 import { CheckboxWithLabelControlled } from './checkboxWithLabelControlled';
-import type { ICheckboxWithLabelUncontrolled } from './types';
+import type { ICheckboxWithLabelUncontrolled } from './types/checkboxWithLabel';
 
 const CheckboxWithLabelUncontrolledComponent = <V extends string | unknown>(
   { initialChecked = false, disabled = false, ...props }: ICheckboxWithLabelUncontrolled<V>,
@@ -34,3 +34,5 @@ const CheckboxWithLabelUncontrolled = React.forwardRef(CheckboxWithLabelUncontro
 ) => JSX.Element;
 
 export { CheckboxWithLabelUncontrolled };
+
+export { CheckboxWithLabelUncontrolled as CheckboxWithLabel };

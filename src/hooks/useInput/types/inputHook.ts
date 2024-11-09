@@ -6,8 +6,10 @@ import {
   MutableRefObject,
 } from 'react';
 
-import { FormatNumber, InputState, InputTypeType, MASK_TYPE } from '@/components/input/types';
-import { EventKeyPressRefType } from '@/types';
+import { FormatNumber, MASK_TYPE } from '@/components/input/types/input';
+import { InputState } from '@/components/input/types/inputTheme';
+import { InputTypeType } from '@/components/input/types/inputType';
+import { EventKeyPressRefType } from '@/types/type/type';
 
 export type ParamsTypeInputHook = {
   ref?: ForwardedRef<HTMLInputElement | undefined>;

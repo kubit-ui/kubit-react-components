@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
 
 import { LabelStandAlone as Label } from '../label/labelStandAlone';
 import { QuickButtonContainerStyled, QuickButtonStyled } from './quickButton.styled';
-import { IQuickButtonStandAlone, QuickButtonState } from './types';
+import { IQuickButtonStandAlone } from './types/quickButton';
+import { QuickButtonState } from './types/state';
 
 const QuickButtonStandAloneComponent = (
   { dataTestId = 'quick-button', ...props }: IQuickButtonStandAlone,

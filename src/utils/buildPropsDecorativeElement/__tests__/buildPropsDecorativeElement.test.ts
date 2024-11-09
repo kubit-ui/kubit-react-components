@@ -1,5 +1,8 @@
-import { ICONS, ILLUSTRATIONS } from '@/assets';
-import { DecorativeType, IElementOrIcon, IconHighlightedSizeType } from '@/components';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { ILLUSTRATIONS } from '@/assets/storybook/illustrations/illustrations';
+import { DecorativeType } from '@/components/decorativeElement/types/decorativeElement';
+import { IElementOrIcon } from '@/components/elementOrIcon/types/elementOrIcon';
+import { IconHighlightedSizeType } from '@/components/iconHighlighted/types/size';
 
 import { buildPropsDecorativeElement } from '../buildPropsDecorativeElement';
 

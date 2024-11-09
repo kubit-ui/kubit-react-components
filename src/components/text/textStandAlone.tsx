@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
 import { pickAriaProps } from '@/utils/aria/aria';
 
 import { TextStyled } from './text.styled';
-import { type ITextStandAlone, TextTransformType } from './types';
+import { ITextStandAlone } from './types/text';
+import { TextTransformType } from './types/transform';
 
 const TextStandAloneComponent = (
   {

@@ -1,16 +1,17 @@
 //vendors
-import * as React from 'react';
+import React from 'react';
 
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useId } from '@/hooks';
+import { useId } from '@/hooks/useId/useId';
 
-import { InfoIconWithTooltipStandAlone } from './components';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
+import { InfoIconWithTooltipStandAlone } from './components/infoIconWithTooltipStandAlone/infoIconWithTooltipStandAlone';
 import { RadioButton } from './components/radioButton/radioButton';
 // styles
 import { RadioButtonGroupStyled } from './radioButtonGroup.styled';
-import { IRadioButtonGroupStandAlone, RadioButtonGroupStateType } from './types';
+import { IRadioButtonGroupStandAlone } from './types/radioButtonGroup';
+import { RadioButtonGroupStateType } from './types/state';
 
 const RadioButtonGroupStandAloneComponent = (
   {

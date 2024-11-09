@@ -1,6 +1,6 @@
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { SliderTooltipType } from '../types';
+import { SliderTooltipType } from '../types/slider';
 
 export const isActive = (
   state: boolean,

@@ -1,6 +1,6 @@
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 
-import { FunctionalitiesModuleSectionType } from '../types';
+import { FunctionalitiesModuleSectionType } from '../types/functionalitiesModule';
 
 export const SECTIONS: FunctionalitiesModuleSectionType[] = [
   {

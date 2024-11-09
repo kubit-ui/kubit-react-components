@@ -1,11 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { PageControlAutomate } from '../index';
+import { PageControlAutomateUnControlled as PageControlAutomate } from '../pageControlAutomateUnControlled';
 
 const mockProps = {
   variant: 'DEFAULT',

@@ -1,5 +1,4 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-
+import { IElementOrIcon } from '../../../elementOrIcon/types/elementOrIcon';
 import { CalendarContainerStylesType } from '../../types/calendarTheme';
 
 export interface ISelector {

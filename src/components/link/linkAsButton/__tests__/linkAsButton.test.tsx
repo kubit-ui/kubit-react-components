@@ -1,13 +1,13 @@
 import userEvent from '@testing-library/user-event';
 
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { IconPositionType } from '@/components/button';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
+import { IconPositionType } from '../../../button/types/buttonIconPosition';
 import { LinkAsButton } from '../linkAsButton';
 
 const mockBase = {

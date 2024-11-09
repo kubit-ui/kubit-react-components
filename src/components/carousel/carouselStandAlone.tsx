@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { PageControl } from '@/components/pageControl';
-import { useId } from '@/hooks';
-import { AriaLiveOptionType } from '@/types';
+import { useId } from '@/hooks/useId/useId';
 
-import { PageControlArrowControlType } from '../pageControl/types';
-import { PageControlAutomate } from '../pageControlAutomate';
-import { ScreenReaderOnly } from '../screenReaderOnly';
+import { AriaLiveOptionType } from '../../types/ariaLiveOption/ariaLiveOption';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { PageControl } from '../pageControl/pageControl';
+import { PageControlArrowControlType } from '../pageControl/types/pageControl';
+import { PageControlAutomateUnControlled as PageControlAutomate } from '../pageControlAutomate/pageControlAutomateUnControlled';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
 import {
   ArrowAndCarouselWrapperStyled,
   ArrowLeftIconContainer,
@@ -18,9 +18,9 @@ import {
   PageControlContainerStyled,
   RootStyled,
 } from './carousel.styled';
-import { ExtraPaddingArrowStandAlone } from './components';
-import { ICarouselStandAlone } from './types';
-import { buildScreenReaderText } from './utils';
+import { ExtraPaddingArrowStandAlone } from './components/extraPaddingArrowStandAlone';
+import { ICarouselStandAlone } from './types/carousel';
+import { buildScreenReaderText } from './utils/carousel.utils';
 
 const CarouselStandAloneComponent = (
   {

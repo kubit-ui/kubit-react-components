@@ -1,11 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Button } from '@/components/button/button';
-import { LinkTargetType } from '@/components/link';
-import { Text, TextDecorationType } from '@/components/text';
-import { GenericLinkType } from '@/provider/genericComponents';
+import { Text } from '@/components/text/text';
 
-import { LinkAndActionButtonAlignment, VideoButtonType } from '../types';
+import { GenericLinkType } from '../../../provider/genericComponents/genericComponents.type';
+import { LinkTargetType } from '../../link/types/target';
+import { TextDecorationType } from '../../text/types/decoration';
+import { LinkAndActionButtonAlignment, VideoButtonType } from '../types/video';
 import { VideoStyleType } from '../types/videoTheme';
 import { BottomContainerStyled, LinkContainerStyled } from '../video.styled';
 

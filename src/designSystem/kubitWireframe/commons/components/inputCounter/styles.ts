@@ -1,8 +1,9 @@
-import { InputState } from '@/components/input/types';
-import { InputCounterStylesType } from '@/components/inputCounter/types';
+import { InputState } from '@/components/input/types/inputTheme';
+import { InputCounterStylesType } from '@/components/inputCounter/types/inputCounterTheme';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 
-import { FONT_WEIGHT, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { TextVariantType } from '../../../../kubit/components/text/variants';
 import { TextCountVariantType } from '../textCount/variants';
 import { InputCounterVariant } from './variants';
 

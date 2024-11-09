@@ -1,12 +1,14 @@
-import {
-  DrawerLevelPositionTypes,
-  DrawerStylesType,
-  DrawerVariantPositionTypes,
-} from '@/components/drawer/types';
-import { DeviceBreakpointsType } from '@/types';
+import { DrawerStylesType } from '@/components/drawer/types/drawerTheme';
+import { DrawerLevelPositionTypes } from '@/components/drawer/types/level';
+import { DrawerVariantPositionTypes } from '@/components/drawer/types/variantPosition';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
+import { Z_INDEX } from '@/designSystem/kubitWireframe/commons/foundations/zIndex';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS, Z_INDEX } from '../../foundations';
 import { TextVariantType } from '../text/variants';
 import { FooterVariants } from '../variants';
 import { DrawerVariantType } from './variants';

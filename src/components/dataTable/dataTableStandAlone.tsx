@@ -1,20 +1,21 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ROLES } from '@/types';
-
-import { TableBody } from '../tableBody';
-import { TableCaption } from '../tableCaption';
-import { TableDivider } from '../tableDivider';
-import { TableV2 } from '../tableV2';
-import { DataTableHead, DataTableRows, HiddenDataTableHead } from './components';
+import { ROLES } from '../../types/role/role';
+import { TableBody } from '../tableBody/tableBody';
+import { TableCaption } from '../tableCaption/tableCaption';
+import { TableDivider } from '../tableDivider/tableDivider';
+import { Table as TableV2 } from '../tableV2/table';
+import { DataTableHead } from './components/dataTableHead';
+import { DataTableRows } from './components/dataTableRows';
+import { HiddenDataTableHead } from './components/hiddenDataTableHead';
 import {
   LeftBoxShadowContainerStyled,
   RightBoxShadowContainerStyled,
   ScrollableContainerStyled,
   WrapperStyled,
 } from './dataTable.styled';
-import { IDataTableStandAlone } from './types';
-import { applyPositionToWrapper, applyZIndexToWrapper } from './utils';
+import { IDataTableStandAlone } from './types/dataTable';
+import { applyPositionToWrapper, applyZIndexToWrapper } from './utils/tableConfig';
 
 const DataTableStandAloneComponent = (
   {

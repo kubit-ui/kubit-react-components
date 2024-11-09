@@ -1,15 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Button } from '@/components/button/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Link } from '@/components/link/link';
-import { PopoverControlled as Popover } from '@/components/popover';
-import { PopoverComponentType } from '@/components/popover/types';
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { POSITIONS, ROLES } from '@/types';
 
+import { POSITIONS } from '../../types/positions/positions';
+import { ROLES } from '../../types/role/role';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { PopoverControlled as Popover } from '../popover/popoverControlled';
+import { PopoverComponentType } from '../popover/types/component';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
 // styles
 import {
   ButtonWrapper,
@@ -22,7 +23,7 @@ import {
   SnackbarTextWrapper,
   SnackbarTitleWrapper,
 } from './snackbar.styled';
-import { ISnackbarStandAlone } from './types';
+import { ISnackbarStandAlone } from './types/snackbar';
 
 const SnackbarStandAloneComponent = (
   { align = POSITIONS.TOP_CENTER_FIXED, dataTestId = 'snackbar', ...props }: ISnackbarStandAlone,

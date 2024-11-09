@@ -7,6 +7,7 @@ export type {
   TooltipContentType,
   TooltipCloseIconType,
   TooltipPopoverType,
+  ITooltipUnControlled,
 } from './types';
 
 export { TooltipAlignType } from './types';

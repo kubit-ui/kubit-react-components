@@ -1,18 +1,25 @@
-import * as React from 'react';
+import React from 'react';
 
-import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
-import { STYLES_NAME } from '@/constants';
-import { useDeviceHeight, useId, useMediaDevice, useScrollEffect, useSwipeDown } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useDeviceHeight } from '@/hooks/useDeviceHeight/useDeviceHeight';
+import { useId } from '@/hooks/useId/useId';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useScrollEffect } from '@/hooks/useScrollEffect/useScrollEffect';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { DeviceBreakpointsType, ROLES } from '@/types';
+import { useSwipeDown } from '@/hooks/useSwipeDown/useSwipeDown';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { ROLES } from '../../types/role/role';
+import { PopoverControlled } from '../popover/popoverControlled';
+import { PopoverComponentType } from '../popover/types/component';
 import { ActionBottomSheetStandAlone } from './actionBottomSheetStandAlone';
 import {
   IActionBottomSheetControlled,
   IActionBottomSheetControlledStructure,
   IActionBottomSheetStandAlone,
-} from './types';
+} from './types/actionBottomSheet';
 import { ActionBottomSheetVariantStylesType } from './types/actionBottomSheetTheme';
 
 const SCROLL_DISTANCE = 5;
@@ -111,7 +118,7 @@ const ActionBottomSheetControlledComponent = React.forwardRef(
     }, []);
 
     return (
-      <Popover
+      <PopoverControlled
         aria-labelledby={titleId}
         aria-modal={true}
         clickOverlayClose={!blocked}
@@ -130,7 +137,7 @@ const ActionBottomSheetControlledComponent = React.forwardRef(
           ref={setInnerRef}
           title={{ ...title, id: titleId }}
         />
-      </Popover>
+      </PopoverControlled>
     );
   }
 );

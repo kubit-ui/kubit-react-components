@@ -1,21 +1,22 @@
 // vendors
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants/stylesName';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useId } from '@/hooks/useId/useId';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { AriaLiveOptionType } from '@/types';
-import { mergeObjects } from '@/utils';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { AriaLiveOptionType } from '../../types/ariaLiveOption/ariaLiveOption';
+import { mergeObjects } from '../../utils/mergeObjects/mergeObjects';
 import { InputStandAlone } from './inputStandAlone';
 import {
   AUTOCOMPLETE_TYPE,
   IInputControlled,
   IInputStandAlone,
-  InputIconPosition,
   InputStylesProps,
-} from './types';
+} from './types/input';
+import { InputIconPosition } from './types/inputTheme';
 
 const InputControlledComponent = React.forwardRef(
   <V extends string | unknown>(

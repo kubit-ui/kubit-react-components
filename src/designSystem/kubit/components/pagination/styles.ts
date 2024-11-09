@@ -1,12 +1,15 @@
 import {
   PaginationCommonProps,
-  PaginationState,
   PaginationThemeProps,
-} from '@/components/pagination/types';
-import { DeviceBreakpointsType } from '@/types';
+} from '@/components/pagination/types/paginationTheme';
+import { PaginationState } from '@/components/pagination/types/state';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { COLORS, FONT_WEIGHT, SIZES, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { PaginationVariantsTheme } from './variants';
 
 const commonPageContainer = {

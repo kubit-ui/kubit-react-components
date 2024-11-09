@@ -1,5 +1,6 @@
 import { CrumbType, IBreadcrumbsControlled } from '@/components/breadcrumbs/types/breadcrumbs';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
 import { HeaderStructurePropsStylesType } from './headerStructureTheme';
 

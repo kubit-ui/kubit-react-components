@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { getStyles } from '@/utils';
-
-import { ListOptionsPropsStylesType } from './types';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import { ListOptionsPropsStylesType } from './types/listOptionsTheme';
 
 export const ButtonStyled = styled.button``;
 

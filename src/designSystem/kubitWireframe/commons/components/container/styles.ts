@@ -1,7 +1,8 @@
-import { ContainerStylesType } from '@/components/container/types';
+import { ContainerStylesType } from '@/components/container/types/containerTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, RADIUS, SPACINGS } from '../../foundations';
 import { ContainerVariants } from './variants';
 
 export const getContainerStyles = (COLORS: {

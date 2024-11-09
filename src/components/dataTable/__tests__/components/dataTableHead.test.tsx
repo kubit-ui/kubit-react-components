@@ -3,7 +3,7 @@ import React from 'react';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { DataTableHead } from '../../components';
+import { DataTableHead } from '../../components/dataTableHead';
 
 const mockProps = {};
 

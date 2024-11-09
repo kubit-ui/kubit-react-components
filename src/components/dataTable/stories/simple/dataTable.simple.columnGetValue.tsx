@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ICONS } from '@/assets';
-import { Button } from '@/components/button';
-import { variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { variantsObject } from '@/designSystem/themesObject/themesObject';
 
-import { IDataTable } from '../../types';
+import { Button } from '../../../button/button';
+import { IDataTable } from '../../types/dataTable';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 

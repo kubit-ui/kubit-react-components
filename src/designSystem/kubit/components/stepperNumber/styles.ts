@@ -1,19 +1,13 @@
-import {
-  StepperNumberOrientationType,
-  StepperNumberStateType,
-  StepperNumberStylesType,
-} from '@/components/stepperNumber/types';
+import { StepperNumberOrientationType } from '@/components/stepperNumber/types/orientation';
+import { StepperNumberStateType } from '@/components/stepperNumber/types/state';
+import { StepperNumberStylesType } from '@/components/stepperNumber/types/stepperNumberTheme';
 
-import {
-  BORDERS,
-  COLORS,
-  FONT_WEIGHT,
-  RADIUS,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-} from '../../foundations';
-import { TextVariantType } from '../text';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { StepperNumberVariantType } from './variants';
 
 const commonStepCircleTokens = {

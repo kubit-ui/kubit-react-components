@@ -1,6 +1,6 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import { TagStateKeyOfType, TagStylesOptionPropsType, TagStylesVariantPropsType } from './tagTheme';
 
 type TagAriaAttributes = Pick<

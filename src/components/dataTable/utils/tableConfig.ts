@@ -1,4 +1,4 @@
-import { DataTableTableConfigType } from '../types';
+import { DataTableTableConfigType } from '../types/dataTable';
 
 type ApplyZIndexToWrapperParams = {
   tableConfig?: DataTableTableConfigType;

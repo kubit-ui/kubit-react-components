@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { hasScroll as checkHasScroll } from '@/utils';
-import { ResizeObserver } from '@/utils/resizeObserver';
+import { ResizeObserver } from '@/utils/resizeObserver/resizeObserver';
+import { hasScroll as checkHasScroll } from '@/utils/scroll/hasScroll';
 
 type UseScrollDetectionWithAutoFocusParamsType = {
   parentElementRef?: React.RefObject<HTMLElement>;

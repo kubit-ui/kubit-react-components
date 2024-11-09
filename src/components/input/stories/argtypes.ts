@@ -1,7 +1,8 @@
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn, ROLES } from '@/types';
-import { AriaLiveOptionType } from '@/types/ariaLiveOption';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
+import { ROLES } from '@/types/role/role';
+import { ArgTypesReturn } from '@/types/type/type';
 
 import {
   AUTOCAPITALIZE_TYPE,

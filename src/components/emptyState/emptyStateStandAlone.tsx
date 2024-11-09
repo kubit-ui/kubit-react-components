@@ -1,13 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Button } from '@/components/button/button';
 import { IconPositionType } from '@/components/button/types/buttonIconPosition';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { ElementOrIllustration } from '@/components/elementOrIllustration/elementOrIllustration';
 import { Link } from '@/components/link/link';
-import { Text } from '@/components/text';
-import { TextComponentType, TextDecorationType } from '@/components/text/types';
+import { Text } from '@/components/text/text';
 
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { TextComponentType } from '../text/types/component';
+import { TextDecorationType } from '../text/types/decoration';
 // styles
 import {
   ActionSectionStyled,
@@ -17,7 +18,7 @@ import {
   EmptyStateTitleWrapperStyled,
   TextSectionStyled,
 } from './emptyState.styled';
-import { IEmptyStateStandAlone } from './types';
+import { IEmptyStateStandAlone } from './types/emptyState';
 
 const EmptyStateStandAloneComponent = <V extends string | unknown>(
   { dataTestId = 'empty-state', ...props }: IEmptyStateStandAlone<V>,

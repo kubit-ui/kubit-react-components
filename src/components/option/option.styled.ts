@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
-import { OptionPropsStateStylesType, OptionPropsStylesType } from './types';
+import { OptionPropsStateStylesType, OptionPropsStylesType } from './types/optionTheme';
 
 export const OptionDivStyled = styled.div``;
 

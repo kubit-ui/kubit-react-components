@@ -2,11 +2,14 @@ import {
   InputContentPosition,
   InputHelpMessagePosition,
   InputState,
-} from '@/components/input/types';
-import { InputCurrencyStylesType } from '@/components/inputCurrency/types';
+} from '@/components/input/types/inputTheme';
+import { InputCurrencyStylesType } from '@/components/inputCurrency/types/inputCurrencyTheme';
 
-import { BORDERS, COLORS, FONT_WEIGHT, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { InputCurrencyVariant } from './variants';
 
 const commonProps = {

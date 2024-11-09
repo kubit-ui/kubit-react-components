@@ -1,7 +1,6 @@
 import { ChangeEventHandler, FocusEventHandler, useEffect, useState } from 'react';
 
-import { useValidations } from '@/provider/validations';
-
+import { useValidations } from '../../provider/validations/validationsProvider';
 import { limitValue } from './helpers/limitValue';
 
 type ParamsType = {

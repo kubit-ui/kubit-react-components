@@ -1,10 +1,9 @@
 import styled, { css } from 'styled-components';
 
-import { srOnlyMixin } from '@/styles/mixins';
-import { CommonStyleType } from '@/types';
-import { getStyles } from '@/utils';
-
-import { InputDropdownStateProps } from './types';
+import { srOnlyMixin } from '../../styles/mixins/srOnly.mixin';
+import { CommonStyleType } from '../../types/styles/commonStyle';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import { InputDropdownStateProps } from './types/inputDropdownTheme';
 
 type InputDropdownStylesType = {
   styles?: InputDropdownStateProps;

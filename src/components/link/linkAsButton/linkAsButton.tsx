@@ -1,12 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonSizePropsType, ButtonStateKeyOfType, ButtonStateType } from '@/components/button';
-import { STYLES_NAME } from '@/constants';
-import { States, useManageState } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { States, useManageState } from '@/hooks/useManageState/useManageState';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 import { useGenericComponents } from '@/provider/genericComponents/genericComponentsProvider';
 
+import { ErrorBoundary } from '../../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../../provider/errorBoundary/fallbackComponent';
+import { ButtonSizePropsType, ButtonStateKeyOfType } from '../../button/types/buttonTheme';
+import { ButtonStateType } from '../../button/types/state';
 import { ILinkAsButton, ILinkAsButtonStandAlone } from '../types/link';
 import { LinkAsButtonStandAlone } from './linkAsButtonStandAlone';
 

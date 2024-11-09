@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import video from '@/assets/storybook/videos/mov_bbb.mp4';
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 // import video from '@/assets/storybook/videos/dosMinutos.mp4';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
+import { TrackKindType, VideoType } from '@/types/video/video';
 
-import { TrackKindType, VideoType } from '../../../types/video';
-import { IVideoUnControlled } from '../types';
+import { IVideoUnControlled } from '../types/video';
 import { VideoUnControlled as Story } from '../videoUnControlled';
 import { argtypes } from './argtypes';
 

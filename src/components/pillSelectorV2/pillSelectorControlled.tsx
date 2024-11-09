@@ -1,14 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStylesV2 } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
 
 import { PillSelectorStandAlone } from './pillSelectorStandAlone';
-import {
-  IPillSelectorControlled,
-  PillSelectorType,
-  PillSelectorVariantPropsStylesType,
-} from './types';
+import { IPillSelectorControlled } from './types/pillSelector';
+import { PillSelectorVariantPropsStylesType } from './types/pillSelectorTheme';
+import { PillSelectorType } from './types/pillSelectorType';
 
 const PillSelectorControlledComponent = (
   {

@@ -1,11 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { LineSeparatorLinePropsStylesType } from '@/components/lineSeparator';
-import { IText, TextComponentType } from '@/components/text/types';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { ButtonType } from '../../button/types/type';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { LineSeparatorLinePropsStylesType } from '../../lineSeparator/types/lineSeparatorTheme';
+import { TextComponentType } from '../../text/types/component';
+import { IText } from '../../text/types/text';
 import { AccordionPropsStylesType } from './accordionTheme';
 
 export type AccordionTextType = Omit<IText<string>, 'children'> & {

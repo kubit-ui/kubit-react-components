@@ -1,6 +1,8 @@
-import { TooltipAlignType } from '@/components/tooltip';
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types/styles';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
 
+import { TooltipAlignType } from '../../../../tooltip/types/tooltipAlign';
 import { RadioButtonStateType } from './state';
 
 export type RadioButtonBaseStyles = {

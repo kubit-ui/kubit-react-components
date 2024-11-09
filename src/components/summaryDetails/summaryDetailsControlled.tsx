@@ -1,15 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { LineSeparatorLinePropsStylesType } from '@/components/lineSeparator';
-import { useStyles } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useStyles } from '@/hooks/useStyles/useStyles';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { LineSeparatorLinePropsStylesType } from '../lineSeparator/types/lineSeparatorTheme';
 import { SummaryDetailsStandAlone } from './summaryDetailsStandAlone';
-import {
-  ISummaryDetailsControlled,
-  ISummaryDetailsStandAlone,
-  SummaryDetailsPropsStylesType,
-} from './types';
+import { ISummaryDetailsControlled, ISummaryDetailsStandAlone } from './types/summaryDetails';
+import { SummaryDetailsPropsStylesType } from './types/summaryDetailsTheme';
 
 const SUMMARY_DETAILS_STYLES = 'SUMMARY_DETAILS_STYLES';
 const LINE_SEPARATOR_STYLES = 'LINE_SEPARATOR_STYLES';

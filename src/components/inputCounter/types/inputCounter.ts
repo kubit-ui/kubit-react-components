@@ -1,7 +1,11 @@
-import { ERROR_EXECUTION, IInputStandAlone, INTERNAL_ERROR_EXECUTION } from '@/components/input';
-import { ITextCountControlled } from '@/components/textCount';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import {
+  ERROR_EXECUTION,
+  IInputStandAlone,
+  INTERNAL_ERROR_EXECUTION,
+} from '../../input/types/input';
+import { ITextCountControlled } from '../../textCount/types/textCount';
 import { InputCounterStylesProps } from './inputCounterTheme';
 
 export type InputCounterTextCountType = Omit<ITextCountControlled, 'variant' | 'size'> & {

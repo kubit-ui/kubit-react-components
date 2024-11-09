@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants/stylesName';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { ChipStandAlone } from './chipStandAlone';
 import { IChipControlled, IChipStandAlone } from './types/chip';
 import { ChipPropsStateStylesType } from './types/chipTheme';

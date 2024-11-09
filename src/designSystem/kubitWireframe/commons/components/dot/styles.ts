@@ -1,7 +1,8 @@
-import { DotStylesType } from '@/components/dot/types';
+import { DotStylesType } from '@/components/dot/types/dotTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 
 import { shadowAfterStylesSpecificProps, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, RADIUS, SPACINGS } from '../../foundations';
 import { DotSizeType, DotVariantType } from './variants';
 
 export const getDotStyles = (COLORS: {

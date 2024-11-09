@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { getFocusableDescendantsV2 } from '@/utils/focusHandlers/focusHandlers';
 

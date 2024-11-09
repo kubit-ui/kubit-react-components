@@ -3,7 +3,8 @@ import React from 'react';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 
-import { TextAreaPropsThemeType, TextAreaTextType } from '../types';
+import { TextAreaTextType } from '../types/textArea';
+import { TextAreaPropsThemeType } from '../types/textAreaTheme';
 
 export const HelpMessageStandAlone = ({
   id,

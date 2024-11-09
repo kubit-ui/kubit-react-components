@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 // styles
 import { BreadcrumbsNavStyled, BreadcrumbsStyled } from './breadcrumbs.styled';
-import { CrumbStandAlone } from './components';
+import { CrumbStandAlone } from './components/crumbStandAlone';
 import { IBreadcrumbsStandAlone } from './types/breadcrumbs';
-import { crumbMaxCharName, useIsOverflow } from './utils';
+import { crumbMaxCharName } from './utils/crumbMaxCharName';
+import useIsOverflow from './utils/useIsOverflow';
 
 const BreadcrumbsStandAloneComponent = (
   {

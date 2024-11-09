@@ -1,10 +1,14 @@
-import { NavigationCardStylesType } from '@/components/navigationCard/types';
-import { TextComponentType } from '@/components/text/types';
+import { NavigationCardStylesType } from '@/components/navigationCard/types/navigationCardTheme';
+import { TextComponentType } from '@/components/text/types/component';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SHADOW } from '@/designSystem/kubitWireframe/commons/foundations/shadow';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SHADOW, SIZES, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { TextVariantType } from '../../../../kubit/components/text/variants';
 import { NavigationCardVariantType } from './variants';
 
 export const getNavigationCardStyles = (COLORS: {

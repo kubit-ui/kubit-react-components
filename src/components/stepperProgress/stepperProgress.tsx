@@ -1,10 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { StepperProgressStandAlone } from './stepperProgressStandAlone';
-import { IStepperProgress, IStepperProgressStandAlone, StepperProgressCommonProps } from './types';
+import { IStepperProgress, IStepperProgressStandAlone } from './types/stepperProgress';
+import { StepperProgressCommonProps } from './types/stepperProgressTheme';
 
 const STEPPER_PROGRESS_STYLES = 'STEPPER_PROGRESS_STYLES';
 

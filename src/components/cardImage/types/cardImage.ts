@@ -1,7 +1,8 @@
-import { ILink } from '@/components/link';
-import { IText } from '@/components/text';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { ILink } from '../../link/types/link';
+import { IText } from '../../text/types/text';
 import { CardImageVariantStylesType } from './cardImageTheme';
 
 type ImagesType = {

@@ -1,15 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { IconHighlightedStandAlone } from './iconHighlightedStandAlone';
-import {
-  IIconHighlighted,
-  IIconHighlightedStandAlone,
-  IconHighlightedVariantStylesType,
-} from './types';
+import { IIconHighlighted, IIconHighlightedStandAlone } from './types/iconHighlighted';
+import { IconHighlightedVariantStylesType } from './types/iconHighlightedTheme';
 
 // eslint-disable-next-line react/display-name
 const IconHighlightedComponent = React.forwardRef(

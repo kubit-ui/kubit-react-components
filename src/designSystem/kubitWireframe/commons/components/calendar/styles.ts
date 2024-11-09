@@ -2,20 +2,20 @@ import { ListDaysStateType } from '@/components/calendar/list/types/state';
 import { MonthSelectorStateType } from '@/components/calendar/selector/monthSelector/types/state';
 import { SelectorStateType } from '@/components/calendar/selector/types/state';
 import { YearSelectorStateType } from '@/components/calendar/selector/yearSelector/types/state';
-import { CalendarStylesType, CalendarVariantType } from '@/components/calendar/types';
-import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
-import { DeviceBreakpointsType } from '@/types';
-
+import { CalendarStylesType } from '@/components/calendar/types/calendarTheme';
+import { CalendarVariantType } from '@/components/calendar/types/variant';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SHADOW } from '@/designSystem/kubitWireframe/commons/foundations/shadow';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import {
-  BORDERS,
   FONT_WEIGHT,
-  RADIUS,
-  SHADOW,
-  SIZES,
-  SPACINGS,
   TEXT_ALIGN,
-} from '../../foundations';
-import { TextVariantType } from '../text';
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
+import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+
+import { TextVariantType } from '../../../../kubit/components/text/variants';
 import { ButtonSizeType, ButtonVariantType } from '../variants';
 
 export const getCalendarStyles = (COLORS: {

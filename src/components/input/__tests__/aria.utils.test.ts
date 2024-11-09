@@ -1,5 +1,5 @@
-import { InputState } from '../types';
-import { buildAriaDescribedBy } from '../utils';
+import { InputState } from '../types/inputTheme';
+import { buildAriaDescribedBy } from '../utils/aria.utils';
 
 const helpMessage = 'help';
 const helpMessageId = '1234';

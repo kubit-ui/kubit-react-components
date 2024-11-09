@@ -1,9 +1,10 @@
 // testing-library
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
-import { renderProvider } from '../../../tests/renderProvider/renderProvider.utility';
-import { BackToTop } from '../index';
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+
+import { BackToTopUnControlled as BackToTop } from '../backToTopUnControlled';
 
 const mockProps = {
   variant: 'DEFAULT',

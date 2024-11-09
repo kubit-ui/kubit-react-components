@@ -1,5 +1,5 @@
-import { BACKSPACE, DELETE } from '@/constants';
-import { CursorType } from '@/types/type';
+import { BACKSPACE, DELETE } from '@/constants/keyboardKeys/keyboardKeys';
+import { CursorType } from '@/types/type/type';
 
 import { getPosition } from './cursor.utility';
 

@@ -1,7 +1,7 @@
-import { POSITIONS } from '@/types';
+import { POSITIONS } from '@/types/positions/positions';
 
-import { InputHelpMessagePosition } from '../types';
-import { getExtraStyles } from '../utils';
+import { InputHelpMessagePosition } from '../types/inputTheme';
+import { getExtraStyles } from '../utils/extraStyles.utils';
 
 describe('Extra styles utils', () => {
   it('getLeftExtraStyles return object', () => {

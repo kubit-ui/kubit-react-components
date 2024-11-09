@@ -1,7 +1,8 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { CustomTokenTypes, POSITIONS } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { POSITIONS } from '@/types/positions/positions';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IText } from '../../text/types/text';
 import { ToggleStateStyleType, ToggleStyleType } from './toggleTheme';
 
 /**

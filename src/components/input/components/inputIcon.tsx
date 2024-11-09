@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 // styles
 import { InputIconStyled } from '../input.styled';
 import { IInputIcon } from '../types/input';

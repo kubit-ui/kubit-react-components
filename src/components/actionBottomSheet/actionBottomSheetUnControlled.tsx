@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { ActionBottomSheetControlled } from './actionBottomSheetControlled';
-import { ActionBottomSheetUnControlledType } from './types';
+import { ActionBottomSheetUnControlledType } from './types/actionBottomSheet';
 
 export const ActionBottomSheetUnControlledComponent = <V extends string | unknown>(
   { open = false, popover, closeIcon, ...props }: ActionBottomSheetUnControlledType<V>,
@@ -45,3 +45,5 @@ const ActionBottomSheetUnControlled = React.forwardRef(ActionBottomSheetUnContro
 ) => ReturnType<typeof ActionBottomSheetUnControlledComponent>;
 
 export { ActionBottomSheetUnControlled };
+
+export { ActionBottomSheetUnControlled as ActionBottomSheet };

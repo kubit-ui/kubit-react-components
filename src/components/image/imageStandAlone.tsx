@@ -1,13 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ROLES } from '@/types';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
+import { ROLES } from '../../types/role/role';
 // internal components
 import { PictureSourceStandAlone } from './components/pictureSourceStandAlone';
 // styles
 import { ImagePictureStyled, ImageStyled } from './image.styled';
-import { IImageStandAlone, ImageLoadingType } from './types';
+import { IImageStandAlone } from './types/image';
+import { ImageLoadingType } from './types/loading';
 import { getFallbackRatio } from './utils/getFallbackRatio';
 
 const ImageStandAloneComponent = (

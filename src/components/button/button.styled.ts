@@ -1,17 +1,17 @@
 import styled, { css } from 'styled-components';
 
 // mixin
-import { focusVisibleAlt } from '@/styles/mixins/index';
+import { focusVisibleAlt } from '@/styles/mixins/focusAlt.mixin';
 // theme styles
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
+import { IconPositionType } from './types/buttonIconPosition';
 import {
   ButtonSizePropsType,
   ButtonStateKeyOfType,
-  ButtonStateType,
   ButtonVariantStylesType,
-  IconPositionType,
-} from './types';
+} from './types/buttonTheme';
+import { ButtonStateType } from './types/state';
 
 // set tokens
 const setTokens = (

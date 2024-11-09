@@ -1,4 +1,4 @@
-import { ListOptionsOptionType } from '../types';
+import { ListOptionsOptionType } from '../types/listOptions';
 
 export const isSelected = (
   option: ListOptionsOptionType,

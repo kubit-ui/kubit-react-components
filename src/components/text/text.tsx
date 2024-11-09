@@ -1,12 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants/stylesName';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
 import { FallbackComponent } from '@/provider/errorBoundary/fallbackComponent';
 
 import { TextStandAlone } from './textStandAlone';
-import { IText, ITextStandAlone, TextVariantStylesType } from './types';
+import { IText, ITextStandAlone } from './types/text';
+import { TextVariantStylesType } from './types/textTheme';
 
 const TextComponent = React.forwardRef(
   <V extends string | unknown>(

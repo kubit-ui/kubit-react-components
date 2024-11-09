@@ -1,15 +1,16 @@
 import userEvent from '@testing-library/user-event';
 
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { IconHighlightedSizeType, IconHighlightedType } from '@/components/iconHighlighted';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { NavigationRow } from '../index';
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { IconHighlightedSizeType } from '../../iconHighlighted/types/size';
+import { IconHighlightedType } from '../../iconHighlighted/types/type';
+import { NavigationRow } from '../navigationRow';
 
 const mockProps = {
   variant: 'DEFAULT',

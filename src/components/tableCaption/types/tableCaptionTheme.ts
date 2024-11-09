@@ -1,4 +1,5 @@
-import { CommonStyleType, TypographyTypes } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { TypographyTypes } from '@/types/styles/typography';
 
 export type TableCaptionPropsStylesType = {
   container?: CommonStyleType & TypographyTypes;

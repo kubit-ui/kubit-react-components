@@ -1,11 +1,11 @@
 import { act, fireEvent } from '@testing-library/react';
 
+import * as useMediaDevice from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderHookProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import * as useMediaDevice from '../../../hooks/useMediaDevice/useMediaDevice';
-import { useTooltip } from '../hooks';
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
+import { useTooltip } from '../hooks/useTooltip';
 import * as computePositionUtils from '../positioning/computePosition';
 
 const variant = 'DEFAULT';

@@ -1,5 +1,6 @@
 // external types
-import { CommonStyleType, TypographyTypes } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { TypographyTypes } from '@/types/styles/typography';
 
 /**
  * @interface IDotStyled

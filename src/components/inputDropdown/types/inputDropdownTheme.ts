@@ -1,5 +1,7 @@
 import { InputBasicStateProps, InputState } from '@/components/input/types/inputTheme';
-import { CommonStyleType, DeviceBreakpointsType, TypographyTypes } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { TypographyTypes } from '@/types/styles/typography';
 
 export type InputDropdownStateProps = InputBasicStateProps & {
   allowSearch?: boolean;

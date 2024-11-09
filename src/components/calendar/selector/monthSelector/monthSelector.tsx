@@ -1,18 +1,24 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
-import { ItemRove } from '@/components/itemRove';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useRoveFocus } from '@/hooks';
-import { useUtilsProvider } from '@/provider';
+import { useRoveFocus } from '@/hooks/useRoveFocus/useRoveFocus';
+import { useUtilsProvider } from '@/provider/utils/provider';
 
+import { ButtonType } from '../../../button/types/type';
+import { ItemRove } from '../../../itemRove/itemRove';
 import { setMonth } from '../../utils/setMonth';
 // styles
 import { MonthElementStyled, MonthListStyled, MonthSelectorStyled } from './monthSelector.styled';
 import { IMonthSelector } from './types/monthSelector';
 import { MonthSelectorStateType } from './types/state';
-import { keyDownMove, keyLeftMove, keyRightMove, keyTabMove, keyUpMove } from './utils';
+import {
+  keyDownMove,
+  keyLeftMove,
+  keyRightMove,
+  keyTabMove,
+  keyUpMove,
+} from './utils/monthSelector.utils';
 
 export const MonthSelector = (props: IMonthSelector): JSX.Element => {
   const { dateHelpers, transformDate } = useUtilsProvider();

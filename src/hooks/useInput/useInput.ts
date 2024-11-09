@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react';
 
-import { useInternalValidations } from '@/components/input/hooks';
+import { useInternalValidations } from '@/components/input/hooks/useInternalValidations';
 import {
   ERROR_EXECUTION,
   FormatNumber,
@@ -20,23 +20,18 @@ import {
   convertDecimalSeparator,
   formatNumber,
   getDecimalSeparator,
-  getState,
   removeThousandSeparator,
-} from '@/components/input/utils';
-import { truncatedValue } from '@/components/inputCurrency/helpers';
-import { BACKSPACE, DELETE } from '@/constants';
-import { useValidations } from '@/provider/validations';
-import { EventKeyPressRefType } from '@/types/type';
-import {
-  cleanInputValue,
-  formatMask,
-  getPosition,
-  isArrowDownPressed,
-  isArrowUpPressed,
-  maxCountBetweenChars,
-} from '@/utils';
-import { matchInputValue } from '@/utils/maskUtility/mask.utility';
+} from '@/components/input/utils/formatNumber';
+import { getState } from '@/components/input/utils/state.utils';
+import { truncatedValue } from '@/components/inputCurrency/helpers/truncatedValue';
+import { BACKSPACE, DELETE } from '@/constants/keyboardKeys/keyboardKeys';
+import { EventKeyPressRefType } from '@/types/type/type';
+import { cleanInputValue, formatMask, matchInputValue } from '@/utils/maskUtility/mask.utility';
 
+import { useValidations } from '../../provider/validations/validationsProvider';
+import { getPosition } from '../../utils/cursorUtility/cursor.utility';
+import { isArrowDownPressed, isArrowUpPressed } from '../../utils/keyboard/keyboard.utility';
+import { maxCountBetweenChars } from '../../utils/stringUtility/string.utility';
 import { limitValue } from './helpers/limitValue';
 import { modifyInputNumberValue } from './helpers/modifyInputNumberValue';
 import { ParamsTypeInputHook, ReturnTypeInputHook } from './types/inputHook';

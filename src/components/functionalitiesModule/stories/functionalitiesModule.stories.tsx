@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { SummaryDetails } from '@/components/summaryDetails';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
+import { SummaryDetailsUnControlled as SummaryDetails } from '../../summaryDetails/summaryDetailsUnControlled';
 import { FunctionalitiesModuleUnControlled as Story } from '../functionalitiesModuleUnControlled';
-import { IFunctionalitiesModuleUnControlled } from '../types';
+import { IFunctionalitiesModuleUnControlled } from '../types/functionalitiesModule';
 import { argtypes } from './argtypes';
 import { SECTIONS } from './fixture';
 

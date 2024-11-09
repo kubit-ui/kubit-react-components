@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
 import { MediaButton } from '@/components/mediaButton/mediaButton';
 import { MediaButtonSizeType } from '@/components/mediaButton/types/sizes';
-import { useMediaDevice } from '@/hooks';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import { VideoStyleType } from '../types/videoTheme';
 import { ScreenIconContainerStyled } from '../video.styled';
 

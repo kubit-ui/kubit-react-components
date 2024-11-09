@@ -1,4 +1,4 @@
-import { ExpressionType } from '../types';
+import { ExpressionType } from '../types/parser.types';
 
 const MATCH2 = /\d\d/; // 00 - 99
 const MATCH4 = /\d{4}/; // 0000 - 9999

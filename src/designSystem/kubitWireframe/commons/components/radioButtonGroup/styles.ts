@@ -1,11 +1,14 @@
+import { RadioButtonStateType } from '@/components/radioButtonGroup/components/radioButton/types/state';
+import { RadioButtonGroupStylesType } from '@/components/radioButtonGroup/types/radioButtonGroup';
+import { TooltipAlignType } from '@/components/tooltip/types/tooltipAlign';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import {
-  RadioButtonGroupStylesType,
-  RadioButtonStateType,
-} from '@/components/radioButtonGroup/types';
-import { TooltipAlignType } from '@/components/tooltip/types';
+  FONT_WEIGHT,
+  TEXT_ALIGN,
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, FONT_WEIGHT, RADIUS, SPACINGS, TEXT_ALIGN } from '../../foundations';
 import { TextVariantType, TooltipVariantType } from '../variants';
 import { RadioButtonGroupVariantType } from './variants';
 

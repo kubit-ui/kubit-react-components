@@ -1,6 +1,6 @@
-import { ILLUSTRATIONS } from '@/assets';
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { ArgTypesReturn } from '@/types';
+import { ILLUSTRATIONS } from '@/assets/storybook/illustrations/illustrations';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { ArgTypesReturn } from '@/types/type/type';
 
 export const argtypes = (): ArgTypesReturn => {
   return {

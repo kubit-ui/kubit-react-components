@@ -1,4 +1,4 @@
-import { ListOptionsOptionType } from '@/components/listOptions';
+import { ListOptionsOptionType } from '../../listOptions/types/listOptions';
 
 export const filterOptions = (
   value: string | number | undefined,

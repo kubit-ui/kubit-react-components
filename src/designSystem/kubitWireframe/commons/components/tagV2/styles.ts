@@ -1,7 +1,10 @@
-import { TagStylesTypeV2 } from '@/components';
+import { TagStylesType as TagStylesTypeV2 } from '@/components/tagV2/types/tagTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS } from '../../foundations';
 import { TextVariantType } from '../text/variants';
 import { TagVariantTypeV2 } from './variants';
 

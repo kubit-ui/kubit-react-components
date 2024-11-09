@@ -1,10 +1,10 @@
-import { IMAGES } from '@/assets';
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
+import { IMAGES } from '@/assets/storybook/images/images';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
 import { objectFlip } from '@/storybook/utils/utils';
-import { ArgTypesReturn } from '@/types';
+import { ArgTypesReturn } from '@/types/type/type';
 
-import { AvatarBackgroundColor } from '../types';
+import { AvatarBackgroundColor } from '../types/content';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {

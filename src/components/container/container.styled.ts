@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { ContainerPropsStylesType } from './types';
+import { ContainerPropsStylesType } from './types/containerTheme';
 
 type ContainerPropsStyles = {
   styles: ContainerPropsStylesType;

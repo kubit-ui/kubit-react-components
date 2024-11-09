@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import {
   additionalInfoAction,
   labelSecondary,
 } from '@/components/input/components/stories/stories';
-import { ERROR_EXECUTION } from '@/components/input/types';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
-import { InputTypeType } from '@/types/inputType';
-import { formatDateToUTC } from '@/utils';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
+import { InputTypeType } from '@/types/inputType/inputType';
 
+import { formatDateToUTC } from '../../../utils/date/formatDate';
+import { ERROR_EXECUTION } from '../../input/types/input';
 import { InputDate as Story } from '../inputDate';
-import { IInputDate } from '../types';
+import { IInputDate } from '../types/inputDate';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

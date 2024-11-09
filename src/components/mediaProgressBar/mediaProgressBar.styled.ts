@@ -2,7 +2,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { MediaProgressBarVariantStylesType } from './types';
+import { MediaProgressBarVariantStylesType } from './types/mediaProgressBarTheme';
 
 type MediaProgressBarStylesType = {
   styles: MediaProgressBarVariantStylesType;

@@ -1,14 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Footer } from '@/components/footer/footer';
-import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
-import { Text } from '@/components/text/text';
-import { TextComponentType } from '@/components/text/types/component';
-import { useId } from '@/hooks';
-import { ROLES } from '@/types';
+import { useId } from '@/hooks/useId/useId';
 
+import { ROLES } from '../../types/role/role';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { PopoverControlled } from '../popover/popoverControlled';
+import { PopoverComponentType } from '../popover/types/component';
+import { Text } from '../text/text';
+import { TextComponentType } from '../text/types/component';
 import {
   DrawerContentStyled,
   DrawerFooterStyled,
@@ -17,7 +17,7 @@ import {
   DrawerTitleContentFooterContainerStyled,
   DrawerTitleStyled,
 } from './drawer.styled';
-import { IDrawerStandAlone } from './types';
+import { IDrawerStandAlone } from './types/drawer';
 
 const DrawerStandAloneComponent = (
   {
@@ -33,7 +33,7 @@ const DrawerStandAloneComponent = (
   const position = props.styles[props.level]?.containerPosition;
 
   return (
-    <Popover
+    <PopoverControlled
       aria-labelledby={props.title?.content ? titleIdFinal : undefined}
       aria-modal={props.open}
       clickOverlayClose={!blocked}
@@ -54,6 +54,7 @@ const DrawerStandAloneComponent = (
         <DrawerTitleContentFooterContainerStyled blocked={blocked} styles={props.styles}>
           <DrawerTitleStyled
             data-drawer-title
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             as={Text as any}
             component={titleComponent as unknown as TextComponentType}
             customTypography={props.styles.title}
@@ -79,6 +80,7 @@ const DrawerStandAloneComponent = (
           {props.footer?.content && (props.styles.footer?.variant || props.footer.variant) && (
             <DrawerFooterStyled
               data-drawer-footer
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               as={Footer as any}
               customFooterStyles={props.styles}
               variant={props.styles.footer?.variant}
@@ -89,7 +91,7 @@ const DrawerStandAloneComponent = (
           )}
         </DrawerTitleContentFooterContainerStyled>
       </DrawerStyled>
-    </Popover>
+    </PopoverControlled>
   );
 };
 

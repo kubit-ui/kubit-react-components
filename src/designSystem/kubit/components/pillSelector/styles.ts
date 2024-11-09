@@ -1,6 +1,6 @@
-import { PillSelectorThemeType } from '@/components/pillSelector/types';
+import { PillSelectorThemeType } from '@/components/pillSelector/types/pillSelectorTheme';
 
-import { BORDERS } from '../../foundations';
+import { BORDERS } from '../../foundations/borders';
 import { PillSelectorVariant } from './variants';
 
 export const PILL_SELECTOR_STYLES: PillSelectorThemeType<PillSelectorVariant> = {

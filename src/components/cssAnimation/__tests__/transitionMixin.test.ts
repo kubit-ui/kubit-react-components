@@ -5,7 +5,8 @@ import {
   transitionMixinEnter,
   transitionMixinExit,
 } from '../animations/transitionMixin';
-import { CssAnimationTimingFunction, CssAnimationVariants, ICssAnimationStyled } from '../types';
+import { CssAnimationTimingFunction, ICssAnimationStyled } from '../types/cssAnimation';
+import { CssAnimationVariants } from '../types/variant';
 
 describe('transitionMixin', () => {
   it('should return the correct CSSProp with duration in seconds', () => {

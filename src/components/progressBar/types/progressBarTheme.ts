@@ -1,4 +1,4 @@
-import { CommonStyleType } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
 
 /**
  * @description

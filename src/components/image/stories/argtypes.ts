@@ -1,7 +1,8 @@
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { ArgTypesReturn } from '@/types';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { ArgTypesReturn } from '@/types/type/type';
 
-import { ImageLoadingType, ImageObjectFitType } from '../types';
+import { ImageLoadingType } from '../types/loading';
+import { ImageObjectFitType } from '../types/objectFit';
 
 export const argtypes = (): ArgTypesReturn => {
   return {

@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '../button/types';
+import { ButtonType } from '../button/types/type';
 //components
-import { ElementOrIcon } from '../elementOrIcon';
-import { Loader } from '../loader';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { Loader } from '../loader/loader';
 // styles
 import { ButtonStyled, ContainerStyled } from './mediaButton.styled';
 import { IMediaButtonStandAlone } from './types/mediaButton';

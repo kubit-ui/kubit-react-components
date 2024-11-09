@@ -1,4 +1,4 @@
-import { SelectorBoxFileStateType } from '../types';
+import { SelectorBoxFileStateType } from '../types/state';
 
 export const getState = (
   loading: boolean,

@@ -1,4 +1,9 @@
-import { getBottomBarWith, getLeftBarHeight, getRightBarHeight, getTopBarWith } from '../utils';
+import {
+  getBottomBarWith,
+  getLeftBarHeight,
+  getRightBarHeight,
+  getTopBarWith,
+} from '../utils/animation.utils';
 
 describe('animation utils', () => {
   it('should return the total width', () => {

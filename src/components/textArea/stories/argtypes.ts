@@ -1,7 +1,8 @@
-import { ICONS } from '@/assets';
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn, AriaLiveOptionType } from '@/types';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
+import { ArgTypesReturn } from '@/types/type/type';
 
 export const argtypes = (
   variantsObject: IThemeObjectVariants,

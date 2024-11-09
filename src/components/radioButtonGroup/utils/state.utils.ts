@@ -1,4 +1,4 @@
-import { RadioButtonStateType } from '../types';
+import { RadioButtonStateType } from '../components/radioButton/types/state';
 
 /**
  * Get the state of the radioButton

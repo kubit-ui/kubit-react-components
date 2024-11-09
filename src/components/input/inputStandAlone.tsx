@@ -1,19 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
 import { InputStructure } from '@/components/inputStructure/inputStructure';
 import { pickAriaProps } from '@/utils/aria/aria';
 
-import {
-  ErrorMessageStandAlone,
-  HelpMessageStandAlone,
-  InformationAssociatedStandAlone,
-  InputIconStandAlone,
-  InputIconStandAloneDeprecated,
-  LabelStandAlone,
-  LoaderStandAlone,
-  TextCountStandAlone,
-  TitleStandAlone,
-} from './components';
+import { ErrorMessageStandAlone } from './components/errorMessage';
+import { HelpMessageStandAlone } from './components/helpMessage';
+import { InformationAssociatedStandAlone } from './components/informationAssociated';
+import { InputIconStandAlone, InputIconStandAloneDeprecated } from './components/inputIcon';
+import { LabelStandAlone } from './components/label';
+import { LoaderStandAlone } from './components/loader';
+import { TextCountStandAlone } from './components/textCounter';
+import { TitleStandAlone } from './components/title';
 // styles
 import {
   BottomContentWrapperStyled,
@@ -23,15 +20,10 @@ import {
   MessagesAndCounterWrapperStyled,
   TopContentWrapperStyled,
 } from './input.styled';
-import {
-  AUTOCOMPLETE_TYPE,
-  IInputStandAlone,
-  InputHelpMessagePosition,
-  InputIconPosition,
-  LABEL_TYPE,
-  MultipleRef,
-} from './types';
-import { buildAriaDescribedBy, hasError, isDisabled } from './utils';
+import { AUTOCOMPLETE_TYPE, IInputStandAlone, MultipleRef } from './types/input';
+import { InputHelpMessagePosition, InputIconPosition, LABEL_TYPE } from './types/inputTheme';
+import { buildAriaDescribedBy } from './utils/aria.utils';
+import { hasError, isDisabled } from './utils/state.utils';
 
 const InputStandAloneComponent = (
   {

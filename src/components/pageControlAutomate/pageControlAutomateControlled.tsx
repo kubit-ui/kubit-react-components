@@ -1,15 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { PageControlAutomateStandAlone } from './pageControlAutomateStandAlone';
 import {
   IPageControlAutomateControlled,
   IPageControlAutomateStandAlone,
-  PageControlAutomatePropsStylesType,
-} from './types';
+} from './types/pageControlAutomate';
+import { PageControlAutomatePropsStylesType } from './types/pageControlAutomateTheme';
 
 const PageControlAutomateControlledComponent = React.forwardRef(
   <V extends string | unknown>(

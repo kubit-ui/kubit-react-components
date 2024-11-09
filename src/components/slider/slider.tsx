@@ -1,30 +1,29 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { ROLES } from '@/types';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { ROLES } from '../../types/role/role';
 import { SliderStandAlone } from './sliderStandAlone';
+import { ISlider, ISliderStandAlone, SliderOffsetBoundaries } from './types/slider';
+import { SliderBaseStylesType } from './types/sliderTheme';
+import { SliderType } from './types/type';
 import {
-  ISlider,
-  ISliderStandAlone,
-  SliderBaseStylesType,
-  SliderOffsetBoundaries,
-  SliderType,
-} from './types';
+  calcNewValueAfterKeyPress,
+  decrementValue,
+  incrementValue,
+} from './utils/accessibility.utils';
 import {
   calcDefaultValue,
   calcNewRangeValue,
-  calcNewValueAfterKeyPress,
   calcScaleValue,
   calcValueByOffset,
   calculateChange,
-  decrementValue,
   equalsRangeValues,
   getOffset,
   getScale,
-  incrementValue,
-} from './utils';
+} from './utils/slider.utils';
 
 const ON_CHANGE_DEBOUNCE_TIMEOUT = 50;
 const SLIDER_STYLES = 'SLIDER_STYLES';

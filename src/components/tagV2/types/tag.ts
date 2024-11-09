@@ -1,7 +1,7 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IText } from '../../text/types/text';
 import { TagPropsStylesType } from './tagTheme';
 
 type TagAriaAttributes = Pick<
@@ -37,3 +37,5 @@ export interface ITag<
     Omit<CustomTokenTypes<TagPropsStylesType>, 'cts' | 'extraCt'> {
   variant: V;
 }
+
+export { ITag as ITagV2 };

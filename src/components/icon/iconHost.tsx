@@ -1,14 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useTheme } from 'styled-components';
 
-import { ErrorBoundary } from '@/provider/errorBoundary';
-import { useUtilsProvider } from '@/provider/index';
 import { UtilsContext } from '@/provider/utils/context';
-import { isValidHttpUrl } from '@/utils/index';
+import { useUtilsProvider } from '@/provider/utils/provider';
+import { isValidHttpUrl } from '@/utils/isValidUrl/isValidUrl';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
 import { IconBasic } from './icon';
-import { IIcon } from './types';
+import { IIcon } from './types/icon';
 
 type IconWithProviderProps = IIcon & {
   ref: React.ForwardedRef<HTMLSpanElement>;

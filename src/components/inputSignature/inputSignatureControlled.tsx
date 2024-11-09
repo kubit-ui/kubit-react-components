@@ -1,9 +1,10 @@
 import React, { ForwardedRef } from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStylesV2 } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { InputSignatureStandAlone } from './inputSignatureStandAlone';
 import { IInputSignatureControlled, IInputSignatureStandAlone } from './types/inputSignature';
 import { InputSignatureFullTheme } from './types/inputSignatureTheme';

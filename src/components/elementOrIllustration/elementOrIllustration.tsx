@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Illustration } from '../illustration';
-import { IElementOrillustration } from './types';
+import { IllustrationBasic as Illustration } from '../illustration/illustration';
+import { IElementOrillustration } from './types/elementOrIllustration';
 
 const ElementOrIllustrationComponent = (
   props: IElementOrillustration,

@@ -1,23 +1,19 @@
-import { IconHighlightedSizeType } from '@/components/iconHighlighted/types';
+import { IconHighlightedSizeType } from '@/components/iconHighlighted/types/size';
 import {
   InputHelpMessagePosition,
   InputState,
   InputStylesType,
   LABEL_TYPE,
-} from '@/components/input/types';
-import { DeviceBreakpointsType } from '@/types';
+} from '@/components/input/types/inputTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import {
-  BORDERS,
-  COLORS,
-  FONT_WEIGHT,
-  PARAGRAPH,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-} from '../../foundations';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, PARAGRAPH, TEXT_ALIGN } from '../../foundations/typography';
 import { LoaderVariantType } from '../loader/variants';
-import { TextVariantType } from '../text';
+import { TextVariantType } from '../text/variants';
 import { ButtonSizeType, ButtonVariantType, IconHighlightedVariantType } from '../variants';
 import { InputVariantType } from './variants';
 

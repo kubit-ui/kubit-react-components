@@ -1,18 +1,19 @@
 import userEvent from '@testing-library/user-event';
 
 import { fireEvent } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import 'jest-styled-components';
 
 import { axe } from 'jest-axe';
 
-import { FooterPositionType } from '@/components/footer';
 import { Link } from '@/components/link/link';
-import { TextComponentType } from '@/components/text';
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { renderProvider } from '../../../tests/renderProvider/renderProvider.utility';
-import { Accordion, AccordionControlled } from '../index';
+import { FooterPositionType } from '../../footer/types/position';
+import { TextComponentType } from '../../text/types/component';
+import { AccordionControlled } from '../accordionControlled';
+import { AccordionUnControlled as Accordion } from '../accordionUnControlled';
 
 const commonAccordionUncontrolledProps = {
   headerRightContent: 'Right content',

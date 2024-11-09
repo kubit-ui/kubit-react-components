@@ -1,13 +1,14 @@
 import { act, fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { CssAnimationTimingFunction, CssAnimationVariants } from '@/components/cssAnimation';
-import { TAB } from '@/constants';
-import { ROLES } from '@/types';
+import { TAB } from '@/constants/keyboardKeys/keyboardKeys';
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+import { ROLES } from '@/types/role/role';
 
-import { renderProvider } from '../../../tests/renderProvider/renderProvider.utility';
+import { CssAnimationTimingFunction } from '../../cssAnimation/types/cssAnimation';
+import { CssAnimationVariants } from '../../cssAnimation/types/variant';
 import { PopoverControlled } from '../popoverControlled';
 import { PopoverUnControlled as Popover } from '../popoverUnControlled';
 

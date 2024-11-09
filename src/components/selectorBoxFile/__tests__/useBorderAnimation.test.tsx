@@ -1,11 +1,16 @@
 import { waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 
-import { useBorderAnimation } from '../hooks';
-import { getBottomBarWith, getLeftBarHeight, getRightBarHeight, getTopBarWith } from '../utils';
+import { useBorderAnimation } from '../hooks/useBorderAnimation';
+import {
+  getBottomBarWith,
+  getLeftBarHeight,
+  getRightBarHeight,
+  getTopBarWith,
+} from '../utils/animation.utils';
 
 // Mock the utility functions
-jest.mock('../utils', () => ({
+jest.mock('../utils/animation.utils', () => ({
   getTopBarWith: jest.fn(),
   getRightBarHeight: jest.fn(),
   getBottomBarWith: jest.fn(),

@@ -13,6 +13,5 @@ export type {
   ModalContentScrollAriasType as ModalContentScrollAriasTypeV2,
 } from './types';
 
-// components
-export { ModalControlled as ModalControlledV2 } from './modalControlled';
-export { ModalUnControlled as ModalV2 } from './modalUnControlled';
+export { ModalControlledV2 } from './modalControlled';
+export { ModalV2 } from './modalUnControlled';

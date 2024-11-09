@@ -1,13 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useMediaDevice, useStyles } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useStyles } from '@/hooks/useStyles/useStyles';
 
-import { INTERNAL_ERROR_EXECUTION, InputTypeType } from '../input/types';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { INTERNAL_ERROR_EXECUTION } from '../input/types/input';
+import { InputTypeType } from '../input/types/inputType';
 import { useInputDropdown } from './hooks/useInputDropdown';
 import { InputDropdownStandAlone } from './inputDropdownStandAlone';
-import { IInputDropdown, IInputDropdownStandAlone, InputDropdownStylesProps } from './types';
+import { IInputDropdown, IInputDropdownStandAlone } from './types/inputDropdown';
+import { InputDropdownStylesProps } from './types/inputDropdownTheme';
 
 const DEFAULT_LIMIT = 4;
 

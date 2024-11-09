@@ -1,5 +1,5 @@
 import { InputBasicStateProps, InputState } from '@/components/input/types/inputTheme';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 export type InputDateStateProps = InputBasicStateProps & {
   inputVariant?: string;

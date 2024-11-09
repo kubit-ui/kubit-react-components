@@ -1,9 +1,12 @@
 // types
-import { InputState } from '@/components/input/types';
-import { InputSearchVariantType } from '@/components/inputSearch/types';
-import { DeviceBreakpointsType } from '@/types';
+import { InputState } from '@/components/input/types/inputTheme';
+import { InputSearchVariantType } from '@/components/inputSearch/types/inputSearchTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { COLORS, FONT_WEIGHT, SIZES, SPACINGS } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import { InputVariantType } from '../input/variants';
 import { ListOptionsVariantType } from '../listOptions/variants';
 import { OptionVariantType } from '../option/variants';

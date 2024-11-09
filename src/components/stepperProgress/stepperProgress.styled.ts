@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { getStyles } from '@/utils';
-
-import { IStepperProgressStyled } from './types';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import { IStepperProgressStyled } from './types/stepperProgress';
 
 export const StepperProgressContainerStyled = styled.div<IStepperProgressStyled>`
   ${({ styles }) => getStyles(styles.container)};

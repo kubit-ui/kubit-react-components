@@ -1,4 +1,4 @@
-import { ENTER, SPACE } from '@/constants';
+import { ENTER, SPACE } from '@/constants/keyboardKeys/keyboardKeys';
 
 import { isKeyEnterPressed, isKeySpacePressed } from './keyboard.utility';
 

@@ -1,7 +1,8 @@
-import { OliveMenuStylesType } from '@/components/oliveMenu/types';
-import { DeviceBreakpointsType, POSITIONS } from '@/types';
+import { OliveMenuStylesType } from '@/components/oliveMenu/types/oliveMenuTheme';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { POSITIONS } from '@/types/positions/positions';
 
-import { SPACINGS } from '../../foundations';
 import {
   ActionBottomSheetVariantType,
   ButtonSizeType,

@@ -2,11 +2,8 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import {
-  ILineSeparatorLabelStyled,
-  ILineSeparatorLineStyled,
-  LineSeparatorPositionType,
-} from './types';
+import { ILineSeparatorLabelStyled, ILineSeparatorLineStyled } from './types/lineSeparator';
+import { LineSeparatorPositionType } from './types/lineSeparatorTheme';
 
 export const LineSeparatorRootWrapperStyled = styled.div<ILineSeparatorLineStyled>`
   position: relative;

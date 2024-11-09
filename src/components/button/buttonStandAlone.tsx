@@ -1,11 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
 import { pickAriaProps } from '@/utils/aria/aria';
 
-import { ElementOrIcon } from '../elementOrIcon';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { Loader } from '../loader/loader';
 import { ButtonLoaderStyled, ButtonStyled } from './button.styled';
-import { ButtonStateType, IButtonStandAlone } from './types';
+import { IButtonStandAlone } from './types/button';
+import { ButtonStateType } from './types/state';
 
 export const ButtonStandAloneStructure = (props: IButtonStandAlone): JSX.Element => {
   const getHeightSize = () =>

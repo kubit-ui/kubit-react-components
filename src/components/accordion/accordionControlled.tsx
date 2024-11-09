@@ -1,12 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
-import { LineSeparatorLinePropsStylesType } from '../lineSeparator';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { LineSeparatorLinePropsStylesType } from '../lineSeparator/types/lineSeparatorTheme';
 import { AccordionStandAlone } from './accordionStandAlone';
-import type { IAccordionControlled, IAccordionStandAlone } from './types';
+import { IAccordionControlled, IAccordionStandAlone } from './types/accordion';
 import { AccordionPropsStylesType } from './types/accordionTheme';
 
 const AccordionControlledComponent = React.forwardRef(

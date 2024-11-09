@@ -1,10 +1,14 @@
-import { IconHighlightedSizeType } from '@/components/iconHighlighted/types';
-import { NavigationCardStylesType } from '@/components/navigationCard/types';
-import { TextComponentType } from '@/components/text/types';
-import { DeviceBreakpointsType } from '@/types';
+import { IconHighlightedSizeType } from '@/components/iconHighlighted/types/size';
+import { NavigationCardStylesType } from '@/components/navigationCard/types/navigationCardTheme';
+import { TextComponentType } from '@/components/text/types/component';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { COLORS, FONT_WEIGHT, SHADOW, SIZES, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { COLORS } from '../../foundations/colors';
+import { SHADOW } from '../../foundations/shadow';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { TagOptionType, TagVariantType } from '../variants';
 import { NavigationCardVariantType } from './variants';
 

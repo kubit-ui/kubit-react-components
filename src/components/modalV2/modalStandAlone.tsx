@@ -1,18 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useId } from '@/hooks';
-import { ROLES } from '@/types';
+import { useId } from '@/hooks/useId/useId';
 
-import { Footer } from '../footer';
-import {
-  PopoverControlled as Popover,
-  PopoverComponentType,
-  PopoverPositionVariantType,
-} from '../popover';
-import { ModalHeader } from './fragments';
+import { ROLES } from '../../types/role/role';
+import { Footer } from '../footer/footer';
+import { PopoverControlled } from '../popover/popoverControlled';
+import { PopoverComponentType } from '../popover/types/component';
+import { PopoverPositionVariantType } from '../popover/types/positionVariant';
+import { ModalHeader } from './fragments/modalHeader';
 import { ModalContentStyled, ModalFooterStyled, ModalStyled } from './modal.styled';
-import { IModalStandAlone } from './types';
-import { onlyDesktopSize } from './utils';
+import { IModalStandAlone } from './types/modal';
+import { onlyDesktopSize } from './utils/onlyDesktopSize';
 
 const ModalStandAloneComponent = <V extends string | unknown>(
   {
@@ -30,7 +28,7 @@ const ModalStandAloneComponent = <V extends string | unknown>(
   const modalFooterVariant = props.footer?.variant ?? props.styles.footerVariant;
 
   return (
-    <Popover
+    <PopoverControlled
       aria-labelledby={titleIdFinal}
       aria-modal={props.open}
       clickOverlayClose={!props.blocked}
@@ -95,7 +93,7 @@ const ModalStandAloneComponent = <V extends string | unknown>(
           </ModalFooterStyled>
         )}
       </ModalStyled>
-    </Popover>
+    </PopoverControlled>
   );
 };
 

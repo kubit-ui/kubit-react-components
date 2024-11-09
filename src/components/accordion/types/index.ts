@@ -1,2 +1,8 @@
-export type * from './accordion';
-export type * from './accordionTheme';
+export type {
+  AccordionTextType,
+  AccordionTriggerButtonType,
+  IAccordionStandAlone,
+  IAccordion,
+  IAccordionControlled,
+} from './accordion';
+export type { AccordionPropsStylesType, AccordionStylesType } from './accordionTheme';

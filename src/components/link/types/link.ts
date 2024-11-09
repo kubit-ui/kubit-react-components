@@ -1,20 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import {
-  ButtonSizePropsType,
-  ButtonStateKeyOfType,
-  ButtonStateType,
-  IButtonStandAlone,
-} from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import {
-  TextComponentType,
-  TextDecorationType,
-  TextVariantStylesType,
-} from '@/components/text/types';
-import { GenericLinkType } from '@/provider/genericComponents';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { GenericLinkType } from '../../../provider/genericComponents/genericComponents.type';
+import { IButtonStandAlone } from '../../button/types/button';
+import { ButtonSizePropsType, ButtonStateKeyOfType } from '../../button/types/buttonTheme';
+import { ButtonStateType } from '../../button/types/state';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { TextComponentType } from '../../text/types/component';
+import { TextDecorationType } from '../../text/types/decoration';
+import { TextVariantStylesType } from '../../text/types/textTheme';
 import type { LinkActionType } from './action';
 import type { LinkPropsStylesType, LinkStylesType } from './linkTheme';
 import type { LinkPositionType } from './position';

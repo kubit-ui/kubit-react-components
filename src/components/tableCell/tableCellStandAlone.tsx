@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { TDStyled } from './tableCell.styled';
-import { ITableCellStandAlone } from './types';
+import { ITableCellStandAlone } from './types/tableCell';
 
 const TableCellStandAloneComponent = (
   {

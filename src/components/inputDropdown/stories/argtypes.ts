@@ -1,9 +1,9 @@
-import { TextComponentType } from '@/components/text';
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn } from '@/types';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { ArgTypesReturn } from '@/types/type/type';
 
 import { argtypes as inputArgTypes } from '../../input/stories/argtypes';
+import { TextComponentType } from '../../text/types/component';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {

@@ -1,6 +1,6 @@
-import { TableRowStylesType } from '@/components';
+import { TableRowStylesType } from '@/components/tableRow/types/tableRowTheme';
 
-import { COLORS } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
 import { TableRowVariantTypeV2 } from './variants';
 
 export const TABLE_ROW_STYLES: TableRowStylesType<TableRowVariantTypeV2> = {

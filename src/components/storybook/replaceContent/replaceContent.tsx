@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { ICONS } from '@/assets';
-import { AriaType, ROLES } from '@/types';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { ROLES } from '@/types/role/role';
+import { AriaType } from '@/types/type/type';
 
 import { ReplaceContentStyled } from './replaceContent.styled';
 

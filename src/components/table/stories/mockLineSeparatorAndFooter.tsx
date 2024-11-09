@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { Button } from '@/components/button/button';
-import { FooterPositionType } from '@/components/footer';
-import { Icon } from '@/components/icon';
-import { DeviceBreakpointsType } from '@/types';
+import { IconBasic as Icon } from '@/components/icon/icon';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+
+import { FooterPositionType } from '../../footer/types/position';
 
 export const mockTableWithLineSeparatorAndCenterFooter = {
   expandedContentHelpMessage: 'Need to expand to show the content',

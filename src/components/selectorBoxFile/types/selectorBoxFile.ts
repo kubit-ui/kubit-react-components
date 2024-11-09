@@ -1,9 +1,9 @@
-import { IButton } from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { ITooltipUnControlled } from '@/components/tooltip/types';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IButton } from '../../button/types/button';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IText } from '../../text/types/text';
+import { ITooltipUnControlled } from '../../tooltip/types/tooltip';
 import { SelectorBoxFilePropsStylesType } from './selectorBoxFileTheme';
 import { SelectorBoxFileStateType } from './state';
 

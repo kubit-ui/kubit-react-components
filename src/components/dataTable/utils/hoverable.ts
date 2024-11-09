@@ -1,4 +1,4 @@
-import { DataTableRowType } from '../types';
+import { DataTableRowType } from '../types/dataTable';
 
 type IsRowHoverableParamsType = {
   row: DataTableRowType;

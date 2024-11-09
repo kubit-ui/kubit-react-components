@@ -1,4 +1,5 @@
-import { ValidationStatusState, ValidationStatusStateIconsType } from '../types';
+import { ValidationStatusStateIconsType } from '../types/validationStatus';
+import { ValidationStatusState } from '../types/validationStatusTheme';
 
 export const stateIcons: ValidationStatusStateIconsType = {
   [ValidationStatusState.DEFAULT]: { icon: 'DOT_FILL', altText: 'default alt text' },

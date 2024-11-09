@@ -1,15 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { TableCell } from '@/components/tableCell';
-import { TableHead } from '@/components/tableHead';
-import { TableRow } from '@/components/tableRow';
+import { TableCell } from '@/components/tableCell/tableCell';
+import { TableHead } from '@/components/tableHead/tableHead';
+import { TableRow } from '@/components/tableRow/tableRow';
 
 import {
   DataTableColumnType,
   DataTableTableHeadConfigType,
   DataTableTableRowConfigType,
-} from '../types';
-import { applyGridToRow } from '../utils';
+} from '../types/dataTable';
+import { applyGridToRow } from '../utils/rowConfig';
 
 interface IDataTableHead {
   hidden?: boolean;

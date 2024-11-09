@@ -1,6 +1,10 @@
-import { InputSignatureState, InputSignatureStyles } from '@/components/inputSignature/types';
+import { InputSignatureState } from '@/components/inputSignature/types/inputSignatureState';
+import { InputSignatureStyles } from '@/components/inputSignature/types/inputSignatureTheme';
 
-import { BORDERS, COLORS, FONT_WEIGHT, SPACINGS } from '../../foundations';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import { TextVariantType } from '../variants';
 import { InputSignatureVariants } from './variants';
 

@@ -1,9 +1,9 @@
-import { TextComponentType } from '@/components/text';
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn } from '@/types';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { ArgTypesReturn } from '@/types/type/type';
 
-import { RadioButtonGroupStateType } from '../types';
+import { TextComponentType } from '../../text/types/component';
+import { RadioButtonGroupStateType } from '../types/state';
 
 export const argtypes = (
   variantsObject: IThemeObjectVariants,

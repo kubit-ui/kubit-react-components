@@ -1,7 +1,8 @@
-import { LoaderStylesType } from '@/components/loader/types';
+import { LoaderStylesType } from '@/components/loader/types/loaderTheme';
 
-import { buildPrimaryLoader } from '../../assets/animations';
-import { COLORS, SIZES } from '../../foundations';
+import { buildPrimaryLoader } from '../../assets/animations/loaders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
 import { LoaderVariantType } from './variants';
 
 const container = {

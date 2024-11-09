@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { TableCell } from '@/components/tableCell';
-import { TableHead } from '@/components/tableHead';
-import { TableRow } from '@/components/tableRow';
+import { TableCell } from '@/components/tableCell/tableCell';
+import { TableHead } from '@/components/tableHead/tableHead';
+import { TableRow } from '@/components/tableRow/tableRow';
 
-import { DataTableColumnType } from '../types';
+import { DataTableColumnType } from '../types/dataTable';
 
 interface IHiddenDataTableHead {
   columns?: DataTableColumnType[];

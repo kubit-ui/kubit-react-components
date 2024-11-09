@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 import { slideInAnimationsMixin } from './animations/slideInAnimationsMixin';
-import { CssAnimationVariants } from './types';
 import { ICssAnimationStyled } from './types/cssAnimation';
+import { CssAnimationVariants } from './types/variant';
 
 const animations = {
   [CssAnimationVariants.SLIDE_IN]: (props: ICssAnimationStyled) => slideInAnimationsMixin(props),

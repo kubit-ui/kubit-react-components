@@ -1,19 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { ROLES } from '@/types';
 
-import { PaginationButtonControl } from './fragments';
+import { ROLES } from '../../types/role/role';
+import { ButtonType } from '../button/types/type';
+import { PaginationButtonControl } from './fragments/paginationButtonControl';
 import {
   PaginationContainerStyled,
   PaginationPageContainerStyled,
   PaginationPagesContainerStyled,
 } from './pagination.styled';
-import { PaginationState } from './types';
 // interfaces
 import { IPaginationButtonControl, IPaginationStandAlone } from './types/pagination';
+import { PaginationState } from './types/state';
 
 const PaginationStandAloneComponent = (
   {

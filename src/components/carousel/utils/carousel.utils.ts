@@ -1,8 +1,8 @@
 import {
   CAROUSEL_BUILD_SCREEN_READER_CURRENT_PAGE_KEY,
   CAROUSEL_BUILD_SCREEN_READER_NUM_PAGES_KEY,
-  CarouselAlignType,
-} from '../types';
+} from '../types/carousel';
+import { CarouselAlignType } from '../types/carouselAlign';
 
 export const calcXDistanceBetween2Elements = (
   el1: HTMLElement | null,

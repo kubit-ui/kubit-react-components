@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { FunctionalitiesModuleControlled } from './functionalitiesModuleControlled';
-import { IFunctionalitiesModuleUnControlled } from './types';
+import { IFunctionalitiesModuleUnControlled } from './types/functionalitiesModule';
 import { getDefaultTabSeleted } from './utils/functionalitiesModule.utils';
 
 const FunctionalitiesModuleUnControlledComponent = (
@@ -75,3 +75,5 @@ const FunctionalitiesModuleUnControlledComponent = (
 export const FunctionalitiesModuleUnControlled = React.forwardRef(
   FunctionalitiesModuleUnControlledComponent
 );
+
+export { FunctionalitiesModuleUnControlled as FunctionalitiesModule };

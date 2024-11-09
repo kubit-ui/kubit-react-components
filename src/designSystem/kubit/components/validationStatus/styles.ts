@@ -3,9 +3,12 @@ import {
   ValidationStatusCommonProps,
   ValidationStatusState,
   ValidationStatusStylesType,
-} from '@/components/validationStatus/types';
+} from '@/components/validationStatus/types/validationStatusTheme';
 
-import { COLORS, FONT_WEIGHT, SIZES, SPACINGS } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import { TextVariantType } from '../text/variants';
 import { ValidationStatusVariants } from './variants';
 

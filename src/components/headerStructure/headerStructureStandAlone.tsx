@@ -1,15 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { DeviceBreakpointsType } from '@/types';
+import { BreadcrumbsControlled as Breadcrumbs } from '@/components/breadcrumbs/breadcrumbsControlled';
 
-import { Breadcrumbs } from '../breadcrumbs';
-import { HeaderContent } from './components';
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { HeaderContent } from './components/headerContent';
 import {
   BreadcrumbsWrapper,
   HeaderContainerContentStyled,
   HeaderContainerStyled,
 } from './headerStructure.styled';
-import { HeaderStructureContentPositionType, IHeaderStructureStandAlone } from './types';
+import { IHeaderStructureStandAlone } from './types/headerStructure';
+import { HeaderStructureContentPositionType } from './types/position';
 
 const HeaderStructureStandAloneComponent = (
   { dataTestId = 'header-structure', ...props }: IHeaderStructureStandAlone,

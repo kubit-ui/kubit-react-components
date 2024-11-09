@@ -1,4 +1,5 @@
-import { ValidationStatusItemType, ValidationStatusState } from '../types';
+import { ValidationStatusItemType } from '../types/validationStatus';
+import { ValidationStatusState } from '../types/validationStatusTheme';
 
 export const items: ValidationStatusItemType[] = [
   {

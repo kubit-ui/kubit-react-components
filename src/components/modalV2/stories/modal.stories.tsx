@@ -1,17 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
-import { Button } from '@/components/button';
-import { Carousel, CarouselAlignType } from '@/components/carousel';
-import { CssAnimationTimingFunction, CssAnimationVariants } from '@/components/cssAnimation';
-import { FooterPositionType } from '@/components/footer';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
-import { ROLES } from '@/types';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
+import { ROLES } from '@/types/role/role';
 
-import { ModalControlled as Story } from '../modalControlled';
+import { Button } from '../../button/button';
+import { CarouselUnControlled as Carousel } from '../../carousel/carouselUnControlled';
+import { CarouselAlignType } from '../../carousel/types/carouselAlign';
+import { CssAnimationTimingFunction } from '../../cssAnimation/types/cssAnimation';
+import { CssAnimationVariants } from '../../cssAnimation/types/variant';
+import { FooterPositionType } from '../../footer/types/position';
+import { ModalControlledV2 as Story } from '../modalControlled';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

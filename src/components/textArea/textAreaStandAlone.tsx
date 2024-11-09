@@ -1,12 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
 import { TextCount } from '@/components/textCount/textCount';
-import { AriaLiveOptionType } from '@/types';
+import { useId } from '@/hooks/useId/useId';
 
-import { useId } from '../../hooks';
+import { AriaLiveOptionType } from '../../types/ariaLiveOption/ariaLiveOption';
 // internal components
-import { ErrorStandAlone, HelpMessageStandAlone, TitleStandAlone } from './components';
+import { ErrorStandAlone } from './components/errorStandAlone';
+import { HelpMessageStandAlone } from './components/helpMessageStandAlone';
+import { TitleStandAlone } from './components/titleStandAlone';
 // styles
 import {
   HelperTextAndErrorWrapperStyled,
@@ -16,8 +18,9 @@ import {
   TextAreaContainerStyled,
   TextAreaStyled,
 } from './textArea.styled';
-import { ITextAreaStandAlone, TextAreaStateType } from './types';
-import { buildAriaDescribedBy } from './utils';
+import { TextAreaStateType } from './types/state';
+import { ITextAreaStandAlone } from './types/textArea';
+import { buildAriaDescribedBy } from './utils/aria.utils';
 
 const TextAreaStandAloneComponent = (
   {

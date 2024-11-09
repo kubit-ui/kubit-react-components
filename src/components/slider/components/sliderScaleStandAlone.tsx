@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useId } from '@/hooks';
+import { useId } from '@/hooks/useId/useId';
 
-import { SliderBaseStylesType } from '../types';
+import { SliderBaseStylesType } from '../types/sliderTheme';
 import { StyledScaleWrap, StyledScaledOption } from './sliderScaleStandAlone.styled';
 
 export interface ISliderScaleStandAlone {

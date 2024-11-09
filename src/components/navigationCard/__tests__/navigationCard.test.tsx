@@ -1,15 +1,20 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ICONS, ILLUSTRATIONS } from '@/assets';
-import { DecorativePropsType, DecorativeType } from '@/components/decorativeElement';
-import { IIconHighlighted, IconHighlightedSizeType } from '@/components/iconHighlighted';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { ILLUSTRATIONS } from '@/assets/storybook/illustrations/illustrations';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
-import { NavigationCard } from '../index';
+import {
+  DecorativePropsType,
+  DecorativeType,
+} from '../../decorativeElement/types/decorativeElement';
+import { IIconHighlighted } from '../../iconHighlighted/types/iconHighlighted';
+import { IconHighlightedSizeType } from '../../iconHighlighted/types/size';
+import { NavigationCard } from '../navigationCard';
 
 const illustration = ILLUSTRATIONS.ILLUSTRATION;
 const icon = ICONS.ICON_CHEVRON_DOWN;

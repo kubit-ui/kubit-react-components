@@ -1,11 +1,11 @@
-import { IButton } from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILink } from '@/components/link';
-import { IPopoverControlled } from '@/components/popover';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
-import { POSITIONS } from '@/types/positions';
+import { IPopoverControlled } from '@/components/popover/types/popover';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { POSITIONS } from '@/types/positions/positions';
 
+import { IButton } from '../../button/types/button';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { ILink } from '../../link/types/link';
+import { IText } from '../../text/types/text';
 import { SnackbarProps, SnakbarTypeStyleProps } from './snackbarTheme';
 import { SnackbarMessageType } from './snackbarType';
 

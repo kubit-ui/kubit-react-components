@@ -1,14 +1,14 @@
 import userEvent from '@testing-library/user-event';
 
 import { act, fireEvent } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
-import { InputDigitSequence } from '../index';
+import { InputDigitSequenceUncontrolled as InputDigitSequence } from '../inputDigitSequenceUncontrolled';
 
 const MOCK_PROPS = {
   variant: 'DEFAULT',

@@ -3,7 +3,7 @@ import React from 'react';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { HiddenDataTableHead } from '../../components';
+import { HiddenDataTableHead } from '../../components/hiddenDataTableHead';
 
 const mockProps = {};
 

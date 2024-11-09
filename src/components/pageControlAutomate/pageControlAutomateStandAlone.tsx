@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { MediaButton } from '@/components/mediaButton/mediaButton';
 import { MediaProgressBar } from '@/components/mediaProgressBar/mediaProgressBar';
@@ -11,7 +11,7 @@ import {
   MediaButtonWrapperStyled,
   PageControlAutomateContainerStyled,
 } from './pageControlAutomate.styled';
-import { IPageControlAutomateStandAlone } from './types';
+import { IPageControlAutomateStandAlone } from './types/pageControlAutomate';
 
 const dataTestIdIndicator = 'indicator';
 const dataTestIdIndicatorProgress = 'indicator-progress';

@@ -1,12 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { CardImageStandAlone } from './cardImageStandAlone';
-import { CardImageVariantStylesType, ICardImage, ICardImageStandAlone } from './types';
+import { ICardImage, ICardImageStandAlone } from './types/cardImage';
+import { CardImageVariantStylesType } from './types/cardImageTheme';
 
 const CardImageComponent = React.forwardRef(
   <V extends string | unknown>(

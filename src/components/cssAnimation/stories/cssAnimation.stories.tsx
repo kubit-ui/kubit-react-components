@@ -4,11 +4,8 @@ import React from 'react';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
 
 import { CssAnimation as Story } from '../cssAnimation';
-import {
-  CssAnimationExecuteOption,
-  CssAnimationTimingFunction,
-  CssAnimationVariants,
-} from '../types';
+import { CssAnimationExecuteOption, CssAnimationTimingFunction } from '../types/cssAnimation';
+import { CssAnimationVariants } from '../types/variant';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

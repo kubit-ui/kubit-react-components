@@ -1,15 +1,16 @@
 import { act, fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { Icon } from '@/components/icon';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType, ROLES } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { ROLES } from '@/types/role/role';
 
-import { ModalUnControlled as Modal } from '../modalUnControlled';
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
+import { IconBasic as Icon } from '../../icon/icon';
+import { ModalV2 as Modal } from '../modalUnControlled';
 
 const mockProps = {
   title: { content: 'title', variant: 'PARAGRAPH_MEDIUM_EXPANDED' },

@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
-import { getStyles, getTypographyStyles } from '@/utils';
-
-import { BreadcrumbsPropsStylesType, BreadcrumbsStateType } from './types';
+import { getStyles, getTypographyStyles } from '../../utils/getStyles/getStyles';
 import { IBreadcrumbLiStyled } from './types/breadcrumbs';
+import { BreadcrumbsPropsStylesType } from './types/breadcrumbsTheme';
+import { BreadcrumbsStateType } from './types/state';
 
 export const BreadcrumbsStyled = styled.div`
   margin: 0;

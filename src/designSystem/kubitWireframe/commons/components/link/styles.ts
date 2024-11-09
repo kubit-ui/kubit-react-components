@@ -1,11 +1,15 @@
-import { LinkActionType, LinkStateType, LinkStylesType } from '@/components/link/types';
-import { TextDisplayType } from '@/components/text/types';
+import { LinkActionType } from '@/components/link/types/action';
+import { LinkStylesType } from '@/components/link/types/linkTheme';
+import { LinkStateType } from '@/components/link/types/state';
+import { TextDisplayType } from '@/components/text/types/display';
+import { RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import {
   shadowAfterStylesSpecificProps,
   transformShadow,
 } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { FONT_WEIGHT, RADIUS, SPACINGS } from '../../foundations';
 import { LinkVariantType, TextVariantType } from '../variants';
 
 const commonTokens = {

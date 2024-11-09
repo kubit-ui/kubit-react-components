@@ -1,17 +1,18 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { AriaLiveOptionType } from '@/types/ariaLiveOption';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
 
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import {
   ChipStyled,
   ErrorStyled,
   RangeContainerStyled,
   RangeItemWrapperStyled,
 } from './chip.styled';
-import { ChipStateType, IChipStandAlone } from './types';
+import { IChipStandAlone } from './types/chip';
+import { ChipStateType } from './types/state';
 
 const ChipStandAloneComponent = (
   {

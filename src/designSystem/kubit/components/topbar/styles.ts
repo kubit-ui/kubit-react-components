@@ -1,9 +1,11 @@
 // fundations
 // types
-import { HeaderStylesType } from '@/components/header/types';
-import { DeviceBreakpointsType } from '@/types';
+import { HeaderStylesType } from '@/components/header/types/headerTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { COLORS, RADIUS, SPACINGS } from '../../foundations';
+import { RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
 import { TopbarVariantType } from './variants';
 
 const commonProps = {

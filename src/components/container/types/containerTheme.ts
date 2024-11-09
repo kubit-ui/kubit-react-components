@@ -1,10 +1,10 @@
-import type { CommonStyleType, TypographyTypes } from '@/types/index';
-
 /**
  * Represents the styles for the Container component.
  * @interface ContainerPropsStylesType
  * [element] _ [property] _ [measure]
  */
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { TypographyTypes } from '@/types/styles/typography';
 
 export type ContainerPropsStylesType = {
   parentContainer?: CommonStyleType;

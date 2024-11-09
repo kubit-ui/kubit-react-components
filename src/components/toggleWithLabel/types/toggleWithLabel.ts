@@ -1,7 +1,8 @@
-import { IText } from '@/components/text';
-import { IToggleUnControlled } from '@/components/toggle/types';
-import { CustomTokenTypes, POSITIONS } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { POSITIONS } from '@/types/positions/positions';
 
+import { IText } from '../../text/types/text';
+import { IToggleUnControlled } from '../../toggle/types/toggle';
 import { ToggleWithLabelStylePropsType } from './toggleWithLabelTheme';
 
 export enum LABEL_POSITION {

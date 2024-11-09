@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
@@ -7,7 +7,7 @@ import {
   LineSeparatorRootWrapperStyled,
   LineSeparatorTextWrapperStyled,
 } from './lineSeparator.styled';
-import { ILineSeparatorStandAlone } from './types';
+import { ILineSeparatorStandAlone } from './types/lineSeparator';
 
 const LineSeparatorStandAloneComponent = (
   {

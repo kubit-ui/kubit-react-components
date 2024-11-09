@@ -1,4 +1,4 @@
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
 type disabledLinkReturnValue = {
   role?: string;

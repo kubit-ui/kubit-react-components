@@ -2,7 +2,7 @@ import { act, screen } from '@testing-library/react';
 import React from 'react';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { OperativeLayout } from '../operativeLayout';
 

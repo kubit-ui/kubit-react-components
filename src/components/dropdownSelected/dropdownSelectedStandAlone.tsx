@@ -1,24 +1,25 @@
 import React, { useMemo } from 'react';
 
-import { keyDownMove, keyUpMove } from '@/components/listOptions/utils';
+import { Text } from '@/components/text/text';
 import { useId } from '@/hooks/useId/useId';
-import { ROLES } from '@/types';
 
-import { ButtonType } from '../button/types';
-import { ElementOrIcon } from '../elementOrIcon';
-import { ListOptions, ListOptionsOptionType, ListOptionsType } from '../listOptions';
-import {
-  PopoverControlled as Popover,
-  PopoverComponentType,
-  PopoverPositionVariantType,
-} from '../popover';
-import { Text, TextComponentType } from '../text';
+import { ROLES } from '../../types/role/role';
+import { ButtonType } from '../button/types/type';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { ListOptions } from '../listOptions/listOptions';
+import { ListOptionsOptionType } from '../listOptions/types/listOptions';
+import { ListOptionsType } from '../listOptions/types/type';
+import { keyDownMove, keyUpMove } from '../listOptions/utils/listOptions.utils';
+import { PopoverControlled } from '../popover/popoverControlled';
+import { PopoverComponentType } from '../popover/types/component';
+import { PopoverPositionVariantType } from '../popover/types/positionVariant';
+import { TextComponentType } from '../text/types/component';
 import {
   ButtonOrLinkContainerStyled,
   DropdrownSelectedContainerStyled,
   ListOptionsContainerStyled,
 } from './dropdownSelected.styled';
-import { IDropdownSelectedStandAlone } from './types';
+import { IDropdownSelectedStandAlone } from './types/dropdownSelected';
 
 const DROPDOWN_SELECTED_BASE_ID = 'DropdownSelected';
 
@@ -108,7 +109,7 @@ const DropdownSelectedStandAloneComponent = (
         />
       </ButtonOrLinkContainerStyled>
       {props.styles?.popover?.variant && (
-        <Popover
+        <PopoverControlled
           hasBackDrop
           component={PopoverComponentType.DIV}
           focusFirstDescendantAutomatically={false}
@@ -147,7 +148,7 @@ const DropdownSelectedStandAloneComponent = (
               />
             )}
           </ListOptionsContainerStyled>
-        </Popover>
+        </PopoverControlled>
       )}
     </DropdrownSelectedContainerStyled>
   );

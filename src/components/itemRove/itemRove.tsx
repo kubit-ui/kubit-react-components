@@ -1,9 +1,8 @@
-import * as React from 'react';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 // styles
 import { ItemRoveStyled } from './itemRove.styled';
-import { IItemRove } from './types';
+import { IItemRove } from './types/itemRove';
 
 const ItemRove = ({
   id,

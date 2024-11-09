@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
 // styles
 import { IllustrationStyled } from './illustration.styled';
-import { IIllustrationStandAlone } from './types';
+import { IIllustrationStandAlone } from './types/illustration';
 
 const IllustrationStandAloneComponent = (
   {

@@ -1,5 +1,5 @@
-import { RadioButtonStateType } from '../types';
-import { getState, radioButtonState } from '../utils';
+import { RadioButtonStateType } from '../components/radioButton/types/state';
+import { getState, radioButtonState } from '../utils/state.utils';
 
 const checked = undefined;
 const disabled = undefined;

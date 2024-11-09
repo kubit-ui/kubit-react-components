@@ -1,7 +1,11 @@
-import { ToggleStateType, ToggleStylesType } from '@/components/toggle/types';
+import { ToggleStateType } from '@/components/toggle/types/state';
+import { ToggleStylesType } from '@/components/toggle/types/toggleTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { TEXT_ALIGN } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { BORDERS, RADIUS, SIZES, SPACINGS, TEXT_ALIGN } from '../../foundations';
 import { ToggleVariantType } from './variants';
 
 const commonProps = COLORS => ({

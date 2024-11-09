@@ -1,9 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useGenericComponents } from '@/provider/genericComponents';
-
+import { useGenericComponents } from '../../provider/genericComponents/genericComponentsProvider';
 import { ImageStandAlone } from './imageStandAlone';
-import type { IImage } from './types';
+import type { IImage } from './types/image';
 
 const ImageComponent = (
   props: IImage,

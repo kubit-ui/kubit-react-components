@@ -3,7 +3,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import { useScrollDetection } from './useScrollDetection';
 
 const resizeObserverDisconnectMock = jest.fn();
-jest.mock('@/utils/resizeObserver', () => {
+jest.mock('@/utils/resizeObserver/resizeObserver', () => {
   return {
     ResizeObserver: class ResizeObserver {
       callback;

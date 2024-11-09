@@ -1,4 +1,4 @@
-import { TooltipAlignType } from '../../types';
+import { TooltipAlignType } from '../../types/tooltipAlign';
 import { ElementRects } from '../types';
 import { getLengthFromAxis } from './getLengthFromAxis';
 import { getMainAxisFromPlacement } from './getMainAxisFromPlacement';

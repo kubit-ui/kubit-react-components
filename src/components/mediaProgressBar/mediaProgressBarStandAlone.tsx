@@ -1,15 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useMediaDevice } from '@/hooks';
-import { ROLES } from '@/types';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 
+import { ROLES } from '../../types/role/role';
 import {
   BarContainerStyled,
   BarStyled,
   ParentContainerStyled,
   ProgressBarStyled,
 } from './mediaProgressBar.styled';
-import { IMediaProgressBarStandAlone } from './types';
+import { IMediaProgressBarStandAlone } from './types/mediaProgressBar';
 import {
   buildMediaProgessBarAriaLabel,
   mediaProgressBarIndex,

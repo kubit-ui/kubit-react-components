@@ -1,16 +1,12 @@
 //Foundations
-import { ModalStylesType } from '@/components/modal/types';
-import { DeviceBreakpointsType } from '@/types';
+import { ModalStylesType } from '@/components/modal/types/modalTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import {
-  BORDERS,
-  COLORS,
-  FONT_WEIGHT,
-  RADIUS,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-} from '../../foundations';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
 import { TextVariantType } from '../text/variants';
 import { FooterVariants, PopoverVariantType } from '../variants';
 import { ModalVariantType } from './variants';

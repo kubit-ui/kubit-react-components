@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { TRStyled } from './tableRow.styled';
-import { ITableRowStandAlone } from './types';
+import { ITableRowStandAlone } from './types/tableRow';
 
 const TableRowStandAloneComponent = (
   {

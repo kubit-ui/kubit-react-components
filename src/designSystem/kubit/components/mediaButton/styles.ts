@@ -1,8 +1,10 @@
-import { MediaButtonStylesType } from '@/components/mediaButton';
+import { MediaButtonStylesType } from '@/components/mediaButton/types/mediaButtonTheme';
 import { MediaButtonSizeType } from '@/components/mediaButton/types/sizes';
 
-import { COLORS, RADIUS, SPACINGS } from '../../foundations';
-import { LoaderVariantType } from '../loader';
+import { RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { LoaderVariantType } from '../loader/variants';
 import { MediaButtonVariantType } from './variants';
 
 const commonButtonContainerProps = {

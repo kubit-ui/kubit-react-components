@@ -1,9 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
-import { POSITIONS } from '@/types';
-
+import { POSITIONS } from '../../types/positions/positions';
 import { ToggleControlled } from './toggleControlled';
-import { IToggleUnControlled } from './types';
+import { IToggleUnControlled } from './types/toggle';
 
 const ToggleUnControlledComponent = <V extends string | undefined>(
   {
@@ -58,3 +57,5 @@ const ToggleUnControlled = React.forwardRef(ToggleUnControlledComponent) as <V e
  * <ToggleUnControlled variant="yes_no" />
  */
 export { ToggleUnControlled };
+
+export { ToggleUnControlled as Toggle };

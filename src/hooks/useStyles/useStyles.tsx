@@ -1,6 +1,7 @@
 import { useTheme } from 'styled-components';
 
-import { mergeObjects, structuredClone } from '@/utils';
+import { mergeObjects } from '../../utils/mergeObjects/mergeObjects';
+import { structuredClone } from '../../utils/structuredClone/structuredClone';
 
 /**
  * @version This hook has a upper version, please use useStylesV2

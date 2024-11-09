@@ -1,12 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { ContentCustomGridItem, CustomGridItem, CustomGridStyled } from '../grid/grid.styled';
 // helper
-import { getBgColor, getHorizontalMargin } from './helpers';
+import { getBgColor } from './helpers/getBgColor';
+import { getHorizontalMargin } from './helpers/getHorizontalMargin';
 import { OperativeLayoutColor, OperativeLayoutContainer } from './operativeLayout.styled';
-import { IOperativeLayoutStandAlone, OperativeLayoutRoleType } from './types';
+import { IOperativeLayoutStandAlone, OperativeLayoutRoleType } from './types/operativeLayout';
 
 export const OperativeLayoutStandAlone = ({
   contentBgColor,

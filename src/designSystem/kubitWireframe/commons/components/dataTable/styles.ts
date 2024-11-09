@@ -1,6 +1,7 @@
-import { DataTableStylesType } from '@/components';
+import { DataTableStylesType } from '@/components/dataTable/types/dataTableTheme';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { Z_INDEX } from '@/designSystem/kubitWireframe/commons/foundations/zIndex';
 
-import { SPACINGS, Z_INDEX } from '../../foundations';
 import {
   TableBodyVariantType,
   TableCaptionVariantType,

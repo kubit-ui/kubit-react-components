@@ -1,4 +1,5 @@
-import { CheckboxPropsStateStylesType, CheckboxStateType } from '../types';
+import { CheckboxPropsStateStylesType } from '../types/checkboxTheme';
+import { CheckboxStateType } from '../types/state';
 
 const getCheckBoxState = (
   checked = false,

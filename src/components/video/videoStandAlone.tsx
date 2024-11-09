@@ -1,18 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useId } from '@/hooks';
+import { useId } from '@/hooks/useId/useId';
 
-import { ProgressBar } from '../progressBar';
-import {
-  LinkAndActionButton,
-  PlayStopButton,
-  ScreenButtons,
-  SubtitleFullScreenButtons,
-  Time,
-  VideoSkeleton,
-  Volume,
-} from './components';
-import { IVideoStandAlone } from './types';
+import { ProgressBar } from '../progressBar/progressBar';
+import { LinkAndActionButton } from './components/linkAndActionButton';
+import { PlayStopButton } from './components/playStopButton';
+import { ScreenButtons } from './components/screenButtons';
+import { SubtitleFullScreenButtons } from './components/subtitleFullScreenButtons';
+import { Time } from './components/time';
+import { VideoSkeleton } from './components/videoSkeleton';
+import { Volume } from './components/volume';
+import { IVideoStandAlone } from './types/video';
 import {
   ButtonsBarFirstSubcontainerStyled,
   ButtonsBarSecondSubontainerStyled,

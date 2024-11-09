@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 
-import { themesObject } from '@/designSystem/themesObject';
-import { Foundations } from '@/storybook/constants';
+import { themesObject } from '@/designSystem/themesObject/themesObject';
 
+import { Foundations } from '../../constants/foundations';
 import {
   FoundationCicleStyled,
   FoundationCircleNameStyled,
@@ -12,7 +12,7 @@ import {
   FoundationNameStyled,
   FoundationStyled,
   FoundationTitleStyled,
-} from '../common';
+} from '../common/structure.styled';
 
 export const Borders = (): JSX.Element[] | JSX.Element => {
   const theme = localStorage.getItem('themeSelected') || 'kubit';

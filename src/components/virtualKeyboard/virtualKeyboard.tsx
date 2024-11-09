@@ -1,15 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
-import {
-  IVirtualKeyboard,
-  IVirtualKeyboardStandAlone,
-  VirtualKeyboardStateStylesType,
-  VirtualKeyboardStateType,
-} from './types';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { VirtualKeyboardStateType } from './types/state';
+import { IVirtualKeyboard, IVirtualKeyboardStandAlone } from './types/virtualKeyboard';
+import { VirtualKeyboardStateStylesType } from './types/virtualKeyboardTheme';
 import { VirtualKeyboardStandAlone } from './virtualKeyboardStandAlone';
 
 export const VirtualKeyboardComponent = React.forwardRef(

@@ -2,12 +2,14 @@ import {
   InputContentPosition,
   InputHelpMessagePosition,
   InputState,
-} from '@/components/input/types';
-import { InputCurrencyStylesType } from '@/components/inputCurrency/types';
+} from '@/components/input/types/inputTheme';
+import { InputCurrencyStylesType } from '@/components/inputCurrency/types/inputCurrencyTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { TextVariantType } from '../../../../kubit/components/text/variants';
 import { InputCurrencyVariant } from './variants';
 
 const commonProps = COLORS => ({

@@ -1,6 +1,6 @@
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IText } from '../../text/types/text';
 import {
   LineSeparatorLabelPropsStylesType,
   LineSeparatorLinePropsStylesType,

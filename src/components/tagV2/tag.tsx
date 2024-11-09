@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { TagStandAlone } from './tagStandAlone';
-import type { ITag, ITagStandAlone, TagPropsStylesType } from './types';
+import { ITag, ITagStandAlone } from './types/tag';
+import { TagPropsStylesType } from './types/tagTheme';
 
 const TagComponent = React.forwardRef(
   <V extends string>(
@@ -46,4 +48,4 @@ const Tag = React.forwardRef(TagBoundary) as <V, S>(
  * @description
  * Tag component is used to highlight or categorize important information.
  */
-export { Tag };
+export { Tag as TagV2 };

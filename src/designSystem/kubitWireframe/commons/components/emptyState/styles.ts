@@ -1,10 +1,15 @@
 // constants
-import { EmptyStateStylesType } from '@/components/emptyState/types';
+import { EmptyStateStylesType } from '@/components/emptyState/types/emptyStateTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import {
+  FONT_WEIGHT,
+  TEXT_ALIGN,
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SPACINGS, TEXT_ALIGN } from '../../foundations';
 // types
-import { TextVariantType } from '../text';
+import { TextVariantType } from '../../../../kubit/components/text/variants';
 import { ButtonSizeType } from '../variants';
 import { EmptyStateStateType, EmptyStateVariantType } from './variants';
 

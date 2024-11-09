@@ -1,14 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useTheme } from 'styled-components';
 
-import { useUtilsProvider } from '@/provider';
-import { ErrorBoundary } from '@/provider/errorBoundary';
 import { UtilsContext } from '@/provider/utils/context';
-import { isValidHttpUrl } from '@/utils';
+import { useUtilsProvider } from '@/provider/utils/provider';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { isValidHttpUrl } from '../../utils/isValidUrl/isValidUrl';
 import { IllustrationBasic } from './illustration';
-import { IIllustration } from './types';
+import { IIllustration } from './types/illustration';
 
 type IllustrationWithProviderProps = IIllustration & {
   ref: React.ForwardedRef<HTMLImageElement> | undefined | null;

@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { SummaryDetailsControlled } from './summaryDetailsControlled';
-import { ISummaryDetailsUnControlled } from './types';
+import { ISummaryDetailsUnControlled } from './types/summaryDetails';
 
 const SummaryDetailsUnControlledComponent = <V extends string | unknown>(
   { open = false, onOpenClose, ...props }: React.PropsWithChildren<ISummaryDetailsUnControlled<V>>,
@@ -28,3 +28,5 @@ const SummaryDetailsUnControlled = React.forwardRef(SummaryDetailsUnControlledCo
 ) => ReturnType<typeof SummaryDetailsUnControlledComponent>;
 
 export { SummaryDetailsUnControlled };
+
+export { SummaryDetailsUnControlled as SummaryDetails };

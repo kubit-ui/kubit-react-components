@@ -1,19 +1,12 @@
-import {
-  AvatarBackgroundColor,
-  AvatarContentType,
-  AvatarStylesType,
-} from '@/components/avatar/types';
+import { AvatarStylesType } from '@/components/avatar/types/avatarTheme';
+import { AvatarBackgroundColor, AvatarContentType } from '@/components/avatar/types/content';
 
-import {
-  BORDERS,
-  COLORS,
-  FONT_WEIGHT,
-  RADIUS,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-} from '../../foundations';
-import { TextVariantType } from '../text';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { AvatarSize } from './variants';
 
 const containerBackgroundColor = {

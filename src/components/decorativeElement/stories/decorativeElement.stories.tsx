@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 
 import { DecorativeElement as Story } from '../decorativeElementStandAlone';
 import { DecorativeType } from '../types/decorativeElement';

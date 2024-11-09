@@ -1,10 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon, IElementOrIcon } from '@/components/elementOrIcon';
 import { TooltipUnControlled as Tooltip } from '@/components/tooltip/tooltipUnControlled';
 
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import { SubtitleTooltipIconWrapperStyled } from '../selectorBoxFile.styled';
-import { SelectorBoxFilePropsStylesType, SelectorBoxFileTooltipType } from '../types';
+import { SelectorBoxFileTooltipType } from '../types/selectorBoxFile';
+import { SelectorBoxFilePropsStylesType } from '../types/selectorBoxFileTheme';
 
 interface ISelectorBoxFileTooltip {
   styles: SelectorBoxFilePropsStylesType;

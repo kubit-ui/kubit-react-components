@@ -1,5 +1,5 @@
-import { computePosition } from '../../positioning';
-import { TooltipAlignType } from '../../types';
+import { computePosition } from '../../positioning/computePosition';
+import { TooltipAlignType } from '../../types/tooltipAlign';
 
 describe('Tooltip Positioning - computePosition', () => {
   const reference = document.createElement('div');

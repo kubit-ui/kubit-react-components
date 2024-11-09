@@ -1,19 +1,20 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import {
   PillSelectorSizeTypeV2,
   PillSelectorVariantTypeV2,
 } from '@/designSystem/kubit/components/variants';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
 import { PillSelectorControlled } from '../pillSelectorControlled';
 import { PillSelectorUnControlled } from '../pillSelectorUnControlled';
-import { IPillSelectorControlled, IPillSelectorUnControlled, PillSelectorType } from '../types';
+import { IPillSelectorControlled, IPillSelectorUnControlled } from '../types/pillSelector';
+import { PillSelectorType } from '../types/pillSelectorType';
 
 const mockProps: IPillSelectorUnControlled = {
   variant: PillSelectorVariantTypeV2.DEFAULT,

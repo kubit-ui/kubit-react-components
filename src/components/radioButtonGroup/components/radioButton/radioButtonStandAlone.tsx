@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
-import { Text } from '@/components/text';
-import { useId } from '@/hooks';
+import { Text } from '@/components/text/text';
+import { useId } from '@/hooks/useId/useId';
 
-import { buildAriaLabelledBy } from '../../utils';
+import { ElementOrIcon } from '../../../elementOrIcon/elementOrIcon';
+import { buildAriaLabelledBy } from '../../utils/aria.utils';
 import {
   ErrorIconWrapperStyled,
   RadioButtonContainerInput,

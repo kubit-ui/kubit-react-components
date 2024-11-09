@@ -1,14 +1,15 @@
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
-import { ICONS } from '@/assets';
-import { ERROR_EXECUTION } from '@/components/input/types';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType, ROLES } from '@/types';
-import { formatDateToUTC } from '@/utils';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { ROLES } from '@/types/role/role';
 
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
+import { formatDateToUTC } from '../../../utils/date/formatDate';
+import { ERROR_EXECUTION } from '../../input/types/input';
 import { InputDate } from '../inputDate';
 
 const mockProps = {

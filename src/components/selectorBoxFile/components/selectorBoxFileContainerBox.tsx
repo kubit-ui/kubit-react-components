@@ -1,21 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Loader } from '@/components/loader';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { Loader } from '../../loader/loader';
 import {
   ActionIconAndActionTextContainerStyled,
   ContainerBoxActionDescriptionTextWrapper,
   ContainerBoxStyled,
   ContainerBoxTextWrapper,
 } from '../selectorBoxFile.styled';
-import {
-  SelectorBoxFileContainerBoxStateContentType,
-  SelectorBoxFilePropsStylesType,
-  SelectorBoxFileStateType,
-} from '../types';
+import { SelectorBoxFileContainerBoxStateContentType } from '../types/selectorBoxFile';
+import { SelectorBoxFilePropsStylesType } from '../types/selectorBoxFileTheme';
+import { SelectorBoxFileStateType } from '../types/state';
 
 export interface ISelectorBoxFileContainerBox {
   styles: SelectorBoxFilePropsStylesType;

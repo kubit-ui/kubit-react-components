@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ICONS } from '@/assets';
-import { Divider } from '@/components/divider';
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { variantsObject } from '@/designSystem/themesObject/themesObject';
 
-import { IDataTable } from '../../types';
+import { Divider } from '../../../divider/divider';
+import { ElementOrIcon } from '../../../elementOrIcon/elementOrIcon';
+import { IDataTable } from '../../types/dataTable';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 

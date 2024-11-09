@@ -1,21 +1,20 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Tag } from '@/components/tag/tag';
-import { Text, TextComponentType, TextDecorationType } from '@/components/text';
-import { DeviceBreakpointsType } from '@/types';
+import { Text } from '@/components/text/text';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
+import { ScreenReaderOnly } from '../../screenReaderOnly/screenReaderOnly';
+import { TextComponentType } from '../../text/types/component';
+import { TextDecorationType } from '../../text/types/decoration';
 import {
   NavigationCardContentStyled,
   NavigationCardDescriptionContainerStyled,
   NavigationCardLinesTextStyled,
   NavigationCardTagContainer,
 } from '../navigationCard.styled';
-import {
-  NavigationCardStylesPropsType,
-  NavigationCardTagType,
-  NavigationCardTextType,
-} from '../types';
+import { NavigationCardTagType, NavigationCardTextType } from '../types/navigationCard';
+import { NavigationCardStylesPropsType } from '../types/navigationCardTheme';
 
 interface INavigationCardInfo {
   styles: NavigationCardStylesPropsType;

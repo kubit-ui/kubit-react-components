@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { IMAGES } from '@/assets';
-import { STYLES_NAME } from '@/constants';
-import { themesObject } from '@/designSystem/themesObject';
-import { DeviceBreakpointsType } from '@/types';
+import { IMAGES } from '@/assets/storybook/images/images';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject } from '@/designSystem/themesObject/themesObject';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { Image as Story } from '../image';
 import { argtypes } from './argtypes';

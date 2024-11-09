@@ -1,6 +1,7 @@
 import { useCallback, useRef } from 'react';
 
-import { CssProperty, changeCssProperty, scrollPercentage } from '@/utils';
+import { CssProperty, changeCssProperty } from '../../utils/changeCssProperty/changeCssProperty';
+import { scrollPercentage } from '../../utils/scrollPercentage/scrollPercentage';
 
 interface CustomHookReturnValue {
   scrollableRef: (node) => void;

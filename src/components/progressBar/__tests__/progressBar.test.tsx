@@ -1,12 +1,12 @@
 import userEvent from '@testing-library/user-event';
 
 import { screen, waitFor } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
 import * as SliderUtils from '../../slider/utils/slider.utils';
 import { ProgressBar } from '../progressBar';

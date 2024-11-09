@@ -1,16 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { ThirdPartyAnimation } from '@/components/thirdPartyAnimation';
 
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
+import { ThirdPartyAnimation } from '../thirdPartyAnimation/thirdPartyAnimation';
 import {
   DescriptionWrapperStyled,
   LoadingStateStyled,
   TitleWrapperStyled,
 } from './loadingState.styled';
-import { ILoadingStateStandAlone, LoadingStateStateStylesType } from './types';
+import { ILoadingStateStandAlone } from './types/loadingState';
+import { LoadingStateStateStylesType } from './types/loadingStateTheme';
 
 const LoadingStateStandAloneComponent = (
   {

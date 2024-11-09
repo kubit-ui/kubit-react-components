@@ -1,17 +1,13 @@
-import { PillStateType, PillStylesType } from '@/components/pill/types';
-import { DeviceBreakpointsType } from '@/types';
+import { PillStylesType } from '@/components/pill/types/pillTheme';
+import { PillStateType } from '@/components/pill/types/state';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import {
-  BORDERS,
-  COLORS,
-  FONT_WEIGHT,
-  PARAGRAPH,
-  RADIUS,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-  Z_INDEX,
-} from '../../foundations';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, PARAGRAPH, TEXT_ALIGN } from '../../foundations/typography';
+import { Z_INDEX } from '../../foundations/zIndex';
 import { PillSizeType, PillVariantType } from './variants';
 
 const PILL_FOCUS_COLOR = '#2C71DB';

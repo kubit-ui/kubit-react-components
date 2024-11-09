@@ -1,8 +1,9 @@
 // fundations
-import { HeaderStylesType } from '@/components/header/types';
-import { DeviceBreakpointsType } from '@/types';
+import { HeaderStylesType } from '@/components/header/types/headerTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { RADIUS, SPACINGS } from '../../foundations';
+import { RADIUS } from '../../foundations/borders';
+import { SPACINGS } from '../../foundations/spacings';
 import { HeaderVariantType } from './variants';
 
 export const HEADER_STYLES: HeaderStylesType<HeaderVariantType> = {

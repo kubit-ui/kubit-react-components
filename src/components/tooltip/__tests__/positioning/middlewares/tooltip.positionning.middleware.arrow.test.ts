@@ -1,5 +1,6 @@
-import { arrow } from '@/components/tooltip/positioning';
-import { TooltipAlignType } from '@/components/tooltip/types';
+import { TooltipAlignType } from '@/components/tooltip/types/tooltipAlign';
+
+import { arrow } from '../../../positioning/middlewares/arrow';
 
 describe('Tooltip - Positioning - Middleware - arrow', () => {
   it('When element is null an empty object should be returned', () => {

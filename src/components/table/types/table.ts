@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { IDivider } from '@/components/divider';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IFooter } from '@/components/footer';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+
+import { IDivider } from '../../divider/types/divider';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IFooter } from '../../footer/types/footer';
 import {
   LineSeparatorLinePropsStylesType,
   LineSeparatorPositionType,
-} from '@/components/lineSeparator';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
-
+} from '../../lineSeparator/types/lineSeparatorTheme';
 import { FormatListHeaderPriorityType } from './formatListHeaderPriority';
 import { TableRowHeaderTypes } from './tableTheme';
 

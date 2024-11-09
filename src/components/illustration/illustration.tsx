@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
 import { pickAriaProps } from '@/utils/aria/aria';
 
+import { ButtonType } from '../button/types/type';
 import { IllustrationButtonStyled } from './illustration.styled';
 import { IllustrationStandAlone } from './illustrationStandAlone';
-import { IIllustration } from './types';
+import { IIllustration } from './types/illustration';
 
 const IllustrationBasicComponent = (
   { tabIndex = 0, ...props }: IIllustration,
@@ -47,3 +47,5 @@ const IllustrationBasicComponent = (
 };
 
 export const IllustrationBasic = React.forwardRef(IllustrationBasicComponent);
+
+export { IllustrationBasic as Illustration };

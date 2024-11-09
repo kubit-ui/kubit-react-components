@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { getStyles } from '@/utils';
-
-import { PaginationState, PaginationStyledProps } from './types';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import { PaginationStyledProps } from './types/paginationTheme';
+import { PaginationState } from './types/state';
 
 export const PaginationContainerStyled = styled.div<{
   styles: PaginationStyledProps;

@@ -1,13 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 
 import { axe } from 'jest-axe';
 
-import { UtilsProvider } from '@/provider';
+import { UtilsProvider } from '@/provider/utils/provider';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
 import { IconBasic } from '../icon';
 import { IconHost } from '../iconHost';

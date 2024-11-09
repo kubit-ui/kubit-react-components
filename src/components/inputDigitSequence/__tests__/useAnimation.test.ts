@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 
-import { useAnimation } from '../hooks';
+import { useAnimation } from '../hooks/useAnimation';
 
 describe('useAnimation', () => {
   let rootMockElement;

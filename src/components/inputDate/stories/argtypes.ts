@@ -1,10 +1,11 @@
-import { MASK_TYPE } from '@/components/input/types';
-import { TextComponentType } from '@/components/text';
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn, POSITIONS } from '@/types';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { POSITIONS } from '@/types/positions/positions';
+import { ArgTypesReturn } from '@/types/type/type';
 
 import { argtypes as inputArgTypes } from '../../input/stories/argtypes';
+import { MASK_TYPE } from '../../input/types/input';
+import { TextComponentType } from '../../text/types/component';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {

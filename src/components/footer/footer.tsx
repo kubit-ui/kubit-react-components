@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useMediaDevice } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
-import { LineSeparatorLinePropsStylesType } from '../lineSeparator';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { LineSeparatorLinePropsStylesType } from '../lineSeparator/types/lineSeparatorTheme';
 import { FooterStandAlone } from './footerStandAlone';
-import { FooterPropsStylesType, IFooter, IFooterStandAlone } from './types';
+import { IFooter, IFooterStandAlone } from './types/footer';
+import { FooterPropsStylesType } from './types/footerTheme';
 
 const FooterComponent = React.forwardRef(
   <V extends string | unknown>(

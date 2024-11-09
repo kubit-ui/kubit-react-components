@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { ListOptionsStandAlone } from './listOptionsStandAlone';
-import { IListOptions, IListOptionsStandAlone, ListOptionsPropsStylesType } from './types';
+import { IListOptions, IListOptionsStandAlone } from './types/listOptions';
+import { ListOptionsPropsStylesType } from './types/listOptionsTheme';
 
 export const ListOptionsComponent = React.forwardRef(
   <V extends string | unknown>(

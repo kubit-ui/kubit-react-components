@@ -1,4 +1,4 @@
-import { SIZES } from '@/types';
+import { SIZES } from '@/types/sizes/sizes';
 
 export enum IconHighlightedSizeType {
   EXTRA_SMALL = SIZES.EXTRA_SMALL,

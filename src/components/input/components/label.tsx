@@ -1,12 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
+import { getMaxLabelSize } from '@/utils/getMaxLabelSize/getMaxLabelSize.utils';
 
 // styles
 import { AdditionalInfoWrapperStyled, LabelWrapperStyled } from '../input.styled';
-import { LABEL_TYPE } from '../types';
 import { ILabel } from '../types/input';
-import { getFontSize, getMaxLabelSize } from '../utils';
+import { LABEL_TYPE } from '../types/inputTheme';
+import { getFontSize } from '../utils/fontSize.utils';
 
 export const LabelStandAlone = (props: ILabel): JSX.Element | null => {
   const [maxLabelSize, setMaxLabelSize] = React.useState<string | undefined>(undefined);

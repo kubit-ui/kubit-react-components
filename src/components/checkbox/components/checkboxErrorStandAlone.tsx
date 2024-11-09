@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text } from '@/components/text';
-import { TextComponentType } from '@/components/text/types';
+import { Text } from '@/components/text/text';
 
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { TextComponentType } from '../../text/types/component';
 import { CheckboxIsErrorStyled } from '../checkbox.styled';
-import { ICheckboxErrorStandAlone } from '../types';
+import { ICheckboxErrorStandAlone } from '../types/checkbox';
 
 /**
  * CheckboxErrorStandAlone

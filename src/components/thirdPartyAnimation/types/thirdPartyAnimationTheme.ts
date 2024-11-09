@@ -1,4 +1,4 @@
-import { JSONType } from '@/types/type';
+import { JSONType } from '@/types/type/type';
 
 export type ThirdPartyAnimationSizePropsType = {
   height?: string;

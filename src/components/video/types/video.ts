@@ -1,10 +1,10 @@
-import { IButton } from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { LinkTargetType } from '@/components/link';
-import { GenericLinkType } from '@/provider/genericComponents';
-import { CustomTokenTypes } from '@/types';
-import { TrackKindType, VideoType } from '@/types/video';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { TrackKindType, VideoType } from '@/types/video/video';
 
+import { GenericLinkType } from '../../../provider/genericComponents/genericComponents.type';
+import { IButton } from '../../button/types/button';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { LinkTargetType } from '../../link/types/target';
 import { VideoStyleType } from './videoTheme';
 
 export enum LinkAndActionButtonAlignment {

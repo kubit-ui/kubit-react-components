@@ -1,10 +1,10 @@
-import { FooterStylesType } from '@/components/footer/types';
-import { SPACINGS } from '@/designSystem/kubit/foundations';
+import { FooterStylesType } from '@/components/footer/types/footerTheme';
+import { RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { RADIUS } from '../../foundations';
-import { LineSeparatorLineVariantType } from '../lineSeparator';
+import { LineSeparatorLineVariantType } from '../../../../kubit/components/lineSeparator/variants';
 import { FooterVariants } from './variants';
 
 export const getFooterStyles = (COLORS: {

@@ -1,12 +1,14 @@
 import styled, { css } from 'styled-components';
 
-// mixin
-import { focusVisibleAlt } from '@/styles/mixins';
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
+// mixin
+import { focusVisibleAlt } from '../../styles/mixins/focusAlt.mixin';
 import { applyVariantStyles as applyTextVariantStyles } from '../text/text.styled';
-import { TextPropsStylesType, TextVariantStylesType } from '../text/types';
-import { LinkPositionType, LinkPropsStylesType, LinkPropsType, LinkStateType } from './types';
+import { TextPropsStylesType, TextVariantStylesType } from '../text/types/textTheme';
+import { LinkPropsStylesType, LinkPropsType } from './types/linkTheme';
+import { LinkPositionType } from './types/position';
+import { LinkStateType } from './types/state';
 
 type LinkPropsExtended = {
   linkStyles: LinkPropsStylesType;

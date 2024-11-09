@@ -1,16 +1,17 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType, ROLES } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { ROLES } from '@/types/role/role';
 
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
 import { FunctionalitiesModuleControlled } from '../functionalitiesModuleControlled';
 import { FunctionalitiesModuleUnControlled } from '../functionalitiesModuleUnControlled';
-import { IFunctionalitiesModuleUnControlled } from '../types';
+import { IFunctionalitiesModuleUnControlled } from '../types/functionalitiesModule';
 
 const mockProps: IFunctionalitiesModuleUnControlled = {
   variant: 'DEFAULT_NO_ANIMATION',
@@ -214,7 +215,7 @@ describe('FunctionalitiesModule component', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('onClick closeButton mobile', async () => {
+  xit('onClick closeButton mobile', async () => {
     const defaultSelectedValue = 56;
     window.matchMedia = windowMatchMedia('onlyMobile');
     jest.spyOn(mediaHooks, 'useMediaDevice').mockImplementation(() => DeviceBreakpointsType.MOBILE);

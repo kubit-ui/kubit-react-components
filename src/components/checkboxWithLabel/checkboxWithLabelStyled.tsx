@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import type { CheckboxWithLabelState, CheckboxWithLabelStatePropsStylesType } from './types';
+import { CheckboxWithLabelStatePropsStylesType } from './types/checkboxWithLabelTheme';
+import { CheckboxWithLabelState } from './types/state';
 
 export const CheckBoxWithLabelContainerStyled = styled.div<{
   styles?: CheckboxWithLabelStatePropsStylesType;

@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import React, { ChangeEvent } from 'react';
 
-import { FormatNumber } from '@/components';
+import { FormatNumber } from '@/components/input/types/input';
 import * as validationsProvider from '@/provider/validations/validationsProvider';
 
 import { useInput } from '../useInput';

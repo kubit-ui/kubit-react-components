@@ -1,6 +1,8 @@
-import { ProgressBarStylesType } from '@/components/progressBar';
+import { ProgressBarStylesType } from '@/components/progressBar/types/progressBarTheme';
 
-import { COLORS, RADIUS, SPACINGS } from '../../foundations';
+import { RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
 import { SliderVariantType } from '../variants';
 import { ProgressBarSizeType, ProgressBarVariantType } from './variants';
 

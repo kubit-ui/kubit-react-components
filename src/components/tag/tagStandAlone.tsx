@@ -1,15 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text } from '@/components/text';
-import { TextComponentType } from '@/components/text/types';
+import { Text } from '@/components/text/text';
 import { pickAriaProps } from '@/utils/aria/aria';
 
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { TextComponentType } from '../text/types/component';
 import { ArrowShape } from './component/ArrowShape';
 import { RibbonShape } from './component/RibbonShape';
 // styles
 import { TagStyled, TagWrapperStyled } from './tag.styled';
-import { type ITagStandAlone, TAG_VARIANT_TYPE } from './types';
+import { ITagStandAlone } from './types/tag';
+import { TAG_VARIANT_TYPE } from './types/variants';
 
 const TagStandAloneComponent = (
   { dataTestId = 'tag', ...props }: ITagStandAlone,

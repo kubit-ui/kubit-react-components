@@ -1,10 +1,11 @@
 import { fireEvent } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { InputStructure } from '@/components/inputStructure';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+
+import { InputStructure } from '../inputStructure';
 
 const mockProps = {
   topContent: 'top',

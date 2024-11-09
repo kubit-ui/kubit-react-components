@@ -1,4 +1,4 @@
-import { JSONType } from '@/types';
+import { JSONType } from '@/types/type/type';
 
 export default (shadowColor: string): JSONType => ({
   v: '5.4.2',

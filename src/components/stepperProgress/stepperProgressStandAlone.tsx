@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useId } from '@/hooks';
-import { AriaLiveOptionType } from '@/types';
+import { useId } from '@/hooks/useId/useId';
 
+import { AriaLiveOptionType } from '../../types/ariaLiveOption/ariaLiveOption';
 // helpers
 import { currentPercentage } from './helpers/currentPercentage';
 // styles

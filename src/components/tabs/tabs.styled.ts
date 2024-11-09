@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-import { ButtonType } from '@/components/button';
 import { getStyles } from '@/utils/getStyles/getStyles';
 
+import { ButtonType } from '../button/types/type';
 import { TabsStateTypes } from './types/state';
 import { TabsVariantStylesType } from './types/tabsTheme';
 

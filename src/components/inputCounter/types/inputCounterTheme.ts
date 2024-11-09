@@ -1,5 +1,5 @@
 import { InputBasicStateProps, InputState } from '@/components/input/types/inputTheme';
-import { CommonStyleType } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
 
 export type InputCounterStateProps = InputBasicStateProps & {
   inputVariant?: string;

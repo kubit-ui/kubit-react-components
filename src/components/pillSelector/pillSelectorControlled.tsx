@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useId } from '@/hooks';
+import { useId } from '@/hooks/useId/useId';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { ResizeObserver } from '@/utils/resizeObserver';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { ResizeObserver } from '../../utils/resizeObserver/resizeObserver';
 import { PillSelectorStandAlone } from './pillSelectorStandAlone';
 import type { IPillSelectorControlled, IPillSelectorStandAlone } from './types/pillSelector';
 import { PillSelectorStyles } from './types/pillSelectorTheme';

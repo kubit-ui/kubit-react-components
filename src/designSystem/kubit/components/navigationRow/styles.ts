@@ -1,10 +1,12 @@
-import { IconHighlightedSizeType } from '@/components/iconHighlighted/types';
-import { NavigationRowStylesType } from '@/components/navigationRow/types';
-import { DeviceBreakpointsType } from '@/types';
+import { IconHighlightedSizeType } from '@/components/iconHighlighted/types/size';
+import { NavigationRowStylesType } from '@/components/navigationRow/types/navigationRowTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { COLORS, FONT_WEIGHT, SPACINGS } from '../../foundations';
-import { LineSeparatorLineVariantType } from '../lineSeparator';
-import { TextVariantType } from '../text';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { LineSeparatorLineVariantType } from '../lineSeparator/variants';
+import { TextVariantType } from '../text/variants';
 import { IconHighlightedVariantType } from '../variants';
 import { NavigationRowSizeType, NavigationRowVariantType } from './variants';
 

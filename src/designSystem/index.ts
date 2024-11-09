@@ -1,3 +1,3 @@
-export * from './kubit';
-export * from './kubitWireframe';
 export * from './themesInfo';
+export * from './themesObject';
+export * from './variants';

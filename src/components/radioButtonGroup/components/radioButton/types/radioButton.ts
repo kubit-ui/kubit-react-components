@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILabelStandAlone } from '@/components/label';
-import { IText } from '@/components/text';
-import { AriaLiveOptionType } from '@/types';
-import { VariantStyles } from '@/types/variantStyles';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
+import { VariantStyles } from '@/types/variantStyles/variantStyles';
 
+import { IElementOrIcon } from '../../../../elementOrIcon/types/elementOrIcon';
+import { ILabelStandAlone } from '../../../../label/types/label';
+import { IText } from '../../../../text/types/text';
 import { RadioButtonStylesType } from './radioButtonTheme';
 import { RadioButtonStateType } from './state';
 

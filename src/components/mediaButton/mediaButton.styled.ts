@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
-// mixin
-import { focusVisibleAlt } from '@/styles/mixins';
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { MediaButtonVariantStylesType } from './types';
+// mixin
+import { focusVisibleAlt } from '../../styles/mixins/focusAlt.mixin';
+import { MediaButtonVariantStylesType } from './types/mediaButtonTheme';
 
 type MediaButtonStylesType = {
   styles?: MediaButtonVariantStylesType;

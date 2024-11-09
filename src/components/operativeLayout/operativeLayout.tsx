@@ -1,15 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { OperativeLayoutStandAlone } from './operativeLayoutStandAlone';
-import {
-  IOperativeLayout,
-  IOperativeLayoutStandAlone,
-  OperativeLayoutVariantStylesType,
-} from './types';
+import { IOperativeLayout, IOperativeLayoutStandAlone } from './types/operativeLayout';
+import { OperativeLayoutVariantStylesType } from './types/operativeLayoutTheme';
 
 const OPERATIVE_LAYOUT_STYLES = 'OPERATIVE_LAYOUT_STYLES';
 

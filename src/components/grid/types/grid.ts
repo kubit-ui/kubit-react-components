@@ -1,4 +1,4 @@
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 import { CommonStyleType } from '@/types/styles/commonStyle';
 
 export type GridType = {

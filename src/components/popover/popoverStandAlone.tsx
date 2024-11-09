@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { CssAnimation } from '@/components/cssAnimation';
-import { Overlay } from '@/components/overlay';
 import { pickAriaProps } from '@/utils/aria/aria';
 
+import { CssAnimation } from '../cssAnimation/cssAnimation';
+import { Overlay } from '../overlay/overlay';
 import { PopoverAnimationStyled, PopoverStyled } from './popover.styled';
-import { IPopoverStandAlone } from './types';
+import { IPopoverStandAlone } from './types/popover';
 
 const PopoverStandAloneComponent = (
   {

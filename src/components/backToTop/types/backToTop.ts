@@ -1,6 +1,6 @@
-import { IIcon } from '@/components/icon';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IIcon } from '../../icon/types/icon';
 import { BackToTopStatesStyles } from './backToTopTheme';
 import { BackToTopStateType } from './state';
 

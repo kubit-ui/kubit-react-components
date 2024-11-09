@@ -1,6 +1,6 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import { IconHighlightedVariantStylesType } from './iconHighlightedTheme';
 import { IconHighlightedSizeType } from './size';
 import { IconHighlightedType } from './type';

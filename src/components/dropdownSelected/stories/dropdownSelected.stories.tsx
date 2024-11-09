@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
-import { ListOptionsType } from '@/components/listOptions';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
-import { DropdownSelected as Story } from '../index';
-import { DropdownSelectedStateType, IDropdownSelectedUncontrolled } from '../types';
+import { ListOptionsType } from '../../listOptions/types/type';
+import { DropdownSelectedUnControlled as Story } from '../dropdownSelectedUncontrolled';
+import { IDropdownSelectedUncontrolled } from '../types/dropdownSelected';
+import { DropdownSelectedStateType } from '../types/states';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

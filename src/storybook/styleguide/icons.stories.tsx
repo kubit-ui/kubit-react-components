@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import React from 'react';
 
-import { Icons as BaseIcons } from '../components';
+import { Icons as BaseIcons } from '../components/icons/icons';
 
 export const Icons = (): JSX.Element => {
   return <BaseIcons />;

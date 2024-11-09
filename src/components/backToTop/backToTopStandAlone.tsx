@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-//components
-import { Icon } from '@/components/icon';
 import { pickAriaProps } from '@/utils/aria/aria';
 
+//components
+import { IconBasic as Icon } from '../icon/icon';
 import { BackToTopStyled } from './backToTop.styled';
-import { IBackToTopStandAlone } from './types';
+import { IBackToTopStandAlone } from './types/backToTop';
 
 const BackToTopStandAloneComponent = (
   { dataTestId = 'back-to-top', ...props }: IBackToTopStandAlone,

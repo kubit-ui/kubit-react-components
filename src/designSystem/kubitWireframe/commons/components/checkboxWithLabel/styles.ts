@@ -1,7 +1,9 @@
-import { CheckboxWithLabelState, CheckboxWithLabelStyles } from '@/components';
-import { CommonStyleType } from '@/types';
+import { CheckboxWithLabelStyles } from '@/components/checkboxWithLabel/types/checkboxWithLabelTheme';
+import { CheckboxWithLabelState } from '@/components/checkboxWithLabel/types/state';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
+import { CommonStyleType } from '@/types/styles/commonStyle';
 
-import { FONT_WEIGHT, SPACINGS } from '../../foundations';
 import { TextVariantType } from '../variants';
 import { CheckboxWithLabelVariants } from './variants';
 

@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import {
   BodyStyled,
   ContainerStyled,
@@ -13,7 +13,7 @@ import {
   RightIconWrapper,
   TitleWrapper,
 } from './summaryDetails.styled';
-import { ISummaryDetailsStandAlone } from './types';
+import { ISummaryDetailsStandAlone } from './types/summaryDetails';
 
 const SummaryDetailsStandAloneComponent = (
   {

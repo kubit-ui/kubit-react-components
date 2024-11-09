@@ -1,5 +1,5 @@
-import { calcFirstLastVisiblePosition } from '../helper';
-import { PageControlDirectionType } from '../types';
+import { calcFirstLastVisiblePosition } from '../helper/positions';
+import { PageControlDirectionType } from '../types/pageControlStates';
 
 describe('Page Control Position', () => {
   it('No bullet. When currentPosition < dots, then firstVisiblePosition = 1 and lastVisiblePosition depends on firstVisiblePosition', () => {

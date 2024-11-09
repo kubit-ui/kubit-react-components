@@ -1,15 +1,17 @@
-import { ICalendar, IConfigAccesibility } from '@/components/calendar';
-import { IElementOrIcon } from '@/components/elementOrIcon';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { POSITIONS } from '@/types/positions/positions';
+
+import { ICalendar, IConfigAccesibility } from '../../calendar/types/calendar';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import {
   ERROR_EXECUTION,
   IInputStandAlone,
   INTERNAL_ERROR_EXECUTION,
   InputLabelType,
-  InputState,
-} from '@/components/input/types';
-import { IText, TextComponentType } from '@/components/text';
-import { CustomTokenTypes, POSITIONS } from '@/types';
-
+} from '../../input/types/input';
+import { InputState } from '../../input/types/inputTheme';
+import { TextComponentType } from '../../text/types/component';
+import { IText } from '../../text/types/text';
 import { InputDateStylesProps } from './inputDateTheme';
 
 type InputRightIconType = Omit<IElementOrIcon, 'altText' | 'aria-label'>;

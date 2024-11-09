@@ -1,4 +1,4 @@
-import { FormatMonthOptionType, FormatWeekdayOptionType } from '@/types';
+import { FormatMonthOptionType, FormatWeekdayOptionType } from '../../types/date/date';
 
 export interface DateFormatOptions {
   weekday?: FormatWeekdayOptionType;

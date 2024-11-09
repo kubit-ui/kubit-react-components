@@ -1,4 +1,6 @@
-import { CommonStyleType, DeviceBreakpointsType, POSITIONS } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { POSITIONS } from '@/types/positions/positions';
+import { CommonStyleType } from '@/types/styles/commonStyle';
 
 export type OliveMenuGlobalStylesType = {
   container?: CommonStyleType;

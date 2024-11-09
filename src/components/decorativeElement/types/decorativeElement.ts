@@ -1,8 +1,8 @@
-import { IAvatar } from '@/components/avatar';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IIconHighlighted } from '@/components/iconHighlighted';
-import { IIllustration } from '@/components/illustration';
-import { IImage } from '@/components/image';
+import { IAvatar } from '../../avatar/types/avatar';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IIconHighlighted } from '../../iconHighlighted/types/iconHighlighted';
+import { IIllustration } from '../../illustration/types/illustration';
+import { IImage } from '../../image/types/image';
 
 /**
  * @name DecorativeType

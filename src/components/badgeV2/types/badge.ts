@@ -1,8 +1,9 @@
-import { IDot } from '@/components/dot';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { CustomTokenTypes, ROLES } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { ROLES } from '@/types/role/role';
 
+import { IDot } from '../../dot/types/dot';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IText } from '../../text/types/text';
 import { BadgeSizePropsType, BadgeVariantStylesType } from './badgeTheme';
 
 export type BadgeLabelType = Omit<IText<string>, 'children'> & {

@@ -1,4 +1,4 @@
-import { IllustrationTypes } from '@/types';
+import { IllustrationTypes } from '@/types/styles/illustration';
 
 type IllustrationAriaAttributes = Pick<
   React.AriaAttributes,

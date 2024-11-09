@@ -1,18 +1,18 @@
-import * as React from 'react';
-import { ForwardedRef, forwardRef, useMemo } from 'react';
+import React, { ForwardedRef, forwardRef, useMemo } from 'react';
 
-import { Input } from '@/components/input';
-//  components
-import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
-import { Text } from '@/components/text';
-import { useId } from '@/hooks';
-import { AriaLiveOptionType, ROLES } from '@/types';
+import { PopoverControlled } from '@/components/popover/popoverControlled';
+import { Text } from '@/components/text/text';
+import { useId } from '@/hooks/useId/useId';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
+import { ROLES } from '@/types/role/role';
 
 import { ActionBottomSheetControlledStructure as ActionBottomSheet } from '../../actionBottomSheet/actionBottomSheetControlled';
+import { InputUnControlled as Input } from '../../input/inputUnControlled';
+//  components
+import { PopoverComponentType } from '../../popover/types/component';
+import { ScreenReaderOnly } from '../../screenReaderOnly/screenReaderOnly';
 // helpers
-import { getLength } from '../helpers';
-import { MultipleRef } from '../hooks/useInputSearch';
+import { getLength } from '../helpers/options';
 // styles
 import {
   InputSearchListStyled,
@@ -22,6 +22,13 @@ import {
 import { IOptionGroup, IPopoverSearchList, InputSearchOptionType } from '../types/inputSearch';
 import { LoadingIcon } from './loadingIcon';
 import { OptionsList } from './optionsList';
+
+interface MultipleRef {
+  refInput?: React.MutableRefObject<HTMLInputElement | undefined>;
+  refList: ForwardedRef<unknown> | (({ ref, index }) => void);
+  refIcon: React.MutableRefObject<HTMLSpanElement | undefined>;
+  refActionBottomSheet: React.ForwardedRef<HTMLDivElement> | undefined | null;
+}
 
 export const PopoverSearchListComponent = (
   { sublabel = { content: 'Use this' }, ...props }: IPopoverSearchList,
@@ -151,7 +158,7 @@ export const PopoverSearchListComponent = (
   );
 
   return (
-    <Popover
+    <PopoverControlled
       hasBackDrop
       aria-modal={useActionBottomSheet ? true : undefined}
       blockBack={props.blockBackPopover}
@@ -215,7 +222,7 @@ export const PopoverSearchListComponent = (
       ) : (
         renderSearchList()
       )}
-    </Popover>
+    </PopoverControlled>
   );
 };
 

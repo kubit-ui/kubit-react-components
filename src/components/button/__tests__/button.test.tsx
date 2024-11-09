@@ -1,6 +1,6 @@
 // vendors
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
@@ -9,7 +9,8 @@ import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
 import { Button } from '../button';
 // constants
-import { ButtonStateType, ButtonType } from '../types';
+import { ButtonStateType } from '../types/state';
+import { ButtonType } from '../types/type';
 
 const mockBase = {
   onClick: jest.fn,

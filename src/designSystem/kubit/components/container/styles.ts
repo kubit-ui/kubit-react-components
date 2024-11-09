@@ -1,6 +1,7 @@
-import { ContainerStylesType } from '@/components/container/types';
+import { ContainerStylesType } from '@/components/container/types/containerTheme';
 
-import { COLORS, SPACINGS } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
 import { ContainerVariants } from './variants';
 
 const commonContainerProps = {

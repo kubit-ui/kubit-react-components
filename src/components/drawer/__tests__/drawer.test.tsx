@@ -6,7 +6,8 @@ import { axe } from 'jest-axe';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
 import { DrawerUnControlled as Drawer } from '../drawerUnControlled';
-import { DrawerLevelPositionTypes, IDrawerUncontrolled } from '../types/';
+import { IDrawerUncontrolled } from '../types/drawer';
+import { DrawerLevelPositionTypes } from '../types/level';
 
 const mockProps: IDrawerUncontrolled = {
   title: { content: 'drawer' },

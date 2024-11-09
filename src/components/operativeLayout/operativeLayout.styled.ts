@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
 
 type OperativeLayoutContainerType = {
   maxWidthParentContainer?: { [key in DeviceBreakpointsType]?: string };

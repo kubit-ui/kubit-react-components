@@ -1,4 +1,4 @@
-import { StepperNumberOrientationType } from '../types';
+import { StepperNumberOrientationType } from '../types/orientation';
 
 export const buildAriaCurrent = (
   currentStep: number,

@@ -1,6 +1,7 @@
 import { CSSProp } from 'styled-components';
 
-import { CommonStyleType, TypographyTypes } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { TypographyTypes } from '@/types/styles/typography';
 
 export type LineSeparatorLabelPropsStylesType = {
   labelContainer?: CommonStyleType;

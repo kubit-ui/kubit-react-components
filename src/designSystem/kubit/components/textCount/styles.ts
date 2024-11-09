@@ -1,6 +1,7 @@
-import { TextCountStylesType } from '@/components/textCount/types';
+import { TextCountStylesType } from '@/components/textCount/types/textCountTheme';
 
-import { COLORS, FONT_WEIGHT } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import { TextCountVariantType } from './variants';
 
 export const TEXT_COUNT_STYLES: TextCountStylesType<TextCountVariantType> = {

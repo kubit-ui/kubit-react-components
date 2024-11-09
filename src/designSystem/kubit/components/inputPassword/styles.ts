@@ -1,7 +1,7 @@
-import { InputState } from '@/components/input/types';
-import { InputPasswordStylesType } from '@/components/inputPassword/types';
+import { InputState } from '@/components/input/types/inputTheme';
+import { InputPasswordStylesType } from '@/components/inputPassword/types/inputPasswordTheme';
 
-import { COLORS } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
 import { InputPasswordVariant } from './variants';
 
 const defaultCommonProps = {

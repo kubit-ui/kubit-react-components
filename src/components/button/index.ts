@@ -1,4 +1,4 @@
 export * from './types';
 
-export { Button } from './button';
+export * from './button';
 export { ButtonStyled } from './button.styled';

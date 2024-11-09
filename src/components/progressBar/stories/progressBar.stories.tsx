@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { ProgressBar as Story } from '../progressBar';
 import { argtypes } from './argtypes';

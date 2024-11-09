@@ -1,4 +1,4 @@
-import { ListOptionsOptionType } from '../../types';
+import { ListOptionsOptionType } from '../../types/listOptions';
 import { getOptionVariant, isSelected, keyDownMove, keyUpMove } from '../listOptions.utils';
 
 describe('ListOptions utils', () => {

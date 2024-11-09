@@ -3,8 +3,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 // mock hooks
 import * as styledComponents from 'styled-components';
 
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
 import { useTabs } from '../useTabs';
 
 let tabsLength;

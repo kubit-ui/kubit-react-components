@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { TableBody } from '@/components/tableBody';
-import { TableCaption } from '@/components/tableCaption';
-import { TableCell } from '@/components/tableCell';
-import { TableFoot } from '@/components/tableFoot';
-import { TableHead } from '@/components/tableHead';
-import { TableRow } from '@/components/tableRow';
-import { variantsObject } from '@/designSystem/themesObject';
+import { variantsObject } from '@/designSystem/themesObject/themesObject';
 
+import { TableBody } from '../../tableBody/tableBody';
+import { TableCaption } from '../../tableCaption/tableCaption';
+import { TableCell } from '../../tableCell/tableCell';
+import { TableFoot } from '../../tableFoot/tableFoot';
+import { TableHead } from '../../tableHead/tableHead';
+import { TableRow } from '../../tableRow/tableRow';
 import { Table as Story } from '../table';
-import { ITableV2 } from '../types';
+import { ITableV2 } from '../types/table';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

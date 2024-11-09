@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components';
 
-import { getStyles } from '@/utils';
-
-import { LineSeparatorLinePropsStylesType, LineSeparatorPositionType } from '../lineSeparator';
-import { FooterPropsStylesType } from './types';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import {
+  LineSeparatorLinePropsStylesType,
+  LineSeparatorPositionType,
+} from '../lineSeparator/types/lineSeparatorTheme';
+import { FooterPropsStylesType } from './types/footerTheme';
 
 type FooterStylesType = {
   styles: FooterPropsStylesType;

@@ -1,7 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import { SelectorBoxFileStateStylesType } from '../types';
-import { getBottomBarWith, getLeftBarHeight, getRightBarHeight, getTopBarWith } from '../utils';
+import { SelectorBoxFileStateStylesType } from '../types/selectorBoxFileTheme';
+import {
+  getBottomBarWith,
+  getLeftBarHeight,
+  getRightBarHeight,
+  getTopBarWith,
+} from '../utils/animation.utils';
 
 type ParamsType = {
   percentage: number;

@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILoader } from '@/components/loader/types';
-import { CustomTokenTypes, ROLES } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { ROLES } from '@/types/role/role';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { ILoader } from '../../loader/types/loader';
 import type { IconPositionType } from './buttonIconPosition';
 import type { ButtonSizePropsType, ButtonStateKeyOfType } from './buttonTheme';
 import type { ButtonStateType } from './state';

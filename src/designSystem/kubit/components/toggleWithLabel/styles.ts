@@ -1,7 +1,9 @@
-import { ToggleWithLabelStylesType } from '@/components';
+import { ToggleWithLabelStylesType } from '@/components/toggleWithLabel/types/toggleWithLabelTheme';
 
-import { COLORS, FONT_WEIGHT, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { ToggleWithLabelVariantType } from './variants';
 
 export const TOGGLE_WITH_LABEL_STYLES: ToggleWithLabelStylesType<ToggleWithLabelVariantType> = {

@@ -1,7 +1,8 @@
-import { FooterStylesType } from '@/components/footer/types';
-import { DeviceBreakpointsType } from '@/types';
+import { FooterStylesType } from '@/components/footer/types/footerTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { COLORS, SPACINGS } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
 import { LineSeparatorLineVariantType } from '../variants';
 import { FooterVariants } from './variants';
 

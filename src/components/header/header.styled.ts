@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { HeaderPropsStyles } from './types';
+import { HeaderPropsStyles } from './types/headerTheme';
 
 export const HeaderContainerStyled = styled.div<HeaderPropsStyles>`
   width: 100%;

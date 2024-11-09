@@ -1,6 +1,10 @@
 import 'styled-components';
 
-import { BreakpointsType, MediaQueriesType, POSITIONS, STATES, ZIndexType } from './index';
+import { BreakpointsType } from './breakpoints/breakpoints';
+import { MediaQueriesType } from './mediaQueries/mediaQueries';
+import { POSITIONS } from './positions/positions';
+import { STATES } from './states/states';
+import { ZIndexType } from './zIndex/zIndex';
 
 export interface CustomTheme {
   BREAKPOINTS?: BreakpointsType;

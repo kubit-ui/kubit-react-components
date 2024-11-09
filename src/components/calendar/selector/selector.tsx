@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Button } from '@/components/button/button';
 import { ButtonStateType } from '@/components/button/types/state';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useUtilsProvider } from '@/provider';
+import { useUtilsProvider } from '@/provider/utils/provider';
 
-import { CalendarElementType } from '../types';
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { CalendarElementType } from '../types/calendar';
 // styles
 import {
   IconAndBackTextStyled,

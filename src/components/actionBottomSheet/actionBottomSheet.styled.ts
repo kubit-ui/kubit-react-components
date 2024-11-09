@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-import { CommonStyleType } from '@/types';
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
+import { CommonStyleType } from '../../types/styles/commonStyle';
 import { ActionBottomSheetVariantStylesType } from './types/actionBottomSheetTheme';
 
 type ActionBottomSheetStylesTypes = {

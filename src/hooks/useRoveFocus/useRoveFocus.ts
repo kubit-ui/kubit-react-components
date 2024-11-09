@@ -8,7 +8,7 @@ import {
   PAGE_DOWN,
   PAGE_UP,
   TAB,
-} from '@/constants';
+} from '@/constants/keyboardKeys/keyboardKeys';
 
 type keyMoveType = number | ((previous: number, e?: KeyboardEvent) => number) | null;
 

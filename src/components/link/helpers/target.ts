@@ -1,4 +1,4 @@
-import { LinkTargetType } from '../types';
+import { LinkTargetType } from '../types/target';
 
 type targetType = 'SELF' | 'BLANK' | 'PARENT' | 'TOP';
 

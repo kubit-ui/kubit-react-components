@@ -1,19 +1,13 @@
-import {
-  RadioButtonGroupStylesType,
-  RadioButtonStateType,
-} from '@/components/radioButtonGroup/types';
-import { TooltipAlignType } from '@/components/tooltip/types';
+import { RadioButtonStateType } from '@/components/radioButtonGroup/components/radioButton/types/state';
+import { RadioButtonGroupStylesType } from '@/components/radioButtonGroup/types/radioButtonGroup';
+import { TooltipAlignType } from '@/components/tooltip/types/tooltipAlign';
 
-import {
-  BORDERS,
-  COLORS,
-  FONT_WEIGHT,
-  RADIUS,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-} from '../../foundations';
-import { TextVariantType } from '../text';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { TooltipVariantType } from '../variants';
 import { RadioButtonGroupVariantType } from './variants';
 

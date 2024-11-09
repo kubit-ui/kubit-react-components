@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 // styles
 import { TextCounterStyled } from '../input.styled';

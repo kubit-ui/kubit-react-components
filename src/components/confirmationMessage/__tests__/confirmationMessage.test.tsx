@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import { Button } from '@/components/button/button';
-import { DecorativeType } from '@/components/decorativeElement';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { FooterPositionType } from '@/components/footer';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
+import { DecorativeType } from '../../decorativeElement/types/decorativeElement';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { FooterPositionType } from '../../footer/types/position';
 import { ConfirmationMessage } from '../confirmationMessage';
 
 const decorativeIcon: IElementOrIcon = {

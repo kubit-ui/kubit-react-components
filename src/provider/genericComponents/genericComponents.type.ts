@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ROLES } from '@/types/role';
+import { ROLES } from '@/types/role/role';
 
 type GenericLinkAriaAttributes = Pick<
   React.AriaAttributes,

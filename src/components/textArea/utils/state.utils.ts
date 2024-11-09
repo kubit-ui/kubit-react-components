@@ -1,4 +1,4 @@
-import { TextAreaStateType } from '../types';
+import { TextAreaStateType } from '../types/state';
 
 export const getState = (
   disabled: boolean,

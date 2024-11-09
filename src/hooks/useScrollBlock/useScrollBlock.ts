@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react';
 
-import { getFirstScrollableElement } from './utils';
+import { getFirstScrollableElement } from './utils/useScrollBlock.utils';
 
 type BlockScrollParamsType = {
   elementsToOmit?: (HTMLElement | null)[];

@@ -1,6 +1,6 @@
-import { POSITIONS } from '@/types/positions';
+import { POSITIONS } from '@/types/positions/positions';
 
-import { ToggleStateType } from '../types';
+import { ToggleStateType } from '../types/state';
 
 // States for 3 position toggle
 const getStateOfThreePositionToggle = (togglePosition: POSITIONS): ToggleStateType => {

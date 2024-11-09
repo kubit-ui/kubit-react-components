@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { InputTypeType } from '@/components/input';
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { AriaLiveOptionType, POSITIONS } from '@/types';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
+import { POSITIONS } from '@/types/positions/positions';
 
+import { InputTypeType } from '../../input/types/inputType';
+import { ScreenReaderOnly } from '../../screenReaderOnly/screenReaderOnly';
 import {
   LabelWrapperStyled,
   SliderContainerStyled,
@@ -15,7 +16,7 @@ import {
   ToggleRadioSwitchStyled,
   ToggleWrapperStyled,
 } from '../toggle.styled';
-import { IToggleStandAlone } from '../types';
+import { IToggleStandAlone } from '../types/toggle';
 
 interface IToggleThreePosition extends IToggleStandAlone {}
 

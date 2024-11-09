@@ -1,6 +1,6 @@
 import { CSSProp } from 'styled-components';
 
-import { CommonStyleType } from '@/types/index';
+import { CommonStyleType } from '@/types/styles/commonStyle';
 
 /**
  * @description

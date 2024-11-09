@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 // styles
 import { TabsControlled } from './tabsControlled';
@@ -29,3 +29,5 @@ const TabsUnControlled = React.forwardRef(TabsUnControlledComponent) as <
 ) => ReturnType<typeof TabsUnControlledComponent>;
 
 export { TabsUnControlled };
+
+export { TabsUnControlled as Tabs };

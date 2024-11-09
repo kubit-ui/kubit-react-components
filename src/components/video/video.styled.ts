@@ -2,7 +2,8 @@ import styled, { css } from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { LinkAndActionButtonAlignment, VideoStyleType } from './types';
+import { LinkAndActionButtonAlignment } from './types/video';
+import { VideoStyleType } from './types/videoTheme';
 
 type VideoPropsStyleType = {
   styles: VideoStyleType;

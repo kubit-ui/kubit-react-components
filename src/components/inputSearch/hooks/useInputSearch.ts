@@ -13,30 +13,29 @@ import {
   useState,
 } from 'react';
 
-import { useInternalValidations } from '@/components/input/hooks';
-import {
-  INTERNAL_ERROR_EXECUTION,
-  InputState,
-  InputTypeType,
-  InternalErrorType,
-} from '@/components/input/types';
-import { useCustomHeightFromChildrens, useMediaDevice } from '@/hooks';
+import { useCustomHeightFromChildrens } from '@/hooks/useCustomHeightFromChildrens/useCustomHeightFromChildren';
 import { useInput } from '@/hooks/useInput/useInput';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+
 import {
-  dispatchSyntheticEvent,
   isArrowDownPressed,
   isArrowUpPressed,
   isKeyEnterPressed,
   isKeyEscapePressed,
-  matchInputValue,
-} from '@/utils';
-
+} from '../../../utils/keyboard/keyboard.utility';
+import { matchInputValue } from '../../../utils/maskUtility/mask.utility';
+import { dispatchSyntheticEvent } from '../../../utils/syntheticComponents/syntheticEvent/syntheticEvent';
+import { useInternalValidations } from '../../input/hooks/useInternalValidations';
+import { INTERNAL_ERROR_EXECUTION } from '../../input/types/input';
+import { InputState } from '../../input/types/inputTheme';
+import { InputTypeType } from '../../input/types/inputType';
+import { InternalErrorType } from '../../input/types/internalErrors';
 // helpers
 import { filterOptions, hasMatchWithOptions } from '../helpers/filterOptions';
-import { InputSearchStylesProps } from '../types';
 import { IOptionGroup, SearchFilterConfig } from '../types/inputSearch';
+import { InputSearchStylesProps } from '../types/inputSearchTheme';
 
-export interface MultipleRef {
+interface MultipleRef {
   refInput?: MutableRefObject<HTMLInputElement | undefined>;
   refList: ForwardedRef<unknown> | (({ ref, index }) => void);
   refIcon: MutableRefObject<HTMLSpanElement | undefined>;

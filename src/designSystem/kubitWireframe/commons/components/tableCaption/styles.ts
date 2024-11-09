@@ -1,6 +1,7 @@
-import { TableCellStylesType } from '@/components';
+import { TableCellStylesType } from '@/components/tableCell/types/tableCellTheme';
+import { BORDERS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 
-import { BORDERS, SPACINGS } from '../../foundations';
 import { TableCaptionVariantType } from './variants';
 
 export const getTableCaptionStyles = (COLORS: {

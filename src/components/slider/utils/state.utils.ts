@@ -1,4 +1,4 @@
-import { SliderStateType } from '../types';
+import { SliderStateType } from '../types/state';
 
 /**
  * @description

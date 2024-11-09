@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ESCAPE } from '@/constants';
+import { ESCAPE } from '@/constants/keyboardKeys/keyboardKeys';
 
 import { DropdownSelectedControlled } from './dropdownSelectedControlled';
-import { IDropdownSelectedUncontrolled } from './types';
+import { IDropdownSelectedUncontrolled } from './types/dropdownSelected';
 
 const DropdownSelectedUnControlledComponent = (
   {
@@ -122,3 +122,5 @@ const DropdownSelectedUnControlled = React.forwardRef(DropdownSelectedUnControll
 ) => JSX.Element;
 
 export { DropdownSelectedUnControlled };
+
+export { DropdownSelectedUnControlled as DropdownSelected };

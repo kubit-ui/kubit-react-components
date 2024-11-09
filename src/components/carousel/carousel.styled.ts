@@ -2,7 +2,8 @@ import styled, { css } from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { CarouselArrowStateType, CarouselPropsStylesType } from './types';
+import { CarouselPropsStylesType } from './types/carouselTheme';
+import { CarouselArrowStateType } from './types/state';
 
 export const RootStyled = styled.article<{
   styles: CarouselPropsStylesType;

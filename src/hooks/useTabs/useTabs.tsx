@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { DeviceBreakpointsType } from '@/types/breakpoints';
-import { keyLeftMove, keyRightMove } from '@/utils';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { keyLeftMove, keyRightMove } from '@/utils/tabUtil/getTabMoves';
 
 import { useMediaDevice } from '../useMediaDevice/useMediaDevice';
 import { useRoveFocus } from '../useRoveFocus/useRoveFocus';

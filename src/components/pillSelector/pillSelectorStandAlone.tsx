@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Pill } from '@/components/pill';
-import { useRoveFocus } from '@/hooks';
-import { ROLES } from '@/types';
-import { pickAriaProps } from '@/utils';
+import { useRoveFocus } from '@/hooks/useRoveFocus/useRoveFocus';
 
+import { ROLES } from '../../types/role/role';
+import { pickAriaProps } from '../../utils/aria/aria';
+import { PillUnControlled as Pill } from '../pill/pillUnControlled';
 import { PillSelectorWrapper, ThumbStyled } from './pillSelector.styled';
-import type { IPillSelectorStandAlone } from './types';
-import { keyLeftMove, keyRightMove } from './utils';
+import { IPillSelectorStandAlone } from './types/pillSelector';
+import { keyLeftMove, keyRightMove } from './utils/pillSelector.utils';
 
 const MAX_PILLS = 3;
 

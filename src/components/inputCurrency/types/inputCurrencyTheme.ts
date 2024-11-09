@@ -5,7 +5,8 @@ import {
   InputContentPosition,
   InputState,
 } from '@/components/input/types/inputTheme';
-import { CommonStyleType, TypographyTypes } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { TypographyTypes } from '@/types/styles/typography';
 
 export type InputCurrencyStateProps = InputBasicStateProps & {
   currencyNameContainer?: CommonStyleType & {

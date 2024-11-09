@@ -1,12 +1,19 @@
-import { DropdownSelectedPropsStylesType, DropdownSelectedStylesType } from '@/components';
+import {
+  DropdownSelectedPropsStylesType,
+  DropdownSelectedStylesType,
+} from '@/components/dropdownSelected/types/dropdownSelectedTheme';
 import { DropdownSelectedStateType } from '@/components/dropdownSelected/types/states';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { BORDERS, COLORS, FONT_WEIGHT, SHADOW, SPACINGS } from '../../foundations';
-import { ListOptionsVariantType } from '../listOptions';
-import { OptionVariantType } from '../option';
-import { PopoverVariantType } from '../popover';
-import { TextVariantType } from '../text';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SHADOW } from '../../foundations/shadow';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { ListOptionsVariantType } from '../listOptions/variants';
+import { OptionVariantType } from '../option/variants';
+import { PopoverVariantType } from '../popover/variants';
+import { TextVariantType } from '../text/variants';
 import { DropdownSelectedVariantType } from './variants';
 
 const commonDefaultVariantStateProps: DropdownSelectedPropsStylesType = {

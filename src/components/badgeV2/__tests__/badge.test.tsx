@@ -1,12 +1,12 @@
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { Badge } from '../badge';
-import { IBadge } from '../types';
+import { BadgeV2 as Badge } from '../badge';
+import { IBadge } from '../types/badge';
 
 // Mocks
 const mockProps: IBadge = {
