@@ -1,13 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text } from '@/components/text';
-
-import {
-  IValidationStatusStandAlone,
-  ValidationStatusItemType,
-  ValidationStatusState,
-} from './types';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { Text } from '../text/text';
+import { IValidationStatusStandAlone, ValidationStatusItemType } from './types/validationStatus';
+import { ValidationStatusState } from './types/validationStatusTheme';
 import { ValidationStatusFrame, ValidationStatusRow } from './validationStatus.styled';
 
 const maxItems = 6;

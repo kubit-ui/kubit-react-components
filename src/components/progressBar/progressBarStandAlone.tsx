@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Slider } from '../slider/slider';
 import { SliderType } from '../slider/types/type';
@@ -8,7 +8,7 @@ import {
   ParentContainerStyled,
   ProgressBarStyled,
 } from './progressBar.styled';
-import { IProgressBarStandAlone } from './types';
+import { IProgressBarStandAlone } from './types/progressBar';
 
 const SLIDER_MAX_VALUE = 1000;
 const SLIDER_MIN_VALUE = 0;

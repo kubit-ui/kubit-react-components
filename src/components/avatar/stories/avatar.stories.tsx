@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ICONS, IMAGES } from '@/assets';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { IMAGES } from '@/assets/storybook/images/images';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { Avatar as AvatarStory } from '../avatar';
-import { AvatarBackgroundColor } from '../types';
+import { AvatarBackgroundColor } from '../types/content';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

@@ -1,11 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ENTER, SPACE } from '@/constants';
+import { ENTER, SPACE } from '@/constants/keyboardKeys/keyboardKeys';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
 import { MediaProgressBar } from '../mediaProgressBar';
 

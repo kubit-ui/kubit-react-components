@@ -1,13 +1,15 @@
 import { ReactNode } from 'react';
 
-import { ActionBottomSheetTextType } from '@/components/actionBottomSheet';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IInputStandAlone, INTERNAL_ERROR_EXECUTION, InputState } from '@/components/input/types';
-import { ListOptionsOptionType } from '@/components/listOptions';
-import { ILoader } from '@/components/loader/types';
-import { IText } from '@/components/text';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { ActionBottomSheetTextType } from '../../actionBottomSheet/types/actionBottomSheet';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IInputStandAlone, INTERNAL_ERROR_EXECUTION } from '../../input/types/input';
+import { InputState } from '../../input/types/inputTheme';
+import { ListOptionsOptionType } from '../../listOptions/types/listOptions';
+import { ILoader } from '../../loader/types/loader';
+import { IText } from '../../text/types/text';
 import {
   InputDropdownListOptionsProps,
   InputDropdownStateProps,

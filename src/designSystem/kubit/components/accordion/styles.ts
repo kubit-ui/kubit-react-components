@@ -1,16 +1,12 @@
-import { AccordionStylesType } from '@/components/accordion/types';
-import { DeviceBreakpointsType } from '@/types';
+import { AccordionStylesType } from '@/components/accordion/types/accordionTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import {
-  COLORS,
-  FONT_WEIGHT,
-  HEADING,
-  RADIUS,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-  Z_INDEX,
-} from '../../foundations';
+import { RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, HEADING, TEXT_ALIGN } from '../../foundations/typography';
+import { Z_INDEX } from '../../foundations/zIndex';
 import { LineSeparatorLineVariantType } from '../variants';
 import { AccordionVariantType } from './variants';
 

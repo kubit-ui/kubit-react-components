@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 import { IPaginationButtonControl } from '../types/pagination';
 import { PaginationArrowIconStyleType } from '../types/paginationTheme';
 

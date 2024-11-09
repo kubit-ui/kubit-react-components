@@ -1,4 +1,4 @@
-import { PageControlDirectionType } from '../types';
+import { PageControlDirectionType } from '../types/pageControlStates';
 
 export const getPositionWithIn = (currentPosition: number, pages: number): number => {
   return Math.max(0, Math.min(currentPosition, pages - 1));

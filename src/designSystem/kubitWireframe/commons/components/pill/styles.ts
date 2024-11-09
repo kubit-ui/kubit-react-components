@@ -1,18 +1,18 @@
-import { PillStateType, PillStylesType } from '@/components/pill/types';
-import { COLORS } from '@/designSystem/kubit/foundations';
-import { DeviceBreakpointsType } from '@/types';
-
-import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
+import { PillStylesType } from '@/components/pill/types/pillTheme';
+import { PillStateType } from '@/components/pill/types/state';
+import { COLORS } from '@/designSystem/kubit/foundations/colors';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import {
-  BORDERS,
   FONT_WEIGHT,
   PARAGRAPH,
-  RADIUS,
-  SIZES,
-  SPACINGS,
   TEXT_ALIGN,
-  Z_INDEX,
-} from '../../foundations';
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
+import { Z_INDEX } from '@/designSystem/kubitWireframe/commons/foundations/zIndex';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+
+import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
 import { PillSizeType, PillVariantType } from './variants';
 
 const PILL_FOCUS_COLOR = '#2C71DB';

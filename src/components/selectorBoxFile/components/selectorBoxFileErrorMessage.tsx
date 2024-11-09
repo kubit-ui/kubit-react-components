@@ -1,15 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon, IElementOrIcon } from '@/components/elementOrIcon';
-import { Text } from '@/components/text';
-import { AriaLiveOptionType } from '@/types';
+import { Text } from '@/components/text/text';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
 
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import { ErrorWrapperStyled } from '../selectorBoxFile.styled';
-import {
-  SelectorBoxFilePropsStylesType,
-  SelectorBoxFileStateType,
-  SelectorBoxFileTextType,
-} from '../types';
+import { SelectorBoxFileTextType } from '../types/selectorBoxFile';
+import { SelectorBoxFilePropsStylesType } from '../types/selectorBoxFileTheme';
+import { SelectorBoxFileStateType } from '../types/state';
 
 interface ISelectorBoxFileErrorMessage {
   styles: SelectorBoxFilePropsStylesType;

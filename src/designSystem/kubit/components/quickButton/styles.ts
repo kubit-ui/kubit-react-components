@@ -1,7 +1,12 @@
-import { QuickButtonState, QuickButtonStylesType } from '@/components/quickButton/types';
+import { QuickButtonStylesType } from '@/components/quickButton/types/quickButtonTheme';
+import { QuickButtonState } from '@/components/quickButton/types/state';
 
-import { BORDERS, COLORS, FONT_WEIGHT, SIZES, SPACINGS, TEXT_ALIGN } from '../../foundations';
-import { TextVariantType } from '../text';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { QuickButtonVariantType } from './variants';
 
 const QUICK_BUTTON_TOKENS = {

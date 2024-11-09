@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { PopoverControlled } from './popoverControlled';
-import type { IPopoverUnControlled } from './types';
+import type { IPopoverUnControlled } from './types/popover';
 
 const PopoverUnControlledComponent = (
   props: IPopoverUnControlled,
@@ -15,3 +15,5 @@ const PopoverUnControlledComponent = (
 };
 
 export const PopoverUnControlled = React.forwardRef(PopoverUnControlledComponent);
+
+export { PopoverUnControlled as Popover };

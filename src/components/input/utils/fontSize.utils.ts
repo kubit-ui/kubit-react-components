@@ -1,4 +1,5 @@
-import { InputState, InputStylesProps, LABEL_TYPE } from '@/components/input/types';
+import { InputStylesProps } from '../types/input';
+import { InputState, LABEL_TYPE } from '../types/inputTheme';
 
 export const getFontSize = (
   state: InputState,

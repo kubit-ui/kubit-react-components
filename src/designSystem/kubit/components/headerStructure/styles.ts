@@ -1,8 +1,10 @@
 // fundations
-import { HeaderStructureStylesType } from '@/components/headerStructure/types';
-import { CommonStyleType, DeviceBreakpointsType } from '@/types';
+import { HeaderStructureStylesType } from '@/components/headerStructure/types/headerStructureTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CommonStyleType } from '@/types/styles/commonStyle';
 
-import { RADIUS, SPACINGS } from '../../foundations';
+import { RADIUS } from '../../foundations/borders';
+import { SPACINGS } from '../../foundations/spacings';
 import { HeaderStructureVariantType } from './variants';
 
 const leftCenterRightContentCommonProps: CommonStyleType = {

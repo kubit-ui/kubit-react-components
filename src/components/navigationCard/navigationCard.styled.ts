@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { getStyles } from '@/utils';
-
-import { INavigationCardStyled } from './types';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import { INavigationCardStyled } from './types/navigationCard';
 
 type GapContainerSizeType = {
   marginRight?: string;

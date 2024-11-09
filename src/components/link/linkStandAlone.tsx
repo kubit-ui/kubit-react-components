@@ -1,12 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
+import { Text } from '@/components/text/text';
 import { pickAriaProps } from '@/utils/aria/aria';
 
-import { Text } from '../text';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 // styles
 import { LabelIconWrapper, TextStyledExtended } from './link.styled';
-import { ILinkStandAlone, LinkStateType } from './types';
+import { ILinkStandAlone } from './types/link';
+import { LinkStateType } from './types/state';
 
 const LinkStandAloneComponent = (
   { dataTestId = 'link', url, ...props }: ILinkStandAlone,

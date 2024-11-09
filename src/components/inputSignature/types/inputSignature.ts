@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 
-import { IText } from '@/components/text';
-
+import { IText } from '../../text/types/text';
 import { InputSignatureState } from './inputSignatureState';
 import { InputSignatureLineStyles, InputSignatureStateStyles } from './inputSignatureTheme';
 

@@ -1,16 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { SelectorBoxFileStandAlone } from './selectorBoxFileStandAlone';
-import {
-  ISelectorBoxFile,
-  ISelectorBoxFileStandAlone,
-  SelectorBoxFilePropsStylesType,
-} from './types';
-import { getState } from './utils';
+import { ISelectorBoxFile, ISelectorBoxFileStandAlone } from './types/selectorBoxFile';
+import { SelectorBoxFilePropsStylesType } from './types/selectorBoxFileTheme';
+import { getState } from './utils/state.utils';
 
 const SelectorBoxFileComponent = React.forwardRef(
   <V extends string | unknown>(
@@ -49,6 +47,7 @@ const SelectorBoxFileComponent = React.forwardRef(
       setFocus(false);
     };
 
+    // eslint-disable-next-line complexity
     const onValidateFile = (files: FileList | null) => {
       if (!files || files.length === 0) {
         return;

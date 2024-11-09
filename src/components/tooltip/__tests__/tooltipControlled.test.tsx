@@ -1,15 +1,23 @@
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { useTooltip } from '../hooks';
+import { useTooltip } from '../hooks/useTooltip';
 import { TooltipControlled } from '../tooltipControlled';
 
 const mockProps = {
   children: 'children',
   title: { content: 'title' },
   variant: 'DEFAULT',
+  onBlur: jest.fn(),
+  onFocus: jest.fn(),
+  onMouseEnter: jest.fn(),
+  onMouseLeave: jest.fn(),
+  onClick: jest.fn(),
+  onKeyDown: jest.fn(),
+  onMouseDown: jest.fn(),
+  onMouseUp: jest.fn(),
 };
 
 describe('Tooltip Controlled', () => {

@@ -1,4 +1,5 @@
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
 import { MediaProgressBarVariantStylesType } from './mediaProgressBarTheme';
 

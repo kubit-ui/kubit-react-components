@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 
 import { ContainerStyled, HeaderStyled, ParentContainerStyled } from './container.styled';
-import { IContainerStandAlone } from './types';
+import { IContainerStandAlone } from './types/container';
 
 const ContainerStandAloneComponent = (
   { dataTestId = 'container', ...props }: React.PropsWithChildren<IContainerStandAlone>,

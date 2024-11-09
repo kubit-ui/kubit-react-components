@@ -1,7 +1,7 @@
-import type { GridConfigType } from '@/components/grid/types';
-import { CustomTokenTypes } from '@/types';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import type { GridConfigType } from '../../grid/types/grid';
 import type { LayoutVariantStylesType } from './layoutTheme';
 
 export interface ILayoutStandAlone {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { variantsObject } from '@/designSystem/themesObject';
+import { variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { LinkAsButton as LinkAsButtonStory } from '../linkAsButton';
 import { argtypes } from './argtypes';

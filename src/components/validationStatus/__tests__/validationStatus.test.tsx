@@ -1,13 +1,14 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
+import { stateIcons } from '../fixture/icons';
 // fixture
-import { items, stateIcons } from '../fixture';
-import { IValidationStatus } from '../types';
+import { items } from '../fixture/list';
+import { IValidationStatus } from '../types/validationStatus';
 import { ValidationStatus } from '../validationStatus';
 
 const mockProps: IValidationStatus = {

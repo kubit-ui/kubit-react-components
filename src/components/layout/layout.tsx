@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useMediaDevice } from '@/hooks';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { LayoutStandAlone } from './layoutStandAlone';
-import { ILayout, ILayoutStandAlone, LayoutVariantStylesType } from './types';
+import { ILayout, ILayoutStandAlone } from './types/layout';
+import { LayoutVariantStylesType } from './types/layoutTheme';
 
 const LAYOUT_STYLES = 'LAYOUT_STYLES';
 

@@ -1,16 +1,21 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useMediaDevice, useScrollDetectionWithAutoFocus, useSwipeDown } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useScrollDetectionWithAutoFocus } from '@/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
 import { useStyles } from '@/hooks/useStyles/useStyles';
+import { useSwipeDown } from '@/hooks/useSwipeDown/useSwipeDown';
 import { useTrapFocus } from '@/hooks/useTrapFocus/useTrapFocus';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { DeviceBreakpointsType } from '@/types';
-import { isKeyEnterPressed } from '@/utils';
 
-import { TOOLTIP_STYLES } from './constants';
-import { useTooltip, useTooltipAsModal } from './hooks';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { isKeyEnterPressed } from '../../utils/keyboard/keyboard.utility';
+import { useTooltip } from './hooks/useTooltip';
+import { useTooltipAsModal } from './hooks/useTooltipAsModal';
 import { TooltipStandAlone } from './tooltipStandAlone';
-import { ITooltipStandAlone, ITooltipUnControlled, TooltipVariantStylesProps } from './types';
+import { ITooltipStandAlone, ITooltipUnControlled } from './types/tooltip';
+import { TooltipVariantStylesProps } from './types/tooltipTheme';
 
 const TooltipUnControlledComponent = React.forwardRef(
   <V extends string | unknown>(
@@ -24,7 +29,7 @@ const TooltipUnControlledComponent = React.forwardRef(
     }: ITooltipUnControlled<V>,
     ref: React.ForwardedRef<HTMLDivElement> | undefined | null
   ): JSX.Element => {
-    const styles = useStyles<TooltipVariantStylesProps, V>(TOOLTIP_STYLES, variant, ctv);
+    const styles = useStyles<TooltipVariantStylesProps, V>(STYLES_NAME.TOOLTIP, variant, ctv);
     const mediaDevice = useMediaDevice();
 
     const labelRef = React.useRef<HTMLDivElement>(null);
@@ -59,7 +64,7 @@ const TooltipUnControlledComponent = React.forwardRef(
     // So the approach is to use a flag to avoid calling onFocus when onClick
     const isBeingClicked = React.useRef(false);
 
-    const handleFocus: React.FocusEventHandler<HTMLElement> = () => {
+    const handleWrapperFocus: React.FocusEventHandler<HTMLElement> = () => {
       // allowFocusOpenTooltip Avoid tooltip is opened automatically after closing the tooltip
       if (isBeingClicked.current || tooltipAsModalValue || !allowFocusOpenTooltip.current) {
         return;
@@ -67,7 +72,7 @@ const TooltipUnControlledComponent = React.forwardRef(
       showTooltip();
     };
 
-    const handleBlur: React.FocusEventHandler<HTMLElement> = event => {
+    const handleWrapperBlur: React.FocusEventHandler<HTMLElement> = event => {
       if (!tooltipAsModalValue && !event.currentTarget.contains(event.relatedTarget)) {
         hideTooltip();
       }
@@ -81,7 +86,7 @@ const TooltipUnControlledComponent = React.forwardRef(
       }
     };
 
-    const handleMouseEnter: React.MouseEventHandler<HTMLElement> = () => {
+    const handleWrapperMouseEnter: React.MouseEventHandler<HTMLElement> = () => {
       if (!tooltipAsModalValue) {
         if (mediaDevice !== DeviceBreakpointsType.DESKTOP) {
           return;
@@ -90,7 +95,7 @@ const TooltipUnControlledComponent = React.forwardRef(
       }
     };
 
-    const handleMouseLeave: React.MouseEventHandler<HTMLElement> = () => {
+    const handleWrapperMouseLeave: React.MouseEventHandler<HTMLElement> = () => {
       if (!tooltipAsModalValue) {
         if (mediaDevice !== DeviceBreakpointsType.DESKTOP) {
           return;
@@ -104,15 +109,15 @@ const TooltipUnControlledComponent = React.forwardRef(
       hideTooltip();
     };
 
-    const handleMouseDown: React.MouseEventHandler<HTMLElement> = () => {
+    const handleTriggerMouseDown: React.MouseEventHandler<HTMLElement> = () => {
       isBeingClicked.current = true;
     };
 
-    const handleMouseUp: React.MouseEventHandler<HTMLElement> = () => {
+    const handleTriggerMouseUp: React.MouseEventHandler<HTMLElement> = () => {
       isBeingClicked.current = false;
     };
 
-    const handleClick: React.MouseEventHandler<HTMLElement> = event => {
+    const handleTriggerClick: React.MouseEventHandler<HTMLElement> = event => {
       if (mediaDevice === DeviceBreakpointsType.DESKTOP) {
         if (!tooltipAsModalValue) {
           return;
@@ -136,7 +141,7 @@ const TooltipUnControlledComponent = React.forwardRef(
       }
     };
 
-    const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = event => {
+    const handleTriggerKeyDown: React.KeyboardEventHandler<HTMLDivElement> = event => {
       if (isKeyEnterPressed(event.key) && !open) {
         showTooltip();
         event.preventDefault();
@@ -174,17 +179,17 @@ const TooltipUnControlledComponent = React.forwardRef(
         tooltipAriaLabel={tooltipAriaLabel}
         tooltipAsModal={tooltipAsModalValue}
         tooltipRef={tooltipRef}
-        onBlur={handleBlur}
-        onClick={handleClick}
         onCloseIconClick={handleCloseIconClick}
-        onFocus={handleFocus}
-        onKeyDown={handleKeyDown}
-        onMouseDown={handleMouseDown}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
         onPopoverCloseInternally={handlePopoverCloseInternally}
         onTooltipFocus={handleFocusTooltip}
+        onTriggerClick={handleTriggerClick}
+        onTriggerKeyDown={handleTriggerKeyDown}
+        onTriggerMouseDown={handleTriggerMouseDown}
+        onTriggerMouseUp={handleTriggerMouseUp}
+        onWrapperBlur={handleWrapperBlur}
+        onWrapperFocus={handleWrapperFocus}
+        onWrapperMouseEnter={handleWrapperMouseEnter}
+        onWrapperMouseLeave={handleWrapperMouseLeave}
       />
     );
   }
@@ -225,3 +230,5 @@ const TooltipUnControlled = React.forwardRef(TooltipUnControlledBoundary) as <V>
  * </Tooltip>
  */
 export { TooltipUnControlled };
+
+export { TooltipUnControlled as Tooltip };

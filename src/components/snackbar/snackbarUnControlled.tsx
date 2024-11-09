@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
 import { focusFirstDescendantV2 } from '@/utils/focusHandlers/focusHandlers';
 
 import { SnackbarControlled } from './snackbarControlled';
-import { ISnackbarUnControlled } from './types';
+import { ISnackbarUnControlled } from './types/snackbar';
 
 const SnackbarUnControlledComponent = <V extends string | unknown>(
   {
@@ -137,3 +137,5 @@ const SnackbarUnControlled = React.forwardRef(SnackbarUnControlledComponent) as 
 ) => ReturnType<typeof SnackbarUnControlledComponent>;
 
 export { SnackbarUnControlled };
+
+export { SnackbarUnControlled as Snackbar };

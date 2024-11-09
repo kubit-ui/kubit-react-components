@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { srOnlyMixin } from '@/styles/mixins/srOnly.mixin';
-import { IconGenericType, IconTypes } from '@/types/index';
+import { IconGenericType, IconTypes } from '@/types/styles/icon';
 
 type ImgTypes = {
   $moveRound: string;

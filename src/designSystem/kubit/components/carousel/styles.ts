@@ -1,6 +1,9 @@
-import { CarouselArrowStateType, CarouselStylesType } from '@/components/carousel/types';
+import { CarouselStylesType } from '@/components/carousel/types/carouselTheme';
+import { CarouselArrowStateType } from '@/components/carousel/types/state';
 
-import { COLORS, SIZES, SPACINGS } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
 import { CarouselVariantType } from './variants';
 
 const iconContainerTokens = {

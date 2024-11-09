@@ -3,10 +3,10 @@ import { renderHook } from '@testing-library/react-hooks';
 
 import { InputState } from '@/components/input/types/inputTheme';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType } from '@/types';
-import { InputTypeType } from '@/types/inputType';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { InputTypeType } from '@/types/inputType/inputType';
 
+import { windowMatchMedia } from '../../../../tests/windowMatchMedia/windowMatchMedia';
 import { useInputDropdown } from '../useInputDropdown';
 
 const mockProps = {

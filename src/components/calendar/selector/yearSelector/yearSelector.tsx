@@ -1,17 +1,23 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
-import { ItemRove } from '@/components/itemRove';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useRoveFocus } from '@/hooks';
-import { useUtilsProvider } from '@/provider';
+import { useRoveFocus } from '@/hooks/useRoveFocus/useRoveFocus';
+import { useUtilsProvider } from '@/provider/utils/provider';
 
+import { ButtonType } from '../../../button/types/type';
+import { ItemRove } from '../../../itemRove/itemRove';
 import { getYearList } from '../../utils/getYearList';
 import { setYear } from '../../utils/setYear';
 import { YearSelectorStateType } from './types/state';
 import { IYearSelector } from './types/yearSelector';
-import { keyDownMove, keyLeftMove, keyRightMove, keyTabMove, keyUpMove } from './utils';
+import {
+  keyDownMove,
+  keyLeftMove,
+  keyRightMove,
+  keyTabMove,
+  keyUpMove,
+} from './utils/yearSelector.utils';
 // styles
 import { YearElementStyled, YearListStyled, YearSelectorStyled } from './yearSelector.styled';
 

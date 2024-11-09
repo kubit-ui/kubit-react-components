@@ -1,8 +1,13 @@
-import { IIconHighlighted, IconHighlightedSizeType } from '@/components/iconHighlighted';
-import { ERROR_EXECUTION, IInputStandAlone, INTERNAL_ERROR_EXECUTION } from '@/components/input';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IIconHighlighted } from '../../iconHighlighted/types/iconHighlighted';
+import { IconHighlightedSizeType } from '../../iconHighlighted/types/size';
+import {
+  ERROR_EXECUTION,
+  IInputStandAlone,
+  INTERNAL_ERROR_EXECUTION,
+} from '../../input/types/input';
+import { IText } from '../../text/types/text';
 import { InputPhoneStylesProps } from './inputPhoneTheme';
 
 type propsToOmitInputBasic =

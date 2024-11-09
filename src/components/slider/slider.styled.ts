@@ -2,7 +2,8 @@ import styled, { css } from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { SliderBaseStylesType, SliderStateType } from './types';
+import { SliderBaseStylesType } from './types/sliderTheme';
+import { SliderStateType } from './types/state';
 
 export const StyledRoot = styled.div<{ styles: SliderBaseStylesType }>`
   ${props => getStyles(props.styles.states?.[SliderStateType.DEFAULT]?.container)}

@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStylesV2 } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
 
 import { TableCaptionStandAlone } from './tableCaptionStandAlone';
-import { ITableCaption, TableCaptionPropsStylesType } from './types';
+import { ITableCaption } from './types/tableCaption';
+import { TableCaptionPropsStylesType } from './types/tableCaptionTheme';
 
 const TableCaptionComponent = (
   { variant, ctv, ...props }: React.PropsWithChildren<ITableCaption>,

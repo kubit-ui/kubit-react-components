@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { CheckboxPropsStylesType } from './types';
+import { CheckboxPropsStylesType } from './types/checkboxTheme';
 
 type ThemeStylesType = {
   styles?: CheckboxPropsStylesType;

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { STYLES_NAME } from '@/constants/stylesName';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { RadioButton as Story } from '../components/radioButton/radioButton';
 import { argtypes } from './radioButton.argtypes';

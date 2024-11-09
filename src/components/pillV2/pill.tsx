@@ -1,15 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStylesV2 } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
 
 import { PillStandAlone } from './pillStandAlone';
-import { IPill, PillVariantPropsStylesType } from './types';
-import { getPillState } from './utils';
+import { IPill } from './types/pill';
+import { PillVariantPropsStylesType } from './types/pillTheme';
+import { getPillState } from './utils/state';
 
 const PillComponent = (
   { variant, size, ctv, selected = false, disabled = false, ...props }: IPill,
-  ref: React.ForwardedRef<HTMLButtonElement>
+  ref: React.ForwardedRef<HTMLDivElement>
 ) => {
   const variantStyles = useStylesV2<PillVariantPropsStylesType>({
     styleName: STYLES_NAME.PILL_V2,
@@ -31,3 +32,5 @@ const PillComponent = (
 };
 
 export const Pill = React.forwardRef(PillComponent);
+
+export { Pill as PillV2 };

@@ -1,6 +1,6 @@
-import { translateValue } from '@/utils';
-
-import { SliderOffsetBoundaries, SliderType } from '../types';
+import { translateValue } from '../../../utils/translateValue/translateValue';
+import { SliderOffsetBoundaries } from '../types/slider';
+import { SliderType } from '../types/type';
 
 export const calculateChange = ({
   event,

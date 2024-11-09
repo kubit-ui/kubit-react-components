@@ -1,5 +1,4 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import { InputStateProps, InputStylesProps } from './input';
 import { InputIconPosition, InputState, LABEL_TYPE } from './inputTheme';
 

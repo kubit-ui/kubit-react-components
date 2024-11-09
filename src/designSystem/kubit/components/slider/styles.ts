@@ -1,10 +1,14 @@
-import { SliderStateType, SliderStylesType } from '@/components/slider';
-import { TooltipAlignType } from '@/components/tooltip';
+import { SliderStylesType } from '@/components/slider/types/sliderTheme';
+import { SliderStateType } from '@/components/slider/types/state';
+import { TooltipAlignType } from '@/components/tooltip/types/tooltipAlign';
 
-import { BORDERS, COLORS, RADIUS, SPACINGS, TEXT_ALIGN } from '../../foundations';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { TEXT_ALIGN } from '../../foundations/typography';
 // text variants
-import { TextVariantType } from '../text';
-import { TooltipVariantType } from '../tooltip';
+import { TextVariantType } from '../text/variants';
+import { TooltipVariantType } from '../tooltip/variants';
 import { SliderVariantType } from './variants';
 
 const commonProps = {

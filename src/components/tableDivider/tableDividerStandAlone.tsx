@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { DividerStyled } from './tableDivider.styled';
-import { ITableDividerStandAlone } from './types';
+import { ITableDividerStandAlone } from './types/tableDivider';
 
 const TableDividerStandAloneComponent = (
   {

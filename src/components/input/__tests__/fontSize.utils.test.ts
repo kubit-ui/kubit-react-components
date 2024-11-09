@@ -1,7 +1,7 @@
 import { TextVariantType } from '@/designSystem/kubit/components/text/variants';
 
-import { InputBasicStateProps, InputState, LABEL_TYPE } from '../types';
-import { getFontSize } from '../utils';
+import { InputBasicStateProps, InputState, LABEL_TYPE } from '../types/inputTheme';
+import { getFontSize } from '../utils/fontSize.utils';
 
 const getStyles = (commonProps: InputBasicStateProps) => {
   return {

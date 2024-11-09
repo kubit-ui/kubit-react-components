@@ -1,15 +1,12 @@
-import { ToggleStateType, ToggleStylesType } from '@/components/toggle/types';
+import { ToggleStateType } from '@/components/toggle/types/state';
+import { ToggleStylesType } from '@/components/toggle/types/toggleTheme';
 
-import {
-  BORDERS,
-  COLORS,
-  FONT_WEIGHT,
-  RADIUS,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-} from '../../foundations';
-import { TextVariantType } from '../text';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { ToggleVariantType } from './variants';
 
 const commonWrapperProps = {

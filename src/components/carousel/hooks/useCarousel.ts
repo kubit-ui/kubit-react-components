@@ -1,13 +1,14 @@
-import * as React from 'react';
+/* eslint-disable complexity */
+import React from 'react';
 
 import { useScrollBlock } from '@/hooks/useScrollBlock/useScrollBlock';
+
 import {
   focusElementOrFirstDescendant,
   focusNextFocusableElement,
   focusPreviousFocusableElement,
-} from '@/utils';
-
-import { CarouselAlignType } from '../types';
+} from '../../../utils/focusHandlers/focusHandlers';
+import { CarouselAlignType } from '../types/carouselAlign';
 // carousel utils
 import {
   calcNumElementsPerPage,
@@ -16,7 +17,7 @@ import {
   getFirstAndLastIndexInCarouselView,
   hideArrowsAndPagination,
   showArrowsAndPagination,
-} from '../utils';
+} from '../utils/carousel.utils';
 
 interface IUseCarousel {
   carouselContainerRef: React.RefObject<HTMLDivElement>;

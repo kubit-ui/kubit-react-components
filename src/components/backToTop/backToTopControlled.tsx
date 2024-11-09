@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { States, useManageState } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { States, useManageState } from '@/hooks/useManageState/useManageState';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { BackToTopStandAlone } from './backToTopStandAlone';
-import { BackToTopStateType, BackToTopStatesStyles } from './types';
 import { IBackToTopControlled, IBackToTopStandAlone } from './types/backToTop';
+import { BackToTopStatesStyles } from './types/backToTopTheme';
+import { BackToTopStateType } from './types/state';
 
 const BackToTopControlledComponent = React.forwardRef(
   <V extends string | unknown>(

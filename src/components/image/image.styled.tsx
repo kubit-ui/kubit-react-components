@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import { ImageObjectFitType, ImageStylesPropsType } from './types';
+import { ImageStylesPropsType } from './types/imageTheme';
+import { ImageObjectFitType } from './types/objectFit';
 
 export const ImageStyled = styled.img``;
 

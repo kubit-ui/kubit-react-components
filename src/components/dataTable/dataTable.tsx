@@ -1,17 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStylesV2 } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
 
 import { DataTableStandAlone } from './dataTableStandAlone';
-import {
-  useDataTableHasScroll,
-  useDataTableShadow,
-  useDataTableStickyDividers,
-  useDataTableStickyLeftColumns,
-  useDataTableStickyRightColumns,
-} from './hooks';
-import { DataTablePropsStylesType, IDataTable } from './types';
+import { useDataTableHasScroll } from './hooks/useDataTableHasScroll';
+import { useDataTableShadow } from './hooks/useDataTableShadow';
+import { useDataTableStickyDividers } from './hooks/useDataTableStickyDividers';
+import { useDataTableStickyLeftColumns } from './hooks/useDataTableStickyLeftColumns';
+import { useDataTableStickyRightColumns } from './hooks/useDataTableStickyRightColumns';
+import { IDataTable } from './types/dataTable';
+import { DataTablePropsStylesType } from './types/dataTableTheme';
 
 const DataTableComponent = (
   { variant, ctv, ...props }: IDataTable,

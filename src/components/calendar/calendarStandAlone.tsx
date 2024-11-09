@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ROLES } from '@/types';
-
+import { ROLES } from '../../types/role/role';
 // styles
 import { CalendarSelectorStyled, CalendarStyled, TableStyled } from './calendar.styled';
 import { Header } from './header/header';
@@ -9,7 +8,7 @@ import { List } from './list/list';
 import { MonthSelector } from './selector/monthSelector/monthSelector';
 import { Selector } from './selector/selector';
 import { YearSelector } from './selector/yearSelector/yearSelector';
-import { ICalendarStandAlone } from './types';
+import { ICalendarStandAlone } from './types/calendar';
 
 const CalendarStandAloneComponent = (
   {

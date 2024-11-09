@@ -1,15 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { LineSeparatorStandAlone } from './lineSeparatorStandAlone';
+import { ILineSeparator, ILineSeparatorStandAlone } from './types/lineSeparator';
 import {
-  ILineSeparator,
-  ILineSeparatorStandAlone,
   LineSeparatorLabelPropsStylesType,
   LineSeparatorLinePropsStylesType,
-} from './types';
+} from './types/lineSeparatorTheme';
 
 const LINE_SEPARATOR_STYLES = 'LINE_SEPARATOR_STYLES';
 

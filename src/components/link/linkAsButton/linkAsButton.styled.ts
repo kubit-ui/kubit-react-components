@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { ButtonSizePropsType, ButtonStateKeyOfType, ButtonStateType } from '@/components/button';
+import { ButtonSizePropsType, ButtonStateKeyOfType } from '../../button/types/buttonTheme';
+import { ButtonStateType } from '../../button/types/state';
 
 // Apply button border radius to the link when focus-visible
 export const LinkAsButtonWrapperStyled = styled.div<{

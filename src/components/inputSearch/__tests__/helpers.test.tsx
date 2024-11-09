@@ -1,11 +1,7 @@
-import {
-  buildOptionsScreenReaderText,
-  filterOptions,
-  getAriaControls,
-  getLength,
-  hasMatchWithOptions,
-  shouldOpenPopover,
-} from '../helpers';
+import { filterOptions, hasMatchWithOptions } from '../helpers/filterOptions';
+import { getAriaControls, getLength } from '../helpers/options';
+import { shouldOpenPopover } from '../helpers/popover';
+import { buildOptionsScreenReaderText } from '../helpers/screenReader';
 
 const optionsToFilter = [
   {

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ICONS } from '@/assets';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { Divider as Story } from '../divider';
 import { argtypes } from './argtypes';

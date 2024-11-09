@@ -1,5 +1,5 @@
 //vendors
-import * as React from 'react';
+import React from 'react';
 
 interface ReturnValue {
   innerRef: React.MutableRefObject<HTMLElement | null>;

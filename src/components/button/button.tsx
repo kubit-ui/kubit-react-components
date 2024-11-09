@@ -1,20 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants/index';
-import { States, useManageState } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { States, useManageState } from '@/hooks/useManageState/useManageState';
 import { useStyles } from '@/hooks/useStyles/useStyles';
 import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
 import { FallbackComponent } from '@/provider/errorBoundary/fallbackComponent';
 
 import { ButtonStandAlone } from './buttonStandAlone';
-import {
-  ButtonSizePropsType,
-  ButtonStateKeyOfType,
-  ButtonStateType,
-  ButtonType,
-  IButton,
-  IButtonStandAlone,
-} from './types';
+import { IButton, IButtonStandAlone } from './types/button';
+import { ButtonSizePropsType, ButtonStateKeyOfType } from './types/buttonTheme';
+import { ButtonStateType } from './types/state';
+import { ButtonType } from './types/type';
 
 const ButtonComponent = React.forwardRef(
   <
@@ -106,3 +102,5 @@ const Button = React.forwardRef(ButtonBoundary) as <
  */
 
 export { Button };
+
+export default Button;

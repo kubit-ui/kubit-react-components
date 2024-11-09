@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ROLES } from '@/types';
-
+import { ROLES } from '../../types/role/role';
 import {
   LeftBoxShadowContainerStyled,
   RightBoxShadowContainerStyled,
@@ -9,7 +8,7 @@ import {
   TableStyled,
   TableWrapperStyled,
 } from './table.styled';
-import { ITableStandAloneV2 } from './types';
+import { ITableStandAloneV2 } from './types/table';
 
 const TableStandAloneComponent = (
   {

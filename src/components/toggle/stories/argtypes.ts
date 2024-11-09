@@ -1,6 +1,7 @@
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn, POSITIONS } from '@/types';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { POSITIONS } from '@/types/positions/positions';
+import { ArgTypesReturn } from '@/types/type/type';
 
 export const argtypes = (
   variantsObject: IThemeObjectVariants,

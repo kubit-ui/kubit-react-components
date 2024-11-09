@@ -1,4 +1,6 @@
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
 
 import { LinkActionType } from './action';
 import type { LinkPositionType } from './position';

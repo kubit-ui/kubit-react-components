@@ -1,17 +1,19 @@
+/* eslint-disable complexity */
 import React from 'react';
 
-import { Button } from '@/components/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text, TextComponentType } from '@/components/text';
-import { DeviceBreakpointsType } from '@/types';
+import { Text } from '@/components/text/text';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
+import { Button } from '../../button/button';
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { TextComponentType } from '../../text/types/component';
 import {
   DraggableIcon,
   ModalCloseButtonStyled,
   ModalHeaderStyled,
   TitleHiddenContainer,
 } from '../modal.styled';
-import { IModalStandAlone } from '../types';
+import { IModalStandAlone } from '../types/modal';
 
 type PickedProps =
   | 'styles'

@@ -1,4 +1,4 @@
-import { buildAriaLabelledBy } from '../utils';
+import { buildAriaLabelledBy } from '../utils/aria.utils';
 
 const descriptionId = 'descriptionId';
 const screenReaderId = 'screenReaderId';

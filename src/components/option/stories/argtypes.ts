@@ -1,6 +1,7 @@
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn, ROLES } from '@/types';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { ROLES } from '@/types/role/role';
+import { ArgTypesReturn } from '@/types/type/type';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {

@@ -1,4 +1,4 @@
-import { MASK_TYPE } from '@/components/input/types';
+import { MASK_TYPE } from '@/components/input/types/input';
 
 import { cleanInputValue, formatMask, matchInputValue } from '../mask.utility';
 

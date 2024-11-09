@@ -1,4 +1,4 @@
-import { TooltipAlignType } from '../../types';
+import { TooltipAlignType } from '../../types/tooltipAlign';
 import { Coords, ElementRects } from '../types';
 
 export const computeCoordsFromPlacement = (

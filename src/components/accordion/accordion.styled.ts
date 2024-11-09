@@ -1,9 +1,12 @@
 import styled, { css } from 'styled-components';
 
-import { CommonStyleType } from '@/types/styles';
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
-import { LineSeparatorLinePropsStylesType, LineSeparatorPositionType } from '../lineSeparator';
+import { CommonStyleType } from '../../types/styles/commonStyle';
+import {
+  LineSeparatorLinePropsStylesType,
+  LineSeparatorPositionType,
+} from '../lineSeparator/types/lineSeparatorTheme';
 
 export interface IAccordionStyles {
   styles?: CommonStyleType;

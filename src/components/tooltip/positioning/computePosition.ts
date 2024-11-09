@@ -1,4 +1,4 @@
-import { TooltipAlignType } from '../types';
+import { TooltipAlignType } from '../types/tooltipAlign';
 import { Coords, Middleware, MiddlewareData, Strategy } from './types';
 import { computeCoordsFromPlacement } from './utils/computeCoordsFromPlacement';
 import { getElementRects } from './utils/getElementRects';
@@ -13,7 +13,7 @@ export interface ComputePositionReturn extends Coords {
  * Computes the `x` and `y` coordinates that will place the floating element
  * next to a reference element when it is given a certain positioning strategy.
  */
-
+// eslint-disable-next-line complexity
 export const computePosition = (
   reference: Element,
   floating: Element,

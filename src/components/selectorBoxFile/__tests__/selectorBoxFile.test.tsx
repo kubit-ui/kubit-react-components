@@ -1,17 +1,17 @@
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ICONS } from '@/assets';
-import { IconPositionType } from '@/components/button';
-import { TooltipAlignType } from '@/components/tooltip';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import * as stylesHook from '@/hooks/useStyles/useStyles';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
-import * as stylesHook from '../../../hooks/useStyles/useStyles';
+import { IconPositionType } from '../../button/types/buttonIconPosition';
+import { TooltipAlignType } from '../../tooltip/types/tooltipAlign';
 import { SelectorBoxFile } from '../selectorBoxFile';
-import { SelectorBoxFileStateType } from '../types';
+import { SelectorBoxFileStateType } from '../types/state';
 
 const mockProps = {
   variant: 'DEFAULT',

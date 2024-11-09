@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { CommonStyleType } from '@/types';
-import { getStyles } from '@/utils';
+import { CommonStyleType } from '../../types/styles/commonStyle';
+import { getStyles } from '../../utils/getStyles/getStyles';
 
 type ComponentStyles = {
   styles: CommonStyleType;

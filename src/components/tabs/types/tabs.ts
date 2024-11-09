@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IText } from '../../text/types/text';
 import { TabsVariantStylesType } from './tabsTheme';
 
 export type PrimaryTabTabType = Omit<IText<string>, 'children'> & {

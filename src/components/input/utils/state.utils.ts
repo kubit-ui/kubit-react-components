@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import { InputState } from '../types/inputTheme';
 
 export const getState = (

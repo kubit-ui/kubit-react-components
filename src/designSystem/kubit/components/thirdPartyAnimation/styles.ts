@@ -1,4 +1,4 @@
-import { ThirdPartyAnimationThemeType } from '@/components/thirdPartyAnimation/types';
+import { ThirdPartyAnimationThemeType } from '@/components/thirdPartyAnimation/types/thirdPartyAnimationTheme';
 
 import animationLoaderPrimary from '../../assets/animations/loaderPrimary.json';
 import { ThirdPartyAnimationVariantType } from './variants';

@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { Dot } from '../index';
+import { Dot } from '../dot';
 
 const mockProps = {
   number: 0,

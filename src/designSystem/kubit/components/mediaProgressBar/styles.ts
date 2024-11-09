@@ -1,7 +1,9 @@
-import { MediaProgressBarStylesType } from '@/components/mediaProgressBar';
-import { DeviceBreakpointsType } from '@/types';
+import { MediaProgressBarStylesType } from '@/components/mediaProgressBar/types/mediaProgressBarTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { BORDERS, COLORS, RADIUS, SPACINGS } from '../../foundations';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
 import { MediaProgressBarVariantType } from './variants';
 
 const commonProps = {

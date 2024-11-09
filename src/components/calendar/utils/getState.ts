@@ -1,4 +1,4 @@
-import { NEUTRAL_DATE } from '@/types';
+import { NEUTRAL_DATE } from '@/types/date/date';
 
 import { ListDaysStateType } from '../list/types/state';
 
@@ -13,6 +13,7 @@ type getStatePropsType = {
   formatDate: (date: Date, format: string) => string;
 };
 
+// eslint-disable-next-line complexity
 export const getStateDay = ({
   dayFormatted,
   isSelectedToLeft,

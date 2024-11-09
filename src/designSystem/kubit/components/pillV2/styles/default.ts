@@ -1,10 +1,14 @@
+import { PillStateType } from '@/components/pill/types/state';
 import {
   PillPropsStylesType,
-  PillStateType,
   PillVariantPropsStylesType,
-} from '@/components/pillV2/types';
+} from '@/components/pillV2/types/pillTheme';
 
-import { BORDERS, COLORS, FONT_WEIGHT, SIZES, SPACINGS } from '../../../foundations';
+import { BORDERS } from '../../../foundations/borders';
+import { COLORS } from '../../../foundations/colors';
+import { SIZES } from '../../../foundations/sizes';
+import { SPACINGS } from '../../../foundations/spacings';
+import { FONT_WEIGHT } from '../../../foundations/typography';
 import { TextVariantType } from '../../text/variants';
 import { PillSizeTypeV2 } from '../variants';
 

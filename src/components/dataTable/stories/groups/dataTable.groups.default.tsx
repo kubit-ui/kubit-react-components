@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Divider } from '@/components/divider';
-import { variantsObject } from '@/designSystem/themesObject';
+import { variantsObject } from '@/designSystem/themesObject/themesObject';
 
-import { IDataTable } from '../../types';
+import { Divider } from '../../../divider/divider';
+import { IDataTable } from '../../types/dataTable';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 

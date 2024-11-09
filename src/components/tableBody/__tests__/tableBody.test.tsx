@@ -5,7 +5,7 @@ import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { TableBody } from '../index';
+import { TableBody } from '../tableBody';
 
 const mockProps = {
   variant: 'DEFAULT',

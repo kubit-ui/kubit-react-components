@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-import { srOnlyMixin } from '@/styles';
-import { getStyles, getTypographyStyles } from '@/utils';
-
-import { TableCaptionPropsStylesType } from './types';
+import { srOnlyMixin } from '../../styles/mixins/srOnly.mixin';
+import { getStyles, getTypographyStyles } from '../../utils/getStyles/getStyles';
+import { TableCaptionPropsStylesType } from './types/tableCaptionTheme';
 
 export const CaptionStyled = styled.caption<{
   $styles?: TableCaptionPropsStylesType;

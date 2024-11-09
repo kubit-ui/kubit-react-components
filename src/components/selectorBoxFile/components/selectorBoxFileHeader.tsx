@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Button } from '@/components/button/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import {
   HeaderDescriptionWrapperStyled,
   HeaderSubtitleTooltipWrapperStyled,
@@ -12,10 +12,10 @@ import {
 } from '../selectorBoxFile.styled';
 import {
   SelectorBoxFileButtonType,
-  SelectorBoxFilePropsStylesType,
   SelectorBoxFileTextType,
   SelectorBoxFileTooltipType,
-} from '../types';
+} from '../types/selectorBoxFile';
+import { SelectorBoxFilePropsStylesType } from '../types/selectorBoxFileTheme';
 // internal components
 import { SelectorBoxFileTooltip } from './selectorBoxFileTooltip';
 

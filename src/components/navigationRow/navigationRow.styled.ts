@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
+import { getStyles } from '../../utils/getStyles/getStyles';
 import {
   LineSeparatorLinePropsStylesType,
   LineSeparatorPositionType,
-} from '@/components/lineSeparator';
-import { getStyles } from '@/utils';
-
-import { INavigationRowStyled } from './types';
+} from '../lineSeparator/types/lineSeparatorTheme';
+import { INavigationRowStyled } from './types/navigationRow';
 
 type NavigationRowStylesProps = {
   topLine?: boolean;

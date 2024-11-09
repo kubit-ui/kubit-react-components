@@ -1,6 +1,10 @@
-import { InputHelpMessagePosition, InputState, LABEL_TYPE } from '@/components/input/types';
-import { InputDateStylesType } from '@/components/inputDate/types';
-import { DeviceBreakpointsType } from '@/types';
+import {
+  InputHelpMessagePosition,
+  InputState,
+  LABEL_TYPE,
+} from '@/components/input/types/inputTheme';
+import { InputDateStylesType } from '@/components/inputDate/types/inputDateTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { PopoverVariantType } from '../popover/variants';
 import { ActionBottomSheetVariantType } from '../variants';

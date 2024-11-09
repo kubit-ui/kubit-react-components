@@ -1,13 +1,13 @@
 // types
-import {
-  ButtonStateType,
-  ButtonStylesType,
-  ButtonVariantStylesType,
-} from '@/components/button/types';
+// constants
+import { ButtonStylesType, ButtonVariantStylesType } from '@/components/button/types/buttonTheme';
+import { ButtonStateType } from '@/components/button/types/state';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-// constants
-import { BORDERS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS } from '../../foundations';
 import { ButtonSizeType, ButtonVariantType } from './variants';
 
 const commonPropsDefault = {

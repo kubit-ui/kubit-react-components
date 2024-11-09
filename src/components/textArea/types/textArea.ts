@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILabelStandAlone } from '@/components/label';
-import { IText } from '@/components/text/types';
-import { AriaLiveOptionType, CustomTokenTypes } from '@/types';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { ILabelStandAlone } from '../../label/types/label';
+import { IText } from '../../text/types/text';
 import { TextAreaStateType } from './state';
 import { TextAreaVariantStylesType } from './textAreaTheme';
 import { TextAreaTitleComponentType } from './titleComponent';

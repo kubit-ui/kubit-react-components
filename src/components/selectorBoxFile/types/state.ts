@@ -1,4 +1,4 @@
-import { STATES } from '@/types/states';
+import { STATES } from '@/types/states/states';
 
 export enum SelectorBoxFileStateType {
   DEFAULT = STATES.DEFAULT,

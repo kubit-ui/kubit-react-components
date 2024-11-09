@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '../button/types';
+import { ButtonType } from '../button/types/type';
 //components
-import { ElementOrIcon } from '../elementOrIcon';
-import { Loader } from '../loader';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { Loader } from '../loader/loader';
 // styles
 import { ButtonStyled, ContainerStyled } from './mediaButton.styled';
 import { IMediaButtonStandAlone } from './types/mediaButton';
@@ -16,6 +16,7 @@ const FIRST_ICON_NOT_TWISTED_TRANSFORM_VALUE = 'rotateY(0deg) rotateZ(0deg)';
 const SECOND_ICON_NOT_TWISTED_TRANSFORM_VALUE = 'rotateY(0deg) rotateZ(0deg)';
 const SECOND_ICON_TWISTED_TRANSFORM_VALUE = 'rotateY(-180deg) rotateZ(-90deg)';
 
+// eslint-disable-next-line complexity
 const MediaButtonStandaloneComponent = (
   props: IMediaButtonStandAlone,
   ref: React.ForwardedRef<HTMLButtonElement> | undefined | null

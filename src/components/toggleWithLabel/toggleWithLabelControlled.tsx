@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { ToggleWithLabelStandAlone } from './toggleWithLabelStandAlone';
-import type { IToggleWithLabelControlled, IToggleWithLabelStandAlone } from './types';
+import { IToggleWithLabelControlled, IToggleWithLabelStandAlone } from './types/toggleWithLabel';
 import { ToggleWithLabelStylePropsType } from './types/toggleWithLabelTheme';
 
 const TOGGLE_WITH_LABEL_STYLES = 'TOGGLE_WITH_LABEL_STYLES';

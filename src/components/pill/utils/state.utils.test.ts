@@ -1,4 +1,4 @@
-import { PillStateType } from '../types';
+import { PillStateType } from '../types/state';
 import { getPillState } from './state.utils';
 
 describe('"getPillState" utility tests suite', () => {

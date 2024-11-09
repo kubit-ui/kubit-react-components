@@ -1,14 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
 // custom hooks
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
-import {
-  IValidationStatus,
-  IValidationStatusStandAlone,
-  ValidationStatusStylesProps,
-} from './types';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { IValidationStatus, IValidationStatusStandAlone } from './types/validationStatus';
+import { ValidationStatusStylesProps } from './types/validationStatusTheme';
 import { ValidationStatusStandAlone } from './validationStatusStandAlone';
 
 const VALIDATION_STATUS_STYLES = 'VALIDATION_STATUS_STYLES';

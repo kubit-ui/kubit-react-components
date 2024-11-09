@@ -1,8 +1,8 @@
-import { ButtonType } from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILabelStandAlone } from '@/components/label';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { ButtonType } from '../../button/types/type';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { ILabelStandAlone } from '../../label/types/label';
 import { QuickButtonVariantStylesType } from './quickButtonTheme';
 import { QuickButtonState } from './state';
 

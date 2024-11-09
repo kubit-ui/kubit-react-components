@@ -1,10 +1,10 @@
 //vendors
-import * as React from 'react';
+import React from 'react';
 
-import { OptionType } from '@/types/option';
+import { OptionType } from '@/types/option/option';
 
 import { RadioButtonGroupControlled } from './radioButtonGroupControlled';
-import { IRadioButtonGroupUncontrolled } from './types';
+import { IRadioButtonGroupUncontrolled } from './types/radioButtonGroup';
 
 const RadioButtonGroupUnControlledComponent = (
   { defaultSelectedOption, onChange, ...props }: IRadioButtonGroupUncontrolled,
@@ -34,3 +34,5 @@ const RadioButtonGroupUnControlledComponent = (
 };
 
 export const RadioButtonGroupUnControlled = React.forwardRef(RadioButtonGroupUnControlledComponent);
+
+export { RadioButtonGroupUnControlled as RadioButtonGroup };

@@ -1,7 +1,7 @@
-import { FunctionalitiesModuleStylesType } from '@/components/functionalitiesModule/types';
-import { POSITIONS } from '@/types';
+import { FunctionalitiesModuleStylesType } from '@/components/functionalitiesModule/types/functionalitiesModuleTheme';
+import { RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { POSITIONS } from '@/types/positions/positions';
 
-import { RADIUS } from '../../foundations';
 import {
   ActionBottomSheetVariantType,
   ListOptionsVariantType,

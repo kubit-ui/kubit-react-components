@@ -1,7 +1,8 @@
-import { IMediaButton, MediaButtonSizeType } from '@/components/mediaButton';
-import { IMediaProgressBar } from '@/components/mediaProgressBar';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IMediaButton } from '../../mediaButton/types/mediaButton';
+import { MediaButtonSizeType } from '../../mediaButton/types/sizes';
+import { IMediaProgressBar } from '../../mediaProgressBar/types/mediaProgressBar';
 import { PageControlAutomatePropsStylesType } from './pageControlAutomateTheme';
 
 export type PageControlArrowsType = Omit<IMediaButton, 'variant' | 'size'> & {

@@ -1,12 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStyles } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStyles } from '@/hooks/useStyles/useStyles';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { CalendarStandAlone } from './calendarStandAlone';
-import { CalendarVariantType, ICalendar, ICalendarStandAlone } from './types';
+import { ICalendar, ICalendarStandAlone } from './types/calendar';
 import { CalendarContainerStylesType } from './types/calendarTheme';
+import { CalendarVariantType } from './types/variant';
 
 const CalendarComponent = React.forwardRef(
   <V extends string | unknown | CalendarVariantType>(

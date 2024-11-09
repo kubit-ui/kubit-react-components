@@ -1,7 +1,8 @@
-import { TextCountStylesType } from '@/components/textCount/types';
+import { TextCountStylesType } from '@/components/textCount/types/textCountTheme';
+import { RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { FONT_WEIGHT, RADIUS } from '../../foundations';
 import { TextCountVariantType } from './variants';
 
 export const getTextCountStyles = (COLORS: {

@@ -1,10 +1,11 @@
-import { IButton } from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IFooter } from '@/components/footer';
-import { IPopoverControlled } from '@/components/popover';
-import { IText } from '@/components/text/types';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IButton } from '../../button/types/button';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IFooter } from '../../footer/types/footer';
+import { IPopoverControlled } from '../../popover/types/popover';
+import { IText } from '../../text/types/text';
 import { ModalBaseStylesType } from './modalTheme';
 
 export type ModalTitleTextType = Omit<IText<string>, 'children'> & {

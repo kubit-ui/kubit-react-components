@@ -1,10 +1,11 @@
 //vendors
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { TooltipUnControlled as Tooltip } from '@/components/tooltip/tooltipUnControlled';
 
-import { IInfoIconWithTooltipStandAlone, RadioButtonGroupStateType } from '../../types';
+import { ElementOrIcon } from '../../../elementOrIcon/elementOrIcon';
+import { IInfoIconWithTooltipStandAlone } from '../../types/radioButtonGroup';
+import { RadioButtonGroupStateType } from '../../types/state';
 import { InfoIconWrapperStyled } from './infoIconWithTooltipStandAlone.styled';
 
 export const InfoIconWithTooltipStandAlone = ({

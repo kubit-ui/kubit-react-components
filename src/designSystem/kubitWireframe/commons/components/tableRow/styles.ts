@@ -1,4 +1,4 @@
-import { TableRowStylesType } from '@/components';
+import { TableRowStylesType } from '@/components/tableRow/types/tableRowTheme';
 
 import { TableRowVariantTypeV2 } from './variants';
 

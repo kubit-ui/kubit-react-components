@@ -1,17 +1,17 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import { Button } from '@/components/button/button';
-import { LinkActionType } from '@/components/link';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
+import { LinkActionType } from '../../link/types/action';
 import { HeaderStructure } from '../headerStructure';
-import { HeaderStructureContentPositionType } from '../types';
+import { HeaderStructureContentPositionType } from '../types/position';
 
 const mockProps = {
   variant: 'DEFAULT',

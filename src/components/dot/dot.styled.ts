@@ -7,7 +7,7 @@ import {
   getTypographyStyles,
 } from '@/utils/getStyles/getStyles';
 
-import { IDotStyled } from './types';
+import { IDotStyled } from './types/dot';
 
 export const DotStyled = styled.span<IDotStyled>`
   ${props => getStyles(props.styles.container)}

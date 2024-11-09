@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { TFootStyled } from './tableFoot.styled';
-import { ITableFootStandAlone } from './types';
+import { ITableFootStandAlone } from './types/tableFoot';
 
 const TableFootStandAloneComponent = (
   {

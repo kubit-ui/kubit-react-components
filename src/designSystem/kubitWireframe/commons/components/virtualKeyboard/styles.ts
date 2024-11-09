@@ -1,12 +1,15 @@
 import {
   ButtonKeyboardStateType,
   VirtualKeyboardStateType,
-  VirtualKeyboardStylesType,
-} from '@/components/virtualKeyboard';
+} from '@/components/virtualKeyboard/types/state';
+import { VirtualKeyboardStylesType } from '@/components/virtualKeyboard/types/virtualKeyboardTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SHADOW } from '@/designSystem/kubitWireframe/commons/foundations/shadow';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SHADOW, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { TextVariantType } from '../../../../kubit/components/text/variants';
 import { VirtualKeyboardVariantType } from './variants';
 
 type ColorType = {

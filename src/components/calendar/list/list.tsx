@@ -1,19 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
 import { ItemRove } from '@/components/itemRove/itemRove';
 import { useRoveFocus } from '@/hooks/useRoveFocus/useRoveFocus';
-import { useUtilsProvider } from '@/provider';
-import { NEUTRAL_DATE } from '@/types';
+import { useUtilsProvider } from '@/provider/utils/provider';
+import { NEUTRAL_DATE } from '@/types/date/date';
 
+import { ButtonType } from '../../button/types/type';
 import { WEEK_DAYS } from '../constants/constants';
+import { getAllDaysInMonth } from '../utils/getAllDaysInMonth';
+import { getFirstDayOfMonth } from '../utils/getFirstDayOfMonth';
+import { getStateDay } from '../utils/getState';
+import { groupDaysByWeeks } from '../utils/groupDaysByWeeks';
 import {
-  getAllDaysInMonth,
   getDaysAndEmptyDaysUntilMaxDate,
-  getFirstDayOfMonth,
   getFirstEmptyAndDisabledDays,
-  getStateDay,
-  groupDaysByWeeks,
   handleKeyDownMove,
   handleKeyLeftMove,
   handleKeyPageDownMove,
@@ -21,7 +21,7 @@ import {
   handleKeyRightMove,
   handleKeyTabMove,
   handleKeyUpMove,
-} from '../utils/';
+} from '../utils/handleKeysmoves';
 // styles
 import {
   ElementEmptyStyled,
@@ -131,6 +131,7 @@ export const List = ({
     }
   };
 
+  // eslint-disable-next-line complexity
   const isGhostSelected = (dayFormatted: Date | 0) => {
     if (ghostDateSelected) {
       if (ghostDateSelected < selectedDate[0]) {

@@ -1,15 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { ConfirmationMessageStandAlone } from './confirmationMessageStandAlone';
-import {
-  ConfirmationMessagePropsStateStylesType,
-  ConfirmationMessageStateType,
-  IConfirmationMessage,
-  IConfirmationMessageStandAlone,
-} from './types';
+import { IConfirmationMessage, IConfirmationMessageStandAlone } from './types/confirmationMessage';
+import { ConfirmationMessagePropsStateStylesType } from './types/confirmationMessageTheme';
+import { ConfirmationMessageStateType } from './types/state';
 
 const CONFIRMATION_MESSAGE_STYLES = 'CONFIRMATION_MESSAGE_STYLES';
 

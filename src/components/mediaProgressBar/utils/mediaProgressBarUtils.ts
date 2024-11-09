@@ -1,6 +1,9 @@
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { BUILD_SCREEN_READER_CURRENT_PAGE_KEY, BUILD_SCREEN_READER_NUM_PAGES_KEY } from '../types';
+import {
+  BUILD_SCREEN_READER_CURRENT_PAGE_KEY,
+  BUILD_SCREEN_READER_NUM_PAGES_KEY,
+} from '../types/mediaProgressBar';
 
 interface IUseMediaProgressBarIndexProps {
   index: number;

@@ -1,13 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { BadgeStandAlone } from './badgeStandAlone';
-import { BadgeStatus } from './types';
 import { IBadgeControlled, IBadgeStandAlone } from './types/badge';
 import { BadgeSizePropsType, BadgeVariantStylesType } from './types/badgeTheme';
+import { BadgeStatus } from './types/status';
 
 const BadgeControlledComponent = React.forwardRef(
   <

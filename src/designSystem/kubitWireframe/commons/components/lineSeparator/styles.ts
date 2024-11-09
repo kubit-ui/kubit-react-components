@@ -5,10 +5,16 @@ import { css } from 'styled-components';
 import {
   LineSeparatorPositionType,
   LineSeparatorStylesType,
-} from '@/components/lineSeparator/types';
-
+} from '@/components/lineSeparator/types/lineSeparatorTheme';
 // fundations
-import { BORDERS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS, TEXT_ALIGN } from '../../foundations';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import {
+  FONT_WEIGHT,
+  TEXT_ALIGN,
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
+
 import { TextVariantType } from '../text/variants';
 import { LineSeparatorLabelVariantType, LineSeparatorLineVariantType } from './variants';
 

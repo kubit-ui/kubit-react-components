@@ -1,15 +1,16 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { PillSizeTypeV2, PillVariantTypeV2 } from '@/designSystem/kubit/components/variants';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
 import { Pill } from '../pill';
-import { IPill, PillType } from '../types';
+import { IPill } from '../types/pill';
+import { PillType } from '../types/pillType';
 
 const mockProps: IPill = {
   variant: PillVariantTypeV2.DEFAULT,

@@ -1,9 +1,8 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { inputFocusWidthMixin } from '@/styles/mixins';
-import { getStyles, getTypographyStyles } from '@/utils';
-
-import { InputDigitSequenceStyles } from './types';
+import { inputFocusWidthMixin } from '../../styles/mixins/input.mixin';
+import { getStyles, getTypographyStyles } from '../../utils/getStyles/getStyles';
+import { InputDigitSequenceStyles } from './types/inputDigitSequenceTheme';
 
 export const ParentContainer = styled.div<{
   styles?: InputDigitSequenceStyles;

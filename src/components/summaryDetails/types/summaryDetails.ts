@@ -1,8 +1,8 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { LineSeparatorLinePropsStylesType } from '@/components/lineSeparator';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { LineSeparatorLinePropsStylesType } from '../../lineSeparator/types/lineSeparatorTheme';
+import { IText } from '../../text/types/text';
 import { SummaryDetailsPropsStylesType } from './summaryDetailsTheme';
 
 export type SummaryDetailsTextType = Omit<IText<string>, 'children'> & {

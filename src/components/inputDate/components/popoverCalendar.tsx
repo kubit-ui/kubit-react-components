@@ -1,14 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Calendar } from '@/components/calendar';
-//components
-import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
-import { useMediaDevice } from '@/hooks';
-import { ROLES } from '@/types';
+import { PopoverControlled } from '@/components/popover/popoverControlled';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { ROLES } from '@/types/role/role';
 
 import { ActionBottomSheetControlledStructure as ActionBottomSheet } from '../../actionBottomSheet/actionBottomSheetControlled';
+import { Calendar } from '../../calendar/calendar';
+//components
+import { PopoverComponentType } from '../../popover/types/component';
 //types
-import { IPopoverCalendar } from '../types';
+import { IPopoverCalendar } from '../types/inputDate';
 
 const PopoverCalendarComponent = (
   props: IPopoverCalendar,
@@ -44,7 +45,7 @@ const PopoverCalendarComponent = (
   );
 
   return (
-    <Popover
+    <PopoverControlled
       hasBackDrop
       aria-label={props.configAccesibility?.calendarAriaLabel}
       aria-modal={props.calendarOpen}
@@ -83,7 +84,7 @@ const PopoverCalendarComponent = (
       ) : (
         renderCalendar()
       )}
-    </Popover>
+    </PopoverControlled>
   );
 };
 

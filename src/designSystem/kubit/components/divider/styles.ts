@@ -1,7 +1,12 @@
-import { DividerEmbebed, DividerStylesType } from '@/components/divider/types';
+import { DividerEmbebed } from '@/components/divider/types/dividerEmbebed';
+import { DividerStylesType } from '@/components/divider/types/dividerTheme';
 
-import { COLORS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { TooltipVariantType } from '../variants';
 import { DividerVariantType } from './variants';
 

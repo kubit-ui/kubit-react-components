@@ -1,6 +1,8 @@
-import { IconPositionType } from '@/components/button';
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types/styles';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
 
+import { IconPositionType } from '../../button/types/buttonIconPosition';
 import { SelectorBoxFileStateType } from './state';
 
 export type SelectorBoxFileStateStylesType = {

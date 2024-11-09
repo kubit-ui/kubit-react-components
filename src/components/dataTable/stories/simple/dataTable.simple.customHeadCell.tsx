@@ -1,6 +1,6 @@
-import { variantsObject } from '@/designSystem/themesObject';
+import { variantsObject } from '@/designSystem/themesObject/themesObject';
 
-import { IDataTable } from '../../types';
+import { IDataTable } from '../../types/dataTable';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
 

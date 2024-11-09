@@ -1,8 +1,14 @@
-import { LoadingStateState, LoadingStateStylesType } from '@/components/loadingState/types';
+import {
+  LoadingStateState,
+  LoadingStateStylesType,
+} from '@/components/loadingState/types/loadingStateTheme';
 
-import { COLORS, FONT_WEIGHT, SIZES, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
-import { ThirdPartyAnimationVariantType } from '../thirdPartyAnimation';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
+import { ThirdPartyAnimationVariantType } from '../thirdPartyAnimation/variants';
 import { LoadingStateVariant } from './variants';
 
 const commonProps = {

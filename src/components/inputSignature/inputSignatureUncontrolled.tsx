@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { useDraw } from './hook';
+import { useDraw } from './hook/useDraw';
 import { InputSignatureControlled } from './inputSignatureControlled';
 import { CustomHandle, IInputSignatureUnControlled } from './types/inputSignature';
-import { getInputSignatureState } from './utils';
+import { getInputSignatureState } from './utils/getInputSignatureState';
 
 const InputSignatureUnControlledComponent = <V extends string | unknown>(
   { disabled, error, onChange, ...props }: IInputSignatureUnControlled<V>,
@@ -63,3 +63,5 @@ const InputSignatureUnControlled = React.forwardRef(InputSignatureUnControlledCo
 ) => JSX.Element;
 
 export { InputSignatureUnControlled };
+
+export { InputSignatureUnControlled as InputSignature };

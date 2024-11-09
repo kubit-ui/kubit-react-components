@@ -1,22 +1,22 @@
-import * as React from 'react';
+import React from 'react';
 
-import { CssAnimationExecuteOption } from '@/components/cssAnimation';
-import { STYLES_NAME } from '@/constants';
-import {
-  useClickOutside,
-  useEscPressedV2,
-  useMediaDevice,
-  useScrollBlock,
-  useStyles,
-} from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useClickOutside } from '@/hooks/useClickOutside/useClickOutside';
+import { useEscPressedV2 } from '@/hooks/useEscPressedV2/useEscPressedV2';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useScrollBlock } from '@/hooks/useScrollBlock/useScrollBlock';
+import { useStyles } from '@/hooks/useStyles/useStyles';
 import { useTrapFocus } from '@/hooks/useTrapFocus/useTrapFocus';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { focusFirstDescendant } from '@/utils';
 import { convertDurationToNumber } from '@/utils/stringUtility/string.utility';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { focusFirstDescendant } from '../../utils/focusHandlers/focusHandlers';
+import { CssAnimationExecuteOption } from '../cssAnimation/types/cssAnimation';
 import { PopoverStandAlone } from './popoverStandAlone';
-import { PopoverComponentType, PopoverVariantStylesType } from './types';
-import type { IPopoverControlled, IPopoverStandAlone } from './types';
+import { PopoverComponentType } from './types/component';
+import { IPopoverControlled, IPopoverStandAlone } from './types/popover';
+import { PopoverVariantStylesType } from './types/popoverTheme';
 import { getAnimationConfig } from './utils/getAnimationConfig';
 
 const MILISECONDS = 1000;

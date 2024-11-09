@@ -1,4 +1,4 @@
-import type { CommonStyleType } from '@/types/index';
+import { CommonStyleType } from '@/types/styles/commonStyle';
 
 export type PillSelectorPropsStylesType = {
   rootContainer?: CommonStyleType;

@@ -1,20 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useId } from '@/hooks';
+import { useId } from '@/hooks/useId/useId';
 
 // internal components
-import {
-  SelectorBoxFileAnimation,
-  SelectorBoxFileContainerBox,
-  SelectorBoxFileErrorMessage,
-  SelectorBoxFileHeader,
-} from './components';
+import { SelectorBoxFileAnimation } from './components/selectorBoxFileAnimation';
+import { SelectorBoxFileContainerBox } from './components/selectorBoxFileContainerBox';
+import { SelectorBoxFileErrorMessage } from './components/selectorBoxFileErrorMessage';
+import { SelectorBoxFileHeader } from './components/selectorBoxFileHeader';
 import {
   HeaderContainerBoxWrapperStyled,
   HiddenInputFile,
   WrapperStyled,
 } from './selectorBoxFile.styled';
-import { ISelectorBoxFileStandAlone, SelectorBoxFileStateType } from './types';
+import { ISelectorBoxFileStandAlone } from './types/selectorBoxFile';
+import { SelectorBoxFileStateType } from './types/state';
 
 const SelectorBoxFileStandAloneComponent = (
   { dataTestId = 'selector-box-file', ...props }: ISelectorBoxFileStandAlone,

@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { Button } from '@/components/button/button';
-import { HeaderContentPositionType } from '@/components/header/types';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
+import { HeaderContentPositionType } from '../../header/types/position';
 import { HeaderStructure as Story } from '../headerStructure';
 import { HeaderStructureContentPositionType } from '../types/position';
 import { argtypes } from './argtypes';

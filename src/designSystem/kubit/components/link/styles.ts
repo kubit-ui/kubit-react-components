@@ -1,9 +1,14 @@
 // types
-import { LinkActionType, LinkStateType, LinkStylesType } from '@/components/link/types';
-import { TextDisplayType } from '@/components/text/types';
+import { LinkActionType } from '@/components/link/types/action';
+import { LinkStylesType } from '@/components/link/types/linkTheme';
+import { LinkStateType } from '@/components/link/types/state';
+import { TextDisplayType } from '@/components/text/types/display';
 
+import { RADIUS } from '../../foundations/borders';
 // constants
-import { COLORS, FONT_WEIGHT, RADIUS, SPACINGS } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import { LinkVariantType } from './variants';
 
 const commonTokens = {

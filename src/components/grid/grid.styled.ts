@@ -1,9 +1,14 @@
 import styled, { css } from 'styled-components';
 
-import { DeviceBreakpointsType } from '@/types/breakpoints';
-import { getStyles } from '@/utils';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { ContentCustomGridItemType, CustomGridItemType, GridItemType, GridType } from './types';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import {
+  ContentCustomGridItemType,
+  CustomGridItemType,
+  GridItemType,
+  GridType,
+} from './types/grid';
 import { getGridConfiguration, getItemGridConfiguration, getMaxWidth } from './utils/grid.utils';
 
 export const GridStyled = styled.div<GridType>`
@@ -148,3 +153,7 @@ export const ContentCustomGridItem = styled.div<ContentCustomGridItemType>`
       `;
     }}
 `;
+
+export { GridStyled as Grid };
+export { GridItemStyled as GridItem };
+export { CustomGridStyled as CustomGrid };

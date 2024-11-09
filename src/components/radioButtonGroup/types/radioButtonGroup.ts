@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { TextComponentType } from '@/components/text';
-import { ITooltipUnControlled } from '@/components/tooltip/types';
-import { CustomTokenTypes } from '@/types';
-import { VariantStyles } from '@/types/variantStyles';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { VariantStyles } from '@/types/variantStyles/variantStyles';
 
-import { RadioButtonStylesType } from '../components/radioButton/types';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { TextComponentType } from '../../text/types/component';
+import { ITooltipUnControlled } from '../../tooltip/types/tooltip';
+import { RadioButtonStylesType } from '../components/radioButton/types/radioButtonTheme';
 import { RadioButtonOptionType } from './radioButtonOption';
 import { RadioButtonGroupStateType } from './state';
 

@@ -4,9 +4,9 @@ import React from 'react';
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
-import { DataTable } from '../';
+import { DataTable } from '../dataTable';
 import * as hooks from '../hooks/useDataTableHasScroll';
 
 const mockProps = {

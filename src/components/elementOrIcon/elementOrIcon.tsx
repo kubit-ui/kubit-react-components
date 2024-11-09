@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
 import { IconBasic } from '../icon/icon';
 import { IconHost as Icon } from '../icon/iconHost';
-import { IElementOrIcon } from './types';
+import { IElementOrIcon } from './types/elementOrIcon';
 
 const ElementOrIconComponent = (
   { basic = false, ...props }: IElementOrIcon,

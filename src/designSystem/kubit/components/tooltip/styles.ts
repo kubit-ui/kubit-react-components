@@ -1,17 +1,14 @@
-import { TooltipStylesType } from '@/components/tooltip/types';
-import { DeviceBreakpointsType } from '@/types';
+import { TooltipStylesType } from '@/components/tooltip/types/tooltipTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import {
-  COLORS,
-  FONT_WEIGHT,
-  RADIUS,
-  SHADOW,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-  Z_INDEX,
-} from '../../foundations';
-import { TextVariantType } from '../text';
+import { RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SHADOW } from '../../foundations/shadow';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
+import { Z_INDEX } from '../../foundations/zIndex';
+import { TextVariantType } from '../text/variants';
 import { PopoverVariantType } from '../variants';
 import { TooltipVariantType } from './variants';
 

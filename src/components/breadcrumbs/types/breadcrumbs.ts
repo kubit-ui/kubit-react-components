@@ -1,9 +1,10 @@
 //types
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILink } from '@/components/link';
-import { TextComponentType } from '@/components/text';
-import { CustomTokenTypes, STATES } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { STATES } from '@/types/states/states';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { ILink } from '../../link/types/link';
+import { TextComponentType } from '../../text/types/component';
 import { BreadcrumbsPropsStateStylesType } from './breadcrumbsTheme';
 
 export interface IBreadcrumbLiStyled {

@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ROLES } from '@/types/index';
+import { ROLES } from '@/types/role/role';
 
-import { ScreenReaderOnly } from '../screenReaderOnly';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
 // styles
 import { LoaderStyled, LoaderWrapperStyled } from './loader.styled';
-import { ILoaderStandAlone } from './types';
+import { ILoaderStandAlone } from './types/loader';
 
 const LoaderStandaloneComponent = (
   { dataTestId = 'loader', ...props }: ILoaderStandAlone,

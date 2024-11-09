@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
-import { POSITIONS } from '@/types/positions';
+import { POSITIONS } from '@/types/positions/positions';
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { InputCurrencyStateProps } from './types';
+import { InputCurrencyStateProps } from './types/inputCurrencyTheme';
 
 // affix
 type AffixStyledProps = {

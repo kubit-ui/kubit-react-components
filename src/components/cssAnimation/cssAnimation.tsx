@@ -1,5 +1,4 @@
-import * as React from 'react';
-import {
+import React, {
   Children,
   RefAttributes,
   cloneElement,
@@ -13,7 +12,7 @@ import { CSSTransition } from 'react-transition-group';
 import { convertDurationToNumber } from '@/utils/stringUtility/string.utility';
 
 import { CssAnimationContainer } from './cssAnimation.styled';
-import { CssAnimationExecuteOption, ICssAnimation } from './types';
+import { CssAnimationExecuteOption, ICssAnimation } from './types/cssAnimation';
 
 const CssAnimationComponent = (
   {

@@ -1,21 +1,22 @@
-import * as React from 'react';
+/* eslint-disable complexity */
+import React from 'react';
 
-import { TextDecorationType, TextVariantStylesType } from '@/components/text/types';
-import { STYLES_NAME } from '@/constants';
-import { States, useManageState, useStylesV2 } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { States, useManageState } from '@/hooks/useManageState/useManageState';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
 import { useGenericComponents } from '@/provider/genericComponents/genericComponentsProvider';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { TextDecorationType } from '../text/types/decoration';
+import { TextVariantStylesType } from '../text/types/textTheme';
 import { disabledLink } from './helpers/disabled';
 import { LinkStandAlone } from './linkStandAlone';
-import {
-  ILink,
-  ILinkStandAlone,
-  LinkActionType,
-  LinkPropsStylesType,
-  LinkStateType,
-} from './types';
+import { LinkActionType } from './types/action';
+import { ILink, ILinkStandAlone } from './types/link';
+import { LinkPropsStylesType } from './types/linkTheme';
+import { LinkStateType } from './types/state';
 
 const LinkComponent = React.forwardRef(
   (

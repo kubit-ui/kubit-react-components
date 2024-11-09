@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { IconTypes } from '@/types';
-import { getStyles } from '@/utils';
-
+import { IconTypes } from '../../types/styles/icon';
+import { getStyles } from '../../utils/getStyles/getStyles';
 import { MessagePropsThemeType } from './types/messageTheme';
 
 export const ParentContainerStyled = styled.div<{

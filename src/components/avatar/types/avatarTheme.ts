@@ -1,4 +1,6 @@
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types/styles';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
 
 import { AvatarBackgroundColor, AvatarContentType } from './content';
 

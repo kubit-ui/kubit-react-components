@@ -1,6 +1,6 @@
-import { TableHeadStylesType } from '@/components';
+import { TableHeadStylesType } from '@/components/tableHead/types/tableHeadTheme';
+import { Z_INDEX } from '@/designSystem/kubitWireframe/commons/foundations/zIndex';
 
-import { Z_INDEX } from '../../foundations';
 import { TableHeadVariantType } from './variants';
 
 export const getTableHeadStyles = (COLORS: {

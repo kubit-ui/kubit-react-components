@@ -1,7 +1,10 @@
-import { ListOptionsStylesType } from '@/components/listOptions/types';
-import { DeviceBreakpointsType } from '@/types';
+import { ListOptionsStylesType } from '@/components/listOptions/types/listOptionsTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { BORDERS, COLORS, FONT_WEIGHT, SPACINGS } from '../../foundations';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import { TextVariantType } from '../text/variants';
 import { ListOptionsVariantType } from './variants';
 

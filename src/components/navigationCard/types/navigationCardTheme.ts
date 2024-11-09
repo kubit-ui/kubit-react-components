@@ -1,12 +1,11 @@
-import { IconHighlightedSizeType } from '@/components/iconHighlighted';
-import { TextComponentType } from '@/components/text';
-import {
-  CommonStyleType,
-  DeviceBreakpointsType,
-  IconTypes,
-  IllustrationTypes,
-  TypographyTypes,
-} from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { IllustrationTypes } from '@/types/styles/illustration';
+import { TypographyTypes } from '@/types/styles/typography';
+
+import { IconHighlightedSizeType } from '../../iconHighlighted/types/size';
+import { TextComponentType } from '../../text/types/component';
 
 export type NavigationCardStylesPropsType = {
   container?: CommonStyleType;

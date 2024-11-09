@@ -1,8 +1,10 @@
-import { AccordionStylesType } from '@/components/accordion/types';
-import { DeviceBreakpointsType } from '@/types';
+import { AccordionStylesType } from '@/components/accordion/types/accordionTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, RADIUS, SIZES, SPACINGS } from '../../foundations';
 import { AccordionVariantType } from './variants';
 
 export const getAccordionStyles = (COLORS: {

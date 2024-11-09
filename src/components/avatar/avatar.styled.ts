@@ -2,7 +2,8 @@ import styled, { css } from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { AvatarBackgroundColor, AvatarContentStylesType } from './types';
+import { AvatarContentStylesType } from './types/avatarTheme';
+import { AvatarBackgroundColor } from './types/content';
 
 type AvatarPropStylesType = {
   styles?: AvatarContentStylesType;

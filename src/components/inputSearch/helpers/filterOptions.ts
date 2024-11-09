@@ -1,6 +1,5 @@
-import { structuredClone } from '@/utils';
-
-import { IOptionGroup, InputSearchFilterOptionReturnValue } from '../types';
+import { structuredClone } from '../../../utils/structuredClone/structuredClone';
+import { IOptionGroup, InputSearchFilterOptionReturnValue } from '../types/inputSearch';
 
 export const filterOptions = (
   value: string | number | undefined,

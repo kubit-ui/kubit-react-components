@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import {
   ChangeEvent,
   ChangeEventHandler,
@@ -15,27 +16,27 @@ import {
   useState,
 } from 'react';
 
-import { useInternalValidations } from '@/components/input/hooks';
-import {
-  INTERNAL_ERROR_EXECUTION,
-  InputState,
-  InputTypeType,
-  InternalErrorType,
-} from '@/components/input/types';
-import { ListOptionsOptionType } from '@/components/listOptions';
-import { useCustomHeightFromChildrens, useInput, useMediaDevice } from '@/hooks';
+import { useCustomHeightFromChildrens } from '@/hooks/useCustomHeightFromChildrens/useCustomHeightFromChildren';
+import { useInput } from '@/hooks/useInput/useInput';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+
 import {
   isArrowDownPressed,
   isKeyEnterPressed,
   isKeyEscapePressed,
   isKeySpacePressed,
-  syntheticSelect,
-} from '@/utils';
-
+} from '../../../utils/keyboard/keyboard.utility';
+import { syntheticSelect } from '../../../utils/syntheticComponents/syntheticSelect/syntheticSelect';
+import { useInternalValidations } from '../../input/hooks/useInternalValidations';
+import { INTERNAL_ERROR_EXECUTION } from '../../input/types/input';
+import { InputState } from '../../input/types/inputTheme';
+import { InputTypeType } from '../../input/types/inputType';
+import { InternalErrorType } from '../../input/types/internalErrors';
+import { ListOptionsOptionType } from '../../listOptions/types/listOptions';
 // helpers
 import { filterOptions, findOptionByLabel, findOptionByValue } from '../helpers/filterOptions';
-import { InputDropdownStylesProps } from '../types';
 import { InputDropdownOnChangeType, InputDropdownOptionsType } from '../types/inputDropdown';
+import { InputDropdownStylesProps } from '../types/inputDropdownTheme';
 
 export interface MultipleRef {
   refInput?: MutableRefObject<HTMLInputElement | undefined>;

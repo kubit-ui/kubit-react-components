@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { ForwardedRef, forwardRef } from 'react';
+import React, { ForwardedRef, forwardRef } from 'react';
 
-import { Input } from '@/components/input';
-//  components
-import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
+import { PopoverControlled } from '@/components/popover/popoverControlled';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useId } from '@/hooks';
+import { useId } from '@/hooks/useId/useId';
 
 import { ActionBottomSheetControlledStructure as ActionBottomSheet } from '../../actionBottomSheet/actionBottomSheetControlled';
+import { InputUnControlled as Input } from '../../input/inputUnControlled';
+//  components
+import { PopoverComponentType } from '../../popover/types/component';
 import { MultipleRef } from '../hooks/useInputDropdown';
 // styles
 import {
@@ -20,6 +20,7 @@ import { IPopoverDropdownList } from '../types/inputDropdown';
 import { LoadingIcon } from './loadingIcon';
 import { OptionsList } from './optionsList';
 
+// eslint-disable-next-line complexity
 export const PopoverSearchListComponent = (
   props: IPopoverDropdownList,
   ref: ForwardedRef<unknown>
@@ -87,7 +88,7 @@ export const PopoverSearchListComponent = (
   const showHeaderInput = props.hasInputInSearchList && props.styles?.[props.state]?.allowSearch;
 
   return (
-    <Popover
+    <PopoverControlled
       hasBackDrop
       component={PopoverComponentType.DIV}
       focusFirstDescendantAutomatically={false}
@@ -155,7 +156,7 @@ export const PopoverSearchListComponent = (
       ) : (
         renderSearchList()
       )}
-    </Popover>
+    </PopoverControlled>
   );
 };
 

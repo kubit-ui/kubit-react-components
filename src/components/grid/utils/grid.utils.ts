@@ -1,4 +1,4 @@
-import { GridColumns, GridConfigType } from '../types';
+import { GridColumns, GridConfigType } from '../types/grid';
 
 export const getMaxWidth = (
   desktopWidth: number,

@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
 import { ToggleThreePosition } from './components/toggleThreePosition';
 import { ToggleTwoPosition } from './components/toggleTwoPositions';
-import type { IToggleStandAlone } from './types';
+import type { IToggleStandAlone } from './types/toggle';
 
 const ToggleStandAloneComponent = (
   { ...props }: IToggleStandAlone,

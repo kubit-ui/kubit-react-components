@@ -1,12 +1,16 @@
-import { IconPositionType } from '@/components/button';
-import { SelectorBoxFileStateType, SelectorBoxFileStylesType } from '@/components/selectorBoxFile';
-import { TextDecorationType } from '@/components/text';
+import { IconPositionType } from '@/components/button/types/buttonIconPosition';
+import { SelectorBoxFileStylesType } from '@/components/selectorBoxFile/types/selectorBoxFileTheme';
+import { SelectorBoxFileStateType } from '@/components/selectorBoxFile/types/state';
+import { TextDecorationType } from '@/components/text/types/decoration';
 
 // fundations
-import { BORDERS, COLORS, FONT_WEIGHT, SPACINGS } from '../../foundations';
-import { LoaderVariantType } from '../loader';
-import { TextVariantType } from '../text';
-import { TooltipVariantType } from '../tooltip';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { LoaderVariantType } from '../loader/variants';
+import { TextVariantType } from '../text/variants';
+import { TooltipVariantType } from '../tooltip/variants';
 import { ButtonSizeType, ButtonVariantType } from '../variants';
 import { SelectorBoxFileVariantType } from './variants';
 

@@ -1,14 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
 import { DecorativeElement } from '@/components/decorativeElement/decorativeElementStandAlone';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useId } from '@/hooks';
+import { useId } from '@/hooks/useId/useId';
 
-import { ButtonType } from '../button/types';
-import { NavigationCardInfo } from './fragments';
-import { buildProps } from './helpers';
+import { ButtonType } from '../button/types/type';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { NavigationCardInfo } from './fragments/navigationCardInfo';
+import { buildProps } from './helpers/buildProps';
 import {
   NavigationCardDecorativeContainer,
   NavigationCardInfoContentStyled,
@@ -16,7 +16,7 @@ import {
   NavigationCardRightContentStyled,
   NavigationCardStyled,
 } from './navigationCard.styled';
-import { INavigationCardStandAlone } from './types';
+import { INavigationCardStandAlone } from './types/navigationCard';
 
 const NavigationCardStandaloneComponent = (
   { dataTestId = 'navigation-card', type = ButtonType.BUTTON, ...props }: INavigationCardStandAlone,
@@ -36,8 +36,7 @@ const NavigationCardStandaloneComponent = (
   return (
     // Can not be spread -> styled component breaks
     <NavigationCardStyled
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ref={ref as any}
+      ref={ref as React.ForwardedRef<HTMLButtonElement>}
       aria-disabled={props['aria-disabled']}
       as={props.url ? props.component : 'button'}
       className={props.className}

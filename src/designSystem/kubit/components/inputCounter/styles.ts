@@ -1,8 +1,10 @@
-import { InputState } from '@/components/input/types';
-import { InputCounterStylesType } from '@/components/inputCounter/types';
+import { InputState } from '@/components/input/types/inputTheme';
+import { InputCounterStylesType } from '@/components/inputCounter/types/inputCounterTheme';
 
-import { COLORS, FONT_WEIGHT, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { TextCountVariantType } from '../textCount/variants';
 import { InputCounterVariant } from './variants';
 

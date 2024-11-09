@@ -1,12 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { POSITIONS } from '@/types';
-import { isKeyEnterPressed, isKeySpacePressed } from '@/utils';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { POSITIONS } from '../../types/positions/positions';
+import { isKeyEnterPressed, isKeySpacePressed } from '../../utils/keyboard/keyboard.utility';
 import { ToggleStandAlone } from './toggleStandAlone';
-import type { IToggleControlled, IToggleStandAlone, ToggleStateStyleType } from './types';
+import { IToggleControlled, IToggleStandAlone } from './types/toggle';
+import { ToggleStateStyleType } from './types/toggleTheme';
 import { getToggleState } from './utils/getToggleState';
 
 const TOGGLE_STYLES = 'TOGGLE_STYLES';

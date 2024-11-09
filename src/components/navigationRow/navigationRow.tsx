@@ -1,12 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { LineSeparatorLinePropsStylesType } from '@/components/lineSeparator';
-import { STYLES_NAME } from '@/constants';
-import { useStyles, useStylesV2 } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStyles } from '@/hooks/useStyles/useStyles';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { LineSeparatorLinePropsStylesType } from '../lineSeparator/types/lineSeparatorTheme';
 import { NavigationRowStandalone } from './navigationRowStandAlone';
-import { INavigationRow, INavigationRowStandAlone, NavigationRowStylesPropsType } from './types';
+import { INavigationRow, INavigationRowStandAlone } from './types/navigationRow';
+import { NavigationRowStylesPropsType } from './types/navigationRowTheme';
 
 const NavigationRowComponent = React.forwardRef(
   <V extends string | unknown>(

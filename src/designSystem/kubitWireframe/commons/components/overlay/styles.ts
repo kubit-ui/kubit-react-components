@@ -1,7 +1,9 @@
-import { OverlayStylesType } from '@/components/overlay/types';
+import { OverlayStylesType } from '@/components/overlay/types/overlayTheme';
+import { RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { Z_INDEX } from '@/designSystem/kubitWireframe/commons/foundations/zIndex';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { RADIUS, SPACINGS, Z_INDEX } from '../../foundations';
 import { OverlayVariantType } from './variants';
 
 export const getOverlayStyles = (COLORS: {

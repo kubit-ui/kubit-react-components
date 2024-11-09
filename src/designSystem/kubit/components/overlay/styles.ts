@@ -1,6 +1,7 @@
-import { OverlayStylesType } from '@/components/overlay/types';
+import { OverlayStylesType } from '@/components/overlay/types/overlayTheme';
 
-import { SPACINGS, Z_INDEX } from '../../foundations';
+import { SPACINGS } from '../../foundations/spacings';
+import { Z_INDEX } from '../../foundations/zIndex';
 import { OverlayVariantType } from './variants';
 
 export const OVERLAY_STYLES: OverlayStylesType<OverlayVariantType> = {

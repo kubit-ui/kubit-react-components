@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { DeviceBreakpointsType } from '@/types';
 
-import { Link } from '../link';
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { Link } from '../link/link';
 import {
   ActionBottomSheetActionStyled,
   ActionBottomSheetContentStyled,
@@ -17,7 +17,7 @@ import {
   ActionBottomSheetTitleSyled,
   DraggableIcon,
 } from './actionBottomSheet.styled';
-import { IActionBottomSheetStandAlone } from './types';
+import { IActionBottomSheetStandAlone } from './types/actionBottomSheet';
 
 const ActionBottomSheetStandAloneComponent = (
   {

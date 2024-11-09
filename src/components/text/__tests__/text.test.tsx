@@ -1,12 +1,12 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { Text } from '@/components/text';
+import { Text } from '@/components/text/text';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { TextComponentType } from '../types';
+import { TextComponentType } from '../types/component';
 
 const mockProps = {
   component: TextComponentType.H1,

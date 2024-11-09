@@ -1,19 +1,20 @@
 import styled, { CSSProp, css } from 'styled-components';
 
+import { srOnlyMixin } from '@/styles/mixins/srOnly.mixin';
+import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
+
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { CommonStyleType } from '../../types/styles/commonStyle';
 import {
   LineSeparatorLinePropsStylesType,
   LineSeparatorPositionType,
-} from '@/components/lineSeparator';
-import { srOnlyMixin } from '@/styles/mixins/srOnly.mixin';
-import { CommonStyleType, DeviceBreakpointsType } from '@/types';
-import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
-
+} from '../lineSeparator/types/lineSeparatorTheme';
+import { FlexWidthType } from './types/table';
 import {
-  FlexWidthType,
   TableHeaderStylesTypes,
   TableRowHeaderTypes,
   TableRowStylesTypes,
-} from './types';
+} from './types/tableTheme';
 
 /******** UTILS STYLES *******/
 

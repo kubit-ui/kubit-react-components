@@ -1,4 +1,4 @@
-import type { DeviceBreakpointsType } from '@/types/breakpoints';
+import type { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { TextDecorationType } from './decoration';
 import { TextDisplayType } from './display';

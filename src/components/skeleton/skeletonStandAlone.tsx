@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
 import { pickAriaProps } from '@/utils/aria/aria';
 
 import { SkeletonStyled } from './skeleton.styled';
-import { ISkeletonStandAlone } from './types';
+import { ISkeletonStandAlone } from './types/skeleton';
 
 const SkeletonStandAloneComponent = (
   { dataTestId = 'skeleton', duration = '1.2s', ...props }: ISkeletonStandAlone,

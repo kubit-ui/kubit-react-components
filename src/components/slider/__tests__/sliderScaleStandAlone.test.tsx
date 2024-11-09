@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { renderProvider } from 'tests/renderProvider/renderProvider.utility';
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
 import { SliderScaleStandAlone } from '../components/sliderScaleStandAlone';
-import { SliderBaseStylesType } from '../types';
+import { SliderBaseStylesType } from '../types/sliderTheme';
 
 const mockScaleProps = {
   showScale: true,

@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
+import React from 'react';
 
-import { ICONS } from '@/assets';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { PageControl as Story } from '../pageControl';
-import { PageControlArrowControlType } from '../types';
+import { PageControlArrowControlType } from '../types/pageControl';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

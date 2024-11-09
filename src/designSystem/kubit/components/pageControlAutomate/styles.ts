@@ -1,9 +1,11 @@
-import { MediaButtonSizeType } from '@/components/mediaButton';
-import { PageControlAutomateStylesType } from '@/components/pageControlAutomate';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { MediaButtonSizeType } from '@/components/mediaButton/types/sizes';
+import { PageControlAutomateStylesType } from '@/components/pageControlAutomate/types/pageControlAutomateTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { COLORS, SIZES, SPACINGS } from '../../foundations';
-import { MediaProgressBarVariantType } from '../mediaProgressBar';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { MediaProgressBarVariantType } from '../mediaProgressBar/variants';
 import { PageControlAutomateVariant } from './variants';
 
 const commonProps = {

@@ -1,13 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { srOnlyMixin } from '@/styles';
-import { getStyles } from '@/utils';
-
-import {
-  StepperNumberOrientationType,
-  StepperNumberStateStylesType,
-  StepperNumberStateType,
-} from './types';
+import { srOnlyMixin } from '../../styles/mixins/srOnly.mixin';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import { StepperNumberOrientationType } from './types/orientation';
+import { StepperNumberStateType } from './types/state';
+import { StepperNumberStateStylesType } from './types/stepperNumberTheme';
 
 export const StepperNumberContainerStyled = styled.section``;
 

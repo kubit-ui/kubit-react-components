@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStylesV2 } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
 
 import { TableCellStandAlone } from './tableCellStandAlone';
-import { ITableCell, TableCellPropsStylesType } from './types';
+import { ITableCell } from './types/tableCell';
+import { TableCellPropsStylesType } from './types/tableCellTheme';
 
 const TableCellComponent = (
   { variant, ctv, ...props }: React.PropsWithChildren<ITableCell>,

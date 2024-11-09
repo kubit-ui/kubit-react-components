@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
 // styles
 import { MessageControlled } from './messageControlled';
-import { IMessageUnControlled } from './types';
+import { IMessageUnControlled } from './types/message';
 
 const MessageUnControlledComponent = <V extends string | unknown>(
   { defaultOpen = true, ...props }: IMessageUnControlled<V>,
@@ -34,3 +34,5 @@ const MessageUnControlled = React.forwardRef(MessageUnControlledComponent) as <
 ) => ReturnType<typeof MessageUnControlledComponent>;
 
 export { MessageUnControlled };
+
+export { MessageUnControlled as Message };

@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import {
   additionalInfoAction,
   labelSecondary,
 } from '@/components/input/components/stories/stories';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { InputDropdown as Story } from '../inputDropdown';
-import { IInputDropdown } from '../types';
+import { IInputDropdown } from '../types/inputDropdown';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

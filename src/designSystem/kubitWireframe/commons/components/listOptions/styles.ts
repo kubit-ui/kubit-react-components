@@ -1,8 +1,10 @@
-import { ListOptionsStylesType } from '@/components/listOptions/types';
+import { ListOptionsStylesType } from '@/components/listOptions/types/listOptionsTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SPACINGS } from '../../foundations';
 import { TextVariantType } from '../text/variants';
 import { ListOptionsVariantType } from './variants';
 

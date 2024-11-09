@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { getStyles, getTypographyStyles } from '@/utils';
-
-import { TableBodyPropsStylesType } from './types';
+import { getStyles, getTypographyStyles } from '../../utils/getStyles/getStyles';
+import { TableBodyPropsStylesType } from './types/tableBodyTheme';
 
 export const TBodyStyled = styled.tbody<{
   $styles?: TableBodyPropsStylesType;

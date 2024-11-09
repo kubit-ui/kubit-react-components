@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
 
-import { CommonStyleType, POSITIONS } from '@/types';
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { ToggleStyleType } from './types';
+import { POSITIONS } from '../../types/positions/positions';
+import { CommonStyleType } from '../../types/styles/commonStyle';
+import { ToggleStyleType } from './types/toggleTheme';
 
 type TogglePropsStyleType = {
   styles?: ToggleStyleType;

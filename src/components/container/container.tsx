@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants/stylesName';
-import { useStyles } from '@/hooks/index';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStyles } from '@/hooks/useStyles/useStyles';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { ContainerStandAlone } from './containerStandAlone';
-import { ContainerPropsStylesType, IContainer, IContainerStandAlone } from './types';
+import { IContainer, IContainerStandAlone } from './types/container';
+import { ContainerPropsStylesType } from './types/containerTheme';
 
 const ContainerComponent = React.forwardRef(
   <T extends string>(

@@ -1,24 +1,25 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text } from '@/components/text';
-import { TextComponentType } from '@/components/text/types';
-import { useId } from '@/hooks';
-import { ROLES } from '@/types';
-import { InputTypeType } from '@/types/inputType';
+import { useId } from '@/hooks/useId/useId';
+import { InputTypeType } from '@/types/inputType/inputType';
 
-import { ButtonType } from '../button/types';
+import { ROLES } from '../../types/role/role';
+import { ButtonType } from '../button/types/type';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { Text } from '../text/text';
+import { TextComponentType } from '../text/types/component';
 import {
   PillAsButton,
   PillContentContainerStyled,
   PillInputStyled,
   PillRootContainerStyled,
 } from './pill.styled';
-import { IPillStandAlone, PillType } from './types';
+import { IPillStandAlone } from './types/pill';
+import { PillType } from './types/pillType';
 
 const PillStandAloneComponent = (
   { dataTestId = 'pill', type = PillType.BUTTON, ...props }: IPillStandAlone,
-  ref: React.ForwardedRef<HTMLButtonElement> | undefined | null
+  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const id = useId('pill');
   const pillContentId = `${id}-content`;

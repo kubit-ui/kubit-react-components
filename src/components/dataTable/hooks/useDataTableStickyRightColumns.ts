@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import { hasHorizontalScroll, hasVerticalScroll } from '@/utils';
-import { ResizeObserver } from '@/utils/resizeObserver';
+import { ResizeObserver } from '../../../utils/resizeObserver/resizeObserver';
+import { hasHorizontalScroll, hasVerticalScroll } from '../../../utils/scroll/hasScroll';
 
 type UseDataTableStickyRightColumnsParamsType = {
   ref: React.RefObject<HTMLDivElement>;

@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Text } from '@/components/text';
+import { Text } from '@/components/text/text';
 
 import { HelpTextContainerStyled } from '../inputDigitSequence.styled';
-import { InputDigitSequenceStyles, InputDigitSequenceTextType } from '../types';
+import { InputDigitSequenceTextType } from '../types/inputDigitSequence';
+import { InputDigitSequenceStyles } from '../types/inputDigitSequenceTheme';
 
 interface IInputDigitSequenceHelpText {
   styles?: InputDigitSequenceStyles;

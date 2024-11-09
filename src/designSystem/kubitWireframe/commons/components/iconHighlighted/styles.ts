@@ -1,10 +1,10 @@
-import {
-  IconHighlightedSizeType,
-  IconHighlightedStylesType,
-} from '@/components/iconHighlighted/types';
+import { IconHighlightedStylesType } from '@/components/iconHighlighted/types/iconHighlightedTheme';
+import { IconHighlightedSizeType } from '@/components/iconHighlighted/types/size';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { BORDERS, RADIUS, SIZES, SPACINGS } from '../../foundations';
 import { IconHighlightedVariantType } from './variants';
 
 export const getIconHighlightedStyles = (COLORS: {

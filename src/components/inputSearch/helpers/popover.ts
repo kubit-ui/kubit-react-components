@@ -1,4 +1,4 @@
-import { IOptionGroup, InputSearchNoResultTextType } from '../types';
+import { IOptionGroup, InputSearchNoResultTextType } from '../types/inputSearch';
 import { getLength } from './options';
 
 type ShouldBePopoverOpenedParamsType = {

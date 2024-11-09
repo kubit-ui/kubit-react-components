@@ -5,15 +5,15 @@ import { Link } from '@/components/link/link';
 import { LinkActionType } from '@/components/link/types/action';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { States, useManageState } from '@/hooks';
+import { States, useManageState } from '@/hooks/useManageState/useManageState';
 
 import {
   BreadcrumbLiStyled,
   IconContainerStyled,
   LinkContainerStyled,
 } from '../breadcrumbs.styled';
-import { BreadcrumbsStateType } from '../types';
 import { IBreadcrumbStandAlone } from '../types/breadcrumbs';
+import { BreadcrumbsStateType } from '../types/state';
 
 /**
  * @description

@@ -1,16 +1,15 @@
-import { ActionBottomSheetStylesType } from '@/components/actionBottomSheet/types';
-import { DeviceBreakpointsType } from '@/types';
+import { ActionBottomSheetStylesType } from '@/components/actionBottomSheet/types/actionBottomSheetTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SHADOW } from '@/designSystem/kubitWireframe/commons/foundations/shadow';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import {
+  FONT_WEIGHT,
+  TEXT_ALIGN,
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import {
-  BORDERS,
-  FONT_WEIGHT,
-  RADIUS,
-  SHADOW,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-} from '../../foundations';
 import { PopoverVariantType } from '../popover/variants';
 import { TextVariantType } from '../text/variants';
 import { ActionBottomSheetVariantType } from './variants';

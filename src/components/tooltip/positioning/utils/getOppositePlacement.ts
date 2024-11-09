@@ -1,4 +1,4 @@
-import { TooltipAlignType } from '../../types';
+import { TooltipAlignType } from '../../types/tooltipAlign';
 
 const oppositeSideMap = {
   [TooltipAlignType.LEFT]: TooltipAlignType.RIGHT,

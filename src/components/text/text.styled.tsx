@@ -2,7 +2,8 @@ import styled, { CSSProp, css } from 'styled-components';
 
 import { getTypographyStyles } from '@/utils/getStyles/getStyles';
 
-import type { ITextStyled, TextPropsStylesType, TextThemeStylesType } from './types';
+import { ITextStyled } from './types/text';
+import { TextPropsStylesType, TextThemeStylesType } from './types/textTheme';
 
 const applyDevicePropsTextStyles = (props: TextPropsStylesType) => css`
   color: ${props.color};

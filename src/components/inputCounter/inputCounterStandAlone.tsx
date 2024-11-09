@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 import { TextCount } from '@/components/textCount/textCount';
 
-import { InputControlled as Input } from '../input';
-import { ScreenReaderOnly } from '../screenReaderOnly';
-import { IInputCounterStandAlone } from './types';
-import { getCharactersLength } from './utils';
+import { InputControlled as Input } from '../input/inputControlled';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
+import { IInputCounterStandAlone } from './types/inputCounter';
+import { getCharactersLength } from './utils/counter.utils';
 
 export const InputCounterStandAloneComponent = <V extends string | unknown>(
   props: IInputCounterStandAlone<V>,

@@ -1,7 +1,7 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IPill } from '@/components/pillV2/types';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IPill } from '../../pillV2/types/pill';
 import {
   PillSelectorPropsStylesType,
   PillSelectorVariantPropsStylesType,

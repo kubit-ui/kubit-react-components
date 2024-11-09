@@ -1,11 +1,12 @@
-import * as React from 'react';
+/* eslint-disable complexity */
+import React from 'react';
 
+import { GridStyled as Grid, GridItemStyled as GridItem } from '@/components/grid/grid.styled';
 // templates
-import { Grid, GridItem } from '@/components/grid';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { LayoutContainer } from './layout.styled';
-import { ILayoutStandAlone, LayoutRoleType } from './types';
+import { ILayoutStandAlone, LayoutRoleType } from './types/layout';
 
 export const LayoutStandAlone = ({
   headerContent,

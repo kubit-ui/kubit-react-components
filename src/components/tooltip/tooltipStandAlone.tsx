@@ -1,18 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Icon } from '@/components/icon';
-import {
-  PopoverControlled as Popover,
-  PopoverComponentType,
-  PopoverPositionVariantType,
-} from '@/components/popover';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 import { useId } from '@/hooks/useId/useId';
-import { DeviceBreakpointsType, ROLES } from '@/types';
 
-import { TooltipTrigger } from './components';
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { ROLES } from '../../types/role/role';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { IconBasic as Icon } from '../icon/icon';
+import { PopoverControlled } from '../popover/popoverControlled';
+import { PopoverComponentType } from '../popover/types/component';
+import { PopoverPositionVariantType } from '../popover/types/positionVariant';
+import { TooltipTrigger } from './components/tooltipTrigger';
 // styles
 import {
   TooltipArrowContentStyled,
@@ -27,9 +26,10 @@ import {
   TooltipStyled,
   TooltipTitleStyled,
 } from './tooltip.styled';
-import { ITooltipStandAlone } from './types';
-import { getAriaDescriptorsBy } from './utils';
+import { ITooltipStandAlone } from './types/tooltip';
+import { getAriaDescriptorsBy } from './utils/tooltip.utils';
 
+// eslint-disable-next-line complexity
 const TooltipStandAlone = ({
   childrenAsButton = true,
   dataTestId = 'tooltip',
@@ -158,14 +158,10 @@ const TooltipStandAlone = ({
       ref={props.labelRef}
       data-testid={dataTestId}
       tooltipAsModal={props.tooltipAsModal}
-      onBlur={props.onBlur}
-      onClick={props.onClick}
-      onFocus={props.onFocus}
-      onKeyDown={props.onKeyDown}
-      onMouseDown={props.onMouseDown}
-      onMouseEnter={props.onMouseEnter}
-      onMouseLeave={props.onMouseLeave}
-      onMouseUp={props.onMouseUp}
+      onBlur={props.onWrapperBlur ?? props.onBlur}
+      onFocus={props.onWrapperFocus ?? props.onFocus}
+      onMouseEnter={props.onWrapperMouseEnter ?? props.onMouseEnter}
+      onMouseLeave={props.onWrapperMouseLeave ?? props.onMouseLeave}
     >
       <TooltipTrigger
         // Aria describedby is used when the tooltip is not used as a modal
@@ -177,13 +173,17 @@ const TooltipStandAlone = ({
         }
         childrenAsButton={childrenAsButton}
         triggerAsButton={props.triggerAsButton}
+        onClick={props.onTriggerClick ?? props.onClick}
+        onKeyDown={props.onTriggerKeyDown ?? props.onKeyDown}
+        onMouseDown={props.onTriggerMouseDown ?? props.onMouseDown}
+        onMouseUp={props.onTriggerMouseUp ?? props.onMouseUp}
       >
         {props.children}
       </TooltipTrigger>
       {isDesktop ? (
         Tooltip
       ) : (
-        <Popover
+        <PopoverControlled
           component={PopoverComponentType.DIV}
           focusLastElementFocusedAfterClose={false}
           hasBackDrop={props.styles.showOverlay?.[props.mediaDevice]}
@@ -200,7 +200,7 @@ const TooltipStandAlone = ({
           onCloseInternally={props.onPopoverCloseInternally}
         >
           {Tooltip}
-        </Popover>
+        </PopoverControlled>
       )}
     </TooltipStyled>
   );

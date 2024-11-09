@@ -1,4 +1,5 @@
-import * as React from 'react';
+/* eslint-disable complexity */
+import React from 'react';
 
 type UseDataTableShadowParamsType = {
   ref: React.RefObject<HTMLDivElement>;

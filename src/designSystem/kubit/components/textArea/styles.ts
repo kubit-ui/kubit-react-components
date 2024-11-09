@@ -1,8 +1,10 @@
-import { TextAreaStateType, TextAreaStylesType } from '@/components/textArea';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { TextAreaStateType } from '@/components/textArea/types/state';
+import { TextAreaStylesType } from '@/components/textArea/types/textAreaTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { FONT_WEIGHT, PARAGRAPH, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, PARAGRAPH } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { TextCountVariantType } from '../textCount/variants';
 import { TextAreaVariantType } from './variants';
 

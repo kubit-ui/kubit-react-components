@@ -1,10 +1,10 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILabelStandAlone } from '@/components/label';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
-import { AriaLiveOptionType } from '@/types/ariaLiveOption';
-import type { IInputComponent } from '@/types/type';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import type { IInputComponent } from '@/types/type/type';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { ILabelStandAlone } from '../../label/types/label';
+import { IText } from '../../text/types/text';
 import type { CheckboxPropsStateStylesType, CheckboxPropsStylesType } from './checkboxTheme';
 import type { CheckboxStateType } from './state';
 

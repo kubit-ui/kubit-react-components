@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useTheme } from 'styled-components';
 
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 export const useMediaDevice = (): DeviceBreakpointsType => {
   const mediaQueries = useTheme().MEDIA_QUERIES.matchMedia;

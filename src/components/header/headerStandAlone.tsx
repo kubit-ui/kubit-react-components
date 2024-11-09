@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
-import { DeviceBreakpointsType } from '@/types';
+import { BreadcrumbsControlled as Breadcrumbs } from '@/components/breadcrumbs/breadcrumbsControlled';
 
-import { Breadcrumbs } from '../breadcrumbs';
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
 import {
   BreadcrumbsWrapper,
   HeaderContainerStyled,

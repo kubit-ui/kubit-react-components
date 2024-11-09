@@ -4,3 +4,5 @@ export enum PillType {
   SELECTOR_MULTIPLE = 'SELECTOR_MULTIPLE',
   TAB = 'TAB',
 }
+
+export { PillType as PillTypeV2 };

@@ -1,19 +1,21 @@
+/* eslint-disable complexity */
 // vendors
-import * as React from 'react';
+import React from 'react';
 
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useId } from '@/hooks';
 import { useElementBoundingClientRect } from '@/hooks/useElementBoundingClientRect/useElementBoundingClientRect';
-import { POSITIONS } from '@/types/positions';
-import { pxToRem } from '@/utils';
+import { useId } from '@/hooks/useId/useId';
+import { POSITIONS } from '@/types/positions/positions';
 
-import { InputControlled as Input, InputContentPosition } from '../input';
-import { getExtraStyles } from '../input/utils';
+import { pxToRem } from '../../utils/pxToRem/pxToRem';
+import { InputControlled } from '../input/inputControlled';
+import { InputContentPosition } from '../input/types/inputTheme';
+import { getExtraStyles } from '../input/utils/extraStyles.utils';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
 // styles
 import { AffixStyled } from './inputCurrency.styled';
-import { IInputCurrencyStandAlone } from './types';
+import { IInputCurrencyStandAlone } from './types/inputCurrency';
 
 export const InputCurrencyStandAloneComponent = (
   props: IInputCurrencyStandAlone,
@@ -74,7 +76,7 @@ export const InputCurrencyStandAloneComponent = (
   // The extra styles are for the input structure atom
   // In this way we do not have to pass references or ids of the elements to get the measurements
   return (
-    <Input
+    <InputControlled
       ref={ref}
       aria-describedby={ariaDescribedBy}
       bottomExtraStyles={

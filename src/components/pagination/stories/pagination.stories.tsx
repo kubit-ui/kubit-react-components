@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useEffect } from 'react';
 
-import { ICONS } from '@/assets';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 // fixture
 import { Pagination as Story } from '../pagination';

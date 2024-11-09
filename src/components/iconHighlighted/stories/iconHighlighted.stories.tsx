@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ICONS } from '@/assets';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { IconHighlighted as Story } from '../iconHighlighted';
-import { IconHighlightedSizeType } from '../types';
+import { IconHighlightedSizeType } from '../types/size';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

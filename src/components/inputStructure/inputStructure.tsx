@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { InputStructureStandAlone } from './inputStructureStandAlone';
 import { IInputStructure } from './types/inputStructure';

@@ -1,14 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
-import { IButton } from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IElementOrillustration } from '@/components/elementOrIllustration';
-import { ILink, LinkTargetType } from '@/components/link';
-import { ITag } from '@/components/tag';
-import { IText } from '@/components/text';
-import { GenericLinkType } from '@/provider/genericComponents';
-import { AriaLiveOptionType, CustomTokenTypes, ROLES } from '@/types';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { ROLES } from '@/types/role/role';
 
+import { GenericLinkType } from '../../../provider/genericComponents/genericComponents.type';
+import { IButton } from '../../button/types/button';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IElementOrillustration } from '../../elementOrIllustration/types/elementOrIllustration';
+import { ILink } from '../../link/types/link';
+import { LinkTargetType } from '../../link/types/target';
+import { ITag } from '../../tag/types/tag';
+import { IText } from '../../text/types/text';
 import { MessagePropsThemeType } from './messageTheme';
 
 export type MessageActionButtonType = Omit<IButton, 'children' | 'size'> & {

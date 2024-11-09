@@ -1,12 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useEscPressedV2, useMediaDevice, useSwipeDown } from '@/hooks';
+import { useEscPressedV2 } from '@/hooks/useEscPressedV2/useEscPressedV2';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { DeviceBreakpointsType } from '@/types';
+import { useSwipeDown } from '@/hooks/useSwipeDown/useSwipeDown';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
 import { OliveMenuStandAlone } from './oliveMenuStandAlone';
-import { IOliveMenu, IOliveMenuStandAlone, OliveMenuGlobalStylesType } from './types';
+import { IOliveMenu, IOliveMenuStandAlone } from './types/oliveMenu';
+import { OliveMenuGlobalStylesType } from './types/oliveMenuTheme';
 
 const OLIVE_MENU_STYLES = 'OLIVE_MENU_STYLES';
 

@@ -1,4 +1,4 @@
-import { PillStateType } from '../types';
+import { PillStateType } from '../../pill/types/state';
 
 export const getPillState = ({
   selected,

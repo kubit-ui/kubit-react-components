@@ -1,14 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
-import { DeviceBreakpointsType, ROLES } from '@/types';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { ROLES } from '@/types/role/role';
 
 import { CarouselUnControlled as Story } from '../carouselUnControlled';
-import { CarouselAlignType, ICarouselUnControlled } from '../types';
+import { ICarouselUnControlled } from '../types/carousel';
+import { CarouselAlignType } from '../types/carouselAlign';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

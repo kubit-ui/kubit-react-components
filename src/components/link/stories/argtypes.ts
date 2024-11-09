@@ -1,9 +1,12 @@
-import { TextDecorationType } from '@/components/text';
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn, ROLES } from '@/types';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { ROLES } from '@/types/role/role';
+import { ArgTypesReturn } from '@/types/type/type';
 
-import { LinkActionType, LinkPositionType, LinkTargetType } from '../types';
+import { TextDecorationType } from '../../text/types/decoration';
+import { LinkActionType } from '../types/action';
+import { LinkPositionType } from '../types/position';
+import { LinkTargetType } from '../types/target';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {

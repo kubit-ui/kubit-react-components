@@ -1,12 +1,15 @@
 import { MediaButtonSizeType } from '@/components/mediaButton/types/sizes';
-import { VideoStylesType } from '@/components/video';
-import { DeviceBreakpointsType } from '@/types';
+import { VideoStylesType } from '@/components/video/types/videoTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { COLORS, FONT_WEIGHT, HEADING, SPACINGS, Z_INDEX } from '../../foundations';
-import { ButtonSizeType, ButtonVariantType } from '../button';
-import { MediaButtonVariantType } from '../mediaButton';
-import { SkeletonShapeVariant, SkeletonVariantType } from '../skeleton';
-import { TextVariantType } from '../text';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, HEADING } from '../../foundations/typography';
+import { Z_INDEX } from '../../foundations/zIndex';
+import { ButtonSizeType, ButtonVariantType } from '../button/variants';
+import { MediaButtonVariantType } from '../mediaButton/variants';
+import { SkeletonShapeVariant, SkeletonVariantType } from '../skeleton/variants';
+import { TextVariantType } from '../text/variants';
 import { ProgressBarSizeType, ProgressBarVariantType, TooltipVariantType } from '../variants';
 import { VideoVariantType } from './variants';
 

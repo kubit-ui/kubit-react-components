@@ -5,7 +5,7 @@ import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { TableCell } from '../index';
+import { TableCell } from '../tableCell';
 
 describe('Table Cell', () => {
   it('Should render', async () => {

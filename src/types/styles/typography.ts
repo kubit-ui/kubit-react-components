@@ -1,4 +1,4 @@
-import { DeviceBreakpointsType } from '../breakpoints';
+import { DeviceBreakpointsType } from '../breakpoints/breakpoints';
 import { WordWrapTypes } from './wordWrap';
 
 /**

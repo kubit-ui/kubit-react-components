@@ -1,11 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { AvatarStandAlone } from './avatarStandAlone';
-import { AvatarContentType, AvatarSizeStylesType, IAvatar, IAvatarStandAlone } from './types/';
+import { IAvatar, IAvatarStandAlone } from './types/avatar';
+import { AvatarSizeStylesType } from './types/avatarTheme';
+import { AvatarContentType } from './types/content';
 
 const AvatarComponent = React.forwardRef(
   <S extends string | undefined>(

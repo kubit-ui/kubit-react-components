@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { getStyles, getTypographyStyles } from '@/utils';
-
-import { TextAreaPropsThemeType } from './types';
+import { getStyles, getTypographyStyles } from '../../utils/getStyles/getStyles';
+import { TextAreaPropsThemeType } from './types/textAreaTheme';
 
 type StylesType = {
   styles?: TextAreaPropsThemeType;

@@ -1,4 +1,4 @@
-import { IOperativeLayoutHorizontalMargin } from '../types';
+import { IOperativeLayoutHorizontalMargin } from '../types/operativeLayout';
 
 export const getHorizontalMargin = (
   padding: string | IOperativeLayoutHorizontalMargin | undefined

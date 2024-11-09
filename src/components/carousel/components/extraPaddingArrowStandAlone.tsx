@@ -1,9 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
-
+import { ButtonType } from '../../button/types/type';
 import { ExtraPaddingArrowStyled } from '../carousel.styled';
-import { CarouselPropsStylesType } from '../types';
+import { CarouselPropsStylesType } from '../types/carouselTheme';
 
 interface IExtraPaddingArrowStandAlone {
   extraPadding?: number;

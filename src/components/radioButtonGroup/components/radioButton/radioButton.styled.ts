@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
-import { focusVisibleAlt } from '@/styles/mixins';
-import { getStyles } from '@/utils';
-
-import { RadioButtonBaseStyles, RadioButtonStateStylesType, RadioButtonStateType } from './types';
+import { focusVisibleAlt } from '../../../../styles/mixins/focusAlt.mixin';
+import { getStyles } from '../../../../utils/getStyles/getStyles';
+import { RadioButtonBaseStyles, RadioButtonStateStylesType } from './types/radioButtonTheme';
+import { RadioButtonStateType } from './types/state';
 
 interface IRadioButtonErrorStyled {
   styles?: RadioButtonBaseStyles;

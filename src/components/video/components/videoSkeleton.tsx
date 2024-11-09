@@ -1,8 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
-import { Skeleton } from '@/components/skeleton';
-
+import { ScreenReaderOnly } from '../../screenReaderOnly/screenReaderOnly';
+import { Skeleton } from '../../skeleton/skeleton';
 import { VideoStyleType } from '../types/videoTheme';
 import { ButtonsSkeletonContainerStyled, VideoSkeletonContainerStyled } from '../video.styled';
 

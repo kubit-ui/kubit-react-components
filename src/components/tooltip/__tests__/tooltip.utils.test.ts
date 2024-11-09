@@ -1,4 +1,4 @@
-import { getAriaDescriptorsBy } from '../utils';
+import { getAriaDescriptorsBy } from '../utils/tooltip.utils';
 
 describe('getAriaDescriptorsBy utility', () => {
   it('should return both titleId and contentId when title and content are provided', () => {

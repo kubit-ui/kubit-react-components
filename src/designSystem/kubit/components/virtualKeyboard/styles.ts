@@ -1,11 +1,15 @@
 import {
   ButtonKeyboardStateType,
   VirtualKeyboardStateType,
-  VirtualKeyboardStylesType,
-} from '@/components/virtualKeyboard';
+} from '@/components/virtualKeyboard/types/state';
+import { VirtualKeyboardStylesType } from '@/components/virtualKeyboard/types/virtualKeyboardTheme';
 
-import { BORDERS, COLORS, FONT_WEIGHT, RADIUS, SHADOW, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SHADOW } from '../../foundations/shadow';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { VirtualKeyboardVariantType } from './variants';
 
 const commonVirtualKeyboardStateProps = {

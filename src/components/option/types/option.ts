@@ -1,9 +1,10 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { IToggleUnControlled } from '@/components/toggle';
-import { GenericLinkType } from '@/provider/genericComponents';
-import { CustomTokenTypes, ROLES } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { ROLES } from '@/types/role/role';
 
+import { GenericLinkType } from '../../../provider/genericComponents/genericComponents.type';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IText } from '../../text/types/text';
+import { IToggleUnControlled } from '../../toggle/types/toggle';
 import { OptionPropsStylesType } from './optionTheme';
 
 export type OptionSublabelType = Omit<IText<string>, 'children'> & {

@@ -1,6 +1,9 @@
-import { DotStylesType } from '@/components/dot/types';
+import { DotStylesType } from '@/components/dot/types/dotTheme';
 
-import { BORDERS, COLORS, FONT_WEIGHT, PARAGRAPH, RADIUS, SPACINGS } from '../../foundations';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, PARAGRAPH } from '../../foundations/typography';
 import { DotSizeType, DotVariantType } from './variants';
 
 const containerCommonProps = {

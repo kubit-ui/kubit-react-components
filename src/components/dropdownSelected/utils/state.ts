@@ -1,4 +1,4 @@
-import { DropdownSelectedStateType } from '../types';
+import { DropdownSelectedStateType } from '../types/states';
 
 export const getState = ({ hover }: { hover: boolean }): DropdownSelectedStateType => {
   if (hover) {

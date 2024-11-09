@@ -1,8 +1,7 @@
-import { ICheckboxStandAlone } from '@/components/checkbox/types';
-import { CheckboxLabelType } from '@/components/checkbox/types/checkbox';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import { CheckboxLabelType, ICheckboxStandAlone } from '@/components/checkbox/types/checkbox';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IText } from '../../text/types/text';
 import { CheckboxWithLabelStatePropsStylesType } from './checkboxWithLabelTheme';
 import { CheckboxWithLabelState } from './state';
 

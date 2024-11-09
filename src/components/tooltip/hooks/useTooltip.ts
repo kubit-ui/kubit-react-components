@@ -1,14 +1,22 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useClickOutside, useEscPressedV2, useMediaDevice, useStyles } from '@/hooks';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
-import { focusElementOrFirstDescendant } from '@/utils';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useClickOutside } from '@/hooks/useClickOutside/useClickOutside';
+import { useEscPressedV2 } from '@/hooks/useEscPressedV2/useEscPressedV2';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useStyles } from '@/hooks/useStyles/useStyles';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
-import { TOOLTIP_STYLES } from '../constants';
+import { focusElementOrFirstDescendant } from '../../../utils/focusHandlers/focusHandlers';
+import { computePosition } from '../positioning/computePosition';
 // floating
-import { arrow, computePosition, flip, shift } from '../positioning';
+import { arrow } from '../positioning/middlewares/arrow';
+import { flip } from '../positioning/middlewares/flip';
+import { shift } from '../positioning/middlewares/shift';
 import { Coords } from '../positioning/types';
-import { TooltipAlignType, TooltipVariantStylesProps } from '../types';
+import { TooltipAlignType } from '../types/tooltipAlign';
+import { TooltipVariantStylesProps } from '../types/tooltipTheme';
 
 type UseTooltipType<V> = {
   labelRef: React.RefObject<HTMLDivElement>;
@@ -45,7 +53,11 @@ export const useTooltip = <V>({
   const [open, setOpen] = React.useState(false);
 
   // Need the styles to calc the arrow tooltip position
-  const styles = useStyles<TooltipVariantStylesProps, V>(TOOLTIP_STYLES, props.variant, props.ctv);
+  const styles = useStyles<TooltipVariantStylesProps, V>(
+    STYLES_NAME.TOOLTIP,
+    props.variant,
+    props.ctv
+  );
 
   // Avoid to show tooltip when scrolling
   React.useEffect(() => {
@@ -130,7 +142,7 @@ export const useTooltip = <V>({
   useClickOutside(props.tooltipRef, hideTooltip, [props.labelRef.current]);
 
   // This function calc the position position where the tooltip should be displayed
-
+  // eslint-disable-next-line complexity
   const updateTooltipPosition = () => {
     if (!props.labelRef.current || !props.tooltipRef.current) {
       return;

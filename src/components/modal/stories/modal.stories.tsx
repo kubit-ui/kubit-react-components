@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
-import { CssAnimationTimingFunction, CssAnimationVariants } from '@/components/cssAnimation';
-import { FooterPositionType } from '@/components/footer';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
+import { CssAnimationTimingFunction } from '../../cssAnimation/types/cssAnimation';
+import { CssAnimationVariants } from '../../cssAnimation/types/variant';
+import { FooterPositionType } from '../../footer/types/position';
 import { ModalControlled as Story } from '../modalControlled';
 import { argtypes } from './argtypes';
 

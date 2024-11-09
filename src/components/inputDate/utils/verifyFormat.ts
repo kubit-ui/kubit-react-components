@@ -48,6 +48,7 @@ const verifyFormatDate = (
   return { valueFormatted, hasError };
 };
 
+// eslint-disable-next-line complexity
 const verifyFormatRangeDate = (
   value: string,
   minDate: Date,

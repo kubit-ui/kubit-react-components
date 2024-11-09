@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { PropsWithChildren, createContext, useContext } from 'react';
+import React, { PropsWithChildren, createContext, useContext } from 'react';
 
 import {
   IThemeInformationProvider,

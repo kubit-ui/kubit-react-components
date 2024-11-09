@@ -1,13 +1,17 @@
-/* eslint-disable react/display-name */
-import * as React from 'react';
+/* eslint-disable complexity */
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text, TextComponentType, TextDecorationType } from '@/components/text';
-import { Toggle } from '@/components/toggle';
-import { isKeyEnterPressed, isKeySpacePressed } from '@/utils';
+/* eslint-disable react/display-name */
+import React from 'react';
+
+import { Text } from '@/components/text/text';
 import { pickAriaProps } from '@/utils/aria/aria';
 
-import { OptionLabelSlice } from './components.ts';
+import { isKeyEnterPressed, isKeySpacePressed } from '../../utils/keyboard/keyboard.utility';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { TextComponentType } from '../text/types/component';
+import { TextDecorationType } from '../text/types/decoration';
+import { ToggleUnControlled as Toggle } from '../toggle/toggleUnControlled';
+import { OptionLabelSlice } from './components.ts/optionLabelSlice';
 import {
   OptionDivStyled,
   OptionFirstRowWrapperStyled,
@@ -16,8 +20,9 @@ import {
   OptionStyled,
   OptionSublabelContainer,
 } from './option.styled';
-import { IOptionStandAlone, OptionStateType } from './types';
-import { getHighlightedIndexes, getState } from './utils';
+import { IOptionStandAlone } from './types/option';
+import { OptionStateType } from './types/state';
+import { getHighlightedIndexes, getState } from './utils/option.utils';
 
 const OptionStandAlone = React.forwardRef(
   (

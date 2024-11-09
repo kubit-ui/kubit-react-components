@@ -4,7 +4,9 @@ import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 
 import { TitleWrapperStyled } from '../textArea.styled';
-import { TextAreaPropsThemeType, TextAreaTitleComponentType, TextAreaTitleType } from '../types';
+import { TextAreaTitleType } from '../types/textArea';
+import { TextAreaPropsThemeType } from '../types/textAreaTheme';
+import { TextAreaTitleComponentType } from '../types/titleComponent';
 
 export const TitleStandAlone = ({
   title,

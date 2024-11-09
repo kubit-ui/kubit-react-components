@@ -1,20 +1,20 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import {
-  useDeviceHeight,
-  useMediaDevice,
-  useScrollDetectionWithAutoFocus,
-  useScrollEffect,
-  useStylesV2,
-  useZoomEffect,
-} from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { CssProperty } from '@/utils';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useDeviceHeight } from '@/hooks/useDeviceHeight/useDeviceHeight';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useScrollDetectionWithAutoFocus } from '@/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
+import { useScrollEffect } from '@/hooks/useScrollEffect/useScrollEffect';
+import { useStylesV2 } from '@/hooks/useStyles/useStylesV2';
+import { useZoomEffect } from '@/hooks/useZoomEffect/useZoomEffect';
 
-import { Portal } from '../portal';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { CssProperty } from '../../utils/changeCssProperty/changeCssProperty';
+import { Portal } from '../portal/portal';
 import { DrawerStandAlone } from './drawerStandAlone';
-import { DrawerVariantStylesType, IDrawerControlled, IDrawerStandAlone } from './types';
+import { IDrawerControlled, IDrawerStandAlone } from './types/drawer';
+import { DrawerVariantStylesType } from './types/drawerTheme';
 
 /* Constants for useScrollEffect */
 const SCROLL_DISTANCE = 5;

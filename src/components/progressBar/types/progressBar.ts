@@ -1,6 +1,6 @@
-import { SliderTooltipType } from '@/components/slider';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { SliderTooltipType } from '../../slider/types/slider';
 import { ProgressBarSizeStylesType, ProgressBarVariantStylesType } from './progressBarTheme';
 
 export interface IProgressBarStandAlone {

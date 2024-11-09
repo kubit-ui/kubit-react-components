@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { renderProvider } from 'tests/renderProvider/renderProvider.utility';
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
 import { SliderHelperTextStandAlone } from '../components/sliderHelperTextStandAlone';
-import { SliderBaseStylesType, SliderStateType } from '../types';
+import { SliderBaseStylesType } from '../types/sliderTheme';
+import { SliderStateType } from '../types/state';
 
 const mockHelperTextProps = {
   styles: {} as SliderBaseStylesType,

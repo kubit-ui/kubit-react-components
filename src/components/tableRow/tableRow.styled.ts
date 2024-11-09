@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { getStyles, getTypographyStyles } from '@/utils';
-
-import { TableRowPropsStylesType } from './types';
+import { getStyles, getTypographyStyles } from '../../utils/getStyles/getStyles';
+import { TableRowPropsStylesType } from './types/tableRowTheme';
 
 export const TRStyled = styled.tr<{
   $styles?: TableRowPropsStylesType;

@@ -1,12 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon, IElementOrIcon } from '@/components/elementOrIcon';
 import { TooltipUnControlled as Tooltip } from '@/components/tooltip/tooltipUnControlled';
-import { useMediaDevice } from '@/hooks';
-import { ROLES } from '@/types';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { ROLES } from '@/types/role/role';
 
-import { SliderBaseStylesType, SliderStateType, SliderTooltipType } from '../types';
-import { isTooltipVisible } from '../utils';
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { SliderTooltipType } from '../types/slider';
+import { SliderBaseStylesType } from '../types/sliderTheme';
+import { SliderStateType } from '../types/state';
+import { isTooltipVisible } from '../utils/ui.utils';
 import { StyledThumb, StyledTooltipThumb } from './sliderThumbStandAlone.styled';
 
 interface ISliderThumbStandAlone {

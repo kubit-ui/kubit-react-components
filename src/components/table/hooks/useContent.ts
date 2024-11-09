@@ -1,4 +1,5 @@
-import * as React from 'react';
+/* eslint-disable complexity */
+import React from 'react';
 
 import {
   DividerContent,
@@ -8,7 +9,7 @@ import {
   IValue,
   TableDividerType,
   ValueConfigType,
-} from '../types';
+} from '../types/table';
 
 interface IUseContent extends Omit<ITableStandAlone, 'values' | 'headerVariant'> {
   hasSomeExpandedContent?: boolean;

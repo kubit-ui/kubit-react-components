@@ -3,9 +3,9 @@ import { renderHook } from '@testing-library/react-hooks';
 // mock hooks
 import * as styledComponents from 'styled-components';
 
-import { windowMatchMedia } from '@/tests/windowMatchMedia/';
-import { DeviceBreakpointsType } from '@/types/index';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
 import { useMediaDevice } from '../useMediaDevice';
 
 describe('useMediaDevice', () => {

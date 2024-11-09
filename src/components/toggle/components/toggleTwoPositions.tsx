@@ -1,15 +1,16 @@
 import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { POSITIONS, ROLES } from '@/types';
+import { POSITIONS } from '@/types/positions/positions';
+import { ROLES } from '@/types/role/role';
 
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 import {
   IconWrapperStyled,
   SliderContainerStyled,
   ToggleSpanSwitchStyled,
   ToggleWrapperStyled,
 } from '../toggle.styled';
-import { IToggleStandAlone } from '../types';
+import { IToggleStandAlone } from '../types/toggle';
 
 interface IToggleTwoPosition extends IToggleStandAlone {}
 

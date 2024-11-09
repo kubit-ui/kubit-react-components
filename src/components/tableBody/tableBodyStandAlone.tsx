@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { TBodyStyled } from './tableBody.styled';
-import { ITableBodyStandAlone } from './types';
+import { ITableBodyStandAlone } from './types/tableBody';
 
 const TableBodyStandAloneComponent = (
   {

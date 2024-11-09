@@ -1,12 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ActionBottomSheetControlled as ActionBottomSheet } from '@/components/actionBottomSheet';
 import { Button } from '@/components/button/button';
-import { ListOptions, ListOptionsOptionType, ListOptionsType } from '@/components/listOptions';
-import { Tabs } from '@/components/tabs';
-import { TextComponentType } from '@/components/text';
-import { DeviceBreakpointsType, POSITIONS } from '@/types';
 
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { POSITIONS } from '../../types/positions/positions';
+import { ActionBottomSheetControlled as ActionBottomSheet } from '../actionBottomSheet/actionBottomSheetControlled';
+import { ListOptions } from '../listOptions/listOptions';
+import { ListOptionsOptionType } from '../listOptions/types/listOptions';
+import { ListOptionsType } from '../listOptions/types/type';
+import { TabsUnControlled as Tabs } from '../tabs/tabsUnControlled';
+import { TextComponentType } from '../text/types/component';
 // styles
 import {
   ActionBottomSheetContainerStyled,
@@ -14,7 +17,7 @@ import {
   ContentContainerStyled,
   TabsContainerStyled,
 } from './functionalitiesModule.styled';
-import { IFunctionalitiesModuleStandAlone } from './types';
+import { IFunctionalitiesModuleStandAlone } from './types/functionalitiesModule';
 
 const FunctionalitiesModuleStandAloneComponent = (
   {

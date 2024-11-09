@@ -1,13 +1,17 @@
-import { DecorativePropsType, DecorativeType } from '@/components/decorativeElement';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { NavigationCardStylesPropsType } from '../types';
+import {
+  DecorativePropsType,
+  DecorativeType,
+} from '../../decorativeElement/types/decorativeElement';
+import { NavigationCardStylesPropsType } from '../types/navigationCardTheme';
 
 type PropsReturnType = {
   marginRight: string | undefined;
   additionalProps: object | undefined;
 };
 
+// eslint-disable-next-line complexity
 export const buildProps = (
   styles: NavigationCardStylesPropsType,
   element: DecorativePropsType | undefined,

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { getStyles, getTypographyStyles } from '@/utils/getStyles/getStyles';
 
-import { DropdownSelectedPropsStylesType } from './types';
+import { DropdownSelectedPropsStylesType } from './types/dropdownSelectedTheme';
 
 type DropdrownSelectedPropsStyles = {
   styles?: DropdownSelectedPropsStylesType;

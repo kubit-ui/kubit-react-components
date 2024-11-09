@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { TextAreaStandAlone } from './textAreaStandAlone';
-import { ITextArea, ITextAreaStandAlone, TextAreaVariantStylesType } from './types';
-import { getState } from './utils';
+import { ITextArea, ITextAreaStandAlone } from './types/textArea';
+import { TextAreaVariantStylesType } from './types/textAreaTheme';
+import { getState } from './utils/state.utils';
 
 const TEXT_AREA_STYLES = 'TEXT_AREA_STYLES';
 

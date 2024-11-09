@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useUtilsProvider } from '@/provider';
+import { useUtilsProvider } from '@/provider/utils/provider';
 
 // styles
 import { ElementStyled, HeaderRowStyled, HeaderStyled } from './header.styled';

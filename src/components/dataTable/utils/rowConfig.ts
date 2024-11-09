@@ -1,4 +1,4 @@
-import { DataTableColumnType, DataTableTableRowConfigType } from '../types';
+import { DataTableColumnType, DataTableTableRowConfigType } from '../types/dataTable';
 
 type ApplyGridToRowParamsType = {
   rowConfig?: DataTableTableRowConfigType;

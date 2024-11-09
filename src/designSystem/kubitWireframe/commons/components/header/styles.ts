@@ -1,9 +1,10 @@
 // fundations
-import { HeaderStylesType } from '@/components/header/types';
+import { HeaderStylesType } from '@/components/header/types/headerTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { BORDERS, RADIUS, SPACINGS } from '../../foundations';
 import { HeaderVariantType } from './variants';
 
 export const getHeaderStyles = (COLORS: {

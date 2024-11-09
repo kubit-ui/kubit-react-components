@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 import React from 'react';
 
-import { Borders as BaseBorders } from '../components';
+import { Borders as BaseBorders } from '../components/borders/borders';
 
 export const Borders = (): JSX.Element => {
   return <BaseBorders />;

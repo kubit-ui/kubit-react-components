@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Loader } from '@/components/loader';
-import { Text } from '@/components/text';
+import { Text } from '@/components/text/text';
 
+import { Loader } from '../../loader/loader';
 // styles
 import { LoadingWrapper } from '../inputDropdown.styled';
 import { ILoadingIconDropdown } from '../types/inputDropdown';

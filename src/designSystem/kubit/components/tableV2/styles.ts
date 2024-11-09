@@ -1,4 +1,4 @@
-import { TableStylesTypeV2 } from '@/components';
+import { TableStylesTypeV2 } from '@/components/tableV2/types/tableTheme';
 
 import { TableV2VariantType } from './variants';
 

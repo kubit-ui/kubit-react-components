@@ -1,4 +1,5 @@
-import { RadioButtonStateType } from '../types';
+/* eslint-disable complexity */
+import { RadioButtonStateType } from '../components/radioButton/types/state';
 
 /**
  * Get the state of the radioButton

@@ -1,7 +1,8 @@
-import { OperativeLayoutStylesType } from '@/components/operativeLayout';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { OperativeLayoutStylesType } from '@/components/operativeLayout/types/operativeLayoutTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { COLORS, SPACINGS } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
 import { OperativeLayoutVariantType } from './variants';
 
 export const OPERATIVE_LAYOUT_STYLES: OperativeLayoutStylesType<OperativeLayoutVariantType> = {

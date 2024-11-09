@@ -1,6 +1,6 @@
-import { TableHeadStylesType } from '@/components';
+import { TableHeadStylesType } from '@/components/tableHead/types/tableHeadTheme';
 
-import { Z_INDEX } from '../../foundations';
+import { Z_INDEX } from '../../foundations/zIndex';
 import { TableHeadVariantType } from './variants';
 
 export const TABLE_HEAD_STYLES: TableHeadStylesType<TableHeadVariantType> = {

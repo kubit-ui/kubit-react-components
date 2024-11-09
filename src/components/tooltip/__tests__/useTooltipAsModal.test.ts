@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 
-import { useTooltipAsModal } from '../hooks';
+import { useTooltipAsModal } from '../hooks/useTooltipAsModal';
 
 describe('useTooltipAsModal', () => {
   it('should return propTooltipAsModal when both propTooltipAsModal and styleTooltipAsModal are provided', () => {

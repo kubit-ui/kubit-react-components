@@ -1,4 +1,4 @@
-import { PillStylesType } from '@/components/pillV2/types';
+import { PillStylesType } from '@/components/pill/types/pillTheme';
 
 import { PILL_STYLES_DEFAULT } from './styles/default';
 import { PILL_STYLES_PILL_SELECTOR } from './styles/pillSelector';

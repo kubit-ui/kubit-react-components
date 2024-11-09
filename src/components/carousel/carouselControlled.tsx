@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStyles } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useStyles } from '@/hooks/useStyles/useStyles';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { CarouselStandAlone } from './carouselStandAlone';
-import { CarouselPropsStylesType, ICarouselControlled, ICarouselStandAlone } from './types';
+import { ICarouselControlled, ICarouselStandAlone } from './types/carousel';
+import { CarouselPropsStylesType } from './types/carouselTheme';
 
 const CarouselControlledComponent = React.forwardRef(
   <V extends string | unknown>(

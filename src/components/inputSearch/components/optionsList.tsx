@@ -1,14 +1,19 @@
-import * as React from 'react';
-import { ForwardedRef, forwardRef, useCallback, useMemo } from 'react';
+import React, { ForwardedRef, forwardRef, useCallback, useMemo } from 'react';
 
 import { ListOptions } from '@/components/listOptions/listOptions';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
-import { buildOptionsScreenReaderText } from '../helpers';
-import { MultipleRef } from '../hooks/useInputSearch';
+import { buildOptionsScreenReaderText } from '../helpers/screenReader';
 import { NumMatchesScreenReader } from '../inputSearch.styled';
-import { IOptionsListSearchList } from '../types';
+import { IOptionsListSearchList } from '../types/inputSearch';
 import { LoadingIcon } from './loadingIcon';
+
+interface MultipleRef {
+  refInput?: React.MutableRefObject<HTMLInputElement | undefined>;
+  refList: ForwardedRef<unknown> | (({ ref, index }) => void);
+  refIcon: React.MutableRefObject<HTMLSpanElement | undefined>;
+  refActionBottomSheet: React.ForwardedRef<HTMLDivElement> | undefined | null;
+}
 
 export const OptionsListComponent = (
   props: IOptionsListSearchList,

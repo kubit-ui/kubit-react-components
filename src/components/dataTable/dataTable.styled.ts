@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { getStyles } from '@/utils';
-
-import { DataTablePropsStylesType } from './types';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import { DataTablePropsStylesType } from './types/dataTableTheme';
 
 export const WrapperStyled = styled.div<{
   $styles?: DataTablePropsStylesType;

@@ -1,18 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { DeviceBreakpointsType } from '@/types';
 import { pickAriaProps } from '@/utils/aria/aria';
 
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
 // inner components
-import { FooterSection } from './components';
+import { FooterSection } from './components/footerSection';
 import { FooterStyled } from './footer.styled';
-import {
-  ContentDirectionType,
-  FooterMobileColumnFlow,
-  FooterPositionType,
-  IFooterStandAlone,
-  MobileSort,
-} from './types';
+import { ContentDirectionType } from './types/direction';
+import { FooterMobileColumnFlow, IFooterStandAlone, MobileSort } from './types/footer';
+import { FooterPositionType } from './types/position';
 import { getOrderConfiguration } from './utils/getOrderConfiguration';
 
 // simple container tag
@@ -66,6 +62,7 @@ const FooterStandAloneComponent = (
 
     let defaultPositionCounter = 0;
 
+    // eslint-disable-next-line complexity
     childrenArray.forEach((child: React.ReactNode) => {
       let position = (child as JSX.Element)?.props?.['data-position'];
 

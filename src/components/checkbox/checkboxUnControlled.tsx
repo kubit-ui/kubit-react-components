@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useCheckbox } from '@/hooks/useCheckbox/useCheckbox';
 
 import { CheckboxControlled } from './checkboxControlled';
-import { ICheckboxUnControlled } from './types/';
+import { ICheckboxUnControlled } from './types/checkbox';
 
 const CheckboxUnControlledComponent = <V extends string | unknown>(
   {
@@ -59,3 +59,5 @@ const CheckboxUnControlled = React.forwardRef(CheckboxUnControlledComponent) as 
 ) => ReturnType<typeof CheckboxUnControlledComponent>;
 
 export { CheckboxUnControlled };
+
+export { CheckboxUnControlled as Checkbox };

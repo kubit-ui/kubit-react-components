@@ -1,4 +1,4 @@
-import { CrumbType } from '../types';
+import { CrumbType } from '../types/breadcrumbs';
 
 export const crumbMaxCharName = (
   crumb: CrumbType,

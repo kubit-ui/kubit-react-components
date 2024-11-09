@@ -1,19 +1,26 @@
 import React, { ForwardedRef, MutableRefObject, forwardRef, useRef } from 'react';
 
-import { InputControlled as Input } from '@/components/input';
-import { PopoverComponentType } from '@/components/popover';
-import { useId } from '@/hooks';
-import { DeviceBreakpointsType, ROLES } from '@/types';
-import { isKeyTabPressed } from '@/utils';
+import { useId } from '@/hooks/useId/useId';
 
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { ROLES } from '../../types/role/role';
+import { isKeyTabPressed } from '../../utils/keyboard/keyboard.utility';
+import { InputControlled as Input } from '../input/inputControlled';
 import { AUTOCOMPLETE_TYPE } from '../input/types/input';
-import { PopoverSearchList } from './components';
-import { shouldOpenPopover } from './helpers';
+import { PopoverComponentType } from '../popover/types/component';
+import { PopoverSearchList } from './components/popoverSearchList';
+import { shouldOpenPopover } from './helpers/popover';
 // helpers
-import { MultipleRef } from './hooks/useInputSearch';
 // styles
 import { InputSearchStyled } from './inputSearch.styled';
-import { IInputSearchStandAlone } from './types';
+import { IInputSearchStandAlone } from './types/inputSearch';
+
+interface MultipleRef {
+  refInput?: MutableRefObject<HTMLInputElement | undefined>;
+  refList: ForwardedRef<unknown> | (({ ref, index }) => void);
+  refIcon: MutableRefObject<HTMLSpanElement | undefined>;
+  refActionBottomSheet: React.ForwardedRef<HTMLDivElement> | undefined | null;
+}
 
 export const InputSearchStandAloneComponent = (
   { error, dataTestId = 'input-search', ...props }: IInputSearchStandAlone,

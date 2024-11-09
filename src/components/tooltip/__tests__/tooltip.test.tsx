@@ -1,17 +1,20 @@
 import { act, fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { CssAnimationTimingFunction, CssAnimationVariants } from '@/components/cssAnimation';
-import { ENTER } from '@/constants';
+import { ENTER } from '@/constants/keyboardKeys/keyboardKeys';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType, ROLES } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { ROLES } from '@/types/role/role';
 
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
+import { CssAnimationTimingFunction } from '../../cssAnimation/types/cssAnimation';
+import { CssAnimationVariants } from '../../cssAnimation/types/variant';
 import { TooltipUnControlled as Tooltip } from '../tooltipUnControlled';
-import { ITooltipUnControlled, TooltipAlignType } from '../types';
+import { ITooltipUnControlled } from '../types/tooltip';
+import { TooltipAlignType } from '../types/tooltipAlign';
 
 const mockProps: ITooltipUnControlled = {
   children: 'text',

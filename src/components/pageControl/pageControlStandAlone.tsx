@@ -1,6 +1,7 @@
-import * as React from 'react';
+/* eslint-disable complexity */
+import React from 'react';
 
-import { ArrowControlStandAlone } from './components';
+import { ArrowControlStandAlone } from './components/arrowControlStandAlone';
 import {
   DotsWrapper,
   LeftArrowControlWrapperStyled,
@@ -9,7 +10,8 @@ import {
   RightArrowControlWrapperStyled,
 } from './pageControl.styled';
 //types
-import { IPageControlStandAlone, PageControlState } from './types';
+import { IPageControlStandAlone } from './types/pageControl';
+import { PageControlState } from './types/pageControlStates';
 
 const PageControlStandAloneComponent = (
   {

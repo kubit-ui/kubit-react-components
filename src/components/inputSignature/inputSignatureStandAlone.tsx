@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { Text } from '../text';
+import { Text } from '@/components/text/text';
+
 import {
   InputSignatureCanvasStyled,
   InputSignatureContainerStyled,
   InputSignaturePlaceholderStyled,
 } from './inputSignature.styled';
-import { IInputSignatureStandAlone, InputSignatureState } from './types';
+import { IInputSignatureStandAlone } from './types/inputSignature';
+import { InputSignatureState } from './types/inputSignatureState';
 
 export const InputSignatureStandAloneComponent = (
   { styles, canvasRef, dataTestid = 'input-signature', ...props }: IInputSignatureStandAlone,

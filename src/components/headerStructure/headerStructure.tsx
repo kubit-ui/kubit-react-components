@@ -1,13 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useMediaDevice, useScrollPosition } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useScrollPosition } from '@/hooks/useScrollPosition/useScrollPosition';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
-import { IHeaderStandAlone } from '../header/types';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { IHeaderStandAlone } from '../header/types/header';
 import { HeaderStandAlone } from './headerStructureStandAlone';
-import { HeaderStructurePropsStylesType, IHeaderStructure } from './types';
+import { IHeaderStructure } from './types/headerStructure';
+import { HeaderStructurePropsStylesType } from './types/headerStructureTheme';
 
 const HeaderStructureComponent = React.forwardRef(
   <V extends string | unknown>(

@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useId } from '@/hooks';
+import { useId } from '@/hooks/useId/useId';
 
+import { ButtonType } from '../button/types/type';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import {
   AccordionContainerStyled,
   AccordionContentStyled,
@@ -24,7 +24,7 @@ import {
   AccordionTriggerStyled,
   LineSeparatorContainerStyled,
 } from './accordion.styled';
-import type { IAccordionStandAlone } from './types';
+import type { IAccordionStandAlone } from './types/accordion';
 
 const ACCORDION_BASE_ID = 'AccordionComponent';
 

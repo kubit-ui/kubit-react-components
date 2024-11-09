@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { DotUseStateType } from './types';
+import { DotUseStateType } from './types/badge';
 import { BadgeVariantStylesType } from './types/badgeTheme';
 
 type BadgeStylesProps = {

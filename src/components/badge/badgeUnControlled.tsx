@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { BadgeControlled } from './badgeControlled';
 import { IBadgeUnControlled } from './types/badge';
@@ -70,3 +70,5 @@ const BadgeUnControlled = React.forwardRef(BadgeUnControlledComponent) as <
 ) => JSX.Element;
 
 export { BadgeUnControlled };
+
+export { BadgeUnControlled as Badge };

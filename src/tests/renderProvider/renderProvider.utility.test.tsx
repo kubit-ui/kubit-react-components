@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
-import { Container } from '@/components/index';
+import { Container } from '@/components/container/container';
 
 import { renderProvider } from './renderProvider.utility';
 

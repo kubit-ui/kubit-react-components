@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
-import { TagV2 } from '@/components';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { TagV2 } from '@/components/tagV2/tag';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { TableDivider as Story } from '../tableDivider';
-import { ITableDivider } from '../types';
+import { ITableDivider } from '../types/tableDivider';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

@@ -5,10 +5,13 @@ import { css } from 'styled-components';
 import {
   LineSeparatorPositionType,
   LineSeparatorStylesType,
-} from '@/components/lineSeparator/types';
+} from '@/components/lineSeparator/types/lineSeparatorTheme';
 
 // fundations
-import { BORDERS, COLORS, FONT_WEIGHT, SPACINGS, TEXT_ALIGN } from '../../foundations';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
 import { TextVariantType } from '../text/variants';
 import { LineSeparatorLabelVariantType, LineSeparatorLineVariantType } from './variants';
 

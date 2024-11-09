@@ -6,6 +6,7 @@ export type {
   TooltipContentType,
   TooltipCloseIconType,
   TooltipPopoverType,
+  ITooltip,
 } from './tooltip';
 export type { TooltipVariantStylesProps, TooltipStylesType } from './tooltipTheme';
 // enum

@@ -1,16 +1,20 @@
 import {
-  ArrowsControlCommonProps,
   ArrowsControlState,
-  PageControlCommonProps,
   PageControlState,
+} from '@/components/pageControl/types/pageControlStates';
+import {
+  ArrowsControlCommonProps,
+  PageControlCommonProps,
   PageControlStylesType,
-} from '@/components/pageControl/types';
+} from '@/components/pageControl/types/pageControlTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import {
   shadowAfterStylesSpecificProps,
   transformShadow,
 } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { BORDERS, RADIUS, SIZES, SPACINGS } from '../../foundations';
 import { ArrowsControlVariant, PageControlVariant } from './variants';
 
 export const getPageControlStyles = (COLORS: {

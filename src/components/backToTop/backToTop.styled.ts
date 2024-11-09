@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { BackToTopStateType, IBackTopButtonStyled } from './types';
+import { IBackTopButtonStyled } from './types/backToTop';
+import { BackToTopStateType } from './types/state';
 
 export const BackToTopStyled = styled.button<IBackTopButtonStyled>`
   position: fixed;

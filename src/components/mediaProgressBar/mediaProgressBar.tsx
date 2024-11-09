@@ -1,16 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { useMediaProgressBar } from './hooks/useMediaProgressBar';
 import { MediaProgressBarStandalone } from './mediaProgressBarStandAlone';
-import {
-  IMediaProgressBar,
-  IMediaProgressBarStandAlone,
-  MediaProgressBarVariantStylesType,
-} from './types';
+import { IMediaProgressBar, IMediaProgressBarStandAlone } from './types/mediaProgressBar';
+import { MediaProgressBarVariantStylesType } from './types/mediaProgressBarTheme';
 
 const MediaProgressBarComponent = React.forwardRef(
   <V extends string | unknown>(

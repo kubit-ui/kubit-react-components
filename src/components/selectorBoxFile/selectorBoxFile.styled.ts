@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { srOnlyMixin } from '@/styles/mixins/srOnly.mixin';
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { SelectorBoxFilePropsStylesType, SelectorBoxFileStateType } from './types';
+import { SelectorBoxFilePropsStylesType } from './types/selectorBoxFileTheme';
+import { SelectorBoxFileStateType } from './types/state';
 
 type SelectorBoxFileStyles = {
   styles: SelectorBoxFilePropsStylesType;

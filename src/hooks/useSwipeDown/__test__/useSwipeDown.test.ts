@@ -2,9 +2,9 @@ import { act, fireEvent } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 
 import * as useMediaDevice from '@/hooks/useMediaDevice/useMediaDevice';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
 import { useSwipeDown } from '../useSwipeDown';
 
 let containerRefMock;

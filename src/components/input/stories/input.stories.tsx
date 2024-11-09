@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ICONS } from '@/assets';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { additionalInfoAction, labelSecondary } from '../components/stories/stories';
 import { InputUnControlled as Story } from '../inputUnControlled';
-import { IInputUnControlled, InputTitleComponentType } from '../types';
+import { IInputUnControlled } from '../types/input';
 import { InputIconPosition, InputState } from '../types/inputTheme';
+import { InputTitleComponentType } from '../types/titleComponent';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

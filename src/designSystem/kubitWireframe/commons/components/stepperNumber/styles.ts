@@ -1,15 +1,19 @@
+import { StepperNumberOrientationType } from '@/components/stepperNumber/types/orientation';
+import { StepperNumberStateType } from '@/components/stepperNumber/types/state';
+import { StepperNumberStylesType } from '@/components/stepperNumber/types/stepperNumberTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import {
-  StepperNumberOrientationType,
-  StepperNumberStateType,
-  StepperNumberStylesType,
-} from '@/components/stepperNumber/types';
+  FONT_WEIGHT,
+  TEXT_ALIGN,
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import {
   shadowAfterStylesSpecificProps,
   transformShadow,
 } from '@/designSystem/kubitWireframe/utils/wireframe';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS, TEXT_ALIGN } from '../../foundations';
-import { TextVariantType } from '../text';
+import { TextVariantType } from '../../../../kubit/components/text/variants';
 import { StepperNumberVariantType } from './variants';
 
 export const getStepperNumberStyles = (COLORS: {

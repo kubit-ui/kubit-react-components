@@ -1,4 +1,4 @@
-import { TooltipAlignType } from '../../types';
+import { TooltipAlignType } from '../../types/tooltipAlign';
 import { Axis } from '../types';
 
 export const getMainAxisFromPlacement = (placement: TooltipAlignType): Axis => {

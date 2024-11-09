@@ -1,5 +1,6 @@
-import { GridConfigType } from '@/components/grid';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+
+import { GridConfigType } from '../../grid/types/grid';
 
 export type ConfigByDevice = {
   gap?: string;

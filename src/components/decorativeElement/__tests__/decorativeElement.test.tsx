@@ -1,14 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-// fixture
-import { ICONS, ILLUSTRATIONS } from '@/assets';
-import { IconHighlightedSizeType } from '@/components/iconHighlighted';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { ILLUSTRATIONS } from '@/assets/storybook/illustrations/illustrations';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { DecorativeElement } from '../index';
-import { DecorativePropsType, DecorativeType } from '../types';
+// fixture
+import { IconHighlightedSizeType } from '../../iconHighlighted/types/size';
+import { DecorativeElement } from '../decorativeElementStandAlone';
+import { DecorativePropsType, DecorativeType } from '../types/decorativeElement';
 
 const illustration = ILLUSTRATIONS.ILLUSTRATION;
 const icon = ICONS.ICON_CHEVRON_DOWN;

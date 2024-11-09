@@ -1,13 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { PageControlArrowControlType } from '../types/pageControl';
 //types
-import {
-  ArrowsControlState,
-  ArrowsControlVariantStylesType,
-  PageControlArrowControlType,
-} from '../types';
+import { ArrowsControlState } from '../types/pageControlStates';
+import { ArrowsControlVariantStylesType } from '../types/pageControlTheme';
 
 interface IArrowControlStandAlone extends PageControlArrowControlType {
   arrowsControlStyles: ArrowsControlVariantStylesType;

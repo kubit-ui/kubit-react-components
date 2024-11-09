@@ -1,14 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { ItemRove } from '@/components/itemRove/itemRove';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useId } from '@/hooks';
+import { useId } from '@/hooks/useId/useId';
 import { useTabs } from '@/hooks/useTabs/useTabs';
-import { DeviceBreakpointsType, ROLES } from '@/types';
 
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { ROLES } from '../../types/role/role';
+import { ButtonType } from '../button/types/type';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 // styles
 import {
   LabelHiddenContainer,

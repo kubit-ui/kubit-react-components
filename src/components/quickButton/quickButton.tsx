@@ -1,20 +1,19 @@
 //vendors
-import * as React from 'react';
+import React from 'react';
 
-import { States, useManageState } from '@/hooks';
+import { States, useManageState } from '@/hooks/useManageState/useManageState';
 //hooks
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
-import { ButtonType } from '../button/types';
+//hooks
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { ButtonType } from '../button/types/type';
 //components
 import { QuickButtonStandAlone } from './quickButtonStandAlone';
-import {
-  IQuickButton,
-  IQuickButtonStandAlone,
-  QuickButtonState,
-  QuickButtonVariantStylesType,
-} from './types';
+import { IQuickButton, IQuickButtonStandAlone } from './types/quickButton';
+import { QuickButtonVariantStylesType } from './types/quickButtonTheme';
+import { QuickButtonState } from './types/state';
 
 //types
 

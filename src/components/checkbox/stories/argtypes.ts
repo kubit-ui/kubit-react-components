@@ -1,7 +1,7 @@
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn } from '@/types';
-import { AriaLiveOptionType } from '@/types/ariaLiveOption';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
+import { ArgTypesReturn } from '@/types/type/type';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {

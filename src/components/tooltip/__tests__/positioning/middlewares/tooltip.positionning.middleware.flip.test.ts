@@ -1,7 +1,7 @@
 import { flip } from '@/components/tooltip/positioning/middlewares/flip';
 import { MiddlewareState } from '@/components/tooltip/positioning/types';
 import * as detectOverFlowUtils from '@/components/tooltip/positioning/utils/detectOverflow';
-import { TooltipAlignType } from '@/components/tooltip/types';
+import { TooltipAlignType } from '@/components/tooltip/types/tooltipAlign';
 
 describe('flip middleware', () => {
   afterEach(() => {

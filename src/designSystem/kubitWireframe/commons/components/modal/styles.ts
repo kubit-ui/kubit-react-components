@@ -1,8 +1,14 @@
-import { ModalStylesType } from '@/components/modal/types';
-import { DeviceBreakpointsType } from '@/types';
+import { ModalStylesType } from '@/components/modal/types/modalTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import {
+  FONT_WEIGHT,
+  TEXT_ALIGN,
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS, TEXT_ALIGN } from '../../foundations';
 import { FooterVariants } from '../footer/variants';
 import { PopoverVariantType } from '../popover/variants';
 import { ModalVariantType } from './variants';

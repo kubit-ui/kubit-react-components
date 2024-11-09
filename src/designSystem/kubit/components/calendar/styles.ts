@@ -2,20 +2,17 @@ import { ListDaysStateType } from '@/components/calendar/list/types/state';
 import { MonthSelectorStateType } from '@/components/calendar/selector/monthSelector/types/state';
 import { SelectorStateType } from '@/components/calendar/selector/types/state';
 import { YearSelectorStateType } from '@/components/calendar/selector/yearSelector/types/state';
-import { CalendarStylesType, CalendarVariantType } from '@/components/calendar/types';
-import { DeviceBreakpointsType } from '@/types';
+import { CalendarStylesType } from '@/components/calendar/types/calendarTheme';
+import { CalendarVariantType } from '@/components/calendar/types/variant';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import {
-  BORDERS,
-  COLORS,
-  FONT_WEIGHT,
-  RADIUS,
-  SHADOW,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-} from '../../foundations';
-import { TextVariantType } from '../text';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SHADOW } from '../../foundations/shadow';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { ButtonSizeType, ButtonVariantType } from '../variants';
 
 export const CALENDAR_STYLES: CalendarStylesType = {

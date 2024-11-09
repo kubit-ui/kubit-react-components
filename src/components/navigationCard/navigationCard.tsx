@@ -1,12 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useMediaDevice, useStyles } from '@/hooks';
-import { useGenericComponents } from '@/provider';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useStyles } from '@/hooks/useStyles/useStyles';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { useGenericComponents } from '../../provider/genericComponents/genericComponentsProvider';
 import { NavigationCardStandalone } from './navigationCardStandAlone';
-import { INavigationCard, INavigationCardStandAlone, NavigationCardStylesPropsType } from './types';
+import { INavigationCard, INavigationCardStandAlone } from './types/navigationCard';
+import { NavigationCardStylesPropsType } from './types/navigationCardTheme';
 
 const NavigationCardComponent = React.forwardRef(
   <V extends string | unknown>(

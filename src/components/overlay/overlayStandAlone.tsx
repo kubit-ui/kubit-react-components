@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { OverlayStyled } from './overlay.styled';
-import { IOverlayStandAlone } from './types';
+import { IOverlayStandAlone } from './types/overlay';
 
 const OverlayStandAloneComponent = (
   { dataTestId = 'overlay', ...props }: IOverlayStandAlone,

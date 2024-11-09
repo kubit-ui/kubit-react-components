@@ -1,15 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components//button';
 import { Dot } from '@/components/dot/dot';
-//components
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { AriaLiveOptionType } from '@/types/ariaLiveOption';
-import { pickAriaProps } from '@/utils';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
 
+import { pickAriaProps } from '../../utils/aria/aria';
+import { ButtonType } from '../button/types/type';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
 import {
   BadgeContainerStyled,
   BadgeDotStyled,
@@ -17,7 +16,7 @@ import {
   BadgeStyled,
   SpanContainerIconAndDot,
 } from './badge.styled';
-import { IBadgeStandAlone } from './types';
+import { IBadgeStandAlone } from './types/badge';
 
 const BadgeStandAloneComponent = (
   { dataTestId = 'badge', ...props }: IBadgeStandAlone,

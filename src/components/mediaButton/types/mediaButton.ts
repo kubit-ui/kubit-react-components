@@ -1,7 +1,8 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILoader } from '@/components/loader/types';
-import { CustomTokenTypes } from '@/types';
+// import { ILoader } from '@/components/loader';
+import { ILoader } from '@/components/loader/types/loader';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import {
   MediaButtonVariantStateStylesType,
   MediaButtonVariantStylesType,

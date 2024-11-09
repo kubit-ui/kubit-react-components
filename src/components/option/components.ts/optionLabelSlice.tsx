@@ -1,6 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Text, TextComponentType, TextDecorationType } from '@/components/text';
+import { Text } from '@/components/text/text';
+
+import { TextComponentType } from '../../text/types/component';
+import { TextDecorationType } from '../../text/types/decoration';
 
 /**
  * @description

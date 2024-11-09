@@ -1,6 +1,6 @@
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { IOperativeLayoutBiColor } from '../types';
+import { IOperativeLayoutBiColor } from '../types/operativeLayout';
 
 const MAX_PERCENTAGE = 100;
 
@@ -10,6 +10,7 @@ type getBgColorReturnValuesType = {
   rightBgColor?: string;
 };
 
+// eslint-disable-next-line complexity
 export const getBgColor = (
   mainContainerWidth: number | null,
   asideContainerPosition: number | null,

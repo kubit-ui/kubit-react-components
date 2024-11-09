@@ -1,13 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useMediaDevice, useScrollDetectionWithAutoFocus } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { useScrollDetectionWithAutoFocus } from '@/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
-import { TOOLTIP_STYLES } from './constants';
-import { useTooltipAsModal, useTooltipAsModalAriaLabel } from './hooks';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { useTooltipAsModal } from './hooks/useTooltipAsModal';
+import { useTooltipAsModalAriaLabel } from './hooks/useTooltipAsModalAriaLabel';
 import { TooltipStandAlone } from './tooltipStandAlone';
-import { ITooltipControlled, TooltipVariantStylesProps } from './types';
+import { ITooltipControlled } from './types/tooltip';
+import { TooltipVariantStylesProps } from './types/tooltipTheme';
 
 const TooltipControlledComponent = <V extends string | unknown>({
   tooltipAsModal: propTooltipAsModal,
@@ -16,7 +20,7 @@ const TooltipControlledComponent = <V extends string | unknown>({
   tooltipAriaLabel,
   ...props
 }: ITooltipControlled<V>): JSX.Element => {
-  const styles = useStyles<TooltipVariantStylesProps, V>(TOOLTIP_STYLES, props.variant, ctv);
+  const styles = useStyles<TooltipVariantStylesProps, V>(STYLES_NAME.TOOLTIP, props.variant, ctv);
   const mediaDevice = useMediaDevice();
   const innerTooltipRef = React.useRef<HTMLDivElement>(null);
   const helpAriaLabel = useTooltipAsModalAriaLabel(innerTooltipRef);

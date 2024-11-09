@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useMediaDevice } from '@/hooks';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 
-import { IVideoUnControlled } from './types';
+import { IVideoUnControlled } from './types/video';
 import { VideoControlled } from './videoControlled';
 
 export const VideoUnControlled = ({
@@ -250,3 +250,5 @@ export const VideoUnControlled = ({
     />
   );
 };
+
+export { VideoUnControlled as Video };

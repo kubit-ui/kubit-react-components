@@ -1,10 +1,13 @@
 // types
-import { BreadcrumbsStateType, BreadcrumbsStylesType } from '@/components/breadcrumbs/types';
-import { TextDecorationType } from '@/components/text/types';
-import { DeviceBreakpointsType } from '@/types';
+import { BreadcrumbsStylesType } from '@/components/breadcrumbs/types/breadcrumbsTheme';
+import { BreadcrumbsStateType } from '@/components/breadcrumbs/types/state';
+import { TextDecorationType } from '@/components/text/types/decoration';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 // constants
-import { COLORS, FONT_WEIGHT, PARAGRAPH, SIZES, TEXT_ALIGN } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { FONT_WEIGHT, PARAGRAPH, TEXT_ALIGN } from '../../foundations/typography';
 import { BreadcrumbsVariantType } from './variants';
 
 const commonProps = {

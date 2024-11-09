@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-import { getStyles } from '@/utils';
-
+import { getStyles } from '../../utils/getStyles/getStyles';
 // enums
-import { PageControlState } from './types';
+import { PageControlState } from './types/pageControlStates';
 import {
   ArrowsControlVariantStylesType,
   PageControlVariantStylesType,

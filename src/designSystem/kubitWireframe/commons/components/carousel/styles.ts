@@ -1,6 +1,9 @@
-import { CarouselArrowStateType, CarouselStylesType } from '@/components/carousel/types';
+import { CarouselStylesType } from '@/components/carousel/types/carouselTheme';
+import { CarouselArrowStateType } from '@/components/carousel/types/state';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 
-import { BORDERS, RADIUS, SIZES, SPACINGS } from '../../foundations';
 import { CarouselVariantType } from './variants';
 
 const buttonStyles = (COLORS: { [key: string]: { [key: string]: string } }) => {

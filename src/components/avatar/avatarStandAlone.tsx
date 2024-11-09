@@ -1,15 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
 import { Dot } from '@/components/dot/dot';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Link } from '@/components/link/link';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 import { pickAriaProps } from '@/utils/aria/aria';
 
+import { ButtonType } from '../button/types/type';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { AvatarDotStyled, AvatarLinkStyled, AvatarStyled } from './avatar.styled';
-import { AvatarBackgroundColor, AvatarContentType, IAvatarStandAlone } from './types/';
+import { IAvatarStandAlone } from './types/avatar';
+import { AvatarBackgroundColor, AvatarContentType } from './types/content';
 
 export const AvatarStandAloneComponent = (
   {

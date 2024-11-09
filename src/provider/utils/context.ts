@@ -1,7 +1,6 @@
 import { createContext } from 'react';
 
-import { FormatMonthOptionType, FormatWeekdayOptionType } from '@/types';
-
+import { FormatMonthOptionType, FormatWeekdayOptionType } from '../../types/date/date';
 import { DateFormatOptions, FORMAT_DATE } from './types';
 
 export type UtilsContextType = {

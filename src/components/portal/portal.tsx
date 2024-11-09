@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { createPortal } from 'react-dom';
 
-import { IPortal } from './types';
+import { IPortal } from './types/portal';
 
 /**
  * Creates a wrapper element and appends it to the <body> tag.

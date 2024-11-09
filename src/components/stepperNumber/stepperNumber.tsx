@@ -1,15 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { StepperNumberStandAlone } from './stepperNumberStandAlone';
-import {
-  IStepperNumber,
-  IStepperNumberStandAlone,
-  StepperNumberDimensionStylesType,
-  StepperNumberOrientationType,
-} from './types';
+import { StepperNumberOrientationType } from './types/orientation';
+import { IStepperNumber, IStepperNumberStandAlone } from './types/stepperNumber';
+import { StepperNumberDimensionStylesType } from './types/stepperNumberTheme';
 
 const STEPPER_NUMBER_STYLES = 'STEPPER_NUMBER_STYLES';
 

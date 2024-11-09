@@ -1,22 +1,21 @@
+/* eslint-disable complexity */
 import { CSSProp, css } from 'styled-components';
 
-import {
-  AfterOrBeforeType,
-  BackgroundTypes,
-  BorderTypes,
-  BoxShadowTypes,
-  CommonStyleType,
-  DisplayTypes,
-  MarginTypes,
-  MeasuresTypes,
-  PaddingTypes,
-  PointerTypes,
-  PositionTypes,
-  ScrollTypes,
-  TypographyTypes,
-  WordWrapTypes,
-} from '@/types/styles';
 import { AnimationType } from '@/types/styles/animation';
+
+import { BackgroundTypes } from '../../types/styles/background';
+import { BorderTypes } from '../../types/styles/border';
+import { AfterOrBeforeType, CommonStyleType } from '../../types/styles/commonStyle';
+import { DisplayTypes } from '../../types/styles/display';
+import { MarginTypes } from '../../types/styles/margin';
+import { MeasuresTypes } from '../../types/styles/measures';
+import { PaddingTypes } from '../../types/styles/padding';
+import { PointerTypes } from '../../types/styles/pointer';
+import { PositionTypes } from '../../types/styles/position';
+import { ScrollTypes } from '../../types/styles/scroll';
+import { BoxShadowTypes } from '../../types/styles/shadow';
+import { TypographyTypes } from '../../types/styles/typography';
+import { WordWrapTypes } from '../../types/styles/wordWrap';
 
 /**
  * Get scroll styles.

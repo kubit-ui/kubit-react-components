@@ -13,15 +13,11 @@ const mockProps = {
   onClose: jest.fn(),
 };
 
-jest.mock('../../../../../assets/storybook/icons/icon_x_close.svg', () => (
-  <img alt="closeIcon" src="" />
-));
-
 describe('ErrorBoundary Modal Tests', () => {
   it('Should be call onClickClose function when closeButton is clicked. Default open is true', () => {
-    const { getByAltText } = renderProvider(<ErrorBoundaryModal {...mockProps} />);
+    const { getByRole } = renderProvider(<ErrorBoundaryModal {...mockProps} />);
 
-    const closeButton = getByAltText('closeIcon');
+    const closeButton = getByRole('button', { name: 'Close Icon' });
     expect(closeButton).toBeInTheDocument();
   });
 

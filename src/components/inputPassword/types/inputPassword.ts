@@ -1,11 +1,11 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
 import {
   ERROR_EXECUTION,
   IInputStandAlone,
   INTERNAL_ERROR_EXECUTION,
-} from '@/components/input/types';
-import { CustomTokenTypes } from '@/types';
-
+} from '../../input/types/input';
 import { InputPasswordStylesProps } from './inputPasswordTheme';
 
 type propsToOmitInputBasic =

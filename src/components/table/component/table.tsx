@@ -1,10 +1,11 @@
-import * as React from 'react';
+/* eslint-disable complexity */
+import React from 'react';
 
 import { Footer } from '@/components/footer/footer';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { useId } from '@/hooks';
-import { ROLES } from '@/types';
+import { useId } from '@/hooks/useId/useId';
+import { ROLES } from '@/types/role/role';
 import { pickAriaProps } from '@/utils/aria/aria';
 
 import {
@@ -16,7 +17,7 @@ import {
   TableRowHeaderStyled,
   TableStyled,
 } from '../table.styled';
-import { ConfigType, ITableStandAlone } from '../types';
+import { ConfigType, ITableStandAlone } from '../types/table';
 import { TableRow } from './tableRow';
 
 interface ITableComponent extends Omit<ITableStandAlone, 'headerVariant'> {

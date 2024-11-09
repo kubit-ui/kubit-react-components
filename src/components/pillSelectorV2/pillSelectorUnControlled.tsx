@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
 import { PillSelectorControlled } from './pillSelectorControlled';
-import { IPillSelectorUnControlled, PillSelectorType } from './types';
+import { IPillSelectorUnControlled } from './types/pillSelector';
+import { PillSelectorType } from './types/pillSelectorType';
 
 const PillSelectorUnControlledComponent = (
   {
@@ -31,3 +32,5 @@ const PillSelectorUnControlledComponent = (
 };
 
 export const PillSelectorUnControlled = React.forwardRef(PillSelectorUnControlledComponent);
+
+export { PillSelectorUnControlled as PillSelectorV2 };

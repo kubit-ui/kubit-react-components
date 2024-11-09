@@ -1,14 +1,15 @@
-import * as React from 'react';
+import React from 'react';
+
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { POSITIONS } from '@/types/positions/positions';
 
 import {
   CssAnimationConfig,
   CssAnimationExecuteOption,
-  CssAnimationType,
   ICssAnimationOptions,
-} from '@/components/cssAnimation';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
-import { POSITIONS } from '@/types/positions';
-
+} from '../../cssAnimation/types/cssAnimation';
+import { CssAnimationType } from '../../cssAnimation/types/variant';
 import type { PopoverComponentType } from './component';
 import type { PopoverVariantStylesType } from './popoverTheme';
 import type { PopoverPositionVariantType } from './positionVariant';

@@ -1,4 +1,4 @@
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 export type OperativeLayoutConfigByDevice = {
   gap?: string;

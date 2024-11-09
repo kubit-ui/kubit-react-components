@@ -1,5 +1,6 @@
 import { getAlignmentSides } from '@/components/tooltip/positioning/utils/getAlignmentSides';
-import { TooltipAlignType } from '@/components/tooltip/types';
+
+import { TooltipAlignType } from '../../types/tooltipAlign';
 
 describe('Tooltip positioning - getAlignmentSides', () => {
   it('main is y, length is height', () => {

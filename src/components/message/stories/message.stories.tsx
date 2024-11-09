@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
-import { LinkTargetType } from '@/components/link';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
+import { LinkTargetType } from '../../link/types/target';
 import { MessageUnControlled as Story } from '../messageUnControlled';
 import { argtypes } from './argtypes';
 

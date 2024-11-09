@@ -1,14 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useInput } from '@/hooks/useInput/useInput';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { InputTypeType } from '@/types/inputType/inputType';
 
-import { InputTypeType } from '../input';
-import { INTERNAL_ERROR_EXECUTION, MASK_TYPE } from '../input/types';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { INTERNAL_ERROR_EXECUTION, MASK_TYPE } from '../input/types/input';
 import { InputPhoneStandAlone } from './inputPhoneStandAlone';
-import { IInputPhone, IInputPhoneStandAlone, InputPhoneStylesProps } from './types';
+import { IInputPhone, IInputPhoneStandAlone } from './types/inputPhone';
+import { InputPhoneStylesProps } from './types/inputPhoneTheme';
 
 const InputPhoneComponent = React.forwardRef(
   <V extends string | unknown>(

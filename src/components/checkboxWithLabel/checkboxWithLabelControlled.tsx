@@ -1,16 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { CheckboxWithLabelStandAlone } from './checkboxWithLabelStandAlone';
 import {
-  CheckboxWithLabelState,
-  CheckboxWithLabelStatePropsStylesType,
   ICheckboxWithLabelControlled,
   ICheckboxWithLabelStandAlone,
-} from './types';
+} from './types/checkboxWithLabel';
+import { CheckboxWithLabelStatePropsStylesType } from './types/checkboxWithLabelTheme';
+import { CheckboxWithLabelState } from './types/state';
 
 const CheckboxWithLabelControlledComponent = React.forwardRef(
   <V extends string | unknown>(

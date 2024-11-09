@@ -1,4 +1,4 @@
-import { POSITIONS } from '@/types/index';
+import { POSITIONS } from '@/types/positions/positions';
 
 /**
  * @description

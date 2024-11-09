@@ -1,12 +1,13 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { Icon } from '@/components/icon';
+import { IconBasic as Icon } from '@/components/icon/icon';
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { renderProvider } from '../../../tests/renderProvider/renderProvider.utility';
-import { Chip, ChipStateType } from '../index';
+import { Chip } from '../chip';
+import { ChipStateType } from '../types/state';
 
 const mockProps = {
   variant: 'DEFAULT',

@@ -1,6 +1,8 @@
-import { TableCellStylesType } from '@/components';
+import { TableCellStylesType } from '@/components/tableCell/types/tableCellTheme';
 
-import { COLORS, FONT_WEIGHT, PARAGRAPH, SPACINGS } from '../../foundations';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, PARAGRAPH } from '../../foundations/typography';
 import { TableCellVariantType } from './variants';
 
 export const TABLE_CELL_STYLES: TableCellStylesType<TableCellVariantType> = {

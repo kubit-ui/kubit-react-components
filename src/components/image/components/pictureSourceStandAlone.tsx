@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
-import { IPictureSourceSandAlone } from '../types';
+import { IPictureSourceSandAlone } from '../types/pictureSource';
 
 /**
  * @description

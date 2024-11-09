@@ -1,4 +1,4 @@
-import { OptionStateType } from '../../types';
+import { OptionStateType } from '../../types/state';
 import { getHighlightedIndexes, getState } from '../option.utils';
 
 describe('OptionUtils - getState', () => {

@@ -1,9 +1,8 @@
-import {
-  IconHighlightedSizeType,
-  IconHighlightedStylesType,
-} from '@/components/iconHighlighted/types';
+import { IconHighlightedStylesType } from '@/components/iconHighlighted/types/iconHighlightedTheme';
+import { IconHighlightedSizeType } from '@/components/iconHighlighted/types/size';
 
-import { RADIUS, SIZES } from '../../foundations';
+import { RADIUS } from '../../foundations/borders';
+import { SIZES } from '../../foundations/sizes';
 import { IconHighlightedVariantType } from './variants';
 
 export const ICON_HIGHLIGHTED_STYLES: IconHighlightedStylesType<IconHighlightedVariantType> = {

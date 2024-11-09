@@ -1,17 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS, ILLUSTRATIONS } from '@/assets';
-import { DecorativeType } from '@/components/decorativeElement/types';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { FooterPositionType } from '@/components/footer';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { ILLUSTRATIONS } from '@/assets/storybook/illustrations/illustrations';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { TextComponentType } from '@/components/text';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
+import { DecorativeType } from '../../decorativeElement/types/decorativeElement';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { FooterPositionType } from '../../footer/types/position';
+import { TextComponentType } from '../../text/types/component';
 import { ConfirmationMessage as Story } from '../confirmationMessage';
-import { IConfirmationMessage } from '../types';
+import { IConfirmationMessage } from '../types/confirmationMessage';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

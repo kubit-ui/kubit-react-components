@@ -1,7 +1,9 @@
-import { FunctionalitiesModuleStylesType } from '@/components/functionalitiesModule/types';
-import { DeviceBreakpointsType, POSITIONS } from '@/types';
+import { FunctionalitiesModuleStylesType } from '@/components/functionalitiesModule/types/functionalitiesModuleTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { POSITIONS } from '@/types/positions/positions';
 
-import { RADIUS, SPACINGS } from '../../foundations';
+import { RADIUS } from '../../foundations/borders';
+import { SPACINGS } from '../../foundations/spacings';
 import {
   ActionBottomSheetVariantType,
   ListOptionsVariantType,

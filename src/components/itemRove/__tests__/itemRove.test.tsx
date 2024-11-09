@@ -1,11 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 
 import { axe } from 'jest-axe';
 
-import { SPACE } from '@/constants';
+import { SPACE } from '@/constants/keyboardKeys/keyboardKeys';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
 import { ItemRove } from '../itemRove';

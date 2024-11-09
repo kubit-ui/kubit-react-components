@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IText } from '../../text/types/text';
 import type { PillStateStylesType, PillStylesType, PillVariantStylesType } from './pillTheme';
 
 export interface IPillStyled {

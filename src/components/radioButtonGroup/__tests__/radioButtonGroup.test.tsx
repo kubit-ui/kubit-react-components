@@ -1,13 +1,13 @@
 import userEvent from '@testing-library/user-event';
 
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
 import { RadioButtonGroupUnControlled } from '../radioButtonGroupUnControlled';
-import { IRadioButtonGroupUncontrolled } from '../types';
+import { IRadioButtonGroupUncontrolled } from '../types/radioButtonGroup';
 
 const user = userEvent.setup();
 

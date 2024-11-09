@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { CommonStyleType } from '@/types';
 import { getStyles } from '@/utils/getStyles/getStyles';
 
+import { CommonStyleType } from '../../types/styles/commonStyle';
 import { TagStylesOptionPropsType } from './types/tagTheme';
 
 type TagStyles = {

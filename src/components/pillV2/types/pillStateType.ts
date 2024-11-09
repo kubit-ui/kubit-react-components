@@ -4,3 +4,5 @@ export enum PillStateType {
   DISABLED = 'DISABLED',
   DISABLED_SELECTED = 'DISABLED_SELECTED',
 }
+
+export { PillStateType as PillStateTypeV2 };

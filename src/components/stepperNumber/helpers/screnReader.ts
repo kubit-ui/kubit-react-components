@@ -1,4 +1,4 @@
-import { StepperNumberprefixSuffixType } from '../types';
+import { StepperNumberprefixSuffixType } from '../types/prefixSuffix';
 
 const concatPrefixSuffix = (
   index: number,

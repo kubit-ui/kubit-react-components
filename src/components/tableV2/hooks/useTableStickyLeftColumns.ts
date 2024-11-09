@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-import { hasHorizontalScroll } from '@/utils';
-import { ResizeObserver } from '@/utils/resizeObserver';
+import { ResizeObserver } from '../../../utils/resizeObserver/resizeObserver';
+import { hasHorizontalScroll } from '../../../utils/scroll/hasScroll';
 
 type UseTableStickyLeftColumnsParamsType = {
   ref: React.RefObject<HTMLDivElement>;

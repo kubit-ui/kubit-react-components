@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Loader } from '@/components/loader';
-
+import { Loader } from '../../loader/loader';
 // styles
 import { LoaderWrapperStyled } from '../input.styled';
 import { IInputLoader } from '../types/input';

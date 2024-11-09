@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Divider } from '@/components/divider';
-import { LineSeparator } from '@/components/lineSeparator';
-
-import { TableDividerStylesType, TableDividerType } from '../types';
+import { Divider } from '../../divider/divider';
+import { LineSeparator } from '../../lineSeparator/lineSeparator';
+import { TableDividerType } from '../types/table';
+import { TableDividerStylesType } from '../types/tableTheme';
 
 export interface IListDivider {
   divider: null | TableDividerType | unknown;

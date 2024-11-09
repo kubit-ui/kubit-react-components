@@ -1,10 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-import { DeviceBreakpointsType } from '@/types';
-
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
 import { List } from './component/list';
 import { Table } from './component/table';
-import { ITableStandAlone } from './types';
+import { ITableStandAlone } from './types/table';
 
 const TableStandAloneComponent = (
   {

@@ -1,8 +1,12 @@
-import { InputState } from '@/components/input/types';
-import { InputDropdownVariantType } from '@/components/inputDropdown/types';
-import { DeviceBreakpointsType } from '@/types';
+import { InputState } from '@/components/input/types/inputTheme';
+import { InputDropdownVariantType } from '@/components/inputDropdown/types/inputDropdownTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { BORDERS, COLORS, FONT_WEIGHT, SIZES, SPACINGS } from '../../foundations';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import { ActionBottomSheetVariantType } from '../actionBottomSheet/variants';
 import { InputVariantType } from '../input/variants';
 import { ListOptionsVariantType } from '../listOptions/variants';

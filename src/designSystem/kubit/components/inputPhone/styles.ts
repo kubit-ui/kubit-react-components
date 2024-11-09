@@ -1,12 +1,16 @@
-import { IconHighlightedSizeType } from '@/components/iconHighlighted/types';
+import { IconHighlightedSizeType } from '@/components/iconHighlighted/types/size';
 import {
   InputContentPosition,
   InputHelpMessagePosition,
   InputState,
-} from '@/components/input/types';
-import { InputPhoneVariantProps } from '@/components/inputPhone/types';
+} from '@/components/input/types/inputTheme';
+import { InputPhoneVariantProps } from '@/components/inputPhone/types/inputPhoneTheme';
 
-import { COLORS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS } from '../../foundations';
+import { RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import { IconHighlightedVariantType } from '../iconHighlighted/variants';
 import { TextVariantType } from '../text/variants';
 import { InputPhoneVariant } from './variants';

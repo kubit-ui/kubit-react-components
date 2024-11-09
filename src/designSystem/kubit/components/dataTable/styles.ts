@@ -1,6 +1,6 @@
-import { DataTableStylesType } from '@/components';
+import { DataTableStylesType } from '@/components/dataTable/types/dataTableTheme';
 
-import { Z_INDEX } from '../../foundations';
+import { Z_INDEX } from '../../foundations/zIndex';
 import {
   TableBodyVariantType,
   TableCaptionVariantType,

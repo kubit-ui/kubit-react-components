@@ -2,11 +2,11 @@ import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { TextComponentType } from '@/components/text/types';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
-import { EmptyState } from '../index';
+import { TextComponentType } from '../../text/types/component';
+import { EmptyState } from '../emptyState';
 
 const MOCK = {
   title: { content: 'title' },

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
@@ -9,8 +9,8 @@ import {
   TitleAndAdditionalInfoWrapperStyled,
   TitleWrapperStyled,
 } from '../input.styled';
-import { InputTitleComponentType } from '../types';
 import { ITitle } from '../types/input';
+import { InputTitleComponentType } from '../types/titleComponent';
 
 export const TitleStandAlone = (props: ITitle): JSX.Element | null => {
   if (!props.title?.content) {

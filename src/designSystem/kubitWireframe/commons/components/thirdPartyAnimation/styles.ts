@@ -1,5 +1,5 @@
 // interfaces
-import { ThirdPartyAnimationThemeType } from '@/components/thirdPartyAnimation/types';
+import { ThirdPartyAnimationThemeType } from '@/components/thirdPartyAnimation/types/thirdPartyAnimationTheme';
 
 // assets
 import animationLoaderPrimary from '../../assets/animations/loaderPrimary';

@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ICONS } from '@/assets';
-import { STYLES_NAME } from '@/constants';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { PillSizeTypeV2 } from '@/designSystem/kubit/components/variants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { PillSelectorUnControlled as Story } from '../pillSelectorUnControlled';
-import { IPillSelectorUnControlled } from '../types';
+import { IPillSelectorUnControlled } from '../types/pillSelector';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 import { Button } from '@/components/button/button';
 
-import { SliderButtonType, SliderIncDecButtonStylesType } from '../types';
+import { SliderButtonType } from '../types/slider';
+import { SliderIncDecButtonStylesType } from '../types/sliderTheme';
 
 interface ISliderButtonStandAlone extends SliderButtonType {
   styles?: SliderIncDecButtonStylesType;

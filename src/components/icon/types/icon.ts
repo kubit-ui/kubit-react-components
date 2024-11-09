@@ -1,4 +1,4 @@
-import { IconTypes } from '@/types/index';
+import { IconTypes } from '@/types/styles/icon';
 
 export interface IIconComplex {
   id?: string;

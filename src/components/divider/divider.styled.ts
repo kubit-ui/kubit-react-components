@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { DividerEmbebed, DividerVariantStylesProps } from './types';
+import { DividerEmbebed } from './types/dividerEmbebed';
+import { DividerVariantStylesProps } from './types/dividerTheme';
 
 interface IDividerStyled {
   styles: DividerVariantStylesProps;

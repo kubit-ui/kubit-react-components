@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { ValidationStatusStylesProps } from './types';
+import { ValidationStatusStylesProps } from './types/validationStatusTheme';
 
 type ValidationStatusProps = {
   styles: ValidationStatusStylesProps;

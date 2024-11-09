@@ -1,6 +1,9 @@
 import { IconHighlightedSizeType } from '@/components/iconHighlighted/types/size';
-import { CommonStyleType, DeviceBreakpointsType, IconTypes, TypographyTypes } from '@/types';
-import { POSITIONS } from '@/types/positions';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { POSITIONS } from '@/types/positions/positions';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
 
 // enums
 export enum InputState {

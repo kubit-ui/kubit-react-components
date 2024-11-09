@@ -2,9 +2,10 @@ import { screen } from '@testing-library/react';
 import React from 'react';
 
 import { axe } from 'jest-axe';
-import { renderProvider } from 'tests/renderProvider/renderProvider.utility';
 
-import { StepperProgress } from '../index';
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+
+import { StepperProgress } from '../stepperProgress';
 
 const mockProps = {
   dataTestId: 'testId',

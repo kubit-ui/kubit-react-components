@@ -1,11 +1,17 @@
 import {
-  QuickButtonState,
   QuickButtonStatePropsStyles,
   QuickButtonStylesType,
-} from '@/components/quickButton/types';
+} from '@/components/quickButton/types/quickButtonTheme';
+import { QuickButtonState } from '@/components/quickButton/types/state';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import {
+  FONT_WEIGHT,
+  TEXT_ALIGN,
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS, TEXT_ALIGN } from '../../foundations';
 import { TextVariantType } from '../text/variants';
 import { QuickButtonVariantType } from './variants';
 

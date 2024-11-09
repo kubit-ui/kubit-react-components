@@ -1,16 +1,17 @@
 import userEvent from '@testing-library/user-event';
 
 import { act, fireEvent } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ButtonStateType } from '@/components/button';
-import { IconHighlightedType } from '@/components/iconHighlighted';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
+import { ButtonStateType } from '../../button/types/state';
+import { IconHighlightedType } from '../../iconHighlighted/types/type';
 import { InputUnControlled as Input } from '../inputUnControlled';
-import { InputIconPosition, MASK_TYPE } from '../types';
+import { MASK_TYPE } from '../types/input';
+import { InputIconPosition } from '../types/inputTheme';
 
 const commonProps = {
   variant: 'DEFAULT',

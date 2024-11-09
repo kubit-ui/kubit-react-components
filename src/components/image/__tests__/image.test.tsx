@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { Image } from '../image';
-import { ImageLoadingType } from '../types';
+import { ImageLoadingType } from '../types/loading';
 
 // Improve this. Update jest config
 const IMAGE_DESKTOP = '@/assets/storybook/images/image_1.png';

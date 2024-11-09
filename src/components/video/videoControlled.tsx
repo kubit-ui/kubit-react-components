@@ -1,12 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { useGenericComponents } from '@/provider/genericComponents';
 
-import { VideoStyleType } from './types';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { useGenericComponents } from '../../provider/genericComponents/genericComponentsProvider';
 import { IVideoControlled, IVideoStandAlone } from './types/video';
+import { VideoStyleType } from './types/videoTheme';
 import { VideoStandAlone } from './videoStandAlone';
 
 const VideoControlledComponent = React.forwardRef(

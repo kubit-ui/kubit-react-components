@@ -1,13 +1,13 @@
 import { act, fireEvent } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ListOptionsType } from '@/components/listOptions';
-import { TAB } from '@/constants/keyboardKeys';
+import { TAB } from '@/constants/keyboardKeys/keyboardKeys';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
-import { DropdownSelected } from '../index';
+import { ListOptionsType } from '../../listOptions/types/type';
+import { DropdownSelectedUnControlled as DropdownSelected } from '../dropdownSelectedUncontrolled';
 
 const mockProps = {
   variant: 'DEFAULT',

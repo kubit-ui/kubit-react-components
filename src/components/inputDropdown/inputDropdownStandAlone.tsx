@@ -1,16 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
-import { InputControlled as Input } from '@/components/input';
-import { useId } from '@/hooks';
-import { DeviceBreakpointsType, ROLES } from '@/types';
-import { isKeyTabPressed } from '@/utils';
+import { useId } from '@/hooks/useId/useId';
 
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { ROLES } from '../../types/role/role';
+import { isKeyTabPressed } from '../../utils/keyboard/keyboard.utility';
+import { InputControlled as Input } from '../input/inputControlled';
 import { AUTOCOMPLETE_TYPE } from '../input/types/input';
-import { PopoverSearchList } from './components';
+import { PopoverSearchList } from './components/popoverSearchList';
 import { MultipleRef } from './hooks/useInputDropdown';
 // styles
 import { InputDropdownStyled } from './inputDropdown.styled';
-import { IInputDropdownStandAlone } from './types';
+import { IInputDropdownStandAlone } from './types/inputDropdown';
 
 export const InputDropdownStandAloneComponent = (
   { dataTestId = 'input-dropdown', ...props }: IInputDropdownStandAlone,

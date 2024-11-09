@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import React, { MutableRefObject } from 'react';
 
-import { buildScreenReaderText, getCharactersLength } from '../utils';
+import { buildScreenReaderText, getCharactersLength } from '../utils/counter.utils';
 
 const input = document.createElement('input');
 const maxLength = 10;

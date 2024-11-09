@@ -1,4 +1,5 @@
-import { POSITIONS } from '@/types/positions';
+/* eslint-disable complexity */
+import { POSITIONS } from '@/types/positions/positions';
 
 export const getAlignStyles = (align: POSITIONS, extraGap = '20px'): string => {
   const onlyNumber = parseFloat(extraGap.replace(/[^0-9-]/g, ''));

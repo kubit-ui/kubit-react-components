@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { THeadStyled } from './tableHead.styled';
-import { ITableHeadStandAlone } from './types';
+import { ITableHeadStandAlone } from './types/tableHead';
 
 const TableHeadStandAloneComponent = (
   {

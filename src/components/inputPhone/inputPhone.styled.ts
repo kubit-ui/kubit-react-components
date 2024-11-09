@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { getStyles } from '@/utils';
-
-import { InputPhoneStateProps } from './types';
+import { getStyles } from '../../utils/getStyles/getStyles';
+import { InputPhoneStateProps } from './types/inputPhoneTheme';
 
 // affix
 type AffixStyledProps = {

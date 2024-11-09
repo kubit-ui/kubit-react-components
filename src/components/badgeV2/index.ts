@@ -10,4 +10,4 @@ export type {
 // enums
 export { BadgeState as BadgeStateV2 } from './types';
 
-export { Badge as BadgeV2 } from './badge';
+export { BadgeV2 } from './badge';

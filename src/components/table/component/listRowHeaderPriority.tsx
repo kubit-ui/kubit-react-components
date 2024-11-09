@@ -1,10 +1,11 @@
-import * as React from 'react';
+/* eslint-disable complexity */
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 
+import { ButtonType } from '../../button/types/type';
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 import { useContent } from '../hooks/useContent';
 import {
   ListHeaderItemStylesStyled,

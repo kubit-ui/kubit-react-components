@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TextComponentType } from '@/components/text';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
+import { TextComponentType } from '../../text/types/component';
 import { LoadingState as Story } from '../loadingState';
-import { ILoadingState, LoadingStateState } from '../types';
+import { ILoadingState } from '../types/loadingState';
+import { LoadingStateState } from '../types/loadingStateTheme';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

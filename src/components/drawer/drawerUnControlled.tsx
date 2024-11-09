@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { DrawerControlled } from './drawerControlled';
-import { IDrawerUncontrolled } from './types';
+import { IDrawerUncontrolled } from './types/drawer';
 
 const DrawerUnControlledComponent = <V extends string | unknown>(
   { defaultOpen = true, closeIcon, popover, onOpenClose, ...props }: IDrawerUncontrolled<V>,
@@ -49,3 +49,5 @@ const DrawerUnControlled = React.forwardRef(DrawerUnControlledComponent) as <
 ) => JSX.Element;
 
 export { DrawerUnControlled };
+
+export { DrawerUnControlled as Drawer };

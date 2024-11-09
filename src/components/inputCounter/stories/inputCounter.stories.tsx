@@ -4,11 +4,11 @@ import {
   additionalInfoAction,
   labelSecondary,
 } from '@/components/input/components/stories/stories';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { InputCounter as Story } from '../inputCounter';
-import { IInputCounter } from '../types';
+import { IInputCounter } from '../types/inputCounter';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

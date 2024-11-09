@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
 import { Button } from '../../button/button';
 import { MediaProgressBar as Story } from '../mediaProgressBar';
-import { IMediaProgressBar } from '../types';
+import { IMediaProgressBar } from '../types/mediaProgressBar';
 import { argtypes } from './argtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

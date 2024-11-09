@@ -1,13 +1,12 @@
 import userEvent from '@testing-library/user-event';
 
-import * as React from 'react';
+import React from 'react';
 
-import { renderProvider } from 'tests/renderProvider/renderProvider.utility';
-
-import { ROLES } from '@/types';
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+import { ROLES } from '@/types/role/role';
 
 import { SliderStandAlone } from '../sliderStandAlone';
-import { SliderBaseStylesType } from '../types';
+import { SliderBaseStylesType } from '../types/sliderTheme';
 
 const mockSliderStandAlone = {
   // Original props

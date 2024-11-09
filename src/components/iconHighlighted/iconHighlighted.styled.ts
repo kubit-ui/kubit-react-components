@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { IconHighlightedSizePropsType } from './types';
+import { IconHighlightedSizePropsType } from './types/iconHighlightedTheme';
 
 type IconHighlightedStyledType = {
   styles?: IconHighlightedSizePropsType;

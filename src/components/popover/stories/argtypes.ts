@@ -1,9 +1,11 @@
-import { CssAnimationExecuteOption } from '@/components/cssAnimation';
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn, POSITIONS } from '@/types';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { POSITIONS } from '@/types/positions/positions';
+import { ArgTypesReturn } from '@/types/type/type';
 
-import { PopoverComponentType, PopoverPositionVariantType } from '../types';
+import { CssAnimationExecuteOption } from '../../cssAnimation/types/cssAnimation';
+import { PopoverComponentType } from '../types/component';
+import { PopoverPositionVariantType } from '../types/positionVariant';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {

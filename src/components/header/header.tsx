@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useMediaDevice } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { HeaderStandAlone } from './headerStandAlone';
 import { useHeaderShadow } from './hook/useHeaderShadow';
-import { HeaderPropsStylesType, IHeader, IHeaderStandAlone } from './types';
+import { IHeader, IHeaderStandAlone } from './types/header';
+import { HeaderPropsStylesType } from './types/headerTheme';
 
 const HeaderComponent = React.forwardRef(
   <V extends string | unknown>(

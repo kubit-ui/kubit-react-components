@@ -1,17 +1,22 @@
-import * as React from 'react';
+/* eslint-disable complexity */
+import React from 'react';
 
 import { ActionBottomSheetControlledStructure } from '@/components/actionBottomSheet/actionBottomSheetControlled';
 import { Button } from '@/components/button/button';
-import { ListOptions, ListOptionsType } from '@/components/listOptions';
-import { PopoverControlled as Popover, PopoverComponentType } from '@/components/popover';
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
-import { TextComponentType } from '@/components/text/types';
-import { useId } from '@/hooks';
-import { AriaLiveOptionType, DeviceBreakpointsType, ROLES } from '@/types';
+import { useId } from '@/hooks/useId/useId';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { ROLES } from '@/types/role/role';
 
+import { AriaLiveOptionType } from '../../types/ariaLiveOption/ariaLiveOption';
+import { ListOptions } from '../listOptions/listOptions';
+import { ListOptionsType } from '../listOptions/types/type';
+import { PopoverControlled } from '../popover/popoverControlled';
+import { PopoverComponentType } from '../popover/types/component';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
+import { TextComponentType } from '../text/types/component';
 import { ButtonContainer, ListboxStyled, OliveMenuStyled } from './oliveMenu.styled';
-import { IOliveMenuStandAlone } from './types';
-import { getAriaControls } from './utils';
+import { IOliveMenuStandAlone } from './types/oliveMenu';
+import { getAriaControls } from './utils/getAriaControls';
 
 const OliveMenuStandAloneComponent = (
   { dataTestId = 'olive-menu', ...props }: IOliveMenuStandAlone,
@@ -50,7 +55,7 @@ const OliveMenuStandAloneComponent = (
       <ScreenReaderOnly ariaLive={AriaLiveOptionType.POLITE}>
         {props.screenReaderText}
       </ScreenReaderOnly>
-      <Popover
+      <PopoverControlled
         aria-labelledby={popoverAsModal ? titleId : undefined}
         aria-modal={popoverAsModal ? props.open : undefined}
         clickOverlayClose={true}
@@ -97,7 +102,7 @@ const OliveMenuStandAloneComponent = (
               ))}
           </ListboxStyled>
         </ActionBottomSheetControlledStructure>
-      </Popover>
+      </PopoverControlled>
     </OliveMenuStyled>
   );
 };

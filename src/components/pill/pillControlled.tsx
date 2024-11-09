@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { PillStandAlone } from './pillStandAlone';
-import { IPillControlled, IPillStandAlone, PillStylesType, PillVariantStylesType } from './types';
+import { IPillControlled, IPillStandAlone } from './types/pill';
+import { PillStylesType, PillVariantStylesType } from './types/pillTheme';
 
 const PillControlledComponent = React.forwardRef(
   (props: IPillControlled, ref: React.ForwardedRef<HTMLDivElement>): React.JSX.Element => {

@@ -2,10 +2,10 @@ import { fireEvent, screen } from '@testing-library/react';
 import React from 'react';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
-import { TextArea } from '../index';
-import { ITextArea } from '../types/index';
+import { TextArea } from '../textArea';
+import { ITextArea } from '../types/textArea';
 
 const mockProps: ITextArea = {
   variant: 'DEFAULT',

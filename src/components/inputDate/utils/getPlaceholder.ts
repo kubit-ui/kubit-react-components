@@ -1,4 +1,4 @@
-import { InputState, LABEL_TYPE } from '@/components/input/types';
+import { InputState, LABEL_TYPE } from '../../input/types/inputTheme';
 
 export const getPlaceholder = (
   placeholder: string,

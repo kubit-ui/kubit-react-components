@@ -1,4 +1,6 @@
-import type { CommonStyleType, IconTypes, TypographyTypes } from '@/types/index';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
 
 import { PillStateType } from './pillStateType';
 
@@ -22,3 +24,8 @@ export type PillVariantPropsStylesType = {
 export type PillStylesType = {
   [variant in string]: PillVariantPropsStylesType;
 };
+
+export { PillPropsStylesType as PillPropsStylesTypeV2 };
+export { PillVariantPropsStylesType as PillVariantPropsStylesTypeV2 };
+export { PillSizePropsStylesType as PillSizePropsStylesTypeV2 };
+export { PillStylesType as PillStylesTypeV2 };

@@ -1,7 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Text, TextComponentType } from '../../text';
-import { SliderBaseStylesType, SliderStateType } from '../types';
+import { Text } from '@/components/text/text';
+
+import { TextComponentType } from '../../text/types/component';
+import { SliderBaseStylesType } from '../types/sliderTheme';
+import { SliderStateType } from '../types/state';
 import {
   StyledHelperTextWrapper,
   StyledLeftHelperText,

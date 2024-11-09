@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { IThirdPartyAnimationStyled } from './types';
+import { IThirdPartyAnimationStyled } from './types/thirdPartyAnimation';
 
 export const ThirdPartyAnimationStyled = styled.span<IThirdPartyAnimationStyled>`
   display: block;

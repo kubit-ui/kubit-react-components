@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { PageControlAutomateControlled } from './pageControlAutomateControlled';
-import { IPageControlAutomateUnControlled } from './types';
+import { IPageControlAutomateUnControlled } from './types/pageControlAutomate';
 
 const PageControlAutomateUnControlledComponent = <V extends string | unknown>(
   { playingInitially = false, ...props }: IPageControlAutomateUnControlled<V>,
@@ -52,3 +52,5 @@ const PageControlAutomateUnControlled = React.forwardRef(
 ) => ReturnType<typeof PageControlAutomateUnControlledComponent>;
 
 export { PageControlAutomateUnControlled };
+
+export { PageControlAutomateUnControlled as PageControlAutomate };

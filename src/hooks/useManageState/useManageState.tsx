@@ -1,6 +1,7 @@
+/* eslint-disable complexity */
 import { useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
-import { STATES } from '@/types';
+import { STATES } from '../../types/states/states';
 
 export type States = (keyof typeof STATES)[];
 

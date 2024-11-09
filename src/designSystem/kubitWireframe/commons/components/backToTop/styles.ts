@@ -1,12 +1,15 @@
 import {
-  BackToTopStateType,
   BackToTopStylesType,
   BackToTopVariantStyles,
-} from '@/components/backToTop/types';
-import { DeviceBreakpointsType } from '@/types';
+} from '@/components/backToTop/types/backToTopTheme';
+import { BackToTopStateType } from '@/components/backToTop/types/state';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { Z_INDEX } from '@/designSystem/kubitWireframe/commons/foundations/zIndex';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, RADIUS, SIZES, SPACINGS, Z_INDEX } from '../../foundations';
 import { BackToTopVariantsType } from './variants';
 
 const BACK_TO_TOP_TOKENS = (COLORS: {

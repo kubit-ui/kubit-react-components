@@ -1,7 +1,8 @@
 import { act } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 
-import { InputTypeType, InternalErrorType } from '../../types';
+import { InputTypeType } from '../../types/inputType';
+import { InternalErrorType } from '../../types/internalErrors';
 import { useInternalValidations } from '../useInternalValidations';
 
 test('Error email validation', async () => {

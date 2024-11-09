@@ -6,7 +6,7 @@ import {
   equalsRangeValues,
   shouldUpdateLeftThumb,
   shouldUpdateRightThumb,
-} from '../utils';
+} from '../utils/slider.utils';
 
 describe('Slider utils - equalsRangeValues', () => {
   it('return false when array length is different', () => {

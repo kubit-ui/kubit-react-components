@@ -1,14 +1,13 @@
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { POSITIONS } from '@/types/positions/positions';
+
 import {
   ERROR_EXECUTION,
   IInputStandAlone,
   INTERNAL_ERROR_EXECUTION,
-  InputContentPosition,
-  InputHelpMessagePosition,
-} from '@/components/input';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
-import { POSITIONS } from '@/types/positions';
-
+} from '../../input/types/input';
+import { InputContentPosition, InputHelpMessagePosition } from '../../input/types/inputTheme';
+import { IText } from '../../text/types/text';
 import { InputCurrencyStylesProps } from './inputCurrencyTheme';
 
 type propsToOmitInputBasic = 'styles' | 'inputId' | 'variant' | 'error' | 'disabled';

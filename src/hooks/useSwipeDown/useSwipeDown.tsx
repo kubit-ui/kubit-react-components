@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react';
 
-import { ICssAnimationOptions } from '@/components/cssAnimation';
+import { ICssAnimationOptions } from '@/components/cssAnimation/types/cssAnimation';
 import { convertDurationToNumber } from '@/utils/stringUtility/string.utility';
 
 const distanceToTriggerClose = 30;

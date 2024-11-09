@@ -1,4 +1,5 @@
-import { FORMATTING_TOKENS, MACRO_TOKEN_TO_FORMAT_OPTS } from './constants';
+import { FORMATTING_TOKENS } from './constants/common.constant';
+import { MACRO_TOKEN_TO_FORMAT_OPTS } from './constants/format.constant';
 import { locale } from './locale';
 import { DateFormatOptions, FORMAT_DATE } from './types/format.types';
 import { isValidDate } from './validateDate';

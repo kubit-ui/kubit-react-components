@@ -1,7 +1,7 @@
 import { SkeletonStylesType } from '@/components/skeleton/types/skeletonTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, RADIUS } from '../../foundations';
 import { SkeletonShapeVariant, SkeletonVariantType } from './variants';
 
 export const getSkeletonStyles = (COLORS: {

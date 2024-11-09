@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 import { CaptionStyled } from './tableCaption.styled';
-import { ITableCaptionStandAlone } from './types';
+import { ITableCaptionStandAlone } from './types/tableCaption';
 
 const TableCaptionStandAloneComponent = (
   {

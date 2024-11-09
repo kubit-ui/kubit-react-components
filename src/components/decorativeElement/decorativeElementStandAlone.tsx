@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Avatar } from '@/components/avatar/avatar';
 import { ElementOrIllustration } from '@/components/elementOrIllustration/elementOrIllustration';
@@ -7,7 +7,7 @@ import { ErrorBoundary } from '@/provider/errorBoundary/errorBoundary';
 
 import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { Image } from '../image/image';
-import { DecorativeType, IDecorativeElementStandAlone } from './types';
+import { DecorativeType, IDecorativeElementStandAlone } from './types/decorativeElement';
 
 /**
  * @description

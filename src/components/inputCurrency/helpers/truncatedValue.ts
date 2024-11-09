@@ -1,4 +1,4 @@
-import { getDecimalSeparator } from '@/components/input/utils';
+import { getDecimalSeparator } from '../../input/utils/formatNumber';
 
 export const truncatedValue = (value: string, maxDecimals: number, locale?: string): string => {
   const decimalSeparator = getDecimalSeparator(locale);

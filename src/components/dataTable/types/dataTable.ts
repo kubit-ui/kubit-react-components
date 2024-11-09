@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { ITableBody } from '@/components/tableBody';
-import { ITableCaption } from '@/components/tableCaption';
-import { ITableCell } from '@/components/tableCell';
-import { ITableDivider } from '@/components/tableDivider';
-import { ITableHead } from '@/components/tableHead';
-import { ITableRow } from '@/components/tableRow';
-import { ITableV2 } from '@/components/tableV2';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { ITableBody } from '../../tableBody/types/tableBody';
+import { ITableCaption } from '../../tableCaption/types/tableCaption';
+import { ITableCell } from '../../tableCell/types/tableCell';
+import { ITableDivider } from '../../tableDivider/types/tableDivider';
+import { ITableHead } from '../../tableHead/types/tableHead';
+import { ITableRow } from '../../tableRow/types/tableRow';
+import { ITableV2 } from '../../tableV2/types/table';
 import { DataTablePropsStylesType } from './dataTableTheme';
 
 export type DataTableTableConfigType = ITableV2;

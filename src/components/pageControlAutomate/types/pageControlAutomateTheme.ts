@@ -1,4 +1,5 @@
-import { CommonStyleType, IconTypes } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
 
 export type PageControlAutomatePropsStylesType = {
   container?: CommonStyleType;

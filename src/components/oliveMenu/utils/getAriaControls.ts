@@ -1,4 +1,4 @@
-import { OliveMenuListOptions } from '../types';
+import { OliveMenuListOptions } from '../types/oliveMenu';
 
 export const getAriaControls = (
   sections: OliveMenuListOptions[] | undefined,

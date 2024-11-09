@@ -1,14 +1,14 @@
 import { act, fireEvent } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ARROW_LEFT, ARROW_RIGHT } from '@/constants';
+import { ARROW_LEFT, ARROW_RIGHT } from '@/constants/keyboardKeys/keyboardKeys';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
 import { CarouselUnControlled } from '../carouselUnControlled';
 import * as CarouselHooks from '../hooks/useCarousel';
-import { ICarouselUnControlled } from '../types';
+import { ICarouselUnControlled } from '../types/carousel';
 
 const mockProps: ICarouselUnControlled = {
   variant: 'DEFAULT',

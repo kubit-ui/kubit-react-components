@@ -1,14 +1,16 @@
 import React, { useImperativeHandle } from 'react';
 
-import { LineSeparatorLinePropsStylesType } from '@/components/lineSeparator';
-import { useMediaDevice } from '@/hooks';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { hasScroll as checkHasScroll } from '@/utils';
-import { ResizeObserver } from '@/utils/resizeObserver';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { ResizeObserver } from '../../utils/resizeObserver/resizeObserver';
+import { hasScroll as checkHasScroll } from '../../utils/scroll/hasScroll';
+import { LineSeparatorLinePropsStylesType } from '../lineSeparator/types/lineSeparatorTheme';
 import { TableStandAlone } from './tableStandAlone';
-import { ITable, ITableStandAlone, TableRowHeaderTypes } from './types';
+import { ITable, ITableStandAlone } from './types/table';
+import { TableRowHeaderTypes } from './types/tableTheme';
 
 const TABLE_STYLES = 'TABLE_STYLES';
 const LINE_SEPARATOR_STYLES = 'LINE_SEPARATOR_STYLES';

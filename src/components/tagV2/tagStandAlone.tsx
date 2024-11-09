@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text } from '@/components/text';
-import { TextComponentType } from '@/components/text/types';
+import { Text } from '@/components/text/text';
 import { pickAriaProps } from '@/utils/aria/aria';
 
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { TextComponentType } from '../text/types/component';
 import { TagContainerStyled } from './tag.styled';
-import { ITagStandAlone } from './types';
+import { ITagStandAlone } from './types/tag';
 
 const TagStandAloneComponent = (
   { dataTestId = 'tag', ...props }: ITagStandAlone,

@@ -1,10 +1,9 @@
 import { act } from '@testing-library/react-hooks';
-import { ChangeEvent } from 'react';
-import * as React from 'react';
+import React, { ChangeEvent } from 'react';
 
-import { ERROR_EXECUTION } from '@/components/input/types';
 import { renderHookProvider } from '@/tests/renderProvider/renderProvider.utility';
 
+import { ERROR_EXECUTION } from '../../../input/types/input';
 import { useInputDate } from '../useInputDate';
 
 describe('useInputDate Hook', () => {

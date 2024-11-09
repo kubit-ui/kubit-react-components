@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { STYLES_NAME } from '@/constants';
-import { themesObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject } from '@/designSystem/themesObject/themesObject';
 
 import { InputStructure as Story } from '../inputStructure';
 import { argtypes } from './argtypes';

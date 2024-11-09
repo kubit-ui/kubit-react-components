@@ -1,15 +1,16 @@
 import userEvent from '@testing-library/user-event';
 
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { InputTypeType } from '@/components/input';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { POSITIONS, ROLES } from '@/types';
+import { POSITIONS } from '@/types/positions/positions';
+import { ROLES } from '@/types/role/role';
 import * as keyboard from '@/utils/keyboard/keyboard.utility';
 
+import { InputTypeType } from '../../input/types/inputType';
 import { ToggleControlled } from '../toggleControlled';
 import { ToggleUnControlled as Toggle } from '../toggleUnControlled';
 

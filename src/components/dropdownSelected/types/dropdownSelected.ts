@@ -1,13 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { LinkTargetType } from '@/components/link';
-import { IListOptions } from '@/components/listOptions';
-import { IPopoverControlled } from '@/components/popover';
-import { IText } from '@/components/text';
-import { GenericLinkType } from '@/provider/genericComponents';
-import { CustomTokenTypes, ROLES } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { ROLES } from '@/types/role/role';
 
+import { GenericLinkType } from '../../../provider/genericComponents/genericComponents.type';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { LinkTargetType } from '../../link/types/target';
+import { IListOptions } from '../../listOptions/types/listOptions';
+import { IPopoverControlled } from '../../popover/types/popover';
+import { IText } from '../../text/types/text';
 import {
   DropdownSelectedPropsStylesType,
   DropdownSelectedStateStylesType,

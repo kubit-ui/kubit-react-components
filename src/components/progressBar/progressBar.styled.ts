@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { ProgressBarSizeStylesType, ProgressBarVariantStylesType } from './types';
+import { ProgressBarSizeStylesType, ProgressBarVariantStylesType } from './types/progressBarTheme';
 
 type ProgressBarStylesType = {
   styles: ProgressBarVariantStylesType;

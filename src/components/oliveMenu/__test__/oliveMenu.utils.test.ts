@@ -1,5 +1,5 @@
-import { OliveMenuListOptions } from '../types';
-import { getAriaControls } from '../utils';
+import { OliveMenuListOptions } from '../types/oliveMenu';
+import { getAriaControls } from '../utils/getAriaControls';
 
 const menuSection: OliveMenuListOptions[] = [
   {

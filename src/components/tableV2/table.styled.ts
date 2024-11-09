@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import { getStyles, getTypographyStyles } from '@/utils';
-
-import { TablePropsStylesTypeV2 } from './types';
+import { getStyles, getTypographyStyles } from '../../utils/getStyles/getStyles';
+import { TablePropsStylesTypeV2 } from './types/tableTheme';
 
 export const TableWrapperStyled = styled.div<{
   $styles?: TablePropsStylesTypeV2;

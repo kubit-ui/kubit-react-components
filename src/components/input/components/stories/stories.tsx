@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
 
 const themeWithAdditionalInfo = [

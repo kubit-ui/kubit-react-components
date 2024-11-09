@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
 
-import { IActionBottomSheetControlled } from '@/components/actionBottomSheet';
-import { IButton } from '@/components/button';
-import { ListOptionsOptionType, ListOptionsTitleType } from '@/components/listOptions';
-import { ITabsUnControlled, PrimaryTabTabType } from '@/components/tabs';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IActionBottomSheetControlled } from '../../actionBottomSheet/types/actionBottomSheet';
+import { IButton } from '../../button/types/button';
+import { ListOptionsOptionType, ListOptionsTitleType } from '../../listOptions/types/listOptions';
+import { ITabsUnControlled, PrimaryTabTabType } from '../../tabs/types/tabs';
 import { FunctionalitiesModuleVariantStylesType } from './functionalitiesModuleTheme';
 
 export type FunctionalitiesModuleTriggerType = Omit<IButton, 'children'> & {

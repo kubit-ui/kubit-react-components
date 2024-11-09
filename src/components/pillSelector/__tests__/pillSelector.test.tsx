@@ -3,12 +3,12 @@ import React from 'react';
 
 import { axe } from 'jest-axe';
 
+import * as stylesHook from '@/hooks/useStyles/useStyles';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
-import * as stylesHook from '../../../hooks/useStyles/useStyles';
 import { PillSelectorUnControlled } from '../pillSelectorUnControlled';
-import { IPillSelectorUnControlled } from '../types';
+import { IPillSelectorUnControlled } from '../types/pillSelector';
 
 const mockProps: IPillSelectorUnControlled = {
   variant: 'DEFAULT',

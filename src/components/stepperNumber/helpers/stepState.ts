@@ -1,4 +1,5 @@
-import { StepStateType, StepperNumberStateType } from '../types';
+import { StepperNumberStateType } from '../types/state';
+import { StepStateType } from '../types/stepperNumber';
 
 export const mapToStepState = (
   steps: string[] | undefined,

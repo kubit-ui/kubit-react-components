@@ -1,23 +1,22 @@
-import { IconHighlightedSizeType } from '@/components/iconHighlighted/types';
+import { IconHighlightedSizeType } from '@/components/iconHighlighted/types/size';
 import {
   InputHelpMessagePosition,
   InputState,
   InputStylesType,
   LABEL_TYPE,
-} from '@/components/input/types';
+} from '@/components/input/types/inputTheme';
 import { LoaderVariantType } from '@/designSystem/kubit/components/variants';
-import { DeviceBreakpointsType } from '@/types';
-
-import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import {
-  BORDERS,
   FONT_WEIGHT,
   PARAGRAPH,
-  RADIUS,
-  SIZES,
-  SPACINGS,
   TEXT_ALIGN,
-} from '../../foundations';
+} from '@/designSystem/kubitWireframe/commons/foundations/typography';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+
+import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
 import { IconHighlightedVariantType, TextVariantType } from '../variants';
 import { InputVariantType } from './variants';
 

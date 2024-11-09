@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
-import { CommonStyleType } from '@/types/styles';
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { HeaderStructurePropsStyles } from './types';
+import { CommonStyleType } from '../../types/styles/commonStyle';
+import { HeaderStructurePropsStyles } from './types/headerStructureTheme';
 
 export const HeaderContainerStyled = styled.div<
   HeaderStructurePropsStyles & {

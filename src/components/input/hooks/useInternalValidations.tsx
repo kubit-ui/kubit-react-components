@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-import { InputTypeType, InternalErrorType } from '../types';
+import { InputTypeType } from '../types/inputType';
+import { InternalErrorType } from '../types/internalErrors';
 
 const EMAIL_REGEXP = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
 

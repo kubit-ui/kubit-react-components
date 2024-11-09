@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { LoadingStateStandAlone } from './loadingStateStandAlone';
-import { ILoadingState, ILoadingStateStandAlone, LoadingStateGlobalStateStylesType } from './types';
+import { ILoadingState, ILoadingStateStandAlone } from './types/loadingState';
+import { LoadingStateGlobalStateStylesType } from './types/loadingStateTheme';
 
 const LoadingStateComponent = React.forwardRef(
   <V extends string | unknown>(

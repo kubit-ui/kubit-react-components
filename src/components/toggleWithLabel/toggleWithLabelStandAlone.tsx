@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
-import { Text } from '@/components/text';
-import { TextComponentType } from '@/components/text/types';
-import { Toggle } from '@/components/toggle';
-import { useId } from '@/hooks';
+import { Text } from '@/components/text/text';
+import { useId } from '@/hooks/useId/useId';
 
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
+import { TextComponentType } from '../text/types/component';
+import { ToggleUnControlled as Toggle } from '../toggle/toggleUnControlled';
 import { ToggleWithLabelStyled } from './toggleWithLabel.styled';
-import type { IToggleWithLabelStandAlone } from './types';
+import type { IToggleWithLabelStandAlone } from './types/toggleWithLabel';
 
 const ToggleWithLabelStandAloneComponent = (
   {

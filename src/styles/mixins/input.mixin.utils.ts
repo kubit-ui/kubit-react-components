@@ -1,4 +1,4 @@
-import { CommonStyleType } from '@/types';
+import { CommonStyleType } from '../../types/styles/commonStyle';
 
 export const getPaddingLeft = (padding?: string): string | undefined => {
   if (!padding) {

@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
-import { useClickOutside } from '@/hooks/useClickOutside';
+import { useClickOutside } from '../useClickOutside';
 
 const C_BLACK = 'black';
 const C_RED = 'red';

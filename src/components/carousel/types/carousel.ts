@@ -1,8 +1,8 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IMediaProgressBar } from '@/components/mediaProgressBar';
-import { IPageControlAutomateUnControlled } from '@/components/pageControlAutomate';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IMediaProgressBar } from '../../mediaProgressBar/types/mediaProgressBar';
+import { IPageControlAutomateUnControlled } from '../../pageControlAutomate/types/pageControlAutomate';
 import { CarouselAlignType } from './carouselAlign';
 import { CarouselPropsStylesType } from './carouselTheme';
 

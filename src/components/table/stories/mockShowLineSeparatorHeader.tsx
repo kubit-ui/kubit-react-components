@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { Button } from '@/components/button/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { ITable } from '../types';
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { ITable } from '../types/table';
 
 const ExpandedContent = () => {
   return (

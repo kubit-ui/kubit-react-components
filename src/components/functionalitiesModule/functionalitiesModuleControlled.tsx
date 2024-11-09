@@ -1,12 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useMediaDevice } from '@/hooks';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { FunctionalitiesModuleStandAlone } from './functionalitiesModuleStandAlone';
-import { IFunctionalitiesModuleControlled, IFunctionalitiesModuleStandAlone } from './types';
+import {
+  IFunctionalitiesModuleControlled,
+  IFunctionalitiesModuleStandAlone,
+} from './types/functionalitiesModule';
 import { FunctionalitiesModuleVariantStylesType } from './types/functionalitiesModuleTheme';
 
 const FunctionalitiesModuleControlledComponent = React.forwardRef(

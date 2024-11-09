@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
-import { useMediaDevice } from '@/hooks/index';
+import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
 import { pickAriaProps } from '@/utils/aria/aria';
 
 import { ButtonType } from '../button/types/type';
+import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
 import { IconButtonStyled } from './icon.styled';
 import { IconStandAlone } from './iconStandAlone';
-import { IIcon } from './types';
+import { IIcon } from './types/icon';
 
 const IconBasicComponent = (
   { dataTestId = 'icon', ...props }: IIcon,
@@ -65,3 +65,5 @@ const IconBasicComponent = (
 };
 
 export const IconBasic = React.forwardRef(IconBasicComponent);
+
+export { IconBasic as Icon };

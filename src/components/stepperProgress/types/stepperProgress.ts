@@ -1,5 +1,5 @@
 //types
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
 import { StepperProgressCommonProps } from './stepperProgressTheme';
 

@@ -1,7 +1,12 @@
-import { StepperProgressCommonProps, StepperProgressStylesType } from '@/components';
+import {
+  StepperProgressCommonProps,
+  StepperProgressStylesType,
+} from '@/components/stepperProgress/types/stepperProgressTheme';
 
-import { COLORS, FONT_WEIGHT, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { COLORS } from '../../foundations/colors';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { StepperProgressVariants } from './variants';
 
 const commonProps: StepperProgressCommonProps = {

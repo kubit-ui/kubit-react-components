@@ -1,6 +1,6 @@
 import { convertValueToCoords, offset } from '@/components/tooltip/positioning/middlewares/offset';
 import { MiddlewareState } from '@/components/tooltip/positioning/types';
-import { TooltipAlignType } from '@/components/tooltip/types';
+import { TooltipAlignType } from '@/components/tooltip/types/tooltipAlign';
 
 describe('offset middleware', () => {
   it('convertValueToCoords returns correct coords when TooltipAlignType is LEFT', () => {

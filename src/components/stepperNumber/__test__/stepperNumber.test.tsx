@@ -1,15 +1,17 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
-import { renderProvider } from 'tests/renderProvider/renderProvider.utility';
+
+import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
 // fixture
-import { StepperNumberSteps, ariaSteps } from '../fixture';
+import { StepperNumberSteps, ariaSteps } from '../fixture/ariaLabels';
 // helpers
-import { buildScreenReaderText } from '../helpers';
-import { IStepperNumber, StepperNumber } from '../index';
+import { buildScreenReaderText } from '../helpers/screnReader';
+import { StepperNumber } from '../stepperNumber';
 import { StepperNumberOrientationType } from '../types/orientation';
+import { IStepperNumber } from '../types/stepperNumber';
 
 const mockProps: IStepperNumber = {
   variant: 'DEFAULT',

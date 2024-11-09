@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Divider } from '@/components/divider';
-import { LineSeparator } from '@/components/lineSeparator';
-
+import { Divider } from '../../divider/divider';
+import { LineSeparator } from '../../lineSeparator/lineSeparator';
 import { DividerInternalWrapper } from '../table.styled';
-import { TableDividerStylesType, TableDividerType } from '../types';
+import { TableDividerType } from '../types/table';
+import { TableDividerStylesType } from '../types/tableTheme';
 
 export interface ITableDivider {
   divider: null | TableDividerType | unknown;

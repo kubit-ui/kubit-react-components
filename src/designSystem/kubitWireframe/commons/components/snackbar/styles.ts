@@ -1,9 +1,14 @@
-import { SnackbarMessageType, SnackbarStylesType } from '@/components/snackbar/types';
-import { TextDecorationType } from '@/components/text/types';
+import { SnackbarStylesType } from '@/components/snackbar/types/snackbarTheme';
+import { SnackbarMessageType } from '@/components/snackbar/types/snackbarType';
+import { TextDecorationType } from '@/components/text/types/decoration';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SHADOW } from '@/designSystem/kubitWireframe/commons/foundations/shadow';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
-import { POSITIONS } from '@/types';
+import { POSITIONS } from '@/types/positions/positions';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SHADOW, SIZES, SPACINGS } from '../../foundations';
 import { PopoverVariantType, TextVariantType } from '../variants';
 import { SnackbarVariant } from './variants';
 

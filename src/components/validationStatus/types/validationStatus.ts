@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { CustomTokenTypes, ROLES } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { ROLES } from '@/types/role/role';
 
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { IText } from '../../text/types/text';
 import { ValidationStatusState, ValidationStatusStylesProps } from './validationStatusTheme';
 
 export type ValidationStatusTextType = Omit<IText<string>, 'children'> & {

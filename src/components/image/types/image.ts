@@ -1,6 +1,6 @@
-import { GenericImageType } from '@/provider/genericComponents';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
+import { GenericImageType } from '../../../provider/genericComponents/genericComponents.type';
 import { ImageLoadingType } from './loading';
 import { ImageObjectFitType } from './objectFit';
 import { PictureSourceType } from './pictureSource';

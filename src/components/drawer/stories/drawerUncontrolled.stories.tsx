@@ -1,15 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { ICONS } from '@/assets';
-import { FooterPositionType } from '@/components/footer';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { TextComponentType } from '@/components/text';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { themesObject, variantsObject } from '@/designSystem/themesObject/themesObject';
 
-import { Drawer as Story } from '../index';
-import { DrawerLevelPositionTypes, DrawerTitleComponentType } from '../types';
+import { FooterPositionType } from '../../footer/types/position';
+import { TextComponentType } from '../../text/types/component';
+import { DrawerUnControlled as Story } from '../drawerUnControlled';
+import { DrawerLevelPositionTypes } from '../types/level';
+import { DrawerTitleComponentType } from '../types/titleComponent';
 import { argtypes } from './controlledArgtypes';
 
 const themeSelected = localStorage.getItem('themeSelected') || 'kubit';

@@ -1,6 +1,6 @@
+import { FORMAT_DATE } from '../../../provider/utils/types';
 import { formatDate, formatDateToUTC } from '../formatDate';
 import { locale } from '../locale';
-import { FORMAT_DATE } from '../types';
 
 describe('Format Dates', () => {
   it('Format D - Spanish', () => {

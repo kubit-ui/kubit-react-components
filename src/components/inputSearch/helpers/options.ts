@@ -1,4 +1,4 @@
-import { IOptionGroup } from '../types';
+import { IOptionGroup } from '../types/inputSearch';
 
 export const getLength = (options: IOptionGroup[]): number => {
   let numOptions = 0;

@@ -1,4 +1,4 @@
-import { TooltipAlignType } from '../types';
+import { TooltipAlignType } from '../types/tooltipAlign';
 
 export type Axis = 'x' | 'y';
 export type Length = 'width' | 'height';

@@ -1,21 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { useGenericComponents } from '@/provider';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { ROLES } from '@/types';
-import { focusFirstDescendant } from '@/utils';
 import { isKeyTabPressed } from '@/utils/keyboard/keyboard.utility';
 
-import { ListOptionsType } from '../listOptions';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { useGenericComponents } from '../../provider/genericComponents/genericComponentsProvider';
+import { ROLES } from '../../types/role/role';
+import { focusFirstDescendant } from '../../utils/focusHandlers/focusHandlers';
+import { ListOptionsType } from '../listOptions/types/type';
 import { DropdownSelectedStandAlone } from './dropdownSelectedStandAlone';
-import {
-  DropdownSelectedStateStylesType,
-  IDropdownSelectedControlled,
-  IDropdownSelectedStandAlone,
-} from './types';
-import { getState } from './utils';
+import { IDropdownSelectedControlled, IDropdownSelectedStandAlone } from './types/dropdownSelected';
+import { DropdownSelectedStateStylesType } from './types/dropdownSelectedTheme';
+import { getState } from './utils/state';
 
 // eslint-disable-next-line react/display-name
 const DropdownSelectedControlledComponent = React.forwardRef(

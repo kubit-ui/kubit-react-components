@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Link } from '@/components/link/link';
 import { LinkPositionType } from '@/components/link/types/position';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
-import { ROLES } from '@/types/role';
+import { ROLES } from '@/types/role/role';
 
 import {
   CardImageContentStyled,
@@ -15,7 +15,7 @@ import {
   CardImageTesxtContainerStyled,
   CardImageTitleStyled,
 } from './cardImage.styled';
-import { ICardImageStandAlone } from './types';
+import { ICardImageStandAlone } from './types/cardImage';
 
 const CardImageStandAloneComponent = (
   { ...props }: ICardImageStandAlone,

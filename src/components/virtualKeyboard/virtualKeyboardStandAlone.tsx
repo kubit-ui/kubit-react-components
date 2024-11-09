@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useId } from '@/hooks/useId/useId';
 
-import { ButtonType } from '../button/types';
-import { ElementOrIcon } from '../elementOrIcon';
+import { ButtonType } from '../button/types/type';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { DigitButton } from './components/digitButton';
-import { IVirtualKeyboardStandAlone } from './types';
+import { IVirtualKeyboardStandAlone } from './types/virtualKeyboard';
 // styles
 import {
   DigitButtonGrid,

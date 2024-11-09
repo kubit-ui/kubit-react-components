@@ -3,10 +3,10 @@ import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { Breadcrumbs } from '@/components/breadcrumbs/index';
+import { BreadcrumbsControlled as Breadcrumbs } from '@/components/breadcrumbs/breadcrumbsControlled';
 import { BreadcrumbsStateType } from '@/components/breadcrumbs/types/state';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
 const mockProps = {
   variant: 'DEFAULT',

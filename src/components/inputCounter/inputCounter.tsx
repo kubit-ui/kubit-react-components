@@ -1,13 +1,18 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useId, useInput, useStyles } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
+import { useId } from '@/hooks/useId/useId';
+import { useInput } from '@/hooks/useInput/useInput';
+import { useStyles } from '@/hooks/useStyles/useStyles';
 
-import { INTERNAL_ERROR_EXECUTION, InputTypeType } from '../input/types';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { INTERNAL_ERROR_EXECUTION } from '../input/types/input';
+import { InputTypeType } from '../input/types/inputType';
 import { InputCounterStandAlone } from './inputCounterStandAlone';
-import { IInputCounter, IInputCounterStandAlone, InputCounterStylesProps } from './types';
-import { buildScreenReaderText } from './utils';
+import { IInputCounter, IInputCounterStandAlone } from './types/inputCounter';
+import { InputCounterStylesProps } from './types/inputCounterTheme';
+import { buildScreenReaderText } from './utils/counter.utils';
 
 const InputCounterComponent = React.forwardRef(
   <V extends string | unknown>(

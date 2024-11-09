@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
-import { IDecorativeElementStandAlone } from '@/components/decorativeElement';
-import { IFooter } from '@/components/footer';
-import { IText } from '@/components/text/types';
-import { CustomTokenTypes } from '@/types';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IDecorativeElementStandAlone } from '../../decorativeElement/types/decorativeElement';
+import { IFooter } from '../../footer/types/footer';
+import { IText } from '../../text/types/text';
 import {
   ConfirmationMessagePropsStateStylesType,
   ConfirmationMessagePropsStylesType,

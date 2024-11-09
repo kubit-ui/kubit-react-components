@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
 import { FooterSectionStyled } from '../footer.styled';
-import { FooterPositionType, FooterPropsStylesType } from '../types';
+import { FooterPropsStylesType } from '../types/footerTheme';
+import { FooterPositionType } from '../types/position';
 
 interface IFooterSection {
   styles: FooterPropsStylesType;

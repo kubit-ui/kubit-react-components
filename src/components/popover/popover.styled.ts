@@ -1,9 +1,12 @@
+/* eslint-disable complexity */
 import styled, { css } from 'styled-components';
 
-import { DeviceBreakpointsType } from '@/types/breakpoints';
-import { POSITIONS } from '@/types/positions';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { POSITIONS } from '@/types/positions/positions';
 
-import { PopoverPositionVariantType, PopoverVariantStylesProps, getAlignStyles } from './types';
+import { getAlignStyles } from './types/align';
+import { PopoverVariantStylesProps } from './types/popoverTheme';
+import { PopoverPositionVariantType } from './types/positionVariant';
 
 type PopoverProps = {
   device: DeviceBreakpointsType;

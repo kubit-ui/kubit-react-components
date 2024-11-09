@@ -1,12 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { useGenericComponents } from '@/provider/genericComponents';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
+import { useGenericComponents } from '../../provider/genericComponents/genericComponentsProvider';
 import { OptionStandAlone } from './optionStandAlone';
-import { IOption, IOptionStandAlone, OptionPropsStylesType, OptionStateType } from './types';
+import { IOption, IOptionStandAlone } from './types/option';
+import { OptionPropsStylesType } from './types/optionTheme';
+import { OptionStateType } from './types/state';
 
 export const OptionComponent = React.forwardRef(
   <V extends string | unknown>(

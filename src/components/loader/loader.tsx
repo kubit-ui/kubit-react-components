@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { STYLES_NAME } from '@/constants';
+import { STYLES_NAME } from '@/constants/stylesName/stylesName';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { LoaderStandalone } from './loaderStandAlone';
-import { ILoader, ILoaderStandAlone, LoaderStylesPropsType } from './types';
+import { ILoader, ILoaderStandAlone } from './types/loader';
+import { LoaderStylesPropsType } from './types/loaderTheme';
 
 export const LoaderComponent = React.forwardRef(
   <V extends string | unknown>(

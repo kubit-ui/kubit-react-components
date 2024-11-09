@@ -1,11 +1,8 @@
-import {
-  CssAnimationConfig,
-  CssAnimationType,
-  ICssAnimationOptions,
-} from '@/components/cssAnimation';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { PopoverVariantStylesType } from '../types';
+import { CssAnimationConfig, ICssAnimationOptions } from '../../cssAnimation/types/cssAnimation';
+import { CssAnimationType } from '../../cssAnimation/types/variant';
+import { PopoverVariantStylesType } from '../types/popoverTheme';
 
 export const getAnimationConfig = (
   styles: PopoverVariantStylesType,

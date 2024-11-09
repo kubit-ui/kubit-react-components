@@ -1,7 +1,12 @@
-import { PillPropsStylesType, PillStateType, PillStylesType } from '@/components/pillV2/types';
+import { PillStylesType } from '@/components/pill/types/pillTheme';
+import { PillStateType } from '@/components/pill/types/state';
+import { PillPropsStylesType } from '@/components/pillV2/types/pillTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS } from '../../foundations';
 import { TextVariantType } from '../variants';
 import { PillSizeTypeV2, PillVariantTypeV2 } from './variants';
 

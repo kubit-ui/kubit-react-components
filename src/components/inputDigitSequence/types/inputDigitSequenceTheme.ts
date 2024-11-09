@@ -1,4 +1,6 @@
-import { CommonStyleType, IconGenericType, IconTypes, TypographyTypes } from '@/types';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconGenericType, IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
 
 import { InputDigitSequenceStateType } from './state';
 

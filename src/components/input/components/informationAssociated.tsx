@@ -1,12 +1,13 @@
-import * as React from 'react';
+/* eslint-disable complexity */
+import React from 'react';
 
 import { Button } from '@/components/button/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { IconHighlighted } from '@/components/iconHighlighted';
-import { Text } from '@/components/text';
-import { TextComponentType } from '@/components/text/types';
-import { AriaLiveOptionType } from '@/types';
+import { Text } from '@/components/text/text';
+import { AriaLiveOptionType } from '@/types/ariaLiveOption/ariaLiveOption';
 
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import { IconHighlighted } from '../../iconHighlighted/iconHighlighted';
+import { TextComponentType } from '../../text/types/component';
 // styles
 import {
   InfoAssociatedButtonStyled,

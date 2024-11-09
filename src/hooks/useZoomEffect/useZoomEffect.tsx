@@ -2,8 +2,8 @@ import { useCallback, useRef } from 'react';
 
 import { useTheme } from 'styled-components';
 
-import { DeviceBreakpointsType } from '@/types';
-import { CssProperty, changeCssProperty } from '@/utils';
+import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
+import { CssProperty, changeCssProperty } from '../../utils/changeCssProperty/changeCssProperty';
 
 const MAX_ZOOM = 1.25;
 const CONDITION = true;
@@ -52,6 +52,7 @@ export const useZoomEffect = (
   // indicate the theme breakpoints
   const { BREAKPOINTS } = useTheme();
 
+  // eslint-disable-next-line complexity
   const applyEffects = useCallback(() => {
     const realDevice = getRealDevice(BREAKPOINTS);
     if (!condition || !innerElementRef.current || realDevice !== DeviceBreakpointsType.DESKTOP) {

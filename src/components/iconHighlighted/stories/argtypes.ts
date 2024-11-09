@@ -1,10 +1,11 @@
-import { ICONS } from '@/assets';
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
+import { ICONS } from '@/assets/storybook/icons/icons';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
 import { objectFlip } from '@/storybook/utils/utils';
-import { ArgTypesReturn } from '@/types';
+import { ArgTypesReturn } from '@/types/type/type';
 
-import { IconHighlightedSizeType, IconHighlightedType } from '../types';
+import { IconHighlightedSizeType } from '../types/size';
+import { IconHighlightedType } from '../types/type';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {

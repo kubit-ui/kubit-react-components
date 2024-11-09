@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { getStyles } from '@/utils';
-
+import { getStyles } from '../../utils/getStyles/getStyles';
 import { RadioButtonStyled } from './components/radioButton/radioButton.styled';
-import { IRadioButtonGroupStyled, RadioButtonGroupStateType } from './types';
+import { IRadioButtonGroupStyled } from './types/radioButtonGroup';
+import { RadioButtonGroupStateType } from './types/state';
 
 export const RadioButtonGroupStyled = styled.fieldset<IRadioButtonGroupStyled>`
   & > legend {

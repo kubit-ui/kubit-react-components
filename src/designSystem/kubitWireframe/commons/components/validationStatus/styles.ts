@@ -1,10 +1,12 @@
 import {
   ValidationStatusState,
   ValidationStatusStylesType,
-} from '@/components/validationStatus/types';
+} from '@/components/validationStatus/types/validationStatusTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
-import { BORDERS, RADIUS, SIZES, SPACINGS } from '../../foundations';
 import { ValidationStatusVariants } from './variants';
 
 export const getValidationStatusStyles = (COLORS: {

@@ -1,6 +1,8 @@
-import { LineSeparatorLinePropsStylesType } from '@/components/lineSeparator';
-import { CustomTokenTypes, DeviceBreakpointsType, ROLES } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
+import { ROLES } from '@/types/role/role';
 
+import { LineSeparatorLinePropsStylesType } from '../../lineSeparator/types/lineSeparatorTheme';
 import { ContentDirectionType } from './direction';
 import { FooterPropsStylesType } from './footerTheme';
 import { FooterPositionType } from './position';

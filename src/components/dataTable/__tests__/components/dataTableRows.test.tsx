@@ -2,9 +2,9 @@ import { screen } from '@testing-library/react';
 import React from 'react';
 
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
+import { ROLES } from '@/types/role/role';
 
-import { DataTableRows } from '../../components';
+import { DataTableRows } from '../../components/dataTableRows';
 
 const mockProps = {};
 

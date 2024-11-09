@@ -4,6 +4,7 @@ const buildBeforeCounters = (beforeNum, currentPosition) =>
 const buildAfterCounters = (afterNum, currentPosition) =>
   [...Array(afterNum)].map((_, index) => currentPosition + 1 + index);
 
+// eslint-disable-next-line complexity
 export const buildstepsNumber = (
   currentStep: number,
   maxSteps: number,

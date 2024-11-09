@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
 
-import { IActionBottomSheetControlledStructure } from '@/components/actionBottomSheet';
-import { IButton } from '@/components/button';
-import { IListOptions } from '@/components/listOptions';
-import { IPopoverControlled } from '@/components/popover';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import { IActionBottomSheetControlledStructure } from '../../actionBottomSheet/types/actionBottomSheet';
+import { IButton } from '../../button/types/button';
+import { IListOptions } from '../../listOptions/types/listOptions';
+import { IPopoverControlled } from '../../popover/types/popover';
 import { OliveMenuGlobalStylesType } from './oliveMenuTheme';
 
 export type OliveMenuTriggerType = Omit<IButton, 'children' | 'size'> & {

@@ -1,7 +1,7 @@
-import { LayoutStylesType } from '@/components/layout/types';
-import { DeviceBreakpointsType } from '@/types';
+import { LayoutStylesType } from '@/components/layout/types/layoutTheme';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { SPACINGS } from '../../foundations';
 import { LayoutVariantType } from './variants';
 
 export const LAYOUT_STYLES: LayoutStylesType<LayoutVariantType> = {

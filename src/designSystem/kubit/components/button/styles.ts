@@ -1,18 +1,14 @@
 // types
-import { ButtonStateType, ButtonStylesType } from '@/components/button/types';
-import { DeviceBreakpointsType } from '@/types';
+import { ButtonStylesType } from '@/components/button/types/buttonTheme';
+import { ButtonStateType } from '@/components/button/types/state';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 // constants
-import {
-  BORDERS,
-  COLORS,
-  FONT_FAMILY,
-  FONT_WEIGHT,
-  PARAGRAPH,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-} from '../../foundations';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_FAMILY, FONT_WEIGHT, PARAGRAPH, TEXT_ALIGN } from '../../foundations/typography';
 import { ButtonSizeType, ButtonVariantType } from './variants';
 
 const actionCommonProps = {

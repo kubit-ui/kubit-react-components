@@ -6,12 +6,13 @@ import { axe } from 'jest-axe';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import * as UseTabsUtils from '@/hooks/useTabs/useTabs';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType, ROLES } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { ROLES } from '@/types/role/role';
 
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
 import { TabsControlled } from '../tabsControlled';
 import { TabsUnControlled } from '../tabsUnControlled';
-import { ITabsUnControlled, PrimaryTabTabType } from '../types';
+import { ITabsUnControlled, PrimaryTabTabType } from '../types/tabs';
 
 const tabs: PrimaryTabTabType[] = [
   { content: 'Tab 1' },

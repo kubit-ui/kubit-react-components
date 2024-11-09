@@ -1,6 +1,7 @@
-import { SkeletonStylesType } from '@/components/skeleton/types';
+import { SkeletonStylesType } from '@/components/skeleton/types/skeletonTheme';
 
-import { COLORS, RADIUS } from '../../foundations';
+import { RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
 import { SkeletonShapeVariant, SkeletonVariantType } from './variants';
 
 export const SKELETON_STYLES: SkeletonStylesType<SkeletonShapeVariant, SkeletonVariantType> = {

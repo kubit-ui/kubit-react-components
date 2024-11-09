@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { ButtonType } from '@/components/button';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
+import { ButtonType } from '../../button/types/type';
 import { QuickButton } from '../quickButton';
 
 const mockProps = {

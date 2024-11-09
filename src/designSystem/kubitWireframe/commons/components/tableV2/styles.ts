@@ -1,6 +1,6 @@
-import { TableStylesTypeV2 } from '@/components';
+import { TableStylesTypeV2 } from '@/components/tableV2/types/tableTheme';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 
-import { SPACINGS } from '../../foundations';
 import { TableV2VariantType } from './variants';
 
 export const getTableV2Styles = (COLORS: {

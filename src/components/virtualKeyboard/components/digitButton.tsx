@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 
-import { ButtonKeyboardStateType, IDigitButton } from '../types';
+import { ButtonType } from '../../button/types/type';
+import { ButtonKeyboardStateType } from '../types/state';
+import { IDigitButton } from '../types/virtualKeyboard';
 // styles
 import { DigitButtonStyled } from '../virtualKeyboard.styled';
 

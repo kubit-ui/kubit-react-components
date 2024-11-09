@@ -1,5 +1,7 @@
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CommonStyleType } from '@/types/styles/commonStyle';
+import { IconTypes } from '@/types/styles/icon';
+import { TypographyTypes } from '@/types/styles/typography';
 
 import { DrawerLevelPositionTypes } from './level';
 import { DrawerVariantPositionTypes } from './variantPosition';

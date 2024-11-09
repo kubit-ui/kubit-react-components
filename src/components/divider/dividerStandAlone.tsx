@@ -1,12 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 
-import { Tooltip, TooltipAlignType } from '../tooltip';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { TooltipUnControlled as Tooltip } from '../tooltip/tooltipUnControlled';
+import { TooltipAlignType } from '../tooltip/types/tooltipAlign';
 import { DividerRowLabelIconGroupStyled, DividerRowStyled, DividerStyled } from './divider.styled';
-import { IDividerStandAlone } from './types';
+import { IDividerStandAlone } from './types/divider';
 
 const DividerStandAloneComponent = (
   { styles, dataTestId = 'divider', customComponent, embebed, ...props }: IDividerStandAlone,

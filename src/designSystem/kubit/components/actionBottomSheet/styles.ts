@@ -1,15 +1,12 @@
-import { ActionBottomSheetStylesType } from '@/components/actionBottomSheet/types';
-import { DeviceBreakpointsType } from '@/types';
+import { ActionBottomSheetStylesType } from '@/components/actionBottomSheet/types/actionBottomSheetTheme';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import {
-  COLORS,
-  FONT_WEIGHT,
-  RADIUS,
-  SHADOW,
-  SIZES,
-  SPACINGS,
-  TEXT_ALIGN,
-} from '../../foundations';
+import { RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SHADOW } from '../../foundations/shadow';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
 import { PopoverVariantType } from '../popover/variants';
 import { TextVariantType } from '../text/variants';
 import { ActionBottomSheetVariantType } from './variants';

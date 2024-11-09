@@ -1,19 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useId } from '@/hooks/useId/useId';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
-import { IInputDropdownStandAlone } from '../inputDropdown';
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 import { InputDropdownStandAlone } from '../inputDropdown/inputDropdownStandAlone';
-import { useAnimation } from './hooks';
+import { IInputDropdownStandAlone } from '../inputDropdown/types/inputDropdown';
+import { useAnimation } from './hooks/useAnimation';
 import { InputDigitSequenceStandAlone } from './inputDigitSequenceStandAlone';
-import {
-  IInputDigitSequenceControlled,
-  InputDigitSequenceStateStyles,
-  InputDigitSequenceStateType,
-  UseStateInputDigitsType,
-} from './types';
+import { IInputDigitSequenceControlled, UseStateInputDigitsType } from './types/inputDigitSequence';
+import { InputDigitSequenceStateStyles } from './types/inputDigitSequenceTheme';
+import { InputDigitSequenceStateType } from './types/state';
 
 //constants
 const INPUT_DIGIT_SEQUENCE_STYLES = 'INPUT_DIGIT_SEQUENCE_STYLES';

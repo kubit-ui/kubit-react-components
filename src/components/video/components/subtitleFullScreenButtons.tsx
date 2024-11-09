@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
 import { IElementOrIcon } from '@/components/elementOrIcon/types/elementOrIcon';
 import { MediaButton } from '@/components/mediaButton/mediaButton';
 import { MediaButtonSizeType } from '@/components/mediaButton/types/sizes';
 import { TooltipUnControlled as Tooltip } from '@/components/tooltip/tooltipUnControlled';
 import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { VideoStyleType } from '../types/videoTheme';
 

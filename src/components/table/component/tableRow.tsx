@@ -1,10 +1,11 @@
-import * as React from 'react';
+/* eslint-disable complexity */
+import React from 'react';
 
-import { ButtonType } from '@/components/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { TextComponentType } from '@/components/text/types/component';
 
+import { ButtonType } from '../../button/types/type';
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 import { useContent } from '../hooks/useContent';
 import {
   TableColumnBodyStyled,
@@ -14,7 +15,7 @@ import {
   TableExpandedCellStyled,
   TableRowBodyStyled,
 } from '../table.styled';
-import { ITableStandAlone, IValue } from '../types';
+import { ITableStandAlone, IValue } from '../types/table';
 import { TableDivider } from './tableDivider';
 
 export interface ITableRow extends Omit<ITableStandAlone, 'values' | 'headerVariant'> {

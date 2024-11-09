@@ -1,7 +1,11 @@
 // Foundations
-import { ChipStylesType } from '@/components/chip/types';
+import { ChipStylesType } from '@/components/chip/types/chipTheme';
 
-import { BORDERS, COLORS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS } from '../../foundations';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import { TextVariantType } from '../text/variants';
 import { ChipStateType, ChipVariantType } from './variants';
 

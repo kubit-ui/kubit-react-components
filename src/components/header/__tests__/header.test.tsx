@@ -1,15 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
 import { Button } from '@/components/button/button';
-import { FooterPositionType } from '@/components/footer';
-import { LinkActionType } from '@/components/link';
 import * as mediaHooks from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
+import { windowMatchMedia } from '../../../tests/windowMatchMedia/windowMatchMedia';
+import { FooterPositionType } from '../../footer/types/position';
+import { LinkActionType } from '../../link/types/action';
 import { Header } from '../header';
 
 const mockProps = {

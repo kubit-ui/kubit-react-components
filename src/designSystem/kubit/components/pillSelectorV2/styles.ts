@@ -1,9 +1,10 @@
 import {
   PillSelectorPropsStylesType,
   PillSelectorStylesType,
-} from '@/components/pillSelectorV2/types';
+} from '@/components/pillSelectorV2/types/pillSelectorTheme';
 
-import { BORDERS, COLORS } from '../../foundations';
+import { BORDERS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
 import { PillSizeTypeV2, PillVariantTypeV2 } from '../variants';
 import { PillSelectorSizeTypeV2, PillSelectorVariantTypeV2 } from './variants';
 

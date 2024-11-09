@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { ICONS } from '@/assets';
+import { ICONS } from '@/assets/storybook/icons/icons';
 import { Button } from '@/components/button/button';
-import { Icon } from '@/components/icon';
-import { DeviceBreakpointsType } from '@/types';
+import { IconBasic as Icon } from '@/components/icon/icon';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 export const mockTableWithDivider = {
   headers: [

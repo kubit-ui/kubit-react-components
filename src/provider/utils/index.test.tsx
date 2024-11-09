@@ -2,9 +2,9 @@ import '@testing-library/jest-dom';
 
 import { render, screen } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
-import * as React from 'react';
+import React from 'react';
 
-import { UtilsProvider, UtilsProviderProps, useUtilsProvider } from '.';
+import { UtilsProvider, UtilsProviderProps, useUtilsProvider } from './provider';
 import { FORMAT_DATE } from './types';
 
 describe('Utils provider', () => {

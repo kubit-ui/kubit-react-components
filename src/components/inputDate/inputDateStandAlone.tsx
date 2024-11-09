@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import { InputControlled as Input } from '@/components/input';
-import { useId } from '@/hooks';
-import { ROLES } from '@/types';
+import { useId } from '@/hooks/useId/useId';
 
+import { ROLES } from '../../types/role/role';
+import { InputControlled as Input } from '../input/inputControlled';
 import { PopoverCalendar } from './components/popoverCalendar';
 // styles
 import { InputDateStyled } from './inputDate.styled';
-import { IInputDateStandAlone } from './types';
+import { IInputDateStandAlone } from './types/inputDate';
 
 export const InputDateStandAloneComponent = (
   { dataTestId = 'input-data', maxDate, ...props }: IInputDateStandAlone,

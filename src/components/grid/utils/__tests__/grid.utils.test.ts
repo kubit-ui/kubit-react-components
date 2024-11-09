@@ -1,4 +1,4 @@
-import { GridColumns, GridConfigType } from '../../types';
+import { GridColumns, GridConfigType } from '../../types/grid';
 import { getGridConfiguration, getItemGridConfiguration, getMaxWidth } from '../grid.utils';
 
 describe('getMaxWidth utility', () => {

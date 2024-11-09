@@ -1,5 +1,5 @@
-import { InputState } from '../types';
-import { getState, hasError, isDisabled } from '../utils';
+import { InputState } from '../types/inputTheme';
+import { getState, hasError, isDisabled } from '../utils/state.utils';
 
 describe('Utils state', () => {
   it('If disabled without value, it should return DISABLED_EMPTY state', () => {

@@ -1,12 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
 import { axe } from 'jest-axe';
 
-import { TextDecorationType } from '@/components/text';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
 
+import { TextDecorationType } from '../../text/types/decoration';
 import { Link } from '../link';
-import { LinkPositionType, LinkTargetType } from '../types';
+import { LinkPositionType } from '../types/position';
+import { LinkTargetType } from '../types/target';
 
 const mockProps = {
   ['aria-label']: 'I am link',

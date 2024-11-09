@@ -1,8 +1,11 @@
-import { BadgeStylesType } from '@/components/badgeV2/types/';
+import { BadgeStylesType } from '@/components/badgeV2/types/badgeTheme';
 import { BadgeState } from '@/components/badgeV2/types/state';
 
-import { COLORS, FONT_WEIGHT, SIZES, SPACINGS } from '../../foundations';
-import { TextVariantType } from '../text';
+import { COLORS } from '../../foundations/colors';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
+import { TextVariantType } from '../text/variants';
 import { BadgeSizeV2, BadgeVariantV2 } from './variants';
 
 export const BADGE_STYLES_V2: BadgeStylesType<BadgeVariantV2, BadgeSizeV2> = {

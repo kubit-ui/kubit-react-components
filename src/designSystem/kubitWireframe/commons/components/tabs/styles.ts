@@ -1,8 +1,13 @@
-import { TabsStateTypes, TabsStylesType } from '@/components/tabs/types';
+import { TabsStateTypes } from '@/components/tabs/types/state';
+import { TabsStylesType } from '@/components/tabs/types/tabsTheme';
+import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundations/borders';
+import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
+import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
+import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
+import { Z_INDEX } from '@/designSystem/kubitWireframe/commons/foundations/zIndex';
 import { shadowAfterStyles, transformShadow } from '@/designSystem/kubitWireframe/utils/wireframe';
-import { DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
-import { BORDERS, FONT_WEIGHT, RADIUS, SIZES, SPACINGS, Z_INDEX } from '../../foundations';
 import { TextVariantType } from '../text/variants';
 import { TabsVariantType } from './variants';
 

@@ -1,8 +1,14 @@
-import { SnackbarMessageType, SnackbarStylesType } from '@/components/snackbar/types';
-import { TextDecorationType } from '@/components/text/types';
-import { POSITIONS } from '@/types';
+import { SnackbarStylesType } from '@/components/snackbar/types/snackbarTheme';
+import { SnackbarMessageType } from '@/components/snackbar/types/snackbarType';
+import { TextDecorationType } from '@/components/text/types/decoration';
+import { POSITIONS } from '@/types/positions/positions';
 
-import { BORDERS, COLORS, FONT_WEIGHT, RADIUS, SHADOW, SIZES, SPACINGS } from '../../foundations';
+import { BORDERS, RADIUS } from '../../foundations/borders';
+import { COLORS } from '../../foundations/colors';
+import { SHADOW } from '../../foundations/shadow';
+import { SIZES } from '../../foundations/sizes';
+import { SPACINGS } from '../../foundations/spacings';
+import { FONT_WEIGHT } from '../../foundations/typography';
 import {
   ButtonSizeType,
   ButtonVariantType,

@@ -1,4 +1,4 @@
-import { InputState } from '../types';
+import { InputState } from '../types/inputTheme';
 import { hasError } from './state.utils';
 
 export const buildAriaDescribedBy = ({
@@ -16,8 +16,7 @@ export const buildAriaDescribedBy = ({
   errorMessageId?: string;
   state?: InputState;
 }): string | undefined => {
-  if (!ariaDescribedBy && !errorMessage) return;
-
+  if (!ariaDescribedBy && !errorMessage && !helpMessage) return;
   let res: string = '';
   if (ariaDescribedBy) {
     res += ` ${ariaDescribedBy}`;

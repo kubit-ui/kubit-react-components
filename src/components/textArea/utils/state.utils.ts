@@ -1,5 +1,6 @@
-import { TextAreaStateType } from '../types';
+import { TextAreaStateType } from '../types/state';
 
+// eslint-disable-next-line complexity
 export const getState = (
   disabled: boolean,
   error: boolean,

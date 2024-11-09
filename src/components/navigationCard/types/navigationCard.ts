@@ -1,13 +1,17 @@
 import { ReactNode } from 'react';
 
-import { ButtonType } from '@/components/button';
-import { DecorativePropsType } from '@/components/decorativeElement';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ITag } from '@/components/tag';
-import { IText } from '@/components/text';
-import { GenericLinkType, IGenericLink } from '@/provider/genericComponents';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
+import { CustomTokenTypes } from '@/types/customToken/customToken';
 
+import {
+  GenericLinkType,
+  IGenericLink,
+} from '../../../provider/genericComponents/genericComponents.type';
+import { ButtonType } from '../../button/types/type';
+import { DecorativePropsType } from '../../decorativeElement/types/decorativeElement';
+import { IElementOrIcon } from '../../elementOrIcon/types/elementOrIcon';
+import { ITag } from '../../tag/types/tag';
+import { IText } from '../../text/types/text';
 import { NavigationCardStylesPropsType } from './navigationCardTheme';
 
 export interface INavigationCardStyled {

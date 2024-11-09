@@ -1,4 +1,4 @@
-import { IIllustration } from '../../illustration';
+import { IIllustration } from '../../illustration/types/illustration';
 
 /**
  * @name IElementOrillustration

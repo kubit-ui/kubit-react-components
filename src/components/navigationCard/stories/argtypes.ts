@@ -1,8 +1,9 @@
-import { ButtonType } from '@/components/button';
-import { LinkTargetType } from '@/components/link';
-import { CATEGORY_CONTROL } from '@/constants/categoryControl';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn } from '@/types';
+import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
+import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
+import { ArgTypesReturn } from '@/types/type/type';
+
+import { ButtonType } from '../../button/types/type';
+import { LinkTargetType } from '../../link/types/target';
 
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {

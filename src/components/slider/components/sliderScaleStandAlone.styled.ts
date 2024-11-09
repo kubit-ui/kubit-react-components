@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { getStyles } from '@/utils/getStyles/getStyles';
 
-import { SliderBaseStylesType } from '../types';
+import { SliderBaseStylesType } from '../types/sliderTheme';
 
 export const StyledScaleWrap = styled.div<{ styles: SliderBaseStylesType }>`
   ${props => getStyles(props.styles.scaleContainer)}

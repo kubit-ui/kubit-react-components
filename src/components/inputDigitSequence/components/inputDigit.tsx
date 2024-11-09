@@ -1,16 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
-import { Text } from '@/components/text';
-import { InputModeType } from '@/types';
-import { InputTypeType } from '@/types/inputType';
+import { Text } from '@/components/text/text';
+import { InputModeType } from '@/types/inputMode/inputMode';
+import { InputTypeType } from '@/types/inputType/inputType';
 
 import { InputDigitAndNumberContainer, InputDigitStyled } from '../inputDigitSequence.styled';
-import {
-  InputDigitSequenceStateStyles,
-  InputDigitSequenceStateType,
-  UseStateInputDigitsType,
-} from '../types';
+import { UseStateInputDigitsType } from '../types/inputDigitSequence';
+import { InputDigitSequenceStateStyles } from '../types/inputDigitSequenceTheme';
+import { InputDigitSequenceStateType } from '../types/state';
 
 interface IInputDigit {
   styles?: InputDigitSequenceStateStyles;

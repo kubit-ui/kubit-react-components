@@ -1,7 +1,10 @@
-import { InputState, LABEL_TYPE } from '@/components/input/types';
-import { formatDateToUTC } from '@/utils';
-
-import { getMask, getPlaceholder, verifyDate, verifyFormat, verifyYear } from '../utils';
+import { formatDateToUTC } from '../../../utils/date/formatDate';
+import { InputState, LABEL_TYPE } from '../../input/types/inputTheme';
+import { getMask } from '../utils/getMask';
+import { getPlaceholder } from '../utils/getPlaceholder';
+import { verifyDate } from '../utils/verifyDate';
+import { verifyFormat } from '../utils/verifyFormat';
+import { verifyYear } from '../utils/verifyYear';
 
 const format = 'DD-MM-YYYY';
 const dateSeparator = 'to';

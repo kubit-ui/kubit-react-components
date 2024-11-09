@@ -1,13 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useInput } from '@/hooks/useInput/useInput';
 import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
 
+import { ErrorBoundary } from '../../provider/errorBoundary/errorBoundary';
+import { FallbackComponent } from '../../provider/errorBoundary/fallbackComponent';
 // helpers
-import { INTERNAL_ERROR_EXECUTION, InputTypeType } from '../input';
+import { INTERNAL_ERROR_EXECUTION } from '../input/types/input';
+import { InputTypeType } from '../input/types/inputType';
 import { InputCurrencyStandAlone } from './inputCurrencyStandAlone';
-import { IInputCurrency, IInputCurrencyStandAlone, InputCurrencyStylesProps } from './types';
+import { IInputCurrency, IInputCurrencyStandAlone } from './types/inputCurrency';
+import { InputCurrencyStylesProps } from './types/inputCurrencyTheme';
 
 const INPUT_CURRENCY_STYLES = 'INPUT_CURRENCY_STYLES';
 
