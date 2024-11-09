@@ -93,6 +93,7 @@
     "@eslint/compat": "^1.2.2",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.14.0",
+    "@kubit-ui-web/eslint-plugin-no-index-import": "^1.0.2",
     "@storybook/addon-a11y": "^8.4.2",
     "@storybook/addon-controls": "^8.4.2",
     "@storybook/addon-coverage": "^1.0.4",

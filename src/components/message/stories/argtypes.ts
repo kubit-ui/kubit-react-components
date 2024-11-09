@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { ICONS } from '@/assets/storybook/icons/icons';
 import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
 import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';

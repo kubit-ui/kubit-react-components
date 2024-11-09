@@ -16,7 +16,6 @@ const FIRST_ICON_NOT_TWISTED_TRANSFORM_VALUE = 'rotateY(0deg) rotateZ(0deg)';
 const SECOND_ICON_NOT_TWISTED_TRANSFORM_VALUE = 'rotateY(0deg) rotateZ(0deg)';
 const SECOND_ICON_TWISTED_TRANSFORM_VALUE = 'rotateY(-180deg) rotateZ(-90deg)';
 
-// eslint-disable-next-line complexity
 const MediaButtonStandaloneComponent = (
   props: IMediaButtonStandAlone,
   ref: React.ForwardedRef<HTMLButtonElement> | undefined | null

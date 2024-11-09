@@ -47,7 +47,6 @@ const SelectorBoxFileComponent = React.forwardRef(
       setFocus(false);
     };
 
-    // eslint-disable-next-line complexity
     const onValidateFile = (files: FileList | null) => {
       if (!files || files.length === 0) {
         return;

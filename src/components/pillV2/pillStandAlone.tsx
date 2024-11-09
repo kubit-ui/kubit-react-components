@@ -19,7 +19,7 @@ import { PillType } from './types/pillType';
 
 const PillStandAloneComponent = (
   { dataTestId = 'pill', type = PillType.BUTTON, ...props }: IPillStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+  ref: React.ForwardedRef<HTMLButtonElement> | undefined | null
 ): JSX.Element => {
   const id = useId('pill');
   const pillContentId = `${id}-content`;

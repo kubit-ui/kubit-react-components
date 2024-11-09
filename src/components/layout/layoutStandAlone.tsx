@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import React from 'react';
 
 import { GridStyled as Grid, GridItemStyled as GridItem } from '@/components/grid/grid.styled';

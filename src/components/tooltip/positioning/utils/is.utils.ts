@@ -29,7 +29,6 @@ export const isWebKit = (): boolean => {
   return CSS.supports('-webkit-backdrop-filter', 'none');
 };
 
-// eslint-disable-next-line complexity
 export const isContainingBlock = (element: Element): boolean => {
   const webkit = isWebKit();
   const css = getComputedStyle(element);

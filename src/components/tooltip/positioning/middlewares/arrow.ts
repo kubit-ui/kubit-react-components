@@ -10,7 +10,7 @@ import { within } from '../utils/within';
 export const arrow = (options: ArrowOptionsMiddleware): Middleware => ({
   name: 'arrow',
   options,
-  // eslint-disable-next-line complexity
+
   fn(state) {
     // Since `element` is required, we don't Partial<> the type.
     const { element, padding = 0 } = options || {};

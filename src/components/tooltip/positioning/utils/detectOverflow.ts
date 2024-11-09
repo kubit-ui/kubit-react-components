@@ -6,7 +6,6 @@ import { getSideObjectFromPadding } from './getPaddingObject';
 import { isElement } from './is.utils';
 import { rectToClientRect } from './rectToClientRect';
 
-// eslint-disable-next-line complexity
 export const detectOverflow = (
   state: MiddlewareState,
   options: Partial<DetectOverflowOptions> = {}

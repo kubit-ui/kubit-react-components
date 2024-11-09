@@ -2,7 +2,6 @@ import { CATEGORY_CONTROL } from '@/constants/categoryControl/categoryControl';
 import { IThemeObjectVariants } from '@/designSystem/themesObject/themesObject';
 import { ArgTypesReturn } from '@/types/type/type';
 
-// eslint-disable-next-line complexity
 export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
   return {
     themeArgs: {

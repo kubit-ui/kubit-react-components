@@ -1,7 +1,6 @@
 import { CheckboxPropsStateStylesType } from '../types/checkboxTheme';
 import { CheckboxStateType } from '../types/state';
 
-// eslint-disable-next-line complexity
 const getCheckBoxState = (
   checked = false,
   disabled = false,

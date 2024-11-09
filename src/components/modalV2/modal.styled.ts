@@ -9,7 +9,6 @@ type ModalShowScrollType = {
   $minContentHeight?: string;
 };
 
-// eslint-disable-next-line complexity
 const commonModalContainerStyled = (
   mediaQuery: string,
   minWidth?: string,

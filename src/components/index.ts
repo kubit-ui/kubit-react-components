@@ -85,12 +85,6 @@ export * from './tableV2';
 export * from './dataTable';
 export * from './video';
 export * from './progressBar';
-export * from './inputDigitPassword';
-export * from './statusCard';
-export * from './selectorBox';
-export { Banner } from './banner/banner';
-export * from './banner/types';
-export * from './navBar';
 export * from './virtualKeyboard';
 
 /**
@@ -116,15 +110,6 @@ export * from './headerStructure';
 export * from './footer';
 export * from './portal';
 export * from './textCount';
-export * from './accordionSideMenu';
-export * from './secondaryTabs';
-export * from './wizardFooter';
-export * from './quickCardHighlights';
-export * from './wizard';
-export * from './crossellModule';
-export * from './commercialCard';
 export * from './operativeLayout';
 export * from './emptyState';
 export * from './loadingState';
-export * from './cardSelector';
-export * from './cardInformative';

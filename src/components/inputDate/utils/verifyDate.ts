@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { formatValueDate, verifyFormat } from './verifyFormat';
 
 const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];

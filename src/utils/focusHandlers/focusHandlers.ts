@@ -58,7 +58,7 @@ export const getFocusableDescendantsV2 = ({
  * @param element
  * @returns boolean
  */
-// eslint-disable-next-line complexity
+
 export const focusNextFocusableElement = (element: HTMLElement): boolean => {
   let focusableElement = element;
   let foundFocusableElement = false;
@@ -89,7 +89,7 @@ export const focusNextFocusableElement = (element: HTMLElement): boolean => {
  * @param element
  * @returns boolean
  */
-// eslint-disable-next-line complexity
+
 export const focusPreviousFocusableElement = (element: HTMLElement): boolean => {
   let focusableElement = element;
   let foundFocusableElement = false;

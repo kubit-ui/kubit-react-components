@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import React from 'react';
 
 import { TableCell } from '@/components/tableCell/tableCell';

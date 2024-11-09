@@ -12,7 +12,6 @@ import { TagStyled, TagWrapperStyled } from './tag.styled';
 import { ITagStandAlone } from './types/tag';
 import { TAG_VARIANT_TYPE } from './types/variants';
 
-// eslint-disable-next-line complexity
 const TagStandAloneComponent = (
   { dataTestId = 'tag', ...props }: ITagStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null

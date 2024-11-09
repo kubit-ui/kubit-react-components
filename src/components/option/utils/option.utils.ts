@@ -1,6 +1,5 @@
 import { OptionStateType } from '../types/state';
 
-// eslint-disable-next-line complexity
 const getState = (
   disabled: boolean | undefined,
   focused: boolean | undefined,

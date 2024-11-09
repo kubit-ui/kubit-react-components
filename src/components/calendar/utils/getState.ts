@@ -13,7 +13,6 @@ type getStatePropsType = {
   formatDate: (date: Date, format: string) => string;
 };
 
-// eslint-disable-next-line complexity
 export const getStateDay = ({
   dayFormatted,
   isSelectedToLeft,

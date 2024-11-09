@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import React from 'react';
 
 import { useId } from '@/hooks/useId/useId';

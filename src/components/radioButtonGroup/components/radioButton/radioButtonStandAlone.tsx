@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import React from 'react';
 
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';

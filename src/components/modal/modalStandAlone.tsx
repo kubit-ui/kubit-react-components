@@ -25,7 +25,6 @@ import {
 } from './modal.styled';
 import { IModalStandAlone } from './types/modal';
 
-// eslint-disable-next-line complexity
 const ModalStandAloneComponent = (
   {
     dataTestId = 'modalDataTestId',

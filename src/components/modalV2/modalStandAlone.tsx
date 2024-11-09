@@ -12,7 +12,6 @@ import { ModalContentStyled, ModalFooterStyled, ModalStyled } from './modal.styl
 import { IModalStandAlone } from './types/modal';
 import { onlyDesktopSize } from './utils/onlyDesktopSize';
 
-// eslint-disable-next-line complexity
 const ModalStandAloneComponent = <V extends string | unknown>(
   {
     dataTestId = 'modal',

@@ -245,7 +245,6 @@ export const useInputDate = ({
     props.onClick?.(event);
   };
 
-  // eslint-disable-next-line complexity
   const onBlurDate: FocusEventHandler<HTMLDivElement> = event => {
     if (event.currentTarget.contains(event.relatedTarget)) {
       return;
@@ -299,7 +298,7 @@ export const useInputDate = ({
   };
 
   // validate formatted dates
-  // eslint-disable-next-line complexity
+
   const handleChangeInternalValidate: ChangeEventHandler<HTMLInputElement> = event => {
     const dateValue = event?.target?.value;
     // reset the internal errors for new verify

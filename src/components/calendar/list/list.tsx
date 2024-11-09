@@ -131,7 +131,6 @@ export const List = ({
     }
   };
 
-  // eslint-disable-next-line complexity
   const isGhostSelected = (dayFormatted: Date | 0) => {
     if (ghostDateSelected) {
       if (ghostDateSelected < selectedDate[0]) {

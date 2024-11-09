@@ -55,7 +55,6 @@ export const keyUpMove = ({
   maxDate,
   minDate,
 }: HandleKeyMoveType): ((previous: number) => number) => {
-  // eslint-disable-next-line complexity
   return previous => {
     if (isSameYear(maxDate, minDate)) {
       if (previous === minDate.getMonth()) {
@@ -91,7 +90,6 @@ export const keyDownMove = ({
   maxDate,
   minDate,
 }: HandleKeyMoveType): ((previous: number) => number) => {
-  // eslint-disable-next-line complexity
   return previous => {
     if (isSameYear(maxDate, minDate)) {
       if (previous === maxDate.getMonth()) {

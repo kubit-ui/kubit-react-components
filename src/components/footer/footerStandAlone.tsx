@@ -62,7 +62,6 @@ const FooterStandAloneComponent = (
 
     let defaultPositionCounter = 0;
 
-    // eslint-disable-next-line complexity
     childrenArray.forEach((child: React.ReactNode) => {
       let position = (child as JSX.Element)?.props?.['data-position'];
 

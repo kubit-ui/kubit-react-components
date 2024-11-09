@@ -142,7 +142,7 @@ export const useTooltip = <V>({
   useClickOutside(props.tooltipRef, hideTooltip, [props.labelRef.current]);
 
   // This function calc the position position where the tooltip should be displayed
-  // eslint-disable-next-line complexity
+
   const updateTooltipPosition = () => {
     if (!props.labelRef.current || !props.tooltipRef.current) {
       return;
