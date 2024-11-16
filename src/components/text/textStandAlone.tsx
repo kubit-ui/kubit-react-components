@@ -8,17 +8,8 @@ import { TextTransformType } from './types/transform';
 
 const TextStandAloneComponent = (
   {
-    children,
-    component,
     dataTestId = 'text',
-    htmlFor,
-    id,
-    onClick,
-    role,
-    styles,
-    weight,
-    isDisabled,
-    align,
+
     transform = TextTransformType.NONE,
     ...props
   }: ITextStandAlone,
@@ -30,20 +21,22 @@ const TextStandAloneComponent = (
       {...props}
       {...ariaProps}
       ref={ref}
+      $maxTruncatedLines={props.maxTruncatedLines}
       $transform={transform}
-      align={align}
-      as={component}
+      $truncate={props.truncate}
+      align={props.align}
+      as={props.component}
       content={undefined}
       data-testid={dataTestId}
-      htmlFor={htmlFor}
-      id={id}
-      isDisabled={isDisabled}
-      role={role}
-      styles={styles}
-      weight={weight}
-      onClick={onClick}
+      htmlFor={props.htmlFor}
+      id={props.id}
+      isDisabled={props.isDisabled}
+      role={props.role}
+      styles={props.styles}
+      weight={props.weight}
+      onClick={props.onClick}
     >
-      {children}
+      {props.children}
     </TextStyled>
   );
 };

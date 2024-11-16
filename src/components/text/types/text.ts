@@ -17,6 +17,8 @@ export interface ITextStyled {
   align?: string;
   $transform?: TextTransformType;
   customTypography?: TypographyTypes;
+  $maxTruncatedLines?: number;
+  $truncate?: boolean;
 }
 
 type TextAriaAttributes = Pick<
@@ -39,6 +41,8 @@ export interface ITextStandAlone extends ITextStyled, TextAriaAttributes {
   cursor?: string;
   weight?: number;
   target?: string;
+  truncate?: boolean;
+  maxTruncatedLines?: number;
   // TODO: is that correct??
   align?: string;
   transform?: TextTransformType;

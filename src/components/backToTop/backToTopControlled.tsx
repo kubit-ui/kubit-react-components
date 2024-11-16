@@ -61,7 +61,7 @@ const BackToTopControlledComponent = React.forwardRef(
       button.style.bottom = `${newBottomPosition}px`;
       const display = window.scrollY >= visibilityScrollOffset;
       button.style.display = display ? 'flex' : 'none';
-    }, [visibilityScrollOffset]);
+    }, [bottomPosition, stopElement, visibilityScrollOffset]);
 
     React.useEffect(() => {
       handleScrollListener();

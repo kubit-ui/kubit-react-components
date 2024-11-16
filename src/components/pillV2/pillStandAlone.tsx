@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 
 import { useId } from '@/hooks/useId/useId';
@@ -19,14 +20,14 @@ import { PillType } from './types/pillType';
 
 const PillStandAloneComponent = (
   { dataTestId = 'pill', type = PillType.BUTTON, ...props }: IPillStandAlone,
-  ref: React.ForwardedRef<HTMLButtonElement> | undefined | null
+  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
   const id = useId('pill');
   const pillContentId = `${id}-content`;
 
   return (
     <PillRootContainerStyled
-      ref={ref}
+      ref={ref as any}
       aria-controls={props['aria-controls']}
       aria-selected={type === PillType.TAB ? props.selected : undefined}
       as={[PillType.BUTTON, PillType.TAB].includes(type) ? PillAsButton : undefined}
@@ -36,7 +37,7 @@ const PillStandAloneComponent = (
       type={[PillType.BUTTON, PillType.TAB].includes(type) ? ButtonType.BUTTON : undefined}
       onClick={props.onClick}
     >
-      <PillContentContainerStyled id={pillContentId} styles={props.styles}>
+      <PillContentContainerStyled data-pill-content id={pillContentId} styles={props.styles}>
         <ElementOrIcon customIconStyles={props.styles?.leftIcon} {...props.leftIcon} />
         <Text
           component={TextComponentType.SPAN}

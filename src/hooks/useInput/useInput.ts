@@ -89,6 +89,8 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
       }
       // limit or truncate the value
       controlValue(newValue);
+    } else {
+      handleSetValue('');
     }
     firstRender.current = false;
   }, [props.currentValue]);

@@ -13,7 +13,7 @@ export type {
 } from './types';
 
 // enums
-export { PageControlState, ArrowsControlState } from './types';
+export { PageControlState, ArrowsControlState, PageControlDirectionType } from './types';
 
 // componet
 export { PageControl } from './pageControl';

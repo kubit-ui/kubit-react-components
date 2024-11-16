@@ -27,14 +27,7 @@ const PillComponent = (
     : variantStyles?.[Object.keys(variantStyles)[0]]?.[state];
 
   return (
-    <PillStandAlone
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ref={ref as any}
-      disabled={disabled}
-      selected={selected}
-      styles={styles}
-      {...props}
-    />
+    <PillStandAlone ref={ref} disabled={disabled} selected={selected} styles={styles} {...props} />
   );
 };
 

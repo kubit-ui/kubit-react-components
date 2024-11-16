@@ -1,5 +1,6 @@
 import styled, { CSSProp, css } from 'styled-components';
 
+import { maxTruncatedLinesMixin, truncateMixin } from '@/styles/mixins/truncate.mixin';
 import { getTypographyStyles } from '@/utils/getStyles/getStyles';
 
 import { ITextStyled } from './types/text';
@@ -17,6 +18,15 @@ const applyDevicePropsTextStyles = (props: TextPropsStylesType) => css`
   ${props.isDisabled &&
   css`
     pointer-events: none;
+  `}
+  ${!props.$maxTruncatedLines &&
+  props.$truncate &&
+  css`
+    ${truncateMixin}
+  `}
+  ${props.$maxTruncatedLines &&
+  css`
+    ${maxTruncatedLinesMixin(props.$maxTruncatedLines)}
   `}
 `;
 

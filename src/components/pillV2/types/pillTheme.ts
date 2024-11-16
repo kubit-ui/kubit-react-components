@@ -8,7 +8,7 @@ export type PillPropsStylesType = {
   rootContainer?: CommonStyleType;
   contentContainer?: CommonStyleType;
   leftIcon?: IconTypes;
-  label?: TypographyTypes;
+  label?: TypographyTypes & CommonStyleType;
   rightIcon?: IconTypes;
   input?: CommonStyleType;
 };

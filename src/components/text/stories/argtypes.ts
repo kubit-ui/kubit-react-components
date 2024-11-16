@@ -171,6 +171,30 @@ export const argtypes = (
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    truncate: {
+      description:
+        'Boolean to indicate if render an ellipsis ("...") to represent the clipped text',
+      type: { name: 'boolean' },
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    maxTruncatedLines: {
+      description:
+        'Boolean to indicate if render an ellipsis ("...") to represent the clipped text with a max number of lines (`truncate` is not needed)',
+      type: { name: 'number' },
+      control: { type: 'number' },
+      table: {
+        type: {
+          summary: 'number',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     aria: {
       description: 'Prop used for accesibility',
       type: { name: 'Partial<React.AriaAttributes>' },
