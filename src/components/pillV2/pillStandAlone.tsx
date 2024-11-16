@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 
 import { useId } from '@/hooks/useId/useId';
@@ -26,7 +27,7 @@ const PillStandAloneComponent = (
 
   return (
     <PillRootContainerStyled
-      ref={ref}
+      ref={ref as any}
       aria-controls={props['aria-controls']}
       aria-selected={type === PillType.TAB ? props.selected : undefined}
       as={[PillType.BUTTON, PillType.TAB].includes(type) ? PillAsButton : undefined}

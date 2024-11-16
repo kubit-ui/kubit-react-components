@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
+import { Button } from '@/components/button/button';
 import {
   additionalInfoAction,
   labelSecondary,
@@ -25,11 +27,28 @@ const meta = {
     figmaUrl:
       'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3922-29850&mode=dev',
   },
+  render: ({ ...args }) => <StoryWithHooks {...args} />,
 } satisfies Meta<typeof Story>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
+
+const StoryWithHooks = args => {
+  const [value, setValue] = React.useState<string | number | undefined>(3);
+  const onClick = () => {
+    setValue(undefined);
+  };
+
+  return (
+    <div>
+      <Story {...args} value={value} />
+      <Button size="MEDIUM" variant="PRIMARY" onClick={onClick}>
+        Clear
+      </Button>
+    </div>
+  );
+};
 
 const commonArgs: IInputCurrency = {
   variant: Object.values(variantsObject[themeSelected].InputCurrencyVariant || {})[0] as string,

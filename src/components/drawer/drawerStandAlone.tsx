@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 
 import { Footer } from '@/components/footer/footer';
@@ -54,7 +55,6 @@ const DrawerStandAloneComponent = (
         <DrawerTitleContentFooterContainerStyled blocked={blocked} styles={props.styles}>
           <DrawerTitleStyled
             data-drawer-title
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             as={Text as any}
             component={titleComponent as unknown as TextComponentType}
             customTypography={props.styles.title}
@@ -80,7 +80,6 @@ const DrawerStandAloneComponent = (
           {props.footer?.content && (props.styles.footer?.variant || props.footer.variant) && (
             <DrawerFooterStyled
               data-drawer-footer
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               as={Footer as any}
               customFooterStyles={props.styles}
               variant={props.styles.footer?.variant}
