@@ -24,6 +24,8 @@ type GenericDeviceTypographyType = {
   color?: string;
   overflow?: string;
   filter?: string;
+  webkit_line_clamp?: string;
+  webkit_box_orient?: string;
 } & TypographyCustomType &
   WordWrapTypes;
 

@@ -460,6 +460,8 @@ export const getGenericTypographyStyles = (prop?: TypographyTypes): CSSProp => {
     color,
     overflow,
     filter,
+    webkit_line_clamp,
+    webkit_box_orient,
   } = prop;
 
   return css`
@@ -482,6 +484,8 @@ export const getGenericTypographyStyles = (prop?: TypographyTypes): CSSProp => {
     ${color && `color: ${color};`}
     ${overflow && `overflow: ${overflow};`}
     ${filter && `filter: ${filter};`}
+    ${webkit_line_clamp && `-webkit-line-clamp: ${webkit_line_clamp};`}
+    ${webkit_box_orient && `-webkit-box-orient: ${webkit_box_orient};`}
   `;
 };
 

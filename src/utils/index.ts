@@ -12,3 +12,4 @@ export * from './getStyles';
 export * from './getMaxLabelSize';
 export * from './translateValue/translateValue';
 export * from './resizeObserver/resizeObserver';
+export * from './focusHandlers';

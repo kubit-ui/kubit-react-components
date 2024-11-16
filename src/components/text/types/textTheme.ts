@@ -42,6 +42,8 @@ export type TextPropsStylesType = {
   align?: string;
   weight?: number;
   isDisabled?: boolean;
+  $maxTruncatedLines?: number;
+  $truncate?: boolean;
 };
 
 /**
