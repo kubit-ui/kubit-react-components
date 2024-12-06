@@ -75,7 +75,8 @@ export const handleKeyDownMove = ({
       }
       // to go to max date if next day below is disabled unless it is the max date
       if (
-        previous + firstEmptyAndDisabledDays + 1 >= maxDate.getDate() - 7 &&
+        previous + firstEmptyAndDisabledDays + 1 >=
+          maxDate.getDate() + firstEmptyAndDisabledDays - 7 &&
         previous !== daysAndEmptyDaysUntilMaxDate
       ) {
         return maxDate.getDate() + firstEmptyAndDisabledDays - 1;

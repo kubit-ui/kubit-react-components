@@ -25,7 +25,13 @@ const CalendarStandAloneComponent = (
   const today = new Date();
 
   return (
-    <CalendarStyled ref={ref} data-testid={dataTestId} id={props.id} styles={props.styles}>
+    <CalendarStyled
+      ref={ref}
+      data-calendar
+      data-testid={dataTestId}
+      id={props.id}
+      styles={props.styles}
+    >
       <Selector
         configAccesibility={props.configAccesibility}
         configCalendar={props.configCalendar}
