@@ -30,6 +30,7 @@ export const Dot: Story = {
     variant: Object.values(variantsObject[themeSelected].DotVariantType || {})[0] as string,
     size: Object.values(variantsObject[themeSelected].DotSizeType || {})[0] as string,
     number: 2,
+    label: 'label',
     themeArgs: themesObject[themeSelected][STYLES_NAME.DOT],
   },
 };
