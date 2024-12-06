@@ -46,7 +46,10 @@ export interface IToggleStandAlone extends ToggleAriaAttributes {
   disabled?: boolean;
   blockCenter?: boolean;
   tabIndex?: number;
-  onClick?: (e: React.MouseEvent<HTMLElement>, position?: POSITIONS) => void;
+  /**
+   * @deprecated The seconda param, position will be removed in the next version
+   */
+  onClick?: (e: React.MouseEvent<HTMLElement>, position: POSITIONS) => void;
   onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
 }
 

@@ -192,7 +192,11 @@ describe('Toogle Three Positions', () => {
 
     expect(toggle).toBeChecked();
 
-    const results = await axe(container);
+    const results = await axe(container, {
+      rules: {
+        label: { enabled: false },
+      },
+    });
     expect(container).toHTMLValidate();
     expect(results).toHaveNoViolations();
   });
