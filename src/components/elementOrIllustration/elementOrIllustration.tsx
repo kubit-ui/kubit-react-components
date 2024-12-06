@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IllustrationBasic as Illustration } from '../illustration/illustration';
+import { IllustrationHost as Illustration } from '../illustration/illustrationHost';
 import { IElementOrillustration } from './types/elementOrIllustration';
 
 const ElementOrIllustrationComponent = (

@@ -109,6 +109,18 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    selected: {
+      description: 'Applies selected styles',
+      type: { name: 'boolean' },
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: { summary: false },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     dataTestId: {
       description: 'String used for testing',
       control: { type: 'text' },

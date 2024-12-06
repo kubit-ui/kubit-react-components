@@ -9,11 +9,13 @@ export interface IIconHighlightedStyled {
   styles: IconHighlightedVariantStylesType;
   backgroundColor?: string;
   disabled?: boolean;
+  selected?: boolean;
 }
 
 export interface IIconHighlightedStandAlone extends IElementOrIcon, IIconHighlightedStyled {
   size: IconHighlightedSizeType;
   type?: IconHighlightedType;
+  customContent?: React.ReactNode;
 }
 
 export interface IIconHighlighted<V = undefined extends string ? unknown : string>
