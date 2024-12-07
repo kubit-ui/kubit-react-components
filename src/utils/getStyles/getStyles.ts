@@ -588,7 +588,7 @@ export const getPseudoStyles = (
 
   return css`
     ${pseudoKey} {
-      ${isAfterOrBefore && `content: '${content}'`};
+      ${isAfterOrBefore && content !== undefined && `content: '${content}'`};
       ${getGenericStyles(styles)};
       ${getTypographyStyles(styles)};
     }
@@ -604,7 +604,6 @@ const getPseudoElementOrClassKeys = (styles?: CommonStyleType): CSSProp => {
   const afterKey = '&::after';
   const beforeKey = '&::before';
   const backdropKey = '&::backdrop';
-  const placeholderKey = '&::placeholder';
   const passwordRevealButtonKey = '&::-ms-reveal';
   const webkitInnerSpinButtonKey = '&::-webkit-inner-spin-button';
   const webkitOuterSpinButtonKey = '&::-webkit-outer-spin-button';
