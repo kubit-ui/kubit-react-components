@@ -71,6 +71,7 @@ export interface IPopoverSearchList {
   blockBackPopover?: boolean;
   ['aria-controls']?: string;
   closeIcon?: IElementOrIcon;
+  dragIcon?: IElementOrIcon;
   dataTestId?: string;
   device: DeviceBreakpointsType;
   elementsToShow?: number;
@@ -185,6 +186,7 @@ export interface IInputSearchStandAlone extends Omit<IInputStandAlone, propsToOm
   // actionBottomSheet
   sublabel?: OptionSublabelType;
   closeIcon?: IElementOrIcon;
+  dragIcon?: IElementOrIcon;
   // input popover
   /**
    * @deprecated `inputPopoverIcon` will be removed. Use `popoverRightIcon` instead

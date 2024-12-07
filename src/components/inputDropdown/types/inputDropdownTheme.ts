@@ -4,6 +4,9 @@ import { CommonStyleType } from '@/types/styles/commonStyle';
 import { TypographyTypes } from '@/types/styles/typography';
 
 export type InputDropdownStateProps = InputBasicStateProps & {
+  /**
+   * @deprecated Use prop allowSearch instead
+   */
   allowSearch?: boolean;
   inputVariant?: string;
   popoverVariant?: { [key in DeviceBreakpointsType]?: string };

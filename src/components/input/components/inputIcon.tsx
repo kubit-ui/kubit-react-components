@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 // styles
-import { InputIconStyled } from '../input.styled';
+import { InputIconContainerStyled, InputIconStyled } from '../input.styled';
 import { IInputIcon } from '../types/input';
 
 const InputIconStandAloneComponent = (
@@ -22,10 +22,12 @@ const InputIconStandAloneComponent = (
   };
 
   return (
-    <InputIconStyled
+    <InputIconContainerStyled
       ref={ref}
       $pointerEvents={hasAction}
-      iconPosition={props.iconPosition}
+      inputIconContainerStyles={
+        props.rightIcon ? props.styles?.inputIconContainerRight : props.styles?.inputIconContainer
+      }
       styles={props.styles}
     >
       <ElementOrIcon
@@ -35,7 +37,7 @@ const InputIconStandAloneComponent = (
         {...props.leftIcon}
         onClick={hasAction ? onClick : undefined}
       />
-    </InputIconStyled>
+    </InputIconContainerStyled>
   );
 };
 

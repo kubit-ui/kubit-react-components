@@ -1,9 +1,9 @@
-import { ListOptionsOptionType } from '../../listOptions/types/listOptions';
+import { OptionsInputDropdown } from '../types/inputDropdown';
 
 export const filterOptions = (
   value: string | number | undefined,
-  options: ListOptionsOptionType[]
-): ListOptionsOptionType[] => {
+  options: OptionsInputDropdown[]
+): OptionsInputDropdown[] => {
   if (!value) {
     return options;
   }
@@ -15,14 +15,14 @@ export const filterOptions = (
 
 export const findOptionByLabel = (
   label: string | number | undefined,
-  options: ListOptionsOptionType[]
-): ListOptionsOptionType | undefined => {
+  options: OptionsInputDropdown[]
+): OptionsInputDropdown | undefined => {
   return options.find(opt => String(opt.label) === String(label));
 };
 
 export const findOptionByValue = (
   value: string | number | undefined,
-  options: ListOptionsOptionType[]
-): ListOptionsOptionType | undefined => {
+  options: OptionsInputDropdown[]
+): OptionsInputDropdown | undefined => {
   return options.find(opt => String(opt.value) === String(value));
 };

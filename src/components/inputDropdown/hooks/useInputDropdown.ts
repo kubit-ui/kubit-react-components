@@ -18,6 +18,7 @@ import {
 import { useCustomHeightFromChildrens } from '@/hooks/useCustomHeightFromChildrens/useCustomHeightFromChildren';
 import { useInput } from '@/hooks/useInput/useInput';
 import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
+import { ROLES } from '@/types/role/role';
 
 import {
   isArrowDownPressed,
@@ -47,6 +48,7 @@ export interface MultipleRef {
 type ParamsType = {
   ref?: ForwardedRef<HTMLSelectElement | undefined>;
   open: boolean;
+  allowSearch?: boolean;
   elementsToShow: number;
   optionList: InputDropdownOptionsType;
   type: InputTypeType;
@@ -93,7 +95,6 @@ type ReturnHookType = {
   handleChangeInputDropdown: ChangeEventHandler<HTMLInputElement>;
   handleInputKeyDown: KeyboardEventHandler<HTMLInputElement>;
   handleInputBlur: FocusEventHandler<HTMLInputElement>;
-  handleInputPopoverKeyDown: KeyboardEventHandler<HTMLInputElement>;
   valueSearchSelected?: string;
   state: InputState;
   handleFocusInternal: FocusEventHandler<HTMLInputElement>;
@@ -222,7 +223,7 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
   // Methods
   const handleValueSelected = (value: string) => {
     const optionFound = findOptionByValue(value, props.optionList.options);
-    const searchText = optionFound?.label ?? value;
+    const searchText = optionFound?.customLabel ?? optionFound?.label ?? value;
     removeInternalError(InternalErrorType.INVALID_OPTION);
     setSearchText(searchText);
     setInputPopoverText(searchText);
@@ -232,6 +233,10 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
   const handleOpenOptions = (open: boolean) => {
     setOpenOptions(open);
     props.onOpenCloseOptions?.(open);
+    // If closing the options, focus the input
+    if (!open) {
+      inputRef?.current?.focus();
+    }
   };
 
   // Input dropdown handlers
@@ -265,7 +270,7 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
   const handleInputKeyDown: KeyboardEventHandler<HTMLInputElement> = event => {
     if (
       isKeyEnterPressed(event.key) ||
-      (!props.styles[state]?.allowSearch && isKeySpacePressed(event.key))
+      (!(props.allowSearch ?? props.styles[state]?.allowSearch) && isKeySpacePressed(event.key))
     ) {
       handleOpenOptions(!openOptions);
       props.onClick?.(event);
@@ -289,14 +294,6 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
     handleChangeShowAllOptions({ value: false, timeout: 0 });
   };
 
-  const handleInputPopoverKeyDown: KeyboardEventHandler<HTMLInputElement> = event => {
-    // Focus first element of the list
-    if (isArrowDownPressed(event.key)) {
-      (optionsListCollectionRef?.current?.[0]?.firstElementChild as HTMLElement)?.focus();
-      event.preventDefault();
-    }
-  };
-
   const handleInputPopoverIconClick = () => {
     props.onInputPopoverIconClick?.();
     if (props.clearTextInputPopoverIconClick) {
@@ -309,23 +306,54 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
   // Update value when value or optionList options changes
   useEffect(() => {
     setValueSearchSelected(props.value);
-    const searchText = findOptionByValue(props.value, props.optionList.options)?.label ?? '';
+    const optionFound = findOptionByValue(props.value, props.optionList.options);
+    const searchText = optionFound?.customLabel ?? optionFound?.label ?? '';
     handleChangeShowAllOptions({ value: true });
     setLabelSearchSelected(searchText);
     setSearchText(searchText);
     setInputPopoverText(searchText);
   }, [props.value, props.optionList.options]);
 
-  const actionBottomSheetRefCb = useCallback(node => {
-    // Focus in the input popover if exists
-    const inputInPopover = node?.querySelector('input');
-    if (inputInPopover) {
-      return inputInPopover.focus();
+  /**
+   * Action bottom sheet keydown handler, when arrow down is pressed over a non option element, it should focus the first option list element
+   */
+  const handleActionBottomSheetKeydown = useCallback((event: KeyboardEvent) => {
+    // if target is option do nothing, this will handle internally by the OPTIONS
+    if (event.target instanceof Element && event.target.getAttribute('role') === ROLES.OPTION) {
+      return;
     }
-    // Focus in the first enable option
-    const firstEnabledOption = node?.querySelector('[role="option"]:not([aria-disabled="true"])');
-    firstEnabledOption?.focus();
+    // Focus first element of the list
+    if (isArrowDownPressed(event.key)) {
+      (optionsListCollectionRef?.current?.[0]?.firstElementChild as HTMLElement)?.focus();
+      event.preventDefault();
+    }
   }, []);
+
+  const actionBottomSheetRef = useRef<HTMLDivElement | null>(null);
+  const actionBottomSheetRefCb = useCallback(
+    node => {
+      // Add event listeners to the action bottom sheet when it is mounted
+      if (!node) {
+        actionBottomSheetRef.current?.removeEventListener(
+          'keydown',
+          handleActionBottomSheetKeydown
+        );
+      }
+      actionBottomSheetRef.current = node;
+      if (actionBottomSheetRef.current) {
+        actionBottomSheetRef.current.addEventListener('keydown', handleActionBottomSheetKeydown);
+      }
+      // Focus in the input popover if exists
+      const inputInPopover = node?.querySelector('input');
+      if (inputInPopover) {
+        return inputInPopover.focus();
+      }
+      // Focus in the first enable option
+      const firstEnabledOption = node?.querySelector('[role="option"]:not([aria-disabled="true"])');
+      firstEnabledOption?.focus();
+    },
+    [handleActionBottomSheetKeydown]
+  );
 
   // iconButton skip to list handler
   const iconRef = useRef<HTMLElement>();
@@ -369,7 +397,7 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
   // 1. Allow search && !showAllOptions due to there is already one selected
   // 2. If useActionBottomSheet  && hasInputInSearchList -> popover input, else normal input
   let optionsFiltered = { ...props.optionList };
-  if (props.styles[state]?.allowSearch && !showAllOptions) {
+  if ((props.allowSearch ?? props.styles[state]?.allowSearch) && !showAllOptions) {
     const filter =
       useActionBottomSheet && props.hasInputInSearchList ? inputPopoverText : searchText;
     optionsFiltered = {
@@ -392,7 +420,6 @@ export const useInputDropdown = (props: ParamsType): ReturnHookType => {
     handleChangeInputDropdown,
     handleInputKeyDown,
     handleInputBlur,
-    handleInputPopoverKeyDown,
     state,
     ref,
     listOptionsHeight,

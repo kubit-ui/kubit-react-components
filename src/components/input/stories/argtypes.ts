@@ -709,6 +709,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.ACCESIBILITY,
       },
     },
+    ['aria-required']: {
+      description: 'Aria required prop',
+      type: { name: 'boolean' },
+      control: { type: 'boolean' },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     overrideStyles: {
       description: 'Styles that need to be overridden on the basic input',
       control: false,

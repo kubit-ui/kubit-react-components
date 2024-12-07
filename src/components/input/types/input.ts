@@ -303,6 +303,7 @@ type InputAriaAttributes = Pick<
   | 'aria-expanded'
   | 'aria-invalid'
   | 'aria-disabled'
+  | 'aria-required'
 >;
 
 // Input types

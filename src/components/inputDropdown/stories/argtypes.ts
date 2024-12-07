@@ -51,6 +51,20 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
+    allowSearch: {
+      type: { name: 'boolean' },
+      control: { type: 'boolean' },
+      description: 'Indicates if search is allowed',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: false,
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     options: {
       description: 'List of options',
       type: { name: 'object', required: true },
