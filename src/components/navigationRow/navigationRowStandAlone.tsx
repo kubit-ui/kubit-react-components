@@ -49,9 +49,11 @@ const NavigationRowStandaloneComponent = (
           />
         )}
       </IconAndIconHighlightedContainerStyled>
-      <DecorativeElementContainerStyled styles={props.styles}>
-        {props.decorativeElement}
-      </DecorativeElementContainerStyled>
+      {props.decorativeElement && (
+        <DecorativeElementContainerStyled styles={props.styles}>
+          {props.decorativeElement}
+        </DecorativeElementContainerStyled>
+      )}
       <TextSectionStyled styles={props.styles}>
         {props.text && (
           <Text
