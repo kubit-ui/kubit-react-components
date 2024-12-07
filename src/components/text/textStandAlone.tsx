@@ -7,12 +7,7 @@ import { ITextStandAlone } from './types/text';
 import { TextTransformType } from './types/transform';
 
 const TextStandAloneComponent = (
-  {
-    dataTestId = 'text',
-
-    transform = TextTransformType.NONE,
-    ...props
-  }: ITextStandAlone,
+  { dataTestId = 'text', transform = TextTransformType.NONE, ...props }: ITextStandAlone,
   ref: React.ForwardedRef<HTMLParagraphElement> | null
 ): JSX.Element => {
   const ariaProps = pickAriaProps(props);
