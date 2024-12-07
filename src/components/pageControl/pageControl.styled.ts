@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { CommonStyleType } from '@/types/styles/commonStyle';
+
 import { getStyles } from '../../utils/getStyles/getStyles';
 // enums
 import { PageControlState } from './types/pageControlStates';
@@ -36,8 +38,15 @@ export const LeftArrowControlWrapperStyled = styled.div<{
 `;
 
 export const RightArrowControlWrapperStyled = styled.div<{
-  arrowsControlStyles: ArrowsControlVariantStylesType;
+  arrowsControlStyles?: ArrowsControlVariantStylesType;
 }>`
   line-height: 0;
-  ${({ arrowsControlStyles }) => getStyles(arrowsControlStyles.rightArrowControlContainer)};
+  ${({ arrowsControlStyles }) => getStyles(arrowsControlStyles?.rightArrowControlContainer)};
+`;
+
+export const ButtonControStyled = styled.button<{
+  styles?: CommonStyleType;
+}>`
+  line-height: 0;
+  ${({ styles }) => getStyles(styles)};
 `;

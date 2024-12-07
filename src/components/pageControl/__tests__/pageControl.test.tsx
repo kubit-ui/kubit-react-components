@@ -3,13 +3,17 @@ import React from 'react';
 
 import { axe } from 'jest-axe';
 
+import * as useMediaDevice from '@/hooks/useMediaDevice/useMediaDevice';
 import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+import { windowMatchMedia } from '@/tests/windowMatchMedia/windowMatchMedia';
+import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { PageControl } from '../pageControl';
 
+const defaultMaxDots = 5;
+const dataTestId = 'PageControlComponet';
+
 describe('PageControl tests', () => {
-  const defaultMaxDots = 5;
-  const dataTestId = 'PageControlComponet';
   it('Should render the correct dot number in LINE variant', async () => {
     const { container } = renderProvider(
       <PageControl
@@ -21,8 +25,8 @@ describe('PageControl tests', () => {
       />
     );
     const controller = screen.getByTestId(dataTestId);
-    const results = await axe(container);
 
+    const results = await axe(container);
     expect(container).toHTMLValidate();
     expect(results).toHaveNoViolations();
     expect(controller.children[0].childElementCount).toBe(4);
@@ -36,7 +40,6 @@ describe('PageControl tests', () => {
       variant: 'BULLETS',
     };
     const { rerender } = renderProvider(<PageControl {...commonProps} currentPosition={0} />);
-
     const controller = screen.getByTestId(dataTestId);
 
     expect(controller.children[0].childElementCount).toBe(defaultMaxDots + 1);
@@ -73,7 +76,6 @@ describe('PageControl tests', () => {
       />
     );
     const controller = screen.getByTestId(dataTestId);
-
     expect(controller.children[0].childElementCount).toBe(defaultMaxDots + 2);
   });
 
@@ -85,13 +87,13 @@ describe('PageControl tests', () => {
         arrowsControlVariant="DEFAULT"
         currentPosition={4}
         dataTestId={dataTestId}
-        leftArrowControl={{
+        leftControl={{
           icon: 'UNICORN',
           ['aria-label']: 'LEFT ARROW',
           onClick: handleLeftArrowControlClick,
         }}
         pages={7}
-        rightArrowControl={{
+        rightControl={{
           icon: 'UNICORN',
           ['aria-label']: 'RIGHT ARROW',
           onClick: handleRightArrowControlClick,
@@ -99,7 +101,6 @@ describe('PageControl tests', () => {
         variant="BULLETS"
       />
     );
-
     const leftArrow = screen.getByRole('button', { name: 'LEFT ARROW' });
     const rightArrow = screen.getByRole('button', { name: 'RIGHT ARROW' });
 
@@ -117,14 +118,14 @@ describe('PageControl tests', () => {
         arrowsControlVariant="DEFAULT"
         currentPosition={4}
         dataTestId={dataTestId}
-        leftArrowControl={{
+        leftControl={{
           icon: 'UNICORN',
           ['aria-label']: 'LEFT ARROW',
           disabled: true,
           onClick: handleLeftArrowControlClick,
         }}
         pages={7}
-        rightArrowControl={{
+        rightControl={{
           icon: 'UNICORN',
           ['aria-label']: 'RIGHT ARROW',
           disabled: true,
@@ -141,5 +142,49 @@ describe('PageControl tests', () => {
     expect(handleLeftArrowControlClick).not.toHaveBeenCalledTimes(1);
     await fireEvent.click(rightArrow);
     expect(handleRightArrowControlClick).not.toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('ButtonControl render', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+    jest.resetAllMocks();
+    jest.restoreAllMocks();
+  });
+
+  beforeEach(() => {
+    window.matchMedia = windowMatchMedia('onlyDesktop');
+    jest
+      .spyOn(useMediaDevice, 'useMediaDevice')
+      .mockImplementation(() => DeviceBreakpointsType.DESKTOP);
+  });
+
+  it('renders correctly with default props', async () => {
+    const handleLeftArrowControlClick = jest.fn();
+    const handleRightArrowControlClick = jest.fn();
+    renderProvider(
+      <PageControl
+        arrowsControlVariant="DEFAULT"
+        currentPosition={4}
+        dataTestId={dataTestId}
+        leftControl={{
+          ['aria-label']: 'LEFT ARROW',
+          onClick: handleLeftArrowControlClick,
+        }}
+        pages={7}
+        rightControl={{
+          ['aria-label']: 'RIGHT ARROW',
+          onClick: handleRightArrowControlClick,
+        }}
+        variant="BULLETS"
+      />
+    );
+    const leftArrow = screen.getByRole('button', { name: 'LEFT ARROW' });
+    const rightArrow = screen.getByRole('button', { name: 'RIGHT ARROW' });
+
+    await fireEvent.click(leftArrow);
+    expect(handleLeftArrowControlClick).toHaveBeenCalled();
+    await fireEvent.click(rightArrow);
+    expect(handleRightArrowControlClick).toHaveBeenCalled();
   });
 });

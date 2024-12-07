@@ -6,6 +6,8 @@ import { ArrowsControlState, PageControlState } from './pageControlStates';
 export type PageControlCommonProps = {
   container?: CommonStyleType;
   dotsContainer?: CommonStyleType;
+  leftButtonControl?: CommonStyleType;
+  rightButtonControl?: CommonStyleType;
   isBullet?: boolean;
 };
 
