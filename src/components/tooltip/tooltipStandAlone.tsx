@@ -7,7 +7,7 @@ import { useId } from '@/hooks/useId/useId';
 import { DeviceBreakpointsType } from '../../types/breakpoints/breakpoints';
 import { ROLES } from '../../types/role/role';
 import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
-import { IconBasic as Icon } from '../icon/icon';
+import { IconHost as Icon } from '../icon/iconHost';
 import { PopoverControlled } from '../popover/popoverControlled';
 import { PopoverComponentType } from '../popover/types/component';
 import { PopoverPositionVariantType } from '../popover/types/positionVariant';

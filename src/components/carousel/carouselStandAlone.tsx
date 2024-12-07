@@ -161,9 +161,9 @@ const CarouselStandAloneComponent = (
           <PageControl
             arrowsControlVariant={pageControlArrowsControlVariant}
             currentPosition={currentPage}
-            leftArrowControl={leftArrowControlPageControl}
+            leftControl={leftArrowControlPageControl}
             pages={numPages}
-            rightArrowControl={rightArrowControlPageControl}
+            rightControl={rightArrowControlPageControl}
             variant={pageControlVariant}
           />
         </PageControlContainerStyled>

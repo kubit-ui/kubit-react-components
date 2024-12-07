@@ -67,10 +67,6 @@ export const PopoverStyled = styled.div<PopoverVariantStylesProps & PopoverProps
     props.align
       ? alignProps(props.align, props.extraAlignGap)
       : alignProps(props[DeviceBreakpointsType.DESKTOP]?.align)};
-  top: ${props => props.top};
-  bottom: ${props => props.bottom};
-  right: ${props => props.right};
-  left: ${props => props.left};
   ${({
     theme: {
       MEDIA_QUERIES: { onlyMobile, onlyTablet, onlyDesktop },
@@ -82,6 +78,11 @@ export const PopoverStyled = styled.div<PopoverVariantStylesProps & PopoverProps
       ${getWidth(props)}
     }
 
+    top: ${props.top};
+    bottom: ${props.bottom};
+    right: ${props.right};
+    left: ${props.left};
+
     ${onlyTablet} {
       position: ${!props[DeviceBreakpointsType.TABLET]
         ? props.positionVariant
@@ -90,6 +91,10 @@ export const PopoverStyled = styled.div<PopoverVariantStylesProps & PopoverProps
         ? alignProps(props.align, props.extraAlignGap)
         : alignProps(props[DeviceBreakpointsType.TABLET]?.align)};
       ${getWidth(props)}
+      top: ${props.top};
+      bottom: ${props.bottom};
+      right: ${props.right};
+      left: ${props.left};
       z-index: ${props => props[DeviceBreakpointsType.TABLET]?.zIndex || zIndex || 'auto'};
     }
 
@@ -99,6 +104,10 @@ export const PopoverStyled = styled.div<PopoverVariantStylesProps & PopoverProps
         : props[DeviceBreakpointsType.MOBILE]?.positionVariant};
       ${alignProps(props[DeviceBreakpointsType.MOBILE]?.align)};
       ${getWidth(props)}
+      top: ${props.top};
+      bottom: ${props.bottom};
+      right: ${props.right};
+      left: ${props.left};
       z-index: ${props => props[DeviceBreakpointsType.MOBILE]?.zIndex || zIndex || 'auto'};
     }
   `}
