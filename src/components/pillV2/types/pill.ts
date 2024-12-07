@@ -11,7 +11,19 @@ export type PillLabelType = Omit<IText<string>, 'children'> & {
   content?: ReactNode;
 };
 
-export interface IPillStandAlone {
+export type PillAriaAttributes = Pick<
+  React.AriaAttributes,
+  | 'aria-label'
+  | 'aria-labelledby'
+  | 'aria-checked'
+  | 'aria-describedby'
+  | 'aria-pressed'
+  | 'aria-disabled'
+  | 'aria-controls'
+  | 'aria-expanded'
+>;
+
+export interface IPillStandAlone extends PillAriaAttributes {
   styles?: PillPropsStylesType;
   leftIcon?: IElementOrIcon;
   label?: PillLabelType;
