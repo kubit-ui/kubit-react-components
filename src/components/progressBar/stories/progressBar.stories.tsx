@@ -37,6 +37,10 @@ export const ProgressBar: Story = {
     variant: Object.values(variantsObject[themeSelected].ProgressBarVariantType || {})[0] as string,
     size: Object.values(variantsObject[themeSelected].ProgressBarSizeType || {})[0] as string,
     percentProgressCompleted: 50,
+    progressAnimation: {
+      duration: '0s',
+      timingFunction: 'ease-out',
+    },
     barAriaLabel: 'aria-label-0',
     themeArgs: themesObject[themeSelected][STYLES_NAME.PROGRESS_BAR],
   },
@@ -47,6 +51,10 @@ export const ProgressBarWithCtv: Story = {
     variant: Object.values(variantsObject[themeSelected].ProgressBarVariantType || {})[0] as string,
     size: Object.values(variantsObject[themeSelected].ProgressBarSizeType || {})[0] as string,
     percentProgressCompleted: 50,
+    progressAnimation: {
+      duration: '0s',
+      timingFunction: 'ease-out',
+    },
     barAriaLabel: 'aria-label-0',
     ctv: {
       bar: {

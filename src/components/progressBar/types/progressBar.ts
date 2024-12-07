@@ -15,6 +15,10 @@ export interface IProgressBarStandAlone {
   onDragStart?: () => void;
   onDragEnd?: () => void;
   tooltip?: SliderTooltipType;
+  progressAnimation?: {
+    duration?: string;
+    timingFunction?: string;
+  };
 }
 
 export interface IProgressBar<

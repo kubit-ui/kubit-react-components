@@ -22,8 +22,18 @@ export const BarStyled = styled.div<ProgressBarStylesType>`
   ${props => getStyles(props.sizeStyles?.bar)}
 `;
 
-export const ProgressBarStyled = styled.div<ProgressBarStylesType & { progressCompleted?: number }>`
+export const ProgressBarStyled = styled.div<
+  ProgressBarStylesType & {
+    progressCompleted?: number;
+    progressAnimation?: {
+      duration?: string;
+      timingFunction?: string;
+    };
+  }
+>`
   ${props => getStyles(props.styles.progressBar)}
   ${props => getStyles(props.sizeStyles?.progressBar)}
   width: ${({ progressCompleted }) => `${progressCompleted}%`};
+  transition: ${({ progressAnimation }) =>
+    `width ${progressAnimation?.duration} ${progressAnimation?.timingFunction}`};
 `;

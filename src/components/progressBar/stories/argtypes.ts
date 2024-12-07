@@ -98,6 +98,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    progressAnimation: {
+      description: 'Animation in seconds of the progress bar transition',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'object',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     dataTestIdBar: {
       control: { type: 'text' },
       type: { name: 'string' },
