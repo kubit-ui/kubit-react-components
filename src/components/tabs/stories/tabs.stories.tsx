@@ -30,8 +30,8 @@ type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 export const Tabs: Story = {
   args: {
     variant: Object.values(variantsObject[themeSelected].TabsVariantType || {})[0] as string,
-    leftIcon: { icon: ICONS.ICON_CHEVRON_UP },
-    rightIcon: { icon: ICONS.ICON_CHEVRON_DOWN },
+    leftIcon: { icon: ICONS.ICON_CHEVRON_LEFT },
+    rightIcon: { icon: ICONS.ICON_CHEVRON_RIGHT },
     unMountContent: true,
     content: [
       <ReplaceContent key="content-0" width="100%">
@@ -42,6 +42,12 @@ export const Tabs: Story = {
       </ReplaceContent>,
       <ReplaceContent key="content-2" width="100%">
         Content third tab
+      </ReplaceContent>,
+      <ReplaceContent key="content-3" width="100%">
+        Content fourth tab
+      </ReplaceContent>,
+      <ReplaceContent key="content-4" width="100%">
+        Content fifth tab
       </ReplaceContent>,
     ],
     tabs: [
@@ -55,6 +61,12 @@ export const Tabs: Story = {
       },
       {
         content: 'Third tab',
+      },
+      {
+        content: 'Fourth tab',
+      },
+      {
+        content: 'Fifth tab',
       },
     ],
     themeArgs: themesObject[themeSelected][STYLES_NAME.PRIMARY_TABS],
