@@ -18,10 +18,18 @@ export const useTrapFocus = ({
         return;
       }
       const focusableElements = getFocusableDescendantsV2({ element: ref.current });
-      // Do nothing if the ref does not contain focusable elements
+
+      // When the ref does not contain focusable elements
       if (!focusableElements.length) {
+        // Do not change the current focus if the current focus is inside the ref
+        // This happens in some element like in actionBottomSheet dropdown
+        // When the focus is trap, but the options are not focusabled
+        if (ref.current.contains(document.activeElement)) {
+          e.preventDefault();
+        }
         return;
       }
+
       const firstFocusableElement = focusableElements[0];
       const lastFocusableElement = focusableElements[focusableElements.length - 1];
 
