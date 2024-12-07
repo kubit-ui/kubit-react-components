@@ -18,7 +18,7 @@ const ElementOrIllustrationComponent = (
     return <Illustration {...rest} ref={ref} illustration={element} />;
   }
   // element as jsx element
-  return <>{element}</>;
+  return <>{element as React.ReactNode}</>;
 };
 
 /**

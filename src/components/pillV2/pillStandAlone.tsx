@@ -31,7 +31,7 @@ const PillStandAloneComponent = (
       ref={ref}
       {...ariaProps}
       aria-selected={type === PillType.TAB ? props.selected : undefined}
-      as={[PillType.BUTTON, PillType.TAB].includes(type) ? PillAsButton : undefined}
+      as={([PillType.BUTTON, PillType.TAB].includes(type) ? PillAsButton : undefined) as any}
       data-testid={dataTestId}
       role={type === PillType.TAB ? ROLES.TAB : undefined}
       styles={props.styles}

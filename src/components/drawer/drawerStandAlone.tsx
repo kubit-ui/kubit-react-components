@@ -54,7 +54,7 @@ const DrawerStandAloneComponent = (
         <DrawerTitleContentFooterContainerStyled blocked={blocked} styles={props.styles}>
           <DrawerTitleStyled
             data-drawer-title
-            as={Text}
+            as={Text as any}
             component={titleComponent as unknown as TextComponentType}
             customTypography={props.styles.title}
             id={titleIdFinal}
@@ -79,7 +79,7 @@ const DrawerStandAloneComponent = (
           {props.footer?.content && (props.styles.footer?.variant || props.footer.variant) && (
             <DrawerFooterStyled
               data-drawer-footer
-              as={Footer}
+              as={Footer as any}
               customFooterStyles={props.styles}
               variant={props.styles.footer?.variant}
               {...props.footer}
