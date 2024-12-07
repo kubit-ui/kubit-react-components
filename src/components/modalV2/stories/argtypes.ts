@@ -164,6 +164,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    dragIcon: {
+      description: 'Icon to show the draggable area',
+      type: { name: 'object' },
+      control: { type: 'object' },
+      table: {
+        type: {
+          summary: 'IElementOricon',
+        },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
     closeIcon: {
       description: 'Icon to close the modal',
       type: { name: 'object' },

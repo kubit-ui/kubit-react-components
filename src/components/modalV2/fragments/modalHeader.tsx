@@ -9,7 +9,9 @@ import { TextComponentType } from '../../text/types/component';
 import {
   DraggableIcon,
   ModalCloseButtonStyled,
+  ModalHeaderContentStyled,
   ModalHeaderStyled,
+  TitleContainerStyled,
   TitleHiddenContainer,
 } from '../modal.styled';
 import { IModalStandAlone } from '../types/modal';
@@ -27,41 +29,47 @@ type ModalHeaderProps = Pick<IModalStandAlone, PickedProps> & {
 };
 
 export const ModalHeader = (props: ModalHeaderProps): JSX.Element => {
-  const isMobile = props.device === DeviceBreakpointsType.MOBILE;
+  const isMobileOrTablet =
+    props.device === DeviceBreakpointsType.MOBILE || props.device === DeviceBreakpointsType.TABLET;
 
   return (
     <ModalHeaderStyled data-modal-header $styles={props.styles}>
-      {isMobile && !props.blocked && props.dragIcon && (
+      {isMobileOrTablet && !props.blocked && props.dragIcon && (
         <DraggableIcon data-modal-draggable-icon $styles={props.styles}>
           <ElementOrIcon customIconStyles={props.styles?.dragIcon} {...props.dragIcon} />
         </DraggableIcon>
       )}
-      {!props.blocked && props.closeIcon?.icon && (
-        <ModalCloseButtonStyled $styles={props.styles}>
-          <ElementOrIcon customIconStyles={props.styles?.closeButtonIcon} {...props.closeIcon} />
-        </ModalCloseButtonStyled>
-      )}
-      {!props.blocked &&
-        props.closeButton?.content &&
-        (props.styles.closeButton?.buttonVariant || props.closeButton?.variant) && (
-          <Button variant={props.styles.closeButton?.buttonVariant} {...props.closeButton}>
-            {props.closeButton.content}
-          </Button>
+
+      <ModalHeaderContentStyled $styles={props.styles}>
+        {!props.blocked && props.closeIcon?.icon && (
+          <ModalCloseButtonStyled $styles={props.styles}>
+            <ElementOrIcon customIconStyles={props.styles?.closeButtonIcon} {...props.closeIcon} />
+          </ModalCloseButtonStyled>
         )}
-      {props.title?.visible === undefined || props.title.visible ? (
-        <>
-          <Text
-            component={TextComponentType.H1}
-            customTypography={props.styles.title}
-            id={props.titleIdFinal}
-            {...props.title}
-          >
+        {!props.blocked &&
+          props.closeButton?.content &&
+          (props.styles.closeButton?.buttonVariant || props.closeButton?.variant) && (
+            <Button variant={props.styles.closeButton?.buttonVariant} {...props.closeButton}>
+              {props.closeButton.content}
+            </Button>
+          )}
+        {props.title?.visible === undefined || props.title.visible ? (
+          <TitleContainerStyled $styles={props.styles}>
+            <Text
+              component={TextComponentType.H1}
+              customTypography={props.styles.title}
+              id={props.titleIdFinal}
+              {...props.title}
+            >
+              {props.title?.content}
+            </Text>
+          </TitleContainerStyled>
+        ) : (
+          <TitleHiddenContainer id={props.titleIdFinal}>
             {props.title?.content}
-          </Text>
-        </>
-      ) : (
-        <TitleHiddenContainer id={props.titleIdFinal}>{props.title?.content}</TitleHiddenContainer>
-      )}
+          </TitleHiddenContainer>
+        )}
+      </ModalHeaderContentStyled>
     </ModalHeaderStyled>
   );
 };

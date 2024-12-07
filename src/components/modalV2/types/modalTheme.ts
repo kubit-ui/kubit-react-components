@@ -7,11 +7,13 @@ export type ModalBaseStylesType = {
   popoverVariant?: string;
   container?: CommonStyleType;
   headerContainer?: CommonStyleType;
+  headerContentContainer?: CommonStyleType;
   imageHeader?: IconTypes;
   title?: TypographyTypes;
+  titleContainer?: CommonStyleType;
   content?: CommonStyleType;
-  closeButtonContainer?: CommonStyleType;
   closeButtonIcon?: IconTypes;
+  closeButtonContainer?: CommonStyleType;
   footer?: CommonStyleType;
   closeButton?: {
     buttonVariant?: string;

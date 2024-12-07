@@ -155,8 +155,8 @@ export const Modal: Story = {
     contentScrollArias: {
       'aria-label': 'Modal content scroll',
     },
-    // open: true,
     closeIcon: { icon: ICONS.ICON_CLOSE },
+    dragIcon: { icon: ICONS.ICON_DRAG },
 
     footer: {
       variant: Object.values(variantsObject[themeSelected].FooterVariants || {})[0] as string,
