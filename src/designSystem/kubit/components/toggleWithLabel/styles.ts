@@ -19,6 +19,7 @@ export const TOGGLE_WITH_LABEL_STYLES: ToggleWithLabelStylesType<ToggleWithLabel
     },
     legendContainer: {
       margin_bottom: SPACINGS.spacing_200,
+      cursor: 'pointer',
     },
     rowLegendContainer: {
       display: 'contents',

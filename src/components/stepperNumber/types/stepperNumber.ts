@@ -25,6 +25,7 @@ export interface IStepperNumberStandAlone {
   horizontalOrientationWidth?: string;
   completedStepIcon?: IElementOrIcon;
   steps?: string[];
+  stepMaxTruncatedLines?: number;
   currentStep?: number;
   ['aria-label']?: string;
   /**

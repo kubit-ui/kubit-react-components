@@ -56,32 +56,54 @@ const TabsStandAloneComponent = (
     tabsLength: tabsLength,
     selectedTab: props.selectedTab,
   });
+  const disabledIconLeft = position === 0;
+  const disabledIconRight = position >= tabsLength - numTabsInView;
 
   const buildIconLeft = () =>
-    position !== 0 && (
+    tabsLength > numTabsInView && (
       <TabsLeftArrowContainerStyled
         aria-label={props.leftControlAriaLabel}
         data-testid={`${dataTestId}-icon-left`}
+        disabled={disabledIconLeft}
         styles={props.styles}
         tabIndex={0}
         type={ButtonType.BUTTON}
-        onClick={() => handleClickIcon(false)}
+        onClick={() => {
+          if (!disabledIconLeft) {
+            handleClickIcon(false);
+          }
+        }}
       >
-        <ElementOrIcon customIconStyles={props.styles.leftIcon} {...props.leftIcon} />
+        <ElementOrIcon
+          customIconStyles={
+            !disabledIconLeft ? props.styles.leftIcon : props.styles.leftIcon?.disabled
+          }
+          {...props.leftIcon}
+        />
       </TabsLeftArrowContainerStyled>
     );
 
   const buildIconRight = () =>
-    position < tabsLength - numTabsInView && (
+    tabsLength > numTabsInView && (
       <TabsRightArrowContainerStyled
         aria-label={props.rightControlAriaLabel}
         data-testid={`${dataTestId}-icon-right`}
+        disabled={disabledIconRight}
         styles={props.styles}
         tabIndex={0}
         type={ButtonType.BUTTON}
-        onClick={() => handleClickIcon(true)}
+        onClick={() => {
+          if (!disabledIconRight) {
+            handleClickIcon(true);
+          }
+        }}
       >
-        <ElementOrIcon customIconStyles={props.styles.rightIcon} {...props.rightIcon} />
+        <ElementOrIcon
+          customIconStyles={
+            !disabledIconRight ? props.styles.rightIcon : props.styles.rightIcon?.disabled
+          }
+          {...props.rightIcon}
+        />
       </TabsRightArrowContainerStyled>
     );
 

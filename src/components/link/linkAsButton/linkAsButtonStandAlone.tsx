@@ -3,6 +3,7 @@ import React from 'react';
 import { ButtonStyled } from '@/components/button/button.styled';
 import { ButtonStandAloneStructure } from '@/components/button/buttonStandAlone';
 import { Text } from '@/components/text/text';
+import { pickAriaProps } from '@/utils/aria/aria';
 
 import { ButtonStateType } from '../../button/types/state';
 import { TextDecorationType } from '../../text/types/decoration';
@@ -18,10 +19,12 @@ export const LinkAsButtonStandAloneComponent = (
     target,
     role,
     onClick,
+    ['aria-label']: ariaLabel,
     ...props
   }: ILinkAsButtonStandAlone,
   ref: React.ForwardedRef<HTMLElement> | undefined
 ): JSX.Element => {
+  const ariaProps = pickAriaProps(props);
   return (
     // Apply button border radius to the link when focus-visible
     <LinkAsButtonWrapperStyled
@@ -33,7 +36,7 @@ export const LinkAsButtonStandAloneComponent = (
     >
       <Text
         ref={ref}
-        aria-label={props['aria-label']}
+        aria-label={ariaLabel}
         component={component}
         decoration={TextDecorationType.NONE}
         isDisabled={props.state === ButtonStateType.DISABLED}
@@ -50,7 +53,6 @@ export const LinkAsButtonStandAloneComponent = (
           $sizeStyles={props.sizeStyles}
           $state={props.state}
           $styles={props.styles}
-          aria-label=""
         >
           <ButtonStandAloneStructure {...props}>{children}</ButtonStandAloneStructure>
         </ButtonStyled>

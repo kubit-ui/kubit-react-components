@@ -25,6 +25,9 @@ export interface IImageStandAlone {
   borderRadius?: string;
   objectFit?: ImageObjectFitType;
   component?: GenericImageType;
+  /**
+   * @deprecated This property will be removed. From an accesibility perspective, it is not recommended to use tabIndex on images.
+   */
   tabIndex?: number;
 }
 

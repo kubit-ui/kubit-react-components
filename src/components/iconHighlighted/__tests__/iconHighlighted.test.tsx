@@ -62,4 +62,18 @@ describe('IconHighlighted Component', () => {
     expect(container).toHTMLValidate();
     expect(results).toHaveNoViolations();
   });
+
+  it('Should render IconHighlighted with custom content', async () => {
+    const { getByText, container } = renderProvider(
+      <IconHighlighted {...mockPropsDecorative} customContent={'customContent'} />
+    );
+
+    const customContent = getByText('customContent');
+
+    expect(customContent).toBeDefined();
+
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results).toHaveNoViolations();
+  });
 });

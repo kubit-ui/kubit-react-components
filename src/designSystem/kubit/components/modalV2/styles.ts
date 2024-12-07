@@ -26,9 +26,17 @@ const commonTokens = {
     width: SPACINGS.spacing_100_percent,
     display: 'flex',
     flex_direction: 'column',
-    justify_content: 'space-between',
-    align_items: 'center',
     gap: SPACINGS.spacing_150,
+  },
+  headerContentContainer: {
+    display: 'flex',
+    flex_direction: 'row-reverse',
+    align_items: 'center',
+  },
+  dragIconContainer: {
+    display: 'flex',
+    align_items: 'center',
+    justify_content: 'center',
   },
   title: {
     font_weight: FONT_WEIGHT.font_weight_600,
@@ -36,21 +44,27 @@ const commonTokens = {
     text_align: TEXT_ALIGN.center,
     font_variant: TextVariantType.HEADING_H4_EXPANDED,
   },
-  content: {
-    margin_top: SPACINGS.spacing_0,
-    width: SPACINGS.spacing_100_percent,
-    flex: 'auto',
-    overflow_y: 'auto',
+  titleContainer: {
+    // styles for centering the title in the header
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)',
+  },
+  closeButtonIcon: {
+    color: COLORS.NEUTRAL.color_neutral_icon_50,
+    width: SIZES.size_250,
+    height: SIZES.size_250,
   },
   closeButtonContainer: {
     display: 'flex',
     justify_content: 'end',
     width: '100%',
   },
-  closeButtonIcon: {
-    color: COLORS.NEUTRAL.color_neutral_icon_50,
-    width: SIZES.size_250,
-    height: SIZES.size_250,
+  content: {
+    margin_top: SPACINGS.spacing_0,
+    width: SPACINGS.spacing_100_percent,
+    flex: 'auto',
+    overflow_y: 'auto',
   },
 };
 

@@ -38,8 +38,8 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
     arrowsControlVariant: {
       options: Object.keys(variants[themeSelected].ArrowsControlVariant || {}),
       control: { type: 'select' },
-      type: { name: 'string', required: true },
-      description: 'Set the variant for the arrows',
+      type: { name: 'string' },
+      description: 'Set the variant for the arrows. Only needed when arrows are used',
       table: {
         type: {
           summary: 'string',
@@ -70,7 +70,7 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
       },
     },
     leftArrowControl: {
-      description: 'Left arrow',
+      description: 'Left arrow. Deprecated. Please use leftControl instead',
       control: { type: 'object' },
       type: { name: 'object' },
       table: {
@@ -81,12 +81,34 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
       },
     },
     rightArrowControl: {
-      description: 'Left arrow',
+      description: 'Left arrow. Deprecated. Please use rigthControl instead',
       control: { type: 'object' },
       type: { name: 'object' },
       table: {
         type: {
           summary: 'ArrowControlType',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    leftControl: {
+      description: 'Left control (Draw arrow [IElementOrIcon] or Button [ButtonControl])',
+      control: { type: 'object' },
+      type: { name: 'object' },
+      table: {
+        type: {
+          summary: 'PageControlControlType',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
+    rightControl: {
+      description: 'Right control (Draw arrow [IElementOrIcon] or Button [ButtonControl])',
+      control: { type: 'object' },
+      type: { name: 'object' },
+      table: {
+        type: {
+          summary: 'PageControlControlType',
         },
         category: CATEGORY_CONTROL.MODIFIERS,
       },

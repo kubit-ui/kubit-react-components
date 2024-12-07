@@ -13,19 +13,29 @@ const ToggleWithLabelUncontrolledComponent = (
     defaultTogglePosition = toggleVariant !== THREE_POSITION_TOGGLE
       ? POSITIONS.LEFT
       : POSITIONS.CENTER,
+    togglePosition,
     displayRow,
     /* deprecated - deleted condition when the 'displayRow' prop is removed */
     labelPosition = displayRow === undefined ? LABEL_POSITION.LEFT : undefined,
+    onChange,
     ...props
   }: IToggleWithLabel,
   ref: React.ForwardedRef<HTMLFieldSetElement> | undefined | null
 ): JSX.Element => {
+  const [_togglePosition, setTogglePosition] = React.useState(defaultTogglePosition);
+
+  const handleChange = (newPosition: POSITIONS) => {
+    setTogglePosition(newPosition);
+    onChange?.(newPosition);
+  };
+
   return (
     <ToggleWithLabelControlled
       ref={ref}
-      defaultTogglePosition={defaultTogglePosition}
       labelPosition={labelPosition}
+      togglePosition={togglePosition ?? _togglePosition}
       toggleVariant={toggleVariant}
+      onChange={handleChange}
       {...props}
     />
   );

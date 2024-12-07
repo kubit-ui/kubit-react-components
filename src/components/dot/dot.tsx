@@ -28,7 +28,7 @@ const DotComponent = React.forwardRef(
       <DotStandAlone
         {...props}
         ref={ref}
-        formatedNumber={size !== 'SMALL' ? formattedNumber : undefined}
+        formatedNumber={formattedNumber}
         sizeStyles={sizeStyles}
         styles={styles}
       />

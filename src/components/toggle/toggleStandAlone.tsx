@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { ToggleThreePosition } from './components/toggleThreePosition';
-import { ToggleTwoPosition } from './components/toggleTwoPositions';
+import { ToggleThreePosition } from './components/threePositions/toggleThreePosition';
+import { ToggleTwoPosition } from './components/twoPositions/toggleTwoPositions';
 import type { IToggleStandAlone } from './types/toggle';
 
 const ToggleStandAloneComponent = (
-  { ...props }: IToggleStandAlone,
+  { hasThreePositions, ...props }: IToggleStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
-  return !props.hasThreePositions ? (
+  return !hasThreePositions ? (
     <ToggleTwoPosition {...props} ref={ref} />
   ) : (
     <ToggleThreePosition {...props} ref={ref} />

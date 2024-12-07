@@ -50,6 +50,7 @@ const commonArgs: IInputUnControlled = {
   rightIcon: { icon: ICONS.ICON_CHECKMARK_THICK, altText: 'icon alt text' },
   secondaryLabel: labelSecondary(themeSelected),
   additionalInfo: additionalInfoAction(themeSelected),
+  ['aria-required']: false,
   loader: {
     variant: Object.values(variantsObject[themeSelected].LoaderVariantType || {})[0] as string,
     altText: 'loaderAltText',

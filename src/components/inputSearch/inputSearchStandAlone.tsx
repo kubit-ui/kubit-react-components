@@ -7,7 +7,6 @@ import { ROLES } from '../../types/role/role';
 import { isKeyTabPressed } from '../../utils/keyboard/keyboard.utility';
 import { InputControlled as Input } from '../input/inputControlled';
 import { AUTOCOMPLETE_TYPE } from '../input/types/input';
-import { PopoverComponentType } from '../popover/types/component';
 import { PopoverSearchList } from './components/popoverSearchList';
 import { shouldOpenPopover } from './helpers/popover';
 // helpers
@@ -58,7 +57,7 @@ export const InputSearchStandAloneComponent = (
           ref={sendRef as unknown as ForwardedRef<HTMLInputElement | undefined | null> | undefined}
           aria-controls={popoverOpen ? ariaControls : undefined}
           aria-expanded={popoverOpen}
-          aria-haspopup={PopoverComponentType.DIALOG}
+          aria-haspopup={ROLES.LISTBOX}
           autocomplete={props.autocomplete || AUTOCOMPLETE_TYPE.OFF}
           icon={{
             ...props.icon,
@@ -84,6 +83,7 @@ export const InputSearchStandAloneComponent = (
         closeIcon={props.closeIcon}
         dataTestId={dataTestId}
         device={props.device}
+        dragIcon={props.dragIcon}
         elementsToShow={props.elementsToShow}
         hasHighlightedOption={props.hasHighlightedOption}
         hasResultTextWrittenByUser={props.hasResultTextWrittenByUser}

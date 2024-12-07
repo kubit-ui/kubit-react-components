@@ -23,7 +23,7 @@ const ElementOrIconComponent = (
     );
   }
   // element as jsx element
-  return <>{element}</>;
+  return <>{element as React.ReactNode}</>;
 };
 
 /**

@@ -25,6 +25,7 @@ export interface IDotStandAlone {
   formatedNumber?: number | string;
   width?: string;
   height?: string;
+  label?: string;
   dataTestId?: string;
 }
 

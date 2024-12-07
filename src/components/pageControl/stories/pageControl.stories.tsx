@@ -53,19 +53,21 @@ const StoryWithHooks = args => {
 
   const rightArrowControlPageControl = {
     icon: ICONS.ICON_CHEVRON_RIGHT,
-    arrowControlAriaLabel: 'Right Arrow',
+    ['aria-label']: 'Right Arrow',
     disabled: disabledRightArrow,
-    arrowControlOnClick: handleRightArrowClick,
+    onClick: handleRightArrowClick,
   };
 
   return (
-    <Story
-      {...args}
-      currentPosition={currentPage}
-      leftArrowControl={leftArrowControlPageControl}
-      pages={pages}
-      rightArrowControl={rightArrowControlPageControl}
-    />
+    <div style={{ width: '400px', height: '50px', justifySelf: 'center' }}>
+      <Story
+        {...args}
+        currentPosition={currentPage}
+        leftControl={leftArrowControlPageControl}
+        pages={pages}
+        rightControl={rightArrowControlPageControl}
+      />
+    </div>
   );
 };
 

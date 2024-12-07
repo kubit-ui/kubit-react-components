@@ -169,6 +169,72 @@ export const argtypes = (
         category: CATEGORY_CONTROL.TESTING,
       },
     },
+    ['aria-label']: {
+      description: 'Text applied to aria-label property of input component',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-labelledby']: {
+      description: 'Text applied to aria-labelledby property of input component',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-describedby']: {
+      description: 'Text applied to aria-describedby property of input component',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-pressed']: {
+      description: 'Text applied to aria-describedby property of input component',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-disabled']: {
+      description: 'Text applied to aria-describedby property of input component',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
+    ['aria-expanded']: {
+      description: 'Apply to aria-expanded property of input component',
+      type: { name: 'string' },
+      control: { type: 'text' },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        category: CATEGORY_CONTROL.ACCESIBILITY,
+      },
+    },
     ctv: {
       description: 'Object used for update variant styles',
       type: { name: 'object' },

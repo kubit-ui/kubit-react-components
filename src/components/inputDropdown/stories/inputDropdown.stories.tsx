@@ -43,6 +43,8 @@ const commonArgs: IInputDropdown = {
   errorMessage: { content: 'Error message' },
   errorIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'error' },
   loadingText: { content: 'Loading results' },
+  allowSearch: false,
+  ['aria-required']: false,
   loader: {
     altText: 'loading',
   },
@@ -51,10 +53,11 @@ const commonArgs: IInputDropdown = {
     options: [
       {
         value: 'option1',
-        label: 'option 1',
+        label: 'option 1 label',
+        customLabel: 'option 1 custom label',
       },
       {
-        value: 'option2',
+        value: 'option2 value',
         label: 'option 2',
       },
     ],

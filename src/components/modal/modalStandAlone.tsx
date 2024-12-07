@@ -27,7 +27,7 @@ import { IModalStandAlone } from './types/modal';
 
 const ModalStandAloneComponent = (
   {
-    dataTestId = 'modalDataTestId',
+    dataTestId = 'modal',
     customHeightAllDevices = false,
     customWidthAllDevices = false,
     ...props
@@ -45,23 +45,18 @@ const ModalStandAloneComponent = (
         <ModalImageStyled
           data-modal-ilustration-container
           $styles={props.styles}
-          data-testid={`${dataTestId}ImageHeader`}
+          data-testid={`${dataTestId}-image-header`}
         >
           <ElementOrIllustration
             customIllustrationStyles={props.styles.imageIllustrationHeader}
-            data-testid={`${dataTestId}ImageHeader`}
             {...props.imageIllustrationHeader}
           />
         </ModalImageStyled>
       );
     } else if (props.imageHeader?.icon) {
       return (
-        <ModalImageStyled $styles={props.styles} data-testid={`${dataTestId}ImageHeader`}>
-          <ElementOrIcon
-            customIconStyles={props.styles.imageHeader}
-            data-testid={`${dataTestId}ImageHeader`}
-            {...props.imageHeader}
-          />
+        <ModalImageStyled $styles={props.styles} data-testid={`${dataTestId}-image-header`}>
+          <ElementOrIcon customIconStyles={props.styles.imageHeader} {...props.imageHeader} />
         </ModalImageStyled>
       );
     }
@@ -83,7 +78,6 @@ const ModalStandAloneComponent = (
       aria-modal={props.open}
       clickOverlayClose={!props.blocked}
       component={PopoverComponentType.DIV}
-      dataTestId={`${dataTestId}Popover`}
       hasBackDrop={true}
       id={modalId}
       open={props.open}
@@ -115,7 +109,6 @@ const ModalStandAloneComponent = (
             <ModalCloseButtonStyled $styles={props.styles}>
               <ElementOrIcon
                 customIconStyles={props.styles?.closeButtonIcon}
-                dataTestId={`${dataTestId}CloseIcon`}
                 {...props.closeIcon}
               />
             </ModalCloseButtonStyled>
@@ -132,7 +125,6 @@ const ModalStandAloneComponent = (
             <Text
               component={TextComponentType.H1}
               customTypography={props.styles.title}
-              dataTestId={`${dataTestId}Title`}
               id={titleIdFinal}
               {...props.title}
             >
@@ -150,7 +142,7 @@ const ModalStandAloneComponent = (
           aria-labelledby={
             props.contentHasScroll ? props.contentScrollArias?.['aria-labelledby'] : undefined
           }
-          data-testid={`${dataTestId}Content`}
+          data-testid={`${dataTestId}-content`}
           role={props.contentHasScroll ? ROLES.REGION : undefined}
           tabIndex={props.contentHasScroll ? 0 : undefined}
         >
@@ -158,11 +150,7 @@ const ModalStandAloneComponent = (
         </ModalContentStyled>
         {modalFooterVariant && props.footer?.content && (
           <ModalFooterStyled $styles={props.styles}>
-            <Footer
-              dataTestId={`${dataTestId}Navbar`}
-              variant={modalFooterVariant}
-              {...props.footer}
-            >
+            <Footer variant={modalFooterVariant} {...props.footer}>
               {props.footer?.content}
             </Footer>
           </ModalFooterStyled>

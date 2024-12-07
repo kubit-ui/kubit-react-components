@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 
 import { useId } from '@/hooks/useId/useId';
 import { InputTypeType } from '@/types/inputType/inputType';
+import { pickAriaProps } from '@/utils/aria/aria';
 
 import { ROLES } from '../../types/role/role';
 import { ButtonType } from '../button/types/type';
@@ -22,15 +22,16 @@ const PillStandAloneComponent = (
   { dataTestId = 'pill', type = PillType.BUTTON, ...props }: IPillStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null
 ): JSX.Element => {
+  const ariaProps = pickAriaProps(props);
   const id = useId('pill');
   const pillContentId = `${id}-content`;
 
   return (
     <PillRootContainerStyled
-      ref={ref as any}
-      aria-controls={props['aria-controls']}
+      ref={ref}
+      {...ariaProps}
       aria-selected={type === PillType.TAB ? props.selected : undefined}
-      as={[PillType.BUTTON, PillType.TAB].includes(type) ? PillAsButton : undefined}
+      as={([PillType.BUTTON, PillType.TAB].includes(type) ? PillAsButton : undefined) as any}
       data-testid={dataTestId}
       role={type === PillType.TAB ? ROLES.TAB : undefined}
       styles={props.styles}

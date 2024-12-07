@@ -20,7 +20,7 @@ export const InputDropdownStandAloneComponent = (
   const inputWrapperRef = React.useRef(null);
   const uniqueId: string = useId('inputDropdown');
   const inputId: string = props.id ?? uniqueId;
-  const ariaControls = `${uniqueId}List`;
+  const optionListId = props.open ? `${uniqueId}List` : undefined;
   const { refInput, refIcon } = ref as unknown as MultipleRef;
   const refs = { refInput, refIcon };
 
@@ -40,11 +40,11 @@ export const InputDropdownStandAloneComponent = (
           ref={
             refs as unknown as React.ForwardedRef<HTMLInputElement | undefined | null> | undefined
           }
-          aria-controls={props.open ? ariaControls : undefined}
+          aria-controls={optionListId}
           aria-expanded={props.open}
           aria-haspopup={ROLES.LISTBOX}
           autocomplete={
-            props.autocomplete || props.styles?.[props.state]?.allowSearch
+            props.autocomplete || (props.allowSearch ?? props.styles?.[props.state]?.allowSearch)
               ? AUTOCOMPLETE_TYPE.ON
               : AUTOCOMPLETE_TYPE.OFF
           }
@@ -57,7 +57,7 @@ export const InputDropdownStandAloneComponent = (
           variant={props.inputVariant ?? props.styles?.[props.state]?.inputVariant}
           onChange={event =>
             props.autocomplete ||
-            (props.styles?.[props.state]?.allowSearch &&
+            ((props.allowSearch ?? props.styles?.[props.state]?.allowSearch) &&
               props.device === DeviceBreakpointsType.DESKTOP)
               ? props.onChange?.(event)
               : undefined
@@ -66,9 +66,10 @@ export const InputDropdownStandAloneComponent = (
       </div>
       <PopoverSearchList
         ref={ref}
-        aria-controls={ariaControls}
+        allowSearch={props.allowSearch}
         closeIcon={props.closeIcon}
         device={props.device}
+        dragIcon={props.dragIcon}
         elementsToShow={props.elementsToShow}
         hasInputInSearchList={props.hasInputInSearchList}
         hasResultTextWrittenByUser={props.hasResultTextWrittenByUser}
@@ -83,6 +84,7 @@ export const InputDropdownStandAloneComponent = (
         noResultsText={props.noResultsText}
         open={props.open}
         optionList={props.optionList}
+        optionListId={optionListId}
         preventCloseOnClickElements={[inputWrapperRef.current]}
         searchText={props.searchText}
         state={props.state}
@@ -91,7 +93,6 @@ export const InputDropdownStandAloneComponent = (
         onCloseIconTabletMobileClick={props.onCloseIconTabletMobileClick}
         onInputPopoverChange={props.onInputPopoverChange}
         onInputPopoverIconClick={props.onInputPopoverIconClick}
-        onInputPopoverKeyDown={props.onInputPopoverKeyDown}
         onOpenOptions={props.onOpenOptions}
         onValueSelected={props.onValueSelected}
       />

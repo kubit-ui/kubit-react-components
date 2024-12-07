@@ -23,7 +23,7 @@ export interface ITextStyled {
 
 type TextAriaAttributes = Pick<
   React.AriaAttributes,
-  'aria-label' | 'aria-labelledby' | 'aria-describedby' | 'aria-hidden' | 'aria-level'
+  'aria-label' | 'aria-labelledby' | 'aria-describedby' | 'aria-hidden' | 'aria-level' | 'aria-live'
 >;
 
 export interface ITextStandAlone extends ITextStyled, TextAriaAttributes {
@@ -35,6 +35,8 @@ export interface ITextStandAlone extends ITextStyled, TextAriaAttributes {
   onClick?: React.MouseEventHandler<HTMLElement>;
   role?: React.AriaRole;
   color?: string;
+  wordBreak?: string;
+  wordWrap?: string;
   filter?: string;
   display?: TextDisplayType;
   decoration?: TextDecorationType;

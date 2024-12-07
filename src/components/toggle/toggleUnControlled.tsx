@@ -22,11 +22,6 @@ const ToggleUnControlledComponent = <V extends string | undefined>(
     onChange?.(newPosition);
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>, position?: POSITIONS) => {
-    handleChange(position!);
-    props.onClick?.(e, position);
-  };
-
   return (
     <ToggleControlled
       {...props}
@@ -35,7 +30,6 @@ const ToggleUnControlledComponent = <V extends string | undefined>(
       togglePosition={togglePosition ?? _togglePosition}
       variant={variant}
       onChange={handleChange}
-      onClick={handleClick}
     />
   );
 };

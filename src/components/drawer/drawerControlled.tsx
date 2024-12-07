@@ -18,12 +18,20 @@ import { DrawerVariantStylesType } from './types/drawerTheme';
 
 /* Constants for useScrollEffect */
 const SCROLL_DISTANCE = 5;
-/* Constants for useZoomEffect (footer) */
+
+/* Constants for useZoomEffect */
+const MAX_ZOOM = 2.4;
 const FOOTER_EDIT_STYLES: CssProperty[] = [
   { cssPropertyName: 'position', cssPropertyValue: 'static' },
 ];
-
-const MAX_ZOOM = 2.4;
+const CONTAINER_STYLES_EDIT: CssProperty[] = [
+  { cssPropertyName: 'overflow-y', cssPropertyValue: 'auto' },
+];
+const CONTENT_STYLES_EDIT: CssProperty[] = [
+  { cssPropertyName: 'overflow-y', cssPropertyValue: 'visible' },
+  { cssPropertyName: 'max-height', cssPropertyValue: 'none' },
+  { cssPropertyName: 'min-height', cssPropertyValue: 'auto' },
+];
 
 const DrawerControlledComponent = React.forwardRef(
   <V extends string | unknown>(
@@ -47,7 +55,9 @@ const DrawerControlledComponent = React.forwardRef(
         | null
         | undefined;
 
+      handleDrawerZoomEffect(innerRef.current);
       handleTitleShadowEffect(drawerTitle);
+      handleContentZoomEffect(drawerContent);
       handleContentScrollEffect(drawerContent);
       handleFooterZoomEffect(drawerFooter);
       handleContentScrollDetection(drawerContent);
@@ -78,6 +88,8 @@ const DrawerControlledComponent = React.forwardRef(
         scrollCallback: handleScroll,
       });
 
+    const handleDrawerZoomEffect = useZoomEffect(CONTAINER_STYLES_EDIT, MAX_ZOOM);
+    const handleContentZoomEffect = useZoomEffect(CONTENT_STYLES_EDIT, MAX_ZOOM);
     const handleFooterZoomEffect = useZoomEffect(FOOTER_EDIT_STYLES, MAX_ZOOM);
 
     const { hasScroll: contentHasScroll, handleScrollDetection: handleContentScrollDetection } =

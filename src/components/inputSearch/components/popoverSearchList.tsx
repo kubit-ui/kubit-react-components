@@ -137,6 +137,7 @@ export const PopoverSearchListComponent = (
 
   const renderSearchList = () => (
     <ListContainerStyled
+      data-input-search-list
       $height={getLength(props.optionList) ? props.listOptionsHeight : ''}
       data-testid={`${props.dataTestId}-list`}
       styles={props.styles?.[props.state]}
@@ -186,6 +187,7 @@ export const PopoverSearchListComponent = (
               refInput?.current?.focus();
             },
           }}
+          dragIcon={props.dragIcon}
           headerContent={
             <Input
               id={inputPopoverId}

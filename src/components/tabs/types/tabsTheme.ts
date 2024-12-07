@@ -16,11 +16,15 @@ export type TabsVariantStylesType = {
   arrowLeftIconContainer?: Omit<CommonStyleType, 'MOBILE'> & {
     [DeviceBreakpointsType.MOBILE]?: CommonStyleType & { focusVisible?: CommonStyleType };
   };
-  leftIcon?: IconTypes;
+  leftIcon?: IconTypes & {
+    disabled?: IconTypes;
+  };
   arrowRightIconContainer?: Omit<CommonStyleType, 'MOBILE'> & {
     [DeviceBreakpointsType.MOBILE]?: CommonStyleType & { focusVisible?: CommonStyleType };
   };
-  rightIcon?: IconTypes;
+  rightIcon?: IconTypes & {
+    disabled?: IconTypes;
+  };
   firstTabButton?: CommonStyleType;
   lastTabButton?: CommonStyleType;
   oneTabContainer?: CommonStyleType;

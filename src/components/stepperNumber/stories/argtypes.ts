@@ -72,6 +72,17 @@ export const argtypes = (variants: IThemeObjectVariants, themeSelected: string):
         category: CATEGORY_CONTROL.CONTENT,
       },
     },
+    stepMaxTruncatedLines: {
+      description: 'Indicates the maximum lines for the step name',
+      control: { type: 'number' },
+      type: { name: 'number' },
+      table: {
+        type: {
+          summary: 'number',
+        },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     currentStep: {
       description: 'Father current step',
       control: { type: 'number' },

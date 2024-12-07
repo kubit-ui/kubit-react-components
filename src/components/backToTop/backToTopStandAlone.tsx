@@ -3,7 +3,7 @@ import React from 'react';
 import { pickAriaProps } from '@/utils/aria/aria';
 
 //components
-import { IconBasic as Icon } from '../icon/icon';
+import { IconHost as Icon } from '../icon/iconHost';
 import { BackToTopStyled } from './backToTop.styled';
 import { IBackToTopStandAlone } from './types/backToTop';
 

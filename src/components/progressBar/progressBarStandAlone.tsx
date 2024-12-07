@@ -53,6 +53,7 @@ const ProgressBarStandaloneComponent = (
             />
             <ProgressBarStyled
               data-testid={dataTestIdProgressBar}
+              progressAnimation={props.progressAnimation}
               progressCompleted={props.progressCompleted}
               sizeStyles={props.sizeStyles}
               styles={props.styles}

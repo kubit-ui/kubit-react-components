@@ -5,7 +5,7 @@ import { useId } from '@/hooks/useId/useId';
 
 import { ScreenReaderOnly } from '../screenReaderOnly/screenReaderOnly';
 import { TextComponentType } from '../text/types/component';
-import { ToggleUnControlled as Toggle } from '../toggle/toggleUnControlled';
+import { ToggleControlled } from '../toggle/toggleControlled';
 import { ToggleWithLabelStyled } from './toggleWithLabel.styled';
 import type { IToggleWithLabelStandAlone } from './types/toggleWithLabel';
 
@@ -21,7 +21,7 @@ const ToggleWithLabelStandAloneComponent = (
     textVariant,
     toggleVariant,
     labelPosition,
-    onClick,
+    onFieldSetClick,
     dataTestId = 'toggle-with-label',
     ...props
   }: IToggleWithLabelStandAlone,
@@ -39,11 +39,11 @@ const ToggleWithLabelStandAloneComponent = (
     <ToggleWithLabelStyled
       ref={ref}
       as={label ? 'fieldset' : 'div'}
-      data-tesid={dataTestId}
+      data-testid={dataTestId}
       displayRow={displayRow}
       labelPosition={labelPosition}
       styles={styles}
-      onClick={onClick}
+      onClick={onFieldSetClick}
     >
       {label && (
         <Text
@@ -68,9 +68,8 @@ const ToggleWithLabelStandAloneComponent = (
           )}
         </Text>
       )}
-      <Toggle
+      <ToggleControlled
         {...props}
-        ref={props.toggleRef}
         aria-describedby={labelId}
         id={toggleId}
         screenReaderId={screenReaderId}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IllustrationBasic as Illustration } from '../illustration/illustration';
+import { IllustrationHost as Illustration } from '../illustration/illustrationHost';
 import { IElementOrillustration } from './types/elementOrIllustration';
 
 const ElementOrIllustrationComponent = (
@@ -18,7 +18,7 @@ const ElementOrIllustrationComponent = (
     return <Illustration {...rest} ref={ref} illustration={element} />;
   }
   // element as jsx element
-  return <>{element}</>;
+  return <>{element as React.ReactNode}</>;
 };
 
 /**

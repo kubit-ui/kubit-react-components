@@ -10,6 +10,8 @@ export type Variants = {
   BackToTopVariantsType?: object;
   BadgeVariant?: object;
   BadgeSize?: object;
+  BadgeVariantV2?: object;
+  BadgeSizeV2?: object;
   BannerStateVariantType?: object;
   BannerAlignType?: object;
   BreadcrumbsVariantType?: object;

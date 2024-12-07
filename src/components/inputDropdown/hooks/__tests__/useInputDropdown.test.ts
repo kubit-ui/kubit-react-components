@@ -245,30 +245,6 @@ test('handleInputPopoverChange function', async () => {
   expect(result.current.inputPopoverText).toBe('newValue');
 });
 
-test('handleInputPopoverKeyDown function', async () => {
-  window.matchMedia = windowMatchMedia('onlyDesktop');
-  jest.spyOn(mediaHooks, 'useMediaDevice').mockImplementation(() => DeviceBreakpointsType.DESKTOP);
-  const mockOnBlur = jest.fn();
-  const { result } = renderHook(() =>
-    useInputDropdown({
-      ...mockProps,
-      onBlur: mockOnBlur,
-      value: 'option1',
-    })
-  );
-
-  const mockPreventDefault = jest.fn();
-  const event = {
-    key: 'ArrowDown',
-    preventDefault: mockPreventDefault,
-  } as unknown as React.KeyboardEvent<HTMLInputElement>;
-  act(() => {
-    result.current.handleInputPopoverKeyDown(event);
-  });
-
-  expect(mockPreventDefault).toHaveBeenCalled();
-});
-
 test('handleInputPopoverIconClick function', async () => {
   window.matchMedia = windowMatchMedia('onlyTablet');
   jest.spyOn(mediaHooks, 'useMediaDevice').mockImplementation(() => DeviceBreakpointsType.TABLET);

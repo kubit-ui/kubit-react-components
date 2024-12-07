@@ -41,6 +41,8 @@ export type TextPropsStylesType = {
   $transform?: TextTransformType;
   align?: string;
   weight?: number;
+  wordBreak?: string;
+  wordWrap?: string;
   isDisabled?: boolean;
   $maxTruncatedLines?: number;
   $truncate?: boolean;

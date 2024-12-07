@@ -55,7 +55,7 @@ const ActionBottomSheetStandAloneComponent = (
     >
       {props.dragIcon && isMobileOrTablet && (
         <DraggableIcon ref={props.dragIconRef} data-drag-icon styles={props.styles}>
-          <ElementOrIcon {...props.dragIcon} />
+          <ElementOrIcon customIconStyles={props.styles.dragIcon} {...props.dragIcon} />
         </DraggableIcon>
       )}
       {hasHeader && (

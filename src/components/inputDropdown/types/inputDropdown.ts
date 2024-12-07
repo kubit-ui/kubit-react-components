@@ -20,9 +20,9 @@ export type InputDropdownOptionsAriasTypes = Pick<
   React.AriaAttributes,
   'aria-label' | 'aria-labelledby'
 >;
-
+export type OptionsInputDropdown = ListOptionsOptionType & { customLabel?: string };
 export type InputDropdownOptionsType = {
-  options: ListOptionsOptionType[];
+  options: OptionsInputDropdown[];
   optionVariant?: string;
   listOptionsVariant?: string;
 } & InputDropdownOptionsAriasTypes;
@@ -30,13 +30,15 @@ export type InputDropdownOptionsType = {
 export interface IPopoverDropdownList {
   open: boolean;
   optionList: InputDropdownOptionsType;
+  optionListId?: string;
   state: InputState;
+  allowSearch?: boolean;
   styles: InputDropdownStylesProps;
   onOpenOptions: (value: boolean) => void;
   onValueSelected: (value: string) => void;
   listOptionsHeight: string;
-  ['aria-controls']?: string;
   closeIcon?: IElementOrIcon;
+  dragIcon?: IElementOrIcon;
   dataTestId?: string;
   elementsToShow?: number;
   noResultsText?: InputDropdownNoResultTextType;
@@ -58,7 +60,6 @@ export interface IPopoverDropdownList {
   inputPopoverValue?: string;
   value?: string;
   onInputPopoverChange: React.ChangeEventHandler<HTMLInputElement>;
-  onInputPopoverKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
   onInputPopoverIconClick: () => void;
   onCloseIconTabletMobileClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -75,9 +76,9 @@ export interface IOptionsListDropdownList {
   stylesListOption?: InputDropdownListOptionsProps;
   stylesState?: InputDropdownStateProps;
   optionList: InputDropdownOptionsType;
+  optionListId?: string;
   onOpenOptions: (value: boolean) => void;
   onValueSelected: (value: string) => void;
-  ['aria-controls']?: string;
   dataTestId?: string;
   loading?: boolean;
   loader?: Omit<ILoader, 'variant'> & { variant?: string };
@@ -136,6 +137,7 @@ export interface IInputDropdownStandAlone
   noResultsText?: InputDropdownNoResultTextType;
   // actionBottomSheet
   closeIcon?: IElementOrIcon;
+  dragIcon?: IElementOrIcon;
   hasResultTextWrittenByUser?: boolean;
   // input popover
   hasInputInSearchList?: boolean;
@@ -146,6 +148,8 @@ export interface IInputDropdownStandAlone
   inputPopoverRightIcon?: IElementOrIcon;
   inputPopoverValue?: string;
   inputPopoverVariant?: string;
+  allowSearch?: boolean;
+
   /**
    * @deprecated
    * @description This prop is deprecated and will be removed in the next major version.
@@ -156,7 +160,6 @@ export interface IInputDropdownStandAlone
   onValueSelected: (value: string) => void;
   onInputPopoverIconClick: () => void;
   onInputPopoverChange: React.ChangeEventHandler<HTMLInputElement>;
-  onInputPopoverKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   onCloseIconTabletMobileClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -172,7 +175,6 @@ type PropsToOmitIInputDropdownStandAlone =
   | 'onValueSelected'
   | 'onChange'
   | 'onInputPopoverChange'
-  | 'onInputPopoverKeyDown'
   | 'onInputPopoverIconClick'
   | 'onClick';
 

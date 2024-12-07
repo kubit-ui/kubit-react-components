@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { CommonStyleType } from '@/types/styles/commonStyle';
 import { getStyles } from '@/utils/getStyles/getStyles';
 
 // mixins
@@ -93,6 +94,16 @@ export const TextCounterStyled = styled.div<{ styles?: InputCounterStateProps }>
 
 export const LoaderWrapperStyled = styled.div<LoaderStyledProps>`
   ${({ styles }) => getStyles(styles?.loaderContainer)};
+`;
+
+export const InputIconContainerStyled = styled.div<
+  InputIconStyledProps & { inputIconContainerStyles?: CommonStyleType }
+>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: ${({ $pointerEvents }) => ($pointerEvents ? 'auto' : 'none')};
+  ${({ inputIconContainerStyles }) => getStyles(inputIconContainerStyles)};
 `;
 
 export const InputIconStyled = styled.div<InputIconStyledProps>`

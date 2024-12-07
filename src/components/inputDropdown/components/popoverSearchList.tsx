@@ -29,7 +29,7 @@ export const PopoverSearchListComponent = (
   const labelInResultTextWrittenByUser = useActionBottomSheet
     ? props.inputPopoverValue
     : props.searchText;
-  const { refInput, refActionBottomSheet } = ref as unknown as MultipleRef;
+  const { refActionBottomSheet } = ref as unknown as MultipleRef;
 
   const renderIconOrMessage = () => {
     if (!props.loading && props.noResultsText?.content) {
@@ -53,6 +53,7 @@ export const PopoverSearchListComponent = (
 
   const renderSearchList = () => (
     <ListContainerStyled
+      data-input-dropdown-list
       $height={props.optionList.options.length ? props.listOptionsHeight : ''}
       styles={props.styles?.[props.state]}
       useActionBottomSheet={useActionBottomSheet}
@@ -67,11 +68,11 @@ export const PopoverSearchListComponent = (
         ) : (
           <OptionsList
             ref={ref}
-            aria-controls={props['aria-controls']}
             loader={props.loader}
             loading={props.loading}
             loadingText={props.loadingText}
             optionList={props.optionList}
+            optionListId={props.optionListId}
             searchText={labelInResultTextWrittenByUser}
             stylesListOption={props.styles.listOptions}
             stylesState={props.styles?.[props.state]}
@@ -84,7 +85,8 @@ export const PopoverSearchListComponent = (
     </ListContainerStyled>
   );
 
-  const showHeaderInput = props.hasInputInSearchList && props.styles?.[props.state]?.allowSearch;
+  const showHeaderInput =
+    props.hasInputInSearchList && (props.allowSearch ?? props.styles?.[props.state]?.allowSearch);
 
   return (
     <PopoverControlled
@@ -98,7 +100,6 @@ export const PopoverSearchListComponent = (
       variant={props.styles?.[props.state]?.popoverVariant?.[props.device]}
       onCloseInternally={() => {
         props.onOpenOptions(false);
-        refInput?.current?.focus();
       }}
     >
       {useActionBottomSheet ? (
@@ -112,6 +113,7 @@ export const PopoverSearchListComponent = (
               props.closeIcon?.onClick?.(e);
             },
           }}
+          dragIcon={props.dragIcon}
           headerContent={
             showHeaderInput && (
               <Input
@@ -134,7 +136,6 @@ export const PopoverSearchListComponent = (
                 // The variant is the same for all the states
                 variant={props.styles?.[props.state]?.inputVariant as string}
                 onChange={props.onInputPopoverChange}
-                onKeyDown={props.onInputPopoverKeyDown}
               />
             )
           }

@@ -36,7 +36,6 @@ const NavigationCardStandaloneComponent = (
   return (
     // Can not be spread -> styled component breaks
     <NavigationCardStyled
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
       aria-disabled={props['aria-disabled']}
       as={props.url ? props.component : 'button'}

@@ -121,6 +121,9 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
       return;
     }
     if (eventKeyPressRef.current && props.mask && inputRef?.current && value) {
+      const popoverElements = document.querySelectorAll(
+        '[data-calendar], [data-input-dropdown-list], [data-input-search-list]'
+      );
       const { start, end } = eventKeyPressRef.current.cursor;
       // if multiple digits are selected, recovery the selected area
       const area = Math.abs(start - end);
@@ -138,7 +141,10 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
         eventKeyPressRef.current.cursor,
         positionRef.current
       );
-      inputRef.current.focus();
+
+      if (popoverElements.length !== 0) {
+        inputRef.current.focus();
+      }
       inputRef.current.setSelectionRange(start + diffStart + position, end - diffEnd + position);
     }
   }, [value]);
@@ -356,7 +362,12 @@ export const useInput = (props: ParamsTypeInputHook): ReturnTypeInputHook => {
   const handlePasteInternal: React.ClipboardEventHandler<HTMLInputElement> = event => {
     const clipboardData = event.clipboardData;
     const pastedData = clipboardData?.getData('Text');
-    if (props.ignoreKeys?.some(key => pastedData.includes(key)) || props.disabledCopyAndPaste) {
+    const newRegex = typeof props.regex === 'string' ? new RegExp(props.regex) : props.regex;
+    if (
+      props.ignoreKeys?.some(key => pastedData.includes(key)) ||
+      props.disabledCopyAndPaste ||
+      (newRegex && !newRegex?.test(pastedData))
+    ) {
       event.preventDefault();
       return;
     }

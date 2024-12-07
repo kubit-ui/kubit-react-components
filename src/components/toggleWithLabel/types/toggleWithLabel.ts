@@ -2,7 +2,7 @@ import { CustomTokenTypes } from '@/types/customToken/customToken';
 import { POSITIONS } from '@/types/positions/positions';
 
 import { IText } from '../../text/types/text';
-import { IToggleUnControlled } from '../../toggle/types/toggle';
+import { IToggleControlled } from '../../toggle/types/toggle';
 import { ToggleWithLabelStylePropsType } from './toggleWithLabelTheme';
 
 export enum LABEL_POSITION {
@@ -23,16 +23,9 @@ export type ToggleRequiredSymbolType = Omit<IText<string>, 'children'> & {
   content?: JSX.Element;
 };
 
-type propsToOmit =
-  | 'variant'
-  | 'aria-describedby'
-  | 'screenReaderId'
-  | 'ctv'
-  | 'cts'
-  | 'extraCt'
-  | 'onClick';
+type propsToOmit = 'variant' | 'aria-describedby' | 'screenReaderId' | 'ctv' | 'cts' | 'extraCt';
 
-export interface IToggleWithLabelStandAlone extends Omit<IToggleUnControlled, propsToOmit> {
+export interface IToggleWithLabelStandAlone extends Omit<IToggleControlled, propsToOmit> {
   label?: ToggleLabelType;
   styles?: ToggleWithLabelStylePropsType;
   requiredSymbol?: ToggleRequiredSymbolType;
@@ -46,11 +39,10 @@ export interface IToggleWithLabelStandAlone extends Omit<IToggleUnControlled, pr
   labelPosition?: LABEL_POSITION;
   textVariant?: string;
   screenReaderText?: string;
-  toggleRef?: React.ForwardedRef<HTMLInputElement> | undefined | null;
-  onClick?: (event: React.MouseEvent<HTMLFieldSetElement>) => void;
+  onFieldSetClick?: (event: React.MouseEvent<HTMLFieldSetElement>) => void;
 }
 
-type propsToOmitStandAlone = 'styles' | 'toggleRef' | 'onClick';
+type propsToOmitStandAlone = 'styles';
 
 export interface IToggleWithLabelControlled<V = undefined extends string ? unknown : string>
   extends Omit<IToggleWithLabelStandAlone, propsToOmitStandAlone>,
@@ -58,4 +50,7 @@ export interface IToggleWithLabelControlled<V = undefined extends string ? unkno
   variant: V;
 }
 
-export type IToggleWithLabel = IToggleWithLabelControlled;
+export interface IToggleWithLabel<V = undefined extends string ? unknown : string>
+  extends IToggleWithLabelControlled<V> {
+  defaultTogglePosition?: POSITIONS;
+}

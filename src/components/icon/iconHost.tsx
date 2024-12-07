@@ -52,11 +52,4 @@ const IconHostComponent = (
   );
 };
 
-/**
- * @deprecated This component has been deprecated and will be removed in the next MAJOR release.
- *
- * IconHost is a component that serves as a host for icons.
- * @param {React.PropsWithChildren<IIconHost>} props
- * @returns {JSX.Element}
- */
 export const IconHost = React.forwardRef(IconHostComponent);

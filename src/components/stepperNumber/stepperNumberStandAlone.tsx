@@ -113,6 +113,7 @@ const StepperNumberStandAloneComponent = (
                     <Text
                       component={TextComponentType.SPAN}
                       customTypography={props.styles?.[step.state]?.stepName}
+                      maxTruncatedLines={props.stepMaxTruncatedLines}
                     >
                       {step.name}
                     </Text>

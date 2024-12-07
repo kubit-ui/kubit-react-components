@@ -83,6 +83,14 @@ export const ModalHeaderStyled = styled.div<IModalStyled>`
   ${props => getStyles(props.$styles.headerContainer)}
 `;
 
+export const ModalHeaderContentStyled = styled.div<IModalStyled>`
+  ${props => getStyles(props.$styles.headerContentContainer)}
+`;
+
+export const TitleContainerStyled = styled.div<IModalStyled>`
+  ${props => getStyles(props.$styles.titleContainer)}
+`;
+
 export const TitleHiddenContainer = styled.span`
   display: none;
 `;

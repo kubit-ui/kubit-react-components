@@ -192,6 +192,31 @@ describe('New Input Dropdown Component', () => {
     expect(input.getAttribute('value')).toBe('option1');
   });
 
+  it('Should allow select an option with customLabel', async () => {
+    renderProvider(
+      <InputDropdown
+        {...mockProps}
+        optionList={{
+          options: [
+            {
+              label: 'option1',
+              value: 'option1',
+              customLabel: 'option1Custom',
+            },
+          ],
+        }}
+      />
+    );
+
+    const inputOption = screen.getByText('option1');
+    await act(async () => {
+      fireEvent.click(inputOption);
+    });
+
+    const input = screen.getByRole(ROLES.COMBOBOX);
+    expect(input.getAttribute('value')).toBe('option1Custom');
+  });
+
   it('Should focus first option with arrow down', async () => {
     renderProvider(
       <InputDropdown

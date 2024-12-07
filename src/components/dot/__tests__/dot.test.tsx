@@ -59,3 +59,16 @@ test('Should render Dot with plus simbol', async () => {
   expect(container).toHTMLValidate();
   expect(results).toHaveNoViolations();
 });
+
+test('Get label', async () => {
+  const { getByText, container } = renderProvider(
+    <Dot {...mockMaxNumberProps} label="myLabel" number={undefined} />
+  );
+
+  const dot = getByText('myLabel');
+
+  expect(dot).toBeInTheDocument();
+  const results = await axe(container);
+  expect(container).toHTMLValidate();
+  expect(results).toHaveNoViolations();
+});

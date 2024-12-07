@@ -4,7 +4,7 @@ import { DotStyled } from './dot.styled';
 import { IDotStandAlone } from './types/dot';
 
 const DotStandAloneComponent = (
-  { formatedNumber, sizeStyles, styles, dataTestId = 'dot', height, width }: IDotStandAlone,
+  { formatedNumber, label, sizeStyles, styles, dataTestId = 'dot', height, width }: IDotStandAlone,
   ref: React.ForwardedRef<HTMLSpanElement> | undefined | null
 ): JSX.Element => {
   return (
@@ -16,6 +16,7 @@ const DotStandAloneComponent = (
       sizeStyles={sizeStyles}
       styles={styles}
     >
+      {label}
       {formatedNumber}
     </DotStyled>
   );
