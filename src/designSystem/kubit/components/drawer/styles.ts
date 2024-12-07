@@ -11,7 +11,6 @@ import { COLORS } from '../../foundations/colors';
 import { SIZES } from '../../foundations/sizes';
 import { SPACINGS } from '../../foundations/spacings';
 import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
-import { Z_INDEX } from '../../foundations/zIndex';
 import { TextVariantType } from '../text/variants';
 import { FooterVariants } from '../variants';
 import { DrawerVariantType } from './variants';
@@ -42,8 +41,6 @@ const containerCommonProps: {
   },
 };
 const commonIconContainerProps: CommonStyleType = {
-  position: 'sticky',
-  z_index: Z_INDEX.STICKY,
   background_color: COLORS.NEUTRAL.color_neutral_bg_250,
 };
 const commonTitleProps: TypographyTypes = {
@@ -59,8 +56,6 @@ const commonIconProps: IconTypes = {
 const commonFooterProps: CommonStyleType & {
   variant?: string;
 } = {
-  position: 'sticky',
-  z_index: Z_INDEX.STICKY,
   border_top: `${BORDERS.border_50} solid ${COLORS.NEUTRAL.color_neutral_border_200}`,
   variant: FooterVariants.DEFAULT,
 };
@@ -102,8 +97,6 @@ export const DRAWER_STYLES: DrawerStylesType<DrawerVariantType> = {
       titleContainer: {
         margin_bottom: SPACINGS.spacing_400,
         text_align: TEXT_ALIGN.left,
-        position: 'sticky',
-        z_index: Z_INDEX.STICKY,
         background_color: COLORS.NEUTRAL.color_neutral_bg_250,
       },
       title: {
@@ -152,8 +145,6 @@ export const DRAWER_STYLES: DrawerStylesType<DrawerVariantType> = {
       titleContainer: {
         margin_bottom: SPACINGS.spacing_400,
         text_align: TEXT_ALIGN.center,
-        position: 'sticky',
-        z_index: Z_INDEX.STICKY,
         background_color: COLORS.NEUTRAL.color_neutral_bg_250,
       },
       title: {
@@ -202,8 +193,6 @@ export const DRAWER_STYLES: DrawerStylesType<DrawerVariantType> = {
       titleContainer: {
         margin_bottom: SPACINGS.spacing_400,
         text_align: TEXT_ALIGN.center,
-        position: 'sticky',
-        z_index: Z_INDEX.STICKY,
         background_color: COLORS.NEUTRAL.color_neutral_bg_250,
       },
       title: {
@@ -265,8 +254,6 @@ export const DRAWER_STYLES: DrawerStylesType<DrawerVariantType> = {
       titleContainer: {
         margin_bottom: SPACINGS.spacing_400,
         text_align: TEXT_ALIGN.left,
-        position: 'sticky',
-        z_index: Z_INDEX.STICKY,
         background_color: COLORS.NEUTRAL.color_neutral_bg_250,
       },
       title: {
@@ -318,8 +305,6 @@ export const DRAWER_STYLES: DrawerStylesType<DrawerVariantType> = {
       titleContainer: {
         margin_bottom: SPACINGS.spacing_400,
         text_align: TEXT_ALIGN.center,
-        position: 'sticky',
-        z_index: Z_INDEX.STICKY,
         background_color: COLORS.NEUTRAL.color_neutral_bg_250,
       },
       title: {
@@ -360,8 +345,6 @@ export const DRAWER_STYLES: DrawerStylesType<DrawerVariantType> = {
       titleContainer: {
         margin_bottom: SPACINGS.spacing_400,
         text_align: TEXT_ALIGN.center,
-        position: 'sticky',
-        z_index: Z_INDEX.STICKY,
         background_color: COLORS.NEUTRAL.color_neutral_bg_250,
       },
       title: {

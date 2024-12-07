@@ -5,7 +5,6 @@ import { BORDERS, RADIUS } from '@/designSystem/kubitWireframe/commons/foundatio
 import { SIZES } from '@/designSystem/kubitWireframe/commons/foundations/sizes';
 import { SPACINGS } from '@/designSystem/kubitWireframe/commons/foundations/spacings';
 import { FONT_WEIGHT } from '@/designSystem/kubitWireframe/commons/foundations/typography';
-import { Z_INDEX } from '@/designSystem/kubitWireframe/commons/foundations/zIndex';
 import { DeviceBreakpointsType } from '@/types/breakpoints/breakpoints';
 
 import { shadowAfterStyles, transformShadow } from '../../../utils/wireframe';
@@ -24,8 +23,6 @@ const drawerContainerTokens = (COLORS): object => {
 };
 const iconContainerTokens = (COLORS): object => {
   return {
-    position: 'sticky',
-    z_index: Z_INDEX.STICKY,
     background_color: COLORS.NEUTRAL.color_neutral_bg_250,
     padding_top: SPACINGS.spacing_400,
     padding_left: SPACINGS.spacing_400,
@@ -73,8 +70,6 @@ const contentTokens = {
 const footerTokens = (COLORS): object => {
   return {
     background_color: COLORS.NEUTRAL.color_neutral_bg_250,
-    position: 'sticky',
-    bottom: SPACINGS.spacing_0,
     border_top: `${BORDERS.border_50} solid ${COLORS.NEUTRAL.color_neutral_border_50}`,
     variant: FooterVariants.EMPTY,
     padding: `${SPACINGS.spacing_400} ${SPACINGS.spacing_450}`,

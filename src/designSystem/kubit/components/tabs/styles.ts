@@ -28,20 +28,30 @@ const commonArrowIconContainer = {
   },
 };
 
+const commonIconProps = {
+  width: SIZES.size_250,
+  height: SIZES.size_250,
+  color: COLORS.NEUTRAL.color_neutral_icon_250,
+};
+
 export const PRIMARY_TABS_STYLES: TabsStylesType<TabsVariantType> = {
   [TabsVariantType.DEFAULT]: {
     arrowLeftIconContainer: {
       ...commonArrowIconContainer,
     },
     leftIcon: {
-      width: SIZES.size_250,
-      height: SIZES.size_250,
-      color: COLORS.NEUTRAL.color_neutral_icon_250,
+      ...commonIconProps,
+      disabled: {
+        ...commonIconProps,
+        color: COLORS.DISABLED.color_accentDisabled_icon_100,
+      },
     },
     rightIcon: {
-      width: SIZES.size_250,
-      height: SIZES.size_250,
-      color: COLORS.NEUTRAL.color_neutral_icon_250,
+      ...commonIconProps,
+      disabled: {
+        ...commonIconProps,
+        color: COLORS.DISABLED.color_accentDisabled_icon_100,
+      },
     },
     arrowRightIconContainer: {
       ...commonArrowIconContainer,
