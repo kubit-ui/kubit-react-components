@@ -25,17 +25,23 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Node.js
+      - name: Setup Yarn and generate lockfile
+        run: |
+          corepack enable
+          yarn --version
+          
+          # Always run yarn install to ensure lockfile exists and is up to date
+          echo "📦 Running yarn install..."
+          yarn install
+          echo "✅ Dependencies installed and lockfile ready"
+
+      - name: Setup Node.js with cache
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
           cache: 'yarn'
-
-      - name: Setup Yarn
-        run: |
-          corepack enable
-          yarn --version
+          cache-dependency-path: yarn.lock
 
       - name: Validate branch patterns
         id: validate-branch
@@ -212,7 +218,7 @@ jobs:
           npm version $NEW_VERSION --no-git-tag-version
           
           # Commit and tag
-          git add package.json package-lock.json 2>/dev/null || git add package.json
+          git add package.json yarn.lock 2>/dev/null || git add package.json
           git commit -m "chore(release): $NEW_VERSION
 
           Released from: $BRANCH_NAME
