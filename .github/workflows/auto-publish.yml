@@ -49,8 +49,8 @@ jobs:
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           echo "Branch name: $BRANCH_NAME"
           
-          # Allow more flexible branch patterns
-          if [[ $BRANCH_NAME =~ ^(feat|feature|fix|bugfix|break|breaking|hotfix|chore)/[a-zA-Z0-9-_]+$ ]]; then
+          # Simplified pattern that properly handles hyphens, underscores, and dots
+          if [[ $BRANCH_NAME =~ ^(feat|feature|fix|bugfix|break|breaking|hotfix|chore)/[a-zA-Z0-9._-]+$ ]]; then
             echo "✅ Branch pattern accepted: $BRANCH_NAME"
             echo "should_publish=true" >> $GITHUB_OUTPUT
             echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
