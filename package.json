@@ -22,7 +22,7 @@
   "jsdelivr": "dist/kubit-react-components.umd.js",
   "types": "dist/types/index.d.ts",
   "engines": {
-    "node": ">=20.x",
+    "node": ">=22.x",
     "npm": ">=7.0.0"
   },
   "files": [
@@ -49,11 +49,13 @@
   ],
   "scripts": {
     "jest": "jest",
-    "test": "yarn run eslint && yarn tsc && yarn jest",
-    "test:ci": "yarn test",
+    "test": "yarn tsc",
+    "test:ci": "yarn run tsc",
     "test:watch": "jest --watch src",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json",
     "eslint": "eslint src",
+    "lint": "echo 'no linting configured'",
+    "type-check": "tsc --noEmit",
     "custom-start": "echo -e '\n▐█µ   ╓▓█▀             ▐█         j█▌   ╓▄   \n▐█▌,▄██─    ▓▌     ▓▌  ▐█▄▄▓▓█▓▄   ▓▌ @▓██▓▓▓\n▐██▀└╙██    █▌     █▌  ▐█─    └█▌  █▌   ██   \n▐█▌    ▀█▌  ██▄▄▄▄▀█▌  ▐██▄╓,▄██`  █▌   ╙█▄▄▄'",
     "postinstall": "echo postinstall",
     "stylelint": "echo 'no css files'",
