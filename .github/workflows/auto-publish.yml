@@ -185,9 +185,22 @@ jobs:
 
           # Calculate new version
           NEW_VERSION=$(node -e "
-            const semver = require('semver');
             const current = '$CURRENT_VERSION';
-            console.log(semver.inc(current, '$VERSION_TYPE'));
+            const type = '$VERSION_TYPE';
+            const parts = current.split('.').map(Number);
+            
+            if (type === 'major') {
+              parts[0]++;
+              parts[1] = 0;
+              parts[2] = 0;
+            } else if (type === 'minor') {
+              parts[1]++;
+              parts[2] = 0;
+            } else {
+              parts[2]++;
+            }
+            
+            console.log(parts.join('.'));
           ")
 
           echo "🚀 New version will be: $NEW_VERSION"
