@@ -254,6 +254,7 @@ jobs:
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
           echo "🔍 Performing dry run..."
+          echo "ℹ️ Using NPM automation token (bypasses 2FA)"
           npm publish --dry-run --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -266,6 +267,7 @@ jobs:
           VERSION_TYPE="${{ steps.version-bump.outputs.version_type }}"
 
           echo "📦 Publishing to NPM..."
+          echo "🔐 Using NPM automation token (bypasses 2FA)"
 
           if [[ "$VERSION_TYPE" == "major" ]]; then
             echo "⚠️ Publishing MAJOR version $NEW_VERSION"
@@ -375,15 +377,23 @@ jobs:
             The automatic publication process failed. Please check the [workflow logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.
 
             ### 🔧 Common Solutions
-            - Verify NPM_TOKEN is valid and has publish permissions
-            - Check if version already exists
-            - Ensure all tests pass locally
-            - Verify build process completes successfully
+            - **NPM Token**: Verify NPM_TOKEN is valid and has publish permissions
+            - **Automation Token**: Ensure you're using an NPM automation token (bypasses 2FA)
+            - **Token Permissions**: Check that the token has publish permissions for this package
+            - **Version Conflict**: Check if version already exists in NPM
+            - **Build Issues**: Ensure all tests pass locally and build completes successfully
+
+            ### 🔐 NPM Token Requirements
+            1. **Type**: Must be an "Automation" token from npmjs.com
+            2. **Scope**: Should have access to publish the package
+            3. **Permissions**: Must have publish permissions
+            4. **Secret**: Should be stored as NPM_TOKEN in repository secrets
 
             ### 📞 Next Steps
-            1. Fix the issue based on the error logs
-            2. Create a new PR with the same changes
-            3. Or use manual publish workflow if urgent`;
+            1. Verify NPM_TOKEN is an automation token with correct permissions
+            2. Check the error logs for specific authentication issues
+            3. Create a new PR with the same changes
+            4. Or use manual publish workflow if urgent`;
 
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
