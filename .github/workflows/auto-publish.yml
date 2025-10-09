@@ -17,7 +17,7 @@ jobs:
   auto-publish:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
         run: |
           corepack enable
           yarn --version
-          
+
           # Always run yarn install to ensure lockfile exists and is up to date
           echo "📦 Running yarn install..."
           yarn install
@@ -48,7 +48,7 @@ jobs:
         run: |
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           echo "Branch name: $BRANCH_NAME"
-          
+
           # Simplified pattern that properly handles hyphens, underscores, and dots
           if [[ $BRANCH_NAME =~ ^(feat|feature|fix|bugfix|break|breaking|hotfix|chore)/[a-zA-Z0-9._-]+$ ]]; then
             echo "✅ Branch pattern accepted: $BRANCH_NAME"
@@ -69,17 +69,26 @@ jobs:
         run: |
           # Verify that package.json is well-formed
           node -e "console.log('Package name:', require('./package.json').name)"
-          
-          # Verify that required scripts exist
-          if ! yarn run --help | grep -q "test:ci"; then
-            echo "❌ Missing test:ci script in package.json"
-            exit 1
-          fi
-          
-          if ! yarn run --help | grep -q "dist"; then
-            echo "❌ Missing dist script in package.json"
-            exit 1
-          fi
+
+          # Verify that required scripts exist using Node.js
+          node -e "
+            const pkg = require('./package.json');
+            const scripts = pkg.scripts || {};
+            
+            if (!scripts['test:ci']) {
+              console.error('❌ Missing test:ci script in package.json');
+              process.exit(1);
+            }
+            
+            if (!scripts['dist']) {
+              console.error('❌ Missing dist script in package.json');
+              process.exit(1);
+            }
+            
+            console.log('✅ Required scripts found:');
+            console.log('  - test:ci:', scripts['test:ci']);
+            console.log('  - dist:', scripts['dist']);
+          "
 
       - name: Run quality checks
         if: steps.validate-branch.outputs.should_publish == 'true'
@@ -89,7 +98,7 @@ jobs:
             echo "🔍 Running linter..."
             yarn lint
           fi
-          
+
           # Type checking
           if yarn run --help | grep -q "type-check"; then
             echo "🔍 Type checking..."
@@ -101,7 +110,7 @@ jobs:
         run: |
           echo "🧪 Running tests..."
           yarn test:ci
-          
+
           # Check coverage if exists
           if [ -f "coverage/lcov.info" ]; then
             echo "📊 Coverage report generated"
@@ -112,7 +121,7 @@ jobs:
         run: |
           echo "🏗️ Building package..."
           yarn dist
-          
+
           # Verify that the build generated files
           if [ ! -d "dist" ] && [ ! -d "lib" ] && [ ! -d "build" ]; then
             echo "❌ No build output found"
@@ -132,11 +141,11 @@ jobs:
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           PR_TITLE="${{ github.event.pull_request.title }}"
           PR_BODY="${{ github.event.pull_request.body }}"
-          
+
           echo "🔍 Analyzing PR for version bump..."
           echo "Branch: $BRANCH_NAME"
           echo "Title: $PR_TITLE"
-          
+
           # 1. Check explicit breaking change markers
           if echo "$PR_BODY" | grep -qi "BREAKING CHANGE:" || \
              echo "$PR_TITLE" | grep -q "!" || \
@@ -146,14 +155,14 @@ jobs:
             VERSION_TYPE="major"
             REASON="Breaking change detected"
             echo "💥 MAJOR: $REASON"
-          
+
           # 2. Check conventional commits in title
           elif echo "$PR_TITLE" | grep -Eq "^(feat|feature)(\(.+\))?!:" || \
                echo "$PR_TITLE" | grep -Eq "^(fix|bugfix)(\(.+\))?!:"; then
             VERSION_TYPE="major"
             REASON="Breaking change in conventional commit"
             echo "💥 MAJOR: $REASON"
-          
+
           # 3. Check features (minor)
           elif echo "$PR_TITLE" | grep -Eq "^(feat|feature)(\(.+\))?:" || \
                [[ $BRANCH_NAME =~ ^feat/ ]] || \
@@ -162,25 +171,25 @@ jobs:
             VERSION_TYPE="minor"
             REASON="New feature detected"
             echo "✨ MINOR: $REASON"
-          
+
           # 4. Check fixes and other changes (patch)
           else
             VERSION_TYPE="patch"
             REASON="Bug fix or other changes"
             echo "🐛 PATCH: $REASON"
           fi
-          
+
           # Get current version
           CURRENT_VERSION=$(node -p "require('./package.json').version")
           echo "📦 Current version: $CURRENT_VERSION"
-          
+
           # Calculate new version
           NEW_VERSION=$(node -e "
             const semver = require('semver');
             const current = '$CURRENT_VERSION';
             console.log(semver.inc(current, '$VERSION_TYPE'));
           ")
-          
+
           echo "🚀 New version will be: $NEW_VERSION"
           echo "🎯 Decision reason: $REASON"
           echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
@@ -193,13 +202,13 @@ jobs:
         run: |
           NEW_VERSION="${{ steps.version-bump.outputs.new_version }}"
           PACKAGE_NAME=$(node -p "require('./package.json').name")
-          
+
           # Check if version already exists in NPM
           if npm view "$PACKAGE_NAME@$NEW_VERSION" version 2>/dev/null; then
             echo "❌ Version $NEW_VERSION already exists in NPM"
             exit 1
           fi
-          
+
           # Check if tag already exists
           if git tag -l | grep -q "^v$NEW_VERSION$"; then
             echo "❌ Tag v$NEW_VERSION already exists"
@@ -213,10 +222,10 @@ jobs:
           VERSION_TYPE="${{ steps.version-bump.outputs.version_type }}"
           BRANCH_NAME="${{ steps.validate-branch.outputs.branch_name }}"
           REASON="${{ steps.version-bump.outputs.reason }}"
-          
+
           # Update package.json
           npm version $NEW_VERSION --no-git-tag-version
-          
+
           # Commit and tag
           git add package.json yarn.lock 2>/dev/null || git add package.json
           git commit -m "chore(release): $NEW_VERSION
@@ -224,9 +233,9 @@ jobs:
           Released from: $BRANCH_NAME
           Type: $VERSION_TYPE
           Reason: $REASON
-          
+
           [skip ci]"
-          
+
           git tag "v$NEW_VERSION" -m "Release v$NEW_VERSION"
 
       - name: Dry run publish (verification)
@@ -243,16 +252,16 @@ jobs:
         run: |
           NEW_VERSION="${{ steps.version-bump.outputs.new_version }}"
           VERSION_TYPE="${{ steps.version-bump.outputs.version_type }}"
-          
+
           echo "📦 Publishing to NPM..."
-          
+
           if [[ "$VERSION_TYPE" == "major" ]]; then
             echo "⚠️ Publishing MAJOR version $NEW_VERSION"
             npm publish --access public --tag latest
           else
             npm publish --access public --tag latest
           fi
-          
+
           echo "✅ Successfully published to NPM"
           echo "published=true" >> $GITHUB_OUTPUT
         env:
@@ -274,21 +283,21 @@ jobs:
           name: Release v${{ steps.version-bump.outputs.new_version }}
           body: |
             ## 🚀 Release v${{ steps.version-bump.outputs.new_version }}
-            
+
             **Type:** ${{ steps.version-bump.outputs.version_type }} release
             **Branch:** `${{ steps.validate-branch.outputs.branch_name }}`
             **Previous:** `${{ steps.version-bump.outputs.current_version }}`
-            
+
             ### 📝 Changes
             - ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})
-            
+
             ### 📦 Installation
             ```bash
             npm install @kubit-ui-web/react-components@${{ steps.version-bump.outputs.new_version }}
             # or
             yarn add @kubit-ui-web/react-components@${{ steps.version-bump.outputs.new_version }}
             ```
-            
+
             ### 🔗 Links
             - [NPM Package](https://www.npmjs.com/package/@kubit-ui-web/react-components/v/${{ steps.version-bump.outputs.new_version }})
             - [Full Changelog](https://github.com/${{ github.repository }}/compare/v${{ steps.version-bump.outputs.current_version }}...v${{ steps.version-bump.outputs.new_version }})
@@ -308,25 +317,25 @@ jobs:
               current_version: '${{ steps.version-bump.outputs.current_version }}'
             };
             const branchName = '${{ steps.validate-branch.outputs.branch_name }}';
-            
+
             const emoji = version_type === 'major' ? '💥' : version_type === 'minor' ? '✨' : '🐛';
-            
+
             const comment = `## ${emoji} Auto-publish Successful!
-            
+
             | Field | Value |
             |-------|-------|
             | **Branch** | \`${branchName}\` |
             | **Type** | \`${version_type}\` |
             | **Version** | \`${current_version}\` → \`${new_version}\` |
             | **NPM** | [@kubit-ui-web/react-components@${new_version}](https://www.npmjs.com/package/@kubit-ui-web/react-components/v/${new_version}) |
-            
+
             ### 📦 Installation
             \`\`\`bash
             npm install @kubit-ui-web/react-components@${new_version}
             # or
             yarn add @kubit-ui-web/react-components@${new_version}
             \`\`\`
-            
+
             ### ✅ Completed Steps
             - [x] Quality checks passed
             - [x] Tests passed  
@@ -334,9 +343,9 @@ jobs:
             - [x] Published to NPM
             - [x] GitHub release created
             - [x] Repository tagged
-            
+
             🎉 **Ready to use in production!**`;
-            
+
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -350,20 +359,20 @@ jobs:
         with:
           script: |
             const comment = `## ❌ Auto-publish Failed
-            
+
             The automatic publication process failed. Please check the [workflow logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.
-            
+
             ### 🔧 Common Solutions
             - Verify NPM_TOKEN is valid and has publish permissions
             - Check if version already exists
             - Ensure all tests pass locally
             - Verify build process completes successfully
-            
+
             ### 📞 Next Steps
             1. Fix the issue based on the error logs
             2. Create a new PR with the same changes
             3. Or use manual publish workflow if urgent`;
-            
+
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -377,11 +386,11 @@ jobs:
         with:
           script: |
             const branchName = '${{ github.event.pull_request.head.ref }}';
-            
+
             const comment = `## ℹ️ Auto-publish Skipped
-            
+
             Branch \`${branchName}\` doesn't match required patterns for auto-publishing.
-            
+
             ### 📋 Required Patterns
             | Pattern | Version Bump | Detection Method |
             |---------|--------------|------------------|
@@ -389,15 +398,15 @@ jobs:
             | \`fix/\*\` or \`bugfix/\*\` | **patch** | Branch prefix or default |
             | \`break/\*\` or \`breaking/\*\` | **major** | Branch prefix |
             | \`hotfix/\*\` or \`chore/\*\` | **patch** | Branch prefix |
-            
+
             ### 🎯 Advanced Version Detection
             - **MAJOR**: \`BREAKING CHANGE:\` in PR body, \`!\` in title, or \`[breaking]\` tag
             - **MINOR**: \`feat:\` or \`feature:\` in PR title, or \`[feature]\` tag
             - **PATCH**: Default for fixes and other changes
-            
+
             ### 🚀 To Auto-publish
             Create a new PR from a branch with the appropriate prefix, or use the [manual publish workflow](https://github.com/${{ github.repository }}/actions/workflows/manual-publish.yml).`;
-            
+
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
