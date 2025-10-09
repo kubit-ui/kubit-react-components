@@ -22,7 +22,7 @@
   "jsdelivr": "dist/kubit-react-components.umd.js",
   "types": "dist/types/index.d.ts",
   "engines": {
-    "node": ">=22.x",
+    "node": ">=20.x",
     "npm": ">=7.0.0"
   },
   "files": [
