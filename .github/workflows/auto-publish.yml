@@ -1,5 +1,20 @@
 name: Auto Publish to NPM
 
+# This workflow requires two secrets to be configured in the repository:
+#
+# 1. NPM_TOKEN: An NPM automation token for publishing packages
+#    - Go to npmjs.com → Profile → Access Tokens → Generate New Token
+#    - Select "Automation" type (bypasses 2FA)
+#    - Ensure it has publish permissions for your package
+#
+# 2. RELEASE_TOKEN: A GitHub Personal Access Token for bypassing branch protection
+#    - Go to github.com → Settings → Developer settings → Personal access tokens
+#    - Generate a "Classic" token with these permissions:
+#      - repo (Full control of private repositories)
+#      - workflow (Update GitHub Action workflows)
+#    - OR use Fine-grained PAT with "Contents: write" and "Pull requests: write"
+#    - If main branch is protected, ensure the token can bypass pull request requirements
+
 on:
   pull_request:
     types: [closed]
@@ -23,7 +38,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Setup Yarn and generate lockfile
         run: |
@@ -130,8 +145,18 @@ jobs:
       - name: Configure Git
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
+          # Configure git with release token for branch protection bypass
           git config --local user.email "kubit-bot@github.com"
           git config --local user.name "Kubit Release Bot"
+
+          # Set up authentication for push operations
+          if [ -n "${{ secrets.RELEASE_TOKEN }}" ]; thenn
+            echo "🔐 Using RELEASE_TOKEN with branch protection bypass permissions"
+            git remote set-url origin https://x-access-token:${{ secrets.RELEASE_TOKEN }}@github.com/${{ github.repository }}.git
+          else
+            echo "⚠️  Using default GITHUB_TOKEN - may fail on protected branches"
+            echo "💡 Add RELEASE_TOKEN secret with 'Contents: write' and 'Pull requests: write' permissions"
+          fi
 
       - name: Determine version bump (Enhanced)
         if: steps.validate-branch.outputs.should_publish == 'true'
@@ -254,7 +279,6 @@ jobs:
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
           echo "🔍 Performing dry run..."
-          echo "ℹ️ Using NPM automation token (bypasses 2FA)"
           npm publish --dry-run --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -267,7 +291,6 @@ jobs:
           VERSION_TYPE="${{ steps.version-bump.outputs.version_type }}"
 
           echo "📦 Publishing to NPM..."
-          echo "🔐 Using NPM automation token (bypasses 2FA)"
 
           if [[ "$VERSION_TYPE" == "major" ]]; then
             echo "⚠️ Publishing MAJOR version $NEW_VERSION"
@@ -285,9 +308,22 @@ jobs:
         if: steps.npm-publish.outputs.published == 'true'
         run: |
           echo "📤 Pushing changes to repository..."
-          git push origin main
-          git push origin --tags
-          echo "✅ Changes pushed successfully"
+
+          if [ -n "${{ secrets.RELEASE_TOKEN }}" ]; then
+            echo "🔐 Using RELEASE_TOKEN to bypass branch protection"
+            git push origin main
+            git push origin --tags
+            echo "✅ Changes and tags pushed successfully to main"
+          else
+            echo "⚠️  Using GITHUB_TOKEN - attempting push (may fail on protected branches)"
+            if git push origin main && git push origin --tags; then
+              echo "✅ Changes and tags pushed successfully"
+            else
+              echo "❌ Push failed - likely due to branch protection rules"
+              echo "💡 Consider adding RELEASE_TOKEN secret with bypass permissions"
+              exit 1
+            fi
+          fi
 
       - name: Create GitHub Release
         if: steps.npm-publish.outputs.published == 'true'
@@ -378,22 +414,26 @@ jobs:
 
             ### 🔧 Common Solutions
             - **NPM Token**: Verify NPM_TOKEN is valid and has publish permissions
-            - **Automation Token**: Ensure you're using an NPM automation token (bypasses 2FA)
-            - **Token Permissions**: Check that the token has publish permissions for this package
+            - **Release Token**: Add RELEASE_TOKEN secret to bypass branch protection rules
+            - **Token Permissions**: Check that tokens have correct permissions
             - **Version Conflict**: Check if version already exists in NPM
             - **Build Issues**: Ensure all tests pass locally and build completes successfully
 
-            ### 🔐 NPM Token Requirements
-            1. **Type**: Must be an "Automation" token from npmjs.com
-            2. **Scope**: Should have access to publish the package
-            3. **Permissions**: Must have publish permissions
-            4. **Secret**: Should be stored as NPM_TOKEN in repository secrets
+            ### 🔐 Required Secrets Configuration
+            1. **NPM_TOKEN**: 
+               - Type: "Automation" token from npmjs.com
+               - Scope: Access to publish the package
+
+            2. **RELEASE_TOKEN** (Required for protected branches):
+               - Type: Personal Access Token with bypass permissions
+               - Permissions: "Contents: write", "Pull requests: write"
+               - Special: "Bypass pull request requirements" if needed
 
             ### 📞 Next Steps
-            1. Verify NPM_TOKEN is an automation token with correct permissions
-            2. Check the error logs for specific authentication issues
-            3. Create a new PR with the same changes
-            4. Or use manual publish workflow if urgent`;
+            1. **NPM Issues**: Verify NPM_TOKEN is an automation token
+            2. **Branch Protection**: Add RELEASE_TOKEN secret with bypass permissions
+            3. **Logs**: Check error logs for specific authentication issues
+            4. **Manual Process**: Create a new PR if tokens can't be configured`;
 
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
