@@ -47,9 +47,9 @@ jobs:
           yarn --version
 
           # Always run yarn install to ensure lockfile exists and is up to date
-          echo "📦 Running yarn install..."
+          echo "Running yarn install..."
           yarn install
-          echo "✅ Dependencies installed and lockfile ready"
+          echo "Dependencies installed and lockfile ready"
 
       - name: Setup Node.js with cache
         uses: actions/setup-node@v4
@@ -67,11 +67,11 @@ jobs:
 
           # Simplified pattern that properly handles hyphens, underscores, and dots
           if [[ "$BRANCH_NAME" =~ ^(feat|feature|fix|bugfix|break|breaking|hotfix|chore)/[a-zA-Z0-9._-]+$ ]]; then
-            echo "✅ Branch pattern accepted: $BRANCH_NAME"
+            echo "Branch pattern accepted: $BRANCH_NAME"
             echo "should_publish=true" >> "$GITHUB_OUTPUT"
             echo "branch_name=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
           else
-            echo "❌ Branch '$BRANCH_NAME' doesn't match required patterns"
+            echo "Branch '$BRANCH_NAME' doesn't match required patterns"
             echo "should_publish=false" >> "$GITHUB_OUTPUT"
           fi
 
@@ -91,16 +91,16 @@ jobs:
             const scripts = pkg.scripts || {};
             
             if (!scripts['test:ci']) {
-              console.error('❌ Missing test:ci script in package.json');
+              console.error('Missing test:ci script in package.json');
               process.exit(1);
             }
             
             if (!scripts['dist']) {
-              console.error('❌ Missing dist script in package.json');
+              console.error('Missing dist script in package.json');
               process.exit(1);
             }
             
-            console.log('✅ Required scripts found:');
+            console.log('Required scripts found:');
             console.log('  - test:ci:', scripts['test:ci']);
             console.log('  - dist:', scripts['dist']);
           "
@@ -110,36 +110,36 @@ jobs:
         run: |
           # Linting
           if yarn run --help | grep -q "lint"; then
-            echo "🔍 Running linter..."
+            echo "Running linter..."
             yarn lint
           fi
 
           # Type checking
           if yarn run --help | grep -q "type-check"; then
-            echo "🔍 Type checking..."
+            echo "Type checking..."
             yarn type-check
           fi
 
       - name: Run tests
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
-          echo "🧪 Running tests..."
+          echo "Running tests..."
           yarn test:ci
 
           # Check coverage if exists
           if [ -f "coverage/lcov.info" ]; then
-            echo "📊 Coverage report generated"
+            echo "Coverage report generated"
           fi
 
       - name: Build package
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
-          echo "🏗️ Building package..."
+          echo "Building package..."
           yarn dist
 
           # Verify that the build generated files
           if [ ! -d "dist" ] && [ ! -d "lib" ] && [ ! -d "build" ]; then
-            echo "❌ No build output found"
+            echo "No build output found"
             exit 1
           fi
 
@@ -152,11 +152,11 @@ jobs:
 
           # Set up authentication for push operations
           if [ -n "${{ secrets.RELEASE_TOKEN }}" ]; then
-            echo "🔐 Using RELEASE_TOKEN with branch protection bypass permissions"
+            echo "Using RELEASE_TOKEN with branch protection bypass permissions"
             git remote set-url origin https://x-access-token:${{ secrets.RELEASE_TOKEN }}@github.com/${{ github.repository }}.git
           else
-            echo "⚠️  Using default GITHUB_TOKEN - may fail on protected branches"
-            echo "💡 Add RELEASE_TOKEN secret with 'Contents: write' and 'Pull requests: write' permissions"
+            echo "Using default GITHUB_TOKEN - may fail on protected branches"
+            echo "Add RELEASE_TOKEN secret with 'Contents: write' and 'Pull requests: write' permissions"
           fi
 
       - name: Determine version bump (Enhanced)
@@ -167,7 +167,7 @@ jobs:
           PR_TITLE="${{ github.event.pull_request.title }}"
           PR_BODY="${{ github.event.pull_request.body }}"
 
-          echo "🔍 Analyzing PR for version bump..."
+          echo "Analyzing PR for version bump..."
           echo "Branch: $BRANCH_NAME"
           echo "Title: $PR_TITLE"
 
@@ -179,14 +179,14 @@ jobs:
              [[ $BRANCH_NAME =~ ^breaking/ ]]; then
             VERSION_TYPE="major"
             REASON="Breaking change detected"
-            echo "💥 MAJOR: $REASON"
+            echo "MAJOR: $REASON"
 
           # 2. Check conventional commits in title
           elif echo "$PR_TITLE" | grep -Eq "^(feat|feature)(\(.+\))?!:" || \
                echo "$PR_TITLE" | grep -Eq "^(fix|bugfix)(\(.+\))?!:"; then
             VERSION_TYPE="major"
             REASON="Breaking change in conventional commit"
-            echo "💥 MAJOR: $REASON"
+            echo "MAJOR: $REASON"
 
           # 3. Check features (minor)
           elif echo "$PR_TITLE" | grep -Eq "^(feat|feature)(\(.+\))?:" || \
@@ -195,18 +195,18 @@ jobs:
                echo "$PR_TITLE" | grep -qi "\[feature\]"; then
             VERSION_TYPE="minor"
             REASON="New feature detected"
-            echo "✨ MINOR: $REASON"
+            echo "MINOR: $REASON"
 
           # 4. Check fixes and other changes (patch)
           else
             VERSION_TYPE="patch"
             REASON="Bug fix or other changes"
-            echo "🐛 PATCH: $REASON"
+            echo "PATCH: $REASON"
           fi
 
           # Get current version
           CURRENT_VERSION=$(node -p "require('./package.json').version")
-          echo "📦 Current version: $CURRENT_VERSION"
+          echo "Current version: $CURRENT_VERSION"
 
           # Calculate new version
           NEW_VERSION=$(node -e "
@@ -228,8 +228,8 @@ jobs:
             console.log(parts.join('.'));
           ")
 
-          echo "🚀 New version will be: $NEW_VERSION"
-          echo "🎯 Decision reason: $REASON"
+          echo "New version will be: $NEW_VERSION"
+          echo "Decision reason: $REASON"
           echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
           echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
@@ -243,13 +243,13 @@ jobs:
 
           # Check if version already exists in NPM
           if npm view "$PACKAGE_NAME@$NEW_VERSION" version 2>/dev/null; then
-            echo "❌ Version $NEW_VERSION already exists in NPM"
+            echo "Version $NEW_VERSION already exists in NPM"
             exit 1
           fi
 
           # Check if tag already exists
           if git tag -l | grep -q "^v$NEW_VERSION$"; then
-            echo "❌ Tag v$NEW_VERSION already exists"
+            echo "Tag v$NEW_VERSION already exists"
             exit 1
           fi
 
@@ -279,7 +279,7 @@ jobs:
       - name: Dry run publish (verification)
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
-          echo "🔍 Performing dry run..."
+          echo "Performing dry run..."
           npm publish --dry-run --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -291,16 +291,16 @@ jobs:
           NEW_VERSION="${{ steps.version-bump.outputs.new_version }}"
           VERSION_TYPE="${{ steps.version-bump.outputs.version_type }}"
 
-          echo "📦 Publishing to NPM..."
+          echo "Publishing to NPM..."
 
           if [[ "$VERSION_TYPE" == "major" ]]; then
-            echo "⚠️ Publishing MAJOR version $NEW_VERSION"
+            echo "Publishing MAJOR version $NEW_VERSION"
             npm publish --access public --tag latest
           else
             npm publish --access public --tag latest
           fi
 
-          echo "✅ Successfully published to NPM"
+          echo "Successfully published to NPM"
           echo "published=true" >> $GITHUB_OUTPUT
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -308,20 +308,20 @@ jobs:
       - name: Push changes and tags
         if: steps.npm-publish.outputs.published == 'true'
         run: |
-          echo "📤 Pushing changes to repository..."
+          echo "Pushing changes to repository..."
 
           if [ -n "${{ secrets.RELEASE_TOKEN }}" ]; then
-            echo "🔐 Using RELEASE_TOKEN to bypass branch protection"
+            echo "Using RELEASE_TOKEN to bypass branch protection"
             git push origin main
             git push origin --tags
-            echo "✅ Changes and tags pushed successfully to main"
+            echo "Changes and tags pushed successfully to main"
           else
-            echo "⚠️  Using GITHUB_TOKEN - attempting push (may fail on protected branches)"
+            echo "Using GITHUB_TOKEN - attempting push (may fail on protected branches)"
             if git push origin main && git push origin --tags; then
-              echo "✅ Changes and tags pushed successfully"
+              echo "Changes and tags pushed successfully"
             else
-              echo "❌ Push failed - likely due to branch protection rules"
-              echo "💡 Consider adding RELEASE_TOKEN secret with bypass permissions"
+              echo "Push failed - likely due to branch protection rules"
+              echo "Consider adding RELEASE_TOKEN secret with bypass permissions"
               exit 1
             fi
           fi
