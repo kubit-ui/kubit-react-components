@@ -151,7 +151,7 @@ jobs:
           git config --local user.name "Kubit Release Bot"
 
           # Set up authentication for push operations
-          if [ -n "${{ secrets.RELEASE_TOKEN }}" ]; thenn
+          if [ -n "${{ secrets.RELEASE_TOKEN }}" ]; then
             echo "🔐 Using RELEASE_TOKEN with branch protection bypass permissions"
             git remote set-url origin https://x-access-token:${{ secrets.RELEASE_TOKEN }}@github.com/${{ github.repository }}.git
           else
