@@ -15,9 +15,10 @@
       "github": "https://github.com/kubit-ui/kubit-react-components"
     }
   },
+  "private": false,
   "repository": {
     "type": "git",
-    "url": "https://git.ods.ok-cloud.net/scm/softweb/web-ui-components.git"
+    "url": "git+https://github.com/kubit-ui/kubit-react-components.git"
   },
   "license": "Apache-2.0",
   "engines": {

@@ -39,3 +39,5 @@ reports
 coverage
 
 .env
+
+yarn.lock
