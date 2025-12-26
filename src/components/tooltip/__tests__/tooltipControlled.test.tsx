@@ -1,37 +1,31 @@
+import { useRef } from 'react';
+
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
 
-import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
+import { render } from '@/lib/tests/render/render';
 
-import { useTooltip } from '../hooks';
+import { useTooltip } from '../hooks/useTooltip';
 import { TooltipControlled } from '../tooltipControlled';
-
-window.matchMedia = windowMatchMedia();
 
 const mockProps = {
   children: 'children',
+  onBlur: vi.fn(),
+  onClick: vi.fn(),
+  onFocus: vi.fn(),
+  onKeyDown: vi.fn(),
+  onMouseDown: vi.fn(),
+  onMouseUp: vi.fn(),
+  onWrapperMouseEnter: vi.fn(),
+  onWrapperMouseLeave: vi.fn(),
   title: { content: 'title' },
   variant: 'DEFAULT',
 };
 
-describe('Tooltip Controlled', () => {
-  it('is possible to use the tooltip controlled and the hook useTooltip to implement custom behaviours', () => {
-    renderProvider(<TestTooltipControlled />);
-    const label = screen.getByText(mockProps.children);
-
-    fireEvent.mouseEnter(label);
-
-    const title = screen.getByText(mockProps.title.content);
-    expect(title).toBeInTheDocument();
-  });
-});
-
 const TestTooltipControlled = () => {
-  const labelRef = React.useRef<HTMLDivElement>(null);
-  const tooltipRef = React.useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
-  const { showTooltip, hideTooltip } = useTooltip({
+  const { hideTooltip, showTooltip } = useTooltip({
     labelRef,
     tooltipRef,
     variant: mockProps.variant,
@@ -51,8 +45,21 @@ const TestTooltipControlled = () => {
       labelRef={labelRef}
       tooltipAsModal={false}
       tooltipRef={tooltipRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onWrapperMouseEnter={handleMouseEnter}
+      onWrapperMouseLeave={handleMouseLeave}
     />
   );
 };
+
+describe('Tooltip Controlled', () => {
+  it('is possible to use the tooltip controlled and the hook useTooltip to implement custom behaviours', () => {
+    const { container } = render(<TestTooltipControlled />);
+    const label = screen.getByText(mockProps.children);
+
+    fireEvent.mouseEnter(label);
+
+    const title = screen.getByText(mockProps.title.content);
+    expect(title).not.toBeNull();
+    expect(container).toHTMLValidate();
+  });
+});

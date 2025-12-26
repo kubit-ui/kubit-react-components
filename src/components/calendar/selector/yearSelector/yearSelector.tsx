@@ -1,85 +1,106 @@
-import * as React from 'react';
+import { type RefObject, useMemo } from 'react';
 
-import { ButtonType } from '@/components/button';
-import { ItemRove } from '@/components/itemRove';
-import { Text, TextComponentType } from '@/components/text';
-import { useRoveFocus } from '@/hooks';
-import { useUtilsProvider } from '@/provider';
+import { Text } from '@/components/text/text';
+import { CustomComponent } from '@/lib/components/customComponent/customComponent';
+import { useRoveFocus } from '@/lib/hooks/useRoveFocus/useRoveFocus';
+import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import { getYearList } from '../../utils/getYearList';
 import { setYear } from '../../utils/setYear';
-import { YearSelectorStateType } from './types/state';
-import { IYearSelector } from './types/yearSelector';
-import { keyLeftMove, keyRightMove, keyTabMove } from './utils';
-// styles
-import { YearElementStyled, YearListStyled, YearSelectorStyled } from './yearSelector.styled';
+import type { YearSelectorStateType } from './types/state';
+import type { YearSelectorProps } from './types/yearSelector';
+import {
+  keyDownMove,
+  keyLeftMove,
+  keyRightMove,
+  keyTabMove,
+  keyUpMove,
+} from './utils/yearSelector.utils';
 
-export const YearSelector = (props: IYearSelector): JSX.Element => {
+export const YearSelector = ({
+  cssClasses,
+  currentDate,
+  maxDate,
+  minDate,
+  onYearClick,
+  setCurrentDate,
+  today,
+  ...props
+}: YearSelectorProps): JSX.Element => {
   const { transformDate } = useUtilsProvider();
-
-  const roveFocusProps = React.useMemo(
+  const dataTestId = props['data-testid'];
+  const roveFocusProps = useMemo(
     () => ({
-      size: getYearList(props.minDate, props.maxDate).length,
-      keyLeftMove: keyLeftMove(getYearList(props.minDate, props.maxDate)),
-      keyRightMove: keyRightMove(getYearList(props.minDate, props.maxDate)),
-      currentFocusSelected: getYearList(props.minDate, props.maxDate).indexOf(
-        props.currentDate ? props.currentDate.getFullYear() : new Date().getFullYear()
+      currentFocusSelected: getYearList(minDate, maxDate).indexOf(
+        currentDate ? currentDate.getFullYear() : new Date().getFullYear(),
       ),
-      keyUpMove: 0,
-      keyDownMove: 0,
+      keyDownMove: keyDownMove(getYearList(minDate, maxDate)),
+      keyLeftMove: keyLeftMove(getYearList(minDate, maxDate)),
+      keyRightMove: keyRightMove(getYearList(minDate, maxDate)),
       keyTabMove,
+      keyUpMove: keyUpMove(getYearList(minDate, maxDate)),
+      size: getYearList(minDate, maxDate).length,
     }),
-    [
-      getYearList(props.minDate, props.maxDate).length,
-      props.currentDate,
-      props.minDate,
-      props.maxDate,
-    ]
+    [getYearList(minDate, maxDate).length, currentDate, minDate, maxDate],
   );
   const [focus, , listEl] = useRoveFocus(roveFocusProps);
-
-  const getState = (currentDate: Date, year: number) => {
-    let state;
-
-    if (currentDate.getFullYear() === year) {
-      state = YearSelectorStateType.SELECTED;
-    } else if (year === props.today.getFullYear()) {
-      state = YearSelectorStateType.CURRENT;
+  const getState = (selectedCurrentDate: Date, year: number) => {
+    let state: YearSelectorStateType;
+    if (selectedCurrentDate.getFullYear() === year) {
+      state = 'selected';
+    } else if (year === today.getFullYear()) {
+      state = 'current';
     } else {
-      state = YearSelectorStateType.DEFAULT;
+      state = 'default';
     }
     return state;
   };
-
   return (
-    <YearSelectorStyled ref={listEl as React.RefObject<HTMLUListElement>} styles={props.styles}>
-      {getYearList(props.minDate, props.maxDate).map((year, index) => {
-        const state = getState(props.currentDate, year);
-
+    <ul
+      ref={listEl as RefObject<HTMLUListElement>}
+      className={cssClasses?.yearslist}
+      data-testid="tbody-years-list"
+    >
+      {getYearList(minDate, maxDate).map((year, index) => {
+        const state = getState(currentDate, year);
+        const customAttributes = {
+          'data-state': state,
+        };
         return (
-          <YearListStyled key={index} state={state} styles={props.styles}>
-            <ItemRove
-              asElement={YearElementStyled}
+          <li
+            key={String(year)}
+            className={cssClasses?.yearlistitem}
+            {...pickCustomAttributes(customAttributes)}
+          >
+            <CustomComponent
+              aria-label={String(year)}
+              className={cssClasses?.yearelement}
+              component="button"
               focus={focus === index}
               index={index}
-              type={ButtonType.BUTTON}
+              type="button"
+              {...pickCustomAttributes(customAttributes)}
               onSelectItem={() => {
-                const auxCurrentYear = new Date(props.currentDate);
-                props.setCurrentDate(transformDate(setYear(auxCurrentYear, year)));
-                props.onYearClick?.(year.toString());
+                const auxCurrentYear = new Date(currentDate);
+                setCurrentDate(transformDate(setYear(auxCurrentYear, year)));
+                onYearClick?.(year.toString());
               }}
             >
               <Text
-                component={TextComponentType.SPAN}
-                customTypography={props.styles?.year?.[state]}
-                dataTestId={props.dataTestId}
+                additionalClasses={{
+                  text: cssClasses?.year,
+                }}
+                component="span"
+                customAttributes={customAttributes}
+                data-testid={dataTestId}
               >
                 {year}
               </Text>
-            </ItemRove>
-          </YearListStyled>
+            </CustomComponent>
+          </li>
         );
       })}
-    </YearSelectorStyled>
+    </ul>
   );
 };

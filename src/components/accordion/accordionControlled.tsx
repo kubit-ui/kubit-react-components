@@ -1,68 +1,90 @@
-import * as React from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { LineSeparatorLinePropsStylesType } from '../lineSeparator';
 import { AccordionStandAlone } from './accordionStandAlone';
-import type { IAccordionControlled, IAccordionStandAlone } from './types';
-import { AccordionPropsStylesType } from './types/accordionTheme';
+import { useAccordionContentOverflow } from './hooks/useAccordionContentOverflow';
+import { useAccordionInertContent } from './hooks/useAccordionInertContent';
+import type { IAccordionControlled } from './types/accordion';
 
-const AccordionControlledComponent = React.forwardRef(
-  <V extends string | undefined>(
-    { children, variant, ctv, ...props }: IAccordionControlled<V>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-  ): JSX.Element => {
-    const variantStyles = useStyles<AccordionPropsStylesType, V>(
-      STYLES_NAME.ACCORDION,
+/**
+ * `AccordionControlled` is a React functional component that provides a controlled accordion behavior.
+ * It relies on the `expanded` prop to determine its expanded/collapsed state, making it suitable for use
+ * in scenarios where the parent component manages the accordion's state.
+ *
+ * This component wraps the `AccordionStandAlone` component and applies additional CSS classes
+ * based on the provided `variant` and `additionalClasses` props.
+ *
+ * @typeParam Variant - The type of the value associated with the accordion. It can be a `string` or `undefined`.
+ *
+ * @returns {JSX.Element} A JSX element representing the controlled accordion.
+ *
+ * @example
+ * ```tsx
+ * import { AccordionControlled } from './AccordionControlled';
+ *
+ * const Example = () => {
+ *   const [isExpanded, setIsExpanded] = useState(false);
+ *
+ *   const handleToggle = () => {
+ *     setIsExpanded((prev) => !prev);
+ *   };
+ *
+ *   return (
+ *     <AccordionControlled
+ *       expanded={isExpanded}
+ *       variant="primary"
+ *       additionalClasses={{ root: 'custom-class' }}
+ *       onHeaderClick={handleToggle}
+ *     >
+ *       <div>Accordion Content</div>
+ *     </AccordionControlled>
+ *   );
+ * };
+ * ```
+ */
+export const AccordionControlled = forwardRef(
+  <Variant extends string | undefined>(
+    {
+      additionalClasses,
+      children,
+      expanded,
       variant,
-      ctv
-    );
-    const lineSeparatorLineStyles = useStyles<LineSeparatorLinePropsStylesType>(
-      STYLES_NAME.LINE_SEPARATOR,
-      variantStyles.lineSeparatorContainer?.variant
-    );
+      ...props
+    }: IAccordionControlled<Variant>,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ): JSX.Element => {
+    // Generate CSS classes based on the provided variant and additional classes
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'ACCORDION',
+      variant,
+    });
+
+    const innerRef = useRef<HTMLDivElement>(null);
+    useImperativeHandle(ref, () => {
+      return innerRef.current as HTMLDivElement;
+    }, []);
+
+    useAccordionContentOverflow({
+      expanded,
+      ref: innerRef,
+    });
+
+    useAccordionInertContent({
+      expanded,
+      ref: innerRef,
+    });
 
     return (
       <AccordionStandAlone
-        ref={ref}
+        ref={innerRef}
+        cssClasses={cssClasses}
+        expanded={expanded}
         {...props}
-        lineSeparatorLineStyles={lineSeparatorLineStyles}
-        styles={variantStyles}
       >
         {children}
       </AccordionStandAlone>
     );
-  }
+  },
 );
-AccordionControlledComponent.displayName = 'AccordionControlledComponent';
-
-const AccordionBoundary = <V extends string | undefined>(
-  props: IAccordionControlled<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <AccordionStandAlone {...(props as unknown as IAccordionStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <AccordionControlledComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-/**
- * @description
- * Accordion component is component to show or hide content.
- * @param {React.PropsWithChildren<IAccordionControlled<V>>} props
- * @returns {JSX.Element}
- */
-const AccordionControlled = React.forwardRef(AccordionBoundary) as <V extends string | unknown>(
-  props: React.PropsWithChildren<IAccordionControlled<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => ReturnType<typeof AccordionBoundary>;
-
-export { AccordionControlled };

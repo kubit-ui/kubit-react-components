@@ -1,3 +1,13 @@
-export { DropdownSelectedUnControlled as DropdownSelected } from './dropdownSelectedUncontrolled';
 export { DropdownSelectedControlled } from './dropdownSelectedControlled';
-export * from './types';
+export { DropdownSelected } from './dropdownSelectedUncontrolled';
+export type {
+  DropdownSelectedListOptionsProps,
+  DropdownSelectedPopoverProps,
+  DropdownSelectedStandAloneProps,
+  DropdownSelectedControlledProps,
+  DropdownSelectedUnControlledProps,
+} from './types/dropdownSelected';
+export type {
+  DropdownSelectedStyleProps,
+  DropdownSelectedVariantStyles,
+} from './types/dropdownSelectedTheme';

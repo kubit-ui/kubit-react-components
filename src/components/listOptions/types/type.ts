@@ -1,4 +1,1 @@
-export enum ListOptionsType {
-  SELECTION = 'SELECTION',
-  NAVIGATION = 'NAVIGATION',
-}
+export type ListOptionsType = 'selection' | 'navigation';

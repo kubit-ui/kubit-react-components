@@ -1,4 +1,9 @@
-export * from './types';
-
 export { Chip } from './chip';
-export { ChipStandAlone } from './chipStandAlone';
+export type {
+  ChipStandAloneProps,
+  ChipProps,
+} from './types/chip';
+export type {
+  ChipStyleProps,
+  ChipVariantStyles,
+} from './types/chipTheme';

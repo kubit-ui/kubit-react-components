@@ -1,2 +1,11 @@
 export { ListOptions } from './listOptions';
-export * from './types';
+export type {
+  ListOptionsOptionProps,
+  ListOptionsContainerAriasProps,
+  ListOptionsStandAloneProps,
+  ListOptionsProps,
+} from './types/listOptions';
+export type {
+  ListOptionsStyleProps,
+  ListOptionsVariantStyles,
+} from './types/listOptionsTheme';

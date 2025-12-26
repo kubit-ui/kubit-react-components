@@ -1,46 +1,79 @@
-import { ReactNode } from 'react';
+import type { UseRoveFocusProps } from '@/lib/hooks/useRoveFocus/types/useRoveFocus';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IOption } from '@/components/option';
-import { IText } from '@/components/text';
-import { UseRoveFocusProps } from '@/hooks/useRoveFocus/useRoveFocus';
-import { CustomTokenTypes } from '@/types';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
+import type { OptionProps } from '../../option/types/option';
+import { type ListOptionsType } from './type';
 
-import { ListOptionsPropsStylesType } from './listOptionsTheme';
-import { ListOptionsType } from './type';
+type ListOptionsCssClasses = ComponentSelected<
+  ComponentsTypesComponents['LIST_OPTIONS']
+>;
 
-export type ListOptionsTitleType = Omit<IText<string>, 'children'> & {
-  content?: ReactNode;
-};
-
-export type ListOptionsOptionType = Omit<IOption<string>, 'children' | 'variant'> & {
+/**
+ * Represents the type for an option in the ListOptions component.
+ */
+export type ListOptionsOptionProps = Omit<
+  OptionProps<string>,
+  'children' | 'variant'
+> & {
   variant?: string;
   highlighted?: boolean;
   value?: string | number;
+  sublabel?: CommonTextProps;
 };
 
-export interface IListOptionsStandAlone {
-  optionVariant: string;
-  hightlightedOptionVariant?: string;
-  styles: ListOptionsPropsStylesType;
+/**
+ * Represents the ARIA attributes for the options container in the ListOptions component.
+ */
+export type ListOptionsContainerAriasProps = Pick<
+  React.AriaAttributes,
+  'aria-label' | 'aria-labelledby'
+>;
+
+/**
+ * Interface for the standalone ListOptions component.
+ * Includes properties for options, ARIA attributes, event handlers, and CSS classes.
+ */
+export interface ListOptionsStandAloneProps extends DataAttributes {
+  optionVariant?: string;
+  highlightedOptionVariant?: string;
   type?: ListOptionsType;
-  options: ListOptionsOptionType[];
+  optionsContainerArias?: ListOptionsContainerAriasProps;
+  options: ListOptionsOptionProps[];
+  caseSensitive?: boolean;
   charsHighlighted?: string;
   selectedValue?: string | number | string[] | number[] | null;
-  title?: ListOptionsTitleType;
+  title?: CommonTextProps;
+  content?: React.ReactNode;
   onOptionClick?: (
-    value,
-    event: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>
+    value: string,
+    event:
+      | React.KeyboardEvent<HTMLDivElement>
+      | React.MouseEvent<HTMLDivElement>,
   ) => void;
   multiSelect?: boolean;
-  checkedIcon?: IElementOrIcon;
+  checkedIcon?: ElementOrIconProps;
   id?: string;
-  dataTestId?: string;
   roveFocus?: UseRoveFocusProps;
+  index?: number;
+  cssClasses?: ListOptionsCssClasses;
+  listComponent?: string;
 }
 
-export interface IListOptions<V = undefined extends string ? unknown : string>
-  extends Omit<IListOptionsStandAlone, 'styles'>,
-    Omit<CustomTokenTypes<ListOptionsPropsStylesType>, 'cts' | 'extraCt'> {
-  variant: V;
+/**
+ * Interface for the ListOptions component with a variant.
+ * Extends the ListOptionsStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the ListOptions.
+ */
+export interface ListOptionsProps<
+  Variant = undefined extends string ? unknown : string,
+> extends ListOptionsStandAloneProps {
+  variant?: Variant;
+  additionalClasses?: Partial<ListOptionsCssClasses>;
 }

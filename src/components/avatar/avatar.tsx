@@ -1,81 +1,68 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
 
 import { AvatarStandAlone } from './avatarStandAlone';
-import { AvatarContentType, AvatarSizeStylesType, IAvatar, IAvatarStandAlone } from './types/';
+import type { AvatarProps } from './types/avatar';
+import type { AvatarContentType } from './types/content';
 
-const AvatarComponent = React.forwardRef(
-  <S extends string | undefined>(
-    { icon, initials, image, size, cts, ...props }: IAvatar<S>,
-    ref: React.ForwardedRef<HTMLDivElement | HTMLButtonElement>
+/**
+ * Avatar component for displaying a customizable user avatar.
+ *
+ * The `Avatar` component determines its content type (icon, initials, or image) based on the provided props.
+ * It supports custom sizes via a generic type parameter, and can be themed or extended as needed.
+ * Use this component to represent users or entities visually in your application.
+ *
+ * This component accepts a generic type parameter `<Size extends string | undefined>` to allow for custom size values,
+ * enabling flexible sizing and theming. For example:
+ *
+ * @example
+ * ```tsx
+ * <Avatar image="user.jpg" size="md" />
+ *
+ * // With a custom size type:
+ * type MySize = "xs" | "md" | "xl";
+ * <Avatar<MySize> initials="AB" size="xl" />
+ * ```
+ */
+export const Avatar = forwardRef(
+  <Size extends string | undefined>(
+    {
+      additionalClasses,
+      icon,
+      image,
+      initials,
+      size,
+      ...props
+    }: AvatarProps<Size>,
+    ref: ForwardedRef<HTMLDivElement | HTMLButtonElement>,
   ): JSX.Element => {
-    const styles = useStyles<AvatarSizeStylesType, S>(STYLES_NAME.AVATAR, size, cts);
+    const { LINK } = useGenericComponents();
 
-    let contentType = AvatarContentType.WITH_ICON;
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'AVATAR',
+      variant: size,
+    });
 
-    if (icon) {
-      contentType = AvatarContentType.WITH_ICON;
-    }
-    if (initials) {
-      contentType = AvatarContentType.WITH_INITIALS;
-    }
-    if (image) {
-      contentType = AvatarContentType.WITH_IMAGE;
-    }
-
-    const contentStyles = styles[contentType];
+    const contentType: AvatarContentType = image
+      ? 'with-images'
+      : initials
+        ? 'with-initials'
+        : 'with-icon';
 
     return (
       <AvatarStandAlone
         {...props}
         ref={ref}
         contentType={contentType}
+        cssClasses={cssClasses}
         icon={icon}
         image={image}
         initials={initials}
-        styles={contentStyles}
+        linkComponent={LINK}
       />
     );
-  }
+  },
 );
-AvatarComponent.displayName = 'AvatarComponent';
-
-const AvatarBoundary = <S extends string | undefined>(
-  props: IAvatar<S>,
-  ref: React.ForwardedRef<HTMLDivElement | HTMLButtonElement>
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <AvatarStandAlone {...(props as unknown as IAvatarStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <AvatarComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-/**
- * @description
- * Avatar component is a component that shows an icon, image or initials.
- * @param {React.PropsWithChildren<IAvatar<S>>} props
- * @returns {JSX.Element}
- * @example
- * <Avatar
- *  dataTestId="avatar"
- * icon={<Icon name="user" />}
- * initials="JD"
- * image="https://www.w3schools.com/howto/img_avatar.png"
- * size="M"
- * />
- */
-const Avatar = React.forwardRef(AvatarBoundary) as <S extends string | unknown>(
-  props: React.PropsWithChildren<IAvatar<S>> & {
-    ref?: React.ForwardedRef<HTMLDivElement | HTMLButtonElement> | undefined | null;
-  }
-) => ReturnType<typeof AvatarBoundary>;
-
-export { Avatar };

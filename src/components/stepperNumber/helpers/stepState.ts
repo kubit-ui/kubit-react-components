@@ -1,23 +1,25 @@
-import { StepStateType, StepperNumberStateType } from '../types';
+import { STATES } from '@/lib/types/states/states';
+
+import type { Steps, StepStateProps } from '../types/stepperNumber';
 
 export const mapToStepState = (
-  steps: string[] | undefined,
-  currentStep: number
-): StepStateType[] => {
+  steps: Steps[] | undefined,
+  currentStep: number,
+): StepStateProps[] => {
   if (!steps?.length) {
     return [];
   }
   const currentStepInBounds = Math.max(0, Math.min(currentStep, steps.length));
-  const res = steps?.reduce<StepStateType[]>((prev, current, index) => {
+  const res = steps?.reduce<StepStateProps[]>((prev, current, index) => {
     const isCompleted =
-      index < currentStepInBounds
-        ? StepperNumberStateType.COMPLETED
-        : StepperNumberStateType.INACTIVE;
-    const stateStep = index === currentStepInBounds ? StepperNumberStateType.ACTIVE : isCompleted;
+      index < currentStepInBounds ? STATES.COMPLETED : STATES.INACTIVE;
+    const stateStep =
+      index === currentStepInBounds ? STATES.ACTIVE : isCompleted;
     return [
       ...prev,
       {
-        name: current,
+        ['aria-label']: current['aria-label'],
+        name: current.name,
         state: stateStep,
       },
     ];

@@ -1,81 +1,76 @@
 import { fireEvent } from '@testing-library/react';
-import * as React from 'react';
+import { axe } from 'vitest-axe';
 
-import { axe } from 'jest-axe';
-
-import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { windowMatchMedia } from '@/tests/windowMatchMedia';
-import { ROLES } from '@/types';
+import { render } from '@/lib/tests/render/render';
 
 import { ElementOrIcon } from '../elementOrIcon';
 
-window.matchMedia = windowMatchMedia();
-
 const mockProps = {
-  icon: 'CLOSE',
   altText: 'icon alt text',
-  width: '30px',
-  height: '30px',
   ['aria-label']: 'ariaLabel',
+  height: '30px',
+  icon: 'CLOSE',
+  width: '30px',
 };
 
 describe('Icon Component', () => {
   it('Passing isBasic=true It should render IconBasic', async () => {
-    const mockOnClick = jest.fn();
-    const { getByRole, container } = renderProvider(
-      <ElementOrIcon {...mockProps} basic={true} onClick={mockOnClick} />
+    const mockOnClick = vi.fn();
+    const { container, getByRole } = render(
+      <ElementOrIcon {...mockProps} basic={true} onClick={mockOnClick} />,
     );
 
-    const icon = getByRole(ROLES.BUTTON);
-    expect(icon).toBeInTheDocument();
+    const icon = getByRole('button');
+    expect(icon).not.toBeNull();
 
     fireEvent.click(icon);
     expect(mockOnClick).toHaveBeenCalledTimes(1);
 
     const results = await axe(container);
     expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
   it('With isBasic=false It should render Icon', async () => {
-    const mockOnClick = jest.fn();
-    const { getByRole, container } = renderProvider(
-      <ElementOrIcon {...mockProps} onClick={mockOnClick} />
+    const mockOnClick = vi.fn();
+    const { container, getByRole } = render(
+      <ElementOrIcon {...mockProps} onClick={mockOnClick} />,
     );
 
-    const icon = getByRole(ROLES.BUTTON);
-    expect(icon).toBeInTheDocument();
+    const icon = getByRole('button');
+    expect(icon).not.toBeNull();
 
     fireEvent.click(icon);
     expect(mockOnClick).toHaveBeenCalledTimes(1);
 
     const results = await axe(container);
     expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
   it('Not Passing an icon it should return nothing', async () => {
-    const { queryByRole, container } = renderProvider(
-      <ElementOrIcon {...mockProps} icon={undefined} />
+    const { container, queryByRole } = render(
+      <ElementOrIcon {...mockProps} icon={undefined} />,
     );
 
-    const icon = queryByRole(ROLES.IMG);
+    const icon = queryByRole('img');
     expect(icon).toBeNull();
 
     const results = await axe(container);
     expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
+
   it('If element is not a string, return the element', async () => {
-    const { getByText, container } = renderProvider(
-      <ElementOrIcon {...mockProps} icon={<span>elementSpan</span>} />
+    const { container, getByText } = render(
+      <ElementOrIcon {...mockProps} icon={<span>elementSpan</span>} />,
     );
 
     const element = getByText('elementSpan');
-    expect(element).toBeInTheDocument();
+    expect(element).not.toBeNull();
 
     const results = await axe(container);
     expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

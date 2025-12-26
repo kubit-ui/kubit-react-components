@@ -1,69 +1,70 @@
-import React from 'react';
+import {
+  type PropsWithChildren,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 
-import { LineSeparatorLinePropsStylesType } from '@/components/lineSeparator';
-import { useMediaDevice } from '@/hooks';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
+import { useTableHasScroll } from './hooks/useTableHasScroll';
+import { useTableShadow } from './hooks/useTableShadow';
+import { useTableStickyLeftColumns } from './hooks/useTableStickyLeftColumns';
+import { useTableStickyRightColumns } from './hooks/useTableStickyRightColumns';
 import { TableStandAlone } from './tableStandAlone';
-import { ITable, ITableStandAlone, TableRowHeaderTypes } from './types';
+import type { TableProps } from './types/table';
 
-const TABLE_STYLES = 'TABLE_STYLES';
-const LINE_SEPARATOR_STYLES = 'LINE_SEPARATOR_STYLES';
+export const Table = forwardRef<HTMLDivElement, PropsWithChildren<TableProps>>(
+  (
+    {
+      additionalClasses,
+      autoLeftStickyCalc = true,
+      autoRightStickyCalc = true,
+      disableShadowEffects,
+      hasScrollDisabled,
+      variant,
+      ...props
+    },
+    ref,
+  ) => {
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'TABLE',
+      variant,
+    });
+    const innerRef = useRef<HTMLDivElement>(null);
+    useImperativeHandle(ref, () => innerRef.current as HTMLDivElement);
 
-const TableComponent = React.forwardRef(
-  <V extends string | unknown>(
-    props: ITable<V>,
-    ref: React.ForwardedRef<HTMLTableElement> | undefined | null
-  ): JSX.Element => {
-    const styles = useStyles<TableRowHeaderTypes<string, string>, V>(
-      TABLE_STYLES,
-      props.variant,
-      props.ctv
-    );
-    const lineSeparatorLineStyles = useStyles<LineSeparatorLinePropsStylesType>(
-      LINE_SEPARATOR_STYLES,
-      props.lineSeparatorLineVariant ?? styles.divider?.lineSeparatorLineVariant
-    );
-    const device = useMediaDevice();
+    const { hasScroll } = useTableHasScroll({
+      disabled: hasScrollDisabled,
+      ref: innerRef,
+    });
+
+    useTableStickyRightColumns({
+      disabled: !autoRightStickyCalc,
+      ref: innerRef,
+    });
+
+    useTableStickyLeftColumns({
+      disabled: !autoLeftStickyCalc,
+      ref: innerRef,
+    });
+
+    useTableShadow({
+      disabled: disableShadowEffects,
+      headBoxShadow: cssClasses?.headboxshadow,
+      leftBoxShadow: cssClasses?.leftboxshadow,
+      ref: innerRef,
+      rightBoxShadow: cssClasses?.rightboxshadow,
+    });
 
     return (
       <TableStandAlone
+        ref={innerRef}
+        cssClasses={cssClasses}
+        hasScroll={hasScroll}
         {...props}
-        ref={ref}
-        device={device}
-        lineSeparatorLineStyles={lineSeparatorLineStyles}
-        styles={styles}
       />
     );
-  }
+  },
 );
-TableComponent.displayName = 'TableComponent';
-
-const TableBoundary = <V extends string | unknown>(
-  props: ITable<V>,
-  ref: React.ForwardedRef<HTMLTableElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <TableStandAlone {...(props as unknown as ITableStandAlone)} />
-      </FallbackComponent>
-    }
-  >
-    <TableComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-/**
- * @description
- * Table component is used to display data in a tabular format.
- * Is the best table component ever, taht you can find in the world.
- */
-const Table = React.forwardRef(TableBoundary) as <V extends string | unknown>(
-  props: ITable<V> & {
-    ref?: React.ForwardedRef<HTMLTableElement> | undefined | null;
-  }
-) => JSX.Element;
-
-export { Table };

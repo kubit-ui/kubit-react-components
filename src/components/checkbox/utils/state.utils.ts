@@ -1,56 +1,27 @@
-import { CheckboxStateType } from '../types';
+import { CheckboxState, type CheckboxStateType } from '../types/state';
 
-// eslint-disable-next-line complexity
-const getCheckBoxState = (
+/**
+ * Get Checkbox state based on checked, disabled, and error props
+ */
+export const getCheckboxState = (
   checked = false,
   disabled = false,
-  isError = false
+  error = false,
 ): CheckboxStateType => {
-  if (isError) {
-    return CheckboxStateType.ERROR;
+  if (error && !checked) {
+    return CheckboxState.ERROR_UNSELECTED;
+  }
+  if (error) {
+    return CheckboxState.ERROR_SELECTED;
   }
   if (disabled && !checked) {
-    return CheckboxStateType.DISABLED_UNSELECTED;
+    return CheckboxState.DISABLED_UNSELECTED;
   }
-  if (disabled && checked) {
-    return CheckboxStateType.DISABLED_SELECTED;
+  if (disabled) {
+    return CheckboxState.DISABLED_SELECTED;
   }
   if (checked) {
-    return CheckboxStateType.DEFAULT_SELECTED;
+    return CheckboxState.SELECTED;
   }
-  return CheckboxStateType.DEFAULT_UNSELECTED;
+  return CheckboxState.UNSELECTED;
 };
-
-/**
- * Get the state of the checkbox
- * @param state
- * @returns {{isChecked: boolean, isDisabled: boolean, hasError: boolean}}
- * @constructor
- * @internal
- */
-export const checkboxState = (
-  state: CheckboxStateType
-): {
-  isChecked: boolean;
-  isDisabled: boolean;
-  hasError: boolean;
-} => {
-  const isChecked =
-    state === CheckboxStateType.DEFAULT_SELECTED || state === CheckboxStateType.DISABLED_SELECTED;
-  const isDisabled =
-    state === CheckboxStateType.DISABLED_UNSELECTED ||
-    state === CheckboxStateType.DISABLED_SELECTED;
-  const hasError = state === CheckboxStateType.ERROR;
-  return { isChecked, isDisabled, hasError };
-};
-
-/**
- * Get the state of the checkbox
- * @param checked
- * @param disabled
- * @param isError
- * @returns {CheckboxStateType}
- * @constructor
- * @internal
- */
-export { getCheckBoxState };

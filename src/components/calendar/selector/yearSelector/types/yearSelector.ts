@@ -1,12 +1,18 @@
-import { CalendarContainerStylesType } from '@/components/calendar/types/calendarTheme';
+import type {
+  CalendarAccessibilityProps,
+  CalendarCssClasses,
+} from '@/components/calendar/types/calendar';
+import type { CalendarStyleProps } from '@/components/calendar/types/calendarTheme';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-export interface IYearSelector {
+export interface YearSelectorProps extends DataAttributes {
   minDate: Date;
   maxDate: Date;
   currentDate: Date;
   setCurrentDate: (date) => void;
   onYearClick?: (value?: string) => void;
   today: Date;
-  styles?: CalendarContainerStylesType;
-  dataTestId?: string;
+  styles?: CalendarStyleProps;
+  configAccesibility?: CalendarAccessibilityProps;
+  cssClasses?: CalendarCssClasses;
 }

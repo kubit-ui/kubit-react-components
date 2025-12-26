@@ -1,22 +1,22 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { OverlayStyled } from './overlay.styled';
-import { IOverlayStandAlone } from './types';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-const OverlayStandAloneComponent = (
-  props: IOverlayStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => {
-  return <OverlayStyled ref={ref} data-testid={props.dataTestId} styles={props.styles} />;
-};
+import type { OverlayStandAloneProps } from './types/overlay';
 
-/**
- * @description
- * Overlay component is used to create a background overlay.
- * @param {React.PropsWithChildren<IOverlayStandAlone>} props
- * @returns {JSX.Element}
- * @constructor
- * @example
- * <Overlay />
- */
-export const OverlayStandAlone = React.forwardRef(OverlayStandAloneComponent);
+export const OverlayStandAlone = forwardRef<
+  HTMLDivElement,
+  OverlayStandAloneProps
+>(({ cssClasses, ...props }, ref): JSX.Element => {
+  const customProps = pickCustomAttributes(props);
+  return (
+    <div
+      ref={ref}
+      className={cssClasses?.overlay}
+      data-testid="overlay"
+      {...props}
+      {...customProps}
+      {...customProps}
+    />
+  );
+});

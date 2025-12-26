@@ -1,36 +1,49 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { CustomTokenTypes, FormatWeekdayOptionType } from '@/types';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { CalendarContainerStylesType } from './calendarTheme';
-import { CalendarVariantType } from './variant';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 
-export enum CalendarElementType {
-  DAY = 'day',
-  MONTH = 'month',
-  YEAR = 'year',
+export type CalendarCssClasses = ComponentSelected<
+  ComponentsTypesComponents['CALENDAR']
+>;
+/**
+ * Interface for the calendar configuration.
+ * Includes properties for navigation icons and button styles.
+ */
+export interface CalendarConfigProps {
+  leftArrowIcon: ElementOrIconProps;
+  rightArrowIcon: ElementOrIconProps;
+  variantSelectorButton?: string;
+  sizeSelectorButton?: string;
 }
 
 /**
- * @description
- * @interface ICalendarStandAlone
- * @template V
- * @property {string} [id]
+ * Interface for accessibility configuration of the calendar.
+ * Includes ARIA labels and roles for various elements.
  */
-
-export type IConfigCalendar = {
-  leftArrowIcon: IElementOrIcon;
-  rightArrowIcon: IElementOrIcon;
-  variantSelectorButton?: string;
-  sizeSelectorButton?: string;
-};
-
-export type IConfigAccesibility = {
+export interface CalendarAccessibilityProps {
   monthSelectorAriaLabel?: string;
   yearSelectorAriaLabel?: string;
   backToMonthAriaLabel?: string;
-};
-export interface ICalendarStandAlone<V = undefined extends string ? unknown : string> {
+  monthSelectorRole?: string;
+  yearSelectorRole?: string;
+  daySelectorRole?: string;
+}
+
+/**
+ * Interface for the standalone calendar component.
+ * Includes properties for date selection, configuration, and event handlers.
+ *
+ * @template Variant - The type of the variant for the calendar.
+ */
+export interface CalendarStandAloneProps<
+  Variant = undefined extends string ? unknown : string,
+> extends DataAttributes {
   id?: string;
+  customBackText?: string;
   selectedDate: Date[];
   hasRange?: boolean;
   disabledDates?: Date[];
@@ -40,52 +53,57 @@ export interface ICalendarStandAlone<V = undefined extends string ? unknown : st
   onSelectedDateChange?: (date: Date[]) => void;
   setSelectedDate: (date: Date[]) => void;
   setCurrentDate: (date: Date) => void;
-  variant?: V | CalendarVariantType;
-  styles?: CalendarContainerStylesType;
+  variant?: Variant | string;
+  cssClasses?: CalendarCssClasses;
   open: boolean;
-  configCalendar: IConfigCalendar;
-  configAccesibility?: IConfigAccesibility;
-  dataTestId?: string;
+  configCalendar: CalendarConfigProps;
+  configAccesibility?: CalendarAccessibilityProps;
   defaultCurrentDate?: Date;
   sundayFirst?: boolean;
-  formatWeekDayOption?: FormatWeekdayOptionType;
+  formatWeekDayOption?: Intl.DateTimeFormatOptions['weekday'];
   onPopoverCloseInternally?: () => void;
   onDaySelectorClick?: (
     value?: string,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   onMonthSelectorClick?: (
     value?: string,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   onYearSelectorClick?: (
     value?: string,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   onDayClick?: (value?: string) => void;
   onMonthClick?: (value?: string) => void;
   onYearClick?: (value?: string) => void;
   onLeftIconClick?: (
-    event?: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>,
   ) => void;
   onRightIconClick?: (
-    event?: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>,
   ) => void;
   preventCloseOnClickElements?: (HTMLElement | null | undefined)[];
+  locale?: string;
 }
 
-type propsToOmit = 'currentDate' | 'setCurrentDate' | 'selectedDate' | 'setSelectedDate' | 'styles';
+type CalendarPropsToOmit =
+  | 'currentDate'
+  | 'setCurrentDate'
+  | 'selectedDate'
+  | 'setSelectedDate'
+  | 'styles';
 
 /**
- * @description
- * @interface ICalendar
- * @template V
- * @extends {Omit<ICalendarStandAlone<V>, 'currentDate' | 'setCurrentDate' | 'setSelectedDate' | 'styles'>}
- * @example
+ * Interface for the calendar component with a variant.
+ * Extends the CalendarStandAloneProps interface and adds additional properties.
+ *
+ * @template Variant - The type of the variant for the calendar.
  */
-export interface ICalendar<V = undefined extends string ? unknown : string>
-  extends Omit<ICalendarStandAlone<V>, propsToOmit>,
-    Omit<CustomTokenTypes<CalendarContainerStylesType>, 'cts' | 'extraCt'> {
+export interface CalendarProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<CalendarStandAloneProps<Variant>, CalendarPropsToOmit> {
   selectedDate?: Date;
   secondSelectedDate?: Date;
+  additionalClasses?: Partial<CalendarCssClasses>;
 }

@@ -1,4 +1,9 @@
-export type { TextStylesType, IText, ITextStandAlone } from './types';
-export { TextComponentType, TextDisplayType, TextDecorationType, TextTransformType } from './types';
 export { Text } from './text';
-export { TextStyled } from './text.styled';
+export type {
+  TextCssClasses,
+  TextStandAloneProps,
+  TextProps,
+} from './types/text';
+export type {
+  TextVariantStyles,
+} from './types/textTheme';

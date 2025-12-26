@@ -1,97 +1,141 @@
-import * as React from 'react';
+import type {
+  AriaAttributes,
+  FocusEventHandler,
+  ForwardedRef,
+  KeyboardEventHandler,
+  MouseEventHandler,
+  MutableRefObject,
+  ReactNode,
+} from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IIcon } from '@/components/icon';
-import { IPopoverControlled } from '@/components/popover';
-import { IText } from '@/components/text';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import type { DeviceBreakpointsType } from '@/lib/types/breakpoints/breakpoints';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { TooltipAlignType } from './tooltipAlign';
-import { TooltipVariantStylesProps } from './tooltipTheme';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
+import type { IconProps } from '../../icon/types/icon';
+import type { IPopover } from '../../popover/types/popover';
+import { type TooltipAlignType } from './tooltipAlign';
 
-export type TooltipTitleType = Omit<IText<string>, 'children'> & {
-  content?: string;
-};
-
-export type TooltipContentType = Omit<IText<string>, 'children'> & {
-  content?: JSX.Element | string;
-};
-
-export type TooltipCloseIconType = Omit<IIcon, 'icon'> & {
+export type TooltipCssClasses = ComponentSelected<
+  ComponentsTypesComponents['TOOLTIP']
+>;
+/**
+ * Represents the type for the close icon in the Tooltip component.
+ */
+export type TooltipCloseIconProps = Omit<IconProps, 'icon'> & {
   icon?: string;
 };
 
-export type TooltipPopoverType = Omit<IPopoverControlled, 'children' | 'open'>;
+/**
+ * Represents the type for the popover in the Tooltip component.
+ */
+export type TooltipPopoverProps = Omit<IPopover, 'children' | 'open'>;
 
 /**
- * @name ITooltip
- * @description
- * Interface for the Tooltip component
+ * Interface for the standalone Tooltip component.
+ * Includes ARIA attributes, styling options, event handlers, and additional attributes.
  */
-export interface ITooltipStandAlone {
+export interface TooltipStandAloneProps extends DataAttributes {
   disabled?: boolean;
   mediaDevice: DeviceBreakpointsType;
-  title?: TooltipTitleType;
-  content?: TooltipContentType;
-  onFocus?: React.FocusEventHandler<HTMLElement>;
-  onBlur?: React.FocusEventHandler<HTMLElement>;
-  onMouseEnter?: React.MouseEventHandler<HTMLElement>;
-  onMouseLeave?: React.MouseEventHandler<HTMLElement>;
-  onClick?: React.MouseEventHandler<HTMLElement>;
-  onMouseDown?: React.MouseEventHandler<HTMLElement>;
-  onCloseIconClick?: React.MouseEventHandler<HTMLElement>;
-  children: JSX.Element | string | React.ReactNode;
+  align?: TooltipAlignType | string;
+  title?: CommonTextProps;
+  contentHasScroll?: boolean;
+  content?: CommonTextProps;
+  contentRef?: ForwardedRef<HTMLDivElement> | undefined;
+  contentScrollArias?: Pick<AriaAttributes, 'aria-label' | 'aria-labelledby'>;
+  onWrapperFocus?: FocusEventHandler<HTMLElement>;
+  onWrapperBlur?: FocusEventHandler<HTMLElement>;
+  onWrapperMouseEnter?: MouseEventHandler<HTMLElement>;
+  onWrapperMouseLeave?: MouseEventHandler<HTMLElement>;
+  onTriggerClick?: MouseEventHandler<HTMLElement>;
+  onTriggerMouseDown?: MouseEventHandler<HTMLElement>;
+  onTriggerMouseUp?: MouseEventHandler<HTMLElement>;
+  onCloseIconClick?: MouseEventHandler<HTMLElement>;
+  children: JSX.Element | string | ReactNode;
   popoverOpen?: boolean;
-  styles: TooltipVariantStylesProps;
-  closeIcon?: IIcon;
+  cssClasses?: TooltipCssClasses;
+  closeIcon?: IconProps;
   childrenAsButton?: boolean;
+  triggerAsButton?: Pick<
+    AriaAttributes,
+    | 'aria-label'
+    | 'aria-labelledby'
+    | 'aria-describedby'
+    | 'aria-controls'
+    | 'aria-expanded'
+    | 'aria-pressed'
+    | 'aria-disabled'
+  >;
   onPopoverCloseInternally?: () => void;
-  tooltipRef?: React.MutableRefObject<HTMLDivElement | null>;
+  tooltipRef?: MutableRefObject<HTMLDivElement | null>;
   tooltipAsModal?: boolean;
-  labelRef?: React.MutableRefObject<HTMLDivElement | null>;
-  dataTestId?: string;
-  onTooltipFocus?: React.FocusEventHandler<HTMLElement>;
-  onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
-  onTooltipKeyDown?: React.KeyboardEventHandler<HTMLElement>;
-  popover?: TooltipPopoverType;
-  dragIcon?: IElementOrIcon;
+  labelRef?: MutableRefObject<HTMLDivElement | null>;
+  onTooltipFocus?: FocusEventHandler<HTMLElement>;
+  onTriggerKeyDown?: KeyboardEventHandler<HTMLDivElement>;
+  onTooltipKeyDown?: KeyboardEventHandler<HTMLElement>;
+  popover?: TooltipPopoverProps;
+  dragIcon?: ElementOrIconProps;
+  dragIconRef?: MutableRefObject<HTMLDivElement | null>;
+  tooltipAriaLabel?: string;
 }
 
 /**
- * @name ITooltipControlled
- * @description
- * Interface for the Tooltip Controlled component
- * @property {string} variant - The variant of the tooltip
+ * Interface for the controlled Tooltip component.
+ * Extends the TooltipStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the Tooltip.
  */
-export interface ITooltipControlled<V = undefined extends string ? unknown : string>
-  extends Omit<ITooltipStandAlone, 'styles' | 'mediaDevice'>,
-    Omit<CustomTokenTypes<TooltipVariantStylesProps>, 'cts' | 'extraCt'> {
-  variant: V;
+export interface TooltipControlledProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<
+  TooltipStandAloneProps,
+  'mediaDevice' | 'contentHasScroll' | 'contentRef'
+> {
+  variant?: Variant;
+  additionalClasses?: Partial<TooltipCssClasses>;
 }
 
-type propsToOmitUnControlled =
-  | 'onFocus'
-  | 'onBlur'
-  | 'onMouseEnter'
-  | 'onMouseLeave'
-  | 'onClick'
-  | 'onMouseDown'
+type TooltipUnControlledPropsToOmit =
+  | 'onWrapperFocus'
+  | 'onWrapperBlur'
+  | 'onWrapperMouseEnter'
+  | 'onWrapperMouseLeave'
+  | 'onTriggerClick'
+  | 'onTriggerMouseDown'
+  | 'onTriggerMouseUp'
   | 'onCloseIconClick'
   | 'popoverOpen'
   | 'onPopoverCloseInternally'
   | 'tooltipRef'
   | 'labelRef'
   | 'onTooltipFocus'
-  | 'onKeyDown'
-  | 'onTooltipKeyDown';
+  | 'onTriggerKeyDown'
+  | 'onTooltipKeyDown'
+  | 'dragIconRef';
 
 /**
- * @name ITooltipUnControlled
- * @description
- * Interface for the TooltipUnControlled component
+ * Interface for the uncontrolled Tooltip component.
+ * Extends the TooltipControlledProps interface and omits specific properties.
  */
-export interface ITooltipUnControlled<V = undefined extends string ? unknown : string>
-  extends Omit<ITooltipControlled<V>, propsToOmitUnControlled> {
+export interface TooltipUnControlledProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<
+  TooltipControlledProps<Variant>,
+  TooltipUnControlledPropsToOmit
+> {
   onOpenClose?: (open: boolean) => void;
-  align?: TooltipAlignType;
 }
+
+/**
+ * Union type for Tooltip components.
+ * Can be either controlled or uncontrolled.
+ */
+export type TooltipProps<
+  Variant = undefined extends string ? unknown : string,
+> = TooltipControlledProps<Variant> | TooltipUnControlledProps<Variant>;

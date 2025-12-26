@@ -1,17 +1,15 @@
-export type {
-  ITooltipControlled,
-  ITooltipUnControlled as ITooltip,
-  TooltipVariantStylesProps,
-  TooltipStylesType,
-  TooltipTitleType,
-  TooltipContentType,
-  TooltipCloseIconType,
-  TooltipPopoverType,
-} from './types';
-
-export { TooltipAlignType } from './types';
-
 export { TooltipControlled } from './tooltipControlled';
-export { TooltipUnControlled as Tooltip } from './tooltipUnControlled';
-
-export { useTooltip } from './hooks';
+export { Tooltip } from './tooltipUnControlled';
+export type {
+  TooltipCssClasses,
+  TooltipCloseIconProps,
+  TooltipPopoverProps,
+  TooltipStandAloneProps,
+  TooltipControlledProps,
+  TooltipUnControlledProps,
+  TooltipProps,
+} from './types/tooltip';
+export type {
+  TooltipStyleProps,
+  TooltipVariantStyles,
+} from './types/tooltipTheme';

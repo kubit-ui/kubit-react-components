@@ -1,33 +1,34 @@
-import * as React from 'react';
+import { Text } from '@/components/text/text';
+import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
 
-import { Text, TextComponentType } from '@/components/text';
-import { useUtilsProvider } from '@/provider';
-
-// styles
-import { ElementStyled, HeaderRowStyled, HeaderStyled } from './header.styled';
-import { IHeader } from './types/header';
+import { WEEK_DAYS } from '../constants/constants';
+import type { HeaderProps } from './types/header';
 
 export const Header = ({
+  cssClasses,
   formatWeekDayOption = 'narrow',
   isSundayFirst = false,
-  ...props
-}: IHeader): JSX.Element => {
+}: HeaderProps): JSX.Element => {
   const { dateHelpers } = useUtilsProvider();
 
-  const buildDays = () => {
-    return dateHelpers.getAllWeekdayName(formatWeekDayOption, isSundayFirst).map((day, index) => {
-      return (
-        <ElementStyled key={day + index} scope="col" styles={props.styles}>
-          <Text component={TextComponentType.SPAN} customTypography={props.styles?.weekDay}>
-            {day}
-          </Text>
-        </ElementStyled>
-      );
-    });
-  };
   return (
-    <HeaderStyled styles={props.styles}>
-      <HeaderRowStyled styles={props.styles}>{buildDays()}</HeaderRowStyled>
-    </HeaderStyled>
+    <thead className={cssClasses?.headercontainer}>
+      <tr className={cssClasses?.headerrow}>
+        {dateHelpers
+          .getAllWeekdayName(formatWeekDayOption, isSundayFirst)
+          .map((day, index) => (
+            <th
+              key={`day-${day}-${index.toString()}`}
+              className={cssClasses?.weekdaycontainer}
+              scope="col"
+              style={{
+                width: `calc(100% / ${WEEK_DAYS})`,
+              }}
+            >
+              <Text component="span">{day}</Text>
+            </th>
+          ))}
+      </tr>
+    </thead>
   );
 };

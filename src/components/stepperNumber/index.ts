@@ -1,14 +1,14 @@
-export type {
-  IStepperNumberStandAlone,
-  IStepperNumber,
-  StepperNumberPropsStylesType,
-  StepperNumberStylesType,
-  StepperNumberprefixSuffixType,
-} from './types';
-
-// enums
-export { StepperNumberStateType, StepperNumberOrientationType } from './types';
-
 export { StepperNumber } from './stepperNumber';
-export { StepperNumberStandAlone } from './stepperNumberStandAlone';
-export { StepperNumberContainerStyled } from './stepperNumber.styled';
+export type {
+  StepStateProps,
+  StepperNumberScreenReaderTextProps,
+  Steps,
+  StepperNumberStandAloneProps,
+  StepperNumberProps,
+} from './types/stepperNumber';
+export type {
+  StepperNumberStyleProps,
+  StepperNumberOrientationStyles,
+  StepperNumberVariantStyles,
+  StepperNumberStyles,
+} from './types/stepperNumberTheme';

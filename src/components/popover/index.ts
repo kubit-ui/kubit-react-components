@@ -1,15 +1,3 @@
-export type {
-  IPopoverStandAlone,
-  IPopoverControlled,
-  IPopoverUnControlled,
-  PopoverBackDropStylesType,
-  PopoverVariantStylesProps,
-  PopoverVariantStylesType,
-  PopoverStylesType,
-} from './types';
-
-// enums
-export { PopoverPositionVariantType, PopoverComponentType, getAlignStyles } from './types';
-
-export { PopoverControlled } from './popoverControlled';
-export { PopoverUnControlled as Popover } from './popoverUnControlled';
+export { Popover } from './popover';
+export * from './positioning/middlewares';
+export type { PopoverStyleProps as PopoverStylePropsV2 } from './types/popoverTheme';

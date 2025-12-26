@@ -1,31 +1,34 @@
-import React from 'react';
+import { Text } from '@/components/text/text';
+import type { TextComponentType } from '@/components/text/types/component';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import { processText } from '@/lib/utils/process/processText/processText';
 
-import { Text, TextComponentType } from '@/components/text';
-
-import { TitleWrapperStyled } from '../textArea.styled';
-import { TextAreaPropsThemeType, TextAreaTitleComponentType, TextAreaTitleType } from '../types';
+import type { TextAreaCssClasses } from '../types/textArea';
 
 export const TitleStandAlone = ({
+  cssClasses,
+  customAttributtes,
   title,
-  styles,
 }: {
-  title?: TextAreaTitleType;
-  styles?: TextAreaPropsThemeType;
+  title?: CommonTextProps;
+  customAttributtes?;
+  cssClasses?: TextAreaCssClasses;
 }): JSX.Element | null => {
   if (!title) {
     return null;
   }
   return (
-    <TitleWrapperStyled styles={styles}>
+    <div className={cssClasses?.titlecontainer} {...customAttributtes}>
       <Text
-        customTypography={styles?.title}
-        {...title}
-        component={
-          (title.component as unknown as TextComponentType) ?? TextAreaTitleComponentType.PARAGRAPH
-        }
+        additionalClasses={{
+          text: cssClasses?.title,
+        }}
+        customAttributes={customAttributtes}
+        {...processText(title)}
+        component={(processText(title).component as TextComponentType) ?? 'p'}
       >
-        {title.content}
+        {processText(title).children}
       </Text>
-    </TitleWrapperStyled>
+    </div>
   );
 };

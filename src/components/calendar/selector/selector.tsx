@@ -1,175 +1,212 @@
-import * as React from 'react';
+import type { AriaRole, MouseEventHandler } from 'react';
 
-import { Button, ButtonStateType } from '@/components/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text, TextComponentType } from '@/components/text';
-import { useUtilsProvider } from '@/provider';
+import { Button } from '@/components/button/button';
+import { RenderIf } from '@/components/renderIf/renderIf';
+import { Text } from '@/components/text/text';
+import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
 
-import { CalendarElementType } from '../types';
-// styles
-import {
-  IconAndBackTextStyled,
-  OptionsStyled,
-  RightIconStyled,
-  SelectorStyled,
-} from './selector.styled';
-import { ISelector } from './types/selector';
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import type { SelectorProps } from './types/selector';
 
-// eslint-disable-next-line complexity
-export const Selector = (props: ISelector): JSX.Element => {
+export const Selector = ({
+  configAccesibility,
+  configCalendar,
+  cssClasses,
+  currentDate,
+  customBackText,
+  maxDate,
+  minDate,
+  onDaySelectorClick,
+  onLeftIconClick,
+  onMonthSelectorClick,
+  onRightIconClick,
+  onYearSelectorClick,
+  setCurrentDate,
+  setShowDaySelector,
+  setShowMonthSelector,
+  setShowYearSelector,
+  showDaySelector,
+  showMonthSelector,
+  showYearSelector,
+  useDaySelector = false,
+}: SelectorProps): JSX.Element => {
   const { dateHelpers, formatDate } = useUtilsProvider();
-
-  const { leftArrowIcon, rightArrowIcon, variantSelectorButton, sizeSelectorButton } =
-    props.configCalendar;
-
+  const {
+    leftArrowIcon,
+    rightArrowIcon,
+    sizeSelectorButton,
+    variantSelectorButton,
+  } = configCalendar;
   const onChangeCurrentDate = (newDate: Date) => {
-    props.setCurrentDate(newDate);
+    setCurrentDate(newDate);
   };
-
-  const isDaySelector = props.styles?.useDaySelector;
-
-  const showCustomSelector = (props.showMonthSelector || props.showYearSelector) && !isDaySelector;
-
+  const isDaySelector = useDaySelector;
+  const showCustomSelector =
+    (showMonthSelector || showYearSelector) && !isDaySelector;
   const monthWithCapitalLetter = (month: string) => {
     return month.charAt(0).toUpperCase() + month.slice(1);
   };
-
   const iconArrowDisabled = (limitDate: Date) => {
     return (
       !showCustomSelector &&
-      limitDate.getMonth() === props.currentDate.getMonth() &&
-      limitDate.getFullYear() === props.currentDate.getFullYear()
+      limitDate.getMonth() === currentDate.getMonth() &&
+      limitDate.getFullYear() === currentDate.getFullYear()
     );
   };
-
-  const renderButtonSelector = (type: string, showSelector: boolean, ariaLabel?: string) => {
-    const buttonState = showSelector ? ButtonStateType.DISABLED : ButtonStateType.DEFAULT;
-
+  const renderButtonSelector = (
+    type: string,
+    showSelector: boolean,
+    ariaLabel?: string,
+    role?: AriaRole,
+  ) => {
     const selectorToShow = () => {
       switch (type) {
-        case CalendarElementType.DAY:
-          return props.currentDate.getDate();
-        case CalendarElementType.MONTH:
-          return monthWithCapitalLetter(formatDate(props.currentDate, { month: 'long' }));
-        case CalendarElementType.YEAR:
-          return props.currentDate.getFullYear();
+        case 'day':
+          return currentDate.getDate();
+        case 'month':
+          return monthWithCapitalLetter(
+            formatDate(currentDate, {
+              month: 'long',
+            }),
+          );
+        case 'year':
+          return currentDate.getFullYear();
         default:
           return null;
       }
     };
-
-    const handleClickButtonSelector: React.MouseEventHandler<HTMLButtonElement> = event => {
-      props.setShowDaySelector(type === CalendarElementType.DAY);
-      props.setShowMonthSelector(type === CalendarElementType.MONTH);
-      props.setShowYearSelector(type === CalendarElementType.YEAR);
-      if (type === CalendarElementType.DAY) {
-        props.onDaySelectorClick?.(selectorToShow()?.toString(), event);
-      } else if (type === CalendarElementType.MONTH) {
-        props.onMonthSelectorClick?.(selectorToShow()?.toString(), event);
+    const handleClickButtonSelector: MouseEventHandler<HTMLButtonElement> = (
+      event,
+    ) => {
+      setShowDaySelector(type === 'day');
+      setShowMonthSelector(type === 'month');
+      setShowYearSelector(type === 'year');
+      if (type === 'day') {
+        onDaySelectorClick?.(selectorToShow()?.toString(), event);
+      } else if (type === 'month') {
+        onMonthSelectorClick?.(selectorToShow()?.toString(), event);
       } else {
-        props.onYearSelectorClick?.(selectorToShow()?.toString(), event);
+        onYearSelectorClick?.(selectorToShow()?.toString(), event);
       }
     };
     return (
       <Button
+        additionalSizeClasses={
+          !sizeSelectorButton ? cssClasses?.button_size : undefined
+        }
+        additionalVariantClasses={
+          !variantSelectorButton ? cssClasses?.button_variant : undefined
+        }
         aria-label={ariaLabel}
         disabled={showSelector}
-        size={sizeSelectorButton || props.styles?.selectorOptions?.sizeSelectorButton}
-        variant={variantSelectorButton || props.styles?.selectorOptions?.variantSelectorButton}
+        role={role}
+        size={sizeSelectorButton}
+        variant={variantSelectorButton}
         onClick={handleClickButtonSelector}
       >
-        <Text
-          component={TextComponentType.SPAN}
-          customTypography={props.styles?.selectorOptions?.[buttonState]}
-        >
-          {selectorToShow()}
-        </Text>
+        <Text component="span">{selectorToShow()}</Text>
       </Button>
     );
   };
-
   const onClickLeftIcon = () => {
-    const auxCurrentDate = new Date(props.currentDate);
-    !showCustomSelector
-      ? onChangeCurrentDate(dateHelpers.getSubMonths(auxCurrentDate, 1))
-      : props.setShowYearSelector(false);
-    props.setShowMonthSelector(false);
-    props.setShowDaySelector(true);
+    const auxCurrentDate = new Date(currentDate);
+    if (!showCustomSelector) {
+      onChangeCurrentDate(dateHelpers.getSubMonths(auxCurrentDate, 1));
+    } else {
+      setShowYearSelector(false);
+    }
+    setShowMonthSelector(false);
+    setShowDaySelector(true);
   };
-
   const onClickRightIcon = () => {
-    const auxCurrentDate = new Date(props.currentDate);
+    const auxCurrentDate = new Date(currentDate);
     onChangeCurrentDate(dateHelpers.getAddMonths(auxCurrentDate, 1));
   };
-
-  const handleOnClickBack: React.MouseEventHandler<HTMLDivElement> = event => {
-    onClickLeftIcon();
-    props.onLeftIconClick?.(event);
-  };
-
-  const handleOnClickLeftIcon: React.MouseEventHandler<HTMLButtonElement> = event => {
+  const handleOnClickLeftIcon: MouseEventHandler<HTMLButtonElement> = (
+    event,
+  ) => {
     onClickLeftIcon();
     leftArrowIcon.onClick?.(event);
+    onLeftIconClick?.(event);
   };
-
-  const handleOnClickRight: React.MouseEventHandler<HTMLDivElement> = event => {
-    onClickRightIcon();
-    props.onRightIconClick?.(event);
-  };
-
-  const handleOnClickRightIcon: React.MouseEventHandler<HTMLButtonElement> = event => {
+  const handleOnClickRightIcon: MouseEventHandler<HTMLButtonElement> = (
+    event,
+  ) => {
     onClickRightIcon();
     rightArrowIcon.onClick?.(event);
+    onRightIconClick?.(event);
   };
-
+  const customAttributes = {
+    'data-state': iconArrowDisabled(minDate),
+  };
   return (
-    <SelectorStyled isDaySelector={isDaySelector} styles={props.styles}>
-      <IconAndBackTextStyled styles={props.styles} onClick={handleOnClickBack}>
+    <div
+      className={cssClasses?.selectorcontainer}
+      style={{
+        justifyContent: isDaySelector ? 'center' : 'space-between',
+      }}
+    >
+      <button
+        aria-label={showCustomSelector ? '' : leftArrowIcon['aria-label']}
+        className={cssClasses?.selectoriconandbacktextcontainer}
+        data-testid="previous-button"
+        type="button"
+        onClick={handleOnClickLeftIcon}
+      >
         <ElementOrIcon
-          aria-label={
-            showCustomSelector
-              ? props.configAccesibility?.backToMonthAriaLabel
-              : leftArrowIcon['aria-label']
-          }
-          color={iconArrowDisabled(props.minDate) ? props.styles?.colorArrowDisabled : undefined}
-          customIconStyles={props.styles?.leftArrow}
-          disabled={iconArrowDisabled(props.minDate)}
+          className={cssClasses?.leftarrow}
+          customAttributes={customAttributes}
+          disabled={iconArrowDisabled(minDate)}
           {...leftArrowIcon}
-          onClick={handleOnClickLeftIcon}
+          aria-label={undefined}
         />
-        {showCustomSelector && (
-          <Text component={TextComponentType.PARAGRAPH} customTypography={props.styles?.backText}>
-            {'Back'}
+        <RenderIf condition={showCustomSelector}>
+          <Text
+            additionalClasses={{
+              text: cssClasses?.backtext,
+            }}
+            component="span"
+          >
+            {customBackText}
           </Text>
-        )}
-      </IconAndBackTextStyled>
-      <OptionsStyled styles={props.styles}>
-        {isDaySelector &&
-          renderButtonSelector(
-            CalendarElementType.DAY,
-            props.showDaySelector,
-            props.configAccesibility?.daySelectorAriaLabel
+        </RenderIf>
+      </button>
+      <div className={cssClasses?.selectoroptionscontainer}>
+        <RenderIf condition={isDaySelector}>
+          {renderButtonSelector(
+            'day',
+            showDaySelector,
+            configAccesibility?.daySelectorAriaLabel,
+            configAccesibility?.daySelectorRole,
           )}
+        </RenderIf>
         {renderButtonSelector(
-          CalendarElementType.MONTH,
-          props.showMonthSelector,
-          props.configAccesibility?.monthSelectorAriaLabel
+          'month',
+          showMonthSelector,
+          configAccesibility?.monthSelectorAriaLabel,
+          configAccesibility?.monthSelectorRole,
         )}
         {renderButtonSelector(
-          CalendarElementType.YEAR,
-          props.showYearSelector,
-          props.configAccesibility?.yearSelectorAriaLabel
+          'year',
+          showYearSelector,
+          configAccesibility?.yearSelectorAriaLabel,
+          configAccesibility?.yearSelectorRole,
         )}
-      </OptionsStyled>
-      <RightIconStyled showCustomSelector={showCustomSelector} onClick={handleOnClickRight}>
+      </div>
+      <span
+        style={{
+          visibility: showCustomSelector ? 'hidden' : 'visible',
+        }}
+      >
         <ElementOrIcon
-          color={iconArrowDisabled(props.maxDate) ? props.styles?.colorArrowDisabled : undefined}
-          customIconStyles={props.styles?.rightArrow}
-          disabled={iconArrowDisabled(props.maxDate)}
-          {...rightArrowIcon}
+          className={cssClasses?.rightarrow}
+          customAttributes={customAttributes}
+          data-testid="next-button"
+          disabled={iconArrowDisabled(maxDate)}
           onClick={handleOnClickRightIcon}
+          {...rightArrowIcon}
         />
-      </RightIconStyled>
-    </SelectorStyled>
+      </span>
+    </div>
   );
 };

@@ -1,69 +1,117 @@
-import * as React from 'react';
+import type { CSSProperties } from 'react';
 
-import {
-  ButtonSizePropsType,
-  ButtonStateKeyOfType,
-  ButtonStateType,
-  IButtonStandAlone,
-} from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { TextComponentType, TextDecorationType } from '@/components/text/types';
-import { GenericLinkType } from '@/provider/genericComponents';
-import { CustomTokenTypes } from '@/types';
+import type { GenericLinkType } from '@/lib/provider/genericComponentsProvider/types/genericComponentsProvider';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
+import type { StateType } from '@/lib/types/states/states';
 
+import type {
+  ButtonCssClasses,
+  ButtonStandAloneProps,
+} from '../../button/types/button';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
+import type { TextComponentType } from '../../text/types/component';
+import type { TextCssClasses } from '../../text/types/text';
 import type { LinkActionType } from './action';
-import type { LinkPropsStylesType, LinkStylesType } from './linkTheme';
 import type { LinkPositionType } from './position';
-import type { LinkStateType } from './state';
-import { LinkTargetType } from './target';
 
-type LinkAriaAttributes = Pick<
-  React.AriaAttributes,
-  'aria-label' | 'aria-describedby' | 'aria-disabled'
+/**
+ * Represents the CSS classes for the Link component.
+ */
+type LinkCssClasses = ComponentSelected<ComponentsTypesComponents['LINK']>;
+type LinkAsButtonCssClasses = ComponentSelected<
+  ComponentsTypesComponents['LINK_AS_BUTTON']
 >;
-export interface ILinkStandAlone extends LinkAriaAttributes {
+/**
+ * Represents the ARIA attributes for the Link component.
+ */
+type LinkAriaProps = Pick<
+  React.AriaAttributes,
+  | 'aria-label'
+  | 'aria-describedby'
+  | 'aria-disabled'
+  | 'aria-current'
+  | 'aria-labelledby'
+>;
+
+/**
+ * Interface for the standalone Link component.
+ * Includes ARIA attributes, styling options, event handlers, and additional attributes.
+ */
+export interface LinkStandAloneProps extends LinkAriaProps, DataAttributes {
   action?: LinkActionType;
+  id?: string;
   children: JSX.Element | string;
   color?: string;
   component?: GenericLinkType;
-  dataTestId?: string;
-  decoration?: TextDecorationType;
-  icon?: IElementOrIcon;
+  decoration?: CSSProperties['textDecoration'];
+  icon?: ElementOrIconProps;
   iconPosition?: LinkPositionType;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  role?: string;
-  state: LinkStateType;
-  styles: LinkPropsStylesType;
-  target?: LinkTargetType;
-  textVariant?: string;
+  rel?: string;
+  role?: React.AriaRole;
+  target?: React.HTMLAttributeAnchorTarget;
   url: string;
   weight?: number;
   alignCenter: boolean;
   draggable?: boolean;
-}
-
-export interface ILink
-  extends Omit<ILinkStandAlone, 'styles' | 'component' | 'alignCenter' | 'state' | 'aria-disabled'>,
-    Omit<CustomTokenTypes<LinkStylesType<string>>, 'cts' | 'extraCt'> {
-  alignCenter?: boolean;
+  cssTextClasses?: TextCssClasses;
+  cssClasses?: LinkCssClasses;
+  additionalTextClasses?: Partial<TextCssClasses>;
+  additionalClasses?: Partial<LinkCssClasses>;
   disabled?: boolean;
-  variant: string;
 }
 
-export interface ILinkAsButtonStandAlone extends Omit<IButtonStandAlone, 'showLoader'> {
-  styles: ButtonStateKeyOfType;
-  sizeStyles: ButtonSizePropsType;
+/**
+ * Interface for the Link component with a variant.
+ * Extends the LinkStandAloneProps interface and adds a variant and additional CSS classes.
+ */
+export interface LinkProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<
+    LinkStandAloneProps,
+    'component' | 'alignCenter' | 'aria-disabled'
+  > {
+  alignCenter?: boolean;
+  variant?: Variant;
+  textVariant?: string;
+}
+
+/**
+ * Interface for the standalone LinkAsButton component.
+ * Extends the ButtonStandAloneProps interface and includes additional properties for links.
+ */
+export interface LinkAsButtonStandAloneProps
+  extends Omit<ButtonStandAloneProps, 'showLoader'> {
   children: string | JSX.Element;
   component?: TextComponentType | GenericLinkType;
+  fullWidth?: boolean;
   url: string;
-  state: ButtonStateType;
+  state: Extract<
+    StateType,
+    'loading' | 'disabled' | 'pressed' | 'default' | 'hover'
+  >;
   target?: string;
-  role?: string;
+  rel?: string;
+  role?: React.AriaRole;
+  ariaLabelText?: string;
+  cssLinkAsButtonClasses?: LinkAsButtonCssClasses;
 }
 
-export interface ILinkAsButton
-  extends Omit<ILinkAsButtonStandAlone, 'styles' | 'sizeStyles' | 'state' | 'component'> {
+/**
+ * Interface for the LinkAsButton component with a variant.
+ * Extends the LinkAsButtonStandAloneProps interface and adds size, variant, and additional CSS classes.
+ */
+export interface LinkAsButtonProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<LinkAsButtonStandAloneProps, 'component'> {
   size: string;
-  variant: string;
+  variant?: Variant;
   disabled?: boolean;
+  additionalClasses?: Partial<LinkCssClasses>;
+  additionalVariantClasses?: Partial<ButtonCssClasses>;
+  additionalSizeClasses?: Partial<ButtonCssClasses>;
 }

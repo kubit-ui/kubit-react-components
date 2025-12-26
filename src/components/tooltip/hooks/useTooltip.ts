@@ -1,29 +1,44 @@
-import * as React from 'react';
+import {
+  type MutableRefObject,
+  type RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
-import { useEscPressed, useMediaDevice, useStyles } from '@/hooks';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
-import { focusElementOrFirstDescendant } from '@/utils';
+import { type Coords, arrow, flip, shift } from '@floating-ui/dom';
 
-import { TOOLTIP_STYLES } from '../constants';
-// floating
-import { arrow, computePosition, flip, shift } from '../positioning';
-import { Coords } from '../positioning/types';
-import { TooltipAlignType, TooltipVariantStylesProps } from '../types';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { useClickOutside } from '@/lib/hooks/useClickOutside/useClickOutside';
+import { useEscPressed } from '@/lib/hooks/useEscPressed/useEscPressed';
+import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
+import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
+import { POSITIONS } from '@/lib/types/positions/positions';
 
-type UseTooltipType<V> = {
-  labelRef: React.RefObject<HTMLDivElement>;
-  tooltipRef: React.RefObject<HTMLDivElement>;
-  variant: V;
+import { focusElementOrFirstDescendant } from '../../../lib/utils/focusHandlers/focusHandlers';
+import { computePosition } from '../positioning/computePosition';
+import type { TooltipCssClasses } from '../types/tooltip';
+import type { TooltipAlignType } from '../types/tooltipAlign';
+
+interface UseTooltipType<Variant> {
+  labelRef: RefObject<HTMLDivElement>;
+  tooltipRef: RefObject<HTMLDivElement>;
+  variant?: Variant;
   onOpenClose?: (open: boolean) => void;
-  align?: TooltipAlignType;
-} & Omit<CustomTokenTypes<TooltipVariantStylesProps>, 'cts' | 'extraCt'>;
+  align?: `${TooltipAlignType}` | string;
+  tooltipAsModal?: boolean;
+  additionalClasses?: Partial<TooltipCssClasses>;
+  cssClasses?: TooltipCssClasses;
+}
 
-type UseTooltipReturnType = {
+interface UseTooltipReturnType {
   showTooltip: () => void;
   hideTooltip: () => void;
-  allowFocusOpenTooltip: React.MutableRefObject<boolean>;
+  allowFocusOpenTooltip: MutableRefObject<boolean>;
   open: boolean;
-};
+  placement: `${TooltipAlignType}` | string;
+}
 
 /**
  * @name useTooltip
@@ -32,33 +47,119 @@ type UseTooltipReturnType = {
  * @param {UseTooltipType} props
  * @returns {UseTooltipReturnType}
  */
-export const useTooltip = <V>({
-  align = TooltipAlignType.TOP,
+export const useTooltip = <Variant>({
+  align = POSITIONS.TOP,
   ...props
-}: UseTooltipType<V>): UseTooltipReturnType => {
-  const mediaDevice = useMediaDevice();
-  const lastFocus = React.useRef<HTMLElement | null>(null);
+}: UseTooltipType<Variant>): UseTooltipReturnType => {
+  const { device: mediaDevice, isDesktop, isTablet } = useActiveBreakpoints();
+  const isDesktopOrTablet = isDesktop || isTablet;
+
+  const lastFocus = useRef<HTMLElement | null>(null);
   // Avoid tooltip is opened automatically after closing the tooltip
-  const allowFocusOpenTooltip = React.useRef(true);
-  const openRef = React.useRef(false);
-  const [open, setOpen] = React.useState(false);
+  const allowFocusOpenTooltip = useRef(true);
+  const openRef = useRef(false);
+  const [open, setOpen] = useState(false);
+  const [placement, setPlacement] = useState(align);
 
-  // Need the styles to calc the arrow tooltip position
-  const styles = useStyles<TooltipVariantStylesProps, V>(TOOLTIP_STYLES, props.variant, props.ctv);
+  // Need the styles to calculate the arrow tooltip position
+  const cssClasses = useClassName({
+    additionalClassNames: props.additionalClasses,
+    component: 'TOOLTIP',
+    variant: props.variant as string,
+  });
 
-  // Avoid to show tooltip when scrolling
-  React.useEffect(() => {
-    window.addEventListener('scroll', onScroll, true);
-    return () => {
-      window.removeEventListener('scroll', onScroll, true);
-    };
-  }, []);
+  // This function calculates the position where the tooltip should be displayed
+  const updateTooltipPosition = async () => {
+    if (!props.labelRef.current || !props.tooltipRef.current) {
+      return;
+    }
+    const arrowElement = props.tooltipRef.current.lastElementChild;
+
+    try {
+      const position = await computePosition(
+        props.labelRef.current,
+        props.tooltipRef.current,
+        {
+          // Offset is handle internally with a padding
+          // Avoiding onMouseLeave label close the tooltip when you want to put the mouse inside
+          middleware: [
+            // Offset is handle internally with a padding
+            // Avoiding onMouseLeave label close the tooltip when you want to put the mouse inside
+            // Flip placement if there's not enough space
+            flip(),
+            // Shift the tooltip if it would overflow the viewport
+            // This prevents tooltips from being cut off at screen edges
+            shift({ padding: 4 }),
+            // Position the arrow correctly
+            arrow({ element: arrowElement as HTMLElement }),
+          ],
+          placement: align as TooltipAlignType,
+          strategy: 'absolute',
+        },
+      );
+      const { middlewareData, placement: computedPlacement, x, y } = position;
+
+      setPlacement(computedPlacement);
+
+      // Apply the position calculated by floating-ui directly
+      // The shift middleware will have already handled keeping the tooltip in the viewport
+      Object.assign(props.tooltipRef.current.style, {
+        left: `${x}px`,
+        top: `${y}px`,
+      });
+
+      // Arrow position is calculated correctly by the arrow middleware
+      // We can use these values directly
+      const { x: arrowX, y: arrowY } = middlewareData.arrow as Partial<Coords>;
+
+      const staticSide = {
+        bottom: POSITIONS.TOP,
+        left: POSITIONS.RIGHT,
+        right: POSITIONS.LEFT,
+        top: POSITIONS.BOTTOM,
+      }[placement.split('-')[0]];
+      const arrowStyle = {
+        bottom: '',
+        left: arrowX !== null ? `${arrowX}px` : '',
+        right: '',
+        [staticSide as string]: `calc(${cssClasses.tooltipexternalcontainer?.[DEVICE_BREAKPOINTS.DESKTOP]?.padding ?? 0} - ${
+          cssClasses.arrowposition?.[DEVICE_BREAKPOINTS.DESKTOP]?.top ?? '0px'
+        } / 2)`,
+        top: arrowY !== null ? `${arrowY}px` : '',
+      };
+
+      if (arrowElement && (arrowElement as HTMLElement).style) {
+        (arrowElement as HTMLElement).style.removeProperty('left');
+        (arrowElement as HTMLElement).style.removeProperty('top');
+        (arrowElement as HTMLElement).style.removeProperty('right');
+        (arrowElement as HTMLElement).style.removeProperty('bottom');
+        Object.assign((arrowElement as HTMLElement)?.style, arrowStyle);
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error computing position:', error);
+    }
+  };
 
   const onScroll = (e: Event) => {
     if (!props.tooltipRef.current?.contains(e.target as Node)) {
-      hideTooltip();
+      updateTooltipPosition();
     }
   };
+
+  // Avoid showing tooltip when scrolling
+  useEffect(() => {
+    const handleResize = () => {
+      updateTooltipPosition();
+    };
+
+    window.addEventListener('scroll', onScroll, true);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', onScroll, true);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const showTooltip = () => {
     if (openRef.current) {
@@ -67,28 +168,33 @@ export const useTooltip = <V>({
     openRef.current = true;
     // Save last focusable element
     lastFocus.current = document.activeElement as HTMLElement;
-    if (mediaDevice === DeviceBreakpointsType.DESKTOP) {
+    if (isDesktopOrTablet) {
       if (!props.tooltipRef.current) {
         return;
       }
       props.tooltipRef.current.style.display = 'flex';
       updateTooltipPosition();
-      focusElementOrFirstDescendant(props.tooltipRef.current);
+      focusElementOrFirstDescendant(props.tooltipRef.current, {
+        preventScroll: true,
+      });
     }
     setOpen(true);
     props.onOpenClose?.(true);
   };
 
-  const hideTooltip = React.useCallback(() => {
+  const hideTooltip = useCallback(() => {
     if (!openRef.current) {
       return;
     }
     // Apply focus in last focusable element
     openRef.current = false;
     allowFocusOpenTooltip.current = false;
-    lastFocus.current?.focus();
+    // Only focus in the last element if the tooltip is a modal
+    if (props.tooltipAsModal) {
+      lastFocus.current?.focus({ preventScroll: true });
+    }
     allowFocusOpenTooltip.current = true;
-    if (mediaDevice === DeviceBreakpointsType.DESKTOP) {
+    if (isDesktopOrTablet) {
       if (!props.tooltipRef.current) {
         return;
       }
@@ -96,65 +202,29 @@ export const useTooltip = <V>({
     }
     setOpen(false);
     props.onOpenClose?.(false);
-  }, [mediaDevice, props.onOpenClose]);
+  }, [mediaDevice, props.onOpenClose, props.tooltipAsModal]);
 
-  // Because desktop do not use popover component, we need to manually call manually to close on scape functionality
-  useEscPressed({ element: props.labelRef, execute: hideTooltip });
-
-  // This function calc the position position where the tooltip should be displayed
-  // eslint-disable-next-line complexity
-  const updateTooltipPosition = () => {
-    if (!props.labelRef.current || !props.tooltipRef.current) {
-      return;
-    }
-    const arrowElement = props.tooltipRef.current.lastElementChild;
-
-    const { x, y, placement, middlewareData } = computePosition(
-      props.labelRef.current,
-      props.tooltipRef.current,
-      {
-        placement: align,
-        middleware: [
-          // Offset is handle internally with a padding
-          // Avoiding onMouseLeave label close the tooltip when you want to put the mouse inside
-          // offset(props.styles.DESKTOP?.tooltip_offset),
-          flip(),
-          shift({ crossAxis: true }),
-          arrow({ element: arrowElement as Element }),
-        ],
+  const handleEscPress = useCallback(
+    (event: KeyboardEvent) => {
+      if (!openRef.current) {
+        return;
       }
-    );
-    Object.assign(props.tooltipRef.current.style, {
-      left: `${x}px`,
-      top: `${y}px`,
-    });
-    // Arrow pos
-    const { x: arrowX, y: arrowY } = middlewareData.arrow as Partial<Coords>;
-    const staticSide = {
-      top: 'bottom',
-      right: 'left',
-      bottom: 'top',
-      left: 'right',
-    }[placement.split('-')[0]];
+      // Only stop propagation if the tooltip is opened and its going to be closed
+      event.stopPropagation();
+      hideTooltip();
+    },
+    [hideTooltip],
+  );
 
-    const arrowStyle = {
-      left: arrowX !== null ? `${arrowX}px` : '',
-      top: arrowY !== null ? `${arrowY}px` : '',
-      right: '',
-      bottom: '',
-      [staticSide as string]: `calc(${styles.tooltipExternalContainer?.[DeviceBreakpointsType.DESKTOP]?.padding ?? 0} - ${
-        styles.arrowContainer?.arrow_position ?? '0px'
-      } / 2)`,
-    };
+  // Because desktop do not use popover component, we need to manually call manually to close on scape and click outside functionality
+  useEscPressed({
+    disableStopPropagation: true,
+    onEscPress: handleEscPress,
+    ref: props.labelRef,
+  });
 
-    if (arrowElement && (arrowElement as HTMLElement).style) {
-      (arrowElement as HTMLElement).style.removeProperty('left');
-      (arrowElement as HTMLElement).style.removeProperty('top');
-      (arrowElement as HTMLElement).style.removeProperty('right');
-      (arrowElement as HTMLElement).style.removeProperty('bottom');
-      Object.assign((arrowElement as HTMLElement)?.style, arrowStyle);
-    }
-  };
+  // Prevent to be closed when clicking the label, it will be handled by the tooltip label click in order to open/close the tooltip
+  useClickOutside(props.tooltipRef, hideTooltip, [props.labelRef.current]);
 
-  return { showTooltip, hideTooltip, allowFocusOpenTooltip, open };
+  return { allowFocusOpenTooltip, hideTooltip, open, placement, showTooltip };
 };

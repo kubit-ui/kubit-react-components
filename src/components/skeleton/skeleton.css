@@ -1,0 +1,20 @@
+@keyframes breatheAnimation {
+  from {
+    background-position-x: 0%;
+  }
+
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.kbt-skeleton {
+  width: var(--skeleton-width, 100%);
+  height: var(--skeleton-height, 20px);
+  animation-name: breatheAnimation;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: var(--skeleton-duration, 2s);
+  animation-delay: 1ms;
+  background-size: 200% 100%;
+}

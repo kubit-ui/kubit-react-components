@@ -1,41 +1,21 @@
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types/styles';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
 /**
- * @description
- * interface for the accordion prop styles
- * @interface AccordionPropsStylesType
- * @extends {CommonStyleType}
- * @extends {IconTypes}
- * @extends {TypographyTypes}
+ * Interface representing the styles for the container component.
  */
-export type AccordionPropsStylesType = {
-  container?: CommonStyleType;
-  decorative?: CommonStyleType;
-  headerExternalContainer?: CommonStyleType;
-  headerInternalContainer?: CommonStyleType;
-  headerMainContainer?: CommonStyleType;
-  trigger?: CommonStyleType;
-  link?: CommonStyleType;
-  triggerIconContainer?: CommonStyleType;
-  triggerIcon?: IconTypes;
-  subHeader?: CommonStyleType;
-  content?: CommonStyleType;
-  panel?: CommonStyleType;
-  footer?: CommonStyleType;
-  titleContainer?: CommonStyleType;
-  titleIconContainer?: CommonStyleType;
-  title?: TypographyTypes;
-  titleIcon?: IconTypes;
-  headerRightContentContainer?: CommonStyleType;
-  lineSeparatorContainer?: CommonStyleType & { variant?: string };
-};
+export interface AccordionStyleProps extends CssLibPropsType {
+  _header?: CssLibPropsType;
+  _headerButton?: CssLibPropsType;
+  _content?: CssLibPropsType;
+  _innerContent?: CssLibPropsType;
+}
 
 /**
- * @description
- * interface for the accordion styles
- * @template V
- * @interface AccordionStylesType
+ * Type representing the styles for different variants of the container component.
+ *
+ * @template Variant - The type of the variant keys.
  */
-export type AccordionStylesType<V extends string | number | symbol> = {
-  [key in V]: AccordionPropsStylesType;
-};
+export type AccordionVariantStyles<Variant extends string> =
+  AccordionStyleProps & {
+    [key in Variant]: AccordionStyleProps;
+  };

@@ -1,11 +1,11 @@
-import { StepperNumberprefixSuffixType } from '../types';
+import type { StepperNumberprefixSuffixProps } from '../types/prefixSuffix';
 
 const concatPrefixSuffix = (
   index: number,
   maxSteps: number,
   currentStep: number,
   currentLiAriaLabel: string,
-  prefixSuffixAriaLabel: StepperNumberprefixSuffixType | undefined
+  prefixSuffixAriaLabel: StepperNumberprefixSuffixProps | undefined,
 ) => {
   let ariaLabel;
 
@@ -29,12 +29,18 @@ export const buildScreenReaderText = (
   index: number,
   currentStep: number,
   maxSteps: number,
-  prefixSuffixAriaLabel: StepperNumberprefixSuffixType | undefined,
+  prefixSuffixAriaLabel: StepperNumberprefixSuffixProps | undefined,
   curentLiAriaLabel: string,
-  isVertical: boolean
+  isVertical: boolean,
 ): string | undefined => {
   if (!isVertical) {
     return undefined;
   }
-  return concatPrefixSuffix(index, maxSteps, currentStep, curentLiAriaLabel, prefixSuffixAriaLabel);
+  return concatPrefixSuffix(
+    index,
+    maxSteps,
+    currentStep,
+    curentLiAriaLabel,
+    prefixSuffixAriaLabel,
+  );
 };

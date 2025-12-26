@@ -1,61 +1,46 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
 import { StepperNumberStandAlone } from './stepperNumberStandAlone';
-import {
-  IStepperNumber,
-  IStepperNumberStandAlone,
-  StepperNumberDimensionStylesType,
-  StepperNumberOrientationType,
-} from './types';
+import type { StepperNumberProps } from './types/stepperNumber';
 
-const STEPPER_NUMBER_STYLES = 'STEPPER_NUMBER_STYLES';
+const STEPPER_NUMBER = 'STEPPER_NUMBER';
 
-const StepperNumberComponent = React.forwardRef(
-  <V extends string | unknown>(
+export const StepperNumber = forwardRef<
+  HTMLDivElement,
+  StepperNumberProps<string>
+>(
+  (
     {
+      additionalOrientationClasses,
+      additionalVariantClasses,
+      orientation = 'horizontal',
       variant,
-      orientation = StepperNumberOrientationType.HORIZONTAL,
-      ctv,
       ...props
-    }: IStepperNumber<V>,
-    ref: React.ForwardedRef<HTMLElement> | undefined | null
-  ): JSX.Element => {
-    const stylesOrientation = useStyles<StepperNumberDimensionStylesType, V>(
-      STEPPER_NUMBER_STYLES,
+    },
+    ref,
+  ) => {
+    const cssVariantClasses = useClassName({
+      additionalClassNames: additionalVariantClasses,
+      component: STEPPER_NUMBER,
       variant,
-      ctv
-    );
-    const styles = stylesOrientation?.[orientation];
+    });
+
+    const cssOrientationClasses = useClassName({
+      additionalClassNames: additionalOrientationClasses,
+      component: STEPPER_NUMBER,
+      variant: orientation,
+    });
 
     return (
-      <StepperNumberStandAlone {...props} ref={ref} orientation={orientation} styles={styles} />
+      <StepperNumberStandAlone
+        {...props}
+        ref={ref}
+        cssOrientationClasses={cssOrientationClasses}
+        cssVariantClasses={cssVariantClasses}
+        orientation={orientation}
+      />
     );
-  }
+  },
 );
-StepperNumberComponent.displayName = 'StepperNumberComponent';
-
-const StepperNumberBoundary = <V extends string | unknown>(
-  props: IStepperNumber<V>,
-  ref: React.ForwardedRef<HTMLElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <StepperNumberStandAlone {...(props as unknown as IStepperNumberStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <StepperNumberComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-const StepperNumber = React.forwardRef(StepperNumberBoundary) as <V extends string | unknown>(
-  props: IStepperNumber<V> & {
-    ref?: React.ForwardedRef<HTMLElement> | undefined | null;
-  }
-) => ReturnType<typeof StepperNumberBoundary>;
-
-export { StepperNumber };

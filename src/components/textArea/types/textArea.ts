@@ -1,34 +1,35 @@
-import React from 'react';
+import type { AriaAttributes } from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILabelStandAlone } from '@/components/label';
-import { IText } from '@/components/text/types';
-import { AriaLiveOptionType, CustomTokenTypes } from '@/types';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { TextAreaStateType } from './state';
-import { TextAreaVariantStylesType } from './textAreaTheme';
-import { TextAreaTitleComponentType } from './titleComponent';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
+import type { TextAreaStateType } from './state';
 
-export interface ITextAreaStyled {
-  styles?: TextAreaVariantStylesType;
+export type TextAreaCssClasses = ComponentSelected<
+  ComponentsTypesComponents['TEXT_AREA']
+>;
+/**
+ * Represents the styles and state for the TextArea component.
+ */
+export interface TextAreaStyledProps {
+  styles?: TextAreaCssClasses;
   state: TextAreaStateType;
 }
 
-export type TextAreaTitleType = Omit<IText<string>, 'children' | 'component'> & {
-  content: string;
-  component?: TextAreaTitleComponentType;
-};
-
-export type TextAreaTextType = Omit<IText<string>, 'children'> & {
-  content: string;
-};
-
-export type TextAreaLabelType = Omit<ILabelStandAlone, 'children' | 'inputId'> & {
-  content: string;
-};
-
-export interface ITextAreaStandAlone extends ITextAreaStyled {
-  label: TextAreaLabelType;
+/**
+ * Interface for the standalone TextArea component.
+ * Includes properties for labels, state, event handlers, and CSS classes.
+ */
+export interface TextAreaStandAloneProps
+  extends TextAreaStyledProps,
+    DataAttributes {
+  cssClasses?: TextAreaCssClasses;
+  label: CommonTextProps;
   additionalInfo?: React.ReactNode;
   placeholder: string;
   maxLength: number;
@@ -37,23 +38,35 @@ export interface ITextAreaStandAlone extends ITextAreaStyled {
   onBlur: React.FocusEventHandler<HTMLTextAreaElement>;
   id?: string;
   required?: boolean;
-  title?: TextAreaTitleType;
-  errorIcon?: IElementOrIcon;
+  title?: CommonTextProps;
+  errorIcon?: ElementOrIconProps;
   value?: string;
-  errorMessage?: TextAreaTextType;
-  errorAriaLiveType?: AriaLiveOptionType;
-  helpMessage?: TextAreaTextType;
+  errorMessage?: CommonTextProps;
+  errorAriaLiveType?: AriaAttributes['aria-live'];
+  helpMessage?: CommonTextProps;
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
   height?: string;
-  dataTestId?: string;
+  spellCheck?: boolean;
+  labelInsideTextArea?: boolean;
+  counterVariant: string;
 }
 
-export interface ITextArea<V = undefined extends string ? unknown : string>
-  extends Omit<ITextAreaStandAlone, 'styles' | 'state' | 'onFocus' | 'onBlur'>,
-    Omit<CustomTokenTypes<TextAreaVariantStylesType>, 'cts' | 'extraCt'> {
-  variant: V;
+/**
+ * Interface for the TextArea component with a variant.
+ * Extends the TextAreaStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the TextArea.
+ */
+export interface TextAreaProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<
+    TextAreaStandAloneProps,
+    'cssClasses' | 'state' | 'onFocus' | 'onBlur'
+  > {
+  variant?: Variant;
   disabled?: boolean;
   error?: boolean;
   onFocus?: React.FocusEventHandler<HTMLTextAreaElement>;
   onBlur?: React.FocusEventHandler<HTMLTextAreaElement>;
+  additionalClasses?: Partial<TextAreaCssClasses>;
 }

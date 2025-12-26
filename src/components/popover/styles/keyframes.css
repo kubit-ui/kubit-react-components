@@ -1,0 +1,421 @@
+/**
+ * CSS animations for popover positioning
+ * Each animation corresponds to a specific body position from positionStyles.ts
+ */
+
+/* ========================================
+   CENTER POSITION ANIMATIONS
+   ======================================== */
+
+/* Center position - scales from center */
+@keyframes popover-enter-center {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes popover-exit-center {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+/* ========================================
+   TOP POSITION ANIMATIONS
+   ======================================== */
+
+/* Top center - slides down and fades in */
+@keyframes popover-enter-top {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes popover-exit-top {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+}
+
+/* Top start (left) - slides down only (same as top) */
+@keyframes popover-enter-top-start {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popover-exit-top-start {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Top end (right) - slides down only (same as top) */
+@keyframes popover-enter-top-end {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popover-exit-top-end {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* ========================================
+   BOTTOM POSITION ANIMATIONS
+   ======================================== */
+
+/* Bottom center - slides up and fades in */
+@keyframes popover-enter-bottom {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes popover-exit-bottom {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+}
+
+/* Bottom start (left) - slides up only (same as bottom) */
+@keyframes popover-enter-bottom-start {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popover-exit-bottom-start {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* Bottom end (right) - slides up only (same as bottom) */
+@keyframes popover-enter-bottom-end {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popover-exit-bottom-end {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* ========================================
+   LEFT POSITION ANIMATIONS
+   ======================================== */
+
+/* Left center - slides right and fades in */
+@keyframes popover-enter-left {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+@keyframes popover-exit-left {
+  from {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-20px);
+  }
+}
+
+/* Left start (top) - slides right only (same as left) */
+@keyframes popover-enter-left-start {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes popover-exit-left-start {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+/* Left end (bottom) - slides right only (same as left) */
+@keyframes popover-enter-left-end {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes popover-exit-left-end {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+/* ========================================
+   RIGHT POSITION ANIMATIONS
+   ======================================== */
+
+/* Right center - slides left and fades in */
+@keyframes popover-enter-right {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+@keyframes popover-exit-right {
+  from {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px);
+  }
+}
+
+/* Right start (top) - slides left only (same as right) */
+@keyframes popover-enter-right-start {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes popover-exit-right-start {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+/* Right end (bottom) - slides left only (same as right) */
+@keyframes popover-enter-right-end {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes popover-exit-right-end {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+/* ========================================
+   NOTE: No default animation needed
+   ======================================== */
+/* When no placement is specified, center animation is used as fallback */
+
+/* ========================================
+   UTILITY CLASSES FOR APPLYING ANIMATIONS
+   ======================================== */
+
+/* Animation duration and timing */
+.popover-animate {
+  animation-duration: 200ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards;
+}
+
+/* Enter animations by position */
+.popover-enter-center {
+  animation-name: popover-enter-center;
+}
+.popover-enter-top {
+  animation-name: popover-enter-top;
+}
+.popover-enter-top-start {
+  animation-name: popover-enter-top-start;
+}
+.popover-enter-top-end {
+  animation-name: popover-enter-top-end;
+}
+.popover-enter-bottom {
+  animation-name: popover-enter-bottom;
+}
+.popover-enter-bottom-start {
+  animation-name: popover-enter-bottom-start;
+}
+.popover-enter-bottom-end {
+  animation-name: popover-enter-bottom-end;
+}
+.popover-enter-left {
+  animation-name: popover-enter-left;
+}
+.popover-enter-left-start {
+  animation-name: popover-enter-left-start;
+}
+.popover-enter-left-end {
+  animation-name: popover-enter-left-end;
+}
+.popover-enter-right {
+  animation-name: popover-enter-right;
+}
+.popover-enter-right-start {
+  animation-name: popover-enter-right-start;
+}
+.popover-enter-right-end {
+  animation-name: popover-enter-right-end;
+}
+
+/* Exit animations by position */
+.popover-exit-center {
+  animation-name: popover-exit-center;
+}
+.popover-exit-top {
+  animation-name: popover-exit-top;
+}
+.popover-exit-top-start {
+  animation-name: popover-exit-top-start;
+}
+.popover-exit-top-end {
+  animation-name: popover-exit-top-end;
+}
+.popover-exit-bottom {
+  animation-name: popover-exit-bottom;
+}
+.popover-exit-bottom-start {
+  animation-name: popover-exit-bottom-start;
+}
+.popover-exit-bottom-end {
+  animation-name: popover-exit-bottom-end;
+}
+.popover-exit-left {
+  animation-name: popover-exit-left;
+}
+.popover-exit-left-start {
+  animation-name: popover-exit-left-start;
+}
+.popover-exit-left-end {
+  animation-name: popover-exit-left-end;
+}
+.popover-exit-right {
+  animation-name: popover-exit-right;
+}
+.popover-exit-right-start {
+  animation-name: popover-exit-right-start;
+}
+.popover-exit-right-end {
+  animation-name: popover-exit-right-end;
+}

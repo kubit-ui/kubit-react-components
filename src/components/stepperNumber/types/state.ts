@@ -1,5 +1,6 @@
-export enum StepperNumberStateType {
-  ACTIVE = 'ACTIVE',
-  COMPLETED = 'COMPLETED',
-  INACTIVE = 'INACTIVE',
-}
+import type { StateType } from '@/lib/types/states/states';
+
+export type StepperNumberStateType = Extract<
+  StateType,
+  'default' | 'completed' | 'inactive' | 'active'
+>;

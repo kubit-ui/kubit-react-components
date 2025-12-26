@@ -1,87 +1,100 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef, useCallback, useRef } from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useMediaDevice, useScrollEffect, useStyles, useZoomEffect } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { DeviceBreakpointsType } from '@/types';
-import { CssProperty } from '@/utils';
+import { syncInnerAndForwardedRef } from '@/lib/hooks/syncRefs/syncRefs';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { useContentVisibility } from '@/lib/hooks/useContentVisibility/useContentVisibility';
+import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
+import { useScrollDetectionWithAutoFocus } from '@/lib/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
+import { useScrollEffect } from '@/lib/hooks/useScrollEffect/useScrollEffect';
+import { useSwipeDown } from '@/lib/hooks/useSwipeDown/useSwipeDown';
 
-import { Portal } from '../portal';
+import { Portal } from '../portal/portal';
 import { ModalStandAlone } from './modalStandAlone';
-import type { IModalControlled, IModalStandAlone, ModalBaseStylesType } from './types';
+import type { ModalControlledProps } from './types/modal';
 
-const MAX_ZOOM = 2.9;
-const CONTAINER_STYLES_EDIT: CssProperty[] = [
-  { cssPropertyName: 'overflow-y', cssPropertyValue: 'auto' },
-];
-const CONTENT_STYLES_EDIT: CssProperty[] = [
-  { cssPropertyName: 'overflow-y', cssPropertyValue: 'unset' },
-  { cssPropertyName: 'max-height', cssPropertyValue: 'unset' },
-];
-
-const ModalControlledComponent = React.forwardRef(
-  <V extends string | unknown>(
-    { variant, ctv, portalId, ...props }: IModalControlled<V>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+export const ModalControlled = forwardRef(
+  <Variant extends string>(
+    {
+      additionalClasses,
+      disableFocusableContent = false,
+      onClose,
+      popover,
+      portalId,
+      variant,
+      ...props
+    }: ModalControlledProps<Variant>,
+    ref: ForwardedRef<HTMLDivElement> | undefined | null,
   ): JSX.Element => {
-    const styles = useStyles<ModalBaseStylesType, V>(STYLES_NAME.MODAL, variant, ctv);
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'MODAL',
+      variant,
+    });
     const device = useMediaDevice();
-
-    const condition = React.useMemo(
-      () =>
-        device !== DeviceBreakpointsType.DESKTOP && device !== DeviceBreakpointsType.LARGE_DESKTOP,
-      [device]
+    const innerRef = useRef<HTMLDivElement | null>(null);
+    const {
+      scrollableRef: handleContentScrollEffect,
+      shadowRef: handleHeaderShadowEffect,
+    } = useScrollEffect({
+      shadowStyles: /* styles?.headerContainer?.box_shadow*/ 'none',
+    });
+    const { handleContentVisibility } = useContentVisibility({});
+    const { setDragIconRef: handleDraggableIconSwipeDown } = useSwipeDown(
+      undefined,
+      () => onClose?.(),
     );
-    const { scrollableRef, resizeRef, shadowRef } = useScrollEffect(
-      condition,
-      styles.headerContainer?.box_shadow
-    );
 
-    const zoomRef = useZoomEffect(CONTAINER_STYLES_EDIT, MAX_ZOOM);
-    const zoomRefChild = useZoomEffect(CONTENT_STYLES_EDIT, MAX_ZOOM);
+    // const { setDragIconRef: handleDraggableIconSwipeDown, setPopoverRef: handlePopoverSwipeDown } =
+    // useSwipeDown(props.popover?.animationOptions, () => props.onClose?.());
 
+    const {
+      handleScrollDetection: handleContentScrollDetection,
+      hasScroll: contentHasScroll,
+    } = useScrollDetectionWithAutoFocus({
+      disabled: disableFocusableContent,
+      parentElementRef: innerRef,
+    });
+    const handleInnerRef = useCallback((node) => {
+      innerRef.current = node;
+      syncInnerAndForwardedRef({ forwardedRef: ref, innerRef });
+      const modalHeader = innerRef.current?.querySelector(
+        '[data-modal-header]',
+      ) as HTMLElement | null;
+      const modalContent = innerRef.current?.querySelector(
+        '[data-modal-content]',
+      ) as HTMLElement | null;
+      const modalDraggableIcon = innerRef.current?.querySelector(
+        '[data-modal-draggable-icon]',
+      ) as HTMLElement | null | undefined;
+      handleHeaderShadowEffect(modalHeader);
+      handleContentVisibility({
+        container: innerRef.current,
+        content: modalContent,
+      });
+      handleContentScrollEffect(modalContent);
+      handleContentScrollDetection(modalContent);
+      handleDraggableIconSwipeDown(modalDraggableIcon);
+    }, []);
+    const handlePopoverCloseInternally = () => {
+      onClose?.();
+    };
     const modalStructure = (
       <ModalStandAlone
         {...props}
-        ref={ref}
+        ref={handleInnerRef}
+        contentHasScroll={contentHasScroll}
+        cssClasses={cssClasses}
         device={device}
-        resizeRef={resizeRef}
-        scrollableRef={scrollableRef}
-        shadowRef={shadowRef}
-        styles={styles}
-        zoomRef={zoomRef}
-        zoomRefChild={zoomRefChild}
+        popover={{
+          ...popover,
+        }}
+        onPopoverCloseInternally={handlePopoverCloseInternally}
       />
     );
-
-    return portalId ? <Portal wrapperId={portalId}>{modalStructure}</Portal> : modalStructure;
-  }
+    return portalId ? (
+      <Portal wrapperId={portalId}>{modalStructure}</Portal>
+    ) : (
+      modalStructure
+    );
+  },
 );
-ModalControlledComponent.displayName = 'ModalControlledComponent';
-
-const ModalBoundary = <V extends string | unknown>(
-  { portalId, ...props }: IModalControlled<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => {
-  const modalStructure = <ModalStandAlone {...(props as unknown as IModalStandAlone)} ref={ref} />;
-
-  return (
-    <ErrorBoundary
-      fallBackComponent={
-        <FallbackComponent>
-          {portalId ? <Portal wrapperId={portalId}>{modalStructure}</Portal> : modalStructure}
-        </FallbackComponent>
-      }
-    >
-      <ModalControlledComponent {...props} ref={ref} portalId={portalId} />
-    </ErrorBoundary>
-  );
-};
-
-const ModalControlled = React.forwardRef(ModalBoundary) as <V extends string | unknown>(
-  props: React.PropsWithChildren<IModalControlled<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => ReturnType<typeof ModalBoundary>;
-
-export { ModalControlled };

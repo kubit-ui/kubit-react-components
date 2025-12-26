@@ -1,126 +1,84 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef, useEffect, useState } from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStyles } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
 import { CalendarStandAlone } from './calendarStandAlone';
-import { CalendarVariantType, ICalendar, ICalendarStandAlone } from './types';
-import { CalendarContainerStylesType } from './types/calendarTheme';
+import type { CalendarProps } from './types/calendar';
 
-const CalendarComponent = React.forwardRef(
-  <V extends string | unknown | CalendarVariantType>(
+export const Calendar = forwardRef(
+  <Variant extends string>(
     {
-      hasRange = false,
-      variant = CalendarVariantType.DEFAULT,
-      maxDate = new Date(),
+      additionalClasses,
       defaultCurrentDate,
+      hasRange = false,
+      maxDate = new Date(),
       onSelectedDateChange,
-      ctv,
+      secondSelectedDate,
+      selectedDate,
+      variant = 'default',
       ...props
-    }: ICalendar<V>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+    }: CalendarProps<Variant>,
+    ref: ForwardedRef<HTMLDivElement> | undefined | null,
   ): JSX.Element => {
-    const styles = useStyles<CalendarContainerStylesType, V | CalendarVariantType>(
-      STYLES_NAME.CALENDAR,
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'CALENDAR',
       variant,
-      ctv
-    );
-
-    const getCurrentDate = () => {
-      const _defaultCurrentDate = defaultCurrentDate ?? new Date();
-
-      if (!hasRange && props.selectedDate) {
-        return props.selectedDate;
-      }
-      if (date[1]) {
-        return date[1];
-      } else if (date[0]) {
-        return date[0];
-      }
-
-      return _defaultCurrentDate;
-    };
-
+    });
     const getInitialDate = () => {
       let initialDate;
-
       if (hasRange) {
         initialDate = [
-          props.selectedDate ? props.selectedDate : null,
-          props.secondSelectedDate ? props.secondSelectedDate : null,
+          selectedDate ? selectedDate : null,
+          secondSelectedDate ? secondSelectedDate : null,
         ];
-      } else if (props.selectedDate) {
+      } else if (selectedDate) {
         try {
-          initialDate = [props.selectedDate];
+          initialDate = [selectedDate];
         } catch {
           initialDate = [null];
         }
       } else {
         initialDate = [null];
       }
-
       return initialDate;
     };
-
-    React.useEffect(() => {
+    const [date, setDate] = useState(getInitialDate());
+    const getCurrentDate = () => {
+      const _defaultCurrentDate = defaultCurrentDate ?? new Date();
+      if (!hasRange && selectedDate) {
+        return selectedDate;
+      }
+      if (date[1]) {
+        return date[1];
+      }
+      if (date[0]) {
+        return date[0];
+      }
+      return _defaultCurrentDate;
+    };
+    const [currentDate, setCurrentDate] = useState(getCurrentDate());
+    useEffect(() => {
       setDate(getInitialDate());
-    }, [props.selectedDate]);
-
-    const [date, setDate] = React.useState(getInitialDate());
-    const [currentDate, setCurrentDate] = React.useState(getCurrentDate());
-
-    React.useEffect(() => {
+    }, [selectedDate]);
+    useEffect(() => {
       setCurrentDate(getCurrentDate());
     }, [defaultCurrentDate]);
-
     return (
       <CalendarStandAlone
         {...props}
         ref={ref}
+        cssClasses={cssClasses}
         currentDate={currentDate}
         hasRange={hasRange}
         maxDate={maxDate}
         selectedDate={date}
         setCurrentDate={setCurrentDate}
-        setSelectedDate={date => {
-          setDate(date);
-          onSelectedDateChange?.(date);
+        setSelectedDate={(newSelectedDate) => {
+          setDate(selectedDate);
+          onSelectedDateChange?.(newSelectedDate);
         }}
-        styles={styles}
       />
     );
-  }
+  },
 );
-CalendarComponent.displayName = 'CalendarComponent';
-
-const CalendarBoundary = <V extends string | unknown | CalendarVariantType>(
-  props: ICalendar<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <CalendarStandAlone {...(props as unknown as ICalendarStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <CalendarComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-/**
- * @description
- * Calendar component is a selector of dates, that includes a month and year selector.
- * @param {React.PropsWithChildren<ICalendar<V>>} props
- * @returns {JSX.Element}
- */
-const Calendar = React.forwardRef(CalendarBoundary) as <
-  V extends string | unknown | CalendarVariantType,
->(
-  props: React.PropsWithChildren<ICalendar<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => ReturnType<typeof CalendarBoundary>;
-
-export { Calendar };

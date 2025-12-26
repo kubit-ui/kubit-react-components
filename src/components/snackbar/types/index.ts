@@ -1,5 +1,4 @@
-export * from './snackbar';
-export * from './snackbarTheme';
-
-// enums
-export { SnackbarMessageType } from './snackbarType';
+export type {
+  ISnackbar as ISnackbarV2,
+  SnackbarPopover as SnackbarV2Popover,
+} from './snackbar';

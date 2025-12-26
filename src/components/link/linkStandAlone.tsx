@@ -1,58 +1,89 @@
-import * as React from 'react';
+import { type CSSProperties, type RefObject, forwardRef } from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { pickAriaProps } from '@/utils/aria/aria';
+import { Text } from '@/components/text/text';
+import { classNames } from '@/lib/utils/classNames/classNames';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { Text } from '../text';
-// styles
-import { LabelIconWrapper, TextStyledExtended } from './link.styled';
-import { ILinkStandAlone, LinkStateType } from './types';
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import type { LinkStandAloneProps } from './types/link';
 
-const LinkStandAloneComponent = (
-  { url, ...props }: ILinkStandAlone,
-  ref: React.ForwardedRef<HTMLElement> | undefined | null
-): JSX.Element => {
-  const ariaProps = pickAriaProps(props);
+export const LinkStandAlone = forwardRef<HTMLElement, LinkStandAloneProps>(
+  (
+    {
+      children,
+      color,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      component = Text as any,
+      cssClasses,
+      cssTextClasses,
+      decoration,
+      disabled,
+      draggable,
+      icon,
+      iconPosition,
+      id,
+      onClick,
+      rel,
+      role,
+      target,
+      url,
+      weight,
+      ...props
+    },
+    ref,
+  ) => {
+    const handleClick = disabled ? undefined : onClick;
+    const linkUrl = disabled ? undefined : url;
+    const containerClassName = classNames(
+      cssClasses?.link,
+      cssTextClasses?.text,
+    );
+    const iconContainerStyle: CSSProperties = {
+      flexDirection: iconPosition === 'left' ? 'row' : 'row-reverse',
+    };
+    const style = {
+      color: color,
+      fontWeight: weight,
+      textDecoration: decoration,
+    };
 
-  return (
-    <TextStyledExtended
-      {...ariaProps}
-      ref={ref}
-      alignCenter={props.alignCenter}
-      as={Text}
-      color={props.color}
-      component={props.component}
-      dataTestId={props.dataTestId}
-      decoration={props.decoration}
-      draggable={props.draggable}
-      isDisabled={props.state === LinkStateType.DISABLED}
-      linkStyles={props.styles}
-      target={props.target}
-      variant={props.textVariant}
-      weight={props.weight}
-      //We have to make this because even it was disabled, you could access to onClick by arrows
-      onClick={props.state !== LinkStateType.DISABLED ? props.onClick : undefined}
-      {...(props.state !== LinkStateType.DISABLED && { url })}
-      role={props.role}
-    >
-      {props.icon ? (
-        <LabelIconWrapper iconPosition={props.iconPosition} styles={props.styles?.[props.state]}>
-          {[
-            <ElementOrIcon
-              key="icon"
-              color={props.styles?.[props.state]?.icon?.color}
-              height={props.styles?.[props.state]?.icon?.height}
-              width={props.styles?.[props.state]?.icon?.width}
-              {...props.icon}
-            />,
-            props.children,
-          ]}
-        </LabelIconWrapper>
-      ) : (
-        props.children
-      )}
-    </TextStyledExtended>
-  );
-};
+    const customProps = pickCustomAttributes(props);
 
-export const LinkStandAlone = React.forwardRef(LinkStandAloneComponent);
+    return (
+      <CustomComponent
+        ref={ref as unknown as RefObject<HTMLElement>}
+        className={containerClassName}
+        component={component}
+        data-testid="link"
+        disabled={disabled}
+        draggable={draggable}
+        id={id}
+        rel={rel}
+        role={role}
+        style={style}
+        target={target}
+        url={linkUrl}
+        onClick={handleClick}
+        {...customProps}
+      >
+        {icon ? (
+          <span
+            className={cssClasses?.labelandiconcontainer}
+            style={iconContainerStyle}
+          >
+            <ElementOrIcon key="icon" className={cssClasses?.icon} {...icon} />
+            {children}
+          </span>
+        ) : (
+          <span
+            // className={cssClasses?.childrencontainer}
+            style={iconContainerStyle}
+          >
+            {children}
+          </span>
+        )}
+      </CustomComponent>
+    );
+  },
+);

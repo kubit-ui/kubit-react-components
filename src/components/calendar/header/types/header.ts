@@ -1,9 +1,9 @@
-import { FormatWeekdayOptionType } from '@/types';
+import type { CalendarCssClasses } from '../../types/calendar';
+import type { CalendarStyleProps } from '../../types/calendarTheme';
 
-import { CalendarContainerStylesType } from '../../types/calendarTheme';
-
-export interface IHeader {
-  styles?: CalendarContainerStylesType;
+export interface HeaderProps {
+  styles?: CalendarStyleProps;
   isSundayFirst?: boolean;
-  formatWeekDayOption?: FormatWeekdayOptionType;
+  formatWeekDayOption?: Intl.DateTimeFormatOptions['weekday'];
+  cssClasses?: CalendarCssClasses;
 }

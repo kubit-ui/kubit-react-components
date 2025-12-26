@@ -1,33 +1,36 @@
-import { PageControlDirectionType } from '../types';
+import type { PageControlDirectionType } from '../types/pageControlStates';
 
-export const getPositionWithIn = (currentPosition: number, pages: number): number => {
+export const getPositionWithIn = (
+  currentPosition: number,
+  pages: number,
+): number => {
   return Math.max(0, Math.min(currentPosition, pages - 1));
 };
 
-type CalcFirstLastVisiblePositionType = {
+interface CalcFirstLastVisiblePositionType {
   isBullet: boolean;
   direction: PageControlDirectionType;
   currentPosition: number;
   pages: number;
   dots: number;
-};
+}
 
-type CalcFirstLastVisiblePositionResultType = {
+interface CalcFirstLastVisiblePositionResultType {
   firstVisiblePosition: number;
   lastVisiblePosition: number;
-};
+}
 
 export const calcFirstLastVisiblePosition = ({
-  isBullet,
-  direction,
   currentPosition,
-  pages,
+  direction,
   dots,
+  isBullet,
+  pages,
 }: CalcFirstLastVisiblePositionType): CalcFirstLastVisiblePositionResultType => {
   let firstVisiblePosition = 0;
   let lastVisiblePosition = firstVisiblePosition + dots - 1;
   // On lines pagination (!isBullet), we do not use forth and back logic
-  if (!isBullet || direction === PageControlDirectionType.FORTH) {
+  if (!isBullet || direction === 'forth') {
     if (currentPosition - dots < 0) {
       firstVisiblePosition = 0;
       lastVisiblePosition = firstVisiblePosition + dots - 1;

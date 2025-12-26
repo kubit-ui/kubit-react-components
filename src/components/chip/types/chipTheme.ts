@@ -1,36 +1,18 @@
-// external types
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types/index';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-import { ChipStateType } from './state';
+export interface ChipStyleProps extends CssLibPropsType {
+  _leftIcon?: CssLibPropsType;
+  _label?: CssLibPropsType;
+  _rangeItemWrapper?: CssLibPropsType;
+  _rangeItemText?: CssLibPropsType;
+  _rangeItemSeparator?: CssLibPropsType;
+  _rangeIcon?: CssLibPropsType;
+  _closeIcon?: CssLibPropsType;
+  _errorContainer?: CssLibPropsType;
+  _errorMessage?: CssLibPropsType;
+  _errorIcon?: CssLibPropsType;
+}
 
-/**
- * @description
- * interface for the checkbox error standAlone
- * @interface IChipErrorStandAlone
- */
-export type ChipPropsStylesType = {
-  chipContainer?: CommonStyleType;
-  leftIcon?: IconTypes;
-  label?: TypographyTypes;
-  rangeItemWrapper?: CommonStyleType;
-  rangeItemText?: TypographyTypes;
-  rangeItemSeparator?: TypographyTypes;
-  rangeIcon?: IconTypes;
-  closeIcon?: IconTypes;
-  errorContainer?: CommonStyleType;
-  errorMessage?: TypographyTypes;
-  errorIcon?: IconTypes;
-};
-
-export type ChipPropsStateStylesType = {
-  [state in ChipStateType]?: ChipPropsStylesType;
-};
-
-/**
- * @description
- * interface for the checkbox error standAlone
- * @interface IChipErrorStandAlone
- */
-export type ChipStylesType<P extends string | number | symbol> = {
-  [variant in P]?: ChipPropsStateStylesType;
+export type ChipVariantStyles<Variant extends string> = ChipStyleProps & {
+  [key in Variant]: ChipStyleProps;
 };

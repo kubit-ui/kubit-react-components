@@ -1,55 +1,73 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
 
-import { ICONS } from '@/assets';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { CheckboxVariantType } from '@/lib/designSystem/kubit/components/checkbox/variants';
+import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { CheckboxUnControlled as CheckboxStory } from '../checkboxUnControlled';
+import { CheckboxUnControlled as Story } from '../checkboxUnControlled';
+import type { CheckboxUnControlledProps } from '../types/checkbox';
 import { argtypes } from './argtypes';
 
-const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
+const StoryWithHooks = (args) => {
+  return <Story {...args} />;
+};
 
-const meta = {
-  title: 'Components/Forms/Checkbox',
-  component: CheckboxStory,
+const meta: Meta<typeof Story> = {
+  argTypes: argtypes(),
+  component: Story,
   parameters: {
     layout: 'centered',
+    note: {
+      text: [
+        <span key="note-1">
+          This component is built using the <strong>CheckboxBase</strong>{' '}
+          component.
+        </span>,
+        <span key="note-2">
+          The <strong>ref</strong> provided to this component points to the
+          parent container. To access the input element directly, use the{' '}
+          <strong>inputRef</strong> property.
+        </span>,
+      ],
+      theme: 'information',
+    },
   },
-  tags: ['autodocs'],
-  argTypes: argtypes(variantsObject, themeSelected),
-} satisfies Meta<typeof CheckboxStory>;
+  render: ({ ...args }) => <StoryWithHooks {...args} />,
+  tags: ['autodocs', 'forms'],
+  title: 'Components/Forms/Checkbox',
+} satisfies Meta<typeof Story>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
-export const Checkbox: Story = {
-  args: {
-    variant: Object.values(variantsObject[themeSelected].CheckboxVariantType || {})[0] as string,
-    label: { content: 'Accept terms and conditions', requiredSymbol: <>&apos;</> },
-    checkedIcon: { icon: ICONS.ICON_PLACEHOLDER },
-    helperContent: { content: 'Description Text' },
-    helperText: { content: 'Helper Text' },
-    screenReaderText: 'screen reader text',
-    errorMessage: { content: 'Error text' },
-    errorIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Error alternative text' },
-    value: 'test value',
-    name: 'name',
-    themeArgs: themesObject[themeSelected][STYLES_NAME.CHECKBOX],
+const commonArgs: CheckboxUnControlledProps = {
+  checkboxBase: {
+    variant: 'DEFAULT',
   },
+  checked: false,
+  checkedIcon: {
+    altText: 'Checked icon alternative text',
+    icon: ICONS.CHECKMARK_THICK,
+  },
+  disabled: false,
+  error: false,
+  errorMessage: {
+    icon: { altText: 'Error alternative text', icon: ICONS.CHECKMARK_THICK },
+    message: { content: 'Error text' },
+  },
+  label: {
+    content: 'Label text',
+  },
+  required: false,
+  screenReaderText: 'screen reader text',
+  variant: CheckboxVariantType.DEFAULT,
 };
 
-export const CheckboxWithCtv: Story = {
+/**
+ * Default uncontrolled checkbox with a label.
+ */
+export const Checkbox: Story = {
   args: {
-    variant: Object.values(variantsObject[themeSelected].CheckboxVariantType || {})[0] as string,
-    label: { content: 'Accept terms and conditions' },
-    ctv: {
-      DEFAULT_UNSELECTED: {
-        label: {
-          color: 'red',
-        },
-      },
-    },
+    ...commonArgs,
   },
 };

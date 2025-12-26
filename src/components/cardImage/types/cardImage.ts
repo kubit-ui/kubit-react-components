@@ -1,37 +1,59 @@
-import { ILink } from '@/components/link';
-import { IText } from '@/components/text';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import type { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { CardImageVariantStylesType } from './cardImageTheme';
+import type { LinkProps } from '../../link/types/link';
 
-type ImagesType = {
-  [DeviceBreakpointsType.DESKTOP]: string;
-  [DeviceBreakpointsType.MOBILE]: string;
-  [DeviceBreakpointsType.TABLET]: string;
-};
+type CardImageCssClasses = ComponentSelected<
+  ComponentsTypesComponents['CARD_IMAGE']
+>;
 
-export type CardImageTitleAndDescriptionType = Omit<IText<string>, 'children'> & {
-  content: React.ReactNode;
-};
+/**
+ * Represents the type for responsive images based on device breakpoints.
+ */
+interface CardImageResponsiveImages {
+  [DEVICE_BREAKPOINTS.DESKTOP]: string;
+  [DEVICE_BREAKPOINTS.MOBILE]: string;
+  [DEVICE_BREAKPOINTS.TABLET]: string;
+}
 
-export type CardImageLinkType = Omit<ILink, 'children'> & {
+/**
+ * Represents the type for a link within the CardImage component.
+ * Extends the LinkProps interface and includes content.
+ */
+export type CardImageLinkProps = Omit<LinkProps, 'children'> & {
   content: string;
 };
 
-export interface ICardImageStandAlone {
-  styles: CardImageVariantStylesType;
-  image: ImagesType;
-  title: CardImageTitleAndDescriptionType;
-  description?: CardImageTitleAndDescriptionType;
-  link?: CardImageLinkType;
+/**
+ * Interface for the standalone CardImage component.
+ * Includes responsive images, title, description, optional link, and CSS classes.
+ */
+export interface CardImageStandAloneProps extends DataAttributes {
+  image: CardImageResponsiveImages;
+  title: CommonTextProps;
+  description?: CommonTextProps;
+  link?: CardImageLinkProps;
   device: string;
   imageAltText?: string;
-  as?: string | React.ElementType;
+  component?: string | React.ElementType;
   onClick?: React.MouseEventHandler;
+  cssClasses?: CardImageCssClasses;
 }
 
-export interface ICardImage<V = undefined extends string ? unknown : string>
-  extends Omit<ICardImageStandAlone, 'styles' | 'device'>,
-    Omit<CustomTokenTypes<CardImageVariantStylesType>, 'cts' | 'extraCt'> {
-  variant: V;
+/**
+ * Interface for the CardImage component with a variant.
+ * Extends the CardImageStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the CardImage.
+ */
+export interface CardImageProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<CardImageStandAloneProps, 'device'> {
+  variant?: Variant;
+  additionalClasses?: CardImageCssClasses;
 }

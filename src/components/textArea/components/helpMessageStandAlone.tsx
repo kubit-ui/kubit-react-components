@@ -1,35 +1,29 @@
-import React from 'react';
+import { Text } from '@/components/text/text';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import { processText } from '@/lib/utils/process/processText/processText';
 
-import { Text, TextComponentType } from '@/components/text';
-
-import { TextAreaPropsThemeType, TextAreaTextType } from '../types';
+import type { TextAreaCssClasses } from '../types/textArea';
 
 export const HelpMessageStandAlone = ({
-  id,
+  cssClasses,
+  customAttributtes,
   helpMessage,
-  dataTestId,
-  styles,
+  id,
 }: {
   id: string;
-  helpMessage?: TextAreaTextType;
-  dataTestId?: string;
-  styles?: TextAreaPropsThemeType;
+  helpMessage?: CommonTextProps;
+  customAttributtes?;
+  cssClasses?: TextAreaCssClasses;
 }): JSX.Element | null => {
-  if (!helpMessage?.content) {
-    return null;
-  }
-
   return (
     <Text
-      color={styles?.helpMessage?.color}
-      component={TextComponentType.SMALL}
-      dataTestId={dataTestId}
+      additionalClasses={{
+        text: cssClasses?.helpmessage,
+      }}
+      component="small"
+      customAttributes={customAttributtes}
       id={id}
-      variant={styles?.helpMessage?.font_variant}
-      weight={styles?.helpMessage?.font_weight}
-      {...helpMessage}
-    >
-      {helpMessage.content}
-    </Text>
+      {...processText(helpMessage)}
+    />
   );
 };

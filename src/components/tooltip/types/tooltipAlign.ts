@@ -2,10 +2,9 @@
  * Enum for tooltip align types
  * @name TooltipAlignType
  */
+import type { PositionType } from '@/lib/types/positions/positions';
 
-export enum TooltipAlignType {
-  TOP = 'top',
-  RIGHT = 'right',
-  BOTTOM = 'bottom',
-  LEFT = 'left',
-}
+export type TooltipAlignType = Extract<
+  PositionType,
+  'top' | 'right' | 'bottom' | 'left'
+>;

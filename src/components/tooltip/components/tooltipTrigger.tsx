@@ -1,21 +1,71 @@
-import * as React from 'react';
+import type {
+  AriaAttributes,
+  KeyboardEventHandler,
+  MouseEventHandler,
+  PropsWithChildren,
+  ReactNode,
+} from 'react';
 
-import { ButtonType } from '../../button';
-import { TooltipTriggerWrapperStyled } from '../tooltip.styled';
-
-interface ITooltipTrigger {
+interface TooltipTriggerProps {
+  disabled?: boolean;
   childrenAsButton: boolean;
-}
+  ariaDescribedBy?: string;
+  triggerAsButton?: Pick<
+    AriaAttributes,
+    | 'aria-label'
+    | 'aria-labelledby'
+    | 'aria-describedby'
+    | 'aria-controls'
+    | 'aria-expanded'
+    | 'aria-pressed'
+    | 'aria-disabled'
+  >;
 
-export const TooltipTrigger = (
-  props: React.PropsWithChildren<ITooltipTrigger>
-): React.ReactNode => {
-  if (props.childrenAsButton) {
+  onClick?: MouseEventHandler<HTMLElement>;
+  onKeyDown?: KeyboardEventHandler<HTMLElement>;
+  onMouseDown?: MouseEventHandler<HTMLElement>;
+  onMouseUp?: MouseEventHandler<HTMLElement>;
+}
+export const TooltipTrigger = ({
+  ariaDescribedBy,
+  children,
+  childrenAsButton,
+  disabled,
+  onClick,
+  onKeyDown,
+  onMouseDown,
+  onMouseUp,
+  triggerAsButton,
+}: PropsWithChildren<TooltipTriggerProps>): ReactNode => {
+  if (childrenAsButton) {
     return (
-      <TooltipTriggerWrapperStyled type={ButtonType.BUTTON}>
-        {props.children}
-      </TooltipTriggerWrapperStyled>
+      <button
+        aria-describedby={ariaDescribedBy}
+        aria-disabled={disabled}
+        className="kbt-tooltip__trigger-wrapper "
+        {...triggerAsButton}
+        disabled={disabled}
+        type="button"
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+      >
+        {children}
+      </button>
     );
   }
-  return props.children;
+  return (
+    <div
+      className="kbt-tooltip__trigger-wrapper "
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+    >
+      {children}
+    </div>
+  );
 };

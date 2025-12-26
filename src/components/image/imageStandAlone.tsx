@@ -1,47 +1,93 @@
-import * as React from 'react';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import './image.css';
 
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { type CSSProperties, forwardRef } from 'react';
 
-// internal components
+import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+
 import { PictureSourceStandAlone } from './components/pictureSourceStandAlone';
-// styles
-import { ImagePictureStyled } from './image.styled';
-import { IImageStandAlone, ImageLoadingType } from './types';
+import type { ImageStandAloneProps } from './types/image';
 import { getFallbackRatio } from './utils/getFallbackRatio';
 
-const ImageStandAloneComponent = (
-  { loading = ImageLoadingType.LAZY, ...props }: IImageStandAlone,
-  ref: React.ForwardedRef<HTMLElement> | undefined | null
-): JSX.Element => {
-  return (
-    <figure ref={ref} data-testid={props.dataTestId}>
-      <ImagePictureStyled
-        borderRadius={props?.borderRadius}
-        fallbackRatio={props.ratio && getFallbackRatio(props.ratio)}
-        objectFit={props?.objectFit}
-        ratio={props.ratio}
-      >
-        <PictureSourceStandAlone mediaSource={props.images[DeviceBreakpointsType.LARGE_DESKTOP]} />
-        <PictureSourceStandAlone mediaSource={props.images[DeviceBreakpointsType.DESKTOP]} />
-        <PictureSourceStandAlone mediaSource={props.images[DeviceBreakpointsType.TABLET]} />
-        <PictureSourceStandAlone mediaSource={props.images[DeviceBreakpointsType.MOBILE]} />
-        <img
-          alt={props.alt}
-          height={props.height}
-          loading={loading}
-          src={props.images.DEFAULT.src}
-          title={props.title}
-          width={props.width}
-          onLoad={props.onLoad}
-        />
-      </ImagePictureStyled>
-      {props.caption && <figcaption>{props.caption}</figcaption>}
-    </figure>
-  );
-};
-
 /**
- * @description
- * Image component to load images
+ * Standalone image component for responsive and customizable image rendering.
+ *
+ * This component is designed to handle responsive images using the `<picture>` element
+ * and supports custom styles, captions, and lazy loading. It adapts to different
+ * breakpoints by rendering appropriate image sources for each device type.
+ *
+ * Internally, it uses {@link PictureSourceStandAlone} to render individual `<source>` elements
+ * for responsive behavior.
+ *
+ * @example
+ * ```tsx
+ * <ImageStandAlone
+ *   alt="Example image"
+ *   images={{
+ *     DEFAULT: { src: 'default.jpg' },
+ *     MOBILE: { src: 'mobile.jpg' },
+ *     TABLET: { src: 'tablet.jpg' },
+ *     DESKTOP: { src: 'desktop.jpg' },
+ *   }}
+ *   ratio="16:9"
+ * />
+ * ```
  */
-export const ImageStandAlone = React.forwardRef(ImageStandAloneComponent);
+export const ImageStandAlone = forwardRef<HTMLElement, ImageStandAloneProps>(
+  (
+    {
+      alt,
+      borderRadius,
+      caption,
+      height,
+      images,
+      loading = 'lazy',
+      objectFit,
+      onLoad,
+      ratio,
+      title,
+      width,
+      ...props
+    },
+    ref,
+  ) => {
+    const style = {
+      '--border-radius': borderRadius,
+      '--fallback-ratio': ratio && getFallbackRatio(ratio) + '%',
+      '--object-fit': objectFit,
+      '--ratio': ratio,
+    } as CSSProperties;
+
+    const customProps = pickCustomAttributes(props);
+
+    return (
+      <figure ref={ref} data-testid="image" {...customProps}>
+        <picture className="kbt-picture" style={style}>
+          <PictureSourceStandAlone
+            mediaSource={images[DEVICE_BREAKPOINTS.LARGE_DESKTOP]}
+          />
+          <PictureSourceStandAlone
+            mediaSource={images[DEVICE_BREAKPOINTS.DESKTOP]}
+          />
+          <PictureSourceStandAlone
+            mediaSource={images[DEVICE_BREAKPOINTS.TABLET]}
+          />
+          <PictureSourceStandAlone
+            mediaSource={images[DEVICE_BREAKPOINTS.MOBILE]}
+          />
+          <img
+            alt={alt}
+            height={height}
+            loading={loading}
+            src={images.DEFAULT.src}
+            title={title}
+            width={width}
+            onLoad={onLoad}
+          />
+        </picture>
+        {caption && <figcaption>{caption}</figcaption>}
+      </figure>
+    );
+  },
+);

@@ -1,87 +1,74 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IMediaProgressBar } from '@/components/mediaProgressBar';
-import { IPageControlAutomateUnControlled } from '@/components/pageControlAutomate';
-import { CustomTokenTypes } from '@/types';
+import type { ScreenReaderOnlyProps } from '@/lib/components/screen-reader-only/types/screenReaderOnly';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { CarouselAlignType } from './carouselAlign';
-import { CarouselPropsStylesType } from './carouselTheme';
+export const CAROUSEL_BUILD_SCREEN_READER_CURRENT_PAGE_KEY = '{{currentPage}}';
+export const CAROUSEL_BUILD_SCREEN_READER_NUM_PAGES_KEY = '{{numPages}}';
 
-export type CarouselMediaProgressBarType = Omit<
-  IMediaProgressBar,
-  'variant' | 'currentBar' | 'barsNum' | 'circular'
+type CarouselCssClasses = ComponentSelected<
+  ComponentsTypesComponents['CAROUSEL']
+>;
+
+export type CarouselOnePageAlignType = 'left' | 'right' | 'center';
+
+export type CarouselScreenReaderOnlyType = Omit<
+  ScreenReaderOnlyProps,
+  'children'
 > & {
-  variant?: string;
+  content: string;
 };
 
-export type PageControlAutomateConfigType = Omit<
-  IPageControlAutomateUnControlled,
-  'currentBar' | 'playing' | 'mediaProgressBar'
-> & {
-  mediaProgressBar: CarouselMediaProgressBarType;
-};
-
-export interface ICarouselStandAlone {
-  ['aria-labelledby']?: string;
-  styles: CarouselPropsStylesType;
-  carouselContainerRef: React.RefObject<HTMLDivElement>;
-  carouselContentRef: React.RefObject<HTMLDivElement>;
+export interface ICarouselStandAlone extends DataAttributes {
+  cssClasses?: CarouselCssClasses;
+  viewerContainerRef: React.RefObject<HTMLDivElement>;
+  contentContainerRef: React.RefObject<HTMLDivElement>;
   elements: JSX.Element[];
-  numPages: number;
-  circular?: boolean;
-  centerMode?: boolean;
-  extraPadding?: number;
-  extraPaddingAsArrow?: boolean;
-  currentPage: number;
-  leftArrow?: IElementOrIcon;
-  rightArrow?: IElementOrIcon;
-  onLeftArrowClick?: React.MouseEventHandler<HTMLButtonElement>;
-  onRightArrowClick?: React.MouseEventHandler<HTMLButtonElement>;
-  hasPagination?: boolean;
-  pageControlVariant: string;
-  pageControlArrowsControlVariant: string;
-  onKeyDown: React.KeyboardEventHandler<HTMLDivElement>;
-  onTransition?: (active: boolean) => void;
-  dataTestId?: string;
-  displayArrowsOnCarousel?: boolean;
-  disableSwipe?: boolean;
+  screenReaderOnly?: CarouselScreenReaderOnlyType;
   allowModifySliceWidth?: boolean;
-  pageControlAutomateConfig?: PageControlAutomateConfigType;
-  onIndicatorChange?: (index: number) => void;
-  onMediaButtonClick?: (
-    playing: boolean,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
-  onMouseOut?: React.MouseEventHandler<HTMLDivElement>;
-  onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
-  playing?: boolean;
-  centerExtremesWhenExtraPadding?: boolean;
+  centerMode?: boolean;
+  // containers
+  rootContainer?: React.HTMLAttributes<HTMLDivElement>;
+  viewerContainer?: React.HTMLAttributes<HTMLDivElement>;
+  contentContainer?: React.HTMLAttributes<HTMLDivElement>;
+  disabled?: boolean;
 }
 
-export interface ICarouselControlled<V = undefined extends string ? unknown : string>
-  extends Omit<ICarouselStandAlone, 'styles'>,
-    Omit<CustomTokenTypes<CarouselPropsStylesType>, 'cts' | 'extraCt'> {
-  variant: V;
-}
-
-export interface ICarouselUnControlled<V = undefined extends string ? unknown : string>
+export interface ICarousel
   extends Omit<
-    ICarouselControlled<V>,
-    | 'currentPage'
-    | 'carouselContainerRef'
-    | 'carouselContentRef'
-    | 'onKeyDown'
-    | 'numPages'
-    | 'onMediaButtonClick'
-    | 'onIndicatorChange'
-    | 'onMouseOut'
-    | 'onMouseOver'
-    | 'playing'
-    | 'onLeftArrowClick'
-    | 'onRightArrowClick'
+    ICarouselStandAlone,
+    'cssClasses' | 'viewerContainerRef' | 'contentContainerRef'
   > {
-  defaultPage?: number;
+  ref?: React.Ref<CarouselRefType>;
+  variant?: string;
+  additionalClasses?: Partial<CarouselCssClasses>;
+  circular?: boolean;
   numElementsPerPage?: number;
   numElementsToSlide?: number;
-  onePageAlign?: CarouselAlignType;
-  onPageChange?: (page: number) => void;
+  defaultPage?: number;
+  extraPadding?: number;
+  centerExtremesWhenExtraPadding?: boolean;
+  onePageAlign?: CarouselOnePageAlignType;
+  autoFitContainer?: boolean;
+  onNumPagesChange?: (numPages: number) => void;
+  onNumElementsPerPageChange?: (numElementsPerPage: number) => void;
+  onPageChange?: (currentPage: number) => void;
 }
+
+export type CarouselChangePageFnType = ({
+  animated,
+  newPage,
+}: {
+  newPage: number;
+  animated?: boolean;
+}) => void;
+
+export type CarouselRefType = HTMLDivElement & {
+  changePage: CarouselChangePageFnType;
+  allowShiftRef: React.MutableRefObject<boolean>;
+  currentPageRef: React.MutableRefObject<number>;
+  numElementsPerPageRef: React.MutableRefObject<number | undefined>;
+  numPagesRef: React.MutableRefObject<number>;
+};

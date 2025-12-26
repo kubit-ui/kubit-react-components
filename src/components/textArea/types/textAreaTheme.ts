@@ -1,35 +1,25 @@
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-import { TextAreaStateType } from './state';
+export interface TextAreaStyleProps extends CssLibPropsType {
+  _titleContainer?: CssLibPropsType;
+  _title?: CssLibPropsType;
+  _labelTextAreaContainer?: CssLibPropsType;
+  _label?: CssLibPropsType;
+  _labelAndAdditionalInfoContainer?: CssLibPropsType;
+  _required?: CssLibPropsType;
+  _textArea?: CssLibPropsType;
+  _bottomContainer?: CssLibPropsType;
+  _helpMessageErrorContainer?: CssLibPropsType;
+  _helpMessage?: CssLibPropsType;
+  _errorContainer?: CssLibPropsType;
+  _errorIcon?: CssLibPropsType;
+  _errorMessage?: CssLibPropsType;
+  _counter?: CssLibPropsType;
+  _counterLeft?: CssLibPropsType;
+  _counterRight?: CssLibPropsType;
+}
 
-export type TextAreaPropsThemeType = {
-  container?: CommonStyleType;
-  titleContainer?: CommonStyleType;
-  title?: TypographyTypes;
-  labelTextAreaContainer?: CommonStyleType;
-  label?: TypographyTypes;
-  labelAndAdditionalInfoContainer?: CommonStyleType;
-  required?: TypographyTypes;
-  textArea?: CommonStyleType & TypographyTypes & { resize?: string };
-  placeholder?: TypographyTypes;
-  bottomContainer?: CommonStyleType;
-  helpMessageErrorContainer?: CommonStyleType;
-  helpMessage?: TypographyTypes;
-  errorContainer?: CommonStyleType;
-  errorIcon?: IconTypes;
-  errorMessage?: TypographyTypes;
-  counter?: TypographyTypes;
-  counterLeft?: TypographyTypes;
-  counterRight?: TypographyTypes;
-  counterVariant?: string;
-};
-
-export type TextAreaVariantStylesType = {
-  [i in TextAreaStateType]?: TextAreaPropsThemeType;
-} & {
-  labelInsideTextArea?: boolean;
-};
-
-export type TextAreaStylesType<P extends string | number | symbol> = {
-  [key in P]?: TextAreaVariantStylesType;
-};
+export type TextAreaVariantStyles<Variant extends string> =
+  TextAreaStyleProps & {
+    [key in Variant]?: TextAreaStyleProps;
+  };

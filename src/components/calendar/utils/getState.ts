@@ -1,8 +1,8 @@
-import { NEUTRAL_DATE } from '@/types';
+import { STATES } from '@/lib/types/states/states';
 
-import { ListDaysStateType } from '../list/types/state';
+import type { ListDaysStateType } from '../list/types/state';
 
-type getStatePropsType = {
+interface getStatePropsType {
   dayFormatted: Date | 0;
   isSelectedToLeft: (dayFormatted: Date | 0) => boolean;
   isSelectedToRight: (dayFormatted: Date | 0) => boolean;
@@ -11,35 +11,37 @@ type getStatePropsType = {
   hasRange?: boolean;
   today: string;
   formatDate: (date: Date, format: string) => string;
-};
+}
 
-// eslint-disable-next-line complexity
+const NEUTRAL_DATE = 'ddMMyyyy';
+
 export const getStateDay = ({
   dayFormatted,
+  formatDate,
+  hasRange,
+  isGhostSelected,
   isSelectedToLeft,
   isSelectedToRight,
-  isGhostSelected,
   selectedDate,
-  hasRange,
   today,
-  formatDate,
 }: getStatePropsType): ListDaysStateType => {
-  let state = ListDaysStateType.DEFAULT;
+  let state = STATES.DEFAULT as ListDaysStateType;
   if (isSelectedToLeft(dayFormatted)) {
-    state = ListDaysStateType.END_DATE_RANGE;
+    state = STATES.END_DATE_RANGE;
   } else if (isSelectedToRight(dayFormatted)) {
-    state = ListDaysStateType.START_DATE_RANGE;
+    state = STATES.START_DATE_RANGE;
   } else if (isGhostSelected(dayFormatted)) {
-    state = ListDaysStateType.MIDLE_DATE_RANGE;
+    state = STATES.MIDLE_DATE_RANGE;
   } else if (
     selectedDate[0] &&
     dayFormatted &&
     !hasRange &&
-    formatDate(selectedDate[0], NEUTRAL_DATE) === formatDate(dayFormatted, NEUTRAL_DATE)
+    formatDate(selectedDate[0], NEUTRAL_DATE) ===
+      formatDate(dayFormatted, NEUTRAL_DATE)
   ) {
-    state = ListDaysStateType.SELECTED;
+    state = STATES.SELECTED;
   } else if (dayFormatted && today === formatDate(dayFormatted, NEUTRAL_DATE)) {
-    state = ListDaysStateType.CURRENT_DAY;
+    state = STATES.CURRENT_DAY;
   }
 
   return state;

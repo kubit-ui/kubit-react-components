@@ -1,11 +1,13 @@
-import { TextAreaStateType } from '../types';
+import { STATES } from '@/lib/types/states/states';
+
+import type { TextAreaStateType } from '../types/state';
 
 export const buildAriaDescribedBy = ({
-  helpMessage,
-  textAreaHelpTextId,
   errorMessage,
+  helpMessage,
   state,
   textAreaErrorId,
+  textAreaHelpTextId,
 }: {
   helpMessage?: string;
   textAreaHelpTextId: string;
@@ -17,7 +19,7 @@ export const buildAriaDescribedBy = ({
   if (helpMessage) {
     res += ` ${textAreaHelpTextId}`;
   }
-  if (errorMessage && state === TextAreaStateType.ERROR) {
+  if (errorMessage && state === STATES.ERROR) {
     res += ` ${textAreaErrorId}`;
   }
   return res;

@@ -1,0 +1,341 @@
+import react from '@vitejs/plugin-react';
+import fs from 'fs';
+import { glob } from 'glob';
+import { fileURLToPath } from 'node:url';
+import path from 'path';
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
+import tsconfigPaths from 'vite-tsconfig-paths';
+
+// Constants for array indexing and string slicing
+const EMPTY_LENGTH = 0;
+const SECOND_INDEX = 1;
+const THIRD_INDEX = 2;
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+/**
+ * Plugin to copy CSS assets to dist/styles directory
+ */
+const copyCSSPlugin = () => {
+  return {
+    closeBundle() {
+      const stylesPattern = path.resolve(
+        __dirname,
+        'src/lib/designSystem/**/*.{css,scss}',
+      );
+      const stylesOut = path.resolve(__dirname, 'dist/styles');
+
+      const files = glob.sync(stylesPattern);
+
+      if (files.length > EMPTY_LENGTH) {
+        fs.mkdirSync(stylesOut, { recursive: true });
+        for (const file of files) {
+          const relPath = path.relative(
+            path.resolve(__dirname, 'src/lib/designSystem'),
+            file,
+          );
+          const destPath = path.join(stylesOut, relPath);
+          fs.mkdirSync(path.dirname(destPath), { recursive: true });
+          fs.copyFileSync(file, destPath);
+        }
+        // eslint-disable-next-line no-console
+        console.log(
+          '[copy-css-assets] ✓ Copied CSS/SCSS files to ./dist/styles/',
+        );
+      } else {
+        // eslint-disable-next-line no-console
+        console.warn('[copy-css-assets] ⚠ No CSS/SCSS files found');
+      }
+    },
+    name: 'copy-css-assets',
+  };
+};
+
+/**
+ * Plugin to copy cssProvider JavaScript files
+ */
+const copyCSSProviderPlugin = () => {
+  return {
+    closeBundle() {
+      const cssProviderDir = path.resolve(
+        __dirname,
+        'src/lib/provider/cssProvider',
+      );
+
+      const filesToCopy = [
+        { dest: 'provider.js', src: 'provider.js' },
+        { dest: 'stats/stats.js', src: 'stats/stats.js' },
+      ];
+
+      const outputDirs = [
+        path.resolve(__dirname, 'dist/esm/lib/provider/cssProvider'),
+        path.resolve(__dirname, 'dist/cjs/lib/provider/cssProvider'),
+      ];
+
+      outputDirs.forEach((outputDir) => {
+        fs.mkdirSync(outputDir, { recursive: true });
+        fs.mkdirSync(path.join(outputDir, 'stats'), { recursive: true });
+
+        filesToCopy.forEach(({ dest, src }) => {
+          const srcPath = path.join(cssProviderDir, src);
+          const destPath = path.join(outputDir, dest);
+
+          if (fs.existsSync(srcPath)) {
+            fs.copyFileSync(srcPath, destPath);
+          } else {
+            // eslint-disable-next-line no-console
+            console.warn(
+              `[copy-css-provider-assets] ⚠ File not found: ${srcPath}`,
+            );
+          }
+        });
+      });
+
+      // eslint-disable-next-line no-console
+      console.log('[copy-css-provider-assets] ✓ Copied cssProvider JS files');
+    },
+    name: 'copy-css-provider-assets',
+  };
+};
+
+/**
+ * Plugin to copy static assets (svg, fonts, images, css) to ESM and CJS directories
+ */
+const copyStaticAssetsPlugin = () => {
+  return {
+    closeBundle() {
+      const extensions = ['svg', 'ttf', 'eot', 'css', 'png', 'jpg', 'otf'];
+      const srcDir = path.resolve(__dirname, 'src');
+      const outputDirs = [
+        path.resolve(__dirname, 'dist/esm'),
+        path.resolve(__dirname, 'dist/cjs'),
+      ];
+
+      const copyRecursive = (src: string, destBase: string) => {
+        for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+          const srcPath = path.join(src, entry.name);
+          const relativePath = path.relative(srcDir, srcPath);
+
+          if (entry.isDirectory()) {
+            // Skip test directories
+            if (
+              ['__tests__', '__mocks__', '__fixtures__', 'stories'].includes(
+                entry.name,
+              )
+            ) {
+              continue;
+            }
+            copyRecursive(srcPath, destBase);
+          } else {
+            const ext = path.extname(entry.name).slice(SECOND_INDEX);
+            if (extensions.includes(ext)) {
+              outputDirs.forEach((outDir) => {
+                const destPath = path.join(outDir, relativePath);
+                fs.mkdirSync(path.dirname(destPath), { recursive: true });
+                fs.copyFileSync(srcPath, destPath);
+              });
+            }
+          }
+        }
+      };
+
+      copyRecursive(srcDir, '');
+      // eslint-disable-next-line no-console
+      console.log('[copy-static-assets] ✓ Copied static assets to ESM and CJS');
+    },
+    name: 'copy-static-assets',
+  };
+};
+
+/**
+ * Plugin to generate index.js files for each component folder
+ * This enables subpath imports like '@kubit/web-ui-components/components/button'
+ */
+const generateComponentIndexPlugin = () => {
+  const generateIndexFile = (
+    sourceContent: string,
+    format: 'cjs' | 'esm',
+  ): string => {
+    const lines: string[] = [];
+    const exportWildcardPattern = /export\s+\*\s+from\s+['"]([^'"]+)['"]/g;
+    const namedExportPattern = /export\s+{([^}]+)}\s+from\s+['"]([^'"]+)['"]/g;
+
+    // Process wildcard exports
+    let match = exportWildcardPattern.exec(sourceContent);
+    while (match !== null) {
+      const importPath = match[SECOND_INDEX];
+      const fileName = path.basename(importPath);
+      const targetFile = `./${fileName}.js`;
+
+      if (format === 'esm') {
+        lines.push(`export * from '${targetFile}';`);
+      } else {
+        const reexport = `module.exports = { ...module.exports, ...require('${targetFile}') };`;
+        lines.push(reexport);
+      }
+      match = exportWildcardPattern.exec(sourceContent);
+    }
+
+    // Process named exports
+    let namedMatch = namedExportPattern.exec(sourceContent);
+    while (namedMatch !== null) {
+      const names = namedMatch[SECOND_INDEX];
+      const importPath = namedMatch[THIRD_INDEX];
+      const fileName = path.basename(importPath);
+      const targetFile = `./${fileName}.js`;
+
+      if (format === 'esm') {
+        lines.push(`export { ${names} } from '${targetFile}';`);
+      } else {
+        const namedList = names.split(',').map((n) => n.trim());
+        lines.push(
+          `const { ${namedList.join(', ')} } = require('${targetFile}');`,
+        );
+        lines.push(
+          `module.exports = { ...module.exports, ${namedList.join(', ')} };`,
+        );
+      }
+      namedMatch = namedExportPattern.exec(sourceContent);
+    }
+
+    return lines.join('\n') + '\n';
+  };
+
+  return {
+    closeBundle() {
+      const srcComponents = path.resolve(__dirname, 'src/components');
+      const outputDirs = [
+        {
+          dir: path.resolve(__dirname, 'dist/esm/components'),
+          format: 'esm' as const,
+        },
+        {
+          dir: path.resolve(__dirname, 'dist/cjs/components'),
+          format: 'cjs' as const,
+        },
+      ];
+
+      // Get all component directories
+      const components = fs
+        .readdirSync(srcComponents, { withFileTypes: true })
+        .filter((dirent) => dirent.isDirectory())
+        .map((dirent) => dirent.name);
+
+      components.forEach((component) => {
+        const srcIndexPath = path.join(srcComponents, component, 'index.ts');
+
+        // Only process if source index.ts exists
+        if (!fs.existsSync(srcIndexPath)) {
+          return;
+        }
+
+        outputDirs.forEach(({ dir, format }) => {
+          const componentDir = path.join(dir, component);
+          if (!fs.existsSync(componentDir)) {
+            return;
+          }
+
+          // Read source index.ts to get exports
+          const sourceContent = fs.readFileSync(srcIndexPath, 'utf-8');
+
+          // Generate index.js with re-exports
+          const content = generateIndexFile(sourceContent, format);
+
+          if (content.trim().length > EMPTY_LENGTH) {
+            const indexPath = path.join(componentDir, 'index.js');
+            fs.writeFileSync(indexPath, content, 'utf-8');
+          }
+        });
+      });
+
+      // eslint-disable-next-line no-console
+      console.log(
+        '[generate-component-index] ✓ Generated index.js files for components',
+      );
+    },
+    name: 'generate-component-index',
+  };
+};
+
+/**
+ * Vite configuration for building the library
+ */
+export default defineConfig(({ mode }) => ({
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, 'src/index.ts'),
+      name: 'KubitUI',
+    },
+    minify: 'terser',
+    outDir: 'dist',
+    rollupOptions: {
+      external: ['react', 'react-dom', '@floating-ui/dom'],
+      output: [
+        // ESM with individual modules
+        {
+          dir: 'dist/esm',
+          entryFileNames: '[name].js',
+          exports: 'named',
+          format: 'es',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+        },
+        // CJS with individual modules
+        {
+          dir: 'dist/cjs',
+          entryFileNames: '[name].js',
+          exports: 'named',
+          format: 'cjs',
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+        },
+      ],
+    },
+    sourcemap: mode !== 'production',
+    terserOptions: {
+      compress: {
+        dead_code: true,
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+      },
+      format: {
+        comments: false,
+      },
+      mangle: {
+        properties: false, // Don't mangle properties to maintain compatibility
+      },
+    },
+  },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify('production'),
+  },
+  plugins: [
+    react(),
+    tsconfigPaths({ projects: ['./tsconfig.build.json'] }),
+    dts({
+      exclude: [
+        'src/**/*.test.*',
+        'src/**/__tests__',
+        'src/**/__mocks__',
+        'src/**/__fixtures__',
+        'src/**/stories',
+        'src/**/*.stories.*',
+      ],
+      insertTypesEntry: true,
+      outDir: 'dist/types',
+      rollupTypes: true,
+      tsconfigPath: './tsconfig.build.json',
+    }),
+    copyCSSPlugin(),
+    copyCSSProviderPlugin(),
+    copyStaticAssetsPlugin(),
+    generateComponentIndexPlugin(),
+  ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+}));

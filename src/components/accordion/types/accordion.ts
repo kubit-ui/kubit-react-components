@@ -1,64 +1,62 @@
-import * as React from 'react';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
 
-import { ButtonType } from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { LineSeparatorLinePropsStylesType } from '@/components/lineSeparator';
-import { IText, TextComponentType } from '@/components/text/types';
-import { CustomTokenTypes } from '@/types';
-
-import { AccordionPropsStylesType } from './accordionTheme';
-
-export type AccordionTextType = Omit<IText<string>, 'children'> & {
-  content?: React.ReactNode;
-};
-
-export type AccordionTriggerButtonType = {
-  ['aria-label']?: string;
-  type?: ButtonType;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-};
-
+type AccordionCssClasses = ComponentSelected<
+  ComponentsTypesComponents['ACCORDION']
+>;
 /**
- * @description
- * interface for the accordion standAlone
- * @interface IAccordionStandAlone
+ * Base interface for Accordion component
  */
 export interface IAccordionStandAlone {
-  styles: AccordionPropsStylesType;
-  lineSeparatorLineStyles: LineSeparatorLinePropsStylesType;
-  open?: boolean;
-  title?: AccordionTextType;
-  titleIcon?: IElementOrIcon;
-  subHeaderContent?: React.ReactNode;
-  headerRightContent?: React.ReactNode;
-  hasHeaderLineSeparator?: boolean;
-  footerContent?: React.ReactNode;
-  triggerComponent?: TextComponentType;
-  triggerButton?: AccordionTriggerButtonType;
-  triggerIcon?: IElementOrIcon;
+  /** Content to be displayed when the accordion is expanded */
+  children: React.ReactNode;
+  /** Header content for the accordion */
+  header: React.ReactNode;
+  /** Handler to control clicking on the header, only available for Controlled version */
+  onHeaderClick?: React.MouseEventHandler<HTMLButtonElement>;
+  /** Optional styles to apply to the component */
+  cssClasses?: AccordionCssClasses;
+  /** Custom test ID for testing */
   dataTestId?: string;
+  /** Component type for the accordion container, defaults to 'div' */
+  component?: React.ElementType;
+  /** Component type for header, defaults to 'button' */
+  headerComponent?: React.ElementType;
+  expanded: boolean;
 }
 
 /**
- * @description
- * interface for the controlled accordion
- * @template V
- * @interface IAccordionControlled
+ * Interface for controlled Accordion component
  */
-export interface IAccordionControlled<V = undefined extends string ? unknown : string>
-  extends React.PropsWithChildren<Omit<IAccordionStandAlone, 'styles' | 'lineSeparatorLineStyles'>>,
-    Omit<CustomTokenTypes<AccordionPropsStylesType>, 'cts' | 'extraCt'> {
+export interface IAccordionControlled<
+  V = undefined extends string ? unknown : string,
+> extends IAccordionStandAlone {
   variant: V;
+  additionalClasses?: Partial<AccordionCssClasses>;
+  /** Whether the accordion is expanded or collapsed */
+  expanded: boolean;
+  /** Callback fired when the header is clicked */
+  onHeaderClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  /** Unique ID for the content section, used for accessibility */
+  contentId?: string;
 }
 
 /**
- * @description
- * interface for the accordion
- * @template V
- * @interface IAccordion
+ * Interface for uncontrolled Accordion component
  */
-export interface IAccordion<V = undefined extends string ? unknown : string>
-  extends Omit<IAccordionControlled<V>, 'open'> {
-  defaultOpen?: boolean;
-  onOpenClose?: (open: boolean, event: React.MouseEvent<HTMLButtonElement>) => void;
+export interface IAccordionUnControlled<
+  V = undefined extends string ? unknown : string,
+> extends Omit<
+    IAccordionControlled<V>,
+    'expanded' | 'onHeaderClick' | 'contentId'
+  > {
+  /** Default expanded state when component mounts */
+  defaultExpanded?: boolean;
+  /** Callback fired when accordion state changes */
+  onExpandCollapse?: (
+    expanded: boolean,
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => void;
 }

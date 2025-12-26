@@ -1,28 +1,46 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
-import { ButtonSizePropsType, ButtonStateKeyOfType, ButtonStateType } from '@/components/button';
-import { STYLES_NAME } from '@/constants';
-import { States, useManageState } from '@/hooks';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { useGenericComponents } from '@/provider/genericComponents/genericComponentsProvider';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { useManageState } from '@/lib/hooks/useManageState/useManageState';
+import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
+import { STATES } from '@/lib/types/states/states';
 
-import { ILinkAsButton, ILinkAsButtonStandAlone } from '../types/link';
+import type { LinkAsButtonProps } from '../types/link';
 import { LinkAsButtonStandAlone } from './linkAsButtonStandAlone';
 
-export const LinkAsButtonComponent = React.forwardRef(
+export const LinkAsButton = forwardRef(
   (
-    { variant, size, ...props }: ILinkAsButton,
-    ref: React.ForwardedRef<HTMLElement> | undefined
+    {
+      additionalSizeClasses,
+      additionalVariantClasses,
+      disabled,
+      size,
+      variant,
+      ...props
+    }: LinkAsButtonProps,
+    ref: ForwardedRef<HTMLElement> | undefined,
   ): JSX.Element => {
-    const styles = useStyles<ButtonStateKeyOfType>(STYLES_NAME.BUTTON, variant);
-    const sizeStyles = useStyles<ButtonSizePropsType>(STYLES_NAME.BUTTON, size);
+    const cssLinkAsButtonClasses = useClassName({
+      component: 'LINK_AS_BUTTON',
+    });
+    const cssVariantClasses = useClassName({
+      additionalClassNames: additionalVariantClasses,
+      component: 'BUTTON',
+      variant,
+    });
+
+    const cssSizeClasses = useClassName({
+      additionalClassNames: additionalSizeClasses,
+      component: 'BUTTON',
+      variant: size,
+    });
+
     const { LINK: genericLinkComponent } = useGenericComponents();
 
-    const { state, setRef } = useManageState({
-      states: Object.values(ButtonStateType) as States,
+    const { setRef } = useManageState({
+      disabled: disabled,
       ref,
-      disabled: props.disabled,
+      states: Object.values(STATES),
     });
 
     return (
@@ -30,28 +48,11 @@ export const LinkAsButtonComponent = React.forwardRef(
         {...props}
         ref={setRef}
         component={genericLinkComponent}
-        sizeStyles={sizeStyles}
-        state={state as unknown as ButtonStateType}
-        styles={styles}
+        cssLinkAsButtonClasses={cssLinkAsButtonClasses}
+        cssSizeClasses={cssSizeClasses}
+        cssVariantClasses={cssVariantClasses}
+        disabled={disabled}
       />
     );
-  }
+  },
 );
-LinkAsButtonComponent.displayName = 'LinkAsButtonComponent';
-
-const LinkAsButtonBoundary = (
-  props: ILinkAsButton,
-  ref: React.ForwardedRef<HTMLElement> | undefined
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <LinkAsButtonStandAlone {...(props as unknown as ILinkAsButtonStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <LinkAsButtonComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-export const LinkAsButton = React.forwardRef(LinkAsButtonBoundary);

@@ -1,2 +1,5 @@
-export * from './types';
-export { Overlay } from './overlay';
+export type {
+  OverlayStandAloneProps,
+  OverlayProps,
+} from './types/overlay';
+export * from './types/overlayTheme';

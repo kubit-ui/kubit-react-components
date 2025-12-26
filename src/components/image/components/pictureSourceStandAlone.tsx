@@ -1,38 +1,43 @@
-import * as React from 'react';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { IPictureSourceSandAlone } from '../types';
+import type { PictureSourceSandAloneProps } from '../types/pictureSource';
 
 /**
- * @description
- * PictureSourceStandAlone component to load images
- * @param {IPictureSourceSandAlone} props
- * @returns {JSX.Element | null}
- * @constructor
- * @example
- * <PictureSourceStandAlone
- * mediaSource={{
- *  height: '100',
- * media: '(min-width: 1024px)',
- * src: 'https://via.placeholder.com/1024x768',
- * width: '100',
- * }}
- * />
+ * A standalone `<source>` element for responsive images.
  *
+ * This component renders a `<source>` element for use within a `<picture>` tag. It is designed
+ * to handle media queries and source sets for responsive image rendering. If no `mediaSource`
+ * is provided, it returns `null`.
+ *
+ * @example
+ * ```tsx
+ * <PictureSourceStandAlone
+ *   mediaSource={{
+ *     media: '(min-width: 768px)',
+ *     src: 'example.jpg',
+ *     width: 800,
+ *     height: 600,
+ *   }}
+ * />
+ * ```
  */
 export const PictureSourceStandAlone = ({
   mediaSource,
-  dataTestId,
-}: IPictureSourceSandAlone): JSX.Element | null => {
+  ...props
+}: PictureSourceSandAloneProps): JSX.Element | null => {
   if (!mediaSource) {
     return null;
   }
+
+  const customProps = pickCustomAttributes(props);
+
   return (
     <source
-      data-testid={dataTestId}
       height={mediaSource.height}
       media={mediaSource.media}
       srcSet={mediaSource.src}
       width={mediaSource.width}
+      {...customProps}
     />
   );
 };

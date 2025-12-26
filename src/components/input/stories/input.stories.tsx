@@ -1,72 +1,111 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ICONS } from '@/assets';
-import { IconHighlightedType } from '@/components/iconHighlighted';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { InputVariantType } from '@/lib/designSystem/kubit/components/input/variants';
+import { InputDecorationVariantType } from '@/lib/designSystem/kubit/components/inputDecoration/variants';
+import { ICONS } from '@/lib/storybook/assets/icons/icons';
+import { LoaderStory as Loader } from '@/lib/storybook/assets/loader/loader';
 
-import { additionalInfoAction, labelSecondary } from '../components/stories/stories';
-import { InputUnControlled as Story } from '../inputUnControlled';
-import { IInputUnControlled, InputTitleComponentType } from '../types';
-import { InputIconPosition } from '../types/inputTheme';
+import { NOTE_COLORS, Note } from '../../../lib/storybook/components/note/note';
+import { Input as Story } from '../input';
+import type { InputProps } from '../types/input';
 import { argtypes } from './argtypes';
 
-const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
+const StoryWithHooks = (args) => {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <Note
+        heading="Input Component Structure"
+        text={[
+          <span key="input-components-description">
+            Input is built with the following components: <i>InputLabel</i>,{' '}
+            <i>InputDecoration</i> and <i>InputBase</i>.
+          </span>,
+          'You can see the code in the documentation section.',
+        ]}
+        theme={NOTE_COLORS.BLUE}
+      />
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Story {...args} />
+      </div>
+    </div>
+  );
+};
 
 const meta = {
-  title: 'Components/Forms/Input',
+  argTypes: argtypes(),
   component: Story,
-  tags: ['autodocs'],
-  argTypes: argtypes(variantsObject, themeSelected),
+  render: ({ ...args }) => <StoryWithHooks {...args} />,
+  tags: ['autodocs', 'forms'],
+  title: 'Components/Forms/Input/Input',
 } satisfies Meta<typeof Story>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
-const commonArgs: IInputUnControlled = {
-  variant: Object.values(variantsObject[themeSelected].InputCounterVariant || {})[0] as string,
-  label: { content: 'Label', requiredSymbol: '*' },
-  placeholder: 'Placeholder',
-  id: 'input',
-  name: 'inputName',
-  required: true,
-  helpMessage: { content: 'HEEEELP!' },
-  title: { content: 'Title', component: InputTitleComponentType.H1 },
-  errorMessage: { content: 'Error message' },
-  errorIcon: { icon: ICONS.ICON_PLACEHOLDER },
-  highlightedInformationAssociatedIcon: {
-    icon: ICONS.ICON_PLACEHOLDER,
-    altText: 'unicorn alt text',
-    type: IconHighlightedType.INFORMATIVE,
-    position: InputIconPosition.LEFT,
+const commonArgs: InputProps = {
+  defaultValue: 'Default value',
+  disabled: false,
+  id: 'inputId',
+
+  leftDecoration: {
+    decoration: {
+      altText: 'alt text icon',
+      icon: ICONS.PLACEHOLDER,
+      onClick: () => {
+        return null;
+      },
+    },
+    variant: InputDecorationVariantType.STANDARD,
   },
-  informationAssociatedValue: { content: 'Lorem ipsum dolor sit. Lorem ipsum dolor sit amet' },
-  iconPosition: InputIconPosition.RIGHT,
-  icon: { icon: ICONS.ICON_PLACEHOLDER },
-  secondaryLabel: labelSecondary(themeSelected),
-  additionalInfo: additionalInfoAction(themeSelected),
+  placeholder: 'Placeholder',
+  required: true,
+  rightDecoration: {
+    decoration: {
+      altText: 'alt text icon',
+      icon: ICONS.PLACEHOLDER,
+      onClick: () => {
+        return null;
+      },
+    },
+  },
+  type: 'text',
+  variant: InputVariantType.STANDARD,
 };
 
 export const Input: Story = {
   args: {
     ...commonArgs,
-    themeArgs: themesObject[themeSelected][STYLES_NAME.INPUT],
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `const Input = args => {
+        return (
+          <InputContainerStyled ref={ref}>
+      {props.leftDecoration && <InputDecoration {...props.leftDecoration} />}
+      <InputAndLabelContainerStyled $styles={props.styles}>
+        {props.label && <InputLabel {...props.label} />}
+        {props.inputProps && <InputBase {...props.inputProps} />}
+      </InputAndLabelContainerStyled>
+      {props.rightDecoration && <InputDecoration {...props.rightDecoration} />}
+    </InputContainerStyled>
+        );
+      };`,
+      },
+    },
   },
 };
-
-export const InputWithCtv: Story = {
+export const InputWithLoader: Story = {
   args: {
     ...commonArgs,
-    ctv: {
-      EMPTY: {
-        inputWrapperContainer: {
-          background_color: 'pink',
-          padding_left: '10px',
-          padding_right: '10px',
-          padding_bottom: '10px',
-        },
+    rightDecoration: {
+      ...commonArgs.rightDecoration,
+      decoration: {
+        ...commonArgs.rightDecoration?.decoration,
+        icon: <Loader />,
       },
+      variant: InputDecorationVariantType.STANDARD,
     },
   },
 };

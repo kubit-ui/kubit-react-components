@@ -1,9 +1,20 @@
-import { TooltipAlignType } from '../types';
-import { Coords, Middleware, MiddlewareData, Strategy } from './types';
-import { computeCoordsFromPlacement } from './utils/computeCoordsFromPlacement';
-import { getElementRects } from './utils/getElementRects';
+/**
+ * Tooltip positioning utilities built on top of Floating UI.
+ * @see https://floating-ui.com/docs/platform
+ * @license MIT - Floating UI is licensed under MIT
+ */
+import {
+  type Middleware,
+  type MiddlewareData,
+  type Strategy,
+  computePosition as computePositionFloating,
+} from '@floating-ui/dom';
 
-export interface ComputePositionReturn extends Coords {
+import type { TooltipAlignType } from '../types/tooltipAlign';
+
+export interface ComputePositionReturn {
+  x: number;
+  y: number;
   placement: TooltipAlignType;
   strategy: Strategy;
   middlewareData: MiddlewareData;
@@ -13,75 +24,37 @@ export interface ComputePositionReturn extends Coords {
  * Computes the `x` and `y` coordinates that will place the floating element
  * next to a reference element when it is given a certain positioning strategy.
  */
-// eslint-disable-next-line complexity
-export const computePosition = (
+export const computePosition = async (
   reference: Element,
   floating: Element,
-  config: { placement?: TooltipAlignType; strategy?: Strategy; middleware?: Middleware[] }
-): ComputePositionReturn => {
-  const { placement = TooltipAlignType.TOP, strategy = 'fixed', middleware = [] } = config;
+  config: {
+    placement?: TooltipAlignType;
+    strategy?: Strategy;
+    middleware?: Array<Middleware>;
+  },
+): Promise<ComputePositionReturn> => {
+  const { middleware = [], placement = 'top', strategy = 'fixed' } = config;
+  const floatingPlacement = placement || 'top';
 
-  let rects = getElementRects({ reference, floating, strategy });
-  let { x, y } = computeCoordsFromPlacement(rects, placement);
-  let statefulPlacement = placement;
-  let middlewareData: MiddlewareData = {};
-  let resetCount = 0;
-
-  for (let i = 0; i < middleware.length; i++) {
-    const { name, fn } = middleware[i];
-    const {
-      x: nextX,
-      y: nextY,
-      data,
-      reset,
-    } = fn({
-      x,
-      y,
-      initialPlacement: placement,
-      placement: statefulPlacement,
+  // Call floating-ui's computePosition function
+  const result = await computePositionFloating(
+    reference as HTMLElement,
+    floating as HTMLElement,
+    {
+      middleware,
+      placement: floatingPlacement,
       strategy,
-      middlewareData,
-      rects,
-      elements: { reference, floating },
-    });
+    },
+  );
 
-    x = nextX ?? x;
-    y = nextY ?? y;
-
-    middlewareData = {
-      ...middlewareData,
-      [name]: {
-        ...middlewareData[name],
-        ...data,
-      },
-    };
-
-    if (reset && resetCount <= 50) {
-      resetCount++;
-
-      if (typeof reset === 'object') {
-        if (reset.placement) {
-          statefulPlacement = reset.placement;
-        }
-
-        if (reset.rects) {
-          rects =
-            reset.rects === true ? getElementRects({ reference, floating, strategy }) : reset.rects;
-        }
-
-        ({ x, y } = computeCoordsFromPlacement(rects, statefulPlacement));
-      }
-
-      i = -1;
-      continue;
-    }
-  }
+  // Convert resulting position from Placement to TooltipAlignType
+  const tooltipPlacement = result.placement || 'top';
 
   return {
-    x,
-    y,
-    placement: statefulPlacement,
-    strategy,
-    middlewareData,
+    middlewareData: result.middlewareData as MiddlewareData,
+    placement: tooltipPlacement as TooltipAlignType,
+    strategy: result.strategy,
+    x: result.x,
+    y: result.y,
   };
 };

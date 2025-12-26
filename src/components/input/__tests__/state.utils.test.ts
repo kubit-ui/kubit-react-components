@@ -1,107 +1,51 @@
-import { InputState } from '../types';
-import { getState, hasError, isDisabled } from '../utils';
+import { InputState } from '../types/state';
+import { getState } from '../utils/state';
 
-describe('Utils state', () => {
-  it('If disabled without value, it should return DISABLED_EMPTY state', () => {
-    const value = undefined;
-    const focus = true;
-    const disabled = true;
-    const error = undefined;
-    const informationAssociated = undefined;
-    expect(getState(value, focus, disabled, error, informationAssociated)).toBe(
-      InputState.DISABLED_EMPTY
-    );
+describe('Input getState', () => {
+  it('should return DISABLED_FILLED when disabled and filled', () => {
+    expect(
+      getState({ disabled: true, error: true, filled: true, focused: false }),
+    ).toBe(InputState.DISABLED_FILLED);
   });
-  it('If disabled with value, it should return DISABLED_FILLED state', () => {
-    const value = 'value';
-    const focus = true;
-    const disabled = true;
-    const error = undefined;
-    const informationAssociated = undefined;
-    expect(getState(value, focus, disabled, error, informationAssociated)).toBe(
-      InputState.DISABLED_FILLED
-    );
+
+  it('should return DISABLED_EMPTY when disabled and not filled', () => {
+    expect(
+      getState({ disabled: true, error: true, filled: false, focused: false }),
+    ).toBe(InputState.DISABLED_EMPTY);
   });
-  it('If disabled with informationAssociated, it should return DISABLED_FILLED_WITH_INFO state', () => {
-    const value = 'value';
-    const focus = false;
-    const disabled = true;
-    const error = undefined;
-    const informationAssociated = 'info';
-    expect(getState(value, focus, disabled, error, informationAssociated)).toBe(
-      InputState.DISABLED_FILLED_WITH_INFO
-    );
+
+  it('should return ERROR_FILLED when error and filled', () => {
+    expect(
+      getState({ disabled: false, error: true, filled: true, focused: false }),
+    ).toBe(InputState.ERROR_FILLED);
   });
-  it('If error without value, it should return ERROR_EMPTY state', () => {
-    const value = undefined;
-    const focus = false;
-    const disabled = false;
-    const error = true;
-    const informationAssociated = undefined;
-    expect(getState(value, focus, disabled, error, informationAssociated)).toBe(
-      InputState.ERROR_EMPTY
-    );
+
+  it('should return ERROR_EMPTY when error and not filled', () => {
+    expect(
+      getState({ disabled: false, error: true, filled: false, focused: false }),
+    ).toBe(InputState.ERROR_EMPTY);
   });
-  it('If error with value, it should return ERROR_FILLED state', () => {
-    const value = 'value';
-    const focus = false;
-    const disabled = false;
-    const error = true;
-    const informationAssociated = undefined;
-    expect(getState(value, focus, disabled, error, informationAssociated)).toBe(
-      InputState.ERROR_FILLED
-    );
+
+  it('should return FOCUSED when focused', () => {
+    expect(
+      getState({ disabled: false, error: false, filled: false, focused: true }),
+    ).toBe(InputState.FOCUS);
   });
-  it('If error with focus, it should return ERROR_ACTIVE state', () => {
-    const value = 'value';
-    const focus = true;
-    const disabled = false;
-    const error = true;
-    const informationAssociated = undefined;
-    expect(getState(value, focus, disabled, error, informationAssociated)).toBe(
-      InputState.ERROR_ACTIVE
-    );
+
+  it('should return FILLED when filled', () => {
+    expect(
+      getState({ disabled: false, error: false, filled: true, focused: false }),
+    ).toBe(InputState.FILLED);
   });
-  it('If focus, it should return ACTIVE state', () => {
-    const value = 'value';
-    const focus = true;
-    const disabled = false;
-    const error = false;
-    const informationAssociated = undefined;
-    expect(getState(value, focus, disabled, error, informationAssociated)).toBe(InputState.ACTIVE);
-  });
-  it('If filled, it should return FILLED state', () => {
-    const value = 'value';
-    const focus = false;
-    const disabled = false;
-    const error = false;
-    const informationAssociated = undefined;
-    expect(getState(value, focus, disabled, error, informationAssociated)).toBe(InputState.FILLED);
-  });
-  it('If not filled, it should return EMPTY state', () => {
-    const value = undefined;
-    const focus = false;
-    const disabled = false;
-    const error = false;
-    const informationAssociated = undefined;
-    expect(getState(value, focus, disabled, error, informationAssociated)).toBe(InputState.EMPTY);
-  });
-  it('If error with value and informationAssociated', () => {
-    const value = 'value';
-    const focus = false;
-    const disabled = false;
-    const error = true;
-    const informationAssociated = 'info associated';
-    expect(getState(value, focus, disabled, error, informationAssociated)).toBe(
-      InputState.ERROR_FILLED_WITH_INFO
-    );
-  });
-  it('check hasError function', () => {
-    const state = InputState.ERROR_ACTIVE;
-    expect(hasError(state)).toBe(true);
-  });
-  it('check isDisabled function', () => {
-    const state = InputState.DISABLED_FILLED_WITH_INFO;
-    expect(isDisabled(state)).toBe(true);
+
+  it('should return EMPTY when none of the conditions are met', () => {
+    expect(
+      getState({
+        disabled: false,
+        error: false,
+        filled: false,
+        focused: false,
+      }),
+    ).toBe(InputState.EMPTY);
   });
 });

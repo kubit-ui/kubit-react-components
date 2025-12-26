@@ -1,9 +1,10 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
+import type { ElementOrIconProps } from '../../../elementOrIcon/types/elementOrIcon';
+import type { CalendarCssClasses } from '../../types/calendar';
+import type { CalendarStyleProps } from '../../types/calendarTheme';
 
-import { CalendarContainerStylesType } from '../../types/calendarTheme';
-
-export interface ISelector {
+export interface SelectorProps {
   currentDate: Date;
+  customBackText?: string;
   setCurrentDate: (date: Date) => void;
   maxDate: Date;
   minDate: Date;
@@ -15,33 +16,39 @@ export interface ISelector {
   setShowDaySelector: (value: boolean) => void;
   onDaySelectorClick?: (
     value?: string,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   onMonthSelectorClick?: (
     value?: string,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   onYearSelectorClick?: (
     value?: string,
-    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   onLeftIconClick?: (
-    event?: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>,
   ) => void;
   onRightIconClick?: (
-    event?: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
+    event?: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>,
   ) => void;
-  styles?: CalendarContainerStylesType;
+  styles?: CalendarStyleProps;
   configCalendar: {
-    leftArrowIcon: IElementOrIcon;
-    rightArrowIcon: IElementOrIcon;
+    leftArrowIcon: ElementOrIconProps;
+    rightArrowIcon: ElementOrIconProps;
     variantSelectorButton?: string;
     sizeSelectorButton?: string;
   };
   configAccesibility?: {
+    monthSelectorRole?: string;
+    yearSelectorRole?: string;
+    daySelectorRole?: string;
     monthSelectorAriaLabel?: string;
     yearSelectorAriaLabel?: string;
     daySelectorAriaLabel?: string;
     backToMonthAriaLabel?: string;
   };
+
+  cssClasses?: CalendarCssClasses;
+  useDaySelector?: boolean;
 }

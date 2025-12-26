@@ -1,0 +1,93 @@
+import {
+  getAddDays,
+  getAddMonths,
+  getAddYears,
+  getAllMonthNames,
+  getAllWeekdayNames,
+  getSubDays,
+  getSubMonths,
+  getSubYears,
+  isAfter,
+  isBefore,
+  isDatesEqual,
+} from '@/lib/utils/date/date';
+import { formatDate } from '@/lib/utils/date/formatDate';
+import { transformDate } from '@/lib/utils/date/transformDate';
+import type { FormatDateType } from '@/lib/utils/date/types/format.types';
+
+import { defaultGenericComponents } from '../genericComponentsProvider/defaultGenericComponents';
+import { GenericComponentsProvider } from '../genericComponentsProvider/genericComponentsProvider';
+import { StylesProvider } from '../stylesProvider/stylesProvider';
+import type { DateFormatOptions } from '../utilsProvider/types/utilsProvider';
+import { UtilsProvider } from '../utilsProvider/utilsProvider';
+import type { KubitProviderProps } from './types/kubitProvider';
+
+export const KubitProvider = ({
+  children,
+  genericComponentsProvider = defaultGenericComponents,
+  utilsConfig,
+}: KubitProviderProps): JSX.Element => {
+  return (
+    <UtilsProvider
+      dateHelpers={{
+        getAddDays: (date: Date, days: number) => {
+          return getAddDays(date, days);
+        },
+        getAddMonths: (date: Date, months: number) => {
+          return getAddMonths(date, months);
+        },
+        getAddYears: (date: Date, years: number) => {
+          return getAddYears(date, years);
+        },
+        getAllMonthName: () => {
+          return getAllMonthNames();
+        },
+        getAllWeekdayName: (
+          weekdayFormat: Intl.DateTimeFormatOptions['weekday'],
+          isSundayFirst: boolean,
+          locale?: string,
+        ) => {
+          return getAllWeekdayNames(weekdayFormat, isSundayFirst, locale);
+        },
+        getSubDays: (date: Date, days: number) => {
+          return getSubDays(date, days);
+        },
+        getSubMonths: (date: Date, months: number) => {
+          return getSubMonths(date, months);
+        },
+        getSubYears: (date: Date, years: number) => {
+          return getSubYears(date, years);
+        },
+        isAfter: (date1: Date, date2: Date) => {
+          return isAfter(date1, date2);
+        },
+        isBefore: (date1: Date, date2: Date) => {
+          return isBefore(date1, date2);
+        },
+        isDatesEqual: (
+          firsDate: string | number | Date,
+          secondDate: string | number | Date,
+        ) => {
+          return isDatesEqual(firsDate, secondDate);
+        },
+      }}
+      formatDate={(
+        date: Date,
+        format: DateFormatOptions | FormatDateType | string,
+        locale?: string,
+      ) => {
+        return formatDate(date, format, locale);
+      }}
+      transformDate={(date: string | number, format: string | undefined) => {
+        return transformDate(date, format);
+      }}
+      {...utilsConfig}
+    >
+      <StylesProvider>
+        <GenericComponentsProvider value={genericComponentsProvider}>
+          {children}
+        </GenericComponentsProvider>
+      </StylesProvider>
+    </UtilsProvider>
+  );
+};

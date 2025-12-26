@@ -1,0 +1,8 @@
+export const TagVariants = {
+  CODE: 'CODE',
+  DEPRECATED: 'DEPRECATED',
+  DORMANT: 'DORMANT',
+  HEALTHY: 'HEALTHY',
+  INFORMATIVE: 'INFORMATIVE',
+  ISSUE: 'ISSUE',
+} as const;

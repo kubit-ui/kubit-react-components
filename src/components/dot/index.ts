@@ -1,13 +1,9 @@
-// interfaces an types
-export type {
-  IDotStyled,
-  IDotStandAlone,
-  IDot,
-  DotSizePropsType,
-  DotVariantStylesType,
-  DotStylesVariantType,
-  DotStylesSizeType,
-  DotStylesType,
-} from './types';
-
 export { Dot } from './dot';
+export type {
+  DotStyledProps,
+  DotStandAloneProps,
+  DotProps,
+} from './types/dot';
+export type {
+  DotThemeStyles,
+} from './types/dotTheme';

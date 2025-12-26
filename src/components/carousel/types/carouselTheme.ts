@@ -1,34 +1,11 @@
-import { CommonStyleType, IconTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-import { CarouselArrowStateType } from './state';
+// TODO FIXME Improve types, right now it is not working properly with the current kubit-css-style-generator
+export interface CarouselStyleProps extends CssLibPropsType {
+  _viewer?: CssLibPropsType;
+  _content?: CssLibPropsType;
+}
 
-export type CarouselPropsStylesType = {
-  container?: CommonStyleType;
-  arrowAndCarouselContainer?: CommonStyleType;
-  leftArrowIcon?: IconTypes;
-  rightArrowIcon?: IconTypes;
-  leftArrowIconDisabled?: IconTypes;
-  rightArrowIconDisabled?: IconTypes;
-  carouselContainer?: CommonStyleType;
-  content?: CommonStyleType;
-  pageControlContainer?: CommonStyleType;
-  pageControlAutomateContainer?: CommonStyleType;
-} & {
-  [state in CarouselArrowStateType]?: {
-    arrowLeftIconContainer?: CommonStyleType;
-    arrowLeftIconButtonContainer?: CommonStyleType;
-    arrowRightIconContainer?: CommonStyleType;
-    arrowRightIconButtonContainer?: CommonStyleType;
-  };
-};
-
-/**
- * @description
- * interface for the carousel styles
- * @template  V
- * @interface CarouselStylesType
- */
-
-export type CarouselStylesType<V extends string | number | symbol> = {
-  [variant in V]: CarouselPropsStylesType;
-};
+export type CarouselVariantStyles<Variant extends string = string> = {
+  [key in Variant]: CarouselStyleProps;
+} & CarouselStyleProps;

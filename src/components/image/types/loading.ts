@@ -1,4 +1,1 @@
-export enum ImageLoadingType {
-  EAGER = 'eager',
-  LAZY = 'lazy',
-}
+export type ImageLoadingType = 'eager' | 'lazy' | undefined;

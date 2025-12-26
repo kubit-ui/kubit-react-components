@@ -1,8 +1,6 @@
-export enum TextAreaStateType {
-  EMPTY = 'EMPTY',
-  ACTIVE = 'ACTIVE',
-  FILLED = 'FILLED',
-  ERROR = 'ERROR',
-  DISABLED_FILLED = 'DISABLED_FILLED',
-  DISABLED_EMPTY = 'DISABLED_EMPTY',
-}
+import type { StateType } from '@/lib/types/states/states';
+
+export type TextAreaStateType = Extract<
+  StateType,
+  'empty' | 'active' | 'filled' | 'error' | 'disabled_filled' | 'disabled_empty'
+>;

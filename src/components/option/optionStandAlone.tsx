@@ -1,154 +1,198 @@
-/* eslint-disable complexity */
+import { type KeyboardEvent, type MouseEventHandler, forwardRef } from 'react';
 
-/* eslint-disable react/display-name */
-import * as React from 'react';
+import { RenderIf } from '@/components/renderIf/renderIf';
+import { Text } from '@/components/text/text';
+import { STATES } from '@/lib/types/states/states';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+import { processText } from '@/lib/utils/process/processText/processText';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text, TextComponentType, TextDecorationType } from '@/components/text';
-import { Toggle } from '@/components/toggle';
-import { isKeyEnterPressed, isKeySpacePressed } from '@/utils';
-import { pickAriaProps } from '@/utils/aria/aria';
-
-import { OptionLabelSlice } from './components.ts';
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import {
-  OptionDivStyled,
-  OptionFirstRowWrapperStyled,
-  OptionLabelHighlightedLabelWrapper,
-  OptionLabelIconWrapper,
-  OptionStyled,
-  OptionSublabelContainer,
-} from './option.styled';
-import { IOptionStandAlone, OptionStateType } from './types';
-import { getHighlightedIndexes, getState } from './utils';
+  isKeyEnterPressed,
+  isKeySpacePressed,
+} from '../../lib/utils/keyboard/keyboard';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { OptionLabelSlice } from './components.ts/optionLabelSlice';
+import type { OptionStandAloneProps } from './types/option';
+import type { OptionStateType } from './types/state';
+import { getHighlightedIndexes, getState } from './utils/option.utils';
 
-const OptionStandAlone = React.forwardRef(
-  (props: IOptionStandAlone, ref: React.ForwardedRef<HTMLElement | undefined>) => {
-    const ariaProps = pickAriaProps(props);
-    const filling = !!props.labelCharsHighlighted && props.labelCharsHighlighted?.length > 0;
-    const state = getState(props.disabled, props.selected, props.multiSelect, props.hover, filling);
-    const stateStyles = props.styles[state];
-    const disabled = state === OptionStateType.DISABLED;
-
-    const handleClickOption: React.MouseEventHandler<HTMLDivElement> = event => {
+export const OptionStandAlone = forwardRef(
+  ({
+    checkedIcon,
+    component,
+    componentLink,
+    cssClasses,
+    disabled: disabledProp,
+    extraContent,
+    focus,
+    hover,
+    icon,
+    label,
+    labelCharsHighlighted,
+    multiSelect,
+    onBlur,
+    onClick,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
+    role,
+    selected,
+    sublabel,
+    tabIndex,
+    url,
+    ...props
+  }: OptionStandAloneProps) => {
+    const filling =
+      !!labelCharsHighlighted && labelCharsHighlighted?.length > 0;
+    const state = getState(
+      disabledProp,
+      focus,
+      selected,
+      multiSelect,
+      hover,
+      filling,
+    );
+    // const stateStyles = props.styles[state];
+    const customAttributes = {
+      'data-state': state,
+    };
+    const disabled = state === STATES.DISABLED;
+    const handleClickOption: MouseEventHandler<HTMLDivElement> = (event) => {
       if (!disabled) {
-        props.onClick?.(event);
+        onClick?.(event);
       }
     };
-
+    const customProps = pickCustomAttributes({
+      ...props,
+      customAttributes,
+    });
+    const customAttributesProps = pickCustomAttributes(customAttributes);
+    const dataTestId = customProps['data-testid'] || 'option';
     const hasCheckedIcon = [
-      OptionStateType.MULTIPLE_SELECTED,
-      OptionStateType.MULTIPLE_SELECTED_HOVER,
-    ].includes(state);
-
-    const { firstHighlightedIndex, lastHighlightedIndex } = getHighlightedIndexes(
-      props.label,
-      props.labelCharsHighlighted
+      STATES.MULTIPLE_SELECTED,
+      STATES.MULTIPLE_SELECTED_HOVER,
+      STATES.SELECTED,
+    ].includes(
+      state as Extract<
+        OptionStateType,
+        'multiple_selected' | 'multiple_selected_hover' | 'selected'
+      >,
     );
-    const _firstNoHighlightedLabel = props.label.substring(0, firstHighlightedIndex);
-    const _highlightedLabel = props.label.substring(firstHighlightedIndex, lastHighlightedIndex);
-    const _lastNoHighlightedLabel = props.label.substring(lastHighlightedIndex);
+    let _firstNoHighlightedLabel;
+    let _highlightedLabel;
+    let _lastNoHighlightedLabel;
+    if (typeof label === 'string') {
+      const { firstHighlightedIndex, lastHighlightedIndex } =
+        getHighlightedIndexes(label, labelCharsHighlighted);
+      _firstNoHighlightedLabel = label.substring(0, firstHighlightedIndex);
+      _highlightedLabel = label.substring(
+        firstHighlightedIndex,
+        lastHighlightedIndex,
+      );
+      _lastNoHighlightedLabel = label.substring(lastHighlightedIndex);
+    }
     return (
-      <OptionStyled
-        ref={ref}
+      <CustomComponent
         aria-disabled={disabled}
-        {...ariaProps}
-        $stateStyles={stateStyles}
-        $styles={props.styles}
-        as={props.url ? props.componentLink : props.as ?? OptionDivStyled}
-        data-testid={props.dataTestId}
-        role={props.role}
-        tabIndex={props.tabIndex}
-        url={props.url}
+        className={cssClasses?.option}
+        {...customProps}
+        component={url ? componentLink : (component ?? 'div')}
+        data-testid={dataTestId}
+        role={role}
+        tabIndex={tabIndex}
+        url={url}
+        onBlur={onBlur}
         onClick={handleClickOption}
-        onFocus={props.onFocus}
-        onKeyDown={(event: React.KeyboardEvent<HTMLDivElement>) => {
-          if (!disabled && (isKeyEnterPressed(event.key) || isKeySpacePressed(event.key))) {
-            props.onClick?.(event);
+        onFocus={onFocus}
+        onKeyDown={(event: KeyboardEvent<HTMLDivElement>) => {
+          if (
+            !disabled &&
+            (isKeyEnterPressed(event.key) || isKeySpacePressed(event.key))
+          ) {
+            onClick?.(event);
           }
         }}
-        onMouseEnter={props.onMouseEnter}
-        onMouseLeave={props.onMouseLeave}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        {...customAttributesProps}
       >
-        <OptionFirstRowWrapperStyled>
-          <OptionLabelIconWrapper stateStyles={stateStyles}>
+        <div className={cssClasses?.firstrowcontainer}>
+          <div
+            className={cssClasses?.labeliconcontainer}
+            {...customAttributesProps}
+          >
             <ElementOrIcon
-              color={stateStyles?.icon?.color}
-              dataTestId={`${props.dataTestId}Icon`}
-              height={stateStyles?.icon?.height}
-              width={stateStyles?.icon?.width}
-              {...props.icon}
+              className={cssClasses?.icon}
+              customAttributes={customAttributes}
+              {...icon}
             />
-            {props.sublabel?.content && (
-              <OptionSublabelContainer stateStyles={stateStyles}>
+            <RenderIf condition={!!processText(sublabel).children}>
+              <div
+                className={cssClasses?.sublabelcontainer}
+                {...customAttributesProps}
+              >
                 <Text
-                  color={stateStyles?.sublabel?.color}
-                  component={TextComponentType.SPAN}
-                  dataTestId={`${props.dataTestId}Sublabel`}
-                  decoration={stateStyles?.sublabel?.text_decoration as TextDecorationType}
-                  variant={stateStyles?.sublabel?.font_variant}
-                  weight={stateStyles?.sublabel?.font_weight}
-                  {...props.sublabel}
+                  additionalClasses={{
+                    text: cssClasses?.sublabel,
+                  }}
+                  component="span"
+                  customAttributes={customAttributes}
+                  {...processText(sublabel)}
+                />
+              </div>
+            </RenderIf>
+            <p>
+              {typeof label === 'string' ? (
+                <>
+                  {' '}
+                  <OptionLabelSlice
+                    component="span"
+                    cssClasses={cssClasses?.label}
+                    customAttributes={customAttributes}
+                    data-testid={`${dataTestId}-first-no-hightlighted-label`}
+                  >
+                    {_firstNoHighlightedLabel}
+                  </OptionLabelSlice>
+                  <OptionLabelSlice
+                    component="span"
+                    cssClasses={`${cssClasses?.label} ${cssClasses?.labelhighlighted}`}
+                    customAttributes={customAttributes}
+                    data-testid={`${dataTestId}-highlighted-label`}
+                  >
+                    {_highlightedLabel}
+                  </OptionLabelSlice>
+                  <OptionLabelSlice
+                    component="span"
+                    cssClasses={`${cssClasses?.label} ${cssClasses?.labelhighlighted}`}
+                    customAttributes={customAttributes}
+                    data-testid={`${dataTestId}-last-no-hightlighted-label`}
+                  >
+                    {_lastNoHighlightedLabel}
+                  </OptionLabelSlice>
+                </>
+              ) : (
+                <OptionLabelSlice
+                  component="span"
+                  cssClasses={cssClasses?.label}
+                  customAttributes={customAttributes}
+                  data-testid={`${dataTestId}-label`}
                 >
-                  {props.sublabel?.content}
-                </Text>
-              </OptionSublabelContainer>
-            )}
-            <OptionLabelHighlightedLabelWrapper>
-              <OptionLabelSlice
-                color={stateStyles?.label?.color}
-                component={TextComponentType.SPAN}
-                dataTestId={`${props.dataTestId}FirstNoHightlightedLabel`}
-                decoration={stateStyles?.label?.text_decoration as TextDecorationType}
-                variant={stateStyles?.label?.font_variant}
-                weight={stateStyles?.label?.font_weight}
-              >
-                {_firstNoHighlightedLabel}
-              </OptionLabelSlice>
-              <OptionLabelSlice
-                color={stateStyles?.label?.color}
-                component={TextComponentType.SPAN}
-                dataTestId={`${props.dataTestId}HighlightedLabel`}
-                decoration={stateStyles?.labelHightlighted?.text_decoration as TextDecorationType}
-                variant={stateStyles?.labelHightlighted?.font_variant}
-                weight={stateStyles?.labelHightlighted?.font_weight}
-              >
-                {_highlightedLabel}
-              </OptionLabelSlice>
-              <OptionLabelSlice
-                color={stateStyles?.label?.color}
-                component={TextComponentType.SPAN}
-                dataTestId={`${props.dataTestId}LastNoHightlightedLabel`}
-                decoration={stateStyles?.label?.text_decoration as TextDecorationType}
-                variant={stateStyles?.label?.font_variant}
-                weight={stateStyles?.label?.font_weight}
-              >
-                {_lastNoHighlightedLabel}
-              </OptionLabelSlice>
-            </OptionLabelHighlightedLabelWrapper>
-          </OptionLabelIconWrapper>
-          {hasCheckedIcon && (
+                  {label}
+                </OptionLabelSlice>
+              )}
+            </p>
+          </div>
+          <RenderIf condition={hasCheckedIcon}>
             <ElementOrIcon
-              color={stateStyles?.checkedIcon?.color}
-              dataTestId={`${props.dataTestId}IconChecked`}
-              height={stateStyles?.checkedIcon?.height}
-              width={stateStyles?.checkedIcon?.width}
-              {...props.checkedIcon}
+              className={cssClasses?.checkedicon}
+              customAttributes={customAttributes}
+              {...checkedIcon}
             />
-          )}
-        </OptionFirstRowWrapperStyled>
-        {props.toggle && <Toggle {...props.toggle} />}
-      </OptionStyled>
+          </RenderIf>
+        </div>
+        <RenderIf condition={!!extraContent}>{extraContent}</RenderIf>
+      </CustomComponent>
     );
-  }
+  },
 );
-
-/**
- * @description
- * Option component is used to render an option.
- * @param {React.PropsWithChildren<IOptionStandAlone>} props
- * @returns {JSX.Element}
- * @constructor
- * @example
- * <Option label="Option 1" />
- */
-export { OptionStandAlone };

@@ -1,0 +1,60 @@
+{
+  "provider": {
+    "name": "Provider",
+    "path": "./src/lib/provider/cssProvider/",
+    "declarationHelp": true
+  },
+  "themes": [
+    {
+      "name": "kubit",
+      "foundations": {
+        "path": "./src/lib/designSystem/kubit/foundations/foundations.ts",
+        "name": "FOUNDATIONS"
+      },
+      "theme": {
+        "path": "./src/lib/designSystem/kubit/components/theme.ts",
+        "name": "KUBIT_STYLES"
+      },
+      "globalStyles": {
+        "path": "./src/lib/designSystem/kubit/globalStyles/globalStyles.ts",
+        "name": "GLOBAL_STYLES"
+      },
+      "mediaQueries": {
+        "path": "./src/lib/designSystem/common/mediaQueries.ts",
+        "name": "MEDIA_QUERIES"
+      },
+      "kbTools": {
+        "path": "./src/lib//designSystem/kubit/css",
+        "declarationHelp": true,
+        "cssVariables": true,
+        "cssClassNames": false
+      },
+      "typesTools": {
+        "stylesTypes": {
+          "name": "stylesTypes",
+          "path": "./src/lib/types/cssGenerator"
+        },
+        "componentsTypes": {
+          "name": "componentsTypes",
+          "path": "./src/lib/types/cssGenerator/kubit"
+        }
+      },
+      "resetCss": true,
+      "stylesPath": "./src/lib//designSystem/kubit/css",
+      "fileName": "kubit",
+      "fonts": {
+        "google": [
+          {
+            "name": "Nunito Sans",
+            "weights": ["300", "400", "600", "700"]
+          },
+          {
+            "name": "Roboto",
+            "weights": ["300", "400", "500", "700"]
+          }
+        ]
+      }
+    }
+  ],
+  "tsconfigPath": "./tsconfig.json"
+}

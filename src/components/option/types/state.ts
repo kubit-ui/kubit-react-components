@@ -1,15 +1,14 @@
-/**
- * Option state type
- * @export
- * @enum {string}
- */
-export enum OptionStateType {
-  DEFAULT = 'DEFAULT',
-  FILLING = 'FILLING',
-  HOVER = 'HOVER',
-  SELECTED = 'SELECTED',
-  SELECTED_HOVER = 'SELECTED_HOVER',
-  MULTIPLE_SELECTED = 'MULTIPLE_SELECTED',
-  MULTIPLE_SELECTED_HOVER = 'MULTIPLE_SELECTED_HOVER',
-  DISABLED = 'DISABLED',
-}
+import type { StateType } from '@/lib/types/states/states';
+
+export type OptionStateType = Extract<
+  StateType,
+  | 'default'
+  | 'filling'
+  | 'hover'
+  | 'selected'
+  | 'selected_hover'
+  | 'multiple_selected'
+  | 'multiple_selected_hover'
+  | 'disabled'
+  | 'focus'
+>;

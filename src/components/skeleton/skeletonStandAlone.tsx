@@ -1,32 +1,47 @@
-import * as React from 'react';
+import './skeleton.css';
 
-import { pickAriaProps } from '@/utils/aria/aria';
+import { type CSSProperties, forwardRef } from 'react';
 
-import { SkeletonStyled } from './skeleton.styled';
-import { ISkeletonStandAlone } from './types';
+import { classNames } from '@/lib/utils/classNames/classNames';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-const SkeletonStandAloneComponent = (
-  { duration = '1.2s', ...props }: ISkeletonStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => {
-  const ariaProps = pickAriaProps(props);
-  return (
-    <SkeletonStyled
-      ref={ref}
-      $height={props.height}
-      $width={props.width}
-      data-testid={props.dataTestId}
-      duration={duration}
-      styles={props.styles}
-      {...ariaProps}
-    />
-  );
-};
+import type { SkeletonStandAloneProps } from './types/skeleton';
 
-/**
- * @description
- * Skeleton coponents is a loading component that can be used to show a loading state of a component.
- * @param {React.PropsWithChildren<ISkeletonStandAlone>} props
- * @returns {JSX.Element}
- */
-export const SkeletonStandAlone = React.forwardRef(SkeletonStandAloneComponent);
+export const SkeletonStandAlone = forwardRef<
+  HTMLDivElement,
+  SkeletonStandAloneProps
+>(
+  (
+    {
+      cssClasses,
+      cssShapeClasses,
+      duration = '1.2s',
+      height,
+      width,
+      ...props
+    }: SkeletonStandAloneProps,
+    ref,
+  ): JSX.Element => {
+    const customProps = pickCustomAttributes(props);
+
+    return (
+      <div
+        ref={ref}
+        className={classNames(
+          'kbt-skeleton',
+          cssClasses?.skeleton,
+          cssShapeClasses?.skeleton,
+        )}
+        data-testid="skeleton"
+        style={
+          {
+            '--skeleton-duration': duration,
+            '--skeleton-height': height,
+            '--skeleton-width': width,
+          } as CSSProperties
+        }
+        {...customProps}
+      />
+    );
+  },
+);

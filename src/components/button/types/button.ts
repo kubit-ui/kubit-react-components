@@ -1,16 +1,29 @@
-import * as React from 'react';
+import type {
+  AriaAttributes,
+  AriaRole,
+  MouseEventHandler,
+  PropsWithChildren,
+  ReactNode,
+} from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILoader } from '@/components/loader/types';
-import { CustomTokenTypes } from '@/types';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
+import type { PositionType } from '@/lib/types/positions/positions';
 
-import type { IconPositionType } from './buttonIconPosition';
-import type { ButtonSizePropsType, ButtonStateKeyOfType } from './buttonTheme';
-import type { ButtonStateType } from './state';
-import type { ButtonType } from './type';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 
-type ButtonAriaAttributes = Pick<
-  React.AriaAttributes,
+export type ButtonCssClasses = ComponentSelected<
+  ComponentsTypesComponents['BUTTON']
+>;
+
+/**
+ * Represents the ARIA attributes for the Button component.
+ */
+type ButtonAriaProps = Pick<
+  AriaAttributes,
   | 'aria-label'
   | 'aria-labelledby'
   | 'aria-describedby'
@@ -18,65 +31,61 @@ type ButtonAriaAttributes = Pick<
   | 'aria-expanded'
   | 'aria-pressed'
   | 'aria-disabled'
+  | 'aria-hidden'
 >;
 
 /**
- * @description
- * Button props
- *
- * @interface IButtonStyled
- * @property {boolean} [fullWidth] - If true, the button will take up the full width of its container.
- * @property {string} [size] - Size of the button.
- * @property {ButtonStateKeyOfType} [styles] - Styles of the button.
- * @property {ButtonStateType} state - State of the button.
- * @property {IconPositionType} [iconPosition] - Position of the icon.
- * @property {boolean} [loading] - If true, the button will show a loader.
- * @property {ILoader | React.ReactNode} [loader] - Loader of the button.
- * @property {string} [minWidth] - Min width of the button.
- * @property {ButtonSizePropsType} [sizeStyles] - Size styles of the button.
- * @property {string} [ghostText] - Ghost text of the button.
- * @property {string} [alignText] - Align text of the button.
- * @property {number} [tabIndex] - Tab index of the button.
- *
+ * Interface for the styled Button component.
+ * Includes styling options such as width, alignment, and loading state.
  */
-export interface IButtonStyled {
+export interface ButtonStylesProps {
   fullWidth?: boolean;
-  styles?: ButtonStateKeyOfType;
-  state: ButtonStateType;
-  iconPosition?: IconPositionType;
+  iconPosition?: PositionType;
   loading?: boolean;
-  loader?: ILoader | React.ReactNode;
+  loader?: ReactNode;
   minWidth?: string;
-  sizeStyles?: ButtonSizePropsType;
   ghostText?: string;
   alignText?: string;
   tabIndex?: number;
-}
-
-export interface IButtonStandAlone
-  extends React.PropsWithChildren<IButtonStyled>,
-    ButtonAriaAttributes {
-  type?: ButtonType;
-  dataTestId?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  icon?: IElementOrIcon;
-  form?: string;
+  disabled?: boolean;
 }
 
 /**
- * @description
- * Button props
- * @interface IButton
- * @property {string} [variant] - Variant of the button.
- * @property {string} [size] - Size of the button.
- * @property {boolean} [disabled] - Specifies if the button element is disabled or not.
+ * Interface for the standalone Button component.
+ * Includes ARIA attributes, event handlers, and additional attributes.
  */
-export interface IButton<
-  V = undefined extends string | unknown ? string | undefined : string | unknown,
-  S = undefined extends string | unknown ? string | undefined : string | unknown,
-> extends Omit<IButtonStandAlone, 'styles' | 'sizeStyles' | 'state'>,
-    Omit<CustomTokenTypes<ButtonStateKeyOfType, ButtonSizePropsType>, 'extraCt'> {
-  variant: V;
-  size: S;
-  disabled?: boolean;
+export interface ButtonStandAloneProps
+  extends PropsWithChildren<ButtonStylesProps>,
+    ButtonAriaProps,
+    DataAttributes {
+  type?: HTMLButtonElement['type'];
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  icon?: ElementOrIconProps;
+  form?: string;
+  role?: AriaRole;
+  title?: string;
+  id?: string;
+  cssVariantClasses?: ButtonCssClasses;
+  cssSizeClasses?: ButtonCssClasses;
+}
+
+/**
+ * Interface for the Button component with a variant and size.
+ * Extends the ButtonStandAloneProps interface and adds variant and size properties.
+ *
+ * @template Variant - The type of the variant for the Button.
+ * @template Size - The type of the size for the Button.
+ */
+export interface ButtonProps<
+  Variant = undefined extends string | unknown
+    ? string | undefined
+    : string | unknown,
+  Size = undefined extends string | unknown
+    ? string | undefined
+    : string | unknown,
+> extends ButtonStandAloneProps {
+  variant?: Variant;
+  size?: Size;
+  additionalVariantClasses?: Partial<ButtonCssClasses>;
+  additionalSizeClasses?: Partial<ButtonCssClasses>;
 }

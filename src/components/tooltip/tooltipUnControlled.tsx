@@ -1,196 +1,200 @@
-import * as React from 'react';
+import {
+  type FocusEventHandler,
+  type ForwardedRef,
+  type KeyboardEventHandler,
+  type MouseEventHandler,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 
-import { useMediaDevice } from '@/hooks';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { DeviceBreakpointsType } from '@/types';
-import { isKeyEnterPressed, isKeyTabPressed } from '@/utils';
-import { trapFocus } from '@/utils/focusHandlers/focusHandlers';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
+import { useScrollDetectionWithAutoFocus } from '@/lib/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
+import { useSwipeDown } from '@/lib/hooks/useSwipeDown/useSwipeDown';
+import { useTrapFocus } from '@/lib/hooks/useTrapFocus/useTrapFocus';
 
-import { TOOLTIP_STYLES } from './constants';
-import { useTooltip } from './hooks';
+import { isKeyEnterPressed } from '../../lib/utils/keyboard/keyboard';
+import { useTooltip } from './hooks/useTooltip';
+import { useTooltipAsModal } from './hooks/useTooltipAsModal';
 import { TooltipStandAlone } from './tooltipStandAlone';
-import { ITooltipStandAlone, ITooltipUnControlled, TooltipVariantStylesProps } from './types';
-import { useTooltipAsModal } from './utils';
+import type { TooltipUnControlledProps } from './types/tooltip';
 
-const TooltipUnControlledComponent = React.forwardRef(
-  <V extends string | unknown>(
-    { ctv, tooltipAsModal, align, onOpenClose, variant, ...props }: ITooltipUnControlled<V>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-  ): JSX.Element => {
-    const styles = useStyles<TooltipVariantStylesProps, V>(TOOLTIP_STYLES, variant, ctv);
-    const mediaDevice = useMediaDevice();
+export const TooltipUnControlled = forwardRef(function <
+  Variant extends string | undefined,
+>(
+  {
+    additionalClasses,
+    align,
+    closeIcon,
+    onOpenClose,
+    popover,
+    tooltipAriaLabel,
+    tooltipAsModal,
+    variant,
+    ...props
+  }: TooltipUnControlledProps<Variant>,
+  ref: ForwardedRef<HTMLDivElement>,
+): JSX.Element {
+  const cssClasses = useClassName({
+    additionalClassNames: additionalClasses,
+    component: 'TOOLTIP',
+    variant,
+  });
 
-    const labelRef = React.useRef<HTMLDivElement>(null);
-    const tooltipRef = React.useRef<HTMLDivElement>(null);
+  const {
+    device: mediaDevice,
+    isDesktop,
+    isMobile,
+    isTablet,
+  } = useActiveBreakpoints();
+  const isDesktopOrTablet = isDesktop || isTablet;
 
-    const tooltipAsModalValue = useTooltipAsModal({
-      propTooltipAsModal: tooltipAsModal,
-      styleTooltipAsModal: styles.tooltipAsModal,
-    });
-
-    React.useImperativeHandle(
-      ref,
-      () => {
-        return labelRef.current as HTMLDivElement;
-      },
-      []
-    );
-
-    const { showTooltip, hideTooltip, allowFocusOpenTooltip, open } = useTooltip<V>({
+  const labelRef = useRef<HTMLDivElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const tooltipAsModalValue = useTooltipAsModal({
+    propTooltipAsModal: tooltipAsModal,
+    styleTooltipAsModal: tooltipAsModal,
+  });
+  useImperativeHandle(ref, () => labelRef.current as HTMLDivElement);
+  const { allowFocusOpenTooltip, hideTooltip, open, placement, showTooltip } =
+    useTooltip<Variant>({
+      additionalClasses,
+      align: align || 'top',
       labelRef,
+      onOpenClose,
+      tooltipAsModal: tooltipAsModalValue,
       tooltipRef,
       variant,
-      onOpenClose,
-      align,
-      ctv,
     });
-
-    const handleFocus: React.FocusEventHandler<HTMLElement> = () => {
-      // Avoid tooltip is opened automatically after closing the tooltip
-      if (!tooltipAsModalValue && allowFocusOpenTooltip.current) {
-        showTooltip();
-      }
-    };
-
-    const handleBlur: React.FocusEventHandler<HTMLElement> = event => {
-      if (!tooltipAsModalValue && !event.currentTarget.contains(event.relatedTarget)) {
-        hideTooltip();
-      }
-    };
-
-    const handleFocusTooltip: React.FocusEventHandler<HTMLElement> = event => {
-      if (!tooltipAsModalValue) {
-        // Avoid on focus (label) be executed on focus tooltip
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    };
-
-    const handleMouseEnter: React.MouseEventHandler<HTMLElement> = () => {
-      if (!tooltipAsModalValue) {
-        if (mediaDevice !== DeviceBreakpointsType.DESKTOP) {
-          return;
-        }
-        showTooltip();
-      }
-    };
-
-    const handleMouseLeave: React.MouseEventHandler<HTMLElement> = () => {
-      if (!tooltipAsModalValue) {
-        if (mediaDevice !== DeviceBreakpointsType.DESKTOP) {
-          return;
-        }
-        hideTooltip();
-      }
-    };
-
-    const handleCloseIconClick: React.MouseEventHandler<HTMLButtonElement> = event => {
-      props.closeIcon?.onClick?.(event);
+  const {
+    handleScrollDetection: contentRefHandler,
+    hasScroll: contentHasScroll,
+  } = useScrollDetectionWithAutoFocus({
+    parentElementRef: tooltipRef,
+  });
+  const isBeingClicked = useRef(false);
+  const handleWrapperFocus: FocusEventHandler<HTMLElement> = () => {
+    if (
+      isBeingClicked.current ||
+      tooltipAsModalValue ||
+      !allowFocusOpenTooltip.current ||
+      isMobile
+    ) {
+      return;
+    }
+    showTooltip();
+  };
+  const handleWrapperBlur: FocusEventHandler<HTMLElement> = (event) => {
+    if (
+      !tooltipAsModalValue &&
+      !event.currentTarget.contains(event.relatedTarget)
+    ) {
       hideTooltip();
-    };
-
-    const handleMouseDown: React.MouseEventHandler<HTMLElement> = event => {
-      // Avoid onFocus and onClick are executed at the same time
+    }
+  };
+  const handleFocusTooltip: React.FocusEventHandler<HTMLElement> = (event) => {
+    if (!tooltipAsModalValue) {
+      // Avoid on focus (label) be executed on focus tooltip
       event.preventDefault();
-    };
-
-    const handleClick: React.MouseEventHandler<HTMLElement> = () => {
-      if (mediaDevice === DeviceBreakpointsType.DESKTOP) {
-        if (tooltipAsModalValue && !open) {
-          //this condition is needed because tooltip would close if you clicked on tooltip container beeing tooltip a modal
-          showTooltip();
-        }
+      event.stopPropagation();
+    }
+  };
+  const handleWrapperMouseEnter: MouseEventHandler<HTMLElement> = () => {
+    if (!tooltipAsModalValue && isDesktopOrTablet) {
+      showTooltip();
+    }
+  };
+  const handleWrapperMouseLeave: MouseEventHandler<HTMLElement> = () => {
+    if (!tooltipAsModalValue && isDesktopOrTablet) {
+      hideTooltip();
+    }
+  };
+  const handleCloseIconClick: MouseEventHandler<HTMLButtonElement> = (
+    event,
+  ) => {
+    closeIcon?.onClick?.(event);
+    hideTooltip();
+  };
+  const handleTriggerMouseDown: MouseEventHandler<HTMLElement> = () => {
+    isBeingClicked.current = true;
+  };
+  const handleTriggerMouseUp: MouseEventHandler<HTMLElement> = () => {
+    isBeingClicked.current = false;
+  };
+  const handleTriggerClick: MouseEventHandler<HTMLElement> = (event) => {
+    if (isDesktopOrTablet) {
+      if (!tooltipAsModalValue) {
         return;
       }
-      if (open) {
+      if (!open) {
+        showTooltip();
+        return;
+      }
+      if (!tooltipRef.current?.contains(event.target as Node)) {
         hideTooltip();
-      } else {
-        showTooltip();
       }
-    };
-
-    const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = event => {
-      if (isKeyEnterPressed(event.key) && !open) {
-        showTooltip();
-        event.preventDefault();
-      }
-    };
-
-    const handleKeyDownTooltip: React.KeyboardEventHandler<HTMLElement> = event => {
-      if (
-        mediaDevice === DeviceBreakpointsType.DESKTOP &&
-        isKeyTabPressed(event.key) &&
-        tooltipRef.current
-      ) {
-        trapFocus(tooltipRef.current, event);
-      }
-    };
-
-    const handlePopoverCloseInternally = () => {
-      props.popover?.onCloseInternally?.();
-      hideTooltip();
-    };
-
-    // It is used TooltipStandAlone instead of TooltipControlled
-    // The reason is that TooltipControlled only provides the styles and mediaDevice props that are used and needed in this component
-    return (
-      <TooltipStandAlone
-        {...props}
-        labelRef={labelRef}
-        mediaDevice={mediaDevice}
-        popoverOpen={open}
-        styles={styles}
-        tooltipAsModal={tooltipAsModalValue}
-        tooltipRef={tooltipRef}
-        onBlur={handleBlur}
-        onClick={handleClick}
-        onCloseIconClick={handleCloseIconClick}
-        onFocus={handleFocus}
-        onKeyDown={handleKeyDown}
-        onMouseDown={handleMouseDown}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onPopoverCloseInternally={handlePopoverCloseInternally}
-        onTooltipFocus={handleFocusTooltip}
-        onTooltipKeyDown={handleKeyDownTooltip}
-      />
-    );
-  }
-);
-
-TooltipUnControlledComponent.displayName = 'TooltipUnControlledComponent';
-
-const TooltipUnControlledBoundary = <V extends string | unknown>(
-  props: ITooltipUnControlled<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <TooltipStandAlone {...(props as unknown as ITooltipStandAlone)} />
-      </FallbackComponent>
+      return;
     }
-  >
-    <TooltipUnControlledComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
+    if (!open) {
+      showTooltip();
+      return;
+    }
+    if (!tooltipRef.current?.contains(event.target as Node)) {
+      hideTooltip();
+    }
+  };
+  const handleTriggerKeyDown: KeyboardEventHandler<HTMLDivElement> = (
+    event,
+  ) => {
+    if (isKeyEnterPressed(event.key) && !open) {
+      showTooltip();
+      event.preventDefault();
+    }
+  };
+  const handlePopoverCloseInternally = () => {
+    popover?.onClose?.();
+    hideTooltip();
+  };
+  const { setDragIconRef, setPopoverRef } = useSwipeDown(
+    undefined,
+    hideTooltip,
+  );
+  useTrapFocus({
+    ref: tooltipRef,
+    trapFocus: open && tooltipAsModalValue,
+  });
+  return (
+    <TooltipStandAlone
+      {...props}
+      align={placement}
+      contentHasScroll={contentHasScroll}
+      contentRef={contentRefHandler}
+      cssClasses={cssClasses}
+      dragIconRef={setDragIconRef as never}
+      labelRef={labelRef}
+      mediaDevice={mediaDevice}
+      popover={{
+        ...popover,
+        popoverContainerRef: setPopoverRef as never,
+      }}
+      popoverOpen={open}
+      tooltipAriaLabel={tooltipAriaLabel}
+      tooltipAsModal={tooltipAsModalValue}
+      tooltipRef={tooltipRef}
+      onCloseIconClick={handleCloseIconClick}
+      onPopoverCloseInternally={handlePopoverCloseInternally}
+      onTooltipFocus={handleFocusTooltip}
+      onTriggerClick={handleTriggerClick}
+      onTriggerKeyDown={handleTriggerKeyDown}
+      onTriggerMouseDown={handleTriggerMouseDown}
+      onTriggerMouseUp={handleTriggerMouseUp}
+      onWrapperBlur={handleWrapperBlur}
+      onWrapperFocus={handleWrapperFocus}
+      onWrapperMouseEnter={handleWrapperMouseEnter}
+      onWrapperMouseLeave={handleWrapperMouseLeave}
+    />
+  );
+});
 
-const TooltipUnControlled = React.forwardRef(TooltipUnControlledBoundary) as <V>(
-  props: React.PropsWithChildren<ITooltipUnControlled<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => JSX.Element;
-
-/**
- * @description
- * Tooltip component to show a message when interact whit the label
- * @example
- * <Tooltip
- *  align={TooltipAlignType.CENTER}
- * variant={TooltipVariantType.DEFAULT}
- * >
- * <Text>Tooltip</Text>
- * </Tooltip>
- */
-export { TooltipUnControlled };
+export { TooltipUnControlled as Tooltip };

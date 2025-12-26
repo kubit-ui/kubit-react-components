@@ -1,44 +1,80 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
-import { ButtonStateType } from '@/components/button';
-import { ButtonStyled } from '@/components/button/button.styled';
-import { ButtonStandAloneStructure } from '@/components/button/buttonStandAlone';
-import { Text } from '@/components/text';
-import { TextDecorationType } from '@/components/text/types';
+import { ButtonStandAlone } from '@/components/button/buttonStandAlone';
+import { CustomComponent } from '@/lib/components/customComponent/customComponent';
+import { POSITIONS } from '@/lib/types/positions/positions';
+import { STATES } from '@/lib/types/states/states';
+import { classNames } from '@/lib/utils/classNames/classNames';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { ILinkAsButtonStandAlone } from '../types/link';
+import type { LinkAsButtonStandAloneProps } from '../types/link';
 
-// eslint-disable-next-line complexity
-export const LinkAsButtonStandAloneComponent = (
-  { children, url, component, target, role, onClick, ...props }: ILinkAsButtonStandAlone,
-  ref: React.ForwardedRef<HTMLElement> | undefined
-): JSX.Element => {
-  return (
-    <Text
-      ref={ref}
-      aria-label={props['aria-label']}
-      component={component}
-      dataTestId={props.dataTestId}
-      decoration={TextDecorationType.NONE}
-      isDisabled={props.state === ButtonStateType.DISABLED}
-      role={role}
-      target={target}
-      url={url}
-      onClick={onClick}
-    >
-      <ButtonStyled
-        as="span"
-        {...props}
-        $fullWidth={props.fullWidth}
-        $iconPosition={props.iconPosition}
-        $sizeStyles={props.sizeStyles}
-        $state={props.state}
-        $styles={props.styles}
+export const LinkAsButtonStandAlone = forwardRef(
+  (
+    {
+      ['aria-label']: ariaLabel,
+      ['aria-labelledby']: ariaLabelledBy,
+      ariaLabelText,
+      children,
+      component,
+      cssLinkAsButtonClasses,
+      cssSizeClasses,
+      cssVariantClasses,
+      fullWidth,
+      iconPosition,
+      minWidth,
+      onClick,
+      rel,
+      role,
+      state,
+      target,
+      url,
+      ...props
+    }: LinkAsButtonStandAloneProps,
+    ref: ForwardedRef<HTMLElement> | undefined,
+  ): JSX.Element => {
+    const dataTestId = props['data-testid'] || 'link-as-button';
+    const customProps = pickCustomAttributes(props);
+
+    return (
+      <div
+        className={cssLinkAsButtonClasses?.link_as_button}
+        data-kbt-full-width={fullWidth}
+        data-testid={dataTestId}
+        {...customProps}
       >
-        <ButtonStandAloneStructure {...props}>{children}</ButtonStandAloneStructure>
-      </ButtonStyled>
-    </Text>
-  );
-};
-
-export const LinkAsButtonStandAlone = React.forwardRef(LinkAsButtonStandAloneComponent);
+        <CustomComponent
+          ref={ref}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
+          component={component}
+          data-testid="link"
+          decoration="none"
+          isDisabled={state === STATES.DISABLED}
+          rel={rel}
+          role={role}
+          target={target}
+          url={url}
+          onClick={onClick}
+        >
+          <span
+            aria-label={ariaLabelText}
+            {...props}
+            className={classNames(
+              cssSizeClasses?.button,
+              cssVariantClasses?.button,
+            )}
+            style={{
+              flexDirection:
+                iconPosition === POSITIONS.LEFT ? 'row' : 'row-reverse',
+              minWidth: minWidth,
+              width: fullWidth ? '100%' : 'auto',
+            }}
+          >
+            <ButtonStandAlone {...props}>{children}</ButtonStandAlone>
+          </span>
+        </CustomComponent>
+      </div>
+    );
+  },
+);

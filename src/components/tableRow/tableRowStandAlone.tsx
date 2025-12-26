@@ -1,0 +1,50 @@
+import { type PropsWithChildren, forwardRef } from 'react';
+
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
+import type { TableRowStandAloneProps } from './types/tableRow';
+
+export const TableRowStandAlone = forwardRef<
+  HTMLTableRowElement,
+  PropsWithChildren<TableRowStandAloneProps>
+>(
+  (
+    {
+      active,
+      children,
+      component = 'tr',
+      cssClasses,
+      hoverable = true,
+      id,
+      onClick,
+      onKeyDown,
+      onMouseEnter,
+      onMouseLeave,
+      ...props
+    },
+    ref,
+  ) => {
+    const customProps = pickCustomAttributes(props);
+
+    return (
+      <CustomComponent
+        ref={ref}
+        className={cssClasses?.table_row}
+        component={component}
+        data-active={active}
+        data-hoverable={hoverable}
+        data-table-row={true}
+        data-testid="table-row"
+        id={id}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        {...customProps}
+      >
+        {children}
+      </CustomComponent>
+    );
+  },
+);

@@ -1,3 +1,2 @@
-export type { IElementOrIcon } from './types';
-
 export { ElementOrIcon } from './elementOrIcon';
+export type { ElementOrIconProps } from './types/elementOrIcon';

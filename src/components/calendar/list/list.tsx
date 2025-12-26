@@ -1,93 +1,95 @@
-import * as React from 'react';
+import { type RefObject, useMemo, useState } from 'react';
 
-import { ButtonType } from '@/components/button';
-import { ItemRove } from '@/components/itemRove/itemRove';
-import { useRoveFocus } from '@/hooks/useRoveFocus/useRoveFocus';
-import { useUtilsProvider } from '@/provider';
-import { NEUTRAL_DATE } from '@/types';
+import { CustomComponent } from '@/lib/components/customComponent/customComponent';
+import { useRoveFocus } from '@/lib/hooks/useRoveFocus/useRoveFocus';
+import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
+import { STATES } from '@/lib/types/states/states';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import { WEEK_DAYS } from '../constants/constants';
+import { getAllDaysInMonth } from '../utils/getAllDaysInMonth';
+import { getFirstDayOfMonth } from '../utils/getFirstDayOfMonth';
+import { getStateDay } from '../utils/getState';
+import { groupDaysByWeeks } from '../utils/groupDaysByWeeks';
 import {
-  getAllDaysInMonth,
-  getAvailableDaysAfterCurrentDate,
-  getAvailableDaysBeforeCurrentDate,
-  getFirstDayOfMonth,
-  getStateDay,
-  groupDaysByWeeks,
-  handleKeyDownAndRightMove,
+  getDaysAndEmptyDaysUntilMaxDate,
+  getFirstEmptyAndDisabledDays,
+  handleKeyDownMove,
+  handleKeyLeftMove,
+  handleKeyPageDownMove,
+  handleKeyPageUpMove,
+  handleKeyRightMove,
   handleKeyTabMove,
-  handleKeyUpAndLeftMove,
-} from '../utils/';
-// styles
-import {
-  ElementEmptyStyled,
-  ElementStyled,
-  ItemRoveStyled,
-  ListStyled,
-  TableRowStyled,
-} from './list.styled';
-import { IList } from './types/list';
-import { ListDaysStateType } from './types/state';
+  handleKeyUpMove,
+} from '../utils/handleKeysmoves';
+import type { ListProps } from './types/list';
 
+const NEUTRAL_DATE = 'ddMMyyyy';
 export const List = ({
-  dataTestId = 'item',
-  hasRange,
-  selectedDate,
+  cssClasses,
+  currentDate,
   disabledDates = [],
+  hasRange,
+  maxDate,
+  minDate,
+  onDayClick,
+  selectedDate,
+  setSelectedDate,
+  sundayFirst,
   ...props
-}: IList): JSX.Element => {
-  const { formatDate, dateHelpers, transformDate } = useUtilsProvider();
-
-  const currentMonth = props.currentDate.getMonth() + 1;
-  const currentYear = props.currentDate.getFullYear();
+}: ListProps): JSX.Element => {
+  const { dateHelpers, formatDate, transformDate } = useUtilsProvider();
+  const currentMonth = currentDate.getMonth() + 1;
+  const currentYear = currentDate.getFullYear();
   const today = formatDate(new Date(), NEUTRAL_DATE);
   const days: Date[] = getAllDaysInMonth(currentMonth, currentYear);
   const dayStarted =
-    getFirstDayOfMonth(currentYear, currentMonth - 1) - (props.sundayFirst ? 0 : 1);
-  const dayList: (Date | undefined)[] = [...new Array(dayStarted >= 0 ? dayStarted : 6), ...days];
-  const emptyDaysList: (Date | undefined)[] = dayList.filter(day => day === undefined);
-
-  const [positionDateRange, setPositionDateRange] = React.useState<number | null>(0);
-  const [ghostDateSelected, setGhostDateSelected] = React.useState<Date | 0>(0);
-
+    getFirstDayOfMonth(currentYear, currentMonth - 1) - (sundayFirst ? 0 : 1);
+  const dayList: (Date | undefined)[] = [
+    ...new Array(dayStarted >= 0 ? dayStarted : 6),
+    ...days,
+  ];
+  const emptyDaysList: (Date | undefined)[] = dayList.filter(
+    (day) => day === undefined,
+  );
+  const [positionDateRange, setPositionDateRange] = useState<number | null>(0);
+  const [ghostDateSelected, setGhostDateSelected] = useState<Date | 0>(0);
+  const dataTestId = props['data-testid'] || 'calendar';
   const handleKeyMoveConfig = {
-    emptyDaysList,
+    currentDate: currentDate,
     dayList,
-    isAfter: dateHelpers.isAfter,
-    maxDate: props.maxDate,
-    currentDate: props.currentDate,
-    minDate: props.minDate,
-    availableDaysBeforeCurrentDate: getAvailableDaysBeforeCurrentDate(
+    daysAndEmptyDaysUntilMaxDate: getDaysAndEmptyDaysUntilMaxDate(
       emptyDaysList,
-      props.minDate,
-      props.currentDate
+      maxDate,
+      currentDate,
     ),
-    availableDaysAfterCurrentDate: getAvailableDaysAfterCurrentDate(
+    firstEmptyAndDisabledDays: getFirstEmptyAndDisabledDays(
       emptyDaysList,
-      props.maxDate,
-      props.currentDate
+      minDate,
+      currentDate,
     ),
+    maxDate: maxDate,
+    minDate: minDate,
   };
-
-  const config = React.useMemo(
+  const config = useMemo(
     () => ({
       calendarBlankDaysSize: emptyDaysList.length,
-      size: dayList.length,
-      keyDownMove: handleKeyDownAndRightMove(handleKeyMoveConfig),
-      keyUpMove: handleKeyUpAndLeftMove(handleKeyMoveConfig),
-      keyRightMove: handleKeyDownAndRightMove(handleKeyMoveConfig),
-      keyLeftMove: handleKeyUpAndLeftMove(handleKeyMoveConfig),
-      keyTabMove: handleKeyTabMove,
       currentFocusSelected:
         (selectedDate[0] ? selectedDate[0].getDate() : new Date().getDate()) +
         emptyDaysList.length -
         1,
+      keyDownMove: handleKeyDownMove(handleKeyMoveConfig),
+      keyLeftMove: handleKeyLeftMove(handleKeyMoveConfig),
+      keyPageDownMove: handleKeyPageDownMove(handleKeyMoveConfig),
+      keyPageUpMove: handleKeyPageUpMove(handleKeyMoveConfig),
+      keyRightMove: handleKeyRightMove(handleKeyMoveConfig),
+      keyTabMove: handleKeyTabMove,
+      keyUpMove: handleKeyUpMove(handleKeyMoveConfig),
+      size: dayList.length,
     }),
-    [emptyDaysList.length, dayList.length, props.currentDate, props.minDate, props.maxDate]
+    [emptyDaysList.length, dayList.length, currentDate, minDate, maxDate],
   );
-
   const [focus, setFocus, listEl] = useRoveFocus(config);
-
   const handleFocus = (index: number) => {
     // when focus is on an empty date at the beginning
     if (index) {
@@ -101,172 +103,187 @@ export const List = ({
     }
     return focus === index;
   };
-
   const onChangeSelectedDate = (newDate: Date | 0) => {
     const [firstDate, secondDate] = selectedDate;
-
     if (hasRange) {
       if ((firstDate && secondDate) || (!firstDate && !secondDate)) {
-        props.setSelectedDate([newDate, 0]);
+        setSelectedDate([newDate, 0]);
         setPositionDateRange(1);
         if (newDate instanceof Date) {
-          props.onDayClick?.(newDate.getDate().toString());
+          onDayClick?.(newDate.getDate().toString());
         }
       } else {
-        props.setSelectedDate([firstDate, newDate]);
+        setSelectedDate([firstDate, newDate]);
         setPositionDateRange(0);
         if (newDate instanceof Date) {
-          props.onDayClick?.(newDate.getDate().toString());
+          onDayClick?.(newDate.getDate().toString());
         }
       }
     } else {
-      props.setSelectedDate([newDate]);
+      setSelectedDate([newDate]);
       if (newDate instanceof Date) {
-        props.onDayClick?.(newDate.getDate().toString());
+        onDayClick?.(newDate.getDate().toString());
       }
     }
   };
-
-  // eslint-disable-next-line complexity
   const isGhostSelected = (dayFormatted: Date | 0) => {
     if (ghostDateSelected) {
       if (ghostDateSelected < selectedDate[0]) {
-        return dayFormatted > ghostDateSelected && dayFormatted < selectedDate[0];
-      } else if (ghostDateSelected > selectedDate[0]) {
-        return dayFormatted < ghostDateSelected && dayFormatted > selectedDate[0];
+        return (
+          dayFormatted > ghostDateSelected && dayFormatted < selectedDate[0]
+        );
+      }
+      if (ghostDateSelected > selectedDate[0]) {
+        return (
+          dayFormatted < ghostDateSelected && dayFormatted > selectedDate[0]
+        );
       }
     } else if (dayFormatted > selectedDate[0]) {
       return dayFormatted < selectedDate[1];
     } else if (dayFormatted < selectedDate[0]) {
       return dayFormatted > selectedDate[1];
     }
-
     return false;
   };
-
   const isSelectedToLeft = (dayFormatted: Date | 0) => {
     if (!hasRange) {
       return false;
     }
-
     const selectedIndex = selectedDate?.findIndex(
-      date =>
+      (date) =>
         date &&
         dayFormatted &&
-        formatDate(date, NEUTRAL_DATE) === formatDate(dayFormatted, NEUTRAL_DATE)
+        formatDate(date, NEUTRAL_DATE) ===
+          formatDate(dayFormatted, NEUTRAL_DATE),
     );
-
     if (selectedIndex === 0 && ghostDateSelected) {
       return ghostDateSelected < dayFormatted;
-    } else if (selectedIndex === 0) {
+    }
+    if (selectedIndex === 0) {
       return dayFormatted > selectedDate[1];
-    } else if (selectedIndex === 1) {
+    }
+    if (selectedIndex === 1) {
       return dayFormatted > selectedDate[0];
     }
-
     return false;
   };
-
   const isSelectedToRight = (dayFormatted: Date | 0) => {
     if (!hasRange) {
       return false;
     }
-
     const selectedIndex = selectedDate?.findIndex(
-      date =>
+      (date) =>
         date &&
         dayFormatted &&
-        formatDate(date, NEUTRAL_DATE) === formatDate(dayFormatted, NEUTRAL_DATE)
+        formatDate(date, NEUTRAL_DATE) ===
+          formatDate(dayFormatted, NEUTRAL_DATE),
     );
-
     if (selectedIndex === 0 && ghostDateSelected) {
       return ghostDateSelected > dayFormatted;
-    } else if (selectedIndex === 0) {
+    }
+    if (selectedIndex === 0) {
       return dayFormatted < selectedDate[1];
-    } else if (selectedIndex === 1) {
+    }
+    if (selectedIndex === 1) {
       return dayFormatted < selectedDate[0];
     }
-
     return false;
   };
-
   const buildDays = () => {
-    return groupDaysByWeeks(dayList).map((grupo, index) => (
-      <TableRowStyled key={index}>
-        {grupo.map((day, dayIndex) => {
+    return groupDaysByWeeks(dayList).map((group, index) => (
+      <tr
+        key={`table-row-${index.toString()}`}
+        className={cssClasses?.tablerow}
+      >
+        {group.map((day, dayIndex) => {
           const dayFormatted = day ? day : 0;
           let isDisabled = day
-            ? dateHelpers.isBefore(day, props.minDate) ||
+            ? dateHelpers.isBefore(day, minDate) ||
               dateHelpers.isAfter(
                 day,
-                transformDate(formatDate(props.maxDate, NEUTRAL_DATE), NEUTRAL_DATE)
+                transformDate(formatDate(maxDate, NEUTRAL_DATE), NEUTRAL_DATE),
               )
             : true;
-
           if (!isDisabled) {
             isDisabled = disabledDates.some(
-              disabledDate => day && dateHelpers.isDatesEqual(day, disabledDate, false)
+              (disabledDate) =>
+                day && dateHelpers.isDatesEqual(day, disabledDate, false),
             );
           }
-
           const stateDay = getStateDay({
             dayFormatted,
+            formatDate,
+            hasRange,
+            isGhostSelected,
             isSelectedToLeft,
             isSelectedToRight,
-            isGhostSelected,
             selectedDate,
-            hasRange,
             today,
-            formatDate,
           });
-
+          const customAttributes = {
+            'data-state': isDisabled ? STATES.DISABLED : stateDay,
+          };
           return day ? (
-            <ItemRoveStyled
+            <td
               key={`day${dayIndex + WEEK_DAYS * index}${dayFormatted}`}
-              $disabled={isDisabled}
-              aria-selected={stateDay === ListDaysStateType.SELECTED ? true : undefined}
-              state={stateDay}
-              styles={props.styles}
+              aria-selected={stateDay === STATES.SELECTED ? true : undefined}
+              className={cssClasses?.listelementrove}
+              style={{
+                width: `calc(100% / ${WEEK_DAYS})`,
+              }}
+              {...pickCustomAttributes(customAttributes)}
             >
-              <ItemRove
-                ariaLabel={formatDate(day, {
+              <CustomComponent
+                aria-label={formatDate(day, {
+                  day: 'numeric',
+                  month: 'long',
                   weekday: 'long',
                   year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
                 })}
-                asElement={ElementStyled}
-                dataTestId={dataTestId + (dayIndex + WEEK_DAYS * index)}
+                ariaDisabled={isDisabled}
+                className={cssClasses?.dayslist}
+                component="button"
+                data-testid={`${dataTestId}-${dayIndex + WEEK_DAYS * index}`}
                 focus={handleFocus(dayIndex + WEEK_DAYS * index)}
                 index={dayIndex + WEEK_DAYS * index}
-                type={ButtonType.BUTTON}
+                type="button"
                 onMouseOver={() => {
                   if (positionDateRange === 1) {
                     setGhostDateSelected(dayFormatted);
                   }
                 }}
                 onSelectItem={() => {
-                  !isDisabled && onChangeSelectedDate(dayFormatted);
+                  if (!isDisabled) {
+                    onChangeSelectedDate(dayFormatted);
+                  }
                 }}
+                {...pickCustomAttributes(customAttributes)}
               >
                 {day.getDate()}
-              </ItemRove>
-            </ItemRoveStyled>
+              </CustomComponent>
+            </td>
           ) : (
-            <ElementEmptyStyled
+            <td
               key={`day${dayIndex + WEEK_DAYS * index}${dayFormatted}`}
               aria-hidden={true}
               aria-label="empty day"
+              className={cssClasses?.listelementempty}
+              style={{
+                width: `calc(100% / ${WEEK_DAYS})`,
+              }}
             />
           );
         })}
-      </TableRowStyled>
+      </tr>
     ));
   };
-
   return (
-    <ListStyled ref={listEl as React.RefObject<HTMLTableSectionElement>} styles={props.styles}>
+    <tbody
+      ref={listEl as RefObject<HTMLTableSectionElement>}
+      className={cssClasses?.tbody}
+      data-testid="tbody-days-list"
+    >
       {buildDays()}
-    </ListStyled>
+    </tbody>
   );
 };

@@ -1,14 +1,8 @@
-import * as React from 'react';
-import { Dispatch, SetStateAction } from 'react';
+import { type Dispatch, type SetStateAction } from 'react';
 
-import { ROLES } from '@/types';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-/**
- * @name IItemRove
- * @description
- * interface for the item rove
- */
-export interface IItemRove {
+export interface ItemRoveProps extends DataAttributes {
   id?: string;
   children?: React.ReactNode;
   focus?: boolean;
@@ -16,10 +10,9 @@ export interface IItemRove {
   index: number;
   setFocus?: Dispatch<SetStateAction<number>>;
   onSelectItem?: () => void;
-  asElement: string | React.ElementType;
-  role?: ROLES;
+  asElement: string;
+  role?: React.AriaRole;
   onMouseOver?: () => void;
-  dataTestId?: string;
   disabled?: boolean;
   ariaSelected?: boolean;
   ariaControls?: string;
@@ -30,4 +23,6 @@ export interface IItemRove {
   ariaHidden?: boolean;
   preventScrollOnFocus?: boolean;
   checkIsFirstTime?: boolean;
+  classNames?: string;
+  customAttributes?: Record<string, string>;
 }

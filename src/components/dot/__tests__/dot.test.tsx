@@ -1,61 +1,74 @@
-import * as React from 'react';
+import { axe } from 'vitest-axe';
 
-import { axe } from 'jest-axe';
+import { render } from '@/lib/tests/render/render';
 
-import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-
-import { Dot } from '../index';
+import { Dot } from '../dot';
 
 const mockProps = {
-  number: 0,
+  'data-testid': 'dataTestId',
   maxNumber: 25,
-  dataTestId: 'dataTestId',
-  variant: 'ALTERNATIVE',
+  number: 0,
   size: 'SMALL',
+  sizeStyles: {
+    container_size_height: '',
+    container_size_width: '',
+  },
   styles: {
     background_color: '',
     border_color: '',
     border_width: '',
   },
-  sizeStyles: {
-    container_size_height: '',
-    container_size_width: '',
-  },
+  variant: 'ALTERNATIVE',
 };
 
 const mockMaxNumberProps = {
-  number: 100,
   maxNumber: 99,
-  variant: 'WITH_BORDER',
+  number: 100,
   size: 'BIG',
+  sizeStyles: {
+    container_size_height: '',
+    container_size_width: '',
+  },
   styles: {
     background_color: '',
     border_color: '',
     border_width: '',
   },
-  sizeStyles: {
-    container_size_height: '',
-    container_size_width: '',
-  },
+  variant: 'WITH_BORDER',
 };
 
-test('Should render Dot component', async () => {
-  const { getByTestId, container } = renderProvider(<Dot {...mockProps} />);
-  const dot = getByTestId(mockProps.dataTestId);
+describe('Dot component', () => {
+  it('Should render Dot component', async () => {
+    const { container, getByTestId } = render(<Dot {...mockProps} />);
+    const dot = getByTestId(mockProps['data-testid']);
 
-  expect(dot).toBeDefined();
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
+    expect(dot).toBeDefined();
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results.violations).toHaveLength(0);
+  });
 
-test('Should render Dot with plus simbol', async () => {
-  const { getByText, container } = renderProvider(<Dot {...mockMaxNumberProps} />);
+  it('Should render Dot with plus symbol', async () => {
+    const { container, getByText } = render(<Dot {...mockMaxNumberProps} />);
 
-  const dot = getByText('+99');
+    const dot = getByText('+99');
 
-  expect(dot).toBeInTheDocument();
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
+    expect(dot).not.toBeNull();
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results.violations).toHaveLength(0);
+  });
+
+  it('Get label', async () => {
+    const { container, getByText } = render(
+      <Dot {...mockMaxNumberProps} label="myLabel" number={undefined} />,
+    );
+
+    const dot = getByText('myLabel');
+
+    expect(dot).not.toBeNull();
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results.violations).toHaveLength(0);
+  });
 });

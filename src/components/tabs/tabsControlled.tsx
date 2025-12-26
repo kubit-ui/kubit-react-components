@@ -1,50 +1,32 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useMediaDevice, useStyles } from '@/hooks';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
 
-// styles
 import { TabsStandAlone } from './tabsStandAlone';
-import { TabsVariantStylesType } from './types';
-import { ITabsControlled, ITabsStandAlone } from './types/tabs';
+import type { TabsUnControlledProps } from './types/tabs';
 
-const TabsControlledComponent = React.forwardRef(
-  <V extends string | unknown>(
-    { ctv, ...props }: ITabsControlled<V>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+export const TabsControlled = forwardRef(
+  <Variant extends string>(
+    { additionalClasses, variant, ...props }: TabsUnControlledProps<Variant>,
+    ref: ForwardedRef<HTMLDivElement> | undefined | null,
   ): JSX.Element => {
-    const styles = useStyles<TabsVariantStylesType, V>(
-      STYLES_NAME.PRIMARY_TABS,
-      props.variant,
-      ctv
-    );
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'TABS',
+      variant,
+    });
+
     const device = useMediaDevice();
 
-    return <TabsStandAlone {...props} ref={ref} device={device} styles={styles} />;
-  }
+    return (
+      <TabsStandAlone
+        {...props}
+        ref={ref}
+        cssClasses={cssClasses}
+        device={device}
+        selectedTab={props.defaultSelectedTab}
+      />
+    );
+  },
 );
-TabsControlledComponent.displayName = 'TabsControlledComponent';
-
-const PrimaryTabBoundary = <V extends string | unknown>(
-  props: ITabsControlled<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <TabsStandAlone {...(props as unknown as ITabsStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <TabsControlledComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-const TabsControlled = React.forwardRef(PrimaryTabBoundary) as <V extends string | unknown>(
-  props: React.PropsWithChildren<ITabsControlled<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => ReturnType<typeof PrimaryTabBoundary>;
-
-export { TabsControlled };

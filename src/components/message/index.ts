@@ -1,11 +1,16 @@
-export type {
-  IMessageStandAlone,
-  IMessageControlled,
-  IMessageUnControlled,
-  MessagePropsThemeType,
-  MessageStylesType,
-} from './types';
-
 export { MessageControlled } from './messageControlled';
-export { MessageUnControlled as Message } from './messageUnControlled';
-export { MessageStyled } from './message.styled';
+export { Message } from './messageUnControlled';
+export type {
+  MessageActionButtonProps,
+  MessageExtraActionButtonProps,
+  MessageTagProps,
+  MessageLinkProps,
+  MessageContainerAsLinkProps,
+  MessageStandAloneProps,
+  MessageProps,
+  MessageUnControlledProps,
+} from './types/message';
+export type {
+  MessageStyleProps,
+  MessageVariantStyles,
+} from './types/messageTheme';

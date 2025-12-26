@@ -1,187 +1,60 @@
-/* eslint-disable complexity */
-import * as React from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { PageControl } from '@/components/pageControl';
-import { useId } from '@/hooks';
-
-import { PageControlArrowControlType } from '../pageControl/types';
-import { PageControlAutomate } from '../pageControlAutomate';
-import {
-  ArrowAndCarouselWrapperStyled,
-  ArrowLeftIconContainer,
-  ArrowRightIconContainer,
-  CarouselContainerStyled,
-  CarouselContentStyled,
-  PageControlAutomateContainerStyled,
-  PageControlContainerStyled,
-  RootStyled,
-} from './carousel.styled';
-import { ExtraPaddingArrowStandAlone } from './components';
-import { ICarouselStandAlone } from './types';
+import type { ICarouselStandAlone } from './types/carousel';
 
 const CarouselStandAloneComponent = (
   {
-    styles,
-    carouselContainerRef,
-    carouselContentRef,
-    elements,
-    numPages,
-    centerMode,
-    extraPadding,
-    extraPaddingAsArrow = true,
-    currentPage,
-    onLeftArrowClick,
-    onRightArrowClick,
-    hasPagination,
-    pageControlVariant,
-    pageControlArrowsControlVariant,
-    onKeyDown,
-    dataTestId = 'dataTestIdCarousel',
-    displayArrowsOnCarousel,
-    disableSwipe,
     allowModifySliceWidth,
-    pageControlAutomateConfig,
-    onIndicatorChange,
-    onMediaButtonClick,
-    onMouseOut,
-    onMouseOver,
-    playing,
-    ...props
+    centerMode,
+    contentContainer,
+    contentContainerRef,
+    cssClasses,
+    disabled,
+    elements,
+    rootContainer,
+    screenReaderOnly,
+    viewerContainer,
+    viewerContainerRef,
+    ...dataAttributes
   }: ICarouselStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+  ref: ForwardedRef<HTMLDivElement>,
 ): JSX.Element => {
-  const id = useId('carousel');
-  const leftArrowDisabled = !props.circular && currentPage === 0;
-  const rightArrowDisabled = !props.circular && currentPage === numPages - 1;
-  const leftArrowControlPageControl: PageControlArrowControlType | undefined =
-    displayArrowsOnCarousel
-      ? undefined
-      : {
-          icon: props.leftArrow?.icon,
-          ['aria-label']: props.leftArrow?.['aria-label'],
-          disabled: leftArrowDisabled,
-          onClick: onLeftArrowClick,
-        };
-  const rightArrowControlPageControl: PageControlArrowControlType | undefined =
-    displayArrowsOnCarousel
-      ? undefined
-      : {
-          icon: props.rightArrow?.icon,
-          ['aria-label']: props.rightArrow?.['aria-label'],
-          disabled: rightArrowDisabled,
-          onClick: onRightArrowClick,
-        };
-
+  const dataTestId = dataAttributes['data-testid'] ?? 'carousel';
   return (
-    <RootStyled
+    <div
       ref={ref}
-      allowModifySliceWidth={allowModifySliceWidth}
-      aria-labelledby={props['aria-labelledby']}
-      data-testid={`${dataTestId}Wrapper`}
-      styles={styles}
-      onKeyDown={onKeyDown}
+      aria-roledescription="carousel"
+      className={cssClasses?.carousel}
+      data-testid={dataTestId}
+      {...dataAttributes}
+      {...rootContainer}
     >
-      <ArrowAndCarouselWrapperStyled allowModifySliceWidth={allowModifySliceWidth} styles={styles}>
-        {displayArrowsOnCarousel && numPages > 1 && (
-          <ArrowLeftIconContainer data-disabled={leftArrowDisabled} styles={styles}>
-            <ElementOrIcon
-              aria-controls={id}
-              customIconStyles={
-                !leftArrowDisabled ? styles.leftArrowIcon : styles.leftArrowIconDisabled
-              }
-              dataTestId={`${dataTestId}LeftArrow`}
-              disabled={leftArrowDisabled}
-              {...props.leftArrow}
-              onClick={onLeftArrowClick}
-            />
-          </ArrowLeftIconContainer>
-        )}
-        <CarouselContainerStyled
-          ref={carouselContainerRef}
-          data-testid={`${dataTestId}Container`}
-          styles={styles}
-          tabIndex={-1}
-          onMouseOutCapture={onMouseOut}
-          onMouseOverCapture={onMouseOver}
+      <div
+        ref={viewerContainerRef}
+        className={cssClasses?.viewer}
+        data-allow-modify-slice-width={allowModifySliceWidth}
+        data-disabled={disabled}
+        data-testid={`${dataTestId}-viewer`}
+        {...viewerContainer}
+      >
+        <div
+          ref={contentContainerRef}
+          aria-live="polite"
+          className={cssClasses?.content}
+          data-center-mode={centerMode}
+          data-testid={`${dataTestId}-content`}
+          {...contentContainer}
         >
-          <CarouselContentStyled
-            ref={carouselContentRef}
-            centerMode={centerMode}
-            data-testid={`${dataTestId}Content`}
-            disableSwipe={disableSwipe}
-            id={id}
-            styles={styles}
-          >
-            {elements}
-          </CarouselContentStyled>
-          <ExtraPaddingArrowStandAlone
-            ariaControls={id}
-            ariaLabel={props.leftArrow?.['aria-label']}
-            dataTestId={`${dataTestId}LeftArrow`}
-            extraPadding={extraPadding}
-            extraPaddingAsArrow={extraPaddingAsArrow}
-            styles={styles}
-            onClick={onLeftArrowClick}
-          />
-          <ExtraPaddingArrowStandAlone
-            right
-            ariaControls={id}
-            ariaLabel={props.rightArrow?.['aria-label']}
-            dataTestId={`${dataTestId}RightArrow`}
-            extraPadding={extraPadding}
-            extraPaddingAsArrow={extraPaddingAsArrow}
-            styles={styles}
-            onClick={onRightArrowClick}
-          />
-        </CarouselContainerStyled>
-
-        {displayArrowsOnCarousel && numPages > 1 && (
-          <ArrowRightIconContainer data-disabled={rightArrowDisabled} styles={styles}>
-            <ElementOrIcon
-              aria-controls={id}
-              customIconStyles={
-                !rightArrowDisabled ? styles.rightArrowIcon : styles.rightArrowIconDisabled
-              }
-              dataTestId={`${dataTestId}RightArrow`}
-              disabled={rightArrowDisabled}
-              {...props.rightArrow}
-              onClick={onRightArrowClick}
-            />
-          </ArrowRightIconContainer>
-        )}
-      </ArrowAndCarouselWrapperStyled>
-      {hasPagination && numPages > 1 && (
-        <PageControlContainerStyled styles={styles}>
-          <PageControl
-            arrowsControlVariant={pageControlArrowsControlVariant}
-            currentPosition={currentPage}
-            dataTestId={`${dataTestId}PageControl`}
-            leftArrowControl={leftArrowControlPageControl}
-            pages={numPages}
-            rightArrowControl={rightArrowControlPageControl}
-            variant={pageControlVariant}
-          />
-        </PageControlContainerStyled>
+          {elements}
+        </div>
+      </div>
+      {screenReaderOnly && (
+        <screen-reader-only aria-live="off" {...screenReaderOnly}>
+          {screenReaderOnly.content}
+        </screen-reader-only>
       )}
-      {pageControlAutomateConfig && numPages > 1 && (
-        <PageControlAutomateContainerStyled styles={styles}>
-          <PageControlAutomate
-            {...pageControlAutomateConfig}
-            currentBar={currentPage}
-            mediaProgressBar={{
-              ...pageControlAutomateConfig.mediaProgressBar,
-              barsNum: numPages,
-              circular: props.circular,
-              onBarChange: onIndicatorChange,
-            }}
-            playStop={{ ...pageControlAutomateConfig.playStop, onClick: onMediaButtonClick }}
-            playing={playing}
-          />
-        </PageControlAutomateContainerStyled>
-      )}
-    </RootStyled>
+    </div>
   );
 };
 
-export const CarouselStandAlone = React.forwardRef(CarouselStandAloneComponent);
+export const CarouselStandAlone = forwardRef(CarouselStandAloneComponent);

@@ -1,0 +1,1 @@
+export { onlyDesktopSize } from './onlyDesktopSize';

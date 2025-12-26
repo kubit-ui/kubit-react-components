@@ -1,56 +1,94 @@
-import * as React from 'react';
+import './text.css';
 
-import { pickAriaProps } from '@/utils/aria/aria';
+import { forwardRef } from 'react';
 
-import { TextStyled } from './text.styled';
-import { type ITextStandAlone, TextTransformType } from './types';
+import { classNames } from '@/lib/utils/classNames/classNames';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-const TextStandAloneComponent = (
-  {
-    children,
-    component,
-    dataTestId,
-    htmlFor,
-    id,
-    onClick,
-    role,
-    styles,
-    weight,
-    isDisabled,
-    align,
-    transform = TextTransformType.NONE,
-    ...props
-  }: ITextStandAlone,
-  ref: React.ForwardedRef<HTMLParagraphElement> | null
-): JSX.Element => {
-  const ariaProps = pickAriaProps(props);
-  return (
-    <TextStyled
-      {...props}
-      {...ariaProps}
-      ref={ref}
-      $transform={transform}
-      align={align}
-      as={component}
-      data-testid={dataTestId}
-      htmlFor={htmlFor}
-      id={id}
-      isDisabled={isDisabled}
-      role={role}
-      styles={styles}
-      weight={weight}
-      onClick={onClick}
-    >
-      {children}
-    </TextStyled>
-  );
-};
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
+import type { TextStandAloneProps } from './types/text';
 
-/**
- * @description
- * Text component is a component that can be used to create a text.
- * @param {React.PropsWithChildren<ITextStandAlone>} props
- * @returns {JSX.Element}
- * @constructor
- */
-export const TextStandAlone = React.forwardRef(TextStandAloneComponent);
+export const TextStandAlone = forwardRef<
+  HTMLParagraphElement,
+  TextStandAloneProps
+>(
+  (
+    {
+      align,
+      children,
+      color,
+      component,
+      cssClasses,
+      cursor,
+      customAttributes,
+      decoration,
+      disabled,
+      display,
+      draggable,
+      filter,
+      htmlFor,
+      id,
+      maxTruncatedLines,
+      onClick,
+      role,
+      target,
+      textSizeAdjust,
+      textWrap,
+      transform,
+      truncate,
+      weight,
+      wordBreak,
+      wordWrap,
+      ...props
+    },
+    ref,
+  ): JSX.Element => {
+    const customProps = pickCustomAttributes({
+      ...props,
+      ...customAttributes,
+    });
+    const className = classNames(
+      'kbt-text',
+      cssClasses?.text,
+      {
+        'kbt-text--disabled': disabled ?? false,
+      },
+      {
+        'kbt-text--truncate': truncate || !!maxTruncatedLines,
+      },
+    );
+
+    const style = {
+      color: color,
+      cursor: cursor,
+      display: display,
+      filter: filter,
+      fontWeight: weight,
+      textAlign: align,
+      textDecoration: decoration,
+      textTransform: transform,
+      textWrap: textWrap,
+      wordBreak: wordBreak,
+      wordWrap: wordWrap,
+      textSizeAdjust: textSizeAdjust,
+    };
+    return (
+      <CustomComponent
+        ref={ref}
+        className={className}
+        component={component}
+        data-testid="text"
+        draggable={draggable}
+        htmlFor={htmlFor}
+        id={id}
+        role={role}
+        style={style}
+        target={target}
+        onClick={onClick}
+        {...customProps}
+      >
+        {children}
+      </CustomComponent>
+    );
+  },
+);

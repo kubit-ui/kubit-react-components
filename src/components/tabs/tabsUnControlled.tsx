@@ -1,14 +1,19 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef, useState } from 'react';
 
-// styles
 import { TabsControlled } from './tabsControlled';
-import { ITabsUnControlled } from './types/tabs';
+import type { TabsUnControlledProps } from './types/tabs';
 
-export const TabsUnControlledComponent = <V extends string | unknown>(
-  { defaultSelectedTab = 0, onSelectTab, ...props }: ITabsUnControlled<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => {
-  const [selectedTab, setSelectedTab] = React.useState(defaultSelectedTab);
+export const TabsUnControlled = forwardRef(function <
+  Variant extends string | undefined,
+>(
+  {
+    defaultSelectedTab = 0,
+    onSelectTab,
+    ...props
+  }: TabsUnControlledProps<Variant>,
+  ref: ForwardedRef<HTMLDivElement>,
+): JSX.Element {
+  const [selectedTab, setSelectedTab] = useState(defaultSelectedTab);
 
   const handleSelectTab = (tab: number) => {
     setSelectedTab(tab);
@@ -16,16 +21,13 @@ export const TabsUnControlledComponent = <V extends string | unknown>(
   };
 
   return (
-    <TabsControlled {...props} ref={ref} selectedTab={selectedTab} onSelectTab={handleSelectTab} />
+    <TabsControlled
+      {...props}
+      ref={ref}
+      defaultSelectedTab={selectedTab}
+      onSelectTab={handleSelectTab}
+    />
   );
-};
+});
 
-const TabsUnControlled = React.forwardRef(TabsUnControlledComponent) as <
-  V extends string | unknown,
->(
-  props: React.PropsWithChildren<ITabsUnControlled<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => ReturnType<typeof TabsUnControlledComponent>;
-
-export { TabsUnControlled };
+export { TabsUnControlled as Tabs };

@@ -1,47 +1,37 @@
-// vendors
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import { axe } from 'vitest-axe';
 
-import { axe } from 'jest-axe';
-
-// provider
-import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+import { render } from '@/lib/tests/render/render';
 
 import { Button } from '../button';
-// constants
-import { ButtonStateType, ButtonType } from '../types';
+import type { ButtonProps } from '../types/button';
 
-const mockBase = {
-  onClick: jest.fn,
-  type: ButtonType.BUTTON,
-  size: 'LARGE',
-  variant: 'PRIMARY',
-  state: ButtonStateType.DEFAULT,
-  fullWidth: false,
-  dataTestId: 'button-component',
+const mockBase: ButtonProps = {
   ['aria-label']: 'Click on me!',
+  'data-testid': 'button-component',
+  fullWidth: false,
+  onClick: vi.fn(),
+  size: 'LARGE',
+  type: 'button',
+  variant: 'PRIMARY',
 };
 
 const mockProps = {
   ...mockBase,
-  icon: { icon: 'icon', altText: 'altIcon' },
+  icon: { altText: 'altIcon', icon: 'icon' },
   variant: 'PRIMARY',
 };
 
-const mockPropsNoVariantNorState = { ...mockBase, variant: undefined, state: undefined };
-
-const mockPropsNoTypeNorSize = { ...mockBase, type: undefined, size: undefined };
-
-const mockPropsLoader = {
+const mockPropsNoVariantNorState = {
   ...mockBase,
-  loader: <>loader</>,
-  loading: true,
+  state: undefined,
+  variant: undefined,
 };
 
-const mockPropsLoaderAsVariant = {
+const mockPropsNoTypeNorSize = {
   ...mockBase,
-  loader: { variant: 'PRIMARY_WHITE', altText: 'loaderAltText' },
-  loading: true,
+  size: undefined,
+  type: undefined,
 };
 
 const mockWithoutIcon = {
@@ -51,89 +41,77 @@ const mockWithoutIcon = {
 
 const children = 'Click me!';
 
-test('Button component', async () => {
-  const { container } = renderProvider(<Button {...mockProps}>{children}</Button>);
+describe('Button component', () => {
+  it('Should render Button component', async () => {
+    const { container } = render(<Button {...mockProps}>{children}</Button>);
 
-  const button = screen.getByRole('button', { name: /click/i });
+    const button = screen.getByRole('button', { name: /click/i });
 
-  expect(button).toBeDefined();
+    expect(button).toBeDefined();
 
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
 
-test('Button without variant nor state', async () => {
-  const { container } = renderProvider(<Button {...mockPropsNoVariantNorState}>{children}</Button>);
+  it('Should render Button component without variant nor state', async () => {
+    const { container } = render(
+      <Button {...mockPropsNoVariantNorState}>{children}</Button>,
+    );
 
-  const button = screen.getByRole('button', { name: /click/i });
+    const button = screen.getByRole('button', { name: /click/i });
 
-  expect(button).toBeDefined();
+    expect(button).toBeDefined();
 
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
 
-test('Button without type nor size', async () => {
-  const { container } = renderProvider(<Button {...mockPropsNoTypeNorSize}>{children}</Button>);
+  it('Should render Button component without type nor size', async () => {
+    const { container } = render(
+      <Button {...mockPropsNoTypeNorSize}>{children}</Button>,
+    );
 
-  const button = screen.getByRole('button', { name: /click/i });
+    const button = screen.getByRole('button', { name: /click/i });
 
-  expect(button).toBeDefined();
+    expect(button).toBeDefined();
 
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
 
-test('Button with loader', async () => {
-  const { container } = renderProvider(<Button {...mockPropsLoader}>{children}</Button>);
+  it('Should render Button component without icon', async () => {
+    const { container, queryByRole } = render(
+      <Button {...mockWithoutIcon}>{children}</Button>,
+    );
 
-  const loader = screen.queryByText('loader');
+    expect(queryByRole('img')).toBeNull();
 
-  expect(loader).toBeDefined();
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
 
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
+  it('Should render Button component without children and icon', async () => {
+    const { container } = render(<Button {...mockWithoutIcon} />);
 
-test('Button with loader as variant', async () => {
-  const { queryByText, getByTestId, container } = renderProvider(
-    <Button {...mockPropsLoaderAsVariant}>{children}</Button>
-  );
+    expect(container).toBeEmptyDOMElement();
 
-  // Should only render loader variant
-  const loader = queryByText(mockPropsLoaderAsVariant.loader.variant);
-  expect(loader).toBeNull();
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
 
-  const loaderVariant = getByTestId('loaderStandaloneTestId');
-  expect(loaderVariant).toBeDefined();
+  it('Should render Button component with an SVG if icon prop is provided', async () => {
+    const { container } = render(
+      <Button
+        icon={{ altText: 'altIcon', icon: 'icon' }}
+        size="LARGE"
+        variant="PRIMARY"
+      />,
+    );
 
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
+    const svg = screen.getByRole('img', { name: /altIcon/i });
 
-test('Button without icon', async () => {
-  const { queryByRole, container } = renderProvider(
-    <Button {...mockWithoutIcon}>{children}</Button>
-  );
-
-  expect(queryByRole('img')).toBeNull();
-
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
-
-test('Button without children and icon', async () => {
-  const { container } = renderProvider(<Button {...mockWithoutIcon}></Button>);
-
-  expect(container).toBeEmptyDOMElement();
-
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
+    expect(svg).not.toBeNull();
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
 });

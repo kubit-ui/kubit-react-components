@@ -1,51 +1,62 @@
-import React from 'react';
+import type { AriaAttributes } from 'react';
 
-import { ElementOrIcon, IElementOrIcon } from '@/components/elementOrIcon';
-import { Text, TextComponentType } from '@/components/text';
-import { AriaLiveOptionType } from '@/types';
+import { RenderIf } from '@/components/renderIf/renderIf';
+import { Text } from '@/components/text/text';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import { STATES } from '@/lib/types/states/states';
+import { processText } from '@/lib/utils/process/processText/processText';
 
-import { ErrorWrapperStyled } from '../textArea.styled';
-import { TextAreaPropsThemeType, TextAreaStateType, TextAreaTextType } from '../types';
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
+import type { TextAreaCssClasses } from '../types/textArea';
 
 export const ErrorStandAlone = ({
-  id,
-  state,
-  errorMessage,
+  cssClasses,
+  customAttributtes,
   errorAriaLiveType,
   errorIcon,
-  dataTestId,
-  styles,
+  errorMessage,
+  id,
+  state,
 }: {
   id: string;
-  state: TextAreaStateType;
-  errorMessage?: TextAreaTextType;
-  errorAriaLiveType: AriaLiveOptionType;
-  dataTestId?: string;
-  errorIcon?: IElementOrIcon;
-  styles?: TextAreaPropsThemeType;
+  state: CommonTextProps;
+  errorMessage?: CommonTextProps;
+  errorAriaLiveType: AriaAttributes['aria-live'];
+  errorIcon?: ElementOrIconProps;
+  cssClasses?: TextAreaCssClasses;
+  customAttributtes?;
 }): JSX.Element => {
   return (
-    <ErrorWrapperStyled aria-live={errorAriaLiveType} id={id} styles={styles}>
-      {errorMessage?.content && state === TextAreaStateType.ERROR && (
+    <div
+      aria-live={errorAriaLiveType}
+      className={cssClasses?.errorcontainer}
+      id={id}
+      {...customAttributtes}
+    >
+      <RenderIf
+        condition={
+          !!processText(errorMessage).children && state === STATES.ERROR
+        }
+      >
         <>
           <ElementOrIcon
-            color={styles?.errorIcon?.color}
-            height={styles?.errorIcon?.height}
-            width={styles?.errorIcon?.width}
+            className={cssClasses?.erroricon}
+            customAttributes={customAttributtes}
             {...errorIcon}
           />
           <Text
-            color={styles?.errorMessage?.color}
-            component={TextComponentType.PARAGRAPH}
-            dataTestId={dataTestId}
-            variant={styles?.errorMessage?.font_variant}
-            weight={styles?.errorMessage?.font_weight}
-            {...errorMessage}
+            additionalClasses={{
+              text: cssClasses?.errormessage,
+            }}
+            component="p"
+            customAttributes={customAttributtes}
+            {...processText(errorMessage)}
           >
-            {errorMessage.content}
+            {processText(errorMessage).children}
           </Text>
         </>
-      )}
-    </ErrorWrapperStyled>
+      </RenderIf>
+    </div>
   );
 };

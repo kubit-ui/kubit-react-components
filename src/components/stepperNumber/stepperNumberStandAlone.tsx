@@ -1,107 +1,207 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
-import { Text, TextComponentType } from '@/components/text';
+import { Text } from '@/components/text/text';
+import { STATES } from '@/lib/types/states/states';
+import { classNames } from '@/lib/utils/classNames/classNames';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { ElementOrIcon } from '../elementOrIcon';
-import { buildAriaCurrent, buildScreenReaderText, mapToStepState } from './helpers';
-import {
-  BuilStepContainerStyled,
-  StepBarStyled,
-  StepCircleBarWrapperStyled,
-  StepCircleStyled,
-  StepContainerStyled,
-  StepperNumberContainerStyled,
-  StepperNumberContainerVerticalStep,
-  StepsContainerStyled,
-} from './stepperNumber.styled';
-import {
-  IStepperNumberStandAlone,
-  StepperNumberOrientationType,
-  StepperNumberStateType,
-} from './types';
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { buildAriaCurrent } from './helpers/aria';
+import { buildScreenReaderText } from './helpers/screnReader';
+import { mapToStepState } from './helpers/stepState';
+import type { StepperNumberStandAloneProps } from './types/stepperNumber';
 
 const defaultStep = 0;
 
-const StepperNumberStandAloneComponent = (
-  { currentStep = defaultStep, ...props }: IStepperNumberStandAlone,
-  ref: React.ForwardedRef<HTMLElement> | undefined | null
-): JSX.Element => {
-  const steps = mapToStepState(props.steps, currentStep);
-  const isVertical = props.orientation === StepperNumberOrientationType.VERTICAL;
-
-  return (
-    <StepperNumberContainerStyled
-      ref={ref}
-      aria-hidden={!isVertical}
-      aria-label={props['aria-label']}
-      data-testid={`${props.dataTestId}StepsSection`}
-    >
-      <StepsContainerStyled data-testid={`${props.dataTestId}StepsContainer`} styles={props.styles}>
-        {steps.map((step, index) => {
-          const isLastStep = index === steps.length - 1;
-          return (
-            <BuilStepContainerStyled
-              key={'stepContainer' + index}
-              aria-current={buildAriaCurrent(currentStep, index, props.orientation)}
-              data-testid={`${props.dataTestId}Li${index}`}
-              horizontalOrientationWidth={isLastStep ? 'auto' : props.horizontalOrientationWidth}
-              orientation={props.orientation}
-            >
-              <ScreenReaderOnly dataTestId={`${props.dataTestId}ScreenReaderText${index}`}>
-                {buildScreenReaderText(
-                  index,
-                  currentStep,
-                  steps.length,
-                  props.screenReaderTextBuilder,
-                  step.name,
-                  isVertical
-                )}
-              </ScreenReaderOnly>
-              <StepContainerStyled aria-hidden={true} state={step.state} styles={props.styles}>
-                <StepCircleBarWrapperStyled orientation={props.orientation}>
-                  <StepCircleStyled state={step.state} styles={props.styles}>
-                    {step.state === StepperNumberStateType.COMPLETED ? (
-                      <ElementOrIcon
-                        customIconStyles={props.styles?.[step.state]?.iconSelected}
-                        {...props.completedStepIcon}
-                      />
-                    ) : (
-                      <Text
-                        component={TextComponentType.SPAN}
-                        customTypography={props.styles?.[step.state]?.stepIndex}
-                      >
-                        {index + 1}
-                      </Text>
+export const StepperNumberStandAlone = forwardRef<
+  HTMLDivElement,
+  StepperNumberStandAloneProps
+>(
+  (
+    {
+      completedStepIcon,
+      cssOrientationClasses,
+      cssVariantClasses,
+      currentStep = defaultStep,
+      horizontalOrientationWidth,
+      orientation,
+      screenReaderCompletedStep,
+      screenReaderTextBuilder,
+      screenReaderTitle,
+      stepMaxTruncatedLines,
+      steps: stepsProp,
+      ...props
+    },
+    ref,
+  ) => {
+    const steps = mapToStepState(stepsProp, currentStep);
+    const isVertical = orientation === 'vertical';
+    const usingScreenReaderTextBuilder = Boolean(screenReaderTitle);
+    const dataTestId = props['data-testid'] || 'stepper-number';
+    return (
+      <div ref={ref} aria-hidden={!isVertical} data-testid={dataTestId}>
+        {screenReaderTitle?.content && (
+          <CustomComponent
+            className="kbt-sr-only"
+            component={screenReaderTitle.component}
+          >
+            {screenReaderTitle?.content}
+          </CustomComponent>
+        )}
+        <ol
+          className={classNames(
+            cssOrientationClasses?.stepper_number,
+            cssVariantClasses?.stepper_number,
+          )}
+          data-testid={`${dataTestId}-steps-container`}
+        >
+          {steps.map((step, index) => {
+            const isLastStep = index === steps.length - 1;
+            const customAttributes = {
+              'data-state': step.state,
+            };
+            const customAttributesProps =
+              pickCustomAttributes(customAttributes);
+            return (
+              <li
+                key={`stepContainer-${index.toString()}`}
+                aria-current={buildAriaCurrent(currentStep, index, orientation)}
+                data-testid={`${dataTestId}-li-${index}`}
+                style={{
+                  display: isVertical ? 'flex' : 'block',
+                  width:
+                    !isVertical && isLastStep
+                      ? 'auto'
+                      : horizontalOrientationWidth,
+                }}
+              >
+                {usingScreenReaderTextBuilder && (
+                  <screen-reader-only>
+                    {buildScreenReaderText(
+                      index,
+                      currentStep,
+                      steps.length,
+                      screenReaderTextBuilder,
+                      step.name,
+                      isVertical,
                     )}
-                  </StepCircleStyled>
-                  {!isLastStep && (
-                    <StepBarStyled state={steps[index + 1].state} styles={props.styles} />
-                  )}
-                </StepCircleBarWrapperStyled>
-                {isVertical && (
-                  <StepperNumberContainerVerticalStep
-                    aria-hidden={true}
-                    isLastStep={isLastStep}
-                    state={step.state}
-                    styles={props.styles}
-                  >
-                    <Text
-                      component={TextComponentType.SPAN}
-                      customTypography={props.styles?.[step.state]?.stepName}
-                      dataTestId={`${props.dataTestId}VerticalStepText${index}`}
-                    >
-                      {step.name}
-                    </Text>
-                  </StepperNumberContainerVerticalStep>
+                  </screen-reader-only>
                 )}
-              </StepContainerStyled>
-            </BuilStepContainerStyled>
-          );
-        })}
-      </StepsContainerStyled>
-    </StepperNumberContainerStyled>
-  );
-};
-
-export const StepperNumberStandAlone = React.forwardRef(StepperNumberStandAloneComponent);
+                <span
+                  aria-hidden={
+                    !isVertical || usingScreenReaderTextBuilder
+                      ? true
+                      : undefined
+                  }
+                  className={classNames(
+                    cssOrientationClasses?.stepcontainer,
+                    cssVariantClasses?.stepcontainer,
+                  )}
+                  {...customAttributesProps}
+                >
+                  <span
+                    // className="kbt-stepper-number__circle-bar-wrapper "
+                    className={cssVariantClasses?.stepcirclecontainer}
+                    data-testid={`${dataTestId}-step-${index}`}
+                    style={{
+                      flexDirection:
+                        orientation === 'vertical' ? 'column' : 'row',
+                    }}
+                  >
+                    <span
+                      className={classNames(
+                        cssOrientationClasses?.stepcircle,
+                        cssVariantClasses?.stepcircle,
+                      )}
+                      {...customAttributesProps}
+                    >
+                      {step.state === STATES.COMPLETED ? (
+                        <>
+                          <ElementOrIcon
+                            className={classNames(
+                              cssOrientationClasses?.iconselected,
+                              cssVariantClasses?.iconselected,
+                            )}
+                            customAttributes={customAttributes}
+                            {...completedStepIcon}
+                          />
+                          <screen-reader-only>{index + 1}</screen-reader-only>
+                        </>
+                      ) : (
+                        <Text
+                          additionalClasses={{
+                            text: classNames(
+                              cssOrientationClasses?.stepindex,
+                              cssVariantClasses?.stepindex,
+                            ),
+                          }}
+                          component="span"
+                          customAttributes={customAttributes}
+                        >
+                          {index + 1}
+                        </Text>
+                      )}
+                    </span>
+                    {!isLastStep && (
+                      <span
+                        className={classNames(
+                          cssOrientationClasses?.stepbar,
+                          cssVariantClasses?.stepbar,
+                        )}
+                        {...pickCustomAttributes({
+                          'data-state': steps[index + 1].state,
+                        })}
+                      />
+                    )}
+                  </span>
+                  {isVertical && (
+                    <span
+                      aria-hidden={
+                        usingScreenReaderTextBuilder ? true : undefined
+                      }
+                      className={classNames(
+                        cssOrientationClasses?.stepnamecontainer,
+                        cssVariantClasses?.stepnamecontainer,
+                      )}
+                      data-islast={isLastStep}
+                      data-testid={`${dataTestId}-step-description-${index}`}
+                      {...customAttributesProps}
+                    >
+                      <Text
+                        additionalClasses={{
+                          text: classNames(
+                            cssOrientationClasses?.stepname,
+                            cssVariantClasses?.stepname,
+                          ),
+                        }}
+                        component="span"
+                        customAttributes={customAttributes}
+                        maxTruncatedLines={stepMaxTruncatedLines}
+                      >
+                        {step.name}
+                      </Text>
+                      {!usingScreenReaderTextBuilder &&
+                        step.state === STATES.COMPLETED &&
+                        screenReaderCompletedStep?.content && (
+                          <CustomComponent
+                            className="kbt-sr-only"
+                            component={screenReaderCompletedStep.component}
+                            data-testid={
+                              screenReaderCompletedStep['data-testid']
+                            }
+                          >
+                            &nbsp;{screenReaderCompletedStep.content}
+                          </CustomComponent>
+                        )}
+                    </span>
+                  )}
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    );
+  },
+);

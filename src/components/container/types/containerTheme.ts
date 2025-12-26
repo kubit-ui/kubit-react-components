@@ -1,23 +1,20 @@
-import type { CommonStyleType, TypographyTypes } from '@/types/index';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
 /**
- * Represents the styles for the Container component.
- * @interface ContainerPropsStylesType
- * [element] _ [property] _ [measure]
+ * Interface representing the styles for the container component.
  */
-
-export type ContainerPropsStylesType = {
-  parentContainer?: CommonStyleType;
-  header?: CommonStyleType;
-  title?: TypographyTypes;
-  container: CommonStyleType;
-};
+export interface ContainerStyleProps extends CssLibPropsType {
+  _header?: CssLibPropsType;
+  _title?: CssLibPropsType;
+  _content?: CssLibPropsType;
+}
 
 /**
- * Represents the styles type for the Container component, with support for different variants.
- * @template P - The type of variant.
- * @interface ContainerStylesType
+ * Type representing the styles for different variants of the container component.
+ *
+ * @template Variant - The type of the variant keys.
  */
-export type ContainerStylesType<P extends string | number | symbol> = {
-  [variant in P]: ContainerPropsStylesType;
-};
+export type ContainerVariantStyles<Variant extends string> =
+  ContainerStyleProps & {
+    [key in Variant]: ContainerStyleProps;
+  };

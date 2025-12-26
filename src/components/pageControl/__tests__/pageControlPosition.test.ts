@@ -1,56 +1,59 @@
-import { calcFirstLastVisiblePosition } from '../helper';
-import { PageControlDirectionType } from '../types';
+import { calcFirstLastVisiblePosition } from '../helper/positions';
 
 describe('Page Control Position', () => {
   it('No bullet. When currentPosition < dots, then firstVisiblePosition = 1 and lastVisiblePosition depends on firstVisiblePosition', () => {
     const currentPosition = 1;
     const dots = 5;
-    const { firstVisiblePosition, lastVisiblePosition } = calcFirstLastVisiblePosition({
-      isBullet: false,
-      direction: PageControlDirectionType.FORTH,
-      currentPosition,
-      pages: 10,
-      dots,
-    });
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'forth',
+        dots,
+        isBullet: false,
+        pages: 10,
+      });
     expect(firstVisiblePosition).toBe(0);
     expect(lastVisiblePosition).toBe(firstVisiblePosition + dots - 1);
   });
   it('No bullet. When position >= dots, then lastVisiblePosition = currentPosition and firstVisiblePosition depends on lastVisiblePosition', () => {
     const currentPosition = 5;
     const dots = 5;
-    const { firstVisiblePosition, lastVisiblePosition } = calcFirstLastVisiblePosition({
-      isBullet: false,
-      direction: PageControlDirectionType.FORTH,
-      currentPosition,
-      pages: 10,
-      dots,
-    });
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'forth',
+        dots,
+        isBullet: false,
+        pages: 10,
+      });
     expect(lastVisiblePosition).toBe(currentPosition);
     expect(firstVisiblePosition).toBe(lastVisiblePosition - (dots - 1));
   });
   it('Bullet. When direction FORTH and currentPosition < dots, then firstVisiblePosition = 1 and lastVisiblePosition depends on firstVisiblePosition', () => {
     const currentPosition = 1;
     const dots = 5;
-    const { firstVisiblePosition, lastVisiblePosition } = calcFirstLastVisiblePosition({
-      isBullet: true,
-      direction: PageControlDirectionType.FORTH,
-      currentPosition,
-      pages: 10,
-      dots,
-    });
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'forth',
+        dots,
+        isBullet: true,
+        pages: 10,
+      });
     expect(firstVisiblePosition).toBe(0);
     expect(lastVisiblePosition).toBe(firstVisiblePosition + dots - 1);
   });
   it('Bullet. When direction FORTH and position >= dots, then lastVisiblePosition = currentPosition and firstVisiblePosition depends on lastVisiblePosition', () => {
     const currentPosition = 5;
     const dots = 5;
-    const { firstVisiblePosition, lastVisiblePosition } = calcFirstLastVisiblePosition({
-      isBullet: true,
-      direction: PageControlDirectionType.FORTH,
-      currentPosition,
-      pages: 10,
-      dots,
-    });
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'forth',
+        dots,
+        isBullet: true,
+        pages: 10,
+      });
     expect(lastVisiblePosition).toBe(currentPosition);
     expect(firstVisiblePosition).toBe(lastVisiblePosition - (dots - 1));
   });
@@ -58,13 +61,14 @@ describe('Page Control Position', () => {
     const currentPosition = 8;
     const dots = 5;
     const pages = 10;
-    const { firstVisiblePosition, lastVisiblePosition } = calcFirstLastVisiblePosition({
-      isBullet: true,
-      direction: PageControlDirectionType.BACK,
-      currentPosition,
-      pages,
-      dots,
-    });
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'back',
+        dots,
+        isBullet: true,
+        pages,
+      });
     expect(lastVisiblePosition).toBe(pages - 1);
     expect(firstVisiblePosition).toBe(lastVisiblePosition - (dots - 1));
   });
@@ -72,13 +76,14 @@ describe('Page Control Position', () => {
     const currentPosition = 4;
     const dots = 5;
     const pages = 10;
-    const { firstVisiblePosition, lastVisiblePosition } = calcFirstLastVisiblePosition({
-      isBullet: true,
-      direction: PageControlDirectionType.BACK,
-      currentPosition,
-      pages,
-      dots,
-    });
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'back',
+        dots,
+        isBullet: true,
+        pages,
+      });
     expect(firstVisiblePosition).toBe(currentPosition);
     expect(lastVisiblePosition).toBe(firstVisiblePosition + dots - 1);
   });

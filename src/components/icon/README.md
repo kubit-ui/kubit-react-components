@@ -22,22 +22,21 @@ const icon = 'ARROW_ICON';
 
 ## Props
 
-| Property                     | Description                                  | Variant                 | Default | Optional | Allowed values |
-| ---------------------------- | -------------------------------------------- | ----------------------- | ------- | -------- | -------------- |
-| icon                         | Name or url of the icon                      | String                  | -       | no       | -              |
-| altText                      | Alternative text of the icon                 | String                  | -       | yes      | -              |
-| ariaChecked                  | Indicates if Icon is checked or not          | Boolean                 | -       | yes      | -              |
-| ariaHidden                   | Icon's aria hidden                           | Boolean                 | -       | yes      | -              |
-| color                        | Icon color                                   | String                  | -       | yes      | -              |
-| height                       | Icon height                                  | String                  | -       | yes      | -              |
-| isLinearIcon                 | Icon is svg                                  | Boolean                 | -       | yes      | -              |
-| onClick                      | Function of the icon when user clicks        | Function                | -       | yes      | -              |
-| role                         | Role                                         | String                  | -       | yes      | -              |
-| width                        | Icon width                                   | String                  | -       | yes      | -              |
-| ariaLabel                    | Icon's aria label                            | String                  | -       | yes      | -              |
-| rotate                       | Rotates the icon                             | String                  | '0deg'  | yes      | -              |
-| transitionDuration           | Time of transition                           | String                  | '0.2s'  | yes      | -              |
-| tabIndex                     | To manage keyboard focus                     | Number                  | -       | yes      | -              |
-| dataTestId                   | Element identifier used for testing purposes | String                  | -       | yes      | -              |
-| twistAnimationTransformValue | Value for the 'transform' css property       | String, null, undefined | -       | yes      | -              |
-| screenReaderText             | Help text for screen readers                 | String                  | -       | yes      | -              |
+| Property                     | Description                            | Variant                 | Default | Optional | Allowed values |
+| ---------------------------- | -------------------------------------- | ----------------------- | ------- | -------- | -------------- |
+| icon                         | Name or url of the icon                | String                  | -       | no       | -              |
+| altText                      | Alternative text of the icon           | String                  | -       | yes      | -              |
+| ariaChecked                  | Indicates if Icon is checked or not    | Boolean                 | -       | yes      | -              |
+| ariaHidden                   | Icon's aria hidden                     | Boolean                 | -       | yes      | -              |
+| color                        | Icon color                             | String                  | -       | yes      | -              |
+| height                       | Icon height                            | String                  | -       | yes      | -              |
+| isLinearIcon                 | Icon is svg                            | Boolean                 | -       | yes      | -              |
+| onClick                      | Function of the icon when user clicks  | Function                | -       | yes      | -              |
+| role                         | Role                                   | String                  | -       | yes      | -              |
+| width                        | Icon width                             | String                  | -       | yes      | -              |
+| ariaLabel                    | Icon's aria label                      | String                  | -       | yes      | -              |
+| rotate                       | Rotates the icon                       | String                  | '0deg'  | yes      | -              |
+| transitionDuration           | Time of transition                     | String                  | '0.2s'  | yes      | -              |
+| tabIndex                     | To manage keyboard focus               | Number                  | -       | yes      | -              |
+| twistAnimationTransformValue | Value for the 'transform' css property | String, null, undefined | -       | yes      | -              |
+| screenReaderText             | Help text for screen readers           | String                  | -       | yes      | -              |

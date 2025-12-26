@@ -1,9 +1,5 @@
-import { CommonStyleType } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-export type OverlayVariantStylesType = {
-  container?: CommonStyleType;
-};
-
-export type OverlayStylesType<P extends string | number | symbol> = {
-  [variant in P]?: OverlayVariantStylesType;
+export type OverlayVariantStyles<Variant extends string> = CssLibPropsType & {
+  [key in Variant]: CssLibPropsType;
 };

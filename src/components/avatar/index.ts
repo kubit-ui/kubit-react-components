@@ -1,15 +1,11 @@
-//interfaces and types
-export type {
-  IAvatarStandAlone,
-  IAvatar,
-  AvatarContentStylesType,
-  AvatarSizeStylesType,
-  AvatarStylesType,
-  AvatarInitialsType,
-  AvatarLinkType,
-} from './types';
-
-// enums
-export { AvatarContentType, AvatarBackgroundColor } from './types';
-
 export { Avatar } from './avatar';
+export type {
+  AvatarLinkProps,
+  AvatarStandAloneProps,
+  AvatarProps,
+} from './types/avatar';
+export type {
+  BackgroundColorAvatarStylesProps,
+  AvatarStylesProps,
+  AvatarSizeStyles,
+} from './types/avatarTheme';

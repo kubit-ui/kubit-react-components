@@ -1,30 +1,31 @@
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { ContainerPropsStylesType } from './containerTheme';
+type ContainerCssClasses = ComponentSelected<
+  ComponentsTypesComponents['CONTAINER']
+>;
 
-export type ContainerTextType = Omit<IText<string>, 'children'> & {
-  content?: React.ReactNode;
-};
-
-export interface IContainerStandAlone {
-  styles: ContainerPropsStylesType;
-  title?: ContainerTextType;
-  dataTestId?: string;
+/**
+ * Interface for the standalone container component.
+ * It includes optional custom CSS classes, a title, and a data-testid attribute.
+ */
+export interface ContainerStandAloneProps extends DataAttributes {
+  cssClasses?: ContainerCssClasses;
+  title?: CommonTextProps;
 }
 
 /**
- * Represents the props for the Container component.
- * @interface IContainer
- * @category Components - Web
- * @param {object} styles - The styles for the container.
- * @param {string} dataTestId - The data-testid attribute for testing.
- * @param {string} variant - The variant of the container.
- * @extends {Omit<IContainerStandAlone, 'styles'>}
+ * Interface for the container component with a variant.
+ * Extends the IContainerStandAlone interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the container.
  */
-
-export interface IContainer<V extends string | unknown>
-  extends Omit<IContainerStandAlone, 'styles'>,
-    Omit<CustomTokenTypes<ContainerPropsStylesType>, 'cts' | 'extraCt'> {
-  variant: V;
+export interface ContainerProps<Variant extends string | unknown>
+  extends Omit<ContainerStandAloneProps, 'cssClasses'> {
+  variant?: Variant;
+  additionalClasses?: Partial<ContainerCssClasses>;
 }

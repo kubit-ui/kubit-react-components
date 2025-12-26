@@ -1,91 +1,72 @@
-/* eslint-disable complexity */
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { TextDecorationType } from '@/components/text/types';
-import { STYLES_NAME } from '@/constants';
-import { States, useManageState } from '@/hooks';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { useGenericComponents } from '@/provider/genericComponents/genericComponentsProvider';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
 
 import { disabledLink } from './helpers/disabled';
 import { LinkStandAlone } from './linkStandAlone';
-import {
-  ILink,
-  ILinkStandAlone,
-  LinkActionType,
-  LinkPropsStylesType,
-  LinkStateType,
-} from './types';
+import type { LinkProps } from './types/link';
 
-const LinkComponent = React.forwardRef(
+/**
+ * Link is a versatile component that renders a link with consistent styling.
+ * It supports custom CSS classes, ARIA properties, and forwards a ref to the inner component.
+ *
+ * @param {LinkProps} props - The props for the link component.
+ * @param {ForwardedRef<HTMLElement>} ref - The forwarded ref for the inner component.
+ * @returns {JSX.Element} The rendered link component.
+ */
+export const Link = forwardRef<HTMLElement, LinkProps>(
   (
     {
-      action = LinkActionType.NAVIGATION,
-      decoration = TextDecorationType.AUTO,
+      action = 'navigation',
+      additionalClasses,
+      additionalTextClasses,
       alignCenter = false,
+      color,
+      decoration = 'auto',
       disabled = false,
-      color: colorLinkProp,
-      textVariant: textVariantProp,
+      icon,
       role: roleProp,
+      textVariant,
       variant,
-      ctv,
+      weight,
       ...props
-    }: ILink,
-    ref: React.ForwardedRef<HTMLElement> | undefined | null
+    },
+    ref,
   ): JSX.Element => {
     const { LINK: genericLinkComponent } = useGenericComponents();
     const { role } = disabledLink(disabled, roleProp);
     const ariaDisabled = disabled || undefined;
-    const actionStyles = useStyles<LinkPropsStylesType>(STYLES_NAME.LINK, action, ctv?.[action]);
-    const styles = (variant && actionStyles?.[variant]) || {};
 
-    const isInline = action === LinkActionType.INLINE;
-    const textDecoration = isInline ? TextDecorationType.UNDERLINE : decoration;
-    const textVariant = textVariantProp ?? styles.container?.font_variant;
-    const weight = styles.container?.font_weight;
-    const color = colorLinkProp || styles.font_color || styles.container?.color;
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'LINK',
+      variant: `${action}_${variant}`,
+    });
 
-    const { state, setRef } = useManageState({
-      states: Object.values(LinkStateType) as States,
-      ref,
-      disabled,
+    const cssTextClasses = useClassName({
+      additionalClassNames: additionalTextClasses,
+      component: 'TEXT',
+      variant: textVariant,
     });
 
     return (
       <LinkStandAlone
         {...props}
-        ref={setRef}
+        ref={ref}
         action={action}
         alignCenter={alignCenter}
         aria-disabled={ariaDisabled}
         color={color}
         component={genericLinkComponent}
-        decoration={textDecoration}
+        cssClasses={cssClasses}
+        cssTextClasses={cssTextClasses}
+        decoration={action === 'inline' ? 'underline' : decoration}
+        disabled={disabled}
+        icon={icon}
         role={role}
-        state={state as unknown as LinkStateType}
-        styles={styles}
-        textVariant={textVariant}
         weight={weight}
       />
     );
-  }
+  },
 );
-LinkComponent.displayName = 'LinkComponent';
-
-const LinkBoundary = (
-  props: ILink,
-  ref: React.ForwardedRef<HTMLElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <LinkStandAlone {...(props as unknown as ILinkStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <LinkComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-export const Link = React.forwardRef(LinkBoundary);

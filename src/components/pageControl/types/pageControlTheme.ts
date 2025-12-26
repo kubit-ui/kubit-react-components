@@ -1,47 +1,32 @@
-import { CommonStyleType, IconTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-import { ArrowsControlState, PageControlState } from './pageControlStates';
+export interface PageControlStyleProps extends CssLibPropsType {
+  _dotsContainer?: CssLibPropsType;
+  _leftButtonControl?: CssLibPropsType;
+  _rightButtonControl?: CssLibPropsType;
+  _pageDot?: CssLibPropsType;
+}
 
-export type PageControlCommonProps = {
-  container?: CommonStyleType;
-  dotsContainer?: CommonStyleType;
-  isBullet?: boolean;
-};
+export type PageControlVariantStyles<Variant extends string> =
+  PageControlStyleProps & {
+    [key in Variant]: PageControlStyleProps;
+  };
 
-export type PageControlStateProps = {
-  pageDot?: CommonStyleType;
-};
+export interface ArrowsControlStyleProps extends CssLibPropsType {
+  _leftArrowControlContainer?: CssLibPropsType;
+  _rightArrowControlContainer?: CssLibPropsType;
+  _icon?: CssLibPropsType;
+}
 
-export type PageControlStateKeys = {
-  [state in PageControlState]?: PageControlStateProps;
-};
+export type ArrowsControlVariantStyles<Variant extends string> =
+  ArrowsControlStyleProps & {
+    [key in Variant]: ArrowsControlStyleProps;
+  };
 
-export type PageControlVariantStylesType = PageControlCommonProps & PageControlStateKeys;
-
-export type PageControlStylesProps<V extends string | number | symbol> = {
-  [key in V]?: PageControlVariantStylesType;
-};
-
-export type ArrowsControlCommonProps = {
-  leftArrowControlContainer?: CommonStyleType;
-  rightArrowControlContainer?: CommonStyleType;
-};
-
-export type ArrowsControlStateProps = {
-  icon?: IconTypes;
-};
-
-export type ArrowsControlStateKeys = {
-  [state in ArrowsControlState]?: ArrowsControlStateProps;
-};
-
-export type ArrowsControlVariantStylesType = ArrowsControlCommonProps & ArrowsControlStateKeys;
-
-export type ArrowsControlStylesProps<AV extends string | number | symbol> = {
-  [key in AV]?: ArrowsControlVariantStylesType;
-};
-
-export type PageControlStylesType<
-  V extends string | number | symbol,
-  AV extends string | number | symbol,
-> = PageControlStylesProps<V> & ArrowsControlStylesProps<AV>;
+export type PageControlStyles<
+  Variant extends string,
+  AVariant extends string,
+> = PageControlStyleProps &
+  ArrowsControlStyleProps &
+  PageControlVariantStyles<Variant> &
+  ArrowsControlVariantStyles<AVariant>;

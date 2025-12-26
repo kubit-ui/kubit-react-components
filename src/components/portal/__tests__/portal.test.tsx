@@ -1,32 +1,33 @@
-import React from 'react';
-import { Root, createRoot } from 'react-dom/client';
+import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 
 import { Portal } from '../portal';
 
 describe('Portal', () => {
   let container: HTMLElement | null = null;
-  let root: Root | null = null;
 
   beforeEach(() => {
     // Set up a DOM element as a render target
     container = document.createElement('div');
     document.body.appendChild(container);
-    root = createRoot(container as HTMLElement);
   });
 
   afterEach(() => {
     // Clean up on exiting
-    root?.unmount();
-    container?.remove();
+    if (container) {
+      unmountComponentAtNode(container);
+      container.remove();
+    }
+    container = null;
   });
 
   it('renders children inside the body element', () => {
     act(() => {
-      root?.render(
+      render(
         <Portal>
           <div>Test Content</div>
-        </Portal>
+        </Portal>,
+        container,
       );
     });
 
@@ -37,10 +38,11 @@ describe('Portal', () => {
     const wrapperId = 'custom-wrapper';
 
     act(() => {
-      root?.render(
+      render(
         <Portal wrapperId={wrapperId}>
           <div>Test Content</div>
-        </Portal>
+        </Portal>,
+        container,
       );
     });
 
@@ -53,10 +55,11 @@ describe('Portal', () => {
     const wrapperId = 'non-existent-wrapper';
 
     act(() => {
-      root?.render(
+      render(
         <Portal wrapperId={wrapperId}>
           <div>Test Content</div>
-        </Portal>
+        </Portal>,
+        container,
       );
     });
 

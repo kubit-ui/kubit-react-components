@@ -1,3 +1,11 @@
 export { Calendar } from './calendar';
-export * from './types';
-export * from './constants/constants';
+export type {
+  CalendarCssClasses,
+  CalendarConfigProps,
+  CalendarAccessibilityProps,
+  CalendarStandAloneProps,
+  CalendarProps,
+} from './types/calendar';
+export type {
+  CalendarStyleProps, CalendarVariantStyles,
+} from './types/calendarTheme';

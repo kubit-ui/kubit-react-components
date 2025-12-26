@@ -1,24 +1,22 @@
-import React from 'react';
+import { axe } from 'vitest-axe';
 
-import { axe } from 'jest-axe';
-
-import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+import { render } from '@/lib/tests/render/render';
 
 import { Overlay } from '../overlay';
 
 const mockProps = {
+  'data-testid': 'overlayId',
   variant: 'DEFAULT',
-  dataTestId: 'overlayId',
 };
 
 describe('Overlay component', () => {
   it('Render with a valid HTML structure', async () => {
-    const { getByTestId, container } = renderProvider(<Overlay {...mockProps} />);
+    const { container, getByTestId } = render(<Overlay {...mockProps} />);
 
-    expect(getByTestId(mockProps.dataTestId)).toBeInTheDocument();
+    expect(getByTestId(mockProps['data-testid'])).not.toBeNull();
 
     const results = await axe(container);
     expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

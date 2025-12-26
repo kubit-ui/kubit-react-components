@@ -1,12 +1,16 @@
-import { CommonStyleType, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-export type ListOptionsPropsStylesType = {
-  parentContainer?: CommonStyleType;
-  titleContainer?: CommonStyleType;
-  title?: TypographyTypes;
-  optionsContainer?: CommonStyleType;
-};
+export interface ListOptionsStyleProps extends CssLibPropsType {
+  _titleContainer?: CssLibPropsType;
+  _title?: CssLibPropsType;
+  _optionsContainer?: CssLibPropsType;
+}
 
-export type ListOptionsStylesType<P extends string | number | symbol> = {
-  [key in P]?: ListOptionsPropsStylesType;
-};
+// $foreign?: {
+//   option?: object;
+// };
+
+export type ListOptionsVariantStyles<Variant extends string> =
+  ListOptionsStyleProps & {
+    [key in Variant]: ListOptionsStyleProps;
+  };

@@ -1,1 +1,1 @@
-export * from './checkboxErrorStandAlone';
+export * from './label';

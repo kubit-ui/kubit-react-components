@@ -1,50 +1,55 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { STYLES_NAME } from '@/constants/stylesName';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { STATES } from '@/lib/types/states/states';
 
 import { ChipStandAlone } from './chipStandAlone';
-import { IChipControlled, IChipStandAlone } from './types/chip';
-import { ChipPropsStateStylesType } from './types/chipTheme';
-import { ChipStateType } from './types/state';
-
-const ChipComponent = React.forwardRef(
-  <V extends string | unknown>(
-    { state = ChipStateType.DEFAULT, ctv, ...props }: IChipControlled<V>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-  ): JSX.Element => {
-    const styles = useStyles<ChipPropsStateStylesType, V>(STYLES_NAME.CHIP, props.variant, ctv);
-    return <ChipStandAlone {...props} ref={ref} state={state} styles={styles[state]} />;
-  }
-);
-ChipComponent.displayName = 'ChipComponent';
-
-const ChipBoundary = <V extends string | unknown>(
-  props: IChipControlled<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <ChipStandAlone {...(props as unknown as IChipStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <ChipComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-const Chip = React.forwardRef(ChipBoundary) as <V extends string>(
-  props: React.PropsWithChildren<IChipControlled<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => ReturnType<typeof ChipBoundary>;
+import type { ChipProps } from './types/chip';
 
 /**
- * @description
- * Chip component is a selector.
- * @param {React.PropsWithChildren<IChipControlled<V>>} props
- * @returns {JSX.Element}
+ * Chip component for displaying a small, customizable label or tag.
+ *
+ * This component renders a chip with optional icon, close button, and custom content.
+ * It is useful for displaying tags, categories, filters, or interactive pills in lists and forms.
+ * The chip supports custom variants and states for flexible theming and styling.
+ *
+ * Internally, it computes CSS classes using a custom hook and delegates rendering to {@link ChipStandAlone}.
+ *
+ * This component accepts a generic type parameter `<Variant extends string>` to allow for custom variant values,
+ * enabling flexible theming and styling.
+ *
+ * @example
+ * ```tsx
+ * <Chip>Active</Chip>
+ *
+ * // With a custom variant type:
+ * type MyVariant = "primary" | "secondary";
+ * <Chip<MyVariant> variant="primary">Primary chip</Chip>
+ * ```
  */
-export { Chip };
+export const Chip = forwardRef(
+  <Variant extends string = string>(
+    {
+      additionalClasses,
+      state = STATES.DEFAULT,
+      variant,
+      ...props
+    }: ChipProps<Variant>,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ) => {
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'CHIP',
+      variant,
+    });
+
+    return (
+      <ChipStandAlone
+        {...props}
+        ref={ref}
+        cssClasses={cssClasses}
+        state={state}
+      />
+    );
+  },
+);

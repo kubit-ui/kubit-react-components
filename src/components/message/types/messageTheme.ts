@@ -1,27 +1,26 @@
-import { CommonStyleType, IconTypes, IllustrationTypes, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-export type MessagePropsThemeType = {
-  container?: CommonStyleType;
-  headerContainer?: CommonStyleType;
-  headerContainerLargeMessage?: CommonStyleType;
-  title?: TypographyTypes;
-  contentContainer?: CommonStyleType;
-  contentContainerLargeMessage?: CommonStyleType;
-  description?: TypographyTypes;
-  infoIcon?: IconTypes;
-  closeIcon?: IconTypes;
-  closeIconContainer?: CommonStyleType;
-  actionButtonContainer?: CommonStyleType;
-  actionButton?: {
-    size?: string;
-  };
-  extraActionButtonContainer?: CommonStyleType;
-  extraActionButton?: {
-    size?: string;
-  };
-  illustration?: IllustrationTypes;
-};
+export interface MessageStyleProps extends CssLibPropsType {
+  _container?: CssLibPropsType;
+  _headerContainer?: CssLibPropsType;
+  _headerContainerLargeMessage?: CssLibPropsType;
+  _title?: CssLibPropsType;
+  _titleContainer?: CssLibPropsType;
+  _contentContainer?: CssLibPropsType;
+  _contentContainerLargeMessage?: CssLibPropsType;
+  _description?: CssLibPropsType;
+  _infoIcon?: CssLibPropsType;
+  _closeIcon?: CssLibPropsType;
+  _buttonSectionContainer?: CssLibPropsType;
+  _actionButtonContainer?: CssLibPropsType;
+  _extraActionButtonContainer?: CssLibPropsType;
+  _illustration?: CssLibPropsType;
+  _linkContainer?: CssLibPropsType;
+  _linksContainer?: CssLibPropsType;
+}
+// actionButton?: ButtonSizeCssClasses;
+// extraActionButton?: ButtonSizeCssClasses;
 
-export type MessageStylesType<P extends string | number | symbol> = {
-  [key in P]?: MessagePropsThemeType;
+export type MessageVariantStyles<Variant extends string> = MessageStyleProps & {
+  [key in Variant]: MessageStyleProps;
 };

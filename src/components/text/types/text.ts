@@ -1,52 +1,74 @@
-import * as React from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { CSSProperties } from 'react';
 
-import { GenericLinkType } from '@/provider/genericComponents';
-import { CustomTokenTypes, TypographyTypes } from '@/types/index';
+import type { GenericLinkType } from '@/lib/provider/genericComponentsProvider/types/genericComponentsProvider';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { TextComponentType } from './component';
-import { TextDecorationType } from './decoration';
-import { TextDisplayType } from './display';
-import { TextVariantStylesType } from './textTheme';
-import { TextTransformType } from './transform';
+import type { TextComponentType } from './component';
 
-export interface ITextStyled {
-  styles?: TextVariantStylesType;
-  weight?: number;
-  isDisabled?: boolean;
-  align?: string;
-  $transform?: TextTransformType;
-  customTypography?: TypographyTypes;
-}
-
-type TextAriaAttributes = Pick<
-  React.AriaAttributes,
-  'aria-label' | 'aria-labelledby' | 'aria-describedby' | 'aria-hidden'
+export type TextCssClasses = ComponentSelected<
+  ComponentsTypesComponents['TEXT']
 >;
 
-export interface ITextStandAlone extends ITextStyled, TextAriaAttributes {
+/**
+ * Represents the ARIA attributes for the Text component.
+ */
+type TextAriaProps = Pick<
+  React.AriaAttributes,
+  | 'aria-label'
+  | 'aria-labelledby'
+  | 'aria-describedby'
+  | 'aria-hidden'
+  | 'aria-level'
+  | 'aria-live'
+>;
+
+/**
+ * Interface for the standalone Text component.
+ * Includes ARIA attributes, styling options, event handlers, and additional attributes.
+ */
+export interface TextStandAloneProps extends TextAriaProps, DataAttributes {
   children: React.ReactNode;
   component?: TextComponentType | GenericLinkType;
-  dataTestId?: string;
   htmlFor?: string;
   id?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
   role?: React.AriaRole;
   color?: string;
-  display?: TextDisplayType;
-  decoration?: TextDecorationType;
+  wordBreak?: CSSProperties['wordBreak'];
+  wordWrap?: CSSProperties['wordWrap'];
+  textWrap?: CSSProperties['textWrap'];
+  filter?: string;
+  display?: CSSProperties['display'];
+  decoration?: CSSProperties['textDecoration'];
   cursor?: string;
   weight?: number;
   target?: string;
-  // TODO: is that correct??
-  align?: string;
-  transform?: TextTransformType;
-  // to Link component
+  textSizeAdjust?: CSSProperties['textSizeAdjust'];
+  truncate?: boolean;
+  maxTruncatedLines?: number;
+  align?: CSSProperties['textAlign'];
+  transform?: CSSProperties['textTransform'];
   url?: string;
   draggable?: boolean;
+  cssClasses?: TextCssClasses;
+  disabled?: boolean;
+  customAttributes?: Record<string, string | boolean | any>;
 }
 
-export interface IText<V extends string | unknown>
-  extends ITextStandAlone,
-    Omit<CustomTokenTypes<TextVariantStylesType>, 'cts' | 'extraCt'> {
-  variant?: V;
+/**
+ * Interface for the Text component with a variant.
+ * Extends the TextStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the Text.
+ */
+export interface TextProps<
+  Variant = undefined extends string ? unknown : string,
+> extends TextStandAloneProps {
+  variant?: Variant;
+  additionalClasses?: Partial<TextCssClasses>;
 }

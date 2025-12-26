@@ -1,37 +1,19 @@
-import { CommonStyleType, DeviceBreakpointsType, IconTypes, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-import { TabsStateTypes } from './state';
+export interface TabsStyleProps extends CssLibPropsType {
+  _tabContainer?: CssLibPropsType;
+  _arrowIconContainer?: CssLibPropsType;
+  _icon?: CssLibPropsType;
+  _firstTabButton?: CssLibPropsType;
+  _lastTabButton?: CssLibPropsType;
+  _oneTabContainer?: CssLibPropsType;
+  _contentContainer?: CssLibPropsType;
+  _tabButtonsContainer?: CssLibPropsType;
+  _container?: CssLibPropsType;
+  _label?: CssLibPropsType;
+  _tabButton?: CssLibPropsType;
+}
 
-export type TabsVariantStylesType = {
-  tabContainer?: Omit<CommonStyleType, 'MOBILE'> & {
-    [Key in DeviceBreakpointsType]?: CommonStyleType & {
-      focusWithin?: CommonStyleType;
-      focus?: CommonStyleType;
-      focusVisible?: CommonStyleType;
-    };
-  };
-  arrowLeftIconContainer?: Omit<CommonStyleType, 'MOBILE'> & {
-    [DeviceBreakpointsType.MOBILE]?: CommonStyleType & { focusVisible?: CommonStyleType };
-  };
-  leftIcon?: IconTypes;
-  arrowRightIconContainer?: Omit<CommonStyleType, 'MOBILE'> & {
-    [DeviceBreakpointsType.MOBILE]?: CommonStyleType & { focusVisible?: CommonStyleType };
-  };
-  rightIcon?: IconTypes;
-  firstTabButton?: CommonStyleType;
-  lastTabButton?: CommonStyleType;
-  oneTabContainer?: CommonStyleType;
-  contentContainer?: CommonStyleType;
-  tabButtonsContainer?: CommonStyleType;
-  container?: CommonStyleType;
-  fullContainer?: CommonStyleType;
-} & {
-  [key in TabsStateTypes]?: {
-    label?: TypographyTypes;
-    tabButton?: CommonStyleType;
-  };
-};
-
-export type TabsStylesType<P extends string | number | symbol> = {
-  [key in P]?: TabsVariantStylesType;
+export type TabsVariantStyles<Variant extends string> = TabsStyleProps & {
+  [key in Variant]?: TabsStyleProps;
 };

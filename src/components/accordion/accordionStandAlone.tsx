@@ -1,196 +1,80 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { ButtonType } from '@/components/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text, TextComponentType } from '@/components/text';
-import { useId } from '@/hooks';
+import { CustomComponent } from '@/lib/components/customComponent/customComponent';
+import { useId } from '@/lib/hooks/useId/useId';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import {
-  AccordionContainerStyled,
-  AccordionContentStyled,
-  AccordionDecorativeBackgroundStyled,
-  AccordionFooterStyled,
-  AccordionHeaderExternalContainerStyled,
-  AccordionHeaderInternalContainerStyled,
-  AccordionHeaderMainContainerStyled,
-  AccordionHeaderRightContentStyled,
-  AccordionHeaderTitleHeadlineStyled,
-  AccordionPanelStyled,
-  AccordionSubHeaderContainerStyled,
-  AccordionTitleIconWrapper,
-  AccordionTitleStyled,
-  AccordionTriggerIconLinkStyled,
-  AccordionTriggerIconStyled,
-  AccordionTriggerLinkStyled,
-  AccordionTriggerStyled,
-  LineSeparatorContainerStyled,
-} from './accordion.styled';
-import type { IAccordionStandAlone } from './types';
+import type { IAccordionStandAlone } from './types/accordion';
+import { STATE } from './types/state';
 
-const ACCORDION_BASE_ID = 'AccordionComponent';
+export const AccordionStandAlone = forwardRef<
+  HTMLDivElement,
+  IAccordionStandAlone
+>(
+  (
+    {
+      children,
+      component = 'div',
+      cssClasses,
+      dataTestId = 'accordion',
+      expanded,
+      header,
+      headerComponent = 'h3',
+      onHeaderClick,
+    }: IAccordionStandAlone,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ): JSX.Element => {
+    const accordionId = useId('accordion');
+    const contentId = `${accordionId}-content`;
+    const customAttributes = {
+      'data-state': expanded ? STATE.EXPANDED : STATE.COLLAPSED,
+    };
 
-const AccordionStandAloneComponent = (
-  {
-    hasHeaderLineSeparator = true,
-    open = false,
-    ...props
-  }: React.PropsWithChildren<IAccordionStandAlone>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => {
-  const BASE_ID = useId(ACCORDION_BASE_ID);
-  const TRIGGER_ID = `${BASE_ID}-trigger`;
-  const HEADER_ID = `${BASE_ID}-header`;
-  const PANEL_ID = `${BASE_ID}-panel`;
+    const customAttributesProps = pickCustomAttributes(customAttributes);
 
-  const getDataTestId = (uniqueId = ''): string => `${props.dataTestId}${uniqueId}`;
-
-  const renderTitle = () => {
-    if (!props.title) return null;
-    return typeof props.title?.content === 'string' ? (
-      <AccordionTriggerStyled
-        aria-controls={PANEL_ID}
-        aria-expanded={open}
-        data-testid={getDataTestId('TriggerButton')}
-        id={TRIGGER_ID}
-        styles={props.styles.trigger}
-        type={ButtonType.BUTTON}
-        {...props.triggerButton}
+    return (
+      <CustomComponent
+        ref={ref}
+        className={cssClasses?.accordion}
+        component={component}
+        data-testid={dataTestId}
+        {...customAttributesProps}
       >
-        <AccordionTriggerIconStyled
-          $rotate={open}
-          data-testid={`${props.dataTestId}TriggerIconWrapper`}
-          styles={props.styles.triggerIconContainer}
-        >
-          <ElementOrIcon
-            customIconStyles={props.styles.triggerIcon}
-            dataTestId={getDataTestId('TriggerIcon')}
-            {...props.triggerIcon}
-          />
-        </AccordionTriggerIconStyled>
-        <AccordionTitleStyled styles={props.styles.titleContainer}>
-          {props.titleIcon && (
-            <AccordionTitleIconWrapper styles={props.styles.titleIconContainer}>
-              <ElementOrIcon
-                customIconStyles={props.styles.titleIcon}
-                dataTestId={getDataTestId('TitleIcon')}
-                {...props.titleIcon}
-              />
-            </AccordionTitleIconWrapper>
-          )}
-          <Text
-            component={TextComponentType.SPAN}
-            customTypography={props.styles.title}
-            dataTestId={getDataTestId('TriggerText')}
-            {...props.title}
+        <div>
+          <CustomComponent
+            className={cssClasses?.header}
+            component={headerComponent}
+            {...customAttributesProps}
           >
-            {props.title.content}
-          </Text>
-        </AccordionTitleStyled>
-      </AccordionTriggerStyled>
-    ) : (
-      <AccordionTriggerLinkStyled
-        data-testid={getDataTestId('TriggerButton')}
-        styles={props.styles.link}
-      >
-        <AccordionTriggerIconLinkStyled
-          $rotate={open}
-          aria-controls={PANEL_ID}
-          aria-expanded={open}
-          data-testid={`${props.dataTestId}TriggerIconWrapper`}
-          id={TRIGGER_ID}
-          styles={props.styles.triggerIconContainer}
-          type={ButtonType.BUTTON}
-          {...props.triggerButton}
-        >
-          <ElementOrIcon
-            customIconStyles={props.styles.triggerIcon}
-            dataTestId={getDataTestId('TriggerIcon')}
-            {...props.triggerIcon}
-          />
-        </AccordionTriggerIconLinkStyled>
-        <AccordionTitleStyled styles={props.styles.titleContainer}>
-          {props.titleIcon && (
-            <AccordionTitleIconWrapper styles={props.styles.titleIconContainer}>
-              <ElementOrIcon
-                customIconStyles={props.styles.titleIcon}
-                dataTestId={getDataTestId('TitleIcon')}
-                {...props.titleIcon}
-              />
-            </AccordionTitleIconWrapper>
-          )}
-          <Text
-            component={TextComponentType.SPAN}
-            customTypography={props.styles.title}
-            dataTestId={getDataTestId('TriggerText')}
-            {...props.title}
-          >
-            {props.title?.content}
-          </Text>
-        </AccordionTitleStyled>
-      </AccordionTriggerLinkStyled>
-    );
-  };
-
-  return (
-    <AccordionContainerStyled
-      ref={ref}
-      data-testid={getDataTestId()}
-      id={BASE_ID}
-      styles={props.styles.container}
-    >
-      <AccordionDecorativeBackgroundStyled styles={props.styles.decorative} />
-      <AccordionHeaderExternalContainerStyled styles={props.styles.headerExternalContainer}>
-        <AccordionHeaderInternalContainerStyled
-          data-testid={getDataTestId('Header')}
-          id={HEADER_ID}
-          styles={props.styles.headerInternalContainer}
-        >
-          <AccordionHeaderMainContainerStyled styles={props.styles.headerMainContainer}>
-            <AccordionHeaderTitleHeadlineStyled as={props.triggerComponent}>
-              {renderTitle()}
-            </AccordionHeaderTitleHeadlineStyled>
-          </AccordionHeaderMainContainerStyled>
-          {props.subHeaderContent && (
-            <AccordionSubHeaderContainerStyled
-              data-testid={`${props.dataTestId}SubHeader`}
-              styles={props.styles.subHeader}
+            <button
+              aria-controls={contentId}
+              aria-expanded={expanded}
+              className={cssClasses?.headerbutton}
+              data-testid={`${dataTestId}-header`}
+              type="button"
+              onClick={onHeaderClick}
+              {...customAttributesProps}
             >
-              {props.subHeaderContent}
-            </AccordionSubHeaderContainerStyled>
-          )}
-        </AccordionHeaderInternalContainerStyled>
-        {props.headerRightContent && (
-          <AccordionHeaderRightContentStyled
-            data-testid={`${props.dataTestId}RightContent`}
-            styles={props.styles.headerRightContentContainer}
+              {header}
+            </button>
+          </CustomComponent>
+          <div
+            className={cssClasses?.content}
+            data-kbt-accordion-content={true}
+            data-testid={`${dataTestId}-content`}
+            id={contentId}
+            {...customAttributesProps}
           >
-            {props.headerRightContent}
-          </AccordionHeaderRightContentStyled>
-        )}
-      </AccordionHeaderExternalContainerStyled>
-      <AccordionContentStyled
-        aria-labelledby={TRIGGER_ID}
-        displayOption={!open ? 'none' : 'block'}
-        id={PANEL_ID}
-        styles={props.styles.content}
-      >
-        {hasHeaderLineSeparator && props.styles.lineSeparatorContainer && (
-          <LineSeparatorContainerStyled
-            lineSeparatorLineStyles={props.lineSeparatorLineStyles}
-            styles={props.styles.lineSeparatorContainer}
-          />
-        )}
-        <AccordionPanelStyled data-testid={getDataTestId('Panel')} styles={props.styles.panel}>
-          {props.children}
-        </AccordionPanelStyled>
-        {props.footerContent && (
-          <AccordionFooterStyled data-testid={getDataTestId('Footer')} styles={props.styles.footer}>
-            {props.footerContent}
-          </AccordionFooterStyled>
-        )}
-      </AccordionContentStyled>
-    </AccordionContainerStyled>
-  );
-};
-
-export const AccordionStandAlone = React.forwardRef(AccordionStandAloneComponent);
+            <div
+              className={cssClasses?.innercontent}
+              data-kbt-accordion-content-inner={true}
+              {...customAttributesProps}
+            >
+              {children}
+            </div>
+          </div>
+        </div>
+      </CustomComponent>
+    );
+  },
+);

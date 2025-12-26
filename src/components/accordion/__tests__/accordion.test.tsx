@@ -1,194 +1,179 @@
-import userEvent from '@testing-library/user-event';
+import { fireEvent, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import { axe } from 'vitest-axe';
 
-import { fireEvent } from '@testing-library/react';
-import * as React from 'react';
+import { AccordionVariant } from '@/lib/designSystem/kubit/components/accordion/variants';
+import { render } from '@/lib/tests/render/render';
 
-import 'jest-styled-components';
+import { AccordionControlled } from '../accordionControlled';
+import { Accordion } from '../accordionUnControlled';
 
-import { axe } from 'jest-axe';
-
-import { FooterPositionType } from '@/components/footer';
-import { Link } from '@/components/link';
-import { TextComponentType } from '@/components/text';
-
-import { renderProvider } from '../../../tests/renderProvider/renderProvider.utility';
-import { Accordion, AccordionControlled } from '../index';
-
-const commonAccordionUncontrolledProps = {
-  headerRightContent: 'Right content',
-  subHeaderContent: 'Subheader content',
-  title: { content: 'Accordion Title' },
-  titleIcon: { icon: 'UNICORN' },
-  triggerComponent: TextComponentType.H3,
-  triggerIcon: { icon: '+' },
-  variant: 'DEFAULT',
-  footerContent: [
-    <Link key={1} data-position={FooterPositionType.LEFT} url="#" variant={'DEFAULT'}>
-      Tertiary
-    </Link>,
-    <Link key={2} data-position={FooterPositionType.LEFT} url="#" variant={'DEFAULT'}>
-      Secondary
-    </Link>,
-    <Link key={3} data-position={FooterPositionType.LEFT} url="#" variant={'DEFAULT'}>
-      Primary
-    </Link>,
-    <Link key={4} data-position={FooterPositionType.RIGHT} url="#" variant={'DEFAULT'}>
-      Right
-    </Link>,
-  ],
-};
-
-const commonAccordionUncontrolledPropsTitleNode = {
-  ...commonAccordionUncontrolledProps,
-  title: { content: <span>Title</span> },
-};
-
-describe('Accordion Uncontrolled', () => {
-  it('should render the title when recieved a node', () => {
-    const { getByText } = renderProvider(
-      <Accordion {...commonAccordionUncontrolledPropsTitleNode} />
+describe('Accordion', () => {
+  it('should render the accordion with header and content', () => {
+    render(
+      <Accordion header="Test Accordion" variant={AccordionVariant.NEUTRAL}>
+        <div>Test Content</div>
+      </Accordion>,
     );
 
-    const title = getByText('Title');
-    expect(title).toBeInTheDocument();
-  });
-  it('should render Accordion closed by default with proper heading and button roles structure and hidden panel', async () => {
-    const { getByRole, getByText, container } = renderProvider(
-      <Accordion {...commonAccordionUncontrolledProps}>Accordion Content</Accordion>
-    );
+    // Header should be visible
+    expect(
+      screen.getByRole('button', { name: /Test Accordion/i }),
+    ).toBeInTheDocument();
 
-    expect(getByRole('heading').tagName.toLowerCase()).toEqual(TextComponentType.H3);
-    expect(getByRole('button')).toBeInTheDocument();
-    expect(getByText(/Accordion Content/).parentElement).not.toHaveStyleRule('display', 'block');
+    // Content should exist but be collapsed
+    const headerButton = screen.getByRole('button', {
+      name: /Test Accordion/i,
+    });
+    expect(headerButton).toHaveAttribute('aria-expanded', 'false');
 
-    const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    // Content should be in the DOM
+    expect(screen.getByText('Test Content')).toBeInTheDocument();
   });
 
-  it('should render Accordion opened when defaultOpen prop is passed as "true"', async () => {
-    const { getByText, container } = renderProvider(
-      <Accordion {...commonAccordionUncontrolledProps} defaultOpen>
-        Accordion Content
-      </Accordion>
+  it('should expand and collapse when clicked', () => {
+    render(
+      <Accordion header="Test Accordion" variant={AccordionVariant.NEUTRAL}>
+        <div>Test Content</div>
+      </Accordion>,
     );
 
-    expect(getByText(/Accordion Content/).parentElement).toHaveStyleRule('display', 'block');
+    const headerButton = screen.getByRole('button', {
+      name: /Test Accordion/i,
+    });
 
-    const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    // Initial state - collapsed
+    expect(headerButton).toHaveAttribute('aria-expanded', 'false');
+
+    // Click to expand
+    fireEvent.click(headerButton);
+    expect(headerButton).toHaveAttribute('aria-expanded', 'true');
+
+    // Click to collapse
+    fireEvent.click(headerButton);
+    expect(headerButton).toHaveAttribute('aria-expanded', 'false');
   });
 
-  it('should toggle visibility of Accordion panel content correctly', async () => {
-    const { getByRole, getByText, container } = renderProvider(
-      <Accordion {...commonAccordionUncontrolledProps}>Accordion Content</Accordion>
-    );
-    const triggerButton = getByRole('button');
-
-    fireEvent.click(triggerButton);
-    expect(getByText(/Accordion Content/).parentElement).toHaveStyleRule('display', 'block');
-
-    fireEvent.click(triggerButton);
-    expect(getByText(/Accordion Content/).parentElement).not.toHaveStyleRule('display', 'block');
-
-    const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
-  });
-});
-
-const commonAccordionControlledProps = {
-  title: { content: 'AccordionControlled Title', onClick: () => null },
-  triggerComponent: TextComponentType.H2,
-  triggerIcon: { icon: '+' },
-  variant: 'DEFAULT',
-};
-
-describe('Accordion Controlled', () => {
-  it('should render Accordion opened correctly when open prop is set to true', async () => {
-    const { getByText, container } = renderProvider(
-      <AccordionControlled {...commonAccordionControlledProps} open>
-        Accordion Controlled Content
-      </AccordionControlled>
-    );
-
-    expect(getByText(/Accordion Controlled Content/).parentElement).toHaveStyleRule(
-      'display',
-      'block'
-    );
-
-    const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
-  });
-
-  it('should render Accordion closed correctly when open prop is not defined (default set to false)', async () => {
-    const { getByText, container } = renderProvider(
-      <AccordionControlled {...commonAccordionControlledProps}>
-        Accordion Controlled Content
-      </AccordionControlled>
-    );
-
-    expect(getByText(/Accordion Controlled Content/).parentElement).not.toHaveStyleRule(
-      'display',
-      'block'
-    );
-
-    const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
-  });
-
-  it('should invoke onToggle callback when clicking trigger button', async () => {
-    const mockTriggerButtonClick = jest.fn();
-    const { getByRole, container } = renderProvider(
-      <AccordionControlled
-        {...commonAccordionControlledProps}
-        triggerButton={{ onClick: mockTriggerButtonClick }}
-      >
-        Accordion Controlled Content
-      </AccordionControlled>
-    );
-
-    fireEvent.click(getByRole('button'));
-
-    expect(mockTriggerButtonClick).toHaveBeenCalled();
-
-    const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
-  });
-});
-
-describe('Accordion (a11y)- Navigation with keyboard', () => {
-  it('should correctly handle focus with tab, and toggle content visibility with Enter/Space keys', async () => {
-    const { getByRole, getByText, container } = renderProvider(
+  it('should call onExpandCollapse with current state and event when expanded/collapsed', () => {
+    const onExpandCollapse = vi.fn();
+    render(
       <Accordion
-        title={{ content: 'AccordionTitle' }}
-        triggerIcon={{ icon: '+' }}
-        variant="DEFAULT"
+        header="Test Accordion"
+        variant={AccordionVariant.NEUTRAL}
+        onExpandCollapse={onExpandCollapse}
       >
-        Accordion Content
-      </Accordion>
+        <div>Test Content</div>
+      </Accordion>,
     );
 
-    await userEvent.tab();
+    // Click to expand
+    fireEvent.click(screen.getByRole('button', { name: /Test Accordion/i }));
 
-    expect(getByRole('button')).toHaveFocus();
+    expect(onExpandCollapse).toHaveBeenCalledTimes(1);
+    expect(onExpandCollapse.mock.calls[0][0]).toBe(true);
+    expect(onExpandCollapse.mock.calls[0][1]).toBeDefined();
 
-    expect(getByText(/Accordion Content/).parentElement).not.toHaveStyleRule('display', 'block');
+    // Click to collapse
+    fireEvent.click(screen.getByRole('button', { name: /Test Accordion/i }));
 
-    await userEvent.keyboard('{Enter}');
+    expect(onExpandCollapse).toHaveBeenCalledTimes(2);
+    expect(onExpandCollapse.mock.calls[1][0]).toBe(false);
+    expect(onExpandCollapse.mock.calls[1][1]).toBeDefined();
+  });
 
-    expect(getByText(/Accordion Content/).parentElement).toHaveStyleRule('display', 'block');
+  it('should render in expanded state when defaultExpanded is true', () => {
+    render(
+      <Accordion
+        defaultExpanded={true}
+        header="Test Accordion"
+        variant={AccordionVariant.NEUTRAL}
+      >
+        <div>Test Content</div>
+      </Accordion>,
+    );
 
-    await userEvent.keyboard(' ');
+    // Header should have aria-expanded="true"
+    const headerButton = screen.getByRole('button', {
+      name: /Test Accordion/i,
+    });
+    expect(headerButton).toHaveAttribute('aria-expanded', 'true');
 
-    expect(getByText(/Accordion Content/).parentElement).not.toHaveStyleRule('display', 'block');
+    // Content should be visible with expanded state
+    expect(screen.getByText('Test Content')).toBeInTheDocument();
+  });
 
+  it('should render controlled component correctly', async () => {
+    const onHeaderClick = vi.fn();
+    const { container } = render(
+      <AccordionControlled
+        expanded={true}
+        header="Test Controlled"
+        variant={AccordionVariant.STANDARD}
+        onHeaderClick={onHeaderClick}
+      >
+        <div>Controlled Content</div>
+      </AccordionControlled>,
+    );
+
+    // Content should be visible initially because expanded={true}
+    const headerButton = screen.getByRole('button', {
+      name: /Test Controlled/i,
+    });
+    expect(headerButton).toHaveAttribute('aria-expanded', 'true');
+
+    // Click should trigger onHeaderClick
+    fireEvent.click(headerButton);
+    expect(onHeaderClick).toHaveBeenCalledTimes(1);
+
+    // Verificamos que se ha llamado a la función (el evento siempre se pasa)
+    expect(onHeaderClick.mock.calls[0][0].type).toBe('click');
+
+    // Content should still be visible (component is controlled externally)
+    expect(headerButton).toHaveAttribute('aria-expanded', 'true');
+
+    // Accessibility validation
     const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
+
+    // HTML validation
+    // Disable no-inline-style because overflow in handled via hook
+    expect(container).toHTMLValidate({
+      rules: {
+        'no-inline-style': 'off',
+      },
+    });
+  });
+
+  it('should be accessible with proper ARIA attributes', async () => {
+    const { container } = render(
+      <Accordion
+        header="Accessible Accordion"
+        variant={AccordionVariant.NEUTRAL}
+      >
+        <div>Accessible Content</div>
+      </Accordion>,
+    );
+
+    const headerButton = screen.getByRole('button', {
+      name: /Accessible Accordion/i,
+    });
+    expect(headerButton).toHaveAttribute('aria-expanded', 'false');
+
+    // Content should have proper ARIA attributes
+    const contentId = headerButton.getAttribute('aria-controls');
+    const content = document.getElementById(contentId as string);
+    expect(content).toBeInTheDocument();
+
+    // Accessibility validation
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+
+    // HTML validation
+    // Disable no-inline-style because overflow in handled via hook
+    expect(container).toHTMLValidate({
+      rules: {
+        'no-inline-style': 'off',
+      },
+    });
   });
 });

@@ -1,29 +1,30 @@
-import { CustomTokenTypes } from '@/types';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { OverlayVariantStylesType } from './overlayTheme';
+type OverlayCssClasses = ComponentSelected<
+  ComponentsTypesComponents['OVERLAY']
+>;
 
 /**
- * @name IOverlay
- * @description
- * Interface for the Overlay component
+ * Interface for the standalone Overlay component.
+ * Includes optional CSS classes and data attributes.
  */
-export interface IOverlayStandAlone {
-  styles: OverlayVariantStylesType;
-  dataTestId?: string;
+export interface OverlayStandAloneProps extends DataAttributes {
+  cssClasses?: OverlayCssClasses;
 }
 
 /**
- * @name IOverlay
- * @description
- * Interface for the Overlay component
- * @property {string} variant - The variant of the overlay
- * @property {OverlayVariantStylesType} styles - The styles of the overlay
- * @property {string} dataTestId - The data test id of the overlay
- * @example
- * <Overlay variant="primary" styles={overlayStyles} dataTestId="overlay" />
+ * Interface for the Overlay component with a variant.
+ * Extends the OverlayStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the Overlay.
  */
-export interface IOverlay<V = undefined extends string ? unknown : string>
-  extends Omit<IOverlayStandAlone, 'styles'>,
-    Omit<CustomTokenTypes<OverlayVariantStylesType>, 'cts' | 'extraCt'> {
-  variant: V;
+export interface OverlayProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<OverlayStandAloneProps, 'cssClasses'> {
+  variant?: Variant;
+  additionalClasses?: Partial<OverlayCssClasses>;
 }

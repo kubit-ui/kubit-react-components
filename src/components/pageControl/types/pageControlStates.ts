@@ -1,15 +1,8 @@
-export enum PageControlState {
-  CURRENT = 'CURRENT',
-  DEFAULT = 'DEFAULT',
-  LAST = 'LAST',
-}
+import type { StateType } from '@/lib/types/states/states';
 
-export enum ArrowsControlState {
-  INACTIVE = 'INACTIVE',
-  ACTIVE = 'ACTIVE',
-}
-
-export enum PageControlDirectionType {
-  FORTH = 'FORTH',
-  BACK = 'BACK',
-}
+export type PageControlState = Extract<
+  StateType,
+  'current' | 'default' | 'last'
+>;
+export type ArrowsControlState = Extract<StateType, 'inactive' | 'active'>;
+export type PageControlDirectionType = 'forth' | 'back';

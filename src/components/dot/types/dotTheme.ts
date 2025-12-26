@@ -1,38 +1,10 @@
-// external types
-import { CommonStyleType, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-/**
- * @interface IDotStyled
- */
-export type DotSizePropsType = {
-  container?: CommonStyleType & TypographyTypes;
+export type DotThemeStyles<
+  variant extends string,
+  size extends string,
+> = CssLibPropsType & {
+  [v in variant]: CssLibPropsType;
+} & {
+  [s in size]: CssLibPropsType;
 };
-
-/**
- * @interface IDotStyled
- */
-export type DotVariantStylesType = {
-  container?: CommonStyleType & TypographyTypes;
-};
-
-/**
- * @interface IDotStyled
- */
-export type DotStylesVariantType<P extends string | number | symbol> = {
-  [key in P]?: DotVariantStylesType;
-};
-
-/**
- * @interface IDotStyled
- */
-export type DotStylesSizeType<S extends string | number | symbol> = {
-  [key in S]?: DotSizePropsType;
-};
-
-/**
- * @interface IDotStyled
- */
-export type DotStylesType<
-  P extends string | number | symbol,
-  S extends string | number | symbol,
-> = DotStylesVariantType<P> & DotStylesSizeType<S>;

@@ -1,60 +1,76 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { IToggleUnControlled } from '@/components/toggle';
-import { GenericLinkType } from '@/provider/genericComponents';
-import { CustomTokenTypes, ROLES } from '@/types';
+import type { ReactNode } from 'react';
 
-import { OptionPropsStylesType } from './optionTheme';
+import type { GenericLinkType } from '@/lib/provider/genericComponentsProvider/types/genericComponentsProvider';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-export type OptionSublabelType = Omit<IText<string>, 'children'> & {
-  content?: string;
-};
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 
-type OptionAriaAttributes = Pick<
+type OptionCssClasses = ComponentSelected<ComponentsTypesComponents['OPTION']>;
+
+/**
+ * Represents the ARIA attributes for the Option component.
+ */
+type OptionAriaProps = Pick<
   React.AriaAttributes,
-  'aria-label' | 'aria-labelledby' | 'aria-describedby' | 'aria-hidden' | 'aria-selected'
+  | 'aria-label'
+  | 'aria-labelledby'
+  | 'aria-describedby'
+  | 'aria-hidden'
+  | 'aria-selected'
+  | 'aria-current'
+  | 'aria-checked'
 >;
 
 /**
- * @description
- * interface for the option
- * @interface IOptionStandAlone
+ * Interface for the standalone Option component.
+ * Includes ARIA attributes, labels, icons, event handlers, and CSS classes.
  */
-export interface IOptionStandAlone extends OptionAriaAttributes {
-  styles: OptionPropsStylesType;
-  icon?: IElementOrIcon;
-  sublabel?: OptionSublabelType;
-  label: string;
+export interface OptionStandAloneProps extends OptionAriaProps, DataAttributes {
+  icon?: ElementOrIconProps;
+  sublabel?: CommonTextProps;
+  label: ReactNode;
   labelCharsHighlighted?: string;
-  checkedIcon?: IElementOrIcon;
+  checkedIcon?: ElementOrIconProps;
   multiSelect?: boolean;
   disabled?: boolean;
   selected?: boolean;
   focus?: boolean;
   hover: boolean;
   url?: string;
-  onClick?: (event: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>) => void;
+  onClick?: (
+    event:
+      | React.KeyboardEvent<HTMLDivElement>
+      | React.MouseEvent<HTMLDivElement>,
+  ) => void;
   onMouseEnter: React.MouseEventHandler<HTMLElement>;
   onMouseLeave: React.MouseEventHandler<HTMLElement>;
   onFocus?: React.FocusEventHandler<HTMLElement>;
-  role?: ROLES;
+  onBlur?: React.FocusEventHandler<HTMLElement>;
+  role?: React.AriaRole;
   componentLink?: GenericLinkType;
-  dataTestId?: string;
   tabIndex?: number;
-  as?: string | React.ElementType;
-  toggle?: IToggleUnControlled;
+  component?: string | React.ElementType;
+  extraContent?: React.ReactNode;
+  cssClasses?: OptionCssClasses;
 }
 
 /**
- * @description
- * interface for the option
- * @interface IOption
+ * Interface for the Option component with a variant.
+ * Extends the OptionStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the Option.
  */
-export interface IOption<V extends string | unknown>
-  extends Omit<
-      IOptionStandAlone,
-      'styles' | 'componentLink' | 'hover' | 'onMouseEnter' | 'onMouseLeave'
-    >,
-    Omit<CustomTokenTypes<OptionPropsStylesType>, 'cts' | 'extraCt'> {
-  variant: V;
+export interface OptionProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<
+    OptionStandAloneProps,
+    'componentLink' | 'hover' | 'onMouseEnter' | 'onMouseLeave'
+  > {
+  variant?: Variant;
+  additionalClasses?: Partial<OptionCssClasses>;
 }

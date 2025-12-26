@@ -1,27 +1,25 @@
-import * as React from 'react';
+import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
+import type { ElementOrIconProps } from '@/components/elementOrIcon/types/elementOrIcon';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
+import type { PageControlCssClasses } from '../types/pageControl';
 
-//types
-import {
-  ArrowsControlState,
-  ArrowsControlVariantStylesType,
-  PageControlArrowControlType,
-} from '../types';
-
-interface IArrowControlStandAlone extends PageControlArrowControlType {
-  arrowsControlStyles: ArrowsControlVariantStylesType;
+interface ArrowControlStandAloneProps extends ElementOrIconProps {
+  cssArrowControlClasses?: PageControlCssClasses;
 }
 
 export const ArrowControlStandAlone = ({
-  arrowsControlStyles,
+  cssArrowControlClasses,
   disabled = false,
   ...props
-}: IArrowControlStandAlone): JSX.Element => {
-  const state = disabled ? ArrowsControlState.INACTIVE : ArrowsControlState.ACTIVE;
+}: ArrowControlStandAloneProps): JSX.Element => {
+  const state = disabled ? 'inactive' : 'active';
+  const customAttributes = {
+    'data-state': state,
+  };
   return (
     <ElementOrIcon
-      customIconStyles={arrowsControlStyles[state]?.icon}
+      className={cssArrowControlClasses?.icon}
+      customAttributes={customAttributes}
       disabled={disabled}
       {...props}
     />

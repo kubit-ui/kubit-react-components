@@ -1,63 +1,71 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { Text, TextComponentType } from '@/components/text';
-import { useId } from '@/hooks/useId/useId';
+import { RenderIf } from '@/components/renderIf/renderIf';
+import { Text } from '@/components/text/text';
+import { useId } from '@/lib/hooks/useId/useId';
 
-import type { ILabelStandAlone } from './types';
+import type { LabelStandAloneProps } from './types/label';
 
-export const LabelStandAloneComponent = (
-  {
-    children,
-    inputId,
-    required,
-    requiredSymbol,
-    textVariant,
-    weight,
-    color,
-    cursor,
-    asteriskVariant,
-    asteriskWeight,
-    asteriskColor,
-    dataTestId,
-    id,
-  }: ILabelStandAlone,
-  ref: React.ForwardedRef<HTMLElement> | undefined | null
-): JSX.Element => {
-  const uniqueId = useId('label');
+export const LabelStandAlone = forwardRef<
+  HTMLParagraphElement,
+  LabelStandAloneProps
+>(
+  (
+    {
+      asteriskColor,
+      asteriskCssClasses,
+      asteriskWeight,
+      children,
+      color,
+      cursor,
+      customAttributes,
+      id,
+      inputId,
+      required,
+      requiredSymbol,
+      textCssClasses,
+      weight,
+      ...props
+    },
+    ref,
+  ): JSX.Element => {
+    const uniqueId = useId('label');
+    const labelId = id ?? uniqueId;
+    const dataTestId = props['data-testid'] || 'label';
 
-  const labelId = id ?? uniqueId;
-  return (
-    <Text
-      ref={ref}
-      color={color}
-      component={TextComponentType.LABEL}
-      cursor={cursor}
-      dataTestId={dataTestId}
-      htmlFor={inputId}
-      id={labelId}
-      variant={textVariant}
-      weight={weight}
-    >
-      {children}
-      {required && (
-        <Text
-          aria-hidden={true}
-          color={asteriskColor}
-          component={TextComponentType.SPAN}
-          dataTestId={`${dataTestId}Required`}
-          variant={asteriskVariant}
-          weight={asteriskWeight}
-        >
-          {requiredSymbol}
-        </Text>
-      )}
-    </Text>
-  );
-};
+    return (
+      <Text
+        ref={ref}
+        additionalClasses={{
+          text: textCssClasses,
+        }}
+        color={color}
+        component="label"
+        cursor={cursor}
+        customAttributes={customAttributes}
+        data-testid={dataTestId}
+        htmlFor={inputId}
+        id={labelId}
+        weight={weight}
+      >
+        {children}
+        <RenderIf condition={required}>
+          <Text
+            additionalClasses={{
+              text: asteriskCssClasses,
+            }}
+            aria-hidden={true}
+            color={asteriskColor}
+            component="span"
+            data-testid={`${dataTestId}Required`}
+            weight={asteriskWeight}
+          >
+            {requiredSymbol}
+          </Text>
+        </RenderIf>
+      </Text>
+    );
+  },
+);
 
-/**
- * @description
- * Label component to show labels
- * @internal
- */
-export const LabelStandAlone = React.forwardRef(LabelStandAloneComponent);
+export { LabelStandAlone as Label };

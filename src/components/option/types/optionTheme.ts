@@ -1,32 +1,18 @@
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-import { OptionStateType } from './state';
+export interface OptionStyleProps extends CssLibPropsType {
+  _containerBefore?: CssLibPropsType;
+  _containerFocusVisible?: CssLibPropsType;
+  _labelIconContainer?: CssLibPropsType;
+  _label?: CssLibPropsType;
+  _labelHighlighted?: CssLibPropsType;
+  _icon?: CssLibPropsType;
+  _sublabelContainer?: CssLibPropsType;
+  _sublabel?: CssLibPropsType;
+  _checkedIcon?: CssLibPropsType;
+  _firstRowContainer?: CssLibPropsType;
+}
 
-export type OptionPropsStateStylesType = {
-  container?: CommonStyleType & TypographyTypes;
-  containerBefore?: CommonStyleType;
-  containerFocusVisible?: {
-    border_radius?: string;
-    outline_offset?: string;
-  };
-  labelIconContainer?: CommonStyleType;
-  label?: TypographyTypes;
-  labelHightlighted?: TypographyTypes;
-  icon?: IconTypes;
-  sublabelContainer?: CommonStyleType;
-  sublabel?: TypographyTypes;
-  checkedIcon?: IconTypes;
-};
-
-export type OptionPropsStylesType = {
-  [state in OptionStateType]?: OptionPropsStateStylesType;
-};
-
-/**
- * @description
- * interface for the option
- * @interface IOptionStyled
- */
-export type OptionStylesType<P extends string | number | symbol> = {
-  [key in P]?: OptionPropsStylesType;
+export type OptionVariantStyles<Variant extends string> = OptionStyleProps & {
+  [key in Variant]: OptionStyleProps;
 };

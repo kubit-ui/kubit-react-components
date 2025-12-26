@@ -1,55 +1,49 @@
-import * as React from 'react';
+import { forwardRef, useContext, useEffect, useState } from 'react';
 
-import { useTheme } from 'styled-components';
-
-import { ErrorBoundary } from '@/provider/errorBoundary';
-import { useUtilsProvider } from '@/provider/index';
-import { UtilsContext } from '@/provider/utils/context';
-import { isValidHttpUrl } from '@/utils/index';
+import { StylesContext } from '@/lib/provider/stylesProvider/stylesProvider';
+import { UtilsContext } from '@/lib/provider/utilsProvider/utilsProvider';
+import { isValidHttpUrl } from '@/lib/utils/is/isValidHttpUrl';
 
 import { IconBasic } from './icon';
-import { IIcon } from './types';
+import type { IconProps } from './types/icon';
 
-type IconWithProviderProps = IIcon & {
-  ref: React.ForwardedRef<HTMLSpanElement>;
-};
+export const IconHost = forwardRef<HTMLSpanElement, IconProps>(
+  ({ fallbackIcon, icon, ...props }, ref): JSX.Element | null => {
+    const utils = useContext(UtilsContext);
+    const styles = useContext(StylesContext);
+    const isUrl = isValidHttpUrl(icon);
+    const urlIcon = isUrl
+      ? icon
+      : `${utils?.assets?.baseHost}${styles?.icons?.[icon]}`;
+    const [resolvedIcon, setResolvedIcon] = useState(urlIcon);
 
-const IconWithProvider = (props: IconWithProviderProps): JSX.Element | null => {
-  const { ICONS_STYLES } = useTheme();
-  const { assets } = useUtilsProvider();
+    useEffect(() => {
+      if (fallbackIcon) {
+        const isUrlFallbackIcon = isValidHttpUrl(fallbackIcon);
+        const urlFallbackIcon = isUrlFallbackIcon
+          ? fallbackIcon
+          : `${utils?.assets?.baseHost}${styles?.icons?.[fallbackIcon]}`;
 
-  const isUrl = isValidHttpUrl(props.icon);
-  let hostIcon;
+        const fetchIcon = async () => {
+          try {
+            const response = await fetch(urlIcon, { cache: 'no-store' });
+            if (!response.ok) {
+              throw new Error('Error loading icon');
+            }
+            setResolvedIcon(urlIcon);
+          } catch {
+            setResolvedIcon(urlFallbackIcon);
+          }
+        };
 
-  let urlIcon = '';
+        fetchIcon();
+      } else {
+        setResolvedIcon(urlIcon);
+      }
+    }, [urlIcon, fallbackIcon, utils, styles]);
 
-  if (ICONS_STYLES?.[props.icon]) {
-    hostIcon = assets?.baseHost;
-  }
-  if (isUrl) {
-    urlIcon = props.icon;
-  } else if (props.icon && hostIcon) {
-    urlIcon = `${hostIcon}${[ICONS_STYLES?.[props.icon]]}`;
-  }
+    return <IconBasic {...props} ref={ref} icon={resolvedIcon} />;
+  },
+);
 
-  return <IconBasic {...props} ref={props.ref} icon={urlIcon} />;
-};
-
-const IconHostComponent = (
-  { ...props }: IIcon,
-  ref: React.ForwardedRef<HTMLSpanElement>
-): JSX.Element | null => {
-  const myContext = React.useContext(UtilsContext);
-
-  if (!myContext?.assets) {
-    return <IconBasic {...props} ref={ref} />;
-  }
-
-  return (
-    <ErrorBoundary fallBackComponent={<></>} resetCondition={props.icon}>
-      <IconWithProvider {...props} ref={ref} />
-    </ErrorBoundary>
-  );
-};
-
-export const IconHost = React.forwardRef(IconHostComponent);
+export { IconHost as Icon };

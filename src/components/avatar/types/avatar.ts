@@ -1,52 +1,56 @@
-import { IDot } from '@/components/dot';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILink } from '@/components/link';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import type {
+  GenericLinkProps,
+  GenericLinkType,
+} from '@/lib/provider/genericComponentsProvider/types/genericComponentsProvider';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { AvatarContentStylesType, AvatarSizeStylesType } from './avatarTheme';
-import { AvatarBackgroundColor, AvatarContentType } from './content';
+import type { DotProps } from '../../dot/types/dot';
+import type { AvatarBackgroundColor, AvatarContentType } from './content';
 
-export type AvatarInitialsType = Omit<IText<string>, 'children'> & {
-  content?: string;
-};
+type AvatarCssClasses = ComponentSelected<ComponentsTypesComponents['AVATAR']>;
 
-export type AvatarLinkType = Omit<ILink, 'children'> & {
-  content?: string;
-};
+export type AvatarLinkProps = Pick<
+  GenericLinkProps,
+  'role' | 'target' | 'url' | 'onClick'
+>;
 
 type AvatarAriaAttributes = Pick<
   React.AriaAttributes,
   'aria-label' | 'aria-labelledby' | 'aria-describedby' | 'aria-hidden'
 >;
+
 /**
- * @description
- * interface for the action bottom sheet stand alone
- * @interface ActionBottomSheetProps
- * @template V
+ * Props for the standalone Avatar component.
+ * This component is self-contained and does not depend on external state.
  */
-export interface IAvatarStandAlone extends AvatarAriaAttributes {
-  styles?: AvatarContentStylesType;
-  dot?: IDot;
+export interface AvatarStandAloneProps
+  extends AvatarAriaAttributes,
+    DataAttributes {
+  dot?: DotProps;
   image?: string;
-  icon?: IElementOrIcon;
-  initials?: AvatarInitialsType;
-  link?: AvatarLinkType;
+  icon?: CommonIconProps;
+  initials?: CommonTextProps;
+  link?: AvatarLinkProps;
+  linkComponent: GenericLinkType;
   contentType: AvatarContentType;
   onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLDivElement>;
   backgroundColor?: AvatarBackgroundColor;
-  dataTestId?: string;
   maxLengthInitials?: number;
+  cssClasses?: AvatarCssClasses;
 }
 
 /**
- * @description
- * interface for the action bottom sheet controlled
- * @interface ActionBottomSheetProps
- * @template V
+ * Props for the Avatar component, which extends the standalone avatar with additional options.
+ * @template Size - Optional size type for the avatar.
  */
-export interface IAvatar<S = undefined extends string ? unknown : string>
-  extends Omit<IAvatarStandAlone, 'styles' | 'contentType'>,
-    Omit<CustomTokenTypes<undefined, AvatarSizeStylesType>, 'ctv' | 'extraCt'> {
-  size: S;
+export interface AvatarProps<Size = string>
+  extends Omit<AvatarStandAloneProps, 'contentType' | 'linkComponent'> {
+  size?: Size;
+  additionalClasses?: Partial<AvatarCssClasses>;
 }

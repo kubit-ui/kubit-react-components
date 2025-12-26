@@ -1,53 +1,51 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { CustomTokenTypes } from '@/types';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { ChipPropsStateStylesType, ChipPropsStylesType } from './chipTheme';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type { ChipStateType } from './state';
 
-export type ChipLabelType = Omit<IText<string>, 'children'> & {
-  content: string;
-};
-
-export type ChipTextType = Omit<IText<string>, 'children'> & {
-  content: string;
-};
+type ChipCssClasses = ComponentSelected<ComponentsTypesComponents['CHIP']>;
 
 /**
- * @description
- * interface for the checkbox error standAlone
- * @interface IChipErrorStandAlone
- * @extends {IInputComponent}
+ * Interface for the standalone chip component.
+ * Includes optional icons, labels, error messages, and CSS classes.
  */
-
-export interface IChipStandAlone {
-  styles?: ChipPropsStylesType;
-  label?: ChipLabelType;
-  closeIcon?: IElementOrIcon;
-  leftIcon?: IElementOrIcon;
-  errorIcon?: IElementOrIcon;
-  dataTestId?: string;
+export interface ChipStandAloneProps extends DataAttributes {
+  label?: CommonTextProps;
+  closeIcon?: CommonIconProps;
+  leftIcon?: CommonIconProps;
+  errorIcon?: CommonIconProps;
   range?: {
     label: string;
     key?: string;
   }[];
-  rangeIcon?: IElementOrIcon;
-  errorMessage?: ChipTextType;
-  rangeSeparator?: ChipTextType;
+  rangeIcon?: ElementOrIconProps;
+  errorMessage?: CommonTextProps;
+  rangeSeparator?: CommonTextProps;
+  /**
+   * @deprecated
+   * Use closeIcon -> altText instead
+   */
   deleteText?: string;
   state: ChipStateType;
+  cssClasses?: ChipCssClasses;
 }
 
 /**
- * @description
- * interface for the controlled checkbox
- * @template V
- * @interface ICheckboxControlled
- * @extends {Omit<ICheckboxStandAlone, 'styles' | 'state'>}
+ * Interface for the controlled chip component.
+ * Extends the ChipStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the chip.
  */
-export interface IChipControlled<V = undefined extends string ? unknown : string>
-  extends Omit<IChipStandAlone, 'state' | 'styles'>,
-    Omit<CustomTokenTypes<ChipPropsStateStylesType>, 'cts' | 'extraCt'> {
-  variant: V;
+export interface ChipProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<ChipStandAloneProps, 'state'> {
+  variant?: Variant;
   state?: ChipStateType;
+  additionalClasses?: Partial<ChipCssClasses>;
 }

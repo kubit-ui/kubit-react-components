@@ -1,24 +1,14 @@
-import { CommonStyleType } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-/**
- * @description
- * Skeleton Styles component props
- */
-export type SkeletonVariantStylesType = {
-  skeleton?: CommonStyleType;
+export type SkeletonVariantStyles<Variant extends string> = CssLibPropsType & {
+  [key in Variant]?: CssLibPropsType;
 };
 
-export type SkeletonShapeStylesType<P extends string | number | symbol = string> = {
-  [key in P]?: SkeletonVariantStylesType;
+export type SkeletonShapeStyles<Shape extends string> = CssLibPropsType & {
+  [key in Shape]?: CssLibPropsType;
 };
 
-/**
- * @description
- * Skeleton Styles component props
- */
-export type SkeletonStylesType<
-  S extends string | number | symbol,
-  P extends string | number | symbol,
-> = {
-  [shape in S]: SkeletonShapeStylesType<P>;
-};
+export type SkeletonStyles<
+  Variant extends string,
+  Shape extends string,
+> = SkeletonVariantStyles<Variant> & SkeletonShapeStyles<Shape>;

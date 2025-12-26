@@ -1,143 +1,211 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
-import { Button } from '@/components/button';
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { ElementOrIllustration } from '@/components/elementOrIllustration';
-import { Tag } from '@/components/tag';
-import { Text, TextComponentType } from '@/components/text';
-import { AriaLiveOptionType } from '@/types';
+import { Button } from '@/components/button/button';
+import { RenderIf } from '@/components/renderIf/renderIf';
+import { Tag } from '@/components/tag/tag';
+import { Text } from '@/components/text/text';
+import { classNames } from '@/lib/utils/classNames/classNames';
+import { isString } from '@/lib/utils/is/isString';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+import { processText } from '@/lib/utils/process/processText/processText';
 
-// styles
-import {
-  ActioButtonWrapperStyled,
-  ButtonSectionStyled,
-  CloseButtonSectionStyled,
-  ExtraActioButtonWrapperStyled,
-  MessageContentStyled,
-  MessageHeaderStyled,
-  MessageHeaderTitleStyled,
-  MessageStyled,
-  MessageTextStyled,
-} from './message.styled';
-import { IMessageStandAlone } from './types';
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { Link } from '../link/link';
+import type { MessageStandAloneProps } from './types/message';
 
-const MessageStandAloneComponent = (
-  { maxContentLength = 246, ariaLive = AriaLiveOptionType.OFF, ...props }: IMessageStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element | null => {
-  const isLargeMessage = (() =>
-    typeof props.content.content === 'string' &&
-    props.content.content.length >= maxContentLength)();
+export const MessageStandAlone = forwardRef<
+  HTMLDivElement,
+  MessageStandAloneProps
+>(
+  (
+    {
+      actionButton,
+      ariaLive = 'off',
+      ariaMessageId,
+      closeIcon,
+      content,
+      cssClasses,
+      extraActionButton,
+      id,
+      infoIcon,
+      inlineLink,
+      linkComponent,
+      links,
+      maxContentLength = 246,
+      messageContainerProps,
+      open,
+      role,
+      tag,
+      title,
+      titleAndContentContainerProps,
+      titleAndContentRole,
+      ...props
+    }: MessageStandAloneProps,
+    ref: ForwardedRef<HTMLDivElement>,
+  ): JSX.Element | null => {
+    const dataTestId = props['data-testid'] || 'message';
+    const customProps = pickCustomAttributes(props);
 
-  const buildIconOrIllustration = () => {
-    if (props.illustration?.illustration) {
-      return (
-        <ElementOrIllustration
-          customIllustrationStyles={props.styles.illustration}
-          {...props.illustration}
+    const processedContent = processText(content);
+    const processedTitle = processText(title);
+
+    const isLargeMessage =
+      typeof processedContent.children === 'string' &&
+      processedContent.children?.toString().length >= maxContentLength;
+
+    const buildIconOrIllustration = () => {
+      if (infoIcon?.icon) {
+        return <ElementOrIcon className={cssClasses?.infoicon} {...infoIcon} />;
+      }
+      return null;
+    };
+
+    const buildActionButton = () => (
+      <RenderIf condition={!!actionButton?.content}>
+        <div className={cssClasses?.actionbuttoncontainer}>
+          <Button
+            additionalSizeClasses={
+              actionButton?.variant ? undefined : cssClasses?.action_button
+            }
+            {...actionButton}
+          >
+            {actionButton?.content}
+          </Button>
+        </div>
+      </RenderIf>
+    );
+
+    const buildTag = () => (
+      <RenderIf condition={!!tag?.content}>
+        <Tag
+          variant=""
+          {...tag}
+          label={{
+            content: tag?.content,
+          }}
         />
+      </RenderIf>
+    );
+
+    const buildExtraActionButton = () => (
+      <RenderIf condition={!!extraActionButton?.content}>
+        <div className={cssClasses?.extraactionbuttoncontainer}>
+          <Button {...extraActionButton}>{extraActionButton?.content}</Button>
+        </div>
+      </RenderIf>
+    );
+
+    const buildContent = () => {
+      return typeof content === 'string' ? (
+        <Text
+          additionalClasses={{
+            text: cssClasses?.description,
+          }}
+          component="p"
+          {...processedContent}
+        />
+      ) : (
+        processedContent.children
       );
-    } else if (props.infoIcon?.icon) {
-      return <ElementOrIcon customIconStyles={props.styles.infoIcon} {...props.infoIcon} />;
-    }
-    return null;
-  };
+    };
 
-  const buildActionButton = () =>
-    props.actionButton?.content &&
-    (props.styles.actionButton?.size || props.actionButton?.size) && (
-      <ActioButtonWrapperStyled styles={props.styles}>
-        <Button
-          dataTestId={`${props.dataTestId}ActionButton`}
-          size={props.styles.actionButton?.size}
-          {...props.actionButton}
+    const buildTitle = () => {
+      return isString(processedTitle.children) ? (
+        <div
+          aria-errormessage={ariaMessageId}
+          className={cssClasses?.titlecontainer}
         >
-          {props.actionButton?.content}
-        </Button>
-      </ActioButtonWrapperStyled>
-    );
+          <Text
+            additionalClasses={{
+              text: cssClasses?.title,
+            }}
+            component="p"
+            {...processedTitle}
+          />
+        </div>
+      ) : (
+        processedTitle.children
+      );
+    };
 
-  const buildTag = () => (
-    <div>
-      <Tag option={''} status={''} variant={''} {...props.tag}>
-        {props.tag?.content}
-      </Tag>
-    </div>
-  );
-
-  const buildExtraActionButton = () =>
-    props.extraActionButton?.content && (
-      <ExtraActioButtonWrapperStyled styles={props.styles}>
-        <Button {...props.extraActionButton}>{props.extraActionButton?.content}</Button>
-      </ExtraActioButtonWrapperStyled>
-    );
-
-  const buildContent = () => {
-    return typeof props.content.content === 'string' ? (
-      <Text
-        component={TextComponentType.PARAGRAPH}
-        customTypography={props.styles.description}
-        dataTestId={`${props.dataTestId}Description`}
-        {...props.content}
+    return (
+      <div
+        {...customProps}
+        aria-live={ariaLive}
+        className={cssClasses?.message}
       >
-        {props.content.content}
-      </Text>
-    ) : (
-      props.content.content
-    );
-  };
-
-  return props.open ? (
-    <MessageStyled
-      ref={ref}
-      aria-live={ariaLive}
-      data-testid={`${props.dataTestId}Message`}
-      id={props.id}
-      role={props.role}
-      styles={props.styles}
-    >
-      <MessageHeaderStyled>
-        <MessageHeaderTitleStyled
-          isLargeMessage={isLargeMessage}
-          styles={props.styles}
-          withIcon={!!props.closeIcon}
-        >
-          {buildIconOrIllustration()}
-          <div>
-            {props.title && (
-              <MessageTextStyled
-                aria-errormessage={props.ariaMessageId}
-                extraPaddingGap={!!props.closeIcon}
-                styles={props.styles.closeIcon}
+        <RenderIf condition={open}>
+          <CustomComponent
+            ref={ref}
+            className={cssClasses?.container}
+            component={messageContainerProps?.url ? linkComponent : 'div'}
+            data-testid={dataTestId}
+            id={id}
+            role={role}
+            target={messageContainerProps?.target}
+            url={messageContainerProps?.url || undefined}
+            onClick={messageContainerProps?.onClick}
+          >
+            {buildIconOrIllustration()}
+            <CustomComponent
+              className={classNames(cssClasses?.headercontainer, {
+                [`${cssClasses?.headercontainerlargemessage}`]: isLargeMessage,
+              })}
+              component={
+                titleAndContentContainerProps?.url ? linkComponent : 'div'
+              }
+              role={titleAndContentRole}
+              target={titleAndContentContainerProps?.target}
+              url={titleAndContentContainerProps?.url || undefined}
+              onClick={titleAndContentContainerProps?.onClick}
+            >
+              <RenderIf condition={!!title}>{buildTitle()}</RenderIf>
+              <RenderIf condition={!!tag?.content}>{buildTag()}</RenderIf>
+              <div
+                className={classNames(cssClasses?.contentcontainer, {
+                  [`${cssClasses?.contentcontainerlargemessage}`]:
+                    isLargeMessage,
+                })}
               >
-                <Text
-                  component={TextComponentType.H2}
-                  customTypography={props.styles.title}
-                  dataTestId={`${props.dataTestId}Title`}
-                  {...props.title}
-                >
-                  {props.title.content}
-                </Text>
-              </MessageTextStyled>
-            )}
-            {props.tag?.content && buildTag()}
-            <MessageContentStyled isLargeMessage={isLargeMessage} styles={props.styles}>
-              {buildContent()}
-            </MessageContentStyled>
-          </div>
-        </MessageHeaderTitleStyled>
-      </MessageHeaderStyled>
-      <ButtonSectionStyled>
-        {buildExtraActionButton()}
-        {buildActionButton()}
-        {props.closeIcon?.onClick && (
-          <CloseButtonSectionStyled styles={props.styles}>
-            <ElementOrIcon customIconStyles={props.styles.closeIcon} {...props.closeIcon} />
-          </CloseButtonSectionStyled>
-        )}
-      </ButtonSectionStyled>
-    </MessageStyled>
-  ) : null;
-};
-
-export const MessageStandAlone = React.forwardRef(MessageStandAloneComponent);
+                {buildContent()}
+                <RenderIf condition={!!inlineLink?.content}>
+                  <Link
+                    decoration="underline"
+                    {...inlineLink}
+                    url={inlineLink?.url || ''}
+                  >
+                    {inlineLink?.content || ''}
+                  </Link>
+                </RenderIf>
+              </div>
+              <RenderIf condition={!!(extraActionButton || actionButton)}>
+                <div className={cssClasses?.buttonsectioncontainer}>
+                  {buildExtraActionButton()}
+                  {buildActionButton()}
+                </div>
+              </RenderIf>
+              <RenderIf condition={!!(links && links.length > 0)}>
+                <div className={cssClasses?.linkscontainer}>
+                  {links?.map((link) =>
+                    link.content ? (
+                      <div
+                        key={link.content}
+                        className={cssClasses?.linkcontainer}
+                      >
+                        <Link decoration="underline" {...link}>
+                          {link.content}
+                        </Link>
+                      </div>
+                    ) : null,
+                  )}
+                </div>
+              </RenderIf>
+            </CustomComponent>
+            <ElementOrIcon className={cssClasses?.closeicon} {...closeIcon} />
+          </CustomComponent>
+        </RenderIf>
+      </div>
+    );
+  },
+);

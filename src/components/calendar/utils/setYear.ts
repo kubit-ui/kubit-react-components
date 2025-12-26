@@ -1,1 +1,2 @@
-export const setYear = (date: Date, newYear: number): number => date.setFullYear(newYear);
+export const setYear = (date: Date, newYear: number): number =>
+  date.setFullYear(newYear);

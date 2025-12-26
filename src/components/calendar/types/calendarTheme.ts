@@ -1,61 +1,41 @@
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-import { ListStylesType } from '../list/types/listTheme';
-import { MonthSelectorStateType } from '../selector/monthSelector/types/state';
-import { SelectorStateType } from '../selector/types/state';
-import { YearSelectorStateType } from '../selector/yearSelector/types/state';
-import type { CalendarVariantType } from './variant';
+export interface CalendarStyleProps extends CssLibPropsType {
+  _container?: CssLibPropsType;
+  _selectorContainer?: CssLibPropsType;
+  _selectorIconAndBackTextContainer?: CssLibPropsType;
+  _leftArrow?: CssLibPropsType;
+  _rightArrow?: CssLibPropsType;
+  _table?: CssLibPropsType;
+  _tbody?: CssLibPropsType;
+  _tableRow?: CssLibPropsType;
+  _backText?: CssLibPropsType;
+  _selectorOptionsContainer?: CssLibPropsType;
+  _listElementEmpty?: CssLibPropsType;
+  _listElementRove?: CssLibPropsType;
+  //_selectorOptions?: CssLibPropsType; //! unused
+  _headerContainer?: CssLibPropsType;
+  _headerRow?: CssLibPropsType;
+  _headerTh?: CssLibPropsType;
+  _weekDayContainer?: CssLibPropsType;
+  //_weekDay?: CssLibPropsType; //! unused
+  _daysList?: CssLibPropsType;
+  _monthsList?: CssLibPropsType;
+  _monthListItem?: CssLibPropsType;
+  _monthElement?: CssLibPropsType;
+  //_month?: CssLibPropsType; //! unused
+  _yearsList?: CssLibPropsType;
+  _yearListItem?: CssLibPropsType;
+  _yearElement?: CssLibPropsType;
+  _year?: CssLibPropsType;
 
-/**
- * @description
- * interface for calendar theme styles
- * @interface CalendarContainerStylesType
- */
-export type CalendarContainerStylesType = {
-  container?: CommonStyleType;
-  selectorContainer?: CommonStyleType;
-  selectorIconAndBackTextContainer?: CommonStyleType;
-  leftArrow?: IconTypes;
-  rightArrow?: IconTypes;
-  colorArrowDisabled?: string;
-  backText?: TypographyTypes;
-  selectorOptionsContainer?: CommonStyleType;
-  selectorOptions?: {
-    [key in SelectorStateType]?: CommonStyleType & TypographyTypes;
-  } & {
-    sizeSelectorButton?: string;
-    variantSelectorButton?: string;
-  };
-  useDaySelector?: boolean;
-  headerContainer?: CommonStyleType;
-  headerRow?: CommonStyleType;
-  weekDayContainer?: CommonStyleType;
-  weekDay?: TypographyTypes;
-  daysList?: ListStylesType;
-  monthsList?: CommonStyleType;
-  monthListItem?: {
-    [state in MonthSelectorStateType]?: CommonStyleType;
-  };
-  monthElement?: {
-    [state in MonthSelectorStateType]?: CommonStyleType;
-  };
-  month?: {
-    [state in MonthSelectorStateType]?: TypographyTypes;
-  };
-  yearsList?: CommonStyleType;
-  yearListItem?: {
-    [state in YearSelectorStateType]?: CommonStyleType;
-  };
-  yearElement?: {
-    [state in YearSelectorStateType]?: CommonStyleType;
-  };
-  year?: {
-    [state in YearSelectorStateType]?: TypographyTypes;
-  };
-};
+  // $foreign?: {
+  //   buttonSize?: object;
+  //   buttonVariant?: object;
+  // };
+}
 
-export type CalendarStylesVariantType = {
-  [key in CalendarVariantType]?: CalendarContainerStylesType;
-};
-
-export type CalendarStylesType = CalendarStylesVariantType;
+export type CalendarVariantStyles<Variant extends string> =
+  CalendarStyleProps & {
+    [key in Variant]?: CalendarStyleProps;
+  };

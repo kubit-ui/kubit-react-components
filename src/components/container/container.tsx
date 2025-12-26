@@ -1,58 +1,55 @@
-import * as React from 'react';
+import { type ForwardedRef, type PropsWithChildren, forwardRef } from 'react';
 
-import { STYLES_NAME } from '@/constants/stylesName';
-import { useStyles } from '@/hooks/index';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
 import { ContainerStandAlone } from './containerStandAlone';
-import { ContainerPropsStylesType, IContainer, IContainerStandAlone } from './types';
+import type { ContainerProps } from './types/container';
 
-const ContainerComponent = React.forwardRef(
-  <T extends string>(
-    { children, variant, ctv, ...props }: React.PropsWithChildren<IContainer<T>>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+/**
+ * Container component for grouping content with consistent styling and structure.
+ *
+ * This component wraps its children in a styled container, optionally displaying a header/title.
+ * It is useful for organizing related content, settings, or sections in a visually consistent way.
+ * Supports custom CSS classes and theming via variants.
+ *
+ * Internally, it computes CSS classes using a custom hook and delegates rendering to {@link ContainerStandAlone}.
+ *
+ * This component accepts a generic type parameter `<Variant extends string>` to allow for custom variant values,
+ * enabling flexible theming and styling.
+ *
+ * @example
+ * ```tsx
+ * <Container title={{ content: "Section Title" }}>
+ *   Section content goes here.
+ * </Container>
+ *
+ * // With a custom variant type:
+ * type MyVariant = "primary" | "secondary";
+ * <Container<MyVariant> title={{ content: "Primary Section" }} variant="primary">
+ *   Primary section content.
+ * </Container>
+ * ```
+ */
+export const Container = forwardRef(
+  <Variant extends string = string>(
+    {
+      additionalClasses,
+      children,
+      variant,
+      ...props
+    }: PropsWithChildren<ContainerProps<Variant>>,
+    ref: ForwardedRef<HTMLDivElement>,
   ): JSX.Element => {
-    const styles = useStyles<ContainerPropsStylesType>(STYLES_NAME.CONTAINER, variant, ctv);
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'CONTAINER',
+      variant,
+    });
 
     return (
-      <ContainerStandAlone ref={ref} {...props} styles={styles}>
+      <ContainerStandAlone ref={ref} {...props} cssClasses={cssClasses}>
         {children}
       </ContainerStandAlone>
     );
-  }
+  },
 );
-ContainerComponent.displayName = 'ContainerComponent';
-
-const ContainerBoundary = <T extends string>(
-  props: React.PropsWithChildren<IContainer<T>>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <ContainerStandAlone {...(props as unknown as IContainerStandAlone)} ref={ref}>
-          {props.children}
-        </ContainerStandAlone>
-      </FallbackComponent>
-    }
-  >
-    <ContainerComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-const Container = React.forwardRef(ContainerBoundary) as <T extends string>(
-  props: React.PropsWithChildren<IContainer<T>> & React.RefAttributes<HTMLDivElement>
-) => JSX.Element;
-
-/**
- * A container is a component that wraps the content of a website.
- * @module Container
- * @interface IContainer
- * @category Contaiment Components
- * @param children - the content to render inside the container.
- * @param variant - the variant of the container.
- * @param dataTestId - the data test id of the container.
- * @param {React.ForwardedRef<HTMLDivElement> | undefined | null} ref - The component ref.
- * @returns {JSX.Element} The rendered component.
- */
-export { Container };

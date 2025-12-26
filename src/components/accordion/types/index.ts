@@ -1,2 +1,2 @@
-export type * from './accordion';
-export type * from './accordionTheme';
+export * from './accordion';
+export * from './accordionTheme';

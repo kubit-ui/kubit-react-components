@@ -1,39 +1,67 @@
-import React, { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { CustomTokenTypes, DeviceBreakpointsType } from '@/types';
+import type { DeviceBreakpointsType } from '@/lib/types/breakpoints/breakpoints';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { TabsVariantStylesType } from './tabsTheme';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 
-export type PrimaryTabTabType = Omit<IText<string>, 'children'> & {
-  content?: ReactNode;
+type TabsCssClasses = ComponentSelected<ComponentsTypesComponents['TABS']>;
+
+/**
+ * Represents the type for a tab in the Tabs component.
+ */
+export type TabsTabProps = CommonTextProps & {
+  disabled?: boolean;
 };
-export interface ITabsStandAlone {
-  styles: TabsVariantStylesType;
+
+/**
+ * Interface for the standalone Tabs component.
+ * Includes properties for tabs, controls, content, and CSS classes.
+ */
+export interface TabsStandAloneProps extends DataAttributes {
   device: DeviceBreakpointsType;
   selectedTab?: number;
-  tabs?: PrimaryTabTabType[];
-  content?: React.ReactNode[];
+  tabs?: TabsTabProps[];
+  content?: ReactNode[];
   leftControlAriaLabel?: string;
-  leftIcon?: IElementOrIcon;
+  leftIcon?: ElementOrIconProps;
   rightControlAriaLabel?: string;
-  rightIcon?: IElementOrIcon;
+  rightIcon?: ElementOrIconProps;
   allowFocusTabPanel?: boolean;
   autoWidth?: boolean;
-  minTabsInView?: number;
   maxTabsInView?: number;
   hideLabelForSingleTab?: boolean;
-  dataTestId?: string;
   onSelectTab?: (tab: number) => void;
+  unMountContent?: boolean;
+  cssClasses?: TabsCssClasses;
 }
 
-export interface ITabsControlled<V = undefined extends string ? unknown : string>
-  extends Omit<ITabsStandAlone, 'styles' | 'device'>,
-    Omit<CustomTokenTypes<TabsVariantStylesType>, 'cts' | 'extraCt'> {
-  variant: V;
+/**
+ * Interface for the controlled Tabs component.
+ * Extends the TabsStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the Tabs.
+ */
+export interface TabsProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<TabsStandAloneProps, 'device'> {
+  variant?: Variant;
+  additionalClasses?: Partial<TabsCssClasses>;
 }
-export interface ITabsUnControlled<V = undefined extends string ? unknown : string>
-  extends Omit<ITabsControlled<V>, 'selectedTab'> {
+
+/**
+ * Interface for the uncontrolled Tabs component.
+ * Extends the TabsProps interface and adds default properties.
+ *
+ * @template Variant - The type of the variant for the Tabs.
+ */
+export interface TabsUnControlledProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<TabsProps<Variant>, 'selectedTab'> {
   defaultSelectedTab?: number;
 }

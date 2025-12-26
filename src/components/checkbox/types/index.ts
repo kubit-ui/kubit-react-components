@@ -1,14 +1,5 @@
 export type {
-  CheckboxStylesType,
-  CheckboxPropsStateStylesType,
-  CheckboxPropsStylesType,
-} from './checkboxTheme';
-export type {
-  ICheckboxStandAlone,
-  ICheckboxControlled,
-  ICheckboxUnControlled,
-  ICheckboxErrorStandAlone,
+  CheckboxControlledProps,
+  CheckboxUnControlledProps,
 } from './checkbox';
-
-// enums
-export { CheckboxStateType } from './state';
+export type { ChecboxStyleProps, ChecboxVariantStyles } from './checkboxTheme';

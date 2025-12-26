@@ -1,25 +1,26 @@
-import { TextAreaStateType } from '../types';
+import { STATES } from '@/lib/types/states/states';
 
-// eslint-disable-next-line complexity
+import type { TextAreaStateType } from '../types/state';
+
 export const getState = (
   disabled: boolean,
   error: boolean,
   value: string | undefined,
-  active: boolean
+  active: boolean,
 ): TextAreaStateType => {
   let state: TextAreaStateType;
   if (disabled && value) {
-    state = TextAreaStateType.DISABLED_FILLED;
+    state = STATES.DISABLED_FILLED;
   } else if (disabled) {
-    state = TextAreaStateType.DISABLED_EMPTY;
+    state = STATES.DISABLED_EMPTY;
   } else if (error) {
-    state = TextAreaStateType.ERROR;
+    state = STATES.ERROR;
   } else if (value) {
-    state = TextAreaStateType.FILLED;
+    state = STATES.FILLED;
   } else if (active) {
-    state = TextAreaStateType.ACTIVE;
+    state = STATES.ACTIVE;
   } else {
-    state = TextAreaStateType.EMPTY;
+    state = STATES.EMPTY;
   }
   return state;
 };

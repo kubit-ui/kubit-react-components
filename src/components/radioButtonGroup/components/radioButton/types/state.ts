@@ -1,6 +1,0 @@
-export enum RadioButtonStateType {
-  DEFAULT = 'DEFAULT',
-  DISABLED = 'DISABLED',
-  DISABLED_SELECTED = 'DISABLED_SELECTED',
-  SELECTED = 'SELECTED',
-}

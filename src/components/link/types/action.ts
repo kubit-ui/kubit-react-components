@@ -1,4 +1,1 @@
-export enum LinkActionType {
-  NAVIGATION = 'NAVIGATION',
-  INLINE = 'INLINE',
-}
+export type LinkActionType = 'navigation' | 'inline';

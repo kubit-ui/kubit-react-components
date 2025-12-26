@@ -1,47 +1,51 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useMediaDevice } from '@/hooks/useMediaDevice/useMediaDevice';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
 
 import { CardImageStandAlone } from './cardImageStandAlone';
-import { CardImageVariantStylesType, ICardImage, ICardImageStandAlone } from './types';
+import type { CardImageProps } from './types/cardImage';
 
-const CardImageComponent = React.forwardRef(
-  <V extends string | unknown>(
-    props: ICardImage<V>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+/**
+ * CardImage component for displaying an image card with responsive and theme support.
+ *
+ * This component is useful for rendering images in a card layout, adapting its style
+ * based on the current device and variant. It leverages generics to allow custom variant
+ * types, enabling flexible theming and styling.
+ *
+ * Internally, it uses {@link CardImageStandAlone} and injects device and CSS class information.
+ *
+ * The generic type parameter `<Variant extends string>` allows you to define your own variant
+ * types for more precise theming.
+ *
+ * @example
+ * ```tsx
+ * <CardImage variant="primary" />
+ *
+ * // With a custom variant type:
+ * type MyVariant = "rounded" | "square";
+ * <CardImage<MyVariant> variant="rounded" />
+ * ```
+ */
+export const CardImage = forwardRef(
+  <Variant extends string = string>(
+    { additionalClasses, variant, ...props }: CardImageProps<Variant>,
+    ref: ForwardedRef<HTMLDivElement>,
   ): JSX.Element => {
     const device = useMediaDevice();
-    const styles = useStyles<CardImageVariantStylesType, V>(
-      STYLES_NAME.CARD_IMAGE,
-      props.variant,
-      props.ctv
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'CARD_IMAGE',
+      variant,
+    });
+
+    return (
+      <CardImageStandAlone
+        {...props}
+        ref={ref}
+        cssClasses={cssClasses}
+        device={device}
+      />
     );
-
-    return <CardImageStandAlone {...props} ref={ref} device={device} styles={styles} />;
-  }
+  },
 );
-CardImageComponent.displayName = 'CardImageComponent';
-
-const CardImageBoundary = <V extends string | unknown>(
-  props: ICardImage<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <CardImageStandAlone {...(props as unknown as ICardImageStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <CardImageComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-const CardImage = React.forwardRef(CardImageBoundary) as <V extends string | unknown>(
-  props: ICardImage<V>
-) => JSX.Element;
-
-export { CardImage };

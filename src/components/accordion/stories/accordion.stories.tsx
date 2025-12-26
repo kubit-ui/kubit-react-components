@@ -1,58 +1,63 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { ICONS } from '@/assets';
-import { ReplaceContent } from '@/components/storybook/replaceContent/replaceContent';
-import { TextComponentType } from '@/components/text';
-import { STYLES_NAME } from '@/constants';
-import { themesObject, variantsObject } from '@/designSystem/themesObject';
+import { AccordionVariant } from '@/lib/designSystem/kubit/components/accordion/variants';
 
-import { AccordionUnControlled as AccordionStory } from '../accordionUnControlled';
+import { Accordion as AccordionStory } from '../accordionUnControlled';
 import { argtypes } from './argtypes';
 
-const themeSelected = localStorage.getItem('themeSelected') || 'kubit';
-
 const meta = {
-  title: 'Components/Containment/Accordion',
+  argTypes: argtypes(),
   component: AccordionStory,
-  tags: ['autodocs'],
-  argTypes: argtypes(variantsObject, themeSelected),
+  render: ({ ...args }) => {
+    return <AccordionStory {...args} />;
+  },
+  tags: ['autodocs', 'containment'],
+  title: 'Components/Containment/Accordion',
 } satisfies Meta<typeof AccordionStory>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
+const commonArgs = {
+  children: 'Replace here your Content',
+  dataTestId: 'accordion',
+  defaultExpanded: false,
+  header: 'Accordion Header',
+  variant: AccordionVariant.NEUTRAL,
+};
+
 export const Accordion: Story = {
   args: {
-    variant: Object.values(variantsObject[themeSelected].AccordionVariantType || {})[0] as string,
-    title: { content: 'Title' },
-    triggerIcon: { icon: ICONS.ICON_CHEVRON_DOWN, altText: 'Trigger Icon' },
-    titleIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Title Icon' },
-    children: <ReplaceContent />,
-    defaultOpen: false,
-    subHeaderContent: 'Hi, i am a subheader content',
-    triggerComponent: TextComponentType.H3,
-    footerContent: <ReplaceContent />,
-    themeArgs: themesObject[themeSelected][STYLES_NAME.ACCORDION],
+    ...commonArgs,
   },
 };
 
-export const AccordionWithCtv: Story = {
+export const AccordionWithAdditionalClasses: Story = {
   args: {
-    variant: Object.values(variantsObject[themeSelected].AccordionVariantType || {})[0] as string,
-    title: { content: 'Title' },
-    triggerIcon: { icon: ICONS.ICON_CHEVRON_DOWN, altText: 'Trigger Icon' },
-    titleIcon: { icon: ICONS.ICON_PLACEHOLDER, altText: 'Title Icon' },
-    children: <ReplaceContent />,
-    defaultOpen: false,
-    subHeaderContent: 'Hi, i am a subheader content',
-    triggerComponent: TextComponentType.H3,
-    footerContent: <ReplaceContent />,
-    ctv: {
-      title: {
-        color: 'red',
-      },
+    ...commonArgs,
+    additionalClasses: {
+      accordion: 'custom-background',
+      content: 'custom-padding',
+      header: 'custom-border',
+      headerbutton: 'custom-text-color',
+      innercontent: 'custom-border-radius',
     },
+  },
+};
+
+export const AccordionExpanded: Story = {
+  args: {
+    ...commonArgs,
+    defaultExpanded: true,
+    header: 'Expanded Accordion',
+  },
+};
+
+export const AccordionStandardVariant: Story = {
+  args: {
+    ...commonArgs,
+    header: 'Standard Variant Accordion',
+    variant: AccordionVariant.STANDARD,
   },
 };

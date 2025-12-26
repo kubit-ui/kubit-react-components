@@ -1,214 +1,182 @@
-import * as React from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 
-import { InputTypeType } from '@/components/input/types';
-import { AriaLiveOptionType } from '@/types';
-import { POSITIONS } from '@/types/positions';
+import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
+import { CustomComponent } from '@/lib/components/customComponent/customComponent';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 
-import { ElementOrIcon } from '../elementOrIcon';
-import { Label } from '../label';
-import { ScreenReaderOnly } from '../screenReaderOnly';
-import { Text } from '../text';
-import { TextComponentType } from '../text/types';
-import {
-  LabelWrapperStyled,
-  SliderContainerStyled,
-  TextLeftWrapperStyled,
-  TextRightWrapperStyled,
-  ToggleRadioSwitchStyled,
-  ToggleWrapperStyled,
-} from './toggle.styled';
-import type { IToggleStandAlone } from './types';
+import type { ToggleStandaloneProps } from './types/toggle';
+import { buildComponentProps } from './utils/buildComponentProps';
+import { useToggleTransform } from './utils/thumbTransformCalculations';
+
+/**
+ * Toggle StandAlone - Atomic toggle component with dual rendering modes
+ *
+ * @description
+ * Atomic toggle component that implements the WAI-ARIA switch pattern with support
+ * for both interactive and decorative rendering modes. This architectural pattern
+ * solves complex accessibility challenges in modern UI design using Venus patterns.
+ *
+ * ## Rendering Modes
+ *
+ * **Interactive Mode (component="button")**:
+ * - Full WAI-ARIA switch implementation
+ * - Handles own focus, keyboard, and click events
+ * - Suitable for standalone toggles
+ *
+ * **Decorative Mode (component="span" | "div")**:
+ * - Visual-only representation with aria-hidden="true"
+ * - No interactive behavior or accessibility attributes
+ * - Designed for use within larger clickable containers
+ * - Prevents nested interactive element accessibility violations
+ *
+ * @architectural_pattern
+ * The decorative mode addresses a common accessibility challenge where designers
+ * want toggles inside clickable cards/list items. Instead of creating nested
+ * interactive elements (accessibility violation), the toggle becomes purely visual
+ * while the parent container handles all interaction and accessibility.
+ *
+ * Uses Venus architecture with CustomComponent and buildComponentProps factory
+ * for consistent prop generation and accessibility patterns. Icons are rendered
+ * using ElementOrIcon for consistent icon handling and accessibility.
+ *
+ * @example
+ * ```tsx
+ * // Interactive toggle with icons
+ * <ToggleStandAlone
+ *   component="button"
+ *   checked={true}
+ *   onClick={(e) => console.log('clicked')}
+ *   rightIcon={{ icon: "checkmark", altText: "Active" }}
+ *   leftIcon={{ icon: "close", altText: "Inactive" }}
+ *   cssClasses={{}}
+ * />
+ *
+ * // Decorative toggle in clickable container
+ * <div onClick={handleContainerClick}>
+ *   <ToggleStandAlone
+ *     component="span"
+ *     checked={state}
+ *     cssClasses={{}}
+ *   />
+ *   <span>Toggle this option</span>
+ * </div>
+ * ```
+ *
+ * @returns The rendered toggle element.
+ */
 
 const ToggleStandAloneComponent = (
   {
-    inputValues = {
-      rightInputValue: 'on option',
-      centerInputValue: 'undeterminated option',
-      leftInputValue: 'off option',
-    },
-    radioButtonToggleName = 'groupe-toggle',
-    blockCenter = false,
+    checked = false,
+    component = 'button',
+    cssClasses,
+    dataTestId = 'toggle',
+    disabled = false,
+    id,
+    leftIcon,
+    name,
+    onBlur,
+    onClick,
+    onFocus,
+    onKeyDown,
+    onMouseEnter,
+    onMouseLeave,
+    rightIcon,
+    tabIndex,
+    value,
     ...props
-  }: IToggleStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+  }: ToggleStandaloneProps,
+  ref: React.ForwardedRef<HTMLButtonElement>,
 ): JSX.Element => {
-  const getAltTextIcon = (position: POSITIONS) =>
-    position === POSITIONS.CENTER
-      ? inputValues.centerIconAltText
-      : position === POSITIONS.RIGHT
-        ? inputValues.rightIconAltText ?? props.onIcon?.altText
-        : inputValues.leftIconAltText ?? props.offIcon?.altText;
+  const shouldShowRightIcon = checked && !!rightIcon;
+  const shouldShowLeftIcon = !checked && !!leftIcon;
 
-  const getScreenReaderText = (position: POSITIONS) =>
-    position === POSITIONS.CENTER
-      ? inputValues.centerInputValue
-      : position === POSITIONS.RIGHT
-        ? inputValues.rightInputValue ?? props.onIcon?.altText
-        : inputValues.leftInputValue ?? props.offIcon?.altText;
+  // Determine component rendering mode based on element type
+  // Interactive mode: component="button" -> full accessibility, event handling
+  // Decorative mode: component="span|div" -> visual only, aria-hidden, no interaction
+  const decorative = component !== 'button';
 
-  const buildTextOrIcon = (position: POSITIONS) => {
-    const icon = position === POSITIONS.RIGHT ? props.onIcon : props.offIcon;
-    return props.hasThreePositions ? (
-      <>
-        {position === POSITIONS.CENTER
-          ? inputValues.centerInputValue
-          : position === POSITIONS.RIGHT
-            ? props.onText?.content
-            : props.offText?.content}
-      </>
-    ) : (
-      <ElementOrIcon
-        customIconStyles={props.styles?.icon}
-        {...icon}
-        altText={getAltTextIcon(position)}
-      />
-    );
-  };
+  const trackRef = useRef<HTMLButtonElement>(null);
+  const thumbRef = useRef<HTMLDivElement>(null);
 
-  const getValueOfRadioButton = (position: POSITIONS) => {
-    if (position === POSITIONS.RIGHT) {
-      return inputValues?.rightInputValue;
-    } else if (position === POSITIONS.LEFT) {
-      return inputValues?.leftInputValue;
-    }
-    return inputValues?.centerInputValue;
-  };
+  const { transform } = useToggleTransform({ checked, thumbRef, trackRef });
 
-  const buildRadioButton = (position: POSITIONS, block = false) => {
-    return (
-      <>
-        <ToggleRadioSwitchStyled
-          $height={props.styles?.thumb?.height}
-          $width={props.styles?.thumb?.width}
-          aria-describedby={props.screenReaderId}
-          aria-labelledby={props['aria-describedby']}
-          disabled={props.disabled}
-          id={`${position.toLowerCase()}Input`}
-          name={radioButtonToggleName}
-          tabIndex={-1}
-          type={InputTypeType.RADIO}
-          value={getValueOfRadioButton(position)}
-          onClick={e => {
-            if (!block) {
-              e.persist();
-              if (!props.hasThreePositions) {
-                const newPosition =
-                  props.togglePosition === POSITIONS.RIGHT ? POSITIONS.LEFT : POSITIONS.RIGHT;
-                props.onClick?.(newPosition, e);
-              } else {
-                props.onClick?.(position, e);
-              }
-            }
-          }}
-        />
-        <LabelWrapperStyled
-          hasThreePositions={props.hasThreePositions}
-          showLabel={position !== POSITIONS.CENTER && position === props.togglePosition}
-          styles={props.styles}
-          togglePosition={props.togglePosition}
-        >
-          <Label
-            color={props.styles?.label?.color}
-            dataTestId={`${props.dataTestId}${
-              position === POSITIONS.RIGHT ? 'On' : position === POSITIONS.CENTER ? 'Na' : 'Off'
-            }LabelOption`}
-            inputId={`${position.toLowerCase()}Input`}
-            textVariant={
-              (position === POSITIONS.LEFT && props.offText?.content) ||
-              (position === POSITIONS.RIGHT && props.onText?.content)
-                ? props.styles?.label?.font_variant
-                : props.styles?.labelWithIcons?.font_variant
-            }
-            weight={props.styles?.label?.font_weight}
-          >
-            {buildTextOrIcon(position)}
-          </Label>
-        </LabelWrapperStyled>
-      </>
-    );
-  };
+  // Expose the trackRef to parent components using useImperativeHandle
+  // This way external consumers get the same ref used for transform calculations
+  useImperativeHandle(ref, () => trackRef.current as HTMLButtonElement, []);
 
-  const buildCenterRadioButton = () => (
-    <>
-      {props.togglePosition === POSITIONS.CENTER && (
-        <TextLeftWrapperStyled margin={props.styles?.label?.margin_left}>
-          <Text
-            aria-hidden={true}
-            color={props.styles?.label?.color}
-            component={TextComponentType.LABEL}
-            dataTestId={`${props.dataTestId}OffLabel`}
-            variant={props.styles?.label?.font_variant}
-            weight={props.styles?.label?.font_weight}
-          >
-            {props.offText?.content}
-          </Text>
-        </TextLeftWrapperStyled>
-      )}
-      {buildRadioButton(
-        POSITIONS.CENTER,
-        blockCenter ? props.togglePosition !== POSITIONS.CENTER : false
-      )}
-      {props.togglePosition === POSITIONS.CENTER && (
-        <TextRightWrapperStyled margin={props.styles?.label?.margin_right}>
-          <Text
-            aria-hidden={true}
-            color={props.styles?.label?.color}
-            component={TextComponentType.LABEL}
-            dataTestId={`${props.dataTestId}OnLabel`}
-            variant={props.styles?.label?.font_variant}
-            weight={props.styles?.label?.font_weight}
-          >
-            {props.onText?.content}
-          </Text>
-        </TextRightWrapperStyled>
-      )}
-    </>
-  );
+  const customProps = pickCustomAttributes(props);
+
+  // Build appropriate props for toggle component based on rendering mode
+  // Uses the factory pattern to generate correct accessibility and form attributes
+  const componentProps = buildComponentProps({
+    'aria-describedby': props['aria-describedby'],
+    'aria-label': props['aria-label'],
+    'aria-labelledby': props['aria-labelledby'],
+    checked,
+    decorative,
+    disabled,
+    id,
+    name,
+    onBlur,
+    onClick,
+    onFocus,
+    onKeyDown,
+    onMouseEnter,
+    onMouseLeave,
+    tabIndex,
+    value,
+  });
 
   return (
-    <ToggleWrapperStyled
-      ref={ref}
-      data-testid={props.dataTestId}
-      disabled={props.disabled}
-      hasThreePositions={props.hasThreePositions}
-      id={props.id}
-      styles={props.styles}
-      tabIndex={0}
-      togglePosition={props.togglePosition}
-      onKeyDown={e => {
-        e.persist();
-        props.onKeyDown?.(e);
-      }}
+    <CustomComponent
+      {...customProps}
+      {...componentProps}
+      ref={trackRef}
+      className={cssClasses?.track}
+      component={component}
+      data-checked={checked ? true : undefined}
+      data-disabled={disabled ? true : undefined}
+      data-testid={dataTestId}
     >
-      <ScreenReaderOnly ariaLive={AriaLiveOptionType.POLITE}>
-        {getScreenReaderText(props.togglePosition)}
-      </ScreenReaderOnly>
-      {buildRadioButton(POSITIONS.LEFT)}
-      {props.hasThreePositions && buildCenterRadioButton()}
-      {buildRadioButton(POSITIONS.RIGHT)}
-      <SliderContainerStyled
-        aria-hidden="true"
-        data-testid={`${props.dataTestId}Thumb`}
-        hasThreePositions={props.hasThreePositions}
-        styles={props.styles}
-        togglePosition={props.togglePosition}
-        onClick={e => {
-          if (!props.hasThreePositions) {
-            e.persist();
-            const newPosition =
-              props.togglePosition === POSITIONS.RIGHT ? POSITIONS.LEFT : POSITIONS.RIGHT;
-            props.onClick?.(newPosition, e);
-          }
-        }}
-      />
-    </ToggleWrapperStyled>
+      <span
+        ref={thumbRef}
+        className={cssClasses?.thumb}
+        data-checked={checked ? true : undefined}
+        data-disabled={disabled ? true : undefined}
+        style={{ transform }}
+      >
+        {/* Right Icon - shown when toggle is ON */}
+        <div
+          className={cssClasses?.iconwrapper}
+          data-testid={`${dataTestId}-right-icon`}
+          style={{ opacity: shouldShowRightIcon ? 1 : 0 }}
+        >
+          <ElementOrIcon
+            className={cssClasses?.icon}
+            data-disabled={disabled ? true : undefined}
+            {...processIcon(rightIcon)}
+          />
+        </div>
+
+        {/* Left Icon - shown when toggle is OFF */}
+        <div
+          className={cssClasses?.iconwrapper}
+          data-testid={`${dataTestId}-left-icon`}
+          style={{ opacity: shouldShowLeftIcon ? 1 : 0 }}
+        >
+          <ElementOrIcon
+            className={cssClasses?.icon}
+            data-disabled={disabled ? true : undefined}
+            {...processIcon(leftIcon)}
+          />
+        </div>
+      </span>
+    </CustomComponent>
   );
 };
 
-/**
- * @description
- * Toggle component is a component that can be used to switch between two states.
- * @param {React.PropsWithChildren<IToggleStandAlone>} props
- * @returns {JSX.Element}
- */
-export const ToggleStandAlone = React.forwardRef(ToggleStandAloneComponent);
+ToggleStandAloneComponent.displayName = 'ToggleStandAlone';
+
+export const ToggleStandalone = forwardRef(ToggleStandAloneComponent);

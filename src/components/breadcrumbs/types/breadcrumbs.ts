@@ -1,67 +1,102 @@
-//types
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { ILink } from '@/components/link';
-import { TextComponentType } from '@/components/text';
-import { CustomTokenTypes, STATES } from '@/types';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
+import type { StateType } from '@/lib/types/states/states';
 
-import { BreadcrumbsPropsStateStylesType } from './breadcrumbsTheme';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
+import type { LinkProps } from '../../link/types/link';
+import type { TextComponentType } from '../../text/types/component';
 
-export interface IBreadcrumbLiStyled {
-  styles: BreadcrumbsPropsStateStylesType;
-  state?: STATES;
+/**
+ * Type for CSS classes specific to the breadcrumbs component.
+ */
+type BreadcrumbsCssClasses = ComponentSelected<
+  ComponentsTypesComponents['BREADCRUMBS']
+>;
+
+/**
+ * Interface for the styled breadcrumb list item.
+ * Includes optional state and a flag for the last breadcrumb.
+ */
+export interface BreadcrumbLiStyledProps {
+  state?: StateType;
   lastCrumb?: boolean;
 }
 
-export type CrumbType = {
+/**
+ * Type for an individual breadcrumb.
+ * Includes name, URL, optional onClick handler, and ARIA label.
+ */
+export interface BreadcrumbProps extends DataAttributes {
   name: string;
   url: string;
-  onClick?: (url: string, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick?: (
+    url: string,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => void;
   ariaLabel?: string;
-};
+  id?: string;
+}
 
-export type BreadcrumbsLinkType = Omit<ILink, 'children' | 'onClick' | 'aria-label' | 'url'> & {
+/**
+ * Type for a breadcrumb link with optional content.
+ * Extends the ILink type with specific overrides.
+ */
+export type BreadcrumbLinkProps = Omit<
+  LinkProps,
+  'children' | 'onClick' | 'aria-label' | 'url'
+> & {
   content?: string;
 };
 
-export interface IBreadcrumbStandAlone {
-  styles: BreadcrumbsPropsStateStylesType;
-  link?: BreadcrumbsLinkType;
-  crumb: CrumbType;
+/**
+ * Interface for a standalone breadcrumb component.
+ * Includes optional CSS classes, link, crumb, and other properties.
+ */
+export interface BreadcrumbStandAloneProps extends DataAttributes {
+  cssClasses?: BreadcrumbsCssClasses;
+  link?: BreadcrumbLinkProps;
+  crumb: BreadcrumbProps;
   lastCrumb?: boolean;
   lastOneCrumbComponent?: TextComponentType;
-  dividerIcon?: IElementOrIcon;
-  dataTestId?: string;
+  dividerIcon?: ElementOrIconProps;
 }
 
-type BreadcrumbsAriaAttributes = Pick<
+/**
+ * Type for ARIA attributes used in breadcrumbs.
+ */
+type BreadcrumbAriaAttributes = Pick<
   React.AriaAttributes,
   'aria-label' | 'aria-describedby' | 'aria-disabled' | 'aria-labelledby'
 >;
 
 /**
- * @description
- * interface for the breadcrumbs standAlone
+ * Interface for the standalone breadcrumbs component.
+ * Includes ARIA attributes, crumbs, and optional properties.
  */
-export interface IBreadcrumbsStandAlone extends BreadcrumbsAriaAttributes {
-  link?: BreadcrumbsLinkType;
+export interface BreadcrumbsStandAloneProps
+  extends BreadcrumbAriaAttributes,
+    DataAttributes {
+  link?: BreadcrumbLinkProps;
   id?: string;
-  crumbs: CrumbType[];
+  crumbs: BreadcrumbProps[];
   minCharLimit?: number;
-  dataTestId?: string;
-  styles: BreadcrumbsPropsStateStylesType;
-  dividerIcon?: IElementOrIcon;
+  dividerIcon?: ElementOrIconProps;
   lastOneCrumbComponent?: TextComponentType;
+  cssClasses?: BreadcrumbsCssClasses;
 }
 
 /**
- * @description
- * interface for the breadcrumbs controlled
- * @interface IBreadcrumbsControlled
- * @template V
- * @property {V} variant - Variant of the breadcrumbs.
+ * Interface for the controlled breadcrumbs component.
+ * Extends the BreadcrumbsStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the breadcrumbs.
  */
-export interface IBreadcrumbsControlled<V = undefined extends string ? unknown : string>
-  extends Omit<IBreadcrumbsStandAlone, 'styles'>,
-    Omit<CustomTokenTypes<BreadcrumbsPropsStateStylesType>, 'cts' | 'extraCt'> {
-  variant: V;
+export interface BreadcrumbsProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<BreadcrumbsStandAloneProps, 'styles'> {
+  variant?: Variant;
+  additionalClasses?: Partial<BreadcrumbsCssClasses>;
 }

@@ -1,27 +1,52 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { DotStyled } from './dot.styled';
-import { IDotStandAlone } from './types/dot';
+import { classNames } from '@/lib/utils/classNames/classNames';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-const DotStandAloneComponent = (
-  { formatedNumber, sizeStyles, styles, dataTestId = 'dot-standalone-test-id' }: IDotStandAlone,
-  ref: React.ForwardedRef<HTMLSpanElement> | undefined | null
-): JSX.Element => {
-  return (
-    <DotStyled ref={ref} data-testid={dataTestId} sizeStyles={sizeStyles} styles={styles}>
-      {formatedNumber}
-    </DotStyled>
-  );
-};
+import type { DotStandAloneProps } from './types/dot';
 
 /**
- * @description
- * Dot component is a component that can be used to display a dot.
- * It can be used to display a notification dot or a dot to indicate a status.
- * @param {IDotStandAlone} props
- * @returns {JSX.Element}
- * @constructor
+ * Low-level dot component for rendering a badge or indicator.
+ *
+ * This component is responsible for the visual rendering of a dot, badge, or counter.
+ * It receives precomputed CSS classes and content, and renders a styled `<span>`.
+ * Typically used internally by higher-level dot components.
+ *
  * @example
- * <Dot variant="primary" size="SMALL" number={1} maxNumber={99} />
+ * ```tsx
+ * <DotStandAlone
+ *   cssSizeClasses={{ dot: "h-4 w-4" }}
+ *   cssVariantClasses={{ dot: "bg-primary" }}
+ *   formatedNumber="+9"
+ * />
+ * ```
  */
-export const DotStandAlone = React.forwardRef(DotStandAloneComponent);
+export const DotStandAlone = forwardRef<HTMLSpanElement, DotStandAloneProps>(
+  (
+    {
+      cssSizeClasses,
+      cssVariantClasses,
+      formatedNumber,
+      height,
+      label,
+      width,
+      ...props
+    },
+    ref,
+  ): JSX.Element => {
+    const customProps = pickCustomAttributes(props);
+
+    return (
+      <span
+        ref={ref}
+        className={classNames(cssSizeClasses?.dot, cssVariantClasses?.dot)}
+        data-testid="dot"
+        style={height || width ? { height, width } : undefined}
+        {...customProps}
+      >
+        {label}
+        {formatedNumber}
+      </span>
+    );
+  },
+);

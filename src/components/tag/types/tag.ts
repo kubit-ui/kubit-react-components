@@ -1,38 +1,40 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { CustomTokenTypes } from '@/types';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { TagStateKeyOfType, TagStylesOptionPropsType, TagStylesVariantPropsType } from './tagTheme';
+type TagCssClasses = ComponentSelected<ComponentsTypesComponents['TAG']>;
 
-type TagAriaAttributes = Pick<
+/**
+ * Represents the ARIA attributes for the tag component.
+ */
+type TagAriaProps = Pick<
   React.AriaAttributes,
   'aria-label' | 'aria-describedby' | 'aria-disabled' | 'aria-labelledby'
 >;
 
 /**
- * @description
- * Tag props
+ * Interface for the standalone tag component.
+ * Includes ARIA attributes, an optional icon, label, component type, data-testid attribute, and custom CSS classes.
  */
-export interface ITagStandAlone<V extends string | unknown = string | unknown>
-  extends TagAriaAttributes {
-  children: React.ReactNode;
-  variantStatusStyles?: TagStylesVariantPropsType;
-  optionStyles: TagStylesOptionPropsType;
-  dataTestId?: string;
-  icon?: IElementOrIcon;
-  variant: V;
-  truncateText?: boolean;
+export interface TagStandAloneProps extends TagAriaProps, DataAttributes {
+  icon?: CommonIconProps;
+  label?: CommonTextProps;
+  component?: React.ElementType;
+  cssClasses?: TagCssClasses;
 }
 
 /**
- * @description
- * Tag props
- * @interface ITag
+ * Interface for the tag component with a variant.
+ * Extends the TagStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the tag component.
  */
-export interface ITag<
-  V = undefined extends string | unknown ? string | undefined : string | unknown,
-  S = undefined extends string | unknown ? string | undefined : string | unknown,
-> extends Omit<ITagStandAlone<V>, 'variantStatusStyles' | 'optionStyles'>,
-    Omit<CustomTokenTypes<TagStateKeyOfType, undefined, TagStylesOptionPropsType>, 'cts'> {
-  option: S;
-  status: string;
+export interface TagProps<Variant = undefined extends string ? unknown : string>
+  extends Omit<TagStandAloneProps, 'cssClasses'> {
+  variant?: Variant;
+  additionalClasses?: Partial<TagCssClasses>;
 }

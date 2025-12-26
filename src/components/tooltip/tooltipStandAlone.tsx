@@ -1,199 +1,277 @@
-import * as React from 'react';
+import './tooltip.css';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Icon } from '@/components/icon';
-import {
-  PopoverControlled as Popover,
-  PopoverComponentType,
-  PopoverPositionVariantType,
-} from '@/components/popover';
-import { Text, TextComponentType } from '@/components/text';
-import { useId } from '@/hooks/useId/useId';
-import { DeviceBreakpointsType, ROLES } from '@/types';
+import { RenderIf } from '@/components/renderIf/renderIf';
+import { Text } from '@/components/text/text';
+import { useId } from '@/lib/hooks/useId/useId';
+import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
+import { POSITIONS } from '@/lib/types/positions/positions';
+import { classNames } from '@/lib/utils/classNames/classNames';
+import { isString } from '@/lib/utils/is/isString';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
+import { processText } from '@/lib/utils/process/processText/processText';
 
-import { TooltipTrigger } from './components';
-// styles
-import {
-  TooltipArrowContentStyled,
-  TooltipArrowStyled,
-  TooltipCloseIconStyled,
-  TooltipDragIconStyled,
-  TooltipExternalContainerStyled,
-  TooltipHeaderContentStyled,
-  TooltipInnerContentStyled,
-  TooltipInternalContainerStyled,
-  TooltipParagraphStyled,
-  TooltipStyled,
-  TooltipTitleStyled,
-} from './tooltip.styled';
-import { ITooltipStandAlone } from './types';
-import { getAriaDescriptorsBy, getHtmlTagForTooltip } from './utils';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { IconHost as Icon } from '../icon/iconHost';
+import { Popover } from '../popover/popover';
+import { TooltipTrigger } from './components/tooltipTrigger';
+import type { TooltipStandAloneProps } from './types/tooltip';
+import { getAriaDescriptorsBy } from './utils/tooltip.utils';
 
-// eslint-disable-next-line complexity
-const TooltipStandAlone = ({
+export const TooltipStandAlone = ({
+  align,
+  children,
   childrenAsButton = true,
+  closeIcon,
+  content,
+  contentHasScroll,
+  contentRef,
+  contentScrollArias,
+  cssClasses,
+  disabled,
+  dragIcon,
+  dragIconRef,
+  labelRef,
+  mediaDevice,
+  onCloseIconClick,
+  onPopoverCloseInternally,
+  onTooltipFocus,
+  onTooltipKeyDown,
+  onTriggerClick,
+  onTriggerKeyDown,
+  onTriggerMouseDown,
+  onTriggerMouseUp,
+  popover,
+  popoverOpen,
+  title,
+  tooltipAriaLabel,
+  tooltipAsModal,
+  tooltipRef,
+  triggerAsButton,
   ...props
-}: ITooltipStandAlone): JSX.Element => {
+}: TooltipStandAloneProps): JSX.Element => {
+  const dataTestId = props['data-testid'] || 'tooltip';
+  const customProps = pickCustomAttributes(props);
   const uniqueId = useId('tooltip');
   const titleId = `${uniqueId}Title`;
   const contentId = `${uniqueId}Content`;
-  const isTextContent = typeof props.content?.content === 'string';
 
-  if (props.disabled) {
+  const processedContent = processText(content);
+  const processedTitle = processText(title);
+
+  const isTextContent = isString(processedContent.children);
+
+  const { isDesktop, isMobile, isTablet } = useActiveBreakpoints();
+  const isDesktopOrTablet = isDesktop || isTablet;
+
+  if (disabled) {
     return (
-      <TooltipStyled data-testid={`${props.dataTestId}Tooltip`}>{props.children}</TooltipStyled>
+      <div className="kbt-tooltip" data-testid={dataTestId}>
+        <TooltipTrigger childrenAsButton={childrenAsButton} disabled={true}>
+          {children}
+        </TooltipTrigger>
+      </div>
     );
   }
 
   const ariaDescriptorsBy = getAriaDescriptorsBy({
-    title: props.title?.content,
-    content: props.content?.content,
-    titleId,
     contentId,
+    hasContent: !!content,
+    hasTitle: !!processedTitle.children,
+    titleId,
   });
 
+  const getTooltipStyle = (hasTitle: boolean, hasCloseIcon: boolean) => {
+    if (hasTitle && hasCloseIcon) {
+      return { justifyContent: 'space-between' };
+    }
+    if (hasTitle) {
+      return { justifyContent: 'flex-end' };
+    }
+    if (hasCloseIcon) {
+      return { justifyContent: 'flex-start' };
+    }
+    return { display: 'none' };
+  };
+
+  const customAttributes = {
+    'data-align': align || POSITIONS.TOP,
+  };
+  const customAttributesProps = pickCustomAttributes(customAttributes);
+
   const Tooltip = (
-    <TooltipExternalContainerStyled
-      ref={props.tooltipRef}
-      aria-labelledby={props.tooltipAsModal ? ariaDescriptorsBy : undefined}
-      as={getHtmlTagForTooltip({
-        mediaDevice: props.mediaDevice,
-        tooltipAsModal: props.tooltipAsModal,
-      })}
-      data-testid={`${props.dataTestId}TooltipContent`}
-      id={uniqueId}
-      role={
-        props.mediaDevice === DeviceBreakpointsType.DESKTOP && !props.tooltipAsModal
-          ? ROLES.TOOLTIP
+    <div
+      ref={tooltipRef}
+      aria-label={isDesktopOrTablet ? tooltipAriaLabel : undefined}
+      aria-labelledby={
+        isDesktopOrTablet
+          ? getAriaDescriptorsBy({
+              hasTitle: !!processedTitle.children,
+              titleId,
+            })
           : undefined
       }
-      styles={props.styles}
-      onFocus={props.onTooltipFocus}
-      onKeyDown={props.onTooltipKeyDown}
+      aria-modal={isDesktopOrTablet && tooltipAsModal ? true : undefined}
+      className={classNames(
+        'kbt-tooltip__external-container',
+        cssClasses?.tooltipexternalcontainer,
+      )}
+      data-testid={`${dataTestId}-content`}
+      id={uniqueId}
+      role={
+        isDesktopOrTablet ? (tooltipAsModal ? 'dialog' : 'tooltip') : undefined
+      }
+      {...(isDesktopOrTablet && {
+        onFocus: onTooltipFocus,
+        onKeyDown: onTooltipKeyDown,
+      })}
+      {...customProps}
     >
-      <TooltipInternalContainerStyled styles={props.styles}>
-        {props.dragIcon && (
-          <TooltipDragIconStyled
-            data-testid={`${props.dataTestId}TooltipDrag`}
-            styles={props.styles}
+      <div className={cssClasses?.tooltipinternalcontainer}>
+        {/* Drag Icon */}
+        <RenderIf condition={(isMobile || isTablet) && !!dragIcon}>
+          <div
+            ref={dragIconRef}
+            className={cssClasses?.dragiconcontainer}
+            data-testid={`${dataTestId}-drag`}
           >
-            <ElementOrIcon customIconStyles={props.styles?.dragIcon} {...props.dragIcon} />
-          </TooltipDragIconStyled>
-        )}
-        <TooltipHeaderContentStyled
-          hasCloseIcon={!!props.closeIcon?.icon}
-          hasTitle={!!props.title}
-          styles={props.styles}
+            <ElementOrIcon className={cssClasses?.dragicon} {...dragIcon} />
+          </div>
+        </RenderIf>
+
+        {/* Header */}
+        <div
+          className={classNames(cssClasses?.title, cssClasses?.headercontainer)}
+          style={getTooltipStyle(!!processedTitle.children, !!closeIcon?.icon)}
         >
-          {/* Close icon is the first element, so when pressing down arrow the title and the content is read */}
-          {props.closeIcon?.icon && (
-            <TooltipCloseIconStyled styles={props.styles}>
+          {/* Close Icon */}
+          {processIcon(closeIcon).icon && (
+            <div className={cssClasses?.closebuttoncontainer}>
               <Icon
-                customIconStyles={props.styles?.closeButtonIcon}
-                dataTestId={`${props.dataTestId}TooltipContentCloseIcon`}
-                {...props.closeIcon}
-                onClick={props.onCloseIconClick}
+                {...processIcon(closeIcon)}
+                className={cssClasses?.closebuttonicon}
+                icon={processIcon(closeIcon).icon as string}
+                onClick={onCloseIconClick}
               />
-            </TooltipCloseIconStyled>
+            </div>
           )}
-          {props.title?.content && (
-            <TooltipTitleStyled
-              hasCloseIcon={!!props.closeIcon?.icon}
-              id={titleId}
-              styles={props.styles}
-            >
+
+          {/* Title */}
+          <RenderIf condition={!!processedTitle.children}>
+            <div className="kbt-tooltip__title" id={titleId}>
               <Text
-                component={TextComponentType.SPAN}
-                customTypography={props.styles?.title}
-                dataTestId={`${props.dataTestId}TooltipContentTitle`}
-                variant={props.styles.title?.font_variant}
-                {...props.title}
+                additionalClasses={{ text: cssClasses?.title }}
+                component="h2"
+                {...processedTitle}
               >
-                {props.title.content}
+                {processedTitle.children}
               </Text>
-            </TooltipTitleStyled>
-          )}
-        </TooltipHeaderContentStyled>
-        <TooltipInnerContentStyled styles={props.styles}>
-          {props.content && (
-            <TooltipParagraphStyled
-              hasBorder={!!props.title?.content}
+            </div>
+          </RenderIf>
+        </div>
+
+        {/* Content */}
+        <div
+          ref={contentRef}
+          aria-label={
+            contentHasScroll ? contentScrollArias?.['aria-label'] : undefined
+          }
+          aria-labelledby={
+            contentHasScroll
+              ? contentScrollArias?.['aria-labelledby']
+              : undefined
+          }
+          className="kbt-tooltip__inner-content"
+          role={contentHasScroll ? 'region' : undefined}
+          {...(contentHasScroll && { tabIndex: 0 })}
+        >
+          <RenderIf condition={!!content}>
+            <div
+              className={classNames(
+                'kbt-tooltip__paragraph',
+                cssClasses?.paragraphcontainer,
+                {
+                  [`${cssClasses?.divider}`]: !!processedTitle.children,
+                },
+              )}
               id={contentId}
-              styles={props.styles}
             >
               {isTextContent ? (
                 <Text
-                  customTypography={props.styles?.paragraph}
-                  dataTestId={`${props.dataTestId}TooltipContentContent`}
-                  variant={props.styles.paragraph?.font_variant}
-                  {...props.content}
-                >
-                  {props.content.content}
-                </Text>
+                  additionalClasses={{ text: cssClasses?.paragraph }}
+                  {...processedContent}
+                />
               ) : (
-                props.content.content
+                processedContent.children
               )}
-            </TooltipParagraphStyled>
-          )}
-        </TooltipInnerContentStyled>
-      </TooltipInternalContainerStyled>
-      <TooltipArrowStyled styles={props.styles}>
-        <TooltipArrowContentStyled styles={props.styles} />
-      </TooltipArrowStyled>
-    </TooltipExternalContainerStyled>
+            </div>
+          </RenderIf>
+        </div>
+      </div>
+
+      {/* Arrow */}
+      <div
+        {...customAttributesProps}
+        className={classNames(
+          'kbt-tooltip__arrow',
+          cssClasses?.arrowsize,
+          cssClasses?.tooltipalignstyles,
+          cssClasses?.arrowcontainer,
+        )}
+      >
+        <div className={cssClasses?.arrow} />
+      </div>
+    </div>
   );
 
   return (
-    <TooltipStyled
-      ref={props.labelRef}
-      // Aria describedby is used when the tooltip is not used as a modal
-      // Tooltip will not be shown when the popover component is used and it is hidden
-      aria-describedby={
-        !props.tooltipAsModal &&
-        (props.mediaDevice === DeviceBreakpointsType.DESKTOP || props.popoverOpen)
-          ? ariaDescriptorsBy
-          : undefined
-      }
-      data-testid={`${props.dataTestId}Tooltip`}
-      tooltipAsModal={props.tooltipAsModal}
-      onBlur={props.onBlur}
-      onClick={props.onClick}
-      onFocus={props.onFocus}
-      onKeyDown={props.onKeyDown}
-      onMouseDown={props.onMouseDown}
-      onMouseEnter={props.onMouseEnter}
-      // When no focusable elements screenReaders may read the text when focus and then using arrows
-      // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tooltip_role
-      // or https://dequeuniversity.com/library/aria/tooltip
-      onMouseLeave={props.onMouseLeave}
-    >
-      <TooltipTrigger childrenAsButton={childrenAsButton}>{props.children}</TooltipTrigger>
-      {props.mediaDevice === DeviceBreakpointsType.DESKTOP ? (
+    <div ref={labelRef} className="kbt-tooltip" data-testid={dataTestId}>
+      <TooltipTrigger
+        ariaDescribedBy={
+          !tooltipAsModal && (isDesktopOrTablet || popoverOpen)
+            ? ariaDescriptorsBy
+            : undefined
+        }
+        childrenAsButton={childrenAsButton}
+        triggerAsButton={triggerAsButton}
+        onClick={onTriggerClick}
+        onKeyDown={onTriggerKeyDown}
+        onMouseDown={onTriggerMouseDown}
+        onMouseUp={onTriggerMouseUp}
+      >
+        {children}
+      </TooltipTrigger>
+      {isDesktopOrTablet ? (
         Tooltip
       ) : (
         <Popover
-          component={!props.tooltipAsModal ? PopoverComponentType.DIV : PopoverComponentType.DIALOG}
-          dataTestId={`${props.dataTestId}Popover`}
-          focusLastElementFocusedAfterClose={false}
-          hasBackDrop={props.styles.showOverlay?.[props.mediaDevice]}
-          open={props.popoverOpen}
-          positionVariant={PopoverPositionVariantType.ABSOLUTE}
-          preventCloseOnClickElements={[props.labelRef?.current]}
-          role={!props.tooltipAsModal ? ROLES.TOOLTIP : undefined}
-          trapFocusInsideModal={!props.tooltipAsModal ? false : true}
-          variant={props.styles.popoverVariant?.[props.mediaDevice]}
-          {...props.popover}
-          onCloseInternally={props.onPopoverCloseInternally}
+          additionalClasses={
+            cssClasses?.popover
+              ? {
+                  arrow: '',
+                  popover: cssClasses.popover.popover || '',
+                }
+              : undefined
+          }
+          aria-label={popover?.['aria-label'] || tooltipAriaLabel}
+          aria-labelledby={getAriaDescriptorsBy({
+            hasTitle: !!processedTitle.children,
+            titleId,
+          })}
+          aria-modal={tooltipAsModal || undefined}
+          component="div"
+          disableAutoFocusFirstDescendantAfterClose={true}
+          disableTrapFocus={false}
+          open={popoverOpen}
+          preventCloseOnClickElements={[labelRef?.current]}
+          role={tooltipAsModal ? 'dialog' : 'tooltip'}
+          strategy="absolute"
+          onClose={onPopoverCloseInternally}
+          {...popover}
         >
           {Tooltip}
         </Popover>
       )}
-    </TooltipStyled>
+    </div>
   );
 };
-
-/**
- * @description
- * Tooltip component to show a message when the user hovers over, focuses on, or touches an element.
- */
-export { TooltipStandAlone };

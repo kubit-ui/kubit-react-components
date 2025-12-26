@@ -1,107 +1,90 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
-import { STYLES_NAME } from '@/constants/index';
-import { States, useManageState } from '@/hooks';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { useManageState } from '@/lib/hooks/useManageState/useManageState';
+import { STATES } from '@/lib/types/states/states';
+import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 
 import { ButtonStandAlone } from './buttonStandAlone';
-import {
-  ButtonSizePropsType,
-  ButtonStateKeyOfType,
-  ButtonStateType,
-  ButtonType,
-  IButton,
-  IButtonStandAlone,
-} from './types';
+import type { ButtonProps } from './types/button';
 
-const ButtonComponent = React.forwardRef(
-  <
-    V = undefined extends string | unknown ? string | undefined : string | unknown,
-    S = undefined extends string | unknown ? string | undefined : string | unknown,
-  >(
+/**
+ * Generic button component for triggering actions or submitting forms.
+ *
+ * This component supports custom variants and sizes through generic type parameters,
+ * allowing you to extend the button's appearance and behavior for your design system.
+ * It handles disabled and loading states, and can render an icon and/or children.
+ *
+ * Internally, it uses {@link ButtonStandAlone} for rendering and applies CSS classes
+ * based on the provided variant and size.
+ *
+ * ### Generics
+ * - `<Variant extends string | undefined>`: Allows you to define custom variant types for theming.
+ * - `<Size extends string | undefined>`: Allows you to define custom size types for sizing.
+ *
+ * @example
+ * ```tsx
+ * <Button variant="primary" size="md">Click me</Button>
+ *
+ * // With custom variant and size types:
+ * type MyVariant = "primary" | "danger";
+ * type MySize = "sm" | "lg";
+ * <Button<MyVariant, MySize> variant="danger" size="lg">Delete</Button>
+ * ```
+ *
+ * @returns The rendered button element, or null if no content is provided.
+ */
+export const Button = forwardRef(
+  <Variant extends string | undefined, Size extends string | undefined>(
     {
-      type = ButtonType.BUTTON,
+      additionalSizeClasses,
+      additionalVariantClasses,
+      children,
       disabled = false,
+      icon,
       loading = false,
-      ctv,
-      cts,
+      size,
+      type = 'button',
+      variant,
       ...props
-    }: IButton<V, S>,
-    ref: React.ForwardedRef<HTMLButtonElement> | undefined | null
+    }: ButtonProps<Variant, Size>,
+    ref: ForwardedRef<HTMLButtonElement> | undefined | null,
   ): JSX.Element | null => {
-    const variantStyles = useStyles<ButtonStateKeyOfType, V>(
-      STYLES_NAME.BUTTON,
-      props.variant,
-      ctv
-    );
-    const sizeStyles = useStyles<ButtonSizePropsType, S>(STYLES_NAME.BUTTON, props.size, cts);
-
-    const { state, setRef } = useManageState({
-      states: Object.values(ButtonStateType) as States,
-      ref: ref as React.ForwardedRef<HTMLElement> | undefined | null,
-      disabled,
-      loading,
+    const cssVariantClasses = useClassName({
+      additionalClassNames: additionalVariantClasses,
+      component: 'BUTTON',
+      variant,
+    });
+    const cssSizeClasses = useClassName({
+      additionalClassNames: additionalSizeClasses,
+      component: 'BUTTON',
+      variant: size,
     });
 
-    if (!props.children && !props.icon?.icon) return null;
+    const { setRef } = useManageState({
+      disabled,
+      loading,
+      ref: ref as ForwardedRef<HTMLElement> | undefined | null,
+      states: Object.values(STATES),
+    });
+
+    if (!children && !processIcon(icon).icon) {
+      return null;
+    }
 
     return (
       <ButtonStandAlone
         {...props}
-        ref={setRef as React.ForwardedRef<HTMLButtonElement>}
+        ref={setRef as ForwardedRef<HTMLButtonElement>}
+        cssSizeClasses={cssSizeClasses}
+        cssVariantClasses={cssVariantClasses}
+        disabled={disabled}
+        icon={icon}
         loading={loading}
-        sizeStyles={sizeStyles}
-        state={state as unknown as ButtonStateType}
-        styles={variantStyles}
         type={type}
       >
-        {props.children}
+        {children}
       </ButtonStandAlone>
     );
-  }
+  },
 );
-ButtonComponent.displayName = 'ButtonComponent';
-
-const ButtonBoundary = <
-  V = undefined extends string | unknown ? string | undefined : string | unknown,
-  S = undefined extends string | unknown ? string | undefined : string | unknown,
->(
-  props: IButton<V, S>,
-  ref: React.ForwardedRef<HTMLButtonElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <ButtonStandAlone
-          {...(props as unknown as IButtonStandAlone)}
-          ref={ref}
-          type={ButtonType.BUTTON}
-        />
-      </FallbackComponent>
-    }
-  >
-    <ButtonComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-const Button = React.forwardRef(ButtonBoundary) as <
-  V = undefined extends string | unknown ? string | undefined : string | unknown,
-  S = undefined extends string | unknown ? string | undefined : string | unknown,
->(
-  props: React.PropsWithChildren<IButton<V, S>> & {
-    ref?: React.ForwardedRef<HTMLButtonElement> | undefined | null;
-  }
-) => ReturnType<typeof ButtonBoundary>;
-
-/**
- * Represents the button component.
- *
- * @function Button
- * @category Atoms
- * @param {React.PropsWithChildren<IButton>} props - The props for the component.
- * @param {React.ForwardedRef<HTMLButtonElement>} ref - The ref for the component.
- * @returns {JSX.Element} - The JSX element representing the button component.
- */
-
-export { Button };

@@ -1,102 +1,144 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef, useState } from 'react';
 
-import { ROLES } from '@/types';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-// styles
-import { CalendarSelectorStyled, CalendarStyled, TableStyled } from './calendar.styled';
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { Header } from './header/header';
 import { List } from './list/list';
 import { MonthSelector } from './selector/monthSelector/monthSelector';
 import { Selector } from './selector/selector';
 import { YearSelector } from './selector/yearSelector/yearSelector';
-import { ICalendarStandAlone } from './types';
+import type { CalendarStandAloneProps } from './types/calendar';
 
 const CalendarStandAloneComponent = (
-  { maxDate = new Date(), ...props }: ICalendarStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): React.JSX.Element => {
-  const [showMonthSelector, setShowMonthSelector] = React.useState(false);
-  const [showYearSelector, setShowYearSelector] = React.useState(false);
-  const [showDaySelector, setShowDaySelector] = React.useState(true);
+  {
+    configAccesibility,
+    configCalendar,
+    cssClasses,
+    currentDate,
+    customBackText = 'Back',
+    disabledDates,
+    formatWeekDayOption,
+    hasRange,
+    id,
+    locale,
+    maxDate = new Date(),
+    minDate,
+    onDayClick,
+    onDaySelectorClick,
+    onLeftIconClick,
+    onMonthClick,
+    onMonthSelectorClick,
+    onRightIconClick,
+    onYearClick,
+    onYearSelectorClick,
+    selectedDate,
+    setCurrentDate,
+    setSelectedDate,
+    sundayFirst,
+    ...props
+  }: CalendarStandAloneProps,
+  ref: ForwardedRef<HTMLDivElement> | undefined | null,
+): JSX.Element => {
+  const [showMonthSelector, setShowMonthSelector] = useState(false);
+  const [showYearSelector, setShowYearSelector] = useState(false);
+  const [showDaySelector, setShowDaySelector] = useState(true);
   const today = new Date();
-
+  const customProps = pickCustomAttributes(props);
+  const dataTestId = props['data-testid'] || 'calendar';
   return (
-    <CalendarStyled
+    <div
       ref={ref}
-      data-testid={`${props.dataTestId}Calendar`}
-      id={props.id}
-      styles={props.styles}
+      className={cssClasses?.calendar}
+      data-calendar={true}
+      data-testid={dataTestId}
+      id={id}
+      {...customProps}
     >
       <Selector
-        configAccesibility={props.configAccesibility}
-        configCalendar={props.configCalendar}
-        currentDate={props.currentDate}
+        configAccesibility={configAccesibility}
+        configCalendar={configCalendar}
+        cssClasses={cssClasses}
+        currentDate={currentDate}
+        customBackText={customBackText}
         maxDate={maxDate}
-        minDate={props.minDate}
-        setCurrentDate={props.setCurrentDate}
+        minDate={minDate}
+        setCurrentDate={setCurrentDate}
         setShowDaySelector={setShowDaySelector}
         setShowMonthSelector={setShowMonthSelector}
         setShowYearSelector={setShowYearSelector}
         showDaySelector={showDaySelector}
         showMonthSelector={showMonthSelector}
         showYearSelector={showYearSelector}
-        styles={props.styles}
-        onDaySelectorClick={props.onDaySelectorClick}
-        onLeftIconClick={props.onLeftIconClick}
-        onMonthSelectorClick={props.onMonthSelectorClick}
-        onRightIconClick={props.onRightIconClick}
-        onYearSelectorClick={props.onYearSelectorClick}
+        onDaySelectorClick={onDaySelectorClick}
+        onLeftIconClick={onLeftIconClick}
+        onMonthSelectorClick={onMonthSelectorClick}
+        onRightIconClick={onRightIconClick}
+        onYearSelectorClick={onYearSelectorClick}
       />
-      <CalendarSelectorStyled>
+      <div className={cssClasses?.container}>
         {!showMonthSelector && !showYearSelector && showDaySelector && (
-          <TableStyled role={ROLES.GRID}>
+          <table
+            aria-label={currentDate.toLocaleDateString(locale, {
+              month: 'long',
+              timeZone: 'UTC',
+              year: 'numeric',
+            })}
+            className={cssClasses?.table}
+          >
             <Header
-              formatWeekDayOption={props.formatWeekDayOption}
-              isSundayFirst={props.sundayFirst}
-              styles={props.styles}
+              cssClasses={cssClasses}
+              formatWeekDayOption={formatWeekDayOption}
+              isSundayFirst={sundayFirst}
             />
             <List
-              currentDate={props.currentDate}
-              dataTestId={`${props.dataTestId}ItemList`}
-              disabledDates={props.disabledDates}
-              hasRange={props.hasRange}
+              cssClasses={cssClasses}
+              currentDate={currentDate}
+              data-testid={`${dataTestId}-item-list`}
+              disabledDates={disabledDates}
+              hasRange={hasRange}
               maxDate={maxDate}
-              minDate={props.minDate}
-              selectedDate={props.selectedDate}
-              setSelectedDate={props.setSelectedDate}
-              styles={props.styles?.daysList}
-              sundayFirst={props.sundayFirst}
-              onDayClick={props.onDayClick}
+              minDate={minDate}
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              sundayFirst={sundayFirst}
+              onDayClick={onDayClick}
             />
-          </TableStyled>
+          </table>
         )}
         {showMonthSelector && (
-          <MonthSelector
-            currentDate={props.currentDate}
-            dataTestId={`${props.dataTestId}Month`}
-            maxDate={maxDate}
-            minDate={props.minDate}
-            setCurrentDate={props.setCurrentDate}
-            styles={props.styles}
-            today={today}
-            onMonthClick={props.onMonthClick}
-          />
+          <CustomComponent className="kbt-calendar__table" component="div">
+            <MonthSelector
+              configAccesibility={configAccesibility}
+              cssClasses={cssClasses}
+              currentDate={currentDate}
+              data-testid={`${dataTestId}-month`}
+              locale={locale}
+              maxDate={maxDate}
+              minDate={minDate}
+              setCurrentDate={setCurrentDate}
+              today={today}
+              onMonthClick={onMonthClick}
+            />
+          </CustomComponent>
         )}
         {showYearSelector && (
-          <YearSelector
-            currentDate={props.currentDate}
-            dataTestId={`${props.dataTestId}Year`}
-            maxDate={maxDate}
-            minDate={props.minDate}
-            setCurrentDate={props.setCurrentDate}
-            styles={props.styles}
-            today={today}
-            onYearClick={props.onYearClick}
-          />
+          <CustomComponent className="kbt-calendar__table" component="div">
+            <YearSelector
+              configAccesibility={configAccesibility}
+              cssClasses={cssClasses}
+              currentDate={currentDate}
+              data-testid={`${dataTestId}-year`}
+              maxDate={maxDate}
+              minDate={minDate}
+              setCurrentDate={setCurrentDate}
+              today={today}
+              onYearClick={onYearClick}
+            />
+          </CustomComponent>
         )}
-      </CalendarSelectorStyled>
-    </CalendarStyled>
+      </div>
+    </div>
   );
 };
-
-export const CalendarStandAlone = React.forwardRef(CalendarStandAloneComponent);
+export const CalendarStandAlone = forwardRef(CalendarStandAloneComponent);

@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { createPortal } from 'react-dom';
 
-import { IPortal } from './types';
+import type { PortalProps } from './types/portal';
 
 /**
  * Creates a wrapper element and appends it to the <body> tag.
@@ -17,11 +16,12 @@ const createWrapperAndAppendToBody = (wrapperId: string): HTMLElement => {
 
 /**
  * Renders a portal component that can be appended to the <body> tag or a custom wrapper element.
- * @param children - The content to be rendered inside the portal.
+ * Only for internal use.
  * @param wrapperId - The ID of the custom wrapper element (optional).
+ * @param children - The content to be rendered inside the portal.
  * @returns The portal component.
  */
-export const Portal = ({ children, wrapperId }: IPortal): React.JSX.Element => {
+export const Portal = ({ children, wrapperId }: PortalProps): JSX.Element => {
   let element = document.body as HTMLElement;
 
   if (wrapperId) {

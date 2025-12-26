@@ -1,38 +1,46 @@
-import { CustomTokenTypes } from '@/types';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { SkeletonShapeStylesType, SkeletonVariantStylesType } from './skeletonTheme';
+type SkeletonCssClasses = ComponentSelected<
+  ComponentsTypesComponents['SKELETON']
+>;
 
-type SkeletonAriaAttributes = Pick<
+/**
+ * Represents the ARIA attributes for the Skeleton component.
+ */
+type SkeletonAriaProps = Pick<
   React.AriaAttributes,
   'aria-label' | 'aria-labelledby' | 'aria-describedby'
 >;
 
 /**
- * @description
- * Skeleton component props
- * @property {string} width - width of the skeleton
- * @property {string} height - height of the skeleton
- * @property {string} duration - duration of the skeleton animation
- * @property {SkeletonVariantStylesType} styles - styles of the skeleton
- * @property {string} dataTestId - data test id of the skeleton
- * @property {string} variant - variant of the skeleton
- *
+ * Interface for the standalone Skeleton component.
+ * Includes ARIA attributes, dimensions, animation duration, shape, and CSS classes.
  */
-export interface ISkeletonStandAlone extends SkeletonAriaAttributes {
-  width: string;
-  height: string;
+export interface SkeletonStandAloneProps
+  extends SkeletonAriaProps,
+    DataAttributes {
+  width?: string;
+  height?: string;
   duration?: string;
-  styles?: SkeletonVariantStylesType;
-  dataTestId?: string;
+  cssClasses?: SkeletonCssClasses;
+  shapeVariant?: string;
+  cssShapeClasses?: SkeletonCssClasses;
 }
 
 /**
- * @description
- * Skeleton component props
+ * Interface for the Skeleton component with a variant.
+ * Extends the SkeletonStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the Skeleton.
  */
-export interface ISkeleton<V = undefined extends string ? unknown : string>
-  extends Omit<ISkeletonStandAlone, 'styles'>,
-    Omit<CustomTokenTypes<SkeletonShapeStylesType>, 'cts' | 'extraCt'> {
-  variant: string;
-  shapeVariant: V;
+export interface SkeletonProps<
+  Variant = undefined extends string ? unknown : string,
+> extends SkeletonStandAloneProps {
+  variant?: Variant;
+  additionalClasses?: string;
+  additionalShapeClasses?: string;
 }

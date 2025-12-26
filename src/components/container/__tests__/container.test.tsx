@@ -1,34 +1,43 @@
-import React from 'react';
+import { axe } from 'vitest-axe';
 
-import { axe } from 'jest-axe';
+import { render } from '@/lib/tests/render/render';
 
-import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { ROLES } from '@/types';
-
-import { Container } from '../index';
+import { Container } from '../container';
 
 const mockProps = {
-  variant: 'DEFAULT',
-  title: { content: 'title' },
   children: 'children',
+  variant: 'DEFAULT',
 };
 
-test('Should render Container', async () => {
-  const { getByText, container } = renderProvider(<Container {...mockProps} />);
+describe('Container Component', () => {
+  const renderContainer = (props = mockProps) =>
+    render(
+      <Container
+        title={{
+          component: 'h4',
+          content: 'title',
+        }}
+        {...props}
+      />,
+    );
 
-  expect(getByText('children')).toBeInTheDocument();
+  it('Should render Container', async () => {
+    const { container, getByText } = renderContainer();
 
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
+    expect(getByText('children')).not.toBeNull();
 
-test('Should render title prop as h4 by default', async () => {
-  const { getByRole, container } = renderProvider(<Container {...mockProps} />);
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results.violations).toHaveLength(0);
+  });
 
-  expect(getByRole(ROLES.HEADING, { name: 'title', level: 4 })).toBeInTheDocument();
+  it('Should render title prop as h4 by default', async () => {
+    const { container, getByRole } = renderContainer();
 
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
+    expect(getByRole('heading', { level: 4, name: 'title' })).not.toBeNull();
+
+    const results = await axe(container);
+    expect(container).not.toBeNull();
+    expect(results.violations).toHaveLength(0);
+  });
 });

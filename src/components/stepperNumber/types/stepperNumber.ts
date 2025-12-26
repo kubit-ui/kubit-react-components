@@ -1,34 +1,75 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { CustomTokenTypes } from '@/types';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { StepperNumberOrientationType } from './orientation';
-import { StepperNumberprefixSuffixType } from './prefixSuffix';
-import { StepperNumberStateType } from './state';
-import {
-  StepperNumberDimensionStylesType,
-  StepperNumberStateStylesType,
-} from './stepperNumberTheme';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
+import type { TextProps } from '../../text/types/text';
+import type { StepperNumberOrientationType } from './orientation';
+import type { StepperNumberprefixSuffixProps } from './prefixSuffix';
+import type { StepperNumberStateType } from './state';
 
-export interface StepStateType {
+type StepperNumberCssClasses = ComponentSelected<
+  ComponentsTypesComponents['STEPPER_NUMBER']
+>;
+
+/**
+ * Represents the state of a step in the StepperNumber component.
+ */
+export interface StepStateProps {
   name: string;
   state: StepperNumberStateType;
+  ['aria-label']?: string;
 }
 
-export interface IStepperNumberStandAlone {
-  styles?: StepperNumberStateStylesType;
+/**
+ * Represents the screen reader text configuration for the StepperNumber component.
+ */
+export type StepperNumberScreenReaderTextProps = Pick<
+  TextProps,
+  'component'
+> & {
+  content?: string;
+};
+
+export interface Steps {
+  name: string;
+  ['aria-label']?: string;
+}
+
+/**
+ * Interface for the standalone StepperNumber component.
+ * Includes properties for orientation, steps, icons, screen reader text, and CSS classes.
+ */
+export interface StepperNumberStandAloneProps extends DataAttributes {
   orientation: StepperNumberOrientationType;
   horizontalOrientationWidth?: string;
-  completedStepIcon?: IElementOrIcon;
-  steps?: string[];
+  completedStepIcon?: ElementOrIconProps;
+  steps?: Steps[];
+  stepMaxTruncatedLines?: number;
   currentStep?: number;
-  ['aria-label']?: string;
-  screenReaderTextBuilder?: StepperNumberprefixSuffixType;
-  dataTestId?: string;
+
+  screenReaderTitle?: StepperNumberScreenReaderTextProps;
+  screenReaderCompletedStep?: StepperNumberScreenReaderTextProps;
+  screenReaderTextBuilder?: StepperNumberprefixSuffixProps;
+
+  cssVariantClasses?: StepperNumberCssClasses;
+  cssOrientationClasses?: StepperNumberCssClasses;
 }
 
-export interface IStepperNumber<V = undefined extends string ? unknown : string>
-  extends Omit<IStepperNumberStandAlone, 'styles' | 'orientation'>,
-    Omit<CustomTokenTypes<StepperNumberDimensionStylesType>, 'cts' | 'extraCt'> {
-  variant: V;
+/**
+ * Interface for the StepperNumber component with a variant.
+ * Extends the StepperNumberStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the StepperNumber.
+ */
+export interface StepperNumberProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<StepperNumberStandAloneProps, 'orientation'> {
+  variant?: Variant;
   orientation?: StepperNumberOrientationType;
+
+  additionalVariantClasses?: Partial<StepperNumberCssClasses>;
+  additionalOrientationClasses?: Partial<StepperNumberCssClasses>;
 }

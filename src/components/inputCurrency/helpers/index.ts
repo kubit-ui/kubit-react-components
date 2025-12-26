@@ -1,1 +1,0 @@
-export { truncatedValue } from './truncatedValue';

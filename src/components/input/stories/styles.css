@@ -1,0 +1,11 @@
+.custom-input-base {
+  border: '1px solid pink';
+  border-color: 'pink';
+  border-style: 'dashed';
+  border-width: '2px';
+  padding: '14px';
+}
+
+.custom-input-label {
+  position: 'undefined';
+}

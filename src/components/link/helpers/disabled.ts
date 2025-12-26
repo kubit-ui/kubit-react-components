@@ -1,11 +1,14 @@
-import { ROLES } from '@/types';
+import type { AriaRole } from 'react';
 
-type disabledLinkReturnValue = {
-  role?: string;
-};
+interface disabledLinkReturnValue {
+  role?: AriaRole;
+}
 
 // helper function
-export const disabledLink = (disabled: boolean, role?: string): disabledLinkReturnValue => {
-  const roleRes = disabled && !role ? ROLES.LINK : role;
+export const disabledLink = (
+  disabled: boolean,
+  role?: AriaRole,
+): disabledLinkReturnValue => {
+  const roleRes = disabled && !role ? 'link' : role;
   return { role: roleRes };
 };

@@ -1,43 +1,23 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
 import { ListOptionsStandAlone } from './listOptionsStandAlone';
-import { IListOptions, IListOptionsStandAlone, ListOptionsPropsStylesType } from './types';
+import type { ListOptionsProps } from './types/listOptions';
 
-export const ListOptionsComponent = React.forwardRef(
-  <V extends string | unknown>(
-    { variant, ctv, ...props }: IListOptions<V>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+export const ListOptions = forwardRef<HTMLDivElement, ListOptionsProps>(
+  (
+    { additionalClasses, variant, ...props }: ListOptionsProps,
+    ref,
   ): JSX.Element => {
-    const styles = useStyles<ListOptionsPropsStylesType, V>(STYLES_NAME.LIST_OPTIONS, variant, ctv);
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'LIST_OPTIONS',
+      variant,
+    });
 
-    return <ListOptionsStandAlone {...props} ref={ref} styles={styles} />;
-  }
+    return (
+      <ListOptionsStandAlone {...props} ref={ref} cssClasses={cssClasses} />
+    );
+  },
 );
-ListOptionsComponent.displayName = 'ListOptionsComponent';
-
-const ListOptionBoundary = <V extends string | unknown>(
-  props: IListOptions<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <ListOptionsStandAlone {...(props as unknown as IListOptionsStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <ListOptionsComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-const ListOptions = React.forwardRef(ListOptionBoundary) as <V extends string | unknown>(
-  props: React.PropsWithChildren<IListOptions<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => ReturnType<typeof ListOptionBoundary>;
-
-export { ListOptions };

@@ -2,26 +2,35 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: [
-    '../src/components/**/*.mdx',
     '../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-    '../.storybook/**/*.stories.@(js|jsx|mdx|ts|tjx|tdx|tsx)',
+    '../.storybook/**/*.@(mdx|stories.@(js|jsx|ts|tjx|tdx|tsx))',
   ],
-  staticDirs: ['./assets', '../assets'],
+  staticDirs: ['./assets'],
+
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
     '@storybook/addon-a11y',
     '@storybook/addon-coverage',
-    './tokensAddons/register.tsx',
+    '@storybook/addon-docs',
+    'storybook-addon-deep-controls',
+    'storybook-addon-pseudo-states',
   ],
+
   framework: {
     name: '@storybook/react-vite',
-    options: {},
+    options: {
+      builder: {
+        viteConfigPath: '.storybook/viteStorybook.config.mts',
+      },
+    },
   },
+
   docs: {
-    autodocs: 'tag',
     defaultName: 'Documentation',
+  },
+
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
   },
 };
 export default config;

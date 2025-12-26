@@ -4,36 +4,38 @@
 /bamboo-specs/.idea
 /bamboo-specs/*.iml
 
-/__reports__/**/*.*
+dist
+sample
+__reports__
+node_modules/
+dist/
+bundle/
 junit.xml
-
-/dist
-/sample
-/__reports__
-/node_modules/
-/dist/
-/bundle/
-/junit.xml
-/globalConfig
-/localConfig
+globalConfig
+localConfig
 /cli/test-output/**/*.*
 /.vscode/
 .DS_Store
 *.log
 /bamboo-specs/target
-junit.xml
 
-/config/webpack/microfront/config.js
-/config/webpack/microfront/config.json
+config/webpack/microfront/config.js
+config/webpack/microfront/config.json
 
 /package-lock.json
-/*yalc*
+*yalc*
 node_modules/
 
 /storybook-static
 
-/.jest-test-results.json
+.jest-test-results.json
 
 ## vim files
 *.swp
 *.swo
+
+## vitest
+reports
+coverage
+
+.env

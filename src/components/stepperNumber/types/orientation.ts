@@ -1,4 +1,1 @@
-export enum StepperNumberOrientationType {
-  HORIZONTAL = 'HORIZONTAL',
-  VERTICAL = 'VERTICAL',
-}
+export type StepperNumberOrientationType = 'horizontal' | 'vertical';

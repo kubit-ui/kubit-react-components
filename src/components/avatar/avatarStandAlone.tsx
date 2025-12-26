@@ -1,83 +1,100 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
-import { ButtonType } from '@/components/button';
-import { Dot } from '@/components/dot';
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Link } from '@/components/link';
-import { Text, TextComponentType } from '@/components/text';
-import { pickAriaProps } from '@/utils/aria/aria';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { AvatarDotStyled, AvatarLinkStyled, AvatarStyled } from './avatar.styled';
-import { AvatarBackgroundColor, AvatarContentType, IAvatarStandAlone } from './types/';
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
+import { DrawContent } from './fragments/drawContent';
+import type { AvatarStandAloneProps } from './types/avatar';
 
-export const AvatarStandAloneComponent = (
-  {
-    contentType,
-    backgroundColor = AvatarBackgroundColor.COLOR_DEFAULT,
-    image,
-    onClick,
-    styles,
-    dataTestId,
-    maxLengthInitials = 2,
-    ...props
-  }: IAvatarStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement | HTMLButtonElement>
-): JSX.Element => {
-  const ariaProps = pickAriaProps(props);
-  const drawContent = () => (
-    <>
-      {props.dot?.number && (
-        <AvatarDotStyled>
-          <Dot {...props.dot} />
-        </AvatarDotStyled>
-      )}
-      {contentType === AvatarContentType.WITH_ICON && (
-        <ElementOrIcon
-          color={styles?.containerBackgroundColor?.[backgroundColor]?.contentColor}
-          customIconStyles={styles?.avatar}
-          {...props.icon}
-        />
-      )}
-      {contentType === AvatarContentType.WITH_INITIALS && (
-        <Text
-          aria-hidden={true}
-          color={styles?.containerBackgroundColor?.[backgroundColor]?.contentColor}
-          component={TextComponentType.SPAN}
-          customTypography={styles?.initials}
-          {...props.initials}
+/**
+ * Standalone avatar component for displaying a user or entity avatar with flexible content.
+ *
+ * `AvatarStandAlone` supports rendering an icon, initials, or image as the avatar content.
+ * It can be rendered as a link, button, or div, and supports custom background colors, status dots, and accessibility features.
+ * Use this component when you need a low-level, highly customizable avatar element, or as the base for higher-level avatar components.
+ *
+ * @example
+ * ```tsx
+ * <AvatarStandAlone initials="AB" />
+ * ```
+ */
+export const AvatarStandAlone = forwardRef<
+  HTMLDivElement | HTMLButtonElement,
+  AvatarStandAloneProps
+>(
+  (
+    {
+      backgroundColor = 'color-default',
+      contentType,
+      cssClasses,
+      dot,
+      icon,
+      image,
+      initials,
+      link,
+      linkComponent = 'a',
+      maxLengthInitials = 2,
+      onClick,
+      ...props
+    },
+    ref,
+  ): JSX.Element => {
+    const customAttributes = {
+      'data-background-type': backgroundColor,
+      'data-content-type': contentType,
+    };
+    const customProps = pickCustomAttributes({
+      ...props,
+      ...customAttributes,
+    });
+    const avatarStyle = image
+      ? { backgroundImage: `url(${image})` }
+      : undefined;
+
+    if (link) {
+      return (
+        <CustomComponent
+          ref={ref as ForwardedRef<HTMLDivElement>}
+          className={cssClasses?.avatar}
+          component={linkComponent}
+          data-testid="avatar"
+          style={avatarStyle}
+          {...customProps}
+          {...link}
         >
-          {props.initials?.content?.substring(0, maxLengthInitials)}
-        </Text>
-      )}
-    </>
-  );
-  return props.link ? (
-    <AvatarLinkStyled
-      ref={ref as React.ForwardedRef<HTMLDivElement>}
-      backgroundColor={backgroundColor}
-      data-testid={dataTestId}
-      image={image}
-      styles={styles}
-    >
-      <Link aria-label={props['aria-label']} {...props.link}>
-        {drawContent()}
-      </Link>
-    </AvatarLinkStyled>
-  ) : (
-    <AvatarStyled
-      ref={ref as React.ForwardedRef<HTMLButtonElement>}
-      as={onClick ? 'button' : 'div'}
-      backgroundColor={backgroundColor}
-      data-testid={dataTestId}
-      image={image}
-      styles={styles}
-      type={onClick && ButtonType.BUTTON}
-      onClick={onClick}
-      {...ariaProps}
-    >
-      {drawContent()}
-    </AvatarStyled>
-  );
-};
-
-export const AvatarStandAlone = React.forwardRef(AvatarStandAloneComponent);
+          <DrawContent
+            contentType={contentType}
+            cssClasses={cssClasses}
+            customAttributes={customAttributes}
+            dot={dot}
+            icon={icon}
+            initials={initials}
+            maxLengthInitials={maxLengthInitials}
+          />
+        </CustomComponent>
+      );
+    }
+    return (
+      <CustomComponent
+        ref={ref as ForwardedRef<HTMLButtonElement>}
+        className={cssClasses?.avatar}
+        component={onClick ? 'button' : 'div'}
+        data-testid="avatar"
+        style={avatarStyle}
+        type={onClick && 'button'}
+        onClick={onClick}
+        {...customProps}
+      >
+        <DrawContent
+          contentType={contentType}
+          cssClasses={cssClasses}
+          customAttributes={customAttributes}
+          dot={dot}
+          icon={icon}
+          initials={initials}
+          maxLengthInitials={maxLengthInitials}
+        />
+      </CustomComponent>
+    );
+  },
+);

@@ -1,23 +1,19 @@
-import { CommonStyleType, IconTypes, IllustrationTypes, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-export type ModalBaseStylesType = {
-  footerVariant?: string;
-  popoverVariant?: string;
-  container?: CommonStyleType;
-  headerContainer?: CommonStyleType;
-  imageContainer?: CommonStyleType;
-  imageIllustrationHeader?: IllustrationTypes;
-  imageHeader?: IconTypes;
-  title?: TypographyTypes;
-  content?: CommonStyleType;
-  closeButtonContainer?: CommonStyleType;
-  closeButtonIcon?: IconTypes;
-  footer?: CommonStyleType;
-  closeButton?: {
-    buttonVariant?: string;
-  };
-};
+export interface ModalStyleProps extends CssLibPropsType {
+  _headerContainer?: CssLibPropsType;
+  _headerContentContainer?: CssLibPropsType;
+  _title?: CssLibPropsType;
+  _titleContainer?: CssLibPropsType;
+  _titleHiddenContainer?: CssLibPropsType;
+  _content?: CssLibPropsType;
+  _closeButtonIcon?: CssLibPropsType;
+  _closeButtonContainer?: CssLibPropsType;
+  _footer?: CssLibPropsType;
+  _dragIconContainer?: CssLibPropsType;
+  _dragIcon?: CssLibPropsType;
+}
 
-export type ModalStylesType<P extends string | number | symbol> = {
-  [variant in P]?: ModalBaseStylesType;
+export type ModalVariantStyles<Variant extends string> = ModalStyleProps & {
+  [key in Variant]: ModalStyleProps;
 };

@@ -1,38 +1,42 @@
-import * as React from 'react';
+import { screen } from '@testing-library/react';
+import { axe } from 'vitest-axe';
 
-import { axe } from 'jest-axe';
-
-import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import { render } from '@/lib/tests/render/render';
+import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 
 import { Image } from '../image';
-import { ImageLoadingType } from '../types';
+import type { ImageStandAloneProps } from '../types/image';
 
-// Improve this. Update jest config
-const IMAGE_DESKTOP = '@/assets/storybook/images/image_1.png';
-const IMAGE_LARGE_DESKTOP = '@/assets/storybook/images/image_2.png';
-const IMAGE_TABLET = '@/assets/storybook/images/image_3.png';
+const IMAGE_DESKTOP = '@/storybook/assets/images/image_1.png';
+const IMAGE_LARGE_DESKTOP = '@/storybook/assets/images/image_2.png';
+const IMAGE_TABLET = '@/storybook/assets/images/image_3.png';
 
 const baseMockProps = {
+  alt: 'alt text',
+  caption: 'caption',
+  'data-testid': 'imageComponent',
   images: {
     DEFAULT: { src: IMAGE_DESKTOP },
-    [DeviceBreakpointsType.LARGE_DESKTOP]: {
-      src: IMAGE_LARGE_DESKTOP,
-      media: '(min-width:1400px)',
+    [DEVICE_BREAKPOINTS.DESKTOP]: {
+      media: '(min-width: 900px)',
+      src: IMAGE_DESKTOP,
     },
-    [DeviceBreakpointsType.DESKTOP]: { src: IMAGE_DESKTOP, media: '(min-width: 900px)' },
-    [DeviceBreakpointsType.TABLET]: { src: IMAGE_TABLET, media: '(min-width: 600px)' },
+    [DEVICE_BREAKPOINTS.LARGE_DESKTOP]: {
+      media: '(min-width:1400px)',
+      src: IMAGE_LARGE_DESKTOP,
+    },
+    [DEVICE_BREAKPOINTS.TABLET]: {
+      media: '(min-width: 600px)',
+      src: IMAGE_TABLET,
+    },
   },
-  caption: 'caption',
-  alt: 'alt text',
   title: 'alt text',
-  width: '600px',
-  dataTestId: 'imageComponent',
+  width: '600',
 };
 
-const mockPropsWithLoading = {
+const mockPropsWithLoading: ImageStandAloneProps = {
   ...baseMockProps,
-  loading: ImageLoadingType.LAZY,
+  loading: 'lazy',
   ratio: 0,
 };
 
@@ -41,24 +45,26 @@ const mockPropsNoLoading = {
   ratio: 1,
 };
 
-test('Image component - loading', async () => {
-  const { container, getByTestId } = renderProvider(<Image {...mockPropsWithLoading} />);
+describe('Image component', () => {
+  it('Image component - loading', async () => {
+    const { container } = render(<Image {...mockPropsWithLoading} />);
 
-  const image = getByTestId('imageComponent');
+    const image = screen.getByTestId('imageComponent');
 
-  expect(image).toBeDefined();
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
+    expect(image).toBeDefined();
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results.violations).toHaveLength(0);
+  });
 
-test('Image component - no loading', async () => {
-  const { container, getByTestId } = renderProvider(<Image {...mockPropsNoLoading} />);
+  it('Image component - no loading', async () => {
+    const { container } = render(<Image {...mockPropsNoLoading} />);
 
-  const image = getByTestId('imageComponent');
+    const image = screen.getByTestId('imageComponent');
 
-  expect(image).toBeDefined();
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
+    expect(image).toBeDefined();
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results.violations).toHaveLength(0);
+  });
 });

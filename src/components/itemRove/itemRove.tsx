@@ -1,70 +1,80 @@
-import * as React from 'react';
 import { useEffect, useRef } from 'react';
 
-// styles
-import { ItemRoveStyled } from './itemRove.styled';
-import { IItemRove } from './types';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { classNames as classNamesUtil } from '@/lib/utils/classNames/classNames';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-const ItemRove = ({
-  id,
-  children,
-  focus,
-  index,
-  setFocus,
-  onSelectItem,
-  asElement,
-  role,
-  onMouseOver,
-  dataTestId,
-  type,
-  disabled = false,
-  ariaSelected,
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
+import type { ItemRoveProps } from './types/itemRove';
+
+/**
+ * ItemRove component is a navigable item that can be used to create a list of selectable options.
+ * It supports keyboard navigation and various accessibility features.
+ */
+export const ItemRove: React.FC<ItemRoveProps> = ({
   ariaControls,
-  ariaLabel,
-  url,
-  disableKeys = false,
   ariaDisabled = false,
-  preventScrollOnFocus = false,
   ariaHidden = false,
+  ariaLabel,
+  ariaSelected,
+  asElement,
   checkIsFirstTime = false,
-}: IItemRove): JSX.Element => {
+  children,
+  classNames,
+  customAttributes,
+  disabled = false,
+  disableKeys = false,
+  focus,
+  id,
+  index,
+  onMouseOver,
+  onSelectItem,
+  preventScrollOnFocus = false,
+  role,
+  setFocus,
+  type,
+  url,
+  ...props
+}) => {
   const ref = useRef<HTMLElement>(null);
   const isFirstTime = useRef(checkIsFirstTime);
 
+  const cssClasses = useClassName({
+    component: 'ITEM_ROVE',
+  });
+
+  const customProps = pickCustomAttributes({ ...props, ...customAttributes });
+
   useEffect(() => {
-    //It is needed to not put the focus automatically when the component appears
     if (focus && !isFirstTime.current) {
-      ref && ref.current && ref.current.focus({ preventScroll: preventScrollOnFocus });
+      ref.current?.focus({ preventScroll: preventScrollOnFocus });
     } else {
       isFirstTime.current = false;
     }
-  }, [focus]);
+  }, [focus, preventScrollOnFocus]);
 
   const handleSelect = (hasOnclick: boolean) => {
-    //It is needed because you can reach a disabled tab with keyboard arrows but you shouldnt be able to do any action.
     if (!disableKeys) {
-      // setFocus only needs to be sent if we don't use useRoveFocus hook previously
       setFocus?.(index);
       if (hasOnclick) {
-        onSelectItem && onSelectItem();
+        onSelectItem?.();
       }
     }
   };
 
-  const handleFocus = () => {
-    return focus ? 0 : -1;
-  };
+  const handleFocus = () => (focus ? 0 : -1);
 
   return (
-    <ItemRoveStyled
+    <CustomComponent
       ref={ref}
       aria-controls={ariaControls}
       aria-disabled={ariaDisabled}
       aria-hidden={ariaHidden}
       aria-label={ariaLabel}
       aria-selected={ariaSelected}
-      as={asElement}
-      data-testid={dataTestId}
+      className={classNamesUtil(cssClasses.item_rove, classNames)}
+      component={asElement}
+      data-testid="item-rove"
       disabled={disabled}
       id={id}
       role={role}
@@ -75,17 +85,9 @@ const ItemRove = ({
       onFocus={onMouseOver}
       onKeyDown={() => handleSelect(false)}
       onMouseOver={onMouseOver}
+      {...customProps}
     >
       {children}
-    </ItemRoveStyled>
+    </CustomComponent>
   );
 };
-
-/**
- * @description
- * ItemRove component is a component that can be used to select and navigate through a list of items with the keyboard arrows.
- * It can be used to create a list of options that can be selected.
- * @param {React.PropsWithChildren<IItemRove>} props
- * @returns {JSX.Element}
- */
-export { ItemRove };

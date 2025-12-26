@@ -1,1 +1,0 @@
-export { buildProps } from './buildProps';

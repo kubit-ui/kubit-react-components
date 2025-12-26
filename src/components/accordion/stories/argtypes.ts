@@ -1,171 +1,131 @@
-import { TextComponentType } from '@/components/text';
-import { CATEGORY_CONTROL } from '@/constants';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn } from '@/types';
+import type { ArgTypes } from 'storybook/internal/types';
 
-export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
+import { AccordionVariant } from '@/lib/designSystem/kubit/components/accordion/variants';
+import { getAdditionalClassesArgTypes } from '@/lib/storybook/argtypes/additionalClassesArgTypes';
+import { configArgTypes } from '@/lib/storybook/argtypes/argtypes';
+import { getBooleanArgTypes } from '@/lib/storybook/argtypes/booleanArgTypes';
+import { getDisabledArgTypes } from '@/lib/storybook/argtypes/disabledArgTypes';
+import { getHtmlComponentArgTypes } from '@/lib/storybook/argtypes/htmlComponentArgTypes';
+import { getStringtArgTypes } from '@/lib/storybook/argtypes/stringArgTypes';
+import { getVariantArgTypes } from '@/lib/storybook/argtypes/variantArgtypes';
+import { CATEGORY_CONTROL } from '@/lib/storybook/constants/categoryControl';
+
+export const argtypes = (): ArgTypes => {
   return {
-    theme: {
+    ...configArgTypes,
+    ...getDisabledArgTypes([
+      'cssClasses',
+      'onHeaderClick',
+      'onExpandCollapse',
+      'contentId',
+    ]),
+    'additionalClasses.accordion': {
+      ...getAdditionalClassesArgTypes({
+        name: 'accordion',
+        subCategory: 'additionalClasses',
+      }),
       table: {
-        disable: true,
+        ...getAdditionalClassesArgTypes({
+          name: 'accordion',
+          subCategory: 'additionalClasses',
+        }).table,
+        category: 'MODIFIERS',
       },
     },
+    'additionalClasses.content': {
+      ...getAdditionalClassesArgTypes({
+        name: 'content',
+        subCategory: 'additionalClasses',
+      }),
+      table: {
+        ...getAdditionalClassesArgTypes({
+          name: 'content',
+          subCategory: 'additionalClasses',
+        }).table,
+        category: 'MODIFIERS',
+      },
+    },
+    'additionalClasses.header': {
+      ...getAdditionalClassesArgTypes({
+        name: 'header',
+        subCategory: 'additionalClasses',
+      }),
+      table: {
+        ...getAdditionalClassesArgTypes({
+          name: 'header',
+          subCategory: 'additionalClasses',
+        }).table,
+        category: 'MODIFIERS',
+      },
+    },
+    'additionalClasses.headerbutton': {
+      ...getAdditionalClassesArgTypes({
+        name: 'headerbutton',
+        subCategory: 'additionalClasses',
+      }),
+      table: {
+        ...getAdditionalClassesArgTypes({
+          name: 'headerbutton',
+          subCategory: 'additionalClasses',
+        }).table,
+        category: 'MODIFIERS',
+      },
+    },
+    'additionalClasses.innercontent': {
+      ...getAdditionalClassesArgTypes({
+        name: 'innercontent',
+        subCategory: 'additionalClasses',
+      }),
+      table: {
+        ...getAdditionalClassesArgTypes({
+          name: 'innercontent',
+          subCategory: 'additionalClasses',
+        }).table,
+        category: 'MODIFIERS',
+      },
+    },
+    children: getStringtArgTypes({
+      category: CATEGORY_CONTROL.CONTENT,
+      keyName: 'children',
+      name: 'accordion',
+    }),
+    component: getHtmlComponentArgTypes({
+      name: 'accordion',
+    }),
+    dataTestId: getStringtArgTypes({
+      category: CATEGORY_CONTROL.TESTING,
+      keyName: 'dataTestId',
+      name: 'accordion',
+    }),
+    defaultExpanded: getBooleanArgTypes({
+      descriptionName: 'accordion',
+      name: 'defaultExpanded',
+      subCategory: CATEGORY_CONTROL.MODIFIERS,
+    }),
+    expanded: getBooleanArgTypes({
+      descriptionName: 'accordion',
+      name: 'expanded',
+      subCategory: CATEGORY_CONTROL.MODIFIERS,
+    }),
+    header: getStringtArgTypes({
+      category: CATEGORY_CONTROL.CONTENT,
+      keyName: 'header',
+      name: 'accordion',
+    }),
+    headerComponent: getHtmlComponentArgTypes({
+      name: 'accordion header',
+    }),
     variant: {
-      type: { name: 'string', required: true },
-      control: { type: 'select' },
-      description: 'Container variant',
-      options: Object.keys(variants[themeSelected]?.AccordionVariantType || {}),
+      ...getVariantArgTypes({
+        name: 'accordion',
+        variants: { ...AccordionVariant },
+      }),
       table: {
-        type: {
-          summary: 'string',
-        },
-        category: CATEGORY_CONTROL.MODIFIERS,
-      },
-    },
-    defaultOpen: {
-      description: 'Initial open/close state',
-      control: { type: 'boolean' },
-      type: { name: 'boolean' },
-      table: {
-        type: {
-          summary: 'boolean',
-        },
-        defaultValue: { summary: false },
-        category: CATEGORY_CONTROL.MODIFIERS,
-      },
-    },
-    onOpenClose: {
-      description: 'Invoked when accordion state `open` is modified',
-      control: false,
-      table: {
-        type: {
-          summary: '(open: boolean, event: React.MouseEvent<HTMLButtonElement>) => void',
-        },
-        category: CATEGORY_CONTROL.FUNCTIONS,
-      },
-    },
-    headerRightContent: {
-      description: 'Content to place at the right side of header',
-      control: { type: 'text' },
-      type: { name: 'string' },
-      table: {
-        type: {
-          summary: 'ReactNode',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    subHeaderContent: {
-      description: 'Content to place below header',
-      control: { type: 'text' },
-      type: { name: 'string' },
-      table: {
-        type: {
-          summary: 'ReactNode',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    title: {
-      description: 'This will appear in your container',
-      control: { type: 'object' },
-      type: { name: 'object' },
-      table: {
-        type: {
-          summary: 'AccordionTextType',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    triggerComponent: {
-      description: 'HTML Tag to wrap accordion header',
-      options: Object.keys(TextComponentType),
-      type: { name: 'string' },
-      control: { type: 'select' },
-      table: {
-        type: {
-          summary: 'TextComponentType',
-          detail: Object.keys(TextComponentType).join(', '),
-        },
-        category: CATEGORY_CONTROL.MODIFIERS,
-      },
-    },
-    triggerButton: {
-      description: 'Trigger button configuration',
-      type: { name: 'object' },
-      control: { type: 'object' },
-      table: {
-        type: {
-          summary: 'AccordionTriggerButtonType',
-        },
-        category: CATEGORY_CONTROL.MODIFIERS,
-      },
-    },
-    triggerIcon: {
-      description: 'Trigger icon',
-      type: { name: 'object' },
-      control: { type: 'object' },
-      table: {
-        type: {
-          summary: 'IElementOrIcon',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    footerContent: {
-      description: 'Content to place at footer',
-      control: { type: 'text' },
-      type: { name: 'string' },
-      table: {
-        type: {
-          summary: 'ReactNode',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    titleIcon: {
-      description: 'Title icon',
-      type: { name: 'object' },
-      control: { type: 'object' },
-      table: {
-        type: {
-          summary: 'IElementOrIcon',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    hasHeaderLineSeparator: {
-      description: 'It shows or not the line separator below the header',
-      control: { type: 'boolean' },
-      type: { name: 'boolean' },
-      table: {
-        type: {
-          summary: 'boolean',
-        },
-        defaultValue: { summary: true },
-        category: CATEGORY_CONTROL.MODIFIERS,
-      },
-    },
-    dataTestId: {
-      description: 'String used for testing',
-      control: { type: 'text' },
-      type: { name: 'string' },
-      table: {
-        type: {
-          summary: 'string',
-        },
-        category: CATEGORY_CONTROL.TESTING,
-      },
-    },
-    ctv: {
-      description: 'Object used for update variant styles',
-      type: { name: 'object' },
-      control: { type: 'object' },
-      table: {
-        type: {
-          summary: 'object',
-        },
-        category: CATEGORY_CONTROL.CUSTOMIZATION,
+        ...getVariantArgTypes({
+          name: 'accordion',
+          variants: { ...AccordionVariant },
+        }).table,
+        category: 'MODIFIERS',
       },
     },
   };

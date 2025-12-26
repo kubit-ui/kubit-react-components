@@ -1,34 +1,7 @@
-import { TextDecorationType } from '@/components/text';
-import { CommonStyleType, IconTypes, POSITIONS, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-export type SnackbarProps = {
-  actionButton?: {
-    variant?: string;
-    size?: string;
-  };
-  link?: {
-    variant?: string;
-    decoration?: TextDecorationType;
-  };
-  container?: CommonStyleType;
-  iconTitleContainer?: CommonStyleType;
-  icon?: IconTypes;
-  title?: TypographyTypes;
-  descriptionActionContainer?: CommonStyleType;
-  description?: TypographyTypes;
-  closeIcon?: IconTypes;
-  popoverVariants?: {
-    [pos in POSITIONS]?: string;
-  };
-};
+export interface SnackbarStyleProps extends CssLibPropsType {
+  _container?: CssLibPropsType;
+}
 
-export type SnakbarTypeStyleProps<T extends string | number | symbol = string> = {
-  [type in T]?: SnackbarProps;
-};
-
-export type SnackbarStylesType<
-  V extends string | number | symbol,
-  T extends string | number | symbol,
-> = {
-  [variant in V]: SnakbarTypeStyleProps<T>;
-};
+export type SnackBarStyles = SnackbarStyleProps;

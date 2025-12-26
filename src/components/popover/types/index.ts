@@ -1,12 +1,18 @@
-export type { IPopoverStandAlone, IPopoverControlled, IPopoverUnControlled } from './popover';
 export type {
-  PopoverBackDropStylesType,
-  PopoverVariantStylesProps,
-  PopoverVariantStylesType,
-  PopoverStylesType,
-} from './popoverTheme';
+  PopoverAnimationTimingFunction as PopoverV2AnimationTimingFunction,
+  AnimationConfigType as PopoverV2AnimationConfigTypes,
+  AnimationType as PopoverV2AnimationTypes,
+} from './animation';
 
-// enums and others
-export { PopoverPositionVariantType } from './positionVariant';
-export { PopoverComponentType } from './component';
-export { getAlignStyles } from './align';
+export {
+  PopoverAnimationTimingFunction as PopoverV2AnimationTimingFunctions,
+  ANIMATION_CONFIG_TYPES,
+  ANIMATION_TYPES,
+} from './animation';
+
+export type {
+  IPopover as IPopoverV2,
+  ArrowStyles,
+  MiddlewareOptions,
+  PopoverComponent as PopoverV2Component,
+} from './popover';

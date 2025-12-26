@@ -1,7 +1,11 @@
-export * from './types';
+export { Input } from './input';
 
-export { InputStandAlone } from './inputStandAlone';
-export { InputControlled } from './inputControlled';
-export { InputUnControlled as Input } from './inputUnControlled';
-
-export * from './input.styled';
+export type {
+  InputActionsType,
+  InputStandAloneProps,
+  InputProps,
+} from './types/input';
+export type {
+  InputStyleProps,
+  InputVariantStyles,
+} from './types/inputTheme';

@@ -1,26 +1,15 @@
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-import { BreadcrumbsStateType } from './state';
+export interface BreadcrumbsStyleProps extends CssLibPropsType {
+  _linkContainer?: CssLibPropsType;
+  _link?: CssLibPropsType;
+  _lastOneCrumb?: CssLibPropsType;
+  _iconDividerContainer?: CssLibPropsType;
+  _iconDivider?: CssLibPropsType;
+  _crumb?: CssLibPropsType;
+}
 
-export type BreadcrumbsPropsStateStylesType = {
-  [i in BreadcrumbsStateType]?: BreadcrumbsPropsStylesType;
-};
-
-export type BreadcrumbsPropsStylesType = {
-  linkContainer?: CommonStyleType & TypographyTypes;
-  link?: TypographyTypes;
-  lastOneCrumb?: TypographyTypes;
-  iconDividerContainer?: CommonStyleType;
-  iconDivider?: IconTypes;
-};
-
-/**
- * @description
- * Breadcrumbs styles type
- * @template P
- * @property {P} [key] - Variant of the breadcrumbs.
- * @property {BreadcrumbsPropsStateStylesType} [key] - Styles of the breadcrumbs.
- */
-export type BreadcrumbsStylesType<P extends string | number | symbol> = {
-  [key in P]?: BreadcrumbsPropsStateStylesType;
-};
+export type BreadcrumbsVariantStyles<Variant extends string> =
+  BreadcrumbsStyleProps & {
+    [key in Variant]: BreadcrumbsStyleProps;
+  };

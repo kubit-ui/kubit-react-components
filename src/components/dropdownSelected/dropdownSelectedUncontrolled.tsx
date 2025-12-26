@@ -1,113 +1,128 @@
-import * as React from 'react';
+import {
+  type FocusEventHandler,
+  type KeyboardEventHandler,
+  type MouseEventHandler,
+  forwardRef,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
-import { ESCAPE } from '@/constants';
+import { ESCAPE } from '@/lib/constants/keyboardKeys/keyboardKeys';
 
 import { DropdownSelectedControlled } from './dropdownSelectedControlled';
-import { IDropdownSelectedUncontrolled } from './types';
+import type { DropdownSelectedUnControlledProps } from './types/dropdownSelected';
 
-const DropdownSelectedUnControlledComponent = (
-  {
-    defaultOpen = false,
-    defaultOptionSelected,
-    openAndCloseOnHover = false,
-    onClosePopover,
-    onMouseEnter,
-    onMouseLeave,
-    onFocus,
-    onBlur,
-    ...props
-  }: IDropdownSelectedUncontrolled,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => {
-  const [open, setOpen] = React.useState<boolean>(defaultOpen);
-  const [optionSelected, setOptionSelected] = React.useState<string | undefined>(
-    defaultOptionSelected
-  );
+/**
+ * Uncontrolled dropdown component for displaying selectable options.
+ *
+ * This component manages its own open/close state and selected option internally, so you do not need
+ * to control the dropdown state from the parent. It is useful when you want a simple dropdown that handles
+ * its own toggle and selection logic. You can optionally receive state changes via callbacks.
+ *
+ * Internally, it wraps {@link DropdownSelectedControlled} and passes the necessary props.
+ *
+ * @example
+ * ```tsx
+ * <DropdownSelectedUnControlled defaultOpen />
+ * ```
+ */
+export const DropdownSelectedUnControlled = forwardRef<
+  HTMLDivElement,
+  DropdownSelectedUnControlledProps
+>(
+  (
+    {
+      defaultOpen = false,
+      defaultOptionSelected,
+      onBlur,
+      onButtonClick,
+      onClosePopover,
+      onFocus,
+      onOptionClick,
+      openAndCloseOnHover = false,
+      ...props
+    },
+    ref,
+  ): JSX.Element => {
+    const [open, setOpen] = useState<boolean>(defaultOpen);
+    const [optionSelected, setOptionSelected] = useState<string | undefined>(
+      defaultOptionSelected,
+    );
+    const buttonOrLinkRef = useRef<HTMLButtonElement>(null);
 
-  const buttonOrLinkRef = React.useRef<HTMLButtonElement>(null);
+    useEffect(() => {
+      const handleVisibilityChange = () => {
+        if (document.hidden) {
+          setOpen(false);
+        }
+      };
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+      return () =>
+        document.removeEventListener(
+          'visibilitychange',
+          handleVisibilityChange,
+        );
+    }, []);
 
-  const handleOnClickButton: React.MouseEventHandler<HTMLButtonElement | HTMLLinkElement> = () => {
-    props.onButtonClick?.(!open);
-    setOpen(!open);
-  };
+    const handleOnClickButton: MouseEventHandler<
+      HTMLButtonElement | HTMLLinkElement
+    > = () => {
+      onButtonClick?.(!open);
+      setOpen(!open);
+    };
 
-  const handleOnClosePopover = () => {
-    const openValue = false;
-    setOpen(openValue);
-    onClosePopover?.(openValue);
-  };
-
-  const handleOnClickOption = (value: string) => {
-    setOptionSelected(value);
-    props.onOptionClick?.(value);
-  };
-
-  const handleOnMouseEnter: React.MouseEventHandler<HTMLDivElement> = () => {
-    if (openAndCloseOnHover) {
-      const openValue = true;
-      setOpen(openValue);
-      onMouseEnter?.(openValue);
-    }
-  };
-
-  const handleOnMouseLeave: React.MouseEventHandler<HTMLDivElement> = () => {
-    if (openAndCloseOnHover) {
-      const openValue = false;
-      setOpen(openValue);
-      onMouseLeave?.(openValue);
-    }
-  };
-
-  const handleOnKeyDown: React.KeyboardEventHandler<HTMLElement> = event => {
-    if (ESCAPE.key.includes(event.key) && open) {
-      buttonOrLinkRef.current?.focus();
+    const handleOnClosePopover = () => {
       setOpen(false);
-    }
-  };
+      onClosePopover?.(false);
+    };
 
-  const handleOnFocus: React.FocusEventHandler<HTMLDivElement> = () => {
-    if (openAndCloseOnHover) {
-      const openValue = true;
-      setOpen(openValue);
-      onFocus?.(openValue);
-    }
-  };
+    const handleOnClickOption = (value: string) => {
+      setOptionSelected(value);
+      onOptionClick?.(value);
+    };
 
-  const handleOnBlur: React.FocusEventHandler<HTMLDivElement> = event => {
-    const openValue = false;
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      setOpen(openValue);
-      onBlur?.(openValue);
-    }
-    if (openAndCloseOnHover) {
-      setOpen(openValue);
-      onBlur?.(openValue);
-    }
-  };
+    const handleOnKeyDown: KeyboardEventHandler<HTMLElement> = (event) => {
+      if (ESCAPE.key.includes(event.key) && open) {
+        buttonOrLinkRef.current?.focus();
+        setOpen(false);
+      }
+    };
 
-  return (
-    <DropdownSelectedControlled
-      {...props}
-      ref={ref}
-      buttonOrLinkRef={buttonOrLinkRef}
-      open={open}
-      optionSelected={optionSelected}
-      onBlur={handleOnBlur}
-      onButtonClick={handleOnClickButton}
-      onClosePopover={handleOnClosePopover}
-      onFocus={handleOnFocus}
-      onKeyDown={handleOnKeyDown}
-      onMouseEnter={handleOnMouseEnter}
-      onMouseLeave={handleOnMouseLeave}
-      onOptionClick={handleOnClickOption}
-    />
-  );
-};
+    const handleOnFocus: FocusEventHandler<HTMLDivElement> = () => {
+      if (openAndCloseOnHover) {
+        setOpen(true);
+        onFocus?.(true);
+      }
+    };
 
-const DropdownSelectedUnControlled = React.forwardRef(DropdownSelectedUnControlledComponent) as (
-  props: IDropdownSelectedUncontrolled & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => JSX.Element;
+    const handleOnBlur: FocusEventHandler<HTMLDivElement> = (event) => {
+      if (!event.currentTarget.contains(event.relatedTarget)) {
+        setOpen(false);
+        onBlur?.(false);
+      }
+      if (openAndCloseOnHover) {
+        setOpen(false);
+        onBlur?.(false);
+      }
+    };
 
-export { DropdownSelectedUnControlled };
+    return (
+      <DropdownSelectedControlled
+        {...props}
+        ref={ref}
+        buttonOrLinkRef={buttonOrLinkRef}
+        open={open}
+        optionSelected={optionSelected}
+        onBlur={handleOnBlur}
+        onButtonClick={handleOnClickButton}
+        onClosePopover={handleOnClosePopover}
+        onFocus={handleOnFocus}
+        onKeyDown={handleOnKeyDown}
+        onOptionClick={handleOnClickOption}
+      />
+    );
+  },
+);
+
+export { DropdownSelectedUnControlled as DropdownSelected };

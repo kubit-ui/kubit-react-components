@@ -1,0 +1,47 @@
+import { forwardRef, useImperativeHandle, useRef } from 'react';
+
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+
+import { DataTableStandAlone } from './dataTableStandAlone';
+import { useDataTableHasScroll } from './hooks/useDataTableHasScroll';
+import { useDataTableShadow } from './hooks/useDataTableShadow';
+import { useDataTableStickyDividers } from './hooks/useDataTableStickyDividers';
+import { useDataTableStickyLeftColumns } from './hooks/useDataTableStickyLeftColumns';
+import { useDataTableStickyRightColumns } from './hooks/useDataTableStickyRightColumns';
+import type { DataTableProps } from './types/dataTable';
+
+export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
+  ({ additionalClasses, variant, ...props }, ref) => {
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'DATA_TABLE',
+      variant,
+    });
+
+    const innerRef = useRef<HTMLDivElement>(null);
+
+    // Expose the innerRef to the parent via the forwarded ref
+    useImperativeHandle(ref, () => innerRef.current as HTMLDivElement, []);
+
+    // Hooks for managing table behavior
+    const { hasScroll } = useDataTableHasScroll({ ref: innerRef });
+    useDataTableStickyRightColumns({ ref: innerRef });
+    useDataTableStickyLeftColumns({ ref: innerRef });
+    useDataTableStickyDividers({ ref: innerRef });
+    useDataTableShadow({
+      headBoxShadow: cssClasses.headboxshadow,
+      leftBoxShadow: cssClasses.leftboxshadow,
+      ref: innerRef,
+      rightBoxShadow: cssClasses.rightboxshadow,
+    });
+
+    return (
+      <DataTableStandAlone
+        ref={innerRef}
+        cssClasses={cssClasses}
+        hasScroll={hasScroll}
+        {...props}
+      />
+    );
+  },
+);

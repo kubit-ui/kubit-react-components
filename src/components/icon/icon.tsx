@@ -1,60 +1,79 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { ScreenReaderOnly } from '@/components/screenReaderOnly';
-import { useMediaDevice } from '@/hooks/index';
-import { pickAriaProps } from '@/utils/aria/aria';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { classNames } from '@/lib/utils/classNames/classNames';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { ButtonType } from '../button';
-import { IconButtonStyled } from './icon.styled';
 import { IconStandAlone } from './iconStandAlone';
-import { IIcon } from './types';
+import type { IconProps } from './types/icon';
 
-const IconBasicComponent = (
-  { tabIndex = 0, ...props }: IIcon,
-  ref: React.ForwardedRef<HTMLSpanElement>
-): JSX.Element | null => {
-  const device = useMediaDevice();
+export const IconBasic = forwardRef<HTMLSpanElement, IconProps>(
+  (
+    { className, color, height, icon, id, tabIndex, title, width, ...props },
+    ref,
+  ): JSX.Element | null => {
+    const { altText, disabled, onClick, screenReaderText, ...iconProps } =
+      props;
+    const customProps = pickCustomAttributes(props);
+    const colorSetToUndefined = Object.keys(props).includes('color') && !color;
+    const isLinearIcon = !colorSetToUndefined && !!color;
+    const cssClasses = useClassName({
+      component: 'ICON',
+    });
 
-  const isLinearIcon =
-    !!props.color || !!props.customIconStyles?.color || !!props.customIconStyles?.[device]?.color;
-
-  const iconWithTitle = (
-    <IconStandAlone {...props} ref={ref} altText="" icon={props.icon} linearIcon={isLinearIcon} />
-  );
-
-  const buildButton = (): JSX.Element => {
-    const ariaProps = pickAriaProps(props);
-    let iconElement = <></>;
-    if (props.icon) {
-      if (props.onClick) {
-        iconElement = (
-          <IconButtonStyled
-            {...ariaProps}
-            $customIconStyles={props.customIconStyles}
-            $height={props.height}
-            $width={props.width}
-            aria-disabled={props.disabled}
-            aria-label={props['aria-label'] || props.altText}
-            disabled={props.disabled}
-            tabIndex={tabIndex}
-            type={ButtonType.BUTTON}
-            onClick={props.onClick}
-          >
-            <ScreenReaderOnly>{props.screenReaderText}</ScreenReaderOnly>
-            {iconWithTitle}
-          </IconButtonStyled>
-        );
-      } else {
-        iconElement = (
-          <IconStandAlone {...props} ref={ref} icon={props.icon} linearIcon={isLinearIcon} />
-        );
-      }
-      return iconElement;
+    if (!icon) {
+      return null;
     }
-    return iconElement;
-  };
 
-  return buildButton();
-};
+    if (onClick) {
+      return (
+        <button
+          aria-disabled={disabled}
+          aria-label={props['aria-label'] || altText}
+          className={classNames(cssClasses.button, className)}
+          data-testid="button"
+          disabled={disabled}
+          id={id}
+          style={{ height, width }}
+          tabIndex={tabIndex}
+          title={title || ''}
+          type="button"
+          onClick={onClick}
+          {...customProps}
+        >
+          <screen-reader-only>{screenReaderText}</screen-reader-only>
+          <IconStandAlone
+            icon={icon}
+            {...iconProps}
+            ref={ref}
+            aria-label={undefined}
+            className={className}
+            cssClasses={cssClasses}
+            data-testid={undefined}
+            height={height}
+            id={undefined}
+            linearIcon={isLinearIcon}
+            width={width}
+          />
+        </button>
+      );
+    }
 
-export const IconBasic = React.forwardRef(IconBasicComponent);
+    return (
+      <IconStandAlone
+        icon={icon}
+        {...iconProps}
+        ref={ref}
+        altText={altText}
+        className={className}
+        cssClasses={cssClasses}
+        data-testid="icon"
+        height={height}
+        linearIcon={isLinearIcon}
+        width={width}
+      />
+    );
+  },
+);
+
+export { IconBasic as Icon };

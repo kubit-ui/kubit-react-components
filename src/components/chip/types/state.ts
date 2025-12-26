@@ -1,7 +1,6 @@
-import { STATES } from '@/types/states';
+import type { StateType } from '@/lib/types/states/states';
 
-export enum ChipStateType {
-  DEFAULT = STATES.DEFAULT,
-  ERROR = STATES.ERROR,
-  DISABLED = STATES.DISABLED,
-}
+export type ChipStateType = Extract<
+  StateType,
+  'default' | 'error' | 'disabled'
+>;

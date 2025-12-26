@@ -1,78 +1,75 @@
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IText } from '@/components/text';
-import { CustomTokenTypes, POSITIONS } from '@/types';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { ToggleStateStyleType, ToggleStyleType } from './toggleTheme';
+type ToggleVariantCssClasses = ComponentSelected<
+  ComponentsTypesComponents['TOGGLE']
+>;
 
-/**
- * @name IInputValue
- * @description
- * Interface for the InputValue component
- */
-export interface IInputValue {
-  rightInputValue?: string;
-  centerInputValue?: string;
-  leftInputValue?: string;
-  rightIconAltText?: string;
-  centerIconAltText?: string;
-  leftIconAltText?: string;
-}
-
-export type ToggleOnAndOffTextType = Omit<IText<string>, 'children'> & {
-  content: string;
-};
-
-type ToggleAriaAttributes = Pick<React.AriaAttributes, 'aria-describedby'>;
+type ToggleAriaAttributes = Pick<
+  React.AriaAttributes,
+  'aria-label' | 'aria-describedby' | 'aria-labelledby'
+>;
 
 /**
- * @name IToggle
- * @description
- * Interface for the Toggle component
+ * Interface for the standalone Toggle component.
+ * Includes all basic props, ARIA attributes, and event handlers.
  */
-export interface IToggleStandAlone extends ToggleAriaAttributes {
-  styles?: ToggleStyleType;
-  id?: string;
-  offText?: ToggleOnAndOffTextType;
-  onText?: ToggleOnAndOffTextType;
-  onIcon?: IElementOrIcon;
-  offIcon?: IElementOrIcon;
+export interface ToggleStandaloneProps
+  extends DataAttributes,
+    ToggleAriaAttributes {
+  /** Toggle state (true = active, false = inactive) */
+  checked?: boolean;
+  /** Component type to render as, defaults to 'button'. Use 'span' or 'div' for decorative toggles */
+  component?: React.ElementType;
+  cssClasses?: ToggleVariantCssClasses;
+  /** Test identifier for the component */
   dataTestId?: string;
-  togglePosition: POSITIONS;
-  hasThreePositions: boolean;
-  inputValues?: IInputValue;
-  radioButtonToggleName?: string;
-  screenReaderId?: string;
+  /** Disabled state */
   disabled?: boolean;
-  blockCenter?: boolean;
-  onClick?: (position: POSITIONS, e: React.MouseEvent<HTMLElement>) => void;
-  onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
-}
-
-type propsToOmit = 'styles' | 'togglePosition' | 'hasThreePositions' | 'onClick';
-
-/**
- * @name IToggleControlled
- * @description
- * Interface for the Toggle component
- */
-export interface IToggleControlled<V = undefined extends string ? unknown : string>
-  extends Omit<IToggleStandAlone, propsToOmit>,
-    Omit<CustomTokenTypes<ToggleStateStyleType>, 'cts' | 'extraCt'> {
-  variant: V;
-  togglePosition?: POSITIONS;
-  hasThreePositions?: boolean;
-  onChange?: (position: POSITIONS) => void;
-  onClick?: React.MouseEventHandler<HTMLElement>;
+  /** Unique component ID */
+  id?: string;
+  /** Icon displayed on the left side when the toggle is inactive */
+  leftIcon?: CommonIconProps;
+  /** Name for forms */
+  name?: string;
+  // Native button event handlers
+  onBlur?: React.FocusEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onFocus?: React.FocusEventHandler<HTMLButtonElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
+  onMouseEnter?: React.MouseEventHandler<HTMLButtonElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLButtonElement>;
+  /** Icon displayed on the right side when the toggle is active */
+  rightIcon?: CommonIconProps;
+  tabIndex?: number;
+  /** Value for forms */
+  value?: string;
 }
 
 /**
- * @name IToggleUnControlled
- * @description
- * Interface for the Toggle component
- * @property {string} variant - The variant of the toggle
- * @property {ToggleStyleType} styles - The styles of the toggle
+ * Interface for the Toggle component with a variant.
+ * Extends the ToggleStandaloneProps interface and adds variant property with generic typing.
+ *
+ * @template Variant - The type of the variant for the Toggle.
  */
-export interface IToggleUnControlled<V = undefined extends string ? unknown : string>
-  extends IToggleControlled<V> {
-  defaultTogglePosition?: POSITIONS;
+export interface ToggleProps<
+  Variant = undefined extends string ? unknown : string,
+> extends ToggleStandaloneProps {
+  variant?: Variant;
+  additionalVariantClasses?: Partial<ToggleVariantCssClasses>;
+  onToggle?: (checked: boolean) => void;
+}
+
+/**
+ * Interface for the uncontrolled Toggle component.
+ * Excludes 'checked' prop and adds 'defaultChecked' for initial state.
+ */
+export interface ToggleUncontrolledProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<ToggleProps<Variant>, 'checked'> {
+  defaultChecked?: boolean;
 }

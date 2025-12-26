@@ -1,7 +1,7 @@
-export type ImageStylesPropsType = {
+export interface ImageStyleProps {
   ratio?: number;
   fallbackRatio?: number;
   objectFit?: string;
   borderRadius?: string;
   width?: string;
-};
+}

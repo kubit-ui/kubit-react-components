@@ -1,459 +1,180 @@
-import { act, fireEvent } from '@testing-library/react';
-import * as React from 'react';
+import { axe } from 'vitest-axe';
 
-import { axe } from 'jest-axe';
+import { CarouselVariantType } from '@/lib/designSystem/kubit/components/carousel/variants';
+import { render } from '@/lib/tests/render/render';
 
-import { ARROW_LEFT, ARROW_RIGHT } from '@/constants';
-import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+import { Carousel } from '../carousel';
+import { useCarousel } from '../hooks/useCarousel';
+import type { ICarousel } from '../types/carousel';
 
-import { CarouselUnControlled } from '../carouselUnControlled';
-import * as CarouselHooks from '../hooks/useCarousel';
-import { ICarouselUnControlled } from '../types';
-
-const mockProps: ICarouselUnControlled = {
-  variant: 'DEFAULT',
+const mockProps: ICarousel = {
+  variant: CarouselVariantType.DEFAULT,
   elements: [
-    <div key="0" aria-label="1 of 10" aria-roledescription="slide" role="group">
-      0
-    </div>,
-    <div key="1" aria-label="2 of 10" aria-roledescription="slide" role="group">
-      1
-    </div>,
-    <div key="2" aria-label="3 of 10" aria-roledescription="slide" role="group">
-      2
-    </div>,
-    <div key="3" aria-label="4 of 10" aria-roledescription="slide" role="group">
-      3
-    </div>,
-    <div key="4" aria-label="5 of 10" aria-roledescription="slide" role="group">
-      4
-    </div>,
-    <div key="5" aria-label="6 of 10" aria-roledescription="slide" role="group">
-      5
-    </div>,
-    <div key="6" aria-label="7 of 10" aria-roledescription="slide" role="group">
-      6
-    </div>,
-    <div key="7" aria-label="8 of 10" aria-roledescription="slide" role="group">
-      7
-    </div>,
-    <div key="8" aria-label="9 of 10" aria-roledescription="slide" role="group">
-      8
-    </div>,
-    <div key="9" aria-label="10 of 10" aria-roledescription="slide" role="group">
-      9
-    </div>,
+    <div key="e-1">Element 1</div>,
+    <div key="e-2">Element 2</div>,
+    <div key="e-3">Element 3</div>,
   ],
-  numElementsPerPage: 3,
-  leftArrow: {
-    icon: 'ARROW_LEFT',
-    ['aria-label']: 'Left arrow aria label',
-  },
-  rightArrow: {
-    icon: 'ARROW_RIGHT',
-    ['aria-label']: 'Right arrow aria label',
-  },
-  pageControlVariant: 'BULLETS',
-  pageControlArrowsControlVariant: 'DEFAULT',
 };
 
+// Mock the hooks that are already tested
+vi.mock('../hooks/useCarousel', () => ({
+  useCarousel: vi.fn(() => ({
+    changePage: vi.fn(),
+    allowShiftRef: { current: true },
+  })),
+}));
+const mockUseCarousel = vi.mocked(useCarousel);
+
 describe('Carousel component', () => {
-  it('Carousel', async () => {
-    const { container, getByTestId } = renderProvider(<CarouselUnControlled {...mockProps} />);
-
-    const carousel = getByTestId('dataTestIdCarouselWrapper');
-    expect(carousel).toBeInTheDocument();
+  it('Should render carousel component', async () => {
+    const { container } = render(<Carousel {...mockProps} ref={() => ({})} />);
 
     const results = await axe(container);
-    // Disable style in line
     expect(container).toHTMLValidate({
       rules: {
         'no-inline-style': 'off',
       },
     });
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
-  it('Carousel with numPages 1', async () => {
-    const elements = [
-      <div key="0" aria-label="1 of 10" aria-roledescription="slide" role="group">
-        0
-      </div>,
-      <div key="1" aria-label="2 of 10" aria-roledescription="slide" role="group">
-        1
-      </div>,
-    ];
-    const { container, getByTestId } = renderProvider(
-      <CarouselUnControlled {...mockProps} elements={elements} numElementsPerPage={2} />
-    );
-
-    const carousel = getByTestId('dataTestIdCarouselWrapper');
-    fireEvent.keyDown(carousel, ARROW_LEFT);
-    expect(carousel).toBeInTheDocument();
-    const results = await axe(container);
-    // Disable style in line
-    expect(container).toHTMLValidate({
-      rules: {
-        'no-inline-style': 'off',
-      },
-    });
-    expect(results).toHaveNoViolations();
-  });
-
-  it('Carousel, when linear an  arrows, if page is 0, left arrow is disabled', async () => {
-    const { container, getByRole } = renderProvider(
-      <CarouselUnControlled {...mockProps} circular={false} />
-    );
-    const leftArrow = getByRole('button', { name: mockProps.leftArrow?.['aria-label'] });
-    expect(leftArrow).toBeDisabled();
-
-    const results = await axe(container);
-    // Disable style in line
-    expect(container).toHTMLValidate({
-      rules: {
-        'no-inline-style': 'off',
-      },
-    });
-    expect(results).toHaveNoViolations();
-  });
-
-  it('Carousel, when linear an  arrows, if page is last, right arrow is disabled', async () => {
-    const { container, getByRole } = renderProvider(
-      <CarouselUnControlled
+  it('uptates internally numElementsPerPage is defined but greater than the number of elements', () => {
+    render(
+      <Carousel
         {...mockProps}
-        circular={false}
-        defaultPage={
-          Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)) - 1
-        }
-      />
+        ref={() => ({})}
+        numElementsPerPage={mockProps.elements.length + 2}
+      />,
     );
-    const rightArrow = getByRole('button', { name: mockProps.rightArrow?.['aria-label'] });
-    expect(rightArrow).toBeDisabled();
 
-    const results = await axe(container);
-    // Disable style in line
-    expect(container).toHTMLValidate({
-      rules: {
-        'no-inline-style': 'off',
-      },
-    });
-    expect(results).toHaveNoViolations();
+    expect(mockUseCarousel).toHaveBeenCalledWith(
+      expect.objectContaining({
+        numElementsPerPage: mockProps.elements.length,
+      }),
+    );
   });
 
-  it('Carousel, can navigate using arrows', () => {
-    const mockHandlePageChange = jest.fn();
-    const mockMockUseCarousel = () => ({
-      handlePageChange: mockHandlePageChange,
-      allowShift: {
-        current: true,
-      },
-      numPages: Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)),
-      innerCurrentPage: { current: 0 },
-    });
-    jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
-    const { getByRole } = renderProvider(<CarouselUnControlled {...mockProps} />);
-    // Right arrow click
-    const rightArrow = getByRole('button', { name: mockProps.rightArrow?.['aria-label'] });
-    fireEvent.click(rightArrow);
-    expect(mockHandlePageChange).toHaveBeenCalledWith(1);
-    // Left arrow click
-    const leftArrow = getByRole('button', { name: mockProps.leftArrow?.['aria-label'] });
-    fireEvent.click(leftArrow);
-    expect(mockHandlePageChange).toHaveBeenCalledWith(-1);
-  });
-
-  it('Carousel, if is circular, can press left arrow even in the first page', () => {
-    const mockHandlePageChange = jest.fn();
-    const mockMockUseCarousel = () => ({
-      handlePageChange: mockHandlePageChange,
-      allowShift: {
-        current: true,
-      },
-      numPages: Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)),
-      innerCurrentPage: { current: 0 },
-    });
-    jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
-    const { getByRole } = renderProvider(<CarouselUnControlled {...mockProps} />);
-    // Left arrow click
-    const leftArrow = getByRole('button', { name: mockProps.leftArrow?.['aria-label'] });
-    fireEvent.click(leftArrow);
-    expect(mockHandlePageChange).toHaveBeenCalledWith(-1);
-  });
-
-  it('Carousel, if carousel is not ready, when arrow click, navigation will not work', () => {
-    const mockHandlePageChange = jest.fn();
-    const mockMockUseCarousel = () => ({
-      handlePageChange: mockHandlePageChange,
-      allowShift: {
-        current: false,
-      },
-      numPages: Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)),
-      innerCurrentPage: { current: 0 },
-    });
-    jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
-    const { getByRole } = renderProvider(<CarouselUnControlled {...mockProps} />);
-    // Right arrow click
-    const rightArrow = getByRole('button', { name: mockProps.rightArrow?.['aria-label'] });
-    fireEvent.click(rightArrow);
-    expect(mockHandlePageChange).not.toHaveBeenCalledWith(1);
-    // Left arrow click
-    const leftArrow = getByRole('button', { name: mockProps.leftArrow?.['aria-label'] });
-    fireEvent.click(leftArrow);
-    expect(mockHandlePageChange).not.toHaveBeenCalledWith(-1);
-  });
-
-  it('Carousel, can navigate using keys', () => {
-    const mockHandlePageChange = jest.fn();
-    const mockMockUseCarousel = () => ({
-      handlePageChange: mockHandlePageChange,
-      allowShift: {
-        current: true,
-      },
-      numPages: Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)),
-      innerCurrentPage: { current: 0 },
-    });
-    jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
-    const { getByTestId } = renderProvider(<CarouselUnControlled {...mockProps} />);
-    const carousel = getByTestId('dataTestIdCarouselWrapper');
-    // key press right arrow
-    fireEvent.keyDown(carousel, ARROW_RIGHT);
-    expect(mockHandlePageChange).toHaveBeenCalledWith(1);
-    // key press left arrow
-    fireEvent.keyDown(carousel, ARROW_LEFT);
-    expect(mockHandlePageChange).toHaveBeenCalledWith(-1);
-  });
-
-  it('Carousel, swipe will call to handlePageChange', () => {
-    const mockHandlePageChange = jest.fn();
-    let _onRightSwipe: () => void;
-    let _onLeftSwipe: () => void;
-    const mockMockUseCarousel = ({ onRightSwipe, onLeftSwipe }) => {
-      _onRightSwipe = onRightSwipe;
-      _onLeftSwipe = onLeftSwipe;
-      const res = {
-        handlePageChange: mockHandlePageChange,
-        allowShift: {
-          current: true,
-        },
-        numPages: Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)),
-        innerCurrentPage: { current: 0 },
-      };
-      return res;
-    };
-    jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
-    renderProvider(<CarouselUnControlled {...mockProps} />);
-
-    // simultate onRightSwipe
-    act(() => {
-      _onRightSwipe?.();
-    });
-    expect(mockHandlePageChange).toHaveBeenCalledWith(1);
-    // simultate onLeftSwipe
-    act(() => {
-      _onLeftSwipe?.();
-    });
-    expect(mockHandlePageChange).toHaveBeenCalledWith(-1);
-  });
-
-  it('Carousel, if is circular, can swipe left arrow even in the first page', () => {
-    const mockHandlePageChange = jest.fn();
-
-    let _onLeftSwipe: () => void;
-    const mockMockUseCarousel = ({ onLeftSwipe }) => {
-      _onLeftSwipe = onLeftSwipe;
-      const res = {
-        handlePageChange: mockHandlePageChange,
-        allowShift: {
-          current: true,
-        },
-        numPages: Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)),
-        innerCurrentPage: { current: 0 },
-      };
-      return res;
-    };
-    jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
-    renderProvider(<CarouselUnControlled {...mockProps} />);
-    // simultate onLeftSwipe
-    act(() => {
-      _onLeftSwipe?.();
-    });
-    expect(mockHandlePageChange).toHaveBeenCalledWith(-1);
-  });
-
-  it('Carousel, if is linear and page 0, swipe left will not call to change page', () => {
-    const mockHandlePageChange = jest.fn();
-    let _onLeftSwipe: () => void;
-    const mockMockUseCarousel = ({ onLeftSwipe }) => {
-      _onLeftSwipe = onLeftSwipe;
-      const res = {
-        handlePageChange: mockHandlePageChange,
-        allowShift: {
-          current: true,
-        },
-        numPages: Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)),
-        innerCurrentPage: { current: 0 },
-      };
-      return res;
-    };
-    jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
-    renderProvider(<CarouselUnControlled {...mockProps} circular={false} />);
-    // simultate onLeftSwipe
-    act(() => {
-      _onLeftSwipe?.();
-    });
-    expect(mockHandlePageChange).not.toHaveBeenCalledWith(-1);
-  });
-
-  it('Carousel, if is linear and page last page, swipe right will not call to change page', () => {
-    const mockHandlePageChange = jest.fn();
-
-    let _onRightSwipe: () => void;
-    const mockMockUseCarousel = ({ onRightSwipe }) => {
-      _onRightSwipe = onRightSwipe;
-      const numPages = Math.ceil(
-        mockProps.elements.length / (mockProps.numElementsPerPage as number)
-      );
-      const res = {
-        handlePageChange: mockHandlePageChange,
-        allowShift: {
-          current: true,
-        },
-        numPages,
-        innerCurrentPage: { current: numPages - 1 },
-      };
-      return res;
-    };
-    jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
-    renderProvider(
-      <CarouselUnControlled
+  it('sets internally allowModifySliceWidth to false if numElementsPerPage is 0 or undefined', () => {
+    render(
+      <Carousel
         {...mockProps}
-        circular={false}
-        defaultPage={
-          Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)) - 1
-        }
-      />
+        ref={() => ({})}
+        allowModifySliceWidth={true}
+        numElementsPerPage={0}
+      />,
     );
-    // simultate onRightSwipe
-    act(() => {
-      _onRightSwipe?.();
-    });
-    expect(mockHandlePageChange).not.toHaveBeenCalledWith(1);
+
+    expect(mockUseCarousel).toHaveBeenCalledWith(
+      expect.objectContaining({
+        allowModifySliceWidth: false,
+      }),
+    );
   });
 
-  it('Carousel can have extra padding as invisible arrows buttons', async () => {
-    const { container, getByRole } = renderProvider(
-      <CarouselUnControlled
+  it('sets internally allowModifySliceWidth to false if autoFitContainer', () => {
+    render(
+      <Carousel
         {...mockProps}
-        extraPadding={100}
-        extraPaddingAsArrow={true}
-        leftArrow={{ ...mockProps.leftArrow, icon: undefined }}
-        rightArrow={{ ...mockProps.rightArrow, icon: undefined }}
-      />
-    );
-    const leftArrow = getByRole('button', { name: mockProps.leftArrow?.['aria-label'] });
-    expect(leftArrow).toBeInTheDocument();
-    const rightArrow = getByRole('button', { name: mockProps.rightArrow?.['aria-label'] });
-    expect(rightArrow).toBeInTheDocument();
-
-    const results = await axe(container);
-    // Disable style in line
-    expect(container).toHTMLValidate({
-      rules: {
-        'no-inline-style': 'off',
-      },
-    });
-    expect(results).toHaveNoViolations();
-  });
-
-  it('Carousel with PageControlAutomate', async () => {
-    const pageControlAutomateConfig = {
-      variant: 'DEFAULT',
-      playStop: {
-        icon: { icon: 'PLAY_BUTTON', altText: 'alt text play' },
-        twistedIcon: { icon: 'STOP_BUTTON', altText: 'alt text stop' },
-      },
-      leftArrow: {
-        icon: { icon: 'ARROW_LEFT', altText: 'alt text left arrow' },
-      },
-      rightArrow: {
-        icon: { icon: 'ARROW_RIGHT', altText: 'alt text right arrow' },
-      },
-      mediaProgressBar: {
-        barsAriaLabels: ['aria-label-0', 'aria-label-1', 'aria-label-2', 'aria-label-3'],
-        barProgressDuration: 2000,
-      },
-    };
-
-    const mockHandlePageChange = jest.fn();
-    const mockMockUseCarousel = () => ({
-      handlePageChange: mockHandlePageChange,
-      allowShift: {
-        current: true,
-      },
-      numPages: Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)),
-      innerCurrentPage: { current: 0 },
-    });
-    jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
-
-    const { getByLabelText } = renderProvider(
-      <CarouselUnControlled {...mockProps} pageControlAutomateConfig={pageControlAutomateConfig} />
+        ref={() => ({})}
+        allowModifySliceWidth={true}
+        autoFitContainer={true}
+        numElementsPerPage={5}
+      />,
     );
 
-    const rightArrow = getByLabelText(pageControlAutomateConfig.rightArrow.icon.altText);
-    const leftArrow = getByLabelText(pageControlAutomateConfig.leftArrow.icon.altText);
-
-    fireEvent.click(rightArrow);
-    expect(mockHandlePageChange).toHaveBeenCalledWith(1);
-
-    fireEvent.click(leftArrow);
-    expect(mockHandlePageChange).toHaveBeenCalledWith(-1);
+    expect(mockUseCarousel).toHaveBeenCalledWith(
+      expect.objectContaining({
+        allowModifySliceWidth: false,
+      }),
+    );
   });
 
-  it('Carousel with PageControlAutomate can be used along circular mode', async () => {
-    const pageControlAutomateConfig = {
-      variant: 'DEFAULT',
-      playStop: {
-        icon: { icon: 'PLAY_BUTTON', altText: 'alt text play' },
-        twistedIcon: { icon: 'STOP_BUTTON', altText: 'alt text stop' },
-      },
-      leftArrow: {
-        icon: { icon: 'ARROW_LEFT', altText: 'alt text left arrow' },
-      },
-      rightArrow: {
-        icon: { icon: 'ARROW_RIGHT', altText: 'alt text right arrow' },
-      },
-      mediaProgressBar: {
-        barsAriaLabels: ['aria-label-0', 'aria-label-1', 'aria-label-2', 'aria-label-3'],
-        barProgressDuration: 2000,
-      },
-    };
-
-    const mockHandlePageChange = jest.fn();
-    const mockMockUseCarousel = () => ({
-      handlePageChange: mockHandlePageChange,
-      allowShift: {
-        current: true,
-      },
-      numPages: Math.ceil(mockProps.elements.length / (mockProps.numElementsPerPage as number)),
-      innerCurrentPage: { current: 0 },
-    });
-    jest.spyOn(CarouselHooks, 'useCarousel').mockImplementation(mockMockUseCarousel);
-
-    const { getByLabelText } = renderProvider(
-      <CarouselUnControlled
+  it('allows to set screenReaderOnly prop', () => {
+    const { container } = render(
+      <Carousel
         {...mockProps}
-        circular
-        pageControlAutomateConfig={pageControlAutomateConfig}
-      />
+        defaultPage={0}
+        screenReaderOnly={{ content: 'Pages {{currentPage}}' }}
+      />,
     );
 
-    const rightArrow = getByLabelText(pageControlAutomateConfig.rightArrow.icon.altText);
-    const leftArrow = getByLabelText(pageControlAutomateConfig.leftArrow.icon.altText);
+    const screenReaderElement = container.querySelector('screen-reader-only');
+    expect(screenReaderElement).toBeInTheDocument();
+  });
 
-    fireEvent.click(rightArrow);
-    expect(mockHandlePageChange).toHaveBeenCalledWith(1);
+  it('calls onNumPagesChange when the number of pages changes', async () => {
+    const onNumPagesChange = vi.fn();
+    let capturedOnNumPagesChange: ((numPages: number) => void) | undefined;
 
-    fireEvent.click(leftArrow);
-    expect(mockHandlePageChange).toHaveBeenCalledWith(-1);
+    mockUseCarousel.mockImplementation((params) => {
+      capturedOnNumPagesChange = params.onNumPagesChange;
+      return {
+        changePage: vi.fn(),
+        allowShiftRef: { current: true },
+        currentPageRef: { current: 0 },
+        numElementsPerPageRef: { current: 1 },
+        numPagesRef: { current: 3 },
+      };
+    });
+
+    render(<Carousel {...mockProps} onNumPagesChange={onNumPagesChange} />);
+
+    // Simulate the hook calling onNumPagesChange
+    capturedOnNumPagesChange?.(3);
+
+    expect(onNumPagesChange).toHaveBeenCalledWith(3);
+  });
+
+  it('calls onPageChange when the page changes', async () => {
+    const onPageChange = vi.fn();
+    let capturedOnPageChange: ((page: number) => void) | undefined;
+
+    mockUseCarousel.mockImplementation((params) => {
+      capturedOnPageChange = params.onPageChange;
+      return {
+        changePage: vi.fn(),
+        allowShiftRef: { current: true },
+        currentPageRef: { current: 0 },
+        numElementsPerPageRef: { current: 1 },
+        numPagesRef: { current: 3 },
+      };
+    });
+
+    render(<Carousel {...mockProps} onPageChange={onPageChange} />);
+
+    // Simulate the hook calling onPageChange
+    capturedOnPageChange?.(3);
+
+    expect(onPageChange).toHaveBeenCalledWith(3);
+  });
+
+  it('calls onNumElementsPerPageChange when the number of elements per page changes', async () => {
+    const onNumElementsPerPageChange = vi.fn();
+    let capturedOnNumElementsPerPageChange:
+      | ((numElementsPerPage: number) => void)
+      | undefined;
+
+    mockUseCarousel.mockImplementation((params) => {
+      capturedOnNumElementsPerPageChange = params.onNumElementsPerPageChange;
+      return {
+        changePage: vi.fn(),
+        allowShiftRef: { current: true },
+        currentPageRef: { current: 0 },
+        numElementsPerPageRef: { current: 1 },
+        numPagesRef: { current: 3 },
+      };
+    });
+
+    render(
+      <Carousel
+        {...mockProps}
+        onNumElementsPerPageChange={onNumElementsPerPageChange}
+      />,
+    );
+
+    // Simulate the hook calling onNumElementsPerPageChange
+    capturedOnNumElementsPerPageChange?.(3);
+
+    expect(onNumElementsPerPageChange).toHaveBeenCalledWith(3);
   });
 });

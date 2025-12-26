@@ -1,29 +1,34 @@
-import { OptionStateType } from '../types';
+import { STATES } from '@/lib/types/states/states';
 
-// eslint-disable-next-line complexity
+import type { OptionStateType } from '../types/state';
+
 const getState = (
   disabled: boolean | undefined,
+  focused: boolean | undefined,
   selected: boolean | undefined,
   multiSelected: boolean | undefined,
   hover: boolean,
-  filling: boolean
+  filling: boolean,
 ): OptionStateType => {
   if (disabled) {
-    return OptionStateType.DISABLED;
+    return STATES.DISABLED;
+  }
+  if (focused) {
+    return STATES.FOCUS;
   }
   if (selected) {
     if (multiSelected) {
-      return hover ? OptionStateType.MULTIPLE_SELECTED_HOVER : OptionStateType.MULTIPLE_SELECTED;
+      return hover ? STATES.MULTIPLE_SELECTED_HOVER : STATES.MULTIPLE_SELECTED;
     }
-    return hover ? OptionStateType.SELECTED_HOVER : OptionStateType.SELECTED;
+    return hover ? STATES.SELECTED_HOVER : STATES.SELECTED;
   }
   if (hover) {
-    return OptionStateType.HOVER;
+    return STATES.HOVER;
   }
   if (filling) {
-    return OptionStateType.FILLING;
+    return STATES.FILLING;
   }
-  return OptionStateType.DEFAULT;
+  return STATES.DEFAULT;
 };
 
 /**
@@ -32,16 +37,20 @@ const getState = (
  */
 export const getHighlightedIndexes = (
   label: string,
-  labelCharsHighlighted: string | undefined
+  labelCharsHighlighted: string | undefined,
 ): { firstHighlightedIndex: number; lastHighlightedIndex: number } => {
   let firstHighlightedIndex = 0;
   let lastHighlightedIndex = 0;
   if (labelCharsHighlighted) {
     const labelLowerCase = label.toLocaleLowerCase();
-    const charsHightlightedLowerCase = labelCharsHighlighted.toLocaleLowerCase();
+    const charsHightlightedLowerCase =
+      labelCharsHighlighted.toLocaleLowerCase();
     if (labelLowerCase.includes(charsHightlightedLowerCase)) {
-      firstHighlightedIndex = labelLowerCase.indexOf(charsHightlightedLowerCase);
-      lastHighlightedIndex = firstHighlightedIndex + labelCharsHighlighted.length;
+      firstHighlightedIndex = labelLowerCase.indexOf(
+        charsHightlightedLowerCase,
+      );
+      lastHighlightedIndex =
+        firstHighlightedIndex + labelCharsHighlighted.length;
     }
   }
   return { firstHighlightedIndex, lastHighlightedIndex };

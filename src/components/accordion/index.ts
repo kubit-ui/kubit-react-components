@@ -1,4 +1,9 @@
-export type * from './types';
-
 export { AccordionControlled } from './accordionControlled';
-export { AccordionUnControlled as Accordion } from './accordionUnControlled';
+export { Accordion } from './accordionUnControlled';
+export type {
+  IAccordionControlled,
+  IAccordionStandAlone,
+  IAccordionUnControlled,
+  AccordionStyleProps,
+  AccordionVariantStyles,
+} from './types';

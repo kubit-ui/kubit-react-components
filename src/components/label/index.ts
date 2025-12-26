@@ -1,2 +1,4 @@
-export type { ILabelStandAlone } from './types';
-export { LabelStandAlone as Label } from './labelStandAlone';
+export { Label } from './labelStandAlone';
+export type {
+  LabelStandAloneProps,
+} from './types/label';

@@ -1,3 +1,4 @@
-//components
 export { ItemRove } from './itemRove';
-export * from './types';
+export type {
+  ItemRoveProps,
+} from './types/itemRove';

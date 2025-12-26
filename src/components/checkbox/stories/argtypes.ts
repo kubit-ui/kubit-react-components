@@ -1,220 +1,100 @@
-import { CATEGORY_CONTROL } from '@/constants';
-import { IThemeObjectVariants } from '@/designSystem/themesObject';
-import { ArgTypesReturn } from '@/types';
-import { AriaLiveOptionType } from '@/types/ariaLiveOption';
+import type { ArgTypes } from 'storybook/internal/types';
 
-export const argtypes = (variants: IThemeObjectVariants, themeSelected: string): ArgTypesReturn => {
+import { CheckboxVariantType } from '@/lib/designSystem/kubit/components/checkbox/variants';
+import { CATEGORY_CONTROL } from '@/lib/storybook/constants/categoryControl';
+
+export const argtypes = (): ArgTypes => {
   return {
-    theme: {
-      table: {
-        disable: true,
+    checked: {
+      control: {
+        type: 'boolean',
       },
+      description: 'Whether the checkbox is checked',
+      name: 'checked',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+      type: { name: 'boolean' },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Whether the checkbox is disabled',
+      name: 'disabled',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+      type: { name: 'boolean' },
+    },
+    error: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Whether the checkbox is in an error state',
+      name: 'error',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+      type: { name: 'boolean' },
+    },
+    errorMessage: {
+      control: {
+        type: 'object',
+      },
+      description: 'The error message of the checkbox',
+      name: 'errorMessage',
+      table: {
+        type: { summary: 'object' },
+      },
+      type: { name: 'object', value: {} },
+    },
+    label: {
+      control: {
+        type: 'object',
+      },
+      description: 'The label content of the checkbox',
+      name: 'label',
+      table: {
+        type: { summary: 'object' },
+      },
+      type: { name: 'object', value: {} },
+    },
+    onChange: {
+      action: 'onChange',
+      description: 'Callback when the checkbox is changed',
+      name: 'onChange',
+      table: {
+        type: { summary: 'function' },
+      },
+      type: { name: 'function' },
+    },
+    required: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Whether the checkbox is required',
+      name: 'required',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+      type: { name: 'boolean' },
     },
     variant: {
       control: { type: 'select' },
-      type: { name: 'string', required: true },
       description: 'Checkbox variant',
-      options: Object.keys(variants[themeSelected].CheckboxVariantType || {}),
+      options: Object.values(CheckboxVariantType),
       table: {
+        category: CATEGORY_CONTROL.MODIFIERS,
         type: {
           summary: 'string',
         },
-        category: CATEGORY_CONTROL.MODIFIERS,
       },
-    },
-    disabled: {
-      description: 'Disable checkbox',
-      control: { type: 'boolean' },
-      type: { name: 'boolean' },
-      table: {
-        type: {
-          summary: 'boolean',
-        },
-        defaultValue: { summary: false },
-        category: CATEGORY_CONTROL.MODIFIERS,
-      },
-    },
-    checked: {
-      description: 'Is checked?',
-      control: { type: 'boolean' },
-      type: { name: 'boolean' },
-      table: {
-        type: {
-          summary: 'boolean',
-        },
-        defaultValue: { summary: false },
-        category: CATEGORY_CONTROL.MODIFIERS,
-      },
-    },
-    error: {
-      description: 'Show error message',
-      control: { type: 'boolean' },
-      type: { name: 'boolean' },
-      table: {
-        type: {
-          summary: 'boolean',
-        },
-        defaultValue: { summary: false },
-        category: CATEGORY_CONTROL.MODIFIERS,
-      },
-    },
-    required: {
-      description: 'Show required symbol',
-      control: { type: 'boolean' },
-      type: { name: 'boolean' },
-      table: {
-        type: {
-          summary: 'boolean',
-        },
-        defaultValue: { summary: false },
-        category: CATEGORY_CONTROL.MODIFIERS,
-      },
-    },
-    label: {
-      description: 'Object with label properties',
-      control: { type: 'object' },
-      type: { name: 'object' },
-      table: {
-        type: {
-          summary: 'CheckboxLabelType',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    value: {
-      description: 'Checkbox value',
-      control: false,
-      table: {
-        type: {
-          summary: 'string',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    name: {
-      description: 'Checkbox name',
-      control: false,
-      table: {
-        type: {
-          summary: 'string',
-        },
-        category: CATEGORY_CONTROL.MODIFIERS,
-      },
-    },
-    errorMessage: {
-      description: 'Object with error text properties',
-      control: { type: 'object' },
-      type: { name: 'object' },
-      table: {
-        type: {
-          summary: 'CheckboxHelperAndErrorTextType',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    checkedIcon: {
-      description: 'Object with checked icon properties',
-      type: { name: 'object' },
-      control: { type: 'object' },
-      table: {
-        type: {
-          summary: 'IElementOrIcon',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    errorIcon: {
-      description: 'Object with error icon properties',
-      type: { name: 'object' },
-      control: { type: 'object' },
-      table: {
-        type: {
-          summary: 'IElementOrIcon',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    errorAriaLiveType: {
-      description: 'Error message aria-live type',
-      options: Object.values(AriaLiveOptionType),
-      control: { type: 'select' },
-      type: { name: 'string' },
-      table: {
-        type: {
-          summary: 'AriaLiveOptionType',
-          detail: Object.keys(AriaLiveOptionType).join(', '),
-        },
-        defaultValue: { summary: AriaLiveOptionType.ASSERTIVE },
-        category: CATEGORY_CONTROL.ACCESIBILITY,
-      },
-    },
-    helperText: {
-      description: 'Object with helper text properties',
-      control: { type: 'object' },
-      type: { name: 'object' },
-      table: {
-        type: {
-          summary: 'CheckboxHelperAndErrorTextType',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    helperContent: {
-      description: 'Object with helper content properties',
-      control: { type: 'object' },
-      type: { name: 'object' },
-      table: {
-        type: {
-          summary: 'CheckboxHelpContentType',
-        },
-        category: CATEGORY_CONTROL.CONTENT,
-      },
-    },
-    extraAriaDescribedBy: {
-      description: 'Allow to extend input "aria-describedby"',
-      control: { type: 'text' },
-      type: { name: 'string' },
-      table: {
-        type: {
-          summary: 'string',
-        },
-        defaultValue: { summary: '' },
-        category: CATEGORY_CONTROL.ACCESIBILITY,
-      },
-    },
-    screenReaderText: {
-      description:
-        'String used for screen reader. In the case of context change put message for screen readers',
-      control: { type: 'text' },
-      type: { name: 'string' },
-      table: {
-        type: {
-          summary: 'string',
-        },
-        category: CATEGORY_CONTROL.ACCESIBILITY,
-      },
-    },
-    dataTestId: {
-      description: 'String used for testing',
-      control: { type: 'text' },
-      type: { name: 'string' },
-      table: {
-        type: {
-          summary: 'string',
-        },
-        category: CATEGORY_CONTROL.TESTING,
-      },
-    },
-    ctv: {
-      description: 'Object used for update variant styles',
-      type: { name: 'object' },
-      control: { type: 'object' },
-      table: {
-        type: {
-          summary: 'object',
-        },
-        category: CATEGORY_CONTROL.CUSTOMIZATION,
-      },
+      type: { name: 'string', required: true },
     },
   };
 };

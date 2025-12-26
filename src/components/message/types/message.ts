@@ -1,62 +1,112 @@
-import { ReactNode } from 'react';
+import type { AriaAttributes, AriaRole } from 'react';
 
-import { IButton } from '@/components/button';
-import { IElementOrIcon } from '@/components/elementOrIcon';
-import { IElementOrillustration } from '@/components/elementOrIllustration';
-import { ITag } from '@/components/tag';
-import { IText } from '@/components/text';
-import { AriaLiveOptionType, CustomTokenTypes, ROLES } from '@/types';
+import type { GenericLinkType } from '@/lib/provider/genericComponentsProvider/types/genericComponentsProvider';
+import type { CommonTextProps } from '@/lib/types/commons/text';
+import type {
+  ComponentSelected,
+  ComponentsTypesComponents,
+} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { MessagePropsThemeType } from './messageTheme';
+import type { ButtonProps } from '../../button/types/button';
+import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
+import type { LinkProps } from '../../link/types/link';
+import type { TagProps } from '../../tag/types/tag';
 
-export type MessageActionButtonType = Omit<IButton, 'children' | 'size'> & {
+type MessageCssClasses = ComponentSelected<
+  ComponentsTypesComponents['MESSAGE']
+>;
+
+/**
+ * Represents the type for the action button in the Message component.
+ */
+export type MessageActionButtonProps = Omit<
+  ButtonProps,
+  'children' | 'size'
+> & {
   content?: React.ReactNode;
   size?: string;
 };
 
-export type MessageExtraActionButtonType = Omit<IButton, 'children'> & {
+/**
+ * Represents the type for the extra action button in the Message component.
+ */
+export type MessageExtraActionButtonProps = Omit<ButtonProps, 'children'> & {
   content?: React.ReactNode;
 };
 
-export type MessageContentType = Omit<IText<string>, 'children'> & {
-  content: string | ReactNode;
-};
-
-export type MessageTitleType = Omit<IText<string>, 'children'> & {
+/**
+ * Represents the type for the tag in the Message component.
+ */
+export type MessageTagProps = Omit<TagProps, 'children'> & {
   content: string;
 };
 
-export type MessageTagType = Omit<ITag, 'children'> & {
-  content: string;
+/**
+ * Represents the type for the link in the Message component.
+ */
+export type MessageLinkProps = Omit<LinkProps, 'children'> & {
+  content?: string;
 };
 
-export interface IMessageStandAlone {
-  illustration?: IElementOrillustration;
-  infoIcon?: IElementOrIcon;
-  actionButton?: MessageActionButtonType;
-  extraActionButton?: MessageExtraActionButtonType;
-  content: MessageContentType;
-  title?: MessageTitleType;
-  tag?: MessageTagType;
+/**
+ * Represents the type for the container as a link in the Message component.
+ */
+export interface MessageContainerAsLinkProps {
+  onClick?: () => void;
+  url?: string;
+  target?: React.HTMLAttributeAnchorTarget;
+}
+
+/**
+ * Interface for the standalone Message component.
+ * Includes properties for icons, buttons, links, tags, and CSS classes.
+ */
+export interface MessageStandAloneProps extends DataAttributes {
+  linkComponent: GenericLinkType;
+  messageContainerProps?: MessageContainerAsLinkProps;
+  titleAndContentContainerProps?: MessageContainerAsLinkProps;
+  titleAndContentRole?: AriaRole;
+  infoIcon?: ElementOrIconProps;
+  actionButton?: MessageActionButtonProps;
+  extraActionButton?: MessageExtraActionButtonProps;
+  content: CommonTextProps;
+  inlineLink?: MessageLinkProps;
+  title?: CommonTextProps;
+  tag?: MessageTagProps;
   ariaMessageId?: string;
-  closeIcon?: IElementOrIcon;
-  dataTestId?: string;
+  closeIcon?: ElementOrIconProps;
   maxContentLength?: number;
   open: boolean;
-  styles: MessagePropsThemeType;
-  role?: ROLES.STATUS | ROLES.ALERT;
+  role?: React.AriaRole;
   id?: string;
-  ariaLive?: AriaLiveOptionType;
+  ariaLive?: AriaAttributes['aria-live'];
+  links?: MessageLinkProps[];
+  cssClasses?: MessageCssClasses;
 }
 
-export interface IMessageControlled<V = undefined extends string ? unknown : string>
-  extends Omit<IMessageStandAlone, 'styles'>,
-    Omit<CustomTokenTypes<MessagePropsThemeType>, 'cts' | 'extraCt'> {
+/**
+ * Interface for the controlled Message component.
+ * Extends the MessageStandAloneProps interface and adds a variant and additional CSS classes.
+ *
+ * @template Variant - The type of the variant for the Message.
+ */
+export interface MessageProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<MessageStandAloneProps, 'linkComponent'> {
   open: boolean;
-  variant: V;
+  variant?: Variant;
+  additionalClasses?: Partial<MessageCssClasses>;
 }
 
-export interface IMessageUnControlled<V = undefined extends string ? unknown : string>
-  extends Omit<IMessageControlled<V>, 'open' | 'onClose'> {
+/**
+ * Interface for the uncontrolled Message component.
+ * Extends the MessageProps interface and omits specific properties.
+ *
+ * @template Variant - The type of the variant for the Message.
+ */
+export interface MessageUnControlledProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<MessageProps<Variant>, 'open'> {
   defaultOpen?: boolean;
 }

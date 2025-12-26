@@ -1,54 +1,72 @@
-import * as React from 'react';
-
-import { POSITIONS } from '@/types';
+import { type ForwardedRef, forwardRef, useState } from 'react';
 
 import { ToggleControlled } from './toggleControlled';
-import { IToggleUnControlled } from './types';
-
-const ToggleUnControlledComponent = <V extends string | undefined>(
-  {
-    variant,
-    hasThreePositions = false,
-    defaultTogglePosition = hasThreePositions ? POSITIONS.CENTER : POSITIONS.LEFT,
-    togglePosition,
-    onChange,
-    ...props
-  }: IToggleUnControlled<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => {
-  const [_togglePosition, setTogglePosition] = React.useState(defaultTogglePosition);
-
-  const handleChange = (newPosition: POSITIONS) => {
-    setTogglePosition(newPosition);
-    onChange?.(newPosition);
-  };
-
-  return (
-    <ToggleControlled
-      {...props}
-      ref={ref}
-      hasThreePositions={hasThreePositions}
-      togglePosition={togglePosition ?? _togglePosition}
-      variant={variant}
-      onChange={handleChange}
-    />
-  );
-};
-
-const ToggleUnControlled = React.forwardRef(ToggleUnControlledComponent) as <V extends string>(
-  props: React.PropsWithChildren<IToggleUnControlled<V>> & {
-    ref?: React.ForwardedRef<HTMLInputElement> | undefined | null;
-  }
-) => ReturnType<typeof ToggleUnControlledComponent>;
+import type { ToggleUncontrolledProps } from './types/toggle';
 
 /**
- * @description
- * Toggle component is a component that can be used to switch between two states.
- * It can be used to create a switch or a checkbox.
- * @param {React.PropsWithChildren<IToggleUnControlled<V>>} props
- * @returns {JSX.Element}
- * @constructor
+ * Toggle uncontrolled component with generic variant support.
+ *
+ * This component manages its own internal state and supports custom variants
+ * through generic type parameters. It's useful when you don't need to control
+ * the toggle state externally.
+ *
+ * ### Generics
+ * - `<Variant extends string | undefined>`: Allows you to define custom variant types for theming.
+ *
  * @example
- * <ToggleUnControlled variant="yes_no" />
+ * ```tsx
+ * <ToggleUncontrolled
+ *   variant="REGULAR"
+ *   defaultChecked={false}
+ *   onToggle={(checked) => console.log(checked)}
+ * />
+ *
+ * // With custom variant type:
+ * type MyVariant = "primary" | "secondary";
+ * <ToggleUncontrolled<MyVariant>
+ *   variant="primary"
+ *   defaultChecked={true}
+ *   onToggle={(checked) => console.log(checked)}
+ * />
+ * ```
+ *
+ * @param props - `ToggleUncontrolledProps<Variant>` include:
+ *
+ * - defaultChecked: boolean - Initial toggle state
+ * - onToggle: function - Callback when toggle state changes (receives current state)
+ * - variant: Variant - Toggle variant
+ * - disabled: boolean - Whether toggle is disabled
+ * - rightIcon/leftIcon: objects - Icons to show when on/off
  */
-export { ToggleUnControlled };
+export const ToggleUncontrolled = forwardRef(
+  <Variant extends string | undefined>(
+    {
+      defaultChecked = false,
+      onToggle,
+      variant,
+      ...props
+    }: ToggleUncontrolledProps<Variant>,
+    ref: ForwardedRef<HTMLButtonElement> | undefined | null,
+  ): JSX.Element => {
+    // Internal state management for uncontrolled mode
+    const [internalChecked, setInternalChecked] = useState(defaultChecked);
+
+    // Handle toggle change - update internal state and call external callback
+    const handleToggle = (newChecked: boolean) => {
+      setInternalChecked(newChecked);
+      onToggle?.(newChecked);
+    };
+
+    return (
+      <ToggleControlled
+        {...props}
+        ref={ref}
+        checked={internalChecked}
+        variant={variant}
+        onToggle={handleToggle}
+      />
+    );
+  },
+);
+
+ToggleUncontrolled.displayName = 'ToggleUncontrolled';

@@ -1,35 +1,42 @@
-import * as React from 'react';
+import {
+  type MouseEventHandler,
+  forwardRef,
+  useCallback,
+  useState,
+} from 'react';
 
-// styles
 import { MessageControlled } from './messageControlled';
-import { IMessageUnControlled } from './types';
+import type { MessageUnControlledProps } from './types/message';
 
-const MessageUnControlledComponent = <V extends string | unknown>(
-  { defaultOpen = true, ...props }: IMessageUnControlled<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => {
-  const [open, setOpen] = React.useState(defaultOpen);
+export const MessageUnControlled = forwardRef<
+  HTMLDivElement,
+  MessageUnControlledProps<string>
+>(({ closeIcon, defaultOpen = true, ...props }, ref) => {
+  const [open, setOpen] = useState(defaultOpen);
 
-  const handleCloseButton = () => {
-    setOpen(false);
-  };
+  /**
+   * Handles the close button click event.
+   *
+   * @param {MouseEvent<HTMLButtonElement>} event - The mouse event triggered by clicking the close button.
+   */
+  const handleCloseButton = useCallback<MouseEventHandler<HTMLButtonElement>>(
+    (event) => {
+      setOpen(false);
+      closeIcon?.onClick?.(event);
+    },
+    [closeIcon],
+  );
 
   return (
     <MessageControlled
       {...props}
       ref={ref}
-      closeIcon={{ ...props.closeIcon, onClick: handleCloseButton }}
+      closeIcon={
+        closeIcon ? { ...closeIcon, onClick: handleCloseButton } : undefined
+      }
       open={open}
     />
   );
-};
+});
 
-const MessageUnControlled = React.forwardRef(MessageUnControlledComponent) as <
-  V extends string | unknown,
->(
-  props: React.PropsWithChildren<IMessageUnControlled<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => ReturnType<typeof MessageUnControlledComponent>;
-
-export { MessageUnControlled };
+export { MessageUnControlled as Message };

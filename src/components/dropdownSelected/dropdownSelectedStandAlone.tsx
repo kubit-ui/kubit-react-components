@@ -1,146 +1,184 @@
-import React, { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
-import { keyDownMove, keyUpMove } from '@/components/listOptions/utils';
-import { useId } from '@/hooks/useId/useId';
+import { RenderIf } from '@/components/renderIf/renderIf';
+import { Text } from '@/components/text/text';
+import { useId } from '@/lib/hooks/useId/useId';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+import { processText } from '@/lib/utils/process/processText/processText';
 
-import { ButtonType } from '../button';
-import { ElementOrIcon } from '../elementOrIcon';
-import { ListOptions, ListOptionsOptionType, ListOptionsType } from '../listOptions';
-import {
-  PopoverControlled as Popover,
-  PopoverComponentType,
-  PopoverPositionVariantType,
-} from '../popover';
-import { Text, TextComponentType } from '../text';
-import {
-  ButtonOrLinkContainerStyled,
-  DropdrownSelectedContainerStyled,
-  ListOptionsContainerStyled,
-} from './dropdownSelected.styled';
-import { IDropdownSelectedStandAlone } from './types';
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
+import { ListOptions } from '../listOptions/listOptions';
+import type { ListOptionsOptionProps } from '../listOptions/types/listOptions';
+import { keyDownMove, keyUpMove } from '../listOptions/utils/listOptions.utils';
+import { Popover } from '../popover/popover';
+import type { DropdownSelectedStandAloneProps } from './types/dropdownSelected';
 
-const DROPDOWN_SELECTED_BASE_ID = 'DropdownSelected';
+/**
+ * Standalone dropdown component for rendering the visual structure and interaction of a dropdown.
+ *
+ * This component is responsible for the low-level rendering of a dropdown, including the button or link,
+ * label, icon, and the list of selectable options. It is typically used internally by higher-level dropdown
+ * components to provide a consistent and accessible UI.
+ *
+ * Accepts generic type parameters for custom variant or option types, enabling flexible theming and structure.
+ *
+ * @example
+ * ```tsx
+ * <DropdownSelectedStandAlone open label="Select an option" listOptions={options} />
+ * ```
+ */
+export const DropdownSelectedStandAlone = forwardRef<
+  HTMLDivElement,
+  DropdownSelectedStandAloneProps
+>(
+  (
+    {
+      buttonOrLinkRef,
+      component,
+      cssClasses,
+      icon,
+      label,
+      listOptions,
+      listOptionsRef,
+      onBlur,
+      onButtonClick,
+      onButtonKeyDown,
+      onClosePopover,
+      onFocus,
+      onKeyDown,
+      onOptionClick,
+      open,
+      optionSelected,
+      popover,
+      url,
+      urlTarget,
+      ...props
+    },
+    ref,
+  ) => {
+    const BASE_ID = useId('DropdownSelected');
+    const ariaControls = open ? `${BASE_ID}-list` : undefined;
+    const dataTestId = props['data-testid'] || 'dropdown-selected';
+    const customProps = pickCustomAttributes(props);
 
-const DropdownSelectedStandAloneComponent = (props: IDropdownSelectedStandAlone): JSX.Element => {
-  const BASE_ID = useId(DROPDOWN_SELECTED_BASE_ID);
-  const POPOVER_ID = `${BASE_ID}-popover`;
-  const ariaControls = props.open ? `${BASE_ID}-list` : undefined;
-
-  const keyTabMove =
-    (options: ListOptionsOptionType[]) =>
-    (prevFocus: number, e?: KeyboardEvent): number => {
-      // Go to the previous focusable element
-      if (e?.shiftKey) {
-        const newFocus = Math.max(prevFocus, 0) - 1;
-        // Prevent default if the next element is less than 0
-        // Go to the button
-        if (newFocus >= 0) {
+    const keyTabMove =
+      (options: ListOptionsOptionProps[]) =>
+      (prevFocus: number, e?: KeyboardEvent): number => {
+        if (e?.shiftKey) {
+          const newFocus = Math.max(prevFocus, 0) - 1;
+          if (newFocus >= 0) {
+            e?.preventDefault();
+          }
+          return Math.max(newFocus, 0);
+        }
+        const newFocus = Math.max(prevFocus, 0) + 1;
+        if (newFocus <= options.length - 1) {
           e?.preventDefault();
         }
-        return Math.max(newFocus, 0);
-      }
-      // Go to the next element focusable
-      const newFocus = Math.max(prevFocus, 0) + 1;
-      // Prevent default if the next element does not overflow the options length
-      // When preventDefault is not called, the focus is moved to the next element (outside the listOptions)
-      if (newFocus <= options.length - 1) {
-        e?.preventDefault();
-      }
-      return Math.min(newFocus, options.length - 1);
-    };
+        return Math.min(newFocus, options.length - 1);
+      };
 
-  const roveFocusProps = useMemo(
-    () => ({
-      size: props.listOptions.options.length,
-      keyDownMove: keyDownMove(props.listOptions.options),
-      keyUpMove,
-      currentFocusSelected: -1,
-      keyRightMove: 0,
-      keyLeftMove: 0,
-      keyTabMove: keyTabMove(props.listOptions.options),
-    }),
-    [props.listOptions.options]
-  );
+    const roveFocusProps = useMemo(
+      () => ({
+        currentFocusSelected: -1,
+        keyDownMove: keyDownMove(listOptions.options),
+        keyLeftMove: 0,
+        keyRightMove: 0,
+        keyTabMove: keyTabMove(listOptions.options),
+        keyUpMove,
+        size: listOptions.options.length,
+      }),
+      [listOptions.options],
+    );
 
-  return (
-    <DropdrownSelectedContainerStyled
-      data-testid={props.dataTestIdComponent}
-      styles={props.styles}
-      onBlur={event => props.onFocus?.(event)}
-      onFocus={props.onFocus}
-      onKeyDown={event => props.onKeyDown?.(event)}
-      onMouseEnter={props.onMouseEnter}
-      onMouseLeave={props.onMouseLeave}
-    >
-      <ButtonOrLinkContainerStyled
-        ref={props.buttonOrLinkRef}
-        $rotate={props.open}
-        aria-controls={ariaControls}
-        as={props.component}
-        styles={props.styles}
-        target={!props.url ? undefined : props.urlTarget}
-        type={!props.url ? ButtonType.BUTTON : undefined}
-        url={props.url}
-        onClick={props.onButtonClick}
-        onKeyDown={props.onButtonKeyDown}
+    return (
+      <div
+        ref={ref}
+        className={cssClasses?.dropdown_selected}
+        data-testid={dataTestId}
+        role="combobox"
+        onBlur={onBlur}
+        onFocus={onFocus}
+        onKeyDown={onKeyDown}
+        {...customProps}
+        aria-controls="dropdown-selected-list"
+        aria-expanded={open}
+        tabIndex={0}
       >
-        <Text
-          component={TextComponentType.SPAN}
-          customTypography={props.open ? props.styles?.labelOpened : props.styles?.labelClosed}
-          {...props.label}
+        <CustomComponent
+          ref={buttonOrLinkRef}
+          aria-controls={ariaControls}
+          aria-expanded={open}
+          aria-haspopup="listbox"
+          className={cssClasses?.buttonorlinkcontainer}
+          component={component}
+          target={url ? urlTarget : undefined}
+          type={url ? undefined : 'button'}
+          url={url}
+          onClick={onButtonClick}
+          onKeyDown={onButtonKeyDown}
         >
-          {props.label.content}
-        </Text>
-        <ElementOrIcon
-          customIconStyles={props.open ? props.styles?.iconOpened : props.styles?.iconClosed}
-          {...props.icon}
-        />
-      </ButtonOrLinkContainerStyled>
-      {props.styles?.popover?.variant && (
-        <Popover
-          hasBackDrop
-          component={PopoverComponentType.DIV}
-          dataTestId={POPOVER_ID}
-          focusFirstDescendantAutomatically={false}
-          focusLastElementFocusedAfterClose={false}
-          id={ariaControls}
-          open={props.open}
-          positionVariant={PopoverPositionVariantType.ABSOLUTE}
-          pressEscapeClose={true}
-          preventCloseOnClickElements={[props.buttonOrLinkRef?.current]}
-          trapFocusInsideModal={false}
-          variant={props.styles?.popover.variant}
-          {...props.popover}
-          onCloseInternally={() => {
-            props.onClosePopover();
-            props.popover?.onCloseInternally?.();
-          }}
-        >
-          <ListOptionsContainerStyled
-            data-testid={props.dataTestIdListOptionsContainer}
-            styles={props.styles}
+          <Text
+            additionalClasses={{
+              text: open ? cssClasses?.labelopened : cssClasses?.labelclosed,
+            }}
+            component="span"
+            {...processText(label)}
+          />
+          <ElementOrIcon
+            className={open ? cssClasses?.iconopened : cssClasses?.iconclosed}
+            rotate={open ? '180deg' : '0deg'}
+            transitionDuration="0.2s"
+            {...icon}
+          />
+        </CustomComponent>
+        <RenderIf condition={!!popover}>
+          <Popover
+            anchorElement={buttonOrLinkRef?.current}
+            component="div"
+            disableAutoFocusFirstDescendant={true}
+            disableAutoFocusFirstDescendantAfterClose={true}
+            disableClickOverlayClose={false}
+            disableEscapeClose={false}
+            disableTrapFocus={true}
+            id={ariaControls}
+            open={open}
+            placement="bottom"
+            preventCloseOnClickElements={[buttonOrLinkRef?.current]}
+            strategy="absolute"
+            {...popover}
+            onClose={() => {
+              onClosePopover();
+              popover?.onClose?.();
+            }}
           >
-            {props.styles?.listOptions?.optionVariant && props.styles.listOptions?.variant && (
-              <ListOptions
-                ref={props.listOptionsRef}
-                optionVariant={props.styles.listOptions.optionVariant}
-                roveFocus={
-                  props.listOptions.type === ListOptionsType.SELECTION ? roveFocusProps : undefined
-                }
-                selectedValue={props.optionSelected}
-                variant={props.styles.listOptions.variant}
-                {...props.listOptions}
-                onOptionClick={value => {
-                  props.onOptionClick(value);
-                  props.onClosePopover();
-                }}
-              />
-            )}
-          </ListOptionsContainerStyled>
-        </Popover>
-      )}
-    </DropdrownSelectedContainerStyled>
-  );
-};
-
-export const DropdownSelectedStandAlone = React.forwardRef(DropdownSelectedStandAloneComponent);
+            <div
+              className={cssClasses?.listoptionscontainer}
+              data-testid={`${dataTestId}-list`}
+            >
+              <RenderIf
+                condition={!!listOptions.variant && !!listOptions.optionVariant}
+              >
+                <ListOptions
+                  ref={listOptionsRef}
+                  roveFocus={
+                    listOptions.type === 'selection'
+                      ? roveFocusProps
+                      : undefined
+                  }
+                  selectedValue={optionSelected}
+                  {...listOptions}
+                  onOptionClick={(value: string) => {
+                    onOptionClick(value);
+                    onClosePopover();
+                  }}
+                />
+              </RenderIf>
+            </div>
+          </Popover>
+        </RenderIf>
+      </div>
+    );
+  },
+);

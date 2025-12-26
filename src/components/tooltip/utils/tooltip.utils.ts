@@ -1,54 +1,25 @@
-import { PopoverComponentType } from '@/components/popover';
-import { DeviceBreakpointsType } from '@/types';
-
-// build descriptive id for aria-describedby or aria-labelledby
+/**
+ * Builds a string of IDs to be used as the value for the aria-describedby or aria-labelledby attribute
+ *
+ * @param options - Configuration object
+ * @param options.hasTitle - Whether the tooltip has a title
+ * @param options.hasContent - Whether the tooltip has content
+ * @param options.titleId - ID of the title element
+ * @param options.contentId - ID of the content element
+ * @returns String with valid IDs separated by spaces or undefined if there are no valid IDs
+ */
 export const getAriaDescriptorsBy = ({
-  title,
-  content,
-  titleId,
   contentId,
+  hasContent,
+  hasTitle,
+  titleId,
 }: {
-  title?: string;
-  content?: JSX.Element | string;
-  titleId: string;
-  contentId: string;
+  hasTitle?: boolean;
+  hasContent?: boolean;
+  titleId?: string;
+  contentId?: string;
 }): string | undefined => {
-  const descriptorsId: string[] = [];
-  if (title) {
-    descriptorsId.push(titleId);
-  }
-  if (content) {
-    descriptorsId.push(contentId);
-  }
-  if (descriptorsId.length === 0) {
-    return undefined;
-  }
-  return descriptorsId.join(' ');
-};
+  const validIds = [hasTitle && titleId, hasContent && contentId].filter(Boolean);
 
-export const getHtmlTagForTooltip = ({
-  mediaDevice,
-  tooltipAsModal,
-}: {
-  mediaDevice: DeviceBreakpointsType;
-  tooltipAsModal?: boolean;
-}): PopoverComponentType | undefined => {
-  if (mediaDevice === DeviceBreakpointsType.DESKTOP && tooltipAsModal) {
-    return PopoverComponentType.DIALOG;
-  }
-  return undefined;
-};
-
-// Order to get the value:
-// 1st: We get by props the value
-// 2nd: We get by theme the value
-// 3rd: We dont get nothing, then We return false and tooltip acts like a tooltip
-export const useTooltipAsModal = ({
-  propTooltipAsModal,
-  styleTooltipAsModal,
-}: {
-  propTooltipAsModal?: boolean;
-  styleTooltipAsModal?: boolean;
-}): boolean => {
-  return propTooltipAsModal ?? styleTooltipAsModal ?? false;
+  return validIds.length > 0 ? validIds.join(' ').trim() : undefined;
 };

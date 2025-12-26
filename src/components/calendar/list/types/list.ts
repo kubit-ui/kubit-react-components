@@ -1,6 +1,9 @@
-import { ListStylesVariantType } from './listTheme';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-export interface IList {
+import type { CalendarCssClasses } from '../../types/calendar';
+import type { ListStyleProps } from './listTheme';
+
+export interface ListProps extends DataAttributes {
   selectedDate: Date[];
   currentDate: Date;
   minDate: Date;
@@ -8,8 +11,8 @@ export interface IList {
   hasRange?: boolean;
   setSelectedDate: (date) => void;
   onDayClick?: (value?: string) => void;
-  styles?: ListStylesVariantType;
-  dataTestId?: string;
+  styles?: ListStyleProps;
   sundayFirst?: boolean;
   disabledDates?: Date[];
+  cssClasses?: CalendarCssClasses;
 }

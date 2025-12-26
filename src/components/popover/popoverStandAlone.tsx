@@ -1,57 +1,79 @@
-import * as React from 'react';
+import './styles/index.css';
 
-import { CssAnimation } from '@/components/cssAnimation';
-import { Overlay } from '@/components/overlay';
-import { pickAriaProps } from '@/utils/aria/aria';
+import { forwardRef } from 'react';
 
-import { PopoverAnimationStyled, PopoverStyled } from './popover.styled';
-import { IPopoverStandAlone } from './types';
+import { CustomComponent } from '@/lib/components/customComponent/customComponent';
+import { classNames } from '@/lib/utils/classNames/classNames';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+
+import type { IPopoverStandAlone } from './types/popover';
+import { getArrowBorderStyles } from './utils/styling.utils';
 
 const PopoverStandAloneComponent = (
-  { children, animationExecution, animationConfig, dataTestId, ...props }: IPopoverStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
+  {
+    anchorElement,
+    arrowStyles,
+    children,
+    component = 'div',
+    cssClasses,
+    disableAnimations,
+    id,
+    isClosing,
+    isVisible,
+    overlay,
+    placement,
+    popoverContainerRef,
+    zIndex = 'auto',
+    ...props
+  }: IPopoverStandAlone,
+  ref: React.ForwardedRef<HTMLDivElement> | undefined | null,
 ): JSX.Element | null => {
-  const ariaProps = pickAriaProps(props);
-  if (props.open) {
-    return (
-      <div ref={ref}>
-        {props.hasBackDrop && <Overlay variant={props.styles[props.device]?.overlay} />}
-        <PopoverAnimationStyled
-          ref={props.forwardedRef}
-          as={animationConfig ? CssAnimation : 'div'}
-          data-testid={dataTestId}
-          exec={animationExecution}
-          id={props.id}
-          options={animationConfig?.animationOptions}
-          variant={animationConfig?.animation}
-        >
-          <PopoverStyled
-            {...ariaProps}
-            align={props.align}
-            as={props.component}
-            autoWidth={props?.autoWidth}
-            bottom={props?.bottom}
-            device={props.device}
-            extraAlignGap={props.extraAlignGap}
-            extraWidth={props.extraWidth || props.styles?.[props.device]?.extraWidth}
-            extraWidthSide={props.extraWidthSide || props.styles?.[props.device]?.extraWidthSide}
-            left={props?.left}
-            open={props.open}
-            positionVariant={props.positionVariant}
-            right={props?.right}
-            role={props.role}
-            tabIndex={props.tabIndex}
-            top={props?.top}
-            onKeyDown={props.onKeyDown}
-            {...props.styles}
+  const customAttributes = pickCustomAttributes(props, true) as Record<
+    string,
+    string
+  >;
+  const { ['data-testid']: dataTestId = 'popover', ...restCustomAttributes } =
+    customAttributes;
+
+  return (
+    <div ref={ref} data-testid={dataTestId} id={id}>
+      {isVisible && (
+        <>
+          {overlay}
+          <CustomComponent
+            ref={popoverContainerRef}
+            {...restCustomAttributes}
+            {...props}
+            className={classNames(cssClasses?.popover)}
+            component={component}
+            data-kbt-anchor-element={anchorElement}
+            data-kbt-closing={isClosing}
+            data-kbt-disable-animations={disableAnimations}
+            data-kbt-has-arrow={!!arrowStyles}
+            data-kbt-id="popover"
+            data-kbt-placement={placement}
+            style={{ zIndex: zIndex || 'auto' }}
           >
+            {!!arrowStyles && (
+              <div
+                className={classNames(cssClasses?.arrow)}
+                data-kbt-arrow-border={!!arrowStyles}
+                data-kbt-id="popover-arrow"
+                data-kbt-placement={placement}
+                style={{
+                  ...(placement
+                    ? getArrowBorderStyles(placement, arrowStyles)
+                    : {}),
+                  zIndex: typeof zIndex === 'number' ? zIndex + 1 : zIndex,
+                }}
+              />
+            )}
             {children}
-          </PopoverStyled>
-        </PopoverAnimationStyled>
-      </div>
-    );
-  }
-  return <PopoverAnimationStyled id={props.id} />;
+          </CustomComponent>
+        </>
+      )}
+    </div>
+  );
 };
 
-export const PopoverStandAlone = React.forwardRef(PopoverStandAloneComponent);
+export const PopoverStandAlone = forwardRef(PopoverStandAloneComponent);

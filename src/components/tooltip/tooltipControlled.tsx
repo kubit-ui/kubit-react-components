@@ -1,59 +1,59 @@
-import * as React from 'react';
+import { useImperativeHandle, useRef } from 'react';
 
-import { useMediaDevice } from '@/hooks';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
+import { useScrollDetectionWithAutoFocus } from '@/lib/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
 
-import { TOOLTIP_STYLES } from './constants';
+import { useTooltipAsModal } from './hooks/useTooltipAsModal';
+import { useTooltipAsModalAriaLabel } from './hooks/useTooltipAsModalAriaLabel';
 import { TooltipStandAlone } from './tooltipStandAlone';
-import { ITooltipControlled, TooltipVariantStylesProps } from './types';
-import { useTooltipAsModal } from './utils';
+import type { TooltipControlledProps } from './types/tooltip';
 
-const TooltipControlledComponent = <V extends string | unknown>({
-  tooltipAsModal,
-  ctv,
+export const TooltipControlled = <Variant extends string>({
+  additionalClasses,
+  tooltipAriaLabel,
+  tooltipAsModal: propTooltipAsModal,
+  tooltipAsModal: isModal = false,
+  tooltipRef,
+  variant,
   ...props
-}: ITooltipControlled<V>): JSX.Element => {
-  const styles = useStyles<TooltipVariantStylesProps, V>(TOOLTIP_STYLES, props.variant, ctv);
+}: TooltipControlledProps<Variant>): JSX.Element => {
+  const cssClasses = useClassName({
+    additionalClassNames: additionalClasses,
+    component: 'TOOLTIP',
+    variant,
+  });
+
   const mediaDevice = useMediaDevice();
+  const innerTooltipRef = useRef<HTMLDivElement>(null);
+  const helpAriaLabel = useTooltipAsModalAriaLabel(innerTooltipRef);
+  const tooltipAsModal = useTooltipAsModal({
+    propTooltipAsModal: propTooltipAsModal,
+    styleTooltipAsModal: isModal,
+  });
+
+  const {
+    handleScrollDetection: contentRefHandler,
+    hasScroll: contentHasScroll,
+  } = useScrollDetectionWithAutoFocus({ parentElementRef: innerTooltipRef });
+
+  useImperativeHandle(tooltipRef, () => {
+    return innerTooltipRef.current as HTMLDivElement;
+  }, []);
 
   return (
     <TooltipStandAlone
       {...props}
+      contentHasScroll={contentHasScroll}
+      contentRef={contentRefHandler}
+      cssClasses={cssClasses}
       mediaDevice={mediaDevice}
-      styles={styles}
+      tooltipAriaLabel={tooltipAriaLabel ?? helpAriaLabel}
       tooltipAsModal={useTooltipAsModal({
         propTooltipAsModal: tooltipAsModal,
-        styleTooltipAsModal: styles.tooltipAsModal,
+        styleTooltipAsModal: isModal,
       })}
+      tooltipRef={innerTooltipRef}
     />
   );
 };
-
-TooltipControlledComponent.displayName = 'TooltipControlledComponent';
-
-const TooltipControlled = <V extends string | unknown>(
-  props: ITooltipControlled<V>
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <TooltipControlledComponent {...props} />
-      </FallbackComponent>
-    }
-  >
-    <TooltipControlledComponent {...props} />
-  </ErrorBoundary>
-);
-
-/**
- * @description
- * Tooltip component to show a message when interact whit the label
- * @example
- * <Tooltip
- * variant={TooltipVariantType.DEFAULT}
- * >
- * <Text>Tooltip</Text>
- * </Tooltip>
- */
-export { TooltipControlled };

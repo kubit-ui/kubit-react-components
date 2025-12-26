@@ -1,94 +1,123 @@
-import * as React from 'react';
+import { type RefObject, useMemo } from 'react';
 
-import { ButtonType } from '@/components/button';
-import { ItemRove } from '@/components/itemRove';
-import { Text, TextComponentType } from '@/components/text';
-import { useRoveFocus } from '@/hooks';
-import { useUtilsProvider } from '@/provider';
+import { Text } from '@/components/text/text';
+import { CustomComponent } from '@/lib/components/customComponent/customComponent';
+import { useRoveFocus } from '@/lib/hooks/useRoveFocus/useRoveFocus';
+import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
+import { STATES } from '@/lib/types/states/states';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import { setMonth } from '../../utils/setMonth';
-// styles
-import { MonthElementStyled, MonthListStyled, MonthSelectorStyled } from './monthSelector.styled';
-import { IMonthSelector } from './types/monthSelector';
-import { MonthSelectorStateType } from './types/state';
-import { keyLeftMove, keyRightMove, keyTabMove } from './utils';
+import type { MonthSelectorProps } from './types/monthSelector';
+import {
+  keyDownMove,
+  keyLeftMove,
+  keyRightMove,
+  keyTabMove,
+  keyUpMove,
+} from './utils/monthSelector.utils';
 
-export const MonthSelector = (props: IMonthSelector): JSX.Element => {
+export const MonthSelector = ({
+  configAccesibility,
+  cssClasses,
+  currentDate,
+  maxDate,
+  minDate,
+  onMonthClick,
+  setCurrentDate,
+  today,
+  ...props
+}: MonthSelectorProps): JSX.Element => {
   const { dateHelpers, transformDate } = useUtilsProvider();
-
-  const roveFocusProps = React.useMemo(
+  const dataTestId = props['data-testid'] || 'calendar';
+  const handleKeyMoveConfig = {
+    currentDate: currentDate,
+    maxDate: maxDate,
+    minDate: minDate,
+  };
+  const roveFocusProps = useMemo(
     () => ({
-      size: dateHelpers.getAllMonthName('long').length,
-      keyLeftMove,
-      keyRightMove: keyRightMove(new Date().getMonth()),
-      currentFocusSelected: props.currentDate
-        ? props.currentDate.getMonth()
+      currentFocusSelected: currentDate
+        ? currentDate.getMonth()
         : new Date().getMonth(),
-      keyUpMove: 0,
-      keyDownMove: 0,
+      keyDownMove: keyDownMove(handleKeyMoveConfig),
+      keyLeftMove: keyLeftMove(handleKeyMoveConfig),
+      keyRightMove: keyRightMove(handleKeyMoveConfig),
       keyTabMove,
+      keyUpMove: keyUpMove(handleKeyMoveConfig),
+      size: dateHelpers.getAllMonthName('long').length,
     }),
-    [dateHelpers.getAllMonthName('long').length, props.currentDate]
+    [dateHelpers.getAllMonthName('long').length, currentDate],
   );
   const [focus, , listEl] = useRoveFocus(roveFocusProps);
 
-  const getState = (currentDate: Date, index: number, isDisabled: boolean) => {
+  const getState = (
+    selectedCurrentDate: Date,
+    index: number,
+    isDisabled: boolean,
+  ) => {
     let state;
-    if (currentDate.getMonth() === index) {
-      state = MonthSelectorStateType.SELECTED;
-    } else if (index === props.today.getMonth()) {
-      state = MonthSelectorStateType.CURRENT;
+    if (selectedCurrentDate.getMonth() === index) {
+      state = STATES.SELECTED;
+    } else if (index === today.getMonth()) {
+      state = STATES.CURRENT;
     } else if (isDisabled) {
-      state = MonthSelectorStateType.DISABLED;
+      state = STATES.DISABLED;
     } else {
-      state = MonthSelectorStateType.DEFAULT;
+      state = STATES.DEFAULT;
     }
     return state;
   };
 
-  const setDisabledMonths = index => {
-    const year = props.currentDate?.getFullYear();
-
+  const setDisabledMonths = (index) => {
+    const year = currentDate?.getFullYear();
     return (
-      (props.minDate?.getFullYear() === year && props.minDate?.getMonth() > index) ||
-      (props.maxDate?.getFullYear() === year && props.maxDate?.getMonth() < index)
+      (minDate?.getFullYear() === year && minDate?.getMonth() > index) ||
+      (maxDate?.getFullYear() === year && maxDate?.getMonth() < index)
     );
   };
-
   return (
-    <MonthSelectorStyled ref={listEl as React.RefObject<HTMLUListElement>} styles={props.styles}>
-      {dateHelpers.getAllMonthName('long').map((month, index) => {
-        const state = getState(props.currentDate, index, setDisabledMonths(index));
-
+    <ul
+      ref={listEl as RefObject<HTMLUListElement>}
+      aria-label={configAccesibility?.monthSelectorAriaLabel}
+      className={cssClasses?.monthslist}
+      data-testid="tbody-months-list"
+    >
+      {dateHelpers.getAllMonthName('long', props.locale).map((month, index) => {
+        const state = getState(currentDate, index, setDisabledMonths(index));
+        const customAttributes = {
+          'data-state': setDisabledMonths(index) ? STATES.DISABLED : state,
+        };
         return (
-          <MonthListStyled
-            key={index}
-            $disabled={setDisabledMonths(index)}
-            state={state}
-            styles={props.styles}
+          <li
+            key={month}
+            aria-selected={state === STATES.SELECTED ? true : undefined}
+            className={cssClasses?.monthlistitem}
+            // role="option"
+            {...pickCustomAttributes(customAttributes)}
           >
-            <ItemRove
-              asElement={MonthElementStyled}
+            <CustomComponent
+              aria-label={month.charAt(0).toUpperCase() + month.slice(1)}
+              ariaDisabled={setDisabledMonths(index)}
+              className={cssClasses?.monthelement}
+              component="button"
               focus={focus === index}
               index={index}
-              type={ButtonType.BUTTON}
+              type="button"
+              {...pickCustomAttributes(customAttributes)}
               onSelectItem={() => {
-                const auxCurrentYear = new Date(props.currentDate);
-                props.setCurrentDate(transformDate(setMonth(auxCurrentYear, index)));
-                props.onMonthClick?.(month);
+                const auxCurrentYear = new Date(currentDate);
+                setCurrentDate(transformDate(setMonth(auxCurrentYear, index)));
+                onMonthClick?.(month);
               }}
             >
-              <Text
-                component={TextComponentType.SPAN}
-                customTypography={props.styles?.month?.[state]}
-                dataTestId={props.dataTestId}
-              >
+              <Text component="span" data-testid={dataTestId}>
                 {month.charAt(0).toUpperCase() + month.slice(1)}
               </Text>
-            </ItemRove>
-          </MonthListStyled>
+            </CustomComponent>
+          </li>
         );
       })}
-    </MonthSelectorStyled>
+    </ul>
   );
 };

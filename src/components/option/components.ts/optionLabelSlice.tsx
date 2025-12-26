@@ -1,49 +1,41 @@
-import * as React from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { CSSProperties } from 'react';
 
-import { Text, TextComponentType, TextDecorationType } from '@/components/text';
+import { Text } from '@/components/text/text';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-/**
- * @description
- * IOptionSlice is used to create a slice of an option.
- * @interface IOptionSlice
- * @internal
- */
-interface IOptionSlice {
+import type { TextComponentType } from '../../text/types/component';
+
+interface OptionSliceProps extends DataAttributes {
   variant?: string;
   color?: string;
   weight?: number;
-  decoration?: TextDecorationType;
+  decoration?: CSSProperties['textDecoration'];
   component?: TextComponentType;
-  dataTestId?: string;
+  cssClasses?: string;
+  customAttributes?: Record<string, string | boolean | any>;
 }
 
-/**
- * @description
- * OptionLabelSlice component is used to render the label of an option.
- * @param {React.PropsWithChildren<IOptionSlice>} props
- * @returns {JSX.Element | null}
- * @constructor
- */
 export const OptionLabelSlice = ({
-  variant,
-  color,
-  weight,
-  decoration,
-  component,
-  dataTestId,
   children,
-}: React.PropsWithChildren<IOptionSlice>): JSX.Element | null => {
+  component,
+  cssClasses,
+  customAttributes,
+  ...props
+}: React.PropsWithChildren<OptionSliceProps>): JSX.Element | null => {
   if (!children) {
     return null;
   }
+  const customProps = pickCustomAttributes(props);
   return (
     <Text
-      color={color}
+      additionalClasses={{
+        text: cssClasses,
+      }}
       component={component}
-      dataTestId={dataTestId}
-      decoration={decoration}
-      variant={variant}
-      weight={weight}
+      customAttributes={customAttributes}
+      {...customProps}
     >
       {children}
     </Text>

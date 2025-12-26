@@ -1,35 +1,35 @@
-import * as React from 'react';
+import { axe } from 'vitest-axe';
 
-import { axe } from 'jest-axe';
-
-import { renderProvider } from '@/tests/renderProvider/renderProvider.utility';
+import { render } from '@/lib/tests/render/render';
 
 import { PictureSourceStandAlone } from '../components/pictureSourceStandAlone';
 
 const mockProps = {
+  'data-testid': 'dataTestId',
   mediaSource: { media: 'media', src: 'src' },
-  dataTestId: 'dataTestId',
 };
 
-test('Picture Source Component', async () => {
-  const { container, getByTestId } = renderProvider(
-    <picture>
-      <PictureSourceStandAlone {...mockProps} />
-    </picture>
-  );
-  const source = getByTestId(mockProps.dataTestId);
+describe('Picture Source Component', () => {
+  it('should render Picture Source Component', async () => {
+    const { container, getByTestId } = render(
+      <picture>
+        <PictureSourceStandAlone {...mockProps} />
+      </picture>,
+    );
+    const source = getByTestId(mockProps['data-testid']);
 
-  expect(source).toBeDefined();
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
-});
+    expect(source).toBeDefined();
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results.violations).toHaveLength(0);
+  });
 
-test('Picture Source Component - should not render if mediaSource is null', async () => {
-  const { container } = renderProvider(<PictureSourceStandAlone />);
+  it('should not render if mediaSource is null', async () => {
+    const { container } = render(<PictureSourceStandAlone />);
 
-  expect(container).toBeEmptyDOMElement();
-  const results = await axe(container);
-  expect(container).toHTMLValidate();
-  expect(results).toHaveNoViolations();
+    expect(container).toBeEmptyDOMElement();
+    const results = await axe(container);
+    expect(container).toHTMLValidate();
+    expect(results.violations).toHaveLength(0);
+  });
 });

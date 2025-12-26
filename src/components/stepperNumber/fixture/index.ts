@@ -1,1 +1,1 @@
-export { StepperNumberSteps, ariaSteps } from './ariaLabels';
+export { ariaSteps, StepperNumberSteps } from './ariaLabels';

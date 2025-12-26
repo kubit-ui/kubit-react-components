@@ -1,126 +1,122 @@
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import { axe } from 'vitest-axe';
 
-import { axe } from 'jest-axe';
+import { IconBasic as Icon } from '@/components/icon/icon';
+import { render } from '@/lib/tests/render/render';
+import { STATES } from '@/lib/types/states/states';
 
-import { Icon } from '@/components/icon';
-
-import { renderProvider } from '../../../tests/renderProvider/renderProvider.utility';
-import { Chip, ChipStateType } from '../index';
+import { Chip } from '../chip';
 
 const mockProps = {
-  variant: 'DEFAULT',
+  'data-testid': 'chip-component',
   label: { content: 'Label' },
-  dataTestId: 'chip-component',
+  variant: 'DEFAULT',
 };
 
 const mockPropsRange = {
-  variant: 'DEFAULT',
+  'data-testid': 'chipComponent',
   label: { content: 'Label' },
-  dataTestId: 'chipComponent',
   range: [{ label: 'one' }, { label: 'two' }],
+  variant: 'DEFAULT',
 };
 
 const mockCloseAndRangeIcon = {
   ...mockPropsRange,
-  variant: 'DEFAULT',
+  closeIcon: {
+    altText: 'closeIconLabel',
+    icon: <Icon altText="close_icon" icon="UNICORN" />,
+  },
   rangeIcon: { icon: <Icon altText="range_icon" icon="UNICORN" /> },
-  closeIcon: { icon: <Icon altText="close_icon" icon="UNICORN" />, altText: 'closeIconLabel' },
+  variant: 'DEFAULT',
 };
 
 describe('Chip Component', () => {
-  test('Chip component render', async () => {
-    const { container } = renderProvider(<Chip {...mockCloseAndRangeIcon} />);
+  it('Chip component render', async () => {
+    const { container } = render(<Chip {...mockCloseAndRangeIcon} />);
 
     const chip = screen.getByTestId('chipComponent');
-    expect(chip).toBeInTheDocument();
+    expect(chip).not.toBeNull();
 
     const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
-  test('Chip component - range', async () => {
-    const { container } = renderProvider(<Chip {...mockPropsRange} />);
+  it('Chip component - range', async () => {
+    const { container } = render(<Chip {...mockPropsRange} />);
 
     const chip = screen.getByTestId('chipComponent');
 
-    expect(chip).toBeInTheDocument();
+    expect(chip).not.toBeNull();
 
     const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
-  test('Chip component - range with key', async () => {
-    const { container } = renderProvider(
+  it('Chip component - range with key', async () => {
+    const { container } = render(
       <Chip
         {...mockPropsRange}
         range={[
-          { label: 'one', key: 'one' },
-          { label: 'two', key: 'two' },
+          { key: 'one', label: 'one' },
+          { key: 'two', label: 'two' },
         ]}
-      />
+      />,
     );
 
     const chip = screen.getByTestId('chipComponent');
 
-    expect(chip).toBeInTheDocument();
+    expect(chip).not.toBeNull();
 
     const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
-  test('Chip component - custom icons', async () => {
-    const { container } = renderProvider(<Chip {...mockCloseAndRangeIcon} />);
+  it('Chip component - custom icons', async () => {
+    const { container } = render(<Chip {...mockCloseAndRangeIcon} />);
 
     const closeIcon = screen.getByRole('img', { name: 'close_icon' });
     const rangesIcon = screen.getAllByRole('img', { name: 'range_icon' });
 
-    expect(closeIcon).toBeInTheDocument();
+    expect(closeIcon).not.toBeNull();
     expect(rangesIcon).toHaveLength(mockCloseAndRangeIcon.range.length - 1);
 
     const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
-  test('Chip component - Error message', async () => {
-    const { container } = renderProvider(
+  it('Chip component - Error message', async () => {
+    const { container } = render(
       <Chip
         {...mockProps}
         closeIcon={{ icon: <Icon altText="close_icon" icon="UNICORN" /> }}
-        errorIcon={{ icon: 'icono', altText: 'alt text error' }}
+        errorIcon={{ altText: 'alt text error', icon: 'icono' }}
         errorMessage={{ content: 'error' }}
-        state={ChipStateType.ERROR}
-      />
+        state={STATES.ERROR}
+      />,
     );
 
     const errorMessage = screen.getByText('error');
 
-    expect(errorMessage).toBeInTheDocument();
+    expect(errorMessage).not.toBeNull();
 
     const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
-  test('Chip component - Left icon without range', async () => {
-    const { container } = renderProvider(
+  it('Chip component - Left icon without range', async () => {
+    const { container } = render(
       <Chip
         {...mockProps}
         leftIcon={{ icon: <Icon altText="close_icon" icon="UNICORN" /> }}
-        state={ChipStateType.DEFAULT}
-      />
+        state={STATES.DEFAULT}
+      />,
     );
 
     const leftIcon = screen.getByRole('img', { name: 'close_icon' });
 
-    expect(leftIcon).toBeInTheDocument();
+    expect(leftIcon).not.toBeNull();
 
     const results = await axe(container);
-    expect(container).toHTMLValidate();
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

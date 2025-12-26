@@ -1,76 +1,71 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
 import { DotStandAlone } from './dotStandAlone';
-import { DotSizePropsType, DotVariantStylesType } from './types';
-import { IDot, IDotStandAlone } from './types/dot';
+import type { DotProps } from './types/dot';
 
-const DotComponent = React.forwardRef(
-  <
-    V = undefined extends string | unknown ? string | undefined : string | unknown,
-    S = undefined extends string | unknown ? string | undefined : string | unknown,
-  >(
-    props: IDot<V, S>,
-    ref?: React.ForwardedRef<HTMLSpanElement> | undefined | null
+/**
+ * Dot component for displaying a small badge or counter.
+ *
+ * Useful for showing notification counts, status indicators, or similar UI elements.
+ * If the `number` prop exceeds `maxNumber`, it displays as `+maxNumber`.
+ *
+ * Accepts two generic type parameters for custom variant and size values, allowing flexible theming.
+ *
+ * @template Variant - Custom variant type for styling (e.g., "primary" | "secondary").
+ * @template Size - Custom size type for sizing (e.g., "sm" | "md" | "lg").
+ *
+ * @example
+ * ```tsx
+ * <Dot number={5} maxNumber={9} variant="primary" size="md" />
+ *
+ * // With custom types:
+ * type MyVariant = "success" | "error";
+ * type MySize = "small" | "large";
+ * <Dot<MyVariant, MySize> number={12} maxNumber={9} variant="success" size="large" />
+ * ```
+ */
+export const Dot = forwardRef(
+  <Variant extends string = string, Size extends string = string>(
+    {
+      additionalSizeClasses,
+      additionalVariantClasses,
+      maxNumber,
+      number,
+      size,
+      variant,
+      ...props
+    }: DotProps<Variant, Size>,
+    ref: React.ForwardedRef<HTMLSpanElement>,
   ): JSX.Element => {
-    const { size, variant, number, maxNumber } = props;
-    const styles = useStyles<DotVariantStylesType, V>(STYLES_NAME.DOT, variant, props.ctv);
-    const sizeStyles = useStyles<DotSizePropsType, S>(STYLES_NAME.DOT, size, props.cts);
+    const cssVariantClasses = useClassName({
+      additionalClassNames: additionalVariantClasses,
+      component: 'DOT',
+      variant,
+    });
+
+    const cssSizeClasses = useClassName({
+      additionalClassNames: additionalSizeClasses,
+      component: 'DOT',
+      variant: size,
+    });
 
     const formattedNumber =
-      number && maxNumber && number > maxNumber ? `+${maxNumber}` : number?.toString();
+      typeof number === 'number' && typeof maxNumber === 'number'
+        ? number > maxNumber
+          ? `+${maxNumber}`
+          : number.toString()
+        : undefined;
 
     return (
       <DotStandAlone
         {...props}
         ref={ref}
-        formatedNumber={size !== 'SMALL' ? formattedNumber : undefined}
-        sizeStyles={sizeStyles}
-        styles={styles}
+        cssSizeClasses={cssSizeClasses}
+        cssVariantClasses={cssVariantClasses}
+        formatedNumber={formattedNumber}
       />
     );
-  }
+  },
 );
-DotComponent.displayName = 'DotComponent';
-
-const DotBoundary = <
-  V = undefined extends string | unknown ? string | undefined : string | unknown,
-  S = undefined extends string | unknown ? string | undefined : string | unknown,
->(
-  props: IDot<V, S>,
-  ref?: React.ForwardedRef<HTMLSpanElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <DotStandAlone {...(props as unknown as IDotStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <DotComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-const Dot = React.forwardRef(DotBoundary) as <
-  V = undefined extends string | unknown ? string | undefined : string | unknown,
-  S = undefined extends string | unknown ? string | undefined : string | unknown,
->(
-  props: React.PropsWithChildren<IDot<V, S>> & {
-    ref?: React.ForwardedRef<HTMLSpanElement> | undefined | null;
-  }
-) => ReturnType<typeof DotBoundary>;
-
-/**
- * @description
- * Dot component is a component that can be used to display a dot.
- * It can be used to display a notification dot or a dot to indicate a status.
- * @param {IDot<V, S>} props
- * @returns {JSX.Element}
- * @constructor
- * @example
- * <Dot variant="primary" size="SMALL" number={1} maxNumber={99} />
- */
-export { Dot };

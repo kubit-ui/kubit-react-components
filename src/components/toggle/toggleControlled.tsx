@@ -1,100 +1,80 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { POSITIONS } from '@/types';
-import { isKeyEnterPressed, isKeySpacePressed } from '@/utils';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { ToggleStandAlone } from './toggleStandAlone';
-import type { IToggleControlled, IToggleStandAlone, ToggleStateStyleType } from './types';
-import { getToggleState } from './utils/getToggleState';
-
-const TOGGLE_STYLES = 'TOGGLE_STYLES';
-
-const ToggleControlledComponent = React.forwardRef(
-  <V extends string | unknown>(
-    {
-      variant,
-      ctv,
-      hasThreePositions = false,
-      togglePosition = hasThreePositions ? POSITIONS.CENTER : POSITIONS.LEFT,
-      disabled = false,
-      onChange,
-      onClick,
-      onKeyDown,
-      ...props
-    }: IToggleControlled<V>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-  ): JSX.Element => {
-    const styleVariant = useStyles<ToggleStateStyleType, V>(TOGGLE_STYLES, variant, ctv);
-
-    const handleKeyDown: React.KeyboardEventHandler<HTMLElement> = e => {
-      if (!disabled && (isKeySpacePressed(e.key) || isKeyEnterPressed(e.key))) {
-        let newPosition = POSITIONS.LEFT;
-        if (
-          (togglePosition === POSITIONS.LEFT && !hasThreePositions) ||
-          togglePosition === POSITIONS.CENTER
-        ) {
-          newPosition = POSITIONS.RIGHT;
-        } else if (togglePosition === POSITIONS.LEFT && hasThreePositions) {
-          newPosition = POSITIONS.CENTER;
-        }
-        onChange?.(newPosition);
-        onKeyDown?.(e);
-      }
-    };
-
-    const handleOnClick = (newPosition: POSITIONS, e: React.MouseEvent<HTMLElement>) => {
-      onChange?.(newPosition);
-      onClick?.(e);
-    };
-
-    const state = getToggleState(hasThreePositions, togglePosition, disabled);
-
-    const styles = styleVariant[state];
-
-    return (
-      <ToggleStandAlone
-        {...props}
-        ref={ref}
-        disabled={disabled}
-        hasThreePositions={hasThreePositions}
-        styles={styles}
-        togglePosition={togglePosition}
-        onClick={handleOnClick}
-        onKeyDown={handleKeyDown}
-      />
-    );
-  }
-);
-ToggleControlledComponent.displayName = 'ToggleControlledComponent';
-
-const ToggleBoundary = <V extends string | unknown>(
-  props: IToggleControlled<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <ToggleStandAlone {...(props as unknown as IToggleStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <ToggleControlledComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-const ToggleControlled = React.forwardRef(ToggleBoundary) as <V>(
-  props: React.PropsWithChildren<IToggleControlled<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => ReturnType<typeof ToggleBoundary>;
+import { ToggleStandalone } from './toggleStandAlone';
+import type { ToggleProps } from './types/toggle';
 
 /**
- * @description
- * Toggle component is a component that can be used to create a toggle switch.
- * @param {React.PropsWithChildren<IToggleControlled<V>>} props
- * @returns {JSX.Element}
- * @constructor
+ * Toggle controlled component with generic variant support.
+ *
+ * This component supports custom variants through generic type parameters,
+ * allowing you to extend the toggle's appearance for your design system.
+ * It handles state management through the checked prop and onToggle callback.
+ *
+ * ### Generics
+ * - `<Variant extends string | undefined>`: Allows you to define custom variant types for theming.
+ *
+ * @example
+ * ```tsx
+ * <ToggleControlled
+ *   variant="REGULAR"
+ *   checked={isToggled}
+ *   onToggle={setIsToggled}
+ * />
+ *
+ * // With custom variant type:
+ * type MyVariant = "primary" | "secondary";
+ * <ToggleControlled<MyVariant>
+ *   variant="primary"
+ *   checked={isToggled}
+ *   onToggle={setIsToggled}
+ * />
+ * ```
+ *
+ * @param props - `ToggleControlledProps<Variant>` include:
+ *
+ * - checked: boolean - Current toggle state
+ * - onToggle: function - Callback when toggle state changes
+ * - variant: Variant - Toggle variant
+ * - disabled: boolean - Whether toggle is disabled
+ * - rightIcon/leftIcon: objects - Icons to show when on/off
  */
-export { ToggleControlled };
+export const ToggleControlled = forwardRef(
+  <Variant extends string | undefined>(
+    {
+      additionalVariantClasses,
+      checked,
+      onClick,
+      onToggle,
+      variant,
+      ...props
+    }: ToggleProps<Variant>,
+    ref: ForwardedRef<HTMLButtonElement> | undefined | null,
+  ): JSX.Element => {
+    // Generate CSS classes for variant styling
+    const cssClasses = useClassName({
+      additionalClassNames: additionalVariantClasses,
+      component: 'TOGGLE',
+      variant: variant,
+    });
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      const newChecked = !checked;
+      onToggle?.(newChecked);
+      onClick?.(event);
+    };
+
+    return (
+      <ToggleStandalone
+        {...props}
+        ref={ref}
+        checked={checked}
+        cssClasses={cssClasses}
+        onClick={handleClick}
+      />
+    );
+  },
+);
+
+ToggleControlled.displayName = 'ToggleControlled';

@@ -1,15 +1,28 @@
-import { ListOptionsOptionType } from '../types';
+import type { ListOptionsOptionProps } from '../types/listOptions';
 
 export const isSelected = (
-  option: ListOptionsOptionType,
+  option: ListOptionsOptionProps,
   selectedValue?: string | number | (string | number)[] | null,
-  isMultiSelect?: boolean
+  isMultiSelect?: boolean,
+  caseSensitive?: boolean,
 ): boolean => {
-  if (selectedValue !== null && selectedValue !== undefined && option.value !== undefined) {
+  if (
+    selectedValue !== null &&
+    selectedValue !== undefined &&
+    option.value !== undefined
+  ) {
     if (isMultiSelect) {
-      return Boolean(Array.isArray(selectedValue) && selectedValue.includes(option.value));
+      return Boolean(
+        Array.isArray(selectedValue) && selectedValue.includes(option.value),
+      );
     }
-    return Boolean(selectedValue === option.value);
+    if (caseSensitive) {
+      return Boolean(selectedValue === option.value);
+    }
+    return Boolean(
+      selectedValue.toLocaleString().toLocaleLowerCase() ===
+        option.value.toLocaleString().toLocaleLowerCase(),
+    );
   }
   return false;
 };
@@ -17,9 +30,11 @@ export const isSelected = (
 export const getOptionVariant = (
   highlighted: boolean | undefined,
   hightlightedOptionVariant: string | undefined,
-  optionVariant: string
+  optionVariant?: string,
 ): string => {
-  return highlighted && hightlightedOptionVariant ? hightlightedOptionVariant : optionVariant;
+  return highlighted && hightlightedOptionVariant
+    ? hightlightedOptionVariant
+    : optionVariant || '';
 };
 
 export const keyUpMove = (prevFocus: number): number => {
@@ -31,7 +46,7 @@ export const keyUpMove = (prevFocus: number): number => {
 };
 
 export const keyDownMove =
-  (options: ListOptionsOptionType[]) =>
+  (options: ListOptionsOptionProps[]) =>
   (prevFocus: number): number => {
     let newFocus = Math.max(prevFocus, 0);
     if (prevFocus + 1 <= options.length - 1) {

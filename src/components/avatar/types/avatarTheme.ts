@@ -1,44 +1,28 @@
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types/styles';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-import { AvatarBackgroundColor, AvatarContentType } from './content';
-
-export type BackgroundColorAvatarStylesType = {
-  [AvatarBackgroundColor.COLOR_DEFAULT]?: {
+export interface BackgroundColorAvatarStylesProps {
+  ['color-default']?: {
     backgroundColor?: string;
     contentColor?: string;
     borderColor?: string;
   };
-  [AvatarBackgroundColor.COLOR_RED]?: {
+  ['color-red']?: {
     backgroundColor?: string;
     contentColor?: string;
     borderColor?: string;
   };
-  [AvatarBackgroundColor.COLOR_WHITE]?: {
+  ['color-white']?: {
     backgroundColor?: string;
     contentColor?: string;
     borderColor?: string;
   };
-};
+}
 
-export type AvatarContentStylesType = {
-  linkContainer?: CommonStyleType;
-  avatarContainer?: CommonStyleType;
-  initials?: TypographyTypes;
-  containerBackgroundColor?: BackgroundColorAvatarStylesType;
-  containerBorderWidth?: string;
-  avatar?: IconTypes;
-};
+export interface AvatarStylesProps extends CssLibPropsType {
+  _initials?: CssLibPropsType;
+  _icon?: CssLibPropsType;
+  _dot?: CssLibPropsType;
+}
 
-export type AvatarSizeStylesType = {
-  [Key in AvatarContentType]?: AvatarContentStylesType;
-};
-
-/**
- * @description
- * interface for the action bottom sheet styles
- * @template P
- * @interface ActionBottomSheetStylesType
- */
-export type AvatarStylesType<P extends string | number | symbol> = {
-  [key in P]?: AvatarSizeStylesType;
-};
+export type AvatarSizeStyles<Size extends string> = AvatarStylesProps &
+  Record<Size, AvatarStylesProps | undefined>;

@@ -1,71 +1,53 @@
-import * as React from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
 
-import { STYLES_NAME } from '@/constants';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
 import { TagStandAlone } from './tagStandAlone';
-import type { ITag, ITagStandAlone, TagStateKeyOfType, TagStylesOptionPropsType } from './types';
-
-const TagComponent = React.forwardRef(
-  <
-    V = undefined extends string | unknown ? string | undefined : string | unknown,
-    S = undefined extends string | unknown ? string | undefined : string | unknown,
-  >(
-    { variant, ctv, extraCt, ...props }: ITag<V, S>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-  ): JSX.Element => {
-    const optionsStyles = useStyles<TagStylesOptionPropsType, S>(
-      STYLES_NAME.TAG,
-      props.option,
-      extraCt
-    );
-    const variantStyles: TagStateKeyOfType =
-      useStyles<TagStateKeyOfType, V>(STYLES_NAME.TAG, variant, ctv) || {};
-
-    const variantStatusStyles = variantStyles[props.status];
-
-    return (
-      <TagStandAlone
-        {...props}
-        ref={ref}
-        optionStyles={optionsStyles}
-        variant={variant}
-        variantStatusStyles={variantStatusStyles}
-      >
-        {props.children}
-      </TagStandAlone>
-    );
-  }
-);
-TagComponent.displayName = 'TagComponent';
-
-const TagBoundary = <
-  V = undefined extends string | unknown ? string | undefined : string | unknown,
-  S = undefined extends string | unknown ? string | undefined : string | unknown,
->(
-  props: ITag<V, S>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <TagStandAlone {...(props as unknown as ITagStandAlone)} ref={ref} />
-      </FallbackComponent>
-    }
-  >
-    <TagComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-const Tag = React.forwardRef(TagBoundary) as <V, S>(
-  p: ITag<V, S> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => JSX.Element;
+import type { TagProps } from './types/tag';
 
 /**
- * @description
- * Tag component is used to highlight or categorize important information.
+ * A React component that renders a customizable tag element.
+ *
+ * The `Tag` component is a higher-order component that leverages `forwardRef`
+ * to allow the parent component to access the underlying DOM element. It supports
+ * dynamic styling through the `useClassName` hook, which generates CSS classes
+ * based on the provided `variant` and `additionalClasses`.
+ *
+ * This component is generic, allowing you to specify a `Variant` type to enforce
+ * stricter typing for the `variant` prop. This makes it highly flexible for use
+ * in applications where tags need to adapt to different visual themes or states.
+ *
+ * Internally, the `TagStandAlone` component is used to render the actual tag,
+ * ensuring separation of concerns and reusability.
+ *
+ * ### Example Usage
+ * ```tsx
+ * import { Tag } from './tag';
+ *
+ * const MyComponent = () => (
+ *   <Tag variant="primary" additionalClasses="custom-class">
+ *     Example Tag
+ *   </Tag>
+ * );
+ * ```
+ *
+ * @template Variant - A string type representing the possible variants of the tag.
+ * @param props - The properties for the `Tag` component, including `variant` for styling
+ * and `additionalClasses` for custom class names.
+ * @param ref - A forwarded reference to the underlying `div` element.
+ * @returns A JSX element representing the tag.
  */
-export { Tag };
+export const Tag = forwardRef(
+  <Variant extends string>(
+    { additionalClasses, variant, ...props }: TagProps<Variant>,
+    ref: ForwardedRef<HTMLDivElement> | null,
+  ): JSX.Element => {
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'TAG',
+      variant,
+    });
+
+    return <TagStandAlone {...props} ref={ref} cssClasses={cssClasses} />;
+  },
+);

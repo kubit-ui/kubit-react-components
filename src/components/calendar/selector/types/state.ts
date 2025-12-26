@@ -1,4 +1,3 @@
-export enum SelectorStateType {
-  DEFAULT = 'DEFAULT',
-  DISABLED = 'DISABLED',
-}
+import type { StateType } from '@/lib/types/states/states';
+
+export type SelectorStateType = Extract<StateType, 'default' | 'disabled'>;

@@ -1,41 +1,24 @@
+interface IBuildAriaDescribedBy {
+  ariaDescribedBy?: string;
+  error?: boolean;
+  errorMessageId?: string;
+  screenReader?: boolean;
+  screenReaderId: string;
+}
+
 /**
- * Build the aria-describedby attribute for the checkbox
- * @param extraAriaDescribedBy
- * @param helpContent
- * @param checkBoxkHelpContentId
- * @param textError
- * @param hasError
- * @param checkBoxErrorId
- * @param screenReaderId
- * @returns {string}
- * @constructor
+ * Build the aria-describedby attribute based on available content
  */
 export const buildAriaDescribedBy = ({
-  extraAriaDescribedBy,
-  helpContent,
-  checkBoxkHelpContentId,
-  errorText,
-  hasError,
-  checkBoxErrorId,
+  ariaDescribedBy,
+  error,
+  errorMessageId,
+  screenReader,
   screenReaderId,
-}: {
-  extraAriaDescribedBy: string;
-  helpContent?: JSX.Element | string;
-  checkBoxkHelpContentId: string;
-  hasError: boolean;
-  errorText?: string;
-  checkBoxErrorId: string;
-  screenReaderId?: string;
-}): string => {
-  let res = extraAriaDescribedBy;
-  if (screenReaderId) {
-    res += ` ${screenReaderId}`;
-  }
-  if (helpContent) {
-    res += ` ${checkBoxkHelpContentId}`;
-  }
-  if (hasError && errorText) {
-    res += ` ${checkBoxErrorId}`;
-  }
-  return res.trim();
+}: IBuildAriaDescribedBy): string | undefined => {
+  const ids = [ariaDescribedBy, screenReader && screenReaderId, error && errorMessageId].filter(
+    Boolean
+  );
+
+  return ids.length > 0 ? ids.join(' ').trim() : undefined;
 };

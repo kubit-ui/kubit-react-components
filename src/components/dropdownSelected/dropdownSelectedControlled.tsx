@@ -1,113 +1,101 @@
-import * as React from 'react';
-
-import { STYLES_NAME } from '@/constants';
-import { useStyles } from '@/hooks/useStyles/useStyles';
-import { useGenericComponents } from '@/provider';
-import { ErrorBoundary, FallbackComponent } from '@/provider/errorBoundary';
-import { ROLES } from '@/types';
-import { focusFirstDescendant } from '@/utils';
-import { isKeyTabPressed } from '@/utils/keyboard/keyboard.utility';
-
-import { ListOptionsType } from '../listOptions';
-import { DropdownSelectedStandAlone } from './dropdownSelectedStandAlone';
 import {
-  DropdownSelectedStateStylesType,
-  IDropdownSelectedControlled,
-  IDropdownSelectedStandAlone,
-} from './types';
-import { getState } from './utils';
+  type ForwardedRef,
+  type KeyboardEventHandler,
+  forwardRef,
+  useEffect,
+  useRef,
+} from 'react';
 
-// eslint-disable-next-line react/display-name
-const DropdownSelectedControlledComponent = React.forwardRef(
-  <V extends string | unknown>(
-    { variant, onMouseEnter, onMouseLeave, ...props }: IDropdownSelectedControlled<V>,
-    ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-  ): JSX.Element => {
-    const [hover, setHover] = React.useState(false);
-    const stateStyles = useStyles<DropdownSelectedStateStylesType, V>(
-      STYLES_NAME.DROPDOWN_SELECTED,
+import { useClassName } from '@/lib/hooks/useClassName/useClassName';
+import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
+import { isKeyTabPressed } from '@/lib/utils/keyboard/keyboard';
+
+import { focusFirstDescendant } from '../../lib/utils/focusHandlers/focusHandlers';
+import { DropdownSelectedStandAlone } from './dropdownSelectedStandAlone';
+import type { DropdownSelectedControlledProps } from './types/dropdownSelected';
+
+/**
+ * Controlled dropdown component for displaying selectable options.
+ *
+ * This component renders a dropdown that is fully controlled by its parent, allowing for custom open/close logic,
+ * keyboard navigation, and flexible theming. It is useful when you need to manage the dropdown state and behavior externally.
+ *
+ * Internally, it wraps {@link DropdownSelectedStandAlone} and handles keyboard focus and scroll-based closing.
+ * Accepts a generic type parameter `<Variant extends string>` to allow for custom variant values, enabling flexible styling.
+ *
+ * @example
+ * ```tsx
+ * <DropdownSelectedControlled open listOptions={options} />
+ *
+ * // With a custom variant type:
+ * type MyVariant = "primary" | "secondary";
+ * <DropdownSelectedControlled<MyVariant> variant="primary" open listOptions={options} />
+ * ```
+ */
+export const DropdownSelectedControlled = forwardRef(
+  <Variant extends string>(
+    {
+      additionalClasses,
+      closePopoverOnScroll,
+      listOptions,
+      onClosePopover,
+      open,
+      url,
       variant,
-      props.ctv
-    );
+      ...props
+    }: DropdownSelectedControlledProps<Variant>,
+    ref: ForwardedRef<HTMLDivElement> | undefined | null,
+  ): JSX.Element => {
+    const { LINK } = useGenericComponents();
+    const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
+      component: 'DROPDOWN_SELECTED',
+      variant,
+    });
+    const listOptionsRef = useRef<HTMLDivElement>(null);
 
-    const styles = stateStyles[getState({ hover })];
-
-    const listOptionsRef = React.useRef<HTMLDivElement>(null);
-
-    const handleOnKeyDownButton: React.KeyboardEventHandler<
+    const handleOnKeyDownButton: KeyboardEventHandler<
       HTMLButtonElement | HTMLLinkElement
-    > = event => {
-      if (props.open && isKeyTabPressed(event.key) && !event.shiftKey && listOptionsRef?.current) {
-        if (props.listOptions.type === ListOptionsType.SELECTION) {
-          (listOptionsRef?.current?.firstElementChild as HTMLElement)?.focus();
+    > = (event) => {
+      if (
+        open &&
+        isKeyTabPressed(event.key) &&
+        !event.shiftKey &&
+        listOptionsRef.current
+      ) {
+        if (listOptions.type === 'selection') {
+          (listOptionsRef.current.firstElementChild as HTMLElement)?.focus();
         } else {
-          focusFirstDescendant(listOptionsRef?.current as HTMLElement);
+          focusFirstDescendant({
+            element: listOptionsRef.current as HTMLElement,
+          });
         }
         event.preventDefault();
       }
     };
 
-    React.useEffect(() => {
-      if (props.closePopoverOnScroll) {
-        window.addEventListener('scroll', props.onClosePopover);
-        return () => {
-          window.removeEventListener('scroll', props.onClosePopover);
-        };
+    useEffect(() => {
+      if (!closePopoverOnScroll) {
+        return undefined;
       }
-      return undefined;
-    }, []);
-
-    const handleMouseEnter = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
-      setHover(true);
-      onMouseEnter?.(event);
-    };
-
-    const handleMouseLeave = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
-      setHover(false);
-      onMouseLeave?.(event);
-    };
-
-    const { LINK } = useGenericComponents();
+      window.addEventListener('scroll', onClosePopover);
+      return () => {
+        window.removeEventListener('scroll', onClosePopover);
+      };
+    }, [closePopoverOnScroll, onClosePopover]);
 
     return (
       <DropdownSelectedStandAlone
         ref={ref}
-        component={!props.url ? ROLES.BUTTON : LINK}
+        component={!url ? 'button' : LINK}
+        cssClasses={cssClasses}
+        listOptions={listOptions}
         listOptionsRef={listOptionsRef}
-        styles={styles}
+        open={open}
         onButtonKeyDown={handleOnKeyDownButton}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onClosePopover={onClosePopover}
         {...props}
       />
     );
-  }
+  },
 );
-
-const DropdownSelectedBoundary = <V extends string | unknown>(
-  props: IDropdownSelectedControlled<V>,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => (
-  <ErrorBoundary
-    fallBackComponent={
-      <FallbackComponent>
-        <DropdownSelectedStandAlone
-          {...(props as unknown as IDropdownSelectedStandAlone)}
-          ref={ref}
-        />
-      </FallbackComponent>
-    }
-  >
-    <DropdownSelectedControlledComponent {...props} ref={ref} />
-  </ErrorBoundary>
-);
-
-const DropdownSelectedControlled = React.forwardRef(DropdownSelectedBoundary) as <
-  V extends string | unknown,
->(
-  props: React.PropsWithChildren<IDropdownSelectedControlled<V>> & {
-    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null;
-  }
-) => JSX.Element;
-
-export { DropdownSelectedControlled };

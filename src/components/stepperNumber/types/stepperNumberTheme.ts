@@ -1,28 +1,33 @@
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-import { StepperNumberOrientationType } from './orientation';
-import { StepperNumberStateType } from './state';
+import type { StepperNumberOrientationType } from './orientation';
 
-export type StepperNumberPropsStylesType = {
-  stepContainer?: CommonStyleType;
-  stepCircle?: CommonStyleType;
-  stepIndex?: TypographyTypes;
-  iconSelected?: IconTypes;
-  stepNameContainer?: CommonStyleType & { isLast?: CommonStyleType };
-  stepName?: TypographyTypes;
-  stepBar?: CommonStyleType;
+export interface StepperNumberStyleProps extends CssLibPropsType {
+  _stepContainer?: CssLibPropsType;
+  _stepCircle?: CssLibPropsType;
+  _stepCircleContainer?: CssLibPropsType;
+  _stepIndex?: CssLibPropsType;
+  _iconSelected?: CssLibPropsType;
+  _stepNameContainer?: CssLibPropsType;
+  _stepName?: CssLibPropsType;
+  _stepBar?: CssLibPropsType;
+}
+
+export type StepperNumberOrientationStyles<
+  Orientation extends StepperNumberOrientationType,
+> = StepperNumberStyleProps & {
+  [key in Orientation]?: StepperNumberStyleProps;
 };
 
-export type StepperNumberStateStylesType = {
-  container?: CommonStyleType;
-} & {
-  [i in StepperNumberStateType]?: StepperNumberPropsStylesType;
+export type StepperNumberVariantStyles<
+  Variant extends string | number | symbol,
+> = StepperNumberStyleProps & {
+  [key in Variant]?: StepperNumberStyleProps;
 };
 
-export type StepperNumberDimensionStylesType = {
-  [d in StepperNumberOrientationType]?: StepperNumberStateStylesType;
-};
-
-export type StepperNumberStylesType<P extends string | number | symbol> = {
-  [key in P]?: StepperNumberDimensionStylesType;
-};
+export type StepperNumberStyles<
+  Variant extends string | number | symbol,
+  Orientation extends StepperNumberOrientationType,
+> = StepperNumberStyleProps &
+  StepperNumberVariantStyles<Variant> &
+  StepperNumberOrientationStyles<Orientation>;

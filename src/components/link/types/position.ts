@@ -1,8 +1,6 @@
-import { POSITIONS } from '@/types/positions';
+import type { PositionType } from '@/lib/types/positions/positions';
 
-export enum LinkPositionType {
-  RIGHT = POSITIONS.RIGHT,
-  TOP = POSITIONS.TOP,
-  LEFT = POSITIONS.LEFT,
-  BOTTOM = POSITIONS.BOTTOM,
-}
+export type LinkPositionType = Extract<
+  PositionType,
+  'right' | 'top' | 'left' | 'bottom'
+>;

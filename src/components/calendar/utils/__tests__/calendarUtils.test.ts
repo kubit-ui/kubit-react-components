@@ -1,11 +1,16 @@
-import { ListDaysStateType } from '../../list/types/state';
+import { STATES } from '@/lib/types/states/states';
+
 import { getStateDay } from '../getState';
 import {
-  getAvailableDaysAfterCurrentDate,
-  getAvailableDaysBeforeCurrentDate,
-  handleKeyDownAndRightMove,
+  getDaysAndEmptyDaysUntilMaxDate,
+  getFirstEmptyAndDisabledDays,
+  handleKeyDownMove,
+  handleKeyLeftMove,
+  handleKeyPageDownMove,
+  handleKeyPageUpMove,
+  handleKeyRightMove,
   handleKeyTabMove,
-  handleKeyUpAndLeftMove,
+  handleKeyUpMove,
 } from '../handleKeysmoves';
 
 describe('Calendar utils', () => {
@@ -20,14 +25,14 @@ describe('Calendar utils', () => {
     expect(
       getStateDay({
         dayFormatted,
+        formatDate,
+        isGhostSelected,
         isSelectedToLeft,
         isSelectedToRight,
-        isGhostSelected,
         selectedDate,
         today,
-        formatDate,
-      })
-    ).toBe(ListDaysStateType.START_DATE_RANGE);
+      }),
+    ).toBe(STATES.START_DATE_RANGE);
   });
   it('getState - It should return current_day if today = formatDate()', () => {
     const dayFormatted = new Date();
@@ -41,291 +46,757 @@ describe('Calendar utils', () => {
     expect(
       getStateDay({
         dayFormatted,
-        isSelectedToLeft,
-        isSelectedToRight,
-        isGhostSelected,
-        selectedDate,
-        today,
         formatDate,
         hasRange,
-      })
-    ).toBe(ListDaysStateType.CURRENT_DAY);
+        isGhostSelected,
+        isSelectedToLeft,
+        isSelectedToRight,
+        selectedDate,
+        today,
+      }),
+    ).toBe(STATES.CURRENT_DAY);
   });
-  it('handleKeyMoves - handleKeyUpAndLeftMove - isAfter=true and previous=0 return dayList.length - 1', () => {
-    const emptyDaysList = [new Date(2023, 0, 15)];
+  it('handleKeyMoves - handleKeyUp and handleKeyLeft - maxDate is after currentDate and previous = 0 return dayList.length - 1', () => {
+    const emptyDaysList = [];
     const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
-    const isAfter = () => true;
     const maxDate = new Date(2025, 0, 15);
     const currentDate = new Date(2023, 2, 22);
     const minDate = new Date(2000, 0, 15);
-    const availableDaysBeforeCurrentDate = 2;
-    const availableDaysAfterCurrentDate = 2;
-
-    const myFunction = handleKeyUpAndLeftMove({
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
       emptyDaysList,
-      dayList,
-      isAfter,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
       maxDate,
       currentDate,
+    );
+
+    const keyLeftFunction = handleKeyLeftMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
       minDate,
-      availableDaysBeforeCurrentDate,
-      availableDaysAfterCurrentDate,
+    });
+    const keyUpFunction = handleKeyUpMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
     });
     const previous = 0;
-    const result = myFunction(previous);
-    expect(result).toBe(dayList.length - 1);
+    const keyLeftResult = keyLeftFunction(previous);
+    expect(keyLeftResult).toBe(dayList.length - 1);
+    const keyUpResult = keyUpFunction(previous);
+    expect(keyUpResult).toBe(dayList.length - 1);
   });
-  it('handleKeyMoves - handleKeyUpAndLeftMove - isAfter=true and previous=3 return previous - 1', () => {
+  it('handleKeyMoves - handleKeyUp and handleKeyLeft - maxDate is after currentDate and previous = 3 return previous - 1', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
-    const isAfter = () => true;
     const maxDate = new Date(2025, 0, 15);
     const currentDate = new Date(2023, 2, 22);
     const minDate = new Date(2000, 0, 15);
-    const availableDaysBeforeCurrentDate = 2;
-    const availableDaysAfterCurrentDate = 2;
-
-    const myFunction = handleKeyUpAndLeftMove({
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
       emptyDaysList,
-      dayList,
-      isAfter,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
       maxDate,
       currentDate,
+    );
+
+    const keyLeftFunction = handleKeyLeftMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
       minDate,
-      availableDaysBeforeCurrentDate,
-      availableDaysAfterCurrentDate,
+    });
+    const keyUpFunction = handleKeyUpMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
     });
     const previous = 3;
-    const result = myFunction(previous);
-    expect(result).toBe(previous - 1);
+    const keyLeftResult = keyLeftFunction(previous);
+    expect(keyLeftResult).toBe(previous - 1);
+    const keyUpResult = keyUpFunction(previous);
+    expect(keyUpResult).toBe(firstEmptyAndDisabledDays);
   });
-  it('handleKeyMoves - handleKeyUpAndLeftMove - isAfter=false and previous===emptyDaysList.length and currentDate.getMonth() !== maxDate.getMonth()', () => {
+  it('handleKeyMoves - handleKeyUp and handleKeyLeft - maxDate is same as currentDate and previous === firstEmptyAndDisabledDays)', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
-    const isAfter = () => false;
-    const maxDate = new Date(2025, 0, 15);
+    const maxDate = new Date(2023, 2, 22);
     const currentDate = new Date(2023, 2, 22);
     const minDate = new Date(2000, 0, 15);
-    const availableDaysBeforeCurrentDate = 2;
-    const availableDaysAfterCurrentDate = 2;
-
-    const myFunction = handleKeyUpAndLeftMove({
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
       emptyDaysList,
-      dayList,
-      isAfter,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
       maxDate,
       currentDate,
+    );
+
+    const keyLeftFunction = handleKeyLeftMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
       minDate,
-      availableDaysBeforeCurrentDate,
-      availableDaysAfterCurrentDate,
+    });
+    const keyUpFunction = handleKeyUpMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
     });
     const previous = 1;
-    const result = myFunction(previous);
-    expect(result).toBe(dayList.length - 1);
+    const keyLeftResult = keyLeftFunction(previous);
+    expect(keyLeftResult).toBe(daysAndEmptyDaysUntilMaxDate);
+    const keyUpResult = keyUpFunction(previous);
+    expect(keyUpResult).toBe(daysAndEmptyDaysUntilMaxDate);
   });
-  it('handleKeyMoves - handleKeyUpAndLeftMove - isAfter=false and previous===emptyDaysList.length and currentDate.getMonth() === maxDate.getMonth()', () => {
+  it('handleKeyMoves - handleKeyUp and handleKeyLeft - maxDate is after currentDate and previous === emptyDaysList.length', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
-    const isAfter = () => false;
     const maxDate = new Date(2025, 2, 15);
     const currentDate = new Date(2023, 2, 22);
     const minDate = new Date(2000, 0, 15);
-    const availableDaysBeforeCurrentDate = 4;
-    const availableDaysAfterCurrentDate = 4;
-
-    const myFunction = handleKeyUpAndLeftMove({
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
       emptyDaysList,
-      dayList,
-      isAfter,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
       maxDate,
       currentDate,
+    );
+
+    const keyLeftFunction = handleKeyLeftMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
       minDate,
-      availableDaysBeforeCurrentDate,
-      availableDaysAfterCurrentDate,
+    });
+    const keyUpFunction = handleKeyUpMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
     });
     const previous = 1;
-    const result = myFunction(previous);
-    expect(result).toBe(availableDaysAfterCurrentDate - 1);
+    const keyLeftResult = keyLeftFunction(previous);
+    expect(keyLeftResult).toBe(dayList.length - 1);
+    const keyUpResult = keyUpFunction(previous);
+    expect(keyUpResult).toBe(dayList.length - 1);
   });
-  it('handleKeyMoves - handleKeyUpAndLeftMove - isAfter=false and previous!==emptyDaysList.length', () => {
+  it('handleKeyMoves - handleKeyUp and handleKeyLeft - previous !== emptyDaysList.length', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
-    const isAfter = () => false;
     const maxDate = new Date(2025, 2, 15);
     const currentDate = new Date(2023, 2, 22);
     const minDate = new Date(2000, 0, 15);
-    const availableDaysBeforeCurrentDate = 4;
-    const availableDaysAfterCurrentDate = 4;
-
-    const myFunction = handleKeyUpAndLeftMove({
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
       emptyDaysList,
-      dayList,
-      isAfter,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
       maxDate,
       currentDate,
+    );
+
+    const keyLeftFunction = handleKeyLeftMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
       minDate,
-      availableDaysBeforeCurrentDate,
-      availableDaysAfterCurrentDate,
+    });
+    const keyUpFunction = handleKeyUpMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
     });
     const previous = 6;
-    const result = myFunction(previous);
-    expect(result).toBe(previous - 1);
+    const keyLeftResult = keyLeftFunction(previous);
+    expect(keyLeftResult).toBe(previous - 1);
+    const keyUpResult = keyUpFunction(previous);
+    expect(keyUpResult).toBe(firstEmptyAndDisabledDays);
   });
-  //----------------------------------------------------------------
-  it('handleKeyMoves - handleKeyDownAndRightMove - isAfter=true and previous=0', () => {
+  it('handleKeyMoves - handleKeyUp and handleKeyLeft - minDate month and year is the same than currentDate and previous === firstEmptyAndDisabledDays', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
-    const isAfter = () => true;
+    const maxDate = new Date(2025, 2, 15);
+    const currentDate = new Date(2000, 0, 22);
+    const minDate = new Date(2000, 0, 15);
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
+      emptyDaysList,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
+      maxDate,
+      currentDate,
+    );
+
+    const keyLeftFunction = handleKeyLeftMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const keyUpFunction = handleKeyUpMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const previous = firstEmptyAndDisabledDays;
+    const keyLeftResult = keyLeftFunction(previous);
+    expect(keyLeftResult).toBe(daysAndEmptyDaysUntilMaxDate);
+    const keyUpResult = keyUpFunction(previous);
+    expect(keyUpResult).toBe(dayList.length - 1);
+  });
+
+  it('handleKeyMoves - handleKeyUp - minDate is same as currentDate and previous - firstEmptyAndDisabledDays <= minDate.getDate() + 1 return firstEmptyAndDisabledDays - 1', () => {
+    const emptyDaysList = [new Date(2023, 0, 15)];
+    const dayList = new Array(30);
+    const maxDate = new Date(2025, 2, 15);
+    const currentDate = new Date(2000, 0, 22);
+    const minDate = new Date(2000, 0, 15);
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
+      emptyDaysList,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
+      maxDate,
+      currentDate,
+    );
+
+    const keyUpFunction = handleKeyUpMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const previous = 20;
+    const keyUpResult = keyUpFunction(previous);
+    expect(keyUpResult).toBe(firstEmptyAndDisabledDays);
+  });
+  it('handleKeyMoves - handleKeyUp - return previous - 7', () => {
+    const emptyDaysList = [new Date(2023, 0, 15)];
+    const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
+    const maxDate = new Date(2025, 2, 15);
+    const currentDate = new Date(2023, 0, 22);
+    const minDate = new Date(2000, 0, 15);
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
+      emptyDaysList,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
+      maxDate,
+      currentDate,
+    );
+
+    const keyUpFunction = handleKeyUpMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const previous = 20;
+    const keyUpResult = keyUpFunction(previous);
+    expect(keyUpResult).toBe(previous - 7);
+  });
+
+  //----------------------------------------------------------------
+  it('handleKeyMoves - handleKeyDown and handleKeyRight - max date is after current date and previous=0', () => {
+    const emptyDaysList = [];
+    const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
     const maxDate = new Date(2025, 0, 15);
     const currentDate = new Date(2023, 2, 22);
     const minDate = new Date(2000, 0, 15);
-    const availableDaysBeforeCurrentDate = 2;
-    const availableDaysAfterCurrentDate = 2;
-
-    const myFunction = handleKeyDownAndRightMove({
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
       emptyDaysList,
-      dayList,
-      isAfter,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
       maxDate,
       currentDate,
+    );
+
+    const rightKeyFunction = handleKeyRightMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
       minDate,
-      availableDaysBeforeCurrentDate,
-      availableDaysAfterCurrentDate,
+    });
+    const downKeyFunction = handleKeyDownMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
     });
     const previous = 0;
-    const result = myFunction(previous);
-    expect(result).toBe(previous + 1 + availableDaysAfterCurrentDate);
+    const rightResult = rightKeyFunction(previous);
+    expect(rightResult).toBe(previous + 1 + daysAndEmptyDaysUntilMaxDate);
+    const downResult = downKeyFunction(previous);
+    expect(downResult).toBe(previous + 1 + daysAndEmptyDaysUntilMaxDate);
   });
-  it('handleKeyMoves - handleKeyDownAndRightMove - isAfter=true and previous === dayList.length - 1', () => {
+  it('handleKeyMoves - handleKeyDown and handleKeyRight - maxDate is after currentDate and previous === dayList.length - 1', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
-    const isAfter = () => true;
     const maxDate = new Date(2025, 0, 15);
     const currentDate = new Date(2023, 2, 22);
     const minDate = new Date(2000, 0, 15);
-    const availableDaysBeforeCurrentDate = 4;
-    const availableDaysAfterCurrentDate = 2;
-
-    const myFunction = handleKeyDownAndRightMove({
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
       emptyDaysList,
-      dayList,
-      isAfter,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
       maxDate,
       currentDate,
+    );
+
+    const rightKeyFunction = handleKeyRightMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
       minDate,
-      availableDaysBeforeCurrentDate,
-      availableDaysAfterCurrentDate,
+    });
+    const downKeyFunction = handleKeyDownMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
     });
     const previous = 1;
-    const result = myFunction(previous);
-    expect(result).toBe(availableDaysBeforeCurrentDate);
+    const rightResult = rightKeyFunction(previous);
+    expect(rightResult).toBe(firstEmptyAndDisabledDays);
+    const downResult = downKeyFunction(previous);
+    expect(downResult).toBe(firstEmptyAndDisabledDays);
   });
-  it('handleKeyMoves - handleKeyDownAndRightMove - isAfter=false and previous === dayList.length - 1', () => {
+
+  it('handleKeyMoves - handleKeyDown and handleKeyRight - maxDate the same as currentDate and daysAndEmptyDaysUntilMaxDate - 1', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
-    const isAfter = () => false;
-    const maxDate = new Date(2025, 0, 15);
+    const maxDate = new Date(2023, 2, 22);
     const currentDate = new Date(2023, 2, 22);
     const minDate = new Date(2000, 0, 15);
-    const availableDaysBeforeCurrentDate = 2;
-    const availableDaysAfterCurrentDate = 2;
-
-    const myFunction = handleKeyDownAndRightMove({
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
       emptyDaysList,
-      dayList,
-      isAfter,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
       maxDate,
       currentDate,
+    );
+
+    const rightKeyFunction = handleKeyRightMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
       minDate,
-      availableDaysBeforeCurrentDate,
-      availableDaysAfterCurrentDate,
     });
-    const previous = 1;
-    const result = myFunction(previous);
-    expect(result).toBe(emptyDaysList.length);
+    const downKeyFunction = handleKeyDownMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const previous = daysAndEmptyDaysUntilMaxDate;
+    const rightResult = rightKeyFunction(previous);
+    expect(rightResult).toBe(firstEmptyAndDisabledDays);
+    const downResult = downKeyFunction(previous);
+    expect(downResult).toBe(firstEmptyAndDisabledDays);
   });
-  it('handleKeyMoves - handleKeyDownAndRightMove - isAfter=false and previous !== dayList.length - 1 and previous === availableDaysAfterCurrentDate - 1', () => {
+  it('handleKeyMoves - handleKeyRight - maxDate the same as currentDate and previous === dayList.length - 1', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
-    const isAfter = () => false;
+    const maxDate = new Date(2023, 2, 22);
+    const currentDate = new Date(2023, 2, 22);
+    const minDate = new Date(2000, 0, 15);
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
+      emptyDaysList,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
+      maxDate,
+      currentDate,
+    );
+
+    const rightKeyFunction = handleKeyRightMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+
+    const previous = dayList.length - 1;
+    const rightResult = rightKeyFunction(previous);
+    expect(rightResult).toBe(firstEmptyAndDisabledDays);
+  });
+  it('handleKeyMoves - handleKeyDown and handleKeyRight - maxDate is after currentDate and previous === daysAndEmptyDaysUntilMaxDate', () => {
+    const emptyDaysList = [new Date(2023, 0, 15)];
+    const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
     const maxDate = new Date(2025, 2, 15);
     const currentDate = new Date(2023, 2, 22);
     const minDate = new Date(2000, 0, 15);
-    const availableDaysBeforeCurrentDate = 4;
-    const availableDaysAfterCurrentDate = 4;
-
-    const myFunction = handleKeyDownAndRightMove({
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
       emptyDaysList,
-      dayList,
-      isAfter,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
       maxDate,
       currentDate,
+    );
+
+    const rightKeyFunction = handleKeyRightMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
       minDate,
-      availableDaysBeforeCurrentDate,
-      availableDaysAfterCurrentDate,
     });
-    const previous = 3;
-    const result = myFunction(previous);
-    expect(result).toBe(emptyDaysList.length);
+    const downKeyFunction = handleKeyDownMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const previous = daysAndEmptyDaysUntilMaxDate;
+    const rightResult = rightKeyFunction(previous);
+    expect(rightResult).toBe(firstEmptyAndDisabledDays);
+    const downResult = downKeyFunction(previous);
+    expect(downResult).toBe(firstEmptyAndDisabledDays);
   });
-  it('handleKeyMoves - handleKeyDownAndRightMove - isAfter=false and previous !== dayList.length - 1 and previous !== availableDaysAfterCurrentDate - 1', () => {
+  it('handleKeyMoves - handleKeyDown and handleKeyRight - maxDate is after currentDate and previous !== dayList.length - 1 and previous !== daysAndEmptyDaysUntilMaxDate - 1', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
-    const isAfter = () => false;
     const maxDate = new Date(2025, 2, 15);
     const currentDate = new Date(2023, 2, 22);
     const minDate = new Date(2000, 0, 15);
-    const availableDaysBeforeCurrentDate = 4;
-    const availableDaysAfterCurrentDate = 6;
-
-    const myFunction = handleKeyDownAndRightMove({
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
       emptyDaysList,
-      dayList,
-      isAfter,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
       maxDate,
       currentDate,
+    );
+
+    const rightKeyFunction = handleKeyRightMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
       minDate,
-      availableDaysBeforeCurrentDate,
-      availableDaysAfterCurrentDate,
+    });
+    const downKeyFunction = handleKeyDownMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
     });
     const previous = 3;
-    const result = myFunction(previous);
-    expect(result).toBe(previous + 1);
+    const rightResult = rightKeyFunction(previous);
+    expect(rightResult).toBe(previous + 1);
+    const downResult = downKeyFunction(previous);
+    expect(downResult).toBe(dayList.length - 1);
+  });
+
+  it('handleKeyMoves - handleKeyDown and handleKeyRight - minDate is the same as currentDate and previous === dayList.length - 1', () => {
+    const emptyDaysList = [new Date(2023, 0, 15)];
+    const dayList = [new Date(2023, 0, 15), new Date(2023, 0, 16)];
+    const maxDate = new Date(2025, 2, 15);
+    const currentDate = new Date(2000, 0, 22);
+    const minDate = new Date(2000, 0, 15);
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
+      emptyDaysList,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
+      maxDate,
+      currentDate,
+    );
+
+    const rightKeyFunction = handleKeyRightMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const downKeyFunction = handleKeyDownMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const previous = dayList.length - 1;
+    const rightResult = rightKeyFunction(previous);
+    expect(rightResult).toBe(firstEmptyAndDisabledDays);
+    const downResult = downKeyFunction(previous);
+    expect(downResult).toBe(firstEmptyAndDisabledDays);
+  });
+
+  it('handleKeyMoves - handleKeyDown - maxDate is same as currentDate and previous + firstEmptyAndDisabledDays + 1 >= maxDate.getDate() && previous !== daysAndEmptyDaysUntilMaxDate - 1', () => {
+    const emptyDaysList = [new Date(2023, 0, 15)];
+    const dayList = new Array(30);
+    const maxDate = new Date(2023, 2, 3);
+    const currentDate = new Date(2023, 2, 3);
+    const minDate = new Date(2000, 0, 15);
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
+      emptyDaysList,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
+      maxDate,
+      currentDate,
+    );
+
+    const downKeyFunction = handleKeyDownMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const previous = 10;
+    const downResult = downKeyFunction(previous);
+    expect(downResult).toBe(maxDate.getDate() + firstEmptyAndDisabledDays - 1);
+  });
+  it('handleKeyMoves - handleKeyDown - return previous + 7', () => {
+    const emptyDaysList = [new Date(2023, 0, 15)];
+    const dayList = new Array(30);
+    const maxDate = new Date(2025, 2, 15);
+    const currentDate = new Date(2023, 2, 22);
+    const minDate = new Date(2000, 0, 15);
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
+      emptyDaysList,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
+      maxDate,
+      currentDate,
+    );
+
+    const downKeyFunction = handleKeyDownMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const previous = 10;
+    const downResult = downKeyFunction(previous);
+    expect(downResult).toBe(previous + 7);
+  });
+  it('handleKeyMoves - handleKeyPageDown - maxDate is same as currentDate return daysAndEmptyDaysUntilMaxDate', () => {
+    const emptyDaysList = [new Date(2023, 0, 15)];
+    const dayList = new Array(30);
+    const maxDate = new Date(2023, 2, 22);
+    const currentDate = new Date(2023, 2, 22);
+    const minDate = new Date(2000, 0, 15);
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
+      emptyDaysList,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
+      maxDate,
+      currentDate,
+    );
+
+    const pageDownKeyFunction = handleKeyPageDownMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const previous = 10;
+    const pageDownResult = pageDownKeyFunction(previous);
+    expect(pageDownResult).toBe(daysAndEmptyDaysUntilMaxDate);
+  });
+  it('handleKeyMoves - handleKeyPageDown - maxDate is after currentDate return dayList.length - 1', () => {
+    const emptyDaysList = [new Date(2023, 0, 15)];
+    const dayList = new Array(30);
+    const maxDate = new Date(2025, 2, 15);
+    const currentDate = new Date(2023, 2, 22);
+    const minDate = new Date(2000, 0, 15);
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
+      emptyDaysList,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
+      maxDate,
+      currentDate,
+    );
+
+    const pageDownKeyFunction = handleKeyPageDownMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const previous = 10;
+    const pageDownResult = pageDownKeyFunction(previous);
+    expect(pageDownResult).toBe(dayList.length - 1);
+  });
+  it('handleKeyMoves - handleKeyPageUp - return firstEmptyAndDisabledDays - 1', () => {
+    const emptyDaysList = [new Date(2023, 0, 15)];
+    const dayList = new Array(30);
+    const maxDate = new Date(2025, 2, 15);
+    const currentDate = new Date(2023, 2, 22);
+    const minDate = new Date(2000, 0, 15);
+    const firstEmptyAndDisabledDays = getFirstEmptyAndDisabledDays(
+      emptyDaysList,
+      minDate,
+      currentDate,
+    );
+    const daysAndEmptyDaysUntilMaxDate = getDaysAndEmptyDaysUntilMaxDate(
+      emptyDaysList,
+      maxDate,
+      currentDate,
+    );
+
+    const pageUpKeyFunction = handleKeyPageUpMove({
+      currentDate,
+      dayList,
+      daysAndEmptyDaysUntilMaxDate,
+      firstEmptyAndDisabledDays,
+      maxDate,
+      minDate,
+    });
+    const previous = 10;
+    const pageUpResult = pageUpKeyFunction(previous);
+    expect(pageUpResult).toBe(firstEmptyAndDisabledDays);
   });
   it('handleKeyMoves - handleKeyTabMove', () => {
     const previous = 3;
     expect(handleKeyTabMove(previous)).toBe(previous);
   });
-  it('handleKeyMoves - getAvailableDaysBeforeCurrentDate - with minDate.getMonth() === currentDate.getMonth()', () => {
+  it('handleKeyMoves - getFirstEmptyAndDisabledDays - in minDate month and year', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const minDate = new Date(2000, 2, 15);
-    const currentDate = new Date(2023, 2, 22);
-    expect(getAvailableDaysBeforeCurrentDate(emptyDaysList, minDate, currentDate)).toBe(
-      emptyDaysList.length + minDate.getDate()
-    );
+    const currentDate = new Date(2000, 2, 22);
+    expect(
+      getFirstEmptyAndDisabledDays(emptyDaysList, minDate, currentDate),
+    ).toBe(emptyDaysList.length + minDate.getDate() - 1);
   });
-  it('handleKeyMoves - getAvailableDaysBeforeCurrentDate - with minDate.getMonth() !== currentDate.getMonth()', () => {
+  it('handleKeyMoves - getFirstEmptyAndDisabledDays - in a different month and year than minDate', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const minDate = new Date(2000, 0, 15);
     const currentDate = new Date(2023, 2, 22);
-    expect(getAvailableDaysBeforeCurrentDate(emptyDaysList, minDate, currentDate)).toBe(
-      emptyDaysList.length
-    );
+    expect(
+      getFirstEmptyAndDisabledDays(emptyDaysList, minDate, currentDate),
+    ).toBe(emptyDaysList.length);
   });
-  it('handleKeyMoves - getAvailableDaysAfterCurrentDate - with minDate.getMonth() === currentDate.getMonth()', () => {
+  it('handleKeyMoves - getDaysAndEmptyDaysUntilMaxDate - in maxDate month and year', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const maxDate = new Date(2000, 2, 15);
-    const currentDate = new Date(2023, 2, 22);
-    expect(getAvailableDaysAfterCurrentDate(emptyDaysList, maxDate, currentDate)).toBe(
-      emptyDaysList.length + maxDate.getDate()
-    );
+    const currentDate = new Date(2000, 2, 15);
+    expect(
+      getDaysAndEmptyDaysUntilMaxDate(emptyDaysList, maxDate, currentDate),
+    ).toBe(emptyDaysList.length + maxDate.getDate() - 1);
   });
-  it('handleKeyMoves - getAvailableDaysAfterCurrentDate - with minDate.getMonth() !== currentDate.getMonth()', () => {
+  it('handleKeyMoves - getDaysAndEmptyDaysUntilMaxDate - in a different month and year than maxDate', () => {
     const emptyDaysList = [new Date(2023, 0, 15)];
     const maxDate = new Date(2000, 0, 15);
     const currentDate = new Date(2023, 2, 22);
-    expect(getAvailableDaysAfterCurrentDate(emptyDaysList, maxDate, currentDate)).toBe(
-      emptyDaysList.length
-    );
+    expect(
+      getDaysAndEmptyDaysUntilMaxDate(emptyDaysList, maxDate, currentDate),
+    ).toBe(emptyDaysList.length);
   });
 });

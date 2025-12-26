@@ -1,16 +1,19 @@
-import { DeviceBreakpointsType } from '@/types/breakpoints';
+import type { CSSProperties } from 'react';
 
-import { ImageLoadingType } from './loading';
-import { ImageObjectFitType } from './objectFit';
-import { PictureSourceType } from './pictureSource';
+import type { GenericImageType } from '@/lib/provider/genericComponentsProvider/types/genericComponentsProvider';
+import type { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-export interface IImageStandAlone {
+import { type ImageLoadingType } from './loading';
+import type { PictureSourceProps } from './pictureSource';
+
+export interface ImageStandAloneProps extends DataAttributes {
   images: {
-    DEFAULT: Omit<PictureSourceType, 'media'>;
-    [DeviceBreakpointsType.LARGE_DESKTOP]?: PictureSourceType;
-    [DeviceBreakpointsType.DESKTOP]?: PictureSourceType;
-    [DeviceBreakpointsType.TABLET]?: PictureSourceType;
-    [DeviceBreakpointsType.MOBILE]?: PictureSourceType;
+    DEFAULT: Omit<PictureSourceProps, 'media'>;
+    [DEVICE_BREAKPOINTS.LARGE_DESKTOP]?: PictureSourceProps;
+    [DEVICE_BREAKPOINTS.DESKTOP]?: PictureSourceProps;
+    [DEVICE_BREAKPOINTS.TABLET]?: PictureSourceProps;
+    [DEVICE_BREAKPOINTS.MOBILE]?: PictureSourceProps;
   };
   caption?: string;
   loading?: ImageLoadingType;
@@ -20,9 +23,9 @@ export interface IImageStandAlone {
   height?: string;
   onLoad?: React.ReactEventHandler<HTMLImageElement>;
   ratio?: number;
-  dataTestId?: string;
   borderRadius?: string;
-  objectFit?: ImageObjectFitType;
+  objectFit?: CSSProperties['objectFit'];
+  component?: GenericImageType;
 }
 
-export type IImage = IImageStandAlone;
+export type IImage = ImageStandAloneProps;

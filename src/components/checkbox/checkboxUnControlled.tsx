@@ -1,61 +1,41 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { useCheckbox } from '@/hooks/useCheckbox/useCheckbox';
-
+import { useCheckbox } from '../checkboxBase/hooks/useCheckbox';
 import { CheckboxControlled } from './checkboxControlled';
-import { ICheckboxUnControlled } from './types/';
+import type { CheckboxUnControlledProps } from './types/checkbox';
 
-const CheckboxUnControlledComponent = <V extends string | unknown>(
-  {
-    disabled = false,
-    error = false,
-    required = false,
-    checked = false,
-    onChange,
-    ...props
-  }: ICheckboxUnControlled<V>,
-  ref?: React.ForwardedRef<HTMLInputElement> | undefined | null
-): JSX.Element => {
-  const { isChecked, handleToggleIsChecked } = useCheckbox({
-    initialChecked: checked,
-    disabled,
-  });
+export const CheckboxUnControlled = forwardRef(
+  <Variant extends string = string>(
+    {
+      checked = false,
+      disabled = false,
+      error = false,
+      onChange,
+      required = false,
+      ...props
+    }: CheckboxUnControlledProps<Variant>,
+    ref?: React.ForwardedRef<HTMLDivElement> | undefined | null,
+  ): JSX.Element => {
+    const { handleToggleIsChecked, isChecked } = useCheckbox({
+      disabled,
+      initialChecked: checked,
+    });
 
-  return (
-    <CheckboxControlled
-      {...props}
-      ref={ref}
-      checked={isChecked}
-      disabled={disabled}
-      error={error}
-      required={required}
-      variant={props.variant}
-      onChange={e =>
-        onChange
-          ? (() => {
-              onChange(e);
-              handleToggleIsChecked();
-            })()
-          : handleToggleIsChecked()
-      }
-    />
-  );
-};
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange?.(e);
+      handleToggleIsChecked();
+    };
 
-/**
- * @description
- * Checkbox component is a input component that can be used to select one or more options from a list of options.
- * It can be used to create a list of options that can be selected.
- * @param {React.PropsWithChildren<ICheckboxUnControlled<V>>} props
- * @returns {JSX.Element}
- * @constructor
- * @example
- * <Checkbox variant="checkbox" />
- */
-const CheckboxUnControlled = React.forwardRef(CheckboxUnControlledComponent) as <V extends string>(
-  props: React.PropsWithChildren<ICheckboxUnControlled<V>> & {
-    ref?: React.ForwardedRef<HTMLInputElement> | undefined | null;
-  }
-) => ReturnType<typeof CheckboxUnControlledComponent>;
-
-export { CheckboxUnControlled };
+    return (
+      <CheckboxControlled
+        {...props}
+        ref={ref}
+        checked={isChecked}
+        disabled={disabled}
+        error={error}
+        required={required}
+        onChange={handleChange}
+      />
+    );
+  },
+);

@@ -1,71 +1,104 @@
-/* eslint-disable complexity */
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { ArrowControlStandAlone } from './components';
-import {
-  DotsWrapper,
-  LeftArrowControlWrapperStyled,
-  PageControlContainer,
-  PageControlDot,
-  RightArrowControlWrapperStyled,
-} from './pageControl.styled';
-//types
-import { IPageControlStandAlone, PageControlState } from './types';
+import { RenderIf } from '@/components/renderIf/renderIf';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-const PageControlStandAloneComponent = (
-  {
-    pages,
-    currentPosition,
-    styles,
-    dots,
-    firstVisiblePosition,
-    lastVisiblePosition,
-    dataTestId,
-    arrowsControlStyles,
-    leftArrowControl,
-    rightArrowControl,
-  }: IPageControlStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => {
-  return (
-    <PageControlContainer ref={ref} data-testid={dataTestId} styles={styles}>
-      {dots > 0 && (
-        <>
-          {leftArrowControl && (
-            <LeftArrowControlWrapperStyled arrowsControlStyles={arrowsControlStyles}>
-              <ArrowControlStandAlone
-                arrowsControlStyles={arrowsControlStyles}
-                {...leftArrowControl}
-              />
-            </LeftArrowControlWrapperStyled>
-          )}
-          <DotsWrapper styles={styles}>
-            {styles.isBullet && firstVisiblePosition > 0 ? (
-              <PageControlDot state={PageControlState.LAST} styles={styles} />
-            ) : null}
-            {[...Array(dots)].map((_, _index) => {
-              const index = _index + firstVisiblePosition;
-              const state =
-                index === currentPosition ? PageControlState.CURRENT : PageControlState.DEFAULT;
+import { Controls } from './components/controls';
+import type { PageControlStandAloneProps } from './types/pageControl';
 
-              return <PageControlDot key={`Dot-middle--${index}`} state={state} styles={styles} />;
-            })}
-            {styles.isBullet && lastVisiblePosition < pages - 1 && (
-              <PageControlDot state={PageControlState.LAST} styles={styles} />
-            )}
-          </DotsWrapper>
-          {rightArrowControl && (
-            <RightArrowControlWrapperStyled arrowsControlStyles={arrowsControlStyles}>
-              <ArrowControlStandAlone
-                arrowsControlStyles={arrowsControlStyles}
-                {...rightArrowControl}
-              />
-            </RightArrowControlWrapperStyled>
-          )}
-        </>
-      )}
-    </PageControlContainer>
-  );
-};
+export const PageControlStandAlone = forwardRef<
+  HTMLDivElement,
+  PageControlStandAloneProps
+>(
+  (
+    {
+      cssArrowControlClasses,
+      cssPageControlClasses,
+      currentPosition,
+      dots,
+      firstVisiblePosition,
+      isBullet,
+      lastVisiblePosition,
+      leftControl,
+      pages,
+      rightControl,
+      ...props
+    },
+    ref,
+  ) => {
+    const dataTestId = props['data-testid'] || 'page-control';
+    return (
+      <div
+        ref={ref}
+        className={cssPageControlClasses?.page_control}
+        data-testid={dataTestId}
+      >
+        <RenderIf condition={dots > 0}>
+          <>
+            <Controls
+              control={leftControl}
+              cssArrowControlClasses={cssArrowControlClasses}
+              cssPageControlClasses={cssPageControlClasses}
+              currentPosition={currentPosition}
+              data-testid={`${dataTestId}-left-control`}
+              dots={dots}
+              firstVisiblePosition={firstVisiblePosition}
+              lastVisiblePosition={lastVisiblePosition}
+              pages={pages}
+              position="left"
+            />
+            <div className={cssPageControlClasses?.dotscontainer}>
+              <RenderIf condition={isBullet && firstVisiblePosition > 0}>
+                <div
+                  {...pickCustomAttributes({
+                    'data-state': 'last',
+                  })}
+                  className={cssPageControlClasses?.pagedot}
+                />
+              </RenderIf>
+              {[...Array(dots)].map((_, _index) => {
+                const index = _index + firstVisiblePosition;
+                const state = index === currentPosition ? 'current' : 'default';
+                const customAttributes = {
+                  'data-state': state,
+                };
+                return (
+                  <div
+                    key={`Dot-middle--${index}`}
+                    {...pickCustomAttributes(customAttributes)}
+                    className={cssPageControlClasses?.pagedot}
+                  />
+                );
+              })}
+              <RenderIf
+                condition={
+                  isBullet && (lastVisiblePosition ?? 0) < (pages ?? 0) - 1
+                }
+              >
+                <div
+                  {...pickCustomAttributes({
+                    'data-state': 'last',
+                  })}
+                  className={cssPageControlClasses?.pagedot}
+                />
+              </RenderIf>
+            </div>
 
-export const PageControlStandAlone = React.forwardRef(PageControlStandAloneComponent);
+            <Controls
+              control={rightControl}
+              cssArrowControlClasses={cssArrowControlClasses}
+              cssPageControlClasses={cssPageControlClasses}
+              currentPosition={currentPosition}
+              data-testid={`${dataTestId}-right-control`}
+              dots={dots}
+              firstVisiblePosition={firstVisiblePosition}
+              lastVisiblePosition={lastVisiblePosition}
+              pages={pages}
+              position="right"
+            />
+          </>
+        </RenderIf>
+      </div>
+    );
+  },
+);

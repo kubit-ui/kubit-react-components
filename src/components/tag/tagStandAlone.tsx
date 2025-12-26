@@ -1,94 +1,78 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon';
-import { Text } from '@/components/text';
-import { TextComponentType } from '@/components/text/types';
-import { pickAriaProps } from '@/utils/aria/aria';
+import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
+import { Text } from '@/components/text/text';
+import { CustomComponent } from '@/lib/components/customComponent/customComponent';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
+import { processText } from '@/lib/utils/process/processText/processText';
 
-import { ArrowShape } from './component/ArrowShape';
-import { RibbonShape } from './component/RibbonShape';
-// styles
-import { TagStyled, TagWrapperStyled } from './tag.styled';
-import { type ITagStandAlone, TAG_VARIANT_TYPE } from './types';
-
-// eslint-disable-next-line complexity
-const TagStandAloneComponent = (
-  props: ITagStandAlone,
-  ref: React.ForwardedRef<HTMLDivElement> | undefined | null
-): JSX.Element => {
-  const ariaProps = pickAriaProps(props);
-  const tagRef = React.useRef<HTMLDivElement>(null);
-  const [height, setHeight] = React.useState<number>(0);
-
-  React.useLayoutEffect(() => {
-    if (tagRef?.current?.offsetHeight !== undefined) {
-      setHeight(tagRef?.current?.offsetHeight);
-    }
-  }, []);
-
-  const wrapper = { ...props.variantStatusStyles?.wrapper, ...props.optionStyles.wrapper };
-  const text = { ...props.variantStatusStyles?.text, ...props.optionStyles.text };
-  const icon = props.variantStatusStyles?.icon;
-  const withBorders = Boolean(
-    wrapper.border_width && wrapper.border_width !== '0' && wrapper.border_width !== 'transparent'
-  );
-  const withTransparency = wrapper.background_color === 'transparent';
-
-  const IS_ARROW_STYLE =
-    props.variant === TAG_VARIANT_TYPE.ARROW || props.variant === TAG_VARIANT_TYPE.RIBBON;
-
-  return (
-    <TagWrapperStyled ref={ref}>
-      {props.variant === TAG_VARIANT_TYPE.RIBBON && (
-        <RibbonShape
-          dataTestId={props.dataTestId}
-          height={height}
-          optionStyles={props.optionStyles}
-          variant={props.variant}
-          withBorders={withBorders}
-          withTransparency={withTransparency}
-        />
-      )}
-      <TagStyled
-        ref={tagRef}
-        data-testid={props.dataTestId}
-        isArrowStyle={IS_ARROW_STYLE}
-        optionStyles={props.optionStyles}
-        styles={wrapper}
-        {...ariaProps}
-      >
-        {props.icon?.icon && (
-          <ElementOrIcon
-            color={icon?.color}
-            height={icon?.height}
-            width={icon?.width}
-            {...props.icon}
-          />
-        )}
-        <Text
-          component={TextComponentType.SPAN}
-          customTypography={props.truncateText ? props.variantStatusStyles?.truncateText : text}
-        >
-          {props.children}
-        </Text>
-      </TagStyled>
-
-      {props.variant === TAG_VARIANT_TYPE.ARROW && (
-        <ArrowShape
-          dataTestId={props.dataTestId}
-          height={height}
-          optionStyles={props.optionStyles}
-          variant={props.variant}
-          withBorders={withBorders}
-          withTransparency={withTransparency}
-        />
-      )}
-    </TagWrapperStyled>
-  );
-};
+import type { TagStandAloneProps } from './types/tag';
 
 /**
- * @description
- * Tag component is used to highlight or categorize important information.
+ * A React component that renders a standalone tag element with customizable styles, icon, and label.
+ *
+ * This component is designed to provide a flexible and reusable tag UI element, allowing developers
+ * to specify the underlying HTML element, apply custom CSS classes, and include an icon and label
+ * for enhanced visual representation. It leverages utility functions to process the icon and label
+ * properties, ensuring consistent behavior and formatting.
+ *
+ * The `TagStandAlone` component is built using `forwardRef` to allow the parent component to access
+ * the underlying DOM element, making it suitable for scenarios requiring direct DOM manipulation or
+ * integration with third-party libraries.
+ *
+ * ### Features:
+ * - **Customizable HTML Element**: Specify the type of HTML element to render (e.g., `div`, `span`).
+ * - **Icon and Label Support**: Includes an icon and label with processed attributes for consistent rendering.
+ * - **CSS Class Management**: Apply custom CSS classes to the container, icon, and label for styling flexibility.
+ * - **Custom Attributes**: Automatically extracts and applies additional attributes using `pickCustomAttributes`.
+ *
+ * ### Example Usage:
+ * ```tsx
+ * import { TagStandAlone } from '@/components/tag/tagStandAlone';
+ *
+ * const MyComponent = () => (
+ *   <TagStandAlone
+ *     component="div"
+ *     cssClasses={{
+ *       container: 'tag-container',
+ *       icon: 'tag-icon',
+ *       label: 'tag-label',
+ *     }}
+ *     icon={{ name: 'check', size: 'small' }}
+ *     label="Active"
+ *   />
+ * );
+ * ```
+ *
+ * @typeParam HTMLDivElement - The type of the underlying DOM element, defaulting to `div`.
+ * @param props - The properties for configuring the tag, including `component`, `cssClasses`, `icon`, and `label`.
+ * @returns A JSX element representing the standalone tag.
  */
-export const TagStandAlone = React.forwardRef(TagStandAloneComponent);
+export const TagStandAlone = forwardRef<HTMLDivElement, TagStandAloneProps>(
+  (
+    { component = 'div', cssClasses, icon, label, ...props },
+    ref,
+  ): JSX.Element => {
+    const customProps = pickCustomAttributes(props);
+
+    return (
+      <CustomComponent
+        ref={ref}
+        className={cssClasses?.tag}
+        component={component}
+        data-testid="tag"
+        {...customProps}
+      >
+        <>
+          <ElementOrIcon className={cssClasses?.icon} {...processIcon(icon)} />
+          <Text
+            additionalClasses={{ text: cssClasses?.label }}
+            component="span"
+            {...processText(label)}
+          />
+        </>
+      </CustomComponent>
+    );
+  },
+);

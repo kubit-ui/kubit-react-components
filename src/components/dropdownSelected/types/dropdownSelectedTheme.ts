@@ -1,23 +1,15 @@
-import { CommonStyleType, IconTypes, TypographyTypes } from '@/types';
+import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-import { DropdownSelectedStateType } from './states';
+export interface DropdownSelectedStyleProps extends CssLibPropsType {
+  _buttonOrLinkContainer?: CssLibPropsType;
+  _labelOpened?: CssLibPropsType;
+  _labelClosed?: CssLibPropsType;
+  _iconOpened?: CssLibPropsType;
+  _iconClosed?: CssLibPropsType;
+  _listOptionsContainer?: CssLibPropsType;
+}
 
-export type DropdownSelectedPropsStylesType = {
-  container?: CommonStyleType;
-  buttonOrLinkContainer?: CommonStyleType & TypographyTypes;
-  labelOpened?: TypographyTypes;
-  labelClosed?: TypographyTypes;
-  iconOpened?: IconTypes;
-  iconClosed?: IconTypes;
-  popover?: { variant?: string };
-  listOptionsContainer?: CommonStyleType;
-  listOptions?: { variant?: string; optionVariant?: string };
-};
-
-export type DropdownSelectedStateStylesType = {
-  [state in DropdownSelectedStateType]?: DropdownSelectedPropsStylesType;
-};
-
-export type DropdownSelectedStylesType<V extends string | number | symbol> = {
-  [variant in V]: DropdownSelectedStateStylesType;
-};
+export type DropdownSelectedVariantStyles<Variant extends string> =
+  DropdownSelectedStyleProps & {
+    [key in Variant]: DropdownSelectedStyleProps;
+  };
