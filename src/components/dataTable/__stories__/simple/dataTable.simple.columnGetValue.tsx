@@ -1,8 +1,9 @@
 import { DataTableVariantType } from '@/lib/designSystem/kubit/components/dataTable/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { Button } from '../../../button/button';
 import type { DataTableProps } from '../../types/dataTable';
+
+import { Button } from '../../../button/button';
 
 export const DataTableSimpleColumnGetValueStory: DataTableProps = {
   columns: [

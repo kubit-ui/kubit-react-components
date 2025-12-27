@@ -1,4 +1,5 @@
 import type { TableDividerVariantStyles } from '@/components/tableDivider/types/tableDividerTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TableDividerVariantType } from './variants';

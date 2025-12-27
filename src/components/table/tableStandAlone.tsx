@@ -2,8 +2,9 @@ import { type PropsWithChildren, forwardRef } from 'react';
 
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import type { TableStandAloneProps } from './types/table';
+
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
 /**
  * TableStandAloneComponent - A standalone table component with customizable scroll and sticky options.

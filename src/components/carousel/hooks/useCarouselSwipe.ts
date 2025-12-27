@@ -3,22 +3,23 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useScrollBlock } from '@/lib/hooks/useScrollBlock/useScrollBlock';
 
 import type { IUseCarouselSwipe } from './types/useCarouselSwipe';
+
 import calcUtils from './utils/calc.utils';
 import CONSTANTS from './utils/constants';
 
 export const useCarouselSwipe: IUseCarouselSwipe = ({
-  contentContainerRef,
-  viewerContainerRef,
   allowShiftRef,
+  centerExtremesWhenExtraPadding,
+  changePage,
   circular,
-  extraPadding,
+  contentContainerRef,
+  currentPageRef,
+  disabled = false,
   elements,
+  extraPadding,
   numElementsPerPageRef,
   numPagesRef,
-  currentPageRef,
-  centerExtremesWhenExtraPadding,
-  disabled = false,
-  changePage,
+  viewerContainerRef,
 }) => {
   // Variables for the drag listeners listener
   const isDragging = useRef(false);

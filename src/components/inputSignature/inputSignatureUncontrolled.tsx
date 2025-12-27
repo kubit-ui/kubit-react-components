@@ -1,11 +1,12 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 
-import { useDraw } from './hook/useDraw';
-import { InputSignatureControlled } from './inputSignatureControlled';
 import type {
   InputSignatureCustomHandle,
   InputSignatureUnControlledProps,
 } from './types/inputSignature';
+
+import { useDraw } from './hook/useDraw';
+import { InputSignatureControlled } from './inputSignatureControlled';
 import { getInputSignatureState } from './utils/getInputSignatureState';
 
 export const InputSignatureUnControlled = forwardRef<

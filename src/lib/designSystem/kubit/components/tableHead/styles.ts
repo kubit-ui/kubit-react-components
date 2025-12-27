@@ -1,4 +1,5 @@
 import type { TableHeadVariantStyles } from '@/components/tableHead/types/tableHeadTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TableHeadVariantType } from './variants';

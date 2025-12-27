@@ -5,8 +5,9 @@ import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
 import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
 
-import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 import type { SelectorProps } from './types/selector';
+
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 
 export const Selector = ({
   configAccesibility,

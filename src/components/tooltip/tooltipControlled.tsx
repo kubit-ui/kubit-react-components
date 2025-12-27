@@ -4,10 +4,11 @@ import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
 import { useScrollDetectionWithAutoFocus } from '@/lib/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
 
+import type { TooltipControlledProps } from './types/tooltip';
+
 import { useTooltipAsModal } from './hooks/useTooltipAsModal';
 import { useTooltipAsModalAriaLabel } from './hooks/useTooltipAsModalAriaLabel';
 import { TooltipStandAlone } from './tooltipStandAlone';
-import type { TooltipControlledProps } from './types/tooltip';
 
 export const TooltipControlled = <Variant extends string>({
   additionalClasses,

@@ -1,5 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
+import type { AnimationDirection } from '../../utils/animation.utils';
+
 import {
   generateAnimation,
   generateAnimationStyles,
@@ -11,16 +13,15 @@ import {
   DEFAULT_POPOVER_ANIMATION_CONFIG,
   type InternalAnimationConfig,
 } from '../../types/animation';
-import type { AnimationDirection } from '../../utils/animation.utils';
 
 describe('PopoverV2 - Popover Animations', () => {
   const mockConfig = {
     ...DEFAULT_POPOVER_ANIMATION_CONFIG,
-    type: ANIMATION_CONFIG_TYPES.SIMPLE,
-    duration: '300ms',
     delay: '0ms',
-    timingFunction: 'ease-in-out',
+    duration: '300ms',
     iterationCount: 1,
+    timingFunction: 'ease-in-out',
+    type: ANIMATION_CONFIG_TYPES.SIMPLE,
   };
 
   describe('generateAnimation', () => {
@@ -102,17 +103,17 @@ describe('PopoverV2 - Popover Animations', () => {
   describe('Placement Animations', () => {
     const placementConfig: InternalAnimationConfig = {
       ...DEFAULT_POPOVER_ANIMATION_CONFIG,
-      type: ANIMATION_CONFIG_TYPES.SIMPLE,
-      duration: '300ms',
-      delay: '100ms',
-      timingFunction: 'ease-in-out',
-      iterationCount: 1,
-      transformOrigin: 'center center',
-      opacityStart: 0,
-      opacityEnd: 1,
-      scaleStart: 0.95,
       animationDistanceInPx: 10,
       animationRotationInDeg: 0,
+      delay: '100ms',
+      duration: '300ms',
+      iterationCount: 1,
+      opacityEnd: 1,
+      opacityStart: 0,
+      scaleStart: 0.95,
+      timingFunction: 'ease-in-out',
+      transformOrigin: 'center center',
+      type: ANIMATION_CONFIG_TYPES.SIMPLE,
     };
 
     describe('getPlacementAnimation', () => {
@@ -180,10 +181,10 @@ describe('PopoverV2 - Popover Animations', () => {
       test('should handle different timing functions and values', () => {
         const customConfig: InternalAnimationConfig = {
           ...placementConfig,
-          duration: '1000ms',
           delay: '0ms',
-          timingFunction: 'linear',
+          duration: '1000ms',
           iterationCount: 2,
+          timingFunction: 'linear',
           transformOrigin: 'top left',
         };
 

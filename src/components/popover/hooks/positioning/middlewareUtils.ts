@@ -93,11 +93,11 @@ const createElementAnchorMiddlewares = (
  * Adds conditional middlewares (hide and arrow) to the stack
  */
 const addConditionalMiddlewares = ({
-  middlewareStack,
-  isBodyAnchor,
-  hideWhenDetached,
   arrowElement,
   edgePadding,
+  hideWhenDetached,
+  isBodyAnchor,
+  middlewareStack,
 }: {
   middlewareStack: Middleware[];
   isBodyAnchor: boolean;
@@ -174,11 +174,11 @@ export const getMiddlewareStack = ({
 
   // Add conditional middlewares
   addConditionalMiddlewares({
-    middlewareStack,
-    isBodyAnchor,
-    hideWhenDetached,
     arrowElement,
     edgePadding,
+    hideWhenDetached,
+    isBodyAnchor,
+    middlewareStack,
   });
 
   return middlewareStack;

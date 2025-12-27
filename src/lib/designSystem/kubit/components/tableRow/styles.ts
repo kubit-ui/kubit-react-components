@@ -1,4 +1,5 @@
 import type { TableRowVariantStyles } from '@/components/tableRow/types/tableRowTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TableRowVariantType } from './variants';

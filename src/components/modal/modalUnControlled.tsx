@@ -6,9 +6,10 @@ import {
   useState,
 } from 'react';
 
+import type { ModalUnControlledProps } from './types/modal';
+
 import { isKeyEscapePressed } from '../../lib/utils/keyboard/keyboard';
 import { ModalControlled } from './modalControlled';
-import type { ModalUnControlledProps } from './types/modal';
 
 export const ModalUnControlled = forwardRef<
   HTMLDivElement,

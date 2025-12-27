@@ -6,12 +6,13 @@ import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
+import type { SliderStandAloneProps } from './types/slider';
+
 import { Text } from '../text/text';
 import { SliderButtonStandAlone } from './components/sliderButtonStandAlone';
 import { SliderHelperTextStandAlone } from './components/sliderHelperTextStandAlone';
 import { SliderScaleStandAlone } from './components/sliderScaleStandAlone';
 import { SliderThumbStandAlone } from './components/sliderThumbStandAlone';
-import type { SliderStandAloneProps } from './types/slider';
 import { buildAriaDescribedBy } from './utils/accessibility.utils';
 import { getState } from './utils/state.utils';
 import { isActive } from './utils/ui.utils';

@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { StepperNumberStandAlone } from './stepperNumberStandAlone';
 import type { StepperNumberProps } from './types/stepperNumber';
+
+import { StepperNumberStandAlone } from './stepperNumberStandAlone';
 
 const STEPPER_NUMBER = 'STEPPER_NUMBER';
 

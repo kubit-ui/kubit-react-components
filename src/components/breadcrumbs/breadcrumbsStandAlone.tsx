@@ -2,9 +2,10 @@ import { forwardRef } from 'react';
 
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
+import type { BreadcrumbsStandAloneProps } from './types/breadcrumbs';
+
 import { CrumbStandAlone } from './components/crumbStandAlone/crumbStandAlone';
 import { useIsOverflow } from './hooks/useIsOverflow/useIsOverflow';
-import type { BreadcrumbsStandAloneProps } from './types/breadcrumbs';
 import { crumbMaxCharName } from './utils/crumbMaxCharName/crumbMaxCharName';
 
 /**

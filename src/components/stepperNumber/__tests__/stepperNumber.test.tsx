@@ -4,9 +4,10 @@ import { axe } from 'vitest-axe';
 
 import { render } from '@/lib/tests/render/render';
 
+import type { StepperNumberProps } from '../types/stepperNumber';
+
 import { StepperNumberSteps } from '../fixture/ariaLabels';
 import { StepperNumber } from '../stepperNumber';
-import type { StepperNumberProps } from '../types/stepperNumber';
 
 const mockProps: StepperNumberProps = {
   completedStepIcon: { icon: 'UNICORN' },

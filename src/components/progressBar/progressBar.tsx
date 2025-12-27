@@ -2,8 +2,9 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { ProgressBarStandalone } from './progressBarStandAlone';
 import type { ProgressBarProps } from './types/progressBar';
+
+import { ProgressBarStandalone } from './progressBarStandAlone';
 
 export const ProgressBar = forwardRef(
   <

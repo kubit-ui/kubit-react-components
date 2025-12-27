@@ -3,9 +3,10 @@ import { forwardRef } from 'react';
 import { RenderIf } from '@/components/renderIf/renderIf';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
+import type { InputStandAloneProps } from './types/input';
+
 import { InputBase } from '../inputBase/inputBase';
 import { InputDecoration } from '../inputDecoration/inputDecoration';
-import type { InputStandAloneProps } from './types/input';
 
 export const InputStandAlone = forwardRef<HTMLDivElement, InputStandAloneProps>(
   (

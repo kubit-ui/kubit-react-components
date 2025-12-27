@@ -5,8 +5,9 @@ import {
   useState,
 } from 'react';
 
-import { MessageControlled } from './messageControlled';
 import type { MessageUnControlledProps } from './types/message';
+
+import { MessageControlled } from './messageControlled';
 
 export const MessageUnControlled = forwardRef<
   HTMLDivElement,

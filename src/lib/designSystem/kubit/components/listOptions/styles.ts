@@ -1,4 +1,5 @@
 import type { ListOptionsVariantStyles } from '@/components/listOptions/types/listOptionsTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';

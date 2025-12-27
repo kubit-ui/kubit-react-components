@@ -3,8 +3,9 @@ import { type ReactNode, forwardRef } from 'react';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import type { NavBarStandAloneProps } from './types/navBar';
+
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
 /**
  * A standalone navigation bar component that can be used as a header, footer, or standalone navigation.

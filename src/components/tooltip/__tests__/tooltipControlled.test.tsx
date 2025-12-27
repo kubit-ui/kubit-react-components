@@ -1,6 +1,5 @@
-import { useRef } from 'react';
-
 import { fireEvent, screen } from '@testing-library/react';
+import { useRef } from 'react';
 
 import { render } from '@/lib/tests/render/render';
 

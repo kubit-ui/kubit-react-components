@@ -2,8 +2,9 @@ import { type PropsWithChildren, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { TableRowStandAlone } from './tableRowStandAlone';
 import type { TableRowProps } from './types/tableRow';
+
+import { TableRowStandAlone } from './tableRowStandAlone';
 
 export const TableRow = forwardRef<
   HTMLTableRowElement,

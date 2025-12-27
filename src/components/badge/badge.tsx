@@ -8,8 +8,9 @@ import {
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { BadgeStandAlone } from './badgeStandAlone';
 import type { BadgeProps } from './types/badge';
+
+import { BadgeStandAlone } from './badgeStandAlone';
 
 /**
  * Badge component for displaying a small status indicator, label, or notification count.

@@ -1,12 +1,14 @@
-import { Text } from '@/components/text/text';
 import type { CommonTextProps } from '@/lib/types/commons/text';
+
+import { Text } from '@/components/text/text';
 import { STATES } from '@/lib/types/states/states';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type { SelectorBoxFileCssClasses } from '../types/selectorBoxFile';
 import type { SelectorBoxFileStateType } from '../types/state';
+
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 
 interface SelectorBoxFileErrorMessageProps {
   cssClasses?: SelectorBoxFileCssClasses;

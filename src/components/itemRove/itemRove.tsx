@@ -4,8 +4,9 @@ import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { classNames as classNamesUtil } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import type { ItemRoveProps } from './types/itemRove';
+
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
 /**
  * ItemRove component is a navigable item that can be used to create a list of selectable options.

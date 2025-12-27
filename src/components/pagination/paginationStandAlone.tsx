@@ -4,12 +4,13 @@ import { Text } from '@/components/text/text';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { CustomComponent } from '../../lib/components/customComponent/customComponent';
-import { PaginationButtonControl } from './fragments/paginationButtonControl';
 import type {
   PaginationButtonControlProps,
   PaginationStandAloneProps,
 } from './types/pagination';
+
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
+import { PaginationButtonControl } from './fragments/paginationButtonControl';
 
 export const PaginationStandAlone = forwardRef<
   HTMLDivElement,

@@ -76,8 +76,8 @@ describe('SelectorBoxFile', () => {
       // Fix in the future: Currently the tooltip have internal div, so the tooltip can not be used next to text
       rules: {
         'element-permitted-content': 'off',
-        'no-inline-style': 'off',
         'no-dup-class': 'off',
+        'no-inline-style': 'off',
       },
     });
     expect(results.violations).toHaveLength(0);
@@ -131,8 +131,8 @@ describe('SelectorBoxFile', () => {
       // Fix in the future: Currently the tooltip have internal div, so the tooltip can not be used next to text
       rules: {
         'element-permitted-content': 'off',
-        'no-inline-style': 'off',
         'no-dup-class': 'off',
+        'no-inline-style': 'off',
       },
     });
     expect(results.violations).toHaveLength(0);
@@ -181,8 +181,8 @@ describe('SelectorBoxFile', () => {
       // Fix in the future: Currently the tooltip have internal div, so the tooltip can not be used next to text
       rules: {
         'element-permitted-content': 'off',
-        'no-inline-style': 'off',
         'no-dup-class': 'off',
+        'no-inline-style': 'off',
       },
     });
     expect(results.violations).toHaveLength(0);

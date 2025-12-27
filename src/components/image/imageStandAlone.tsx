@@ -6,8 +6,9 @@ import { type CSSProperties, forwardRef } from 'react';
 import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { PictureSourceStandAlone } from './components/pictureSourceStandAlone';
 import type { ImageStandAloneProps } from './types/image';
+
+import { PictureSourceStandAlone } from './components/pictureSourceStandAlone';
 import { getFallbackRatio } from './utils/getFallbackRatio';
 
 /**

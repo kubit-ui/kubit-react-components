@@ -8,6 +8,7 @@ import type {
   DataTableTableHeadConfigProps,
   DataTableTableRowConfigProps,
 } from '../types/dataTable';
+
 import { applyFlexToCell } from '../utils/cellConfig';
 import { applyGridToRow } from '../utils/rowConfig';
 

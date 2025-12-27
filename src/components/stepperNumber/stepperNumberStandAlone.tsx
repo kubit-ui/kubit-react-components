@@ -5,12 +5,13 @@ import { STATES } from '@/lib/types/states/states';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
+import type { StepperNumberStandAloneProps } from './types/stepperNumber';
+
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { buildAriaCurrent } from './helpers/aria';
 import { buildScreenReaderText } from './helpers/screnReader';
 import { mapToStepState } from './helpers/stepState';
-import type { StepperNumberStandAloneProps } from './types/stepperNumber';
 
 const defaultStep = 0;
 

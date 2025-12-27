@@ -1,10 +1,9 @@
-import type { AriaAttributes } from 'react';
-
 import type {
   Middleware as FloatingMiddleware,
   Placement,
   Strategy,
 } from '@floating-ui/dom';
+import type { AriaAttributes } from 'react';
 
 import type {
   ComponentSelected,

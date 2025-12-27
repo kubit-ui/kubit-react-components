@@ -1,4 +1,5 @@
 import type { ContainerVariantStyles } from '@/components/container/types/containerTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { ContainerVariants } from './variants';

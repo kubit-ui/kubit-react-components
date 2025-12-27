@@ -2,8 +2,9 @@ import { type ForwardedRef, forwardRef, useEffect, useState } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { CalendarStandAlone } from './calendarStandAlone';
 import type { CalendarProps } from './types/calendar';
+
+import { CalendarStandAlone } from './calendarStandAlone';
 
 export const Calendar = forwardRef(
   <Variant extends string>(

@@ -1,8 +1,9 @@
 // TO DO: RESOLVE THE TESTS
 import { render } from '@/lib/tests/render/render';
 
-import { DropdownSelectedUnControlled as DropdownSelected } from '../dropdownSelectedUncontrolled';
 import type { DropdownSelectedUnControlledProps } from '../types/dropdownSelected';
+
+import { DropdownSelectedUnControlled as DropdownSelected } from '../dropdownSelectedUncontrolled';
 
 const mockProps: DropdownSelectedUnControlledProps = {
   closePopoverOnScroll: true,

@@ -5,8 +5,9 @@ import { Text } from '@/components/text/text';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import type { CardImageStandAloneProps } from './types/cardImage';
+
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
 /**
  * Standalone card image component for displaying an image with title, description, and optional link.

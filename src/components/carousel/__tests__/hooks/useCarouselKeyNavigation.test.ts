@@ -2,6 +2,7 @@ import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { IUseCarouselKeyNavigationParams } from '../../hooks/types/useCarouselKeyNavigation';
+
 import { useCarouselKeyNavigation } from '../../hooks/useCarouselKeyNavigation';
 
 describe('useCarouselKeyNavigation', () => {
@@ -30,13 +31,13 @@ describe('useCarouselKeyNavigation', () => {
 
   const renderUseCarouselKeyNavigation = (props = {}) => {
     const defaultProps = {
-      rootContainerRef,
       allowShiftRef,
+      changePage,
       circular: false,
       currentPageRef,
-      numPagesRef,
       disabled: false,
-      changePage,
+      numPagesRef,
+      rootContainerRef,
     };
 
     return renderHook(() =>

@@ -1,4 +1,5 @@
 import type { DropdownSelectedVariantStyles } from '@/components/dropdownSelected/types/dropdownSelectedTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';

@@ -1,4 +1,5 @@
 import type { TableCellVariantStyles } from '@/components/tableCell/types/tableCellTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { PARAGRAPH } from '../../foundations/typography';

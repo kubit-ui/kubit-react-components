@@ -3,8 +3,9 @@ import { axe } from 'vitest-axe';
 
 import { render } from '@/lib/tests/render/render';
 
-import { Button } from '../button';
 import type { ButtonProps } from '../types/button';
+
+import { Button } from '../button';
 
 const mockBase: ButtonProps = {
   ['aria-label']: 'Click on me!',

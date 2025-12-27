@@ -1,6 +1,6 @@
-import { useState } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { useState } from 'react';
 
 import { ToggleVariant } from '@/lib/designSystem/kubit/components/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';

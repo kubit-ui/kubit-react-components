@@ -1,12 +1,13 @@
-import { type ReactNode, useCallback, useMemo, useRef, useState } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react';
+
+import { type ReactNode, useCallback, useMemo, useRef, useState } from 'react';
 
 import { CarouselVariantType } from '@/lib/designSystem/kubit/components/carousel/variants';
 import { Note } from '@/lib/storybook/components/note/note';
 
-import { Carousel as Story } from '../carousel';
 import type { CarouselRefType, ICarousel } from '../types/carousel';
+
+import { Carousel as Story } from '../carousel';
 import { argtypes } from './argtypes';
 
 type ICarouselStory = Omit<ICarousel, 'elements' | 'ref'> & {
@@ -31,12 +32,12 @@ const ReplaceContentStyled = ({
         backgroundColor: '#f7f2fb',
         border: '3px dashed #8e00ff',
         borderRadius: '10px',
+        boxShadow: 'rgba(255, 0, 252, 0.62) 1px 2px 6px',
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
         padding: '50px 20px',
         width: '300px',
-        boxShadow: 'rgba(255, 0, 252, 0.62) 1px 2px 6px',
       }}
       {...aria}
     >

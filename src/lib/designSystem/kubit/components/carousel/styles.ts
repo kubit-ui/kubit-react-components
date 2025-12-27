@@ -1,4 +1,5 @@
 import type { CarouselVariantStyles } from '@/components/carousel/types/carouselTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { CarouselVariantType } from './variants';
@@ -62,8 +63,8 @@ export const CAROUSEL: CarouselVariantStyles<CarouselVariants> = {
     },
     cursor: 'grab',
     overflow: 'hidden',
-    position: 'relative',
     padding: '0.5rem',
+    position: 'relative',
   },
   [CarouselVariantType.DEFAULT]: {},
   display: 'flex',

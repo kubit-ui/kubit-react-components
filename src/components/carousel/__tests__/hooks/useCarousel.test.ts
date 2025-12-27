@@ -1,9 +1,9 @@
-import { type RefObject, createElement } from 'react';
-
 import { act, renderHook } from '@testing-library/react';
+import { type RefObject, createElement } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { IUseCarouselParams } from '../../hooks/types/useCarousel';
+
 import { useCarousel } from '../../hooks/useCarousel';
 import { useCarouselKeyNavigation } from '../../hooks/useCarouselKeyNavigation';
 import { useCarouselSwipe } from '../../hooks/useCarouselSwipe';
@@ -13,26 +13,26 @@ import domUtils from '../../hooks/utils/dom.utils';
 // Mock the utility modules
 vi.mock('../../hooks/utils/calc.utils', () => ({
   default: {
+    calcContentContainerLeftPosition: vi.fn(() => '-100px'),
     calcFirstAndLastIndexInCarouselView: vi.fn(() => ({
       firstIndexInView: 0,
       lastIndexInView: 1,
     })),
     calcNumElementsPerPage: vi.fn(() => 2),
     calcNumPages: vi.fn(() => 3),
-    calcContentContainerLeftPosition: vi.fn(() => '-100px'),
   },
 }));
 
 vi.mock('../../hooks/utils/dom.utils', () => ({
   default: {
-    udpateCarouselPositionOnEdge: vi.fn(() => ({ newPage: 0 })),
-    updateContentElementsAriaVisibility: vi.fn(),
+    alignOnePageCarousel: vi.fn(),
     applyCenterMode: vi.fn(),
     deleteCenterMode: vi.fn(),
-    updateViewerWidth: vi.fn(),
-    updateSlicesWidth: vi.fn(),
     manageCircularClones: vi.fn(),
-    alignOnePageCarousel: vi.fn(),
+    udpateCarouselPositionOnEdge: vi.fn(() => ({ newPage: 0 })),
+    updateContentElementsAriaVisibility: vi.fn(),
+    updateSlicesWidth: vi.fn(),
+    updateViewerWidth: vi.fn(),
   },
 }));
 
@@ -75,8 +75,8 @@ describe('useCarousel', () => {
 
   // Mock ResizeObserver and window.addEventListener
   const mockResizeObserver = vi.fn(() => ({
-    observe: vi.fn(),
     disconnect: vi.fn(),
+    observe: vi.fn(),
     unobserve: vi.fn(),
   }));
 
@@ -108,28 +108,28 @@ describe('useCarousel', () => {
 
     // Mock DOM properties
     Object.defineProperty(rootContainer, 'offsetWidth', {
-      get: () => 700,
       configurable: true,
+      get: () => 700,
     });
 
     // Mock the style.width since JSDOM does not support fit-content
     let mockWidth = '';
     Object.defineProperty(rootContainer.style, 'width', {
+      configurable: true,
       get: () => mockWidth,
       set: (value) => {
         mockWidth = value;
       },
-      configurable: true,
     });
 
     Object.defineProperty(viewerContainer, 'offsetWidth', {
-      get: () => 700,
       configurable: true,
+      get: () => 700,
     });
 
     Object.defineProperty(contentContainer, 'offsetWidth', {
-      get: () => numElements * elementWidth,
       configurable: true,
+      get: () => numElements * elementWidth,
     });
 
     // Mock content container style and classList
@@ -141,7 +141,7 @@ describe('useCarousel', () => {
 
     // Add mock children to contentContainer
     mockElements = Array.from({ length: numElements }, (_, i) =>
-      createElement('div', { key: i, 'data-testid': `element-${i}` }),
+      createElement('div', { 'data-testid': `element-${i}`, key: i }),
     );
 
     for (let i = 0; i < numElements; i++) {
@@ -169,14 +169,14 @@ describe('useCarousel', () => {
 
   const renderUseCarousel = (props = {}) => {
     const defaultProps = {
+      contentContainerRef,
+      defaultPage: 0,
+      elements: mockElements,
+      onNumElementsPerPageChange,
+      onNumPagesChange,
+      onPageChange,
       rootContainerRef,
       viewerContainerRef,
-      contentContainerRef,
-      elements: mockElements,
-      defaultPage: 0,
-      onNumPagesChange,
-      onNumElementsPerPageChange,
-      onPageChange,
     };
 
     return renderHook(() =>
@@ -243,7 +243,7 @@ describe('useCarousel', () => {
       const { result } = renderUseCarousel();
 
       act(() => {
-        result.current.changePage({ newPage: 1, animated: false });
+        result.current.changePage({ animated: false, newPage: 1 });
       });
 
       // When change page is called with animated false
@@ -274,9 +274,9 @@ describe('useCarousel', () => {
 
     it('should not change page when containers are not available', () => {
       const { result } = renderUseCarousel({
+        contentContainerRef: { current: null },
         rootContainerRef: { current: null },
         viewerContainerRef: { current: null },
-        contentContainerRef: { current: null },
       });
 
       act(() => {
@@ -461,8 +461,8 @@ describe('useCarousel', () => {
 
     it('should handle centerExtremesWhenExtraPadding option', () => {
       renderUseCarousel({
-        extraPadding: 20,
         centerExtremesWhenExtraPadding: true,
+        extraPadding: 20,
       });
 
       expect(
@@ -515,10 +515,10 @@ describe('useCarousel', () => {
       renderUseCarousel({ onePageAlign: 'left' });
 
       expect(mockDomUtils.alignOnePageCarousel).toHaveBeenCalledWith({
-        rootContainer,
+        allowModifySliceWidth: false,
         contentContainer,
         onePageAlign: 'left',
-        allowModifySliceWidth: false,
+        rootContainer,
       });
     });
   });
@@ -574,9 +574,9 @@ describe('useCarousel', () => {
   describe('edge cases', () => {
     it('should handle missing containers gracefully', () => {
       const { result } = renderUseCarousel({
+        contentContainerRef: { current: null },
         rootContainerRef: { current: null },
         viewerContainerRef: { current: null },
-        contentContainerRef: { current: null },
       });
 
       // Should not throw when trying to use the hook

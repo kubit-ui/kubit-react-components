@@ -5,14 +5,16 @@ import {
   isValidElement,
 } from 'react';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
+
+import { RenderIf } from '@/components/renderIf/renderIf';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { useBorderAnimation } from '../hooks/useBorderAnimation';
 import type { SelectorBoxFileCssClasses } from '../types/selectorBoxFile';
 import type { SelectorBoxFileStateType } from '../types/state';
 import type { SelectorBoxFileContainerBoxProps } from './selectorBoxFileContainerBox';
+
+import { useBorderAnimation } from '../hooks/useBorderAnimation';
 
 interface SelectorBoxFileAnimationProps extends DataAttributes {
   state: SelectorBoxFileStateType;

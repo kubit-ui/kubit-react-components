@@ -6,6 +6,7 @@ import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/g
 import { STATES } from '@/lib/types/states/states';
 
 import type { LinkAsButtonProps } from '../types/link';
+
 import { LinkAsButtonStandAlone } from './linkAsButtonStandAlone';
 
 export const LinkAsButton = forwardRef(

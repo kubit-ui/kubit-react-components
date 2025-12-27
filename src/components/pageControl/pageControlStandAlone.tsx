@@ -3,8 +3,9 @@ import { forwardRef } from 'react';
 import { RenderIf } from '@/components/renderIf/renderIf';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { Controls } from './components/controls';
 import type { PageControlStandAloneProps } from './types/pageControl';
+
+import { Controls } from './components/controls';
 
 export const PageControlStandAlone = forwardRef<
   HTMLDivElement,

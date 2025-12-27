@@ -4,40 +4,53 @@
 /bamboo-specs/.idea
 /bamboo-specs/*.iml
 
-dist
-sample
-__reports__
-node_modules/
+## Build outputs
 dist/
 bundle/
-junit.xml
+sample/
+__reports__/
+
+## Dependencies
+node_modules/
+*yalc*
+
+## Config files
+/package-lock.json
 globalConfig
 localConfig
-/cli/test-output/**/*.*
-/.vscode/
-.DS_Store
-*.log
-/bamboo-specs/target
 
-config/webpack/microfront/config.js
-config/webpack/microfront/config.json
+## Testing
+junit.xml
+.jest-test-results.json
+reports/
+coverage/
 
-/package-lock.json
-*yalc*
-node_modules/
-
+## Storybook
 /storybook-static
 
-.jest-test-results.json
+## IDE
+.DS_Store
+# Allow .vscode/settings.json for shared editor config
+.vscode/*
+!.vscode/settings.json
 
-## vim files
+## Logs
+*.log
+
+## Vim
 *.swp
 *.swo
 
-## vitest
-reports
-coverage
-
+## Environment
 .env
 
+## Yarn
 yarn.lock
+
+## Webpack config
+config/webpack/microfront/config.js
+config/webpack/microfront/config.json
+
+## CLI
+/cli/test-output/**/*.*
+/bamboo-specs/target

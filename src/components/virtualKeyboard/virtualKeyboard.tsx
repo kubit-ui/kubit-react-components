@@ -5,6 +5,7 @@ import { STATES } from '@/lib/types/states/states';
 
 import type { VirtualKeyboardStateType } from './types/state';
 import type { VirtualKeyboardProps } from './types/virtualKeyboard';
+
 import { VirtualKeyboardStandAlone } from './virtualKeyboardStandAlone';
 
 /**

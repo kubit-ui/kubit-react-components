@@ -1,7 +1,8 @@
 import { type ForwardedRef, forwardRef, useState } from 'react';
 
-import { ToggleControlled } from './toggleControlled';
 import type { ToggleUncontrolledProps } from './types/toggle';
+
+import { ToggleControlled } from './toggleControlled';
 
 /**
  * Toggle uncontrolled component with generic variant support.

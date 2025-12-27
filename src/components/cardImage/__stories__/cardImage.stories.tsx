@@ -6,8 +6,9 @@ import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { IMAGES } from '@/lib/storybook/assets/images/images';
 import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 
-import { CardImage as Story } from '../cardImage';
 import type { CardImageProps } from '../types/cardImage';
+
+import { CardImage as Story } from '../cardImage';
 import { argtypes } from './argtypes';
 
 const meta = {

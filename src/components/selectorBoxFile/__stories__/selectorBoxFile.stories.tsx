@@ -1,6 +1,6 @@
-import { useState } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { useState } from 'react';
 
 import { SelectorBoxFileVariantType } from '@/lib/designSystem/kubit/components/selectorBoxFile/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
@@ -8,8 +8,9 @@ import { LoaderStory as Loader } from '@/lib/storybook/assets/loader/loader';
 import { POSITIONS } from '@/lib/types/positions/positions';
 import { STATES } from '@/lib/types/states/states';
 
-import { SelectorBoxFile as Story } from '../selectorBoxFile';
 import type { SelectorBoxFileProps } from '../types/selectorBoxFile';
+
+import { SelectorBoxFile as Story } from '../selectorBoxFile';
 import { argtypes } from './argtypes';
 
 const StoryWithHooks = (args) => {

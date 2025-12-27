@@ -2,8 +2,9 @@ import { fireEvent, screen } from '@testing-library/react';
 
 import { render } from '@/lib/tests/render/render';
 
-import { Badge } from '../badge';
 import type { BadgeProps } from '../types/badge';
+
+import { Badge } from '../badge';
 
 const mockProps: BadgeProps = {
   ['aria-label']: 'Open menu',

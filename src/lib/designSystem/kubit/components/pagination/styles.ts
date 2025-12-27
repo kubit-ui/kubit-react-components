@@ -1,4 +1,5 @@
 import type { PaginationVariantStyles } from '@/components/pagination/types/paginationTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 import { STATES } from '@/lib/types/states/states';
 

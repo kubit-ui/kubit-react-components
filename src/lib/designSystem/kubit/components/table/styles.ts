@@ -1,4 +1,5 @@
 import type { TableVariantStyles } from '@/components/table/types/tableTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TableVariantType } from './variants';

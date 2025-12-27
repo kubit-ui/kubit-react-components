@@ -89,8 +89,8 @@ export const calcNumPages = ({
     return 1;
   }
   const _numElementsToSlide = calcAdjustedNumElementsToSlide({
-    numElementsToSlide,
     numElementsPerPage,
+    numElementsToSlide,
   });
   const numPages = Math.ceil(
     (elementsLength - numElementsPerPage + _numElementsToSlide) /
@@ -123,11 +123,11 @@ export const calcNumPages = ({
  * - Ensures the calculated indices do not exceed the bounds of the available elements.
  */
 export const calcFirstAndLastIndexInCarouselView = ({
+  currentPage,
   elementsLength,
+  isCircular,
   numElementsPerPage,
   numElementsToSlide,
-  currentPage,
-  isCircular,
 }: {
   elementsLength: number;
   numElementsPerPage: number;
@@ -143,8 +143,8 @@ export const calcFirstAndLastIndexInCarouselView = ({
     return { firstIndexInView: 0, lastIndexInView: elementsLength - 1 };
   }
   const _numElementsToSlide = calcAdjustedNumElementsToSlide({
-    numElementsToSlide,
     numElementsPerPage,
+    numElementsToSlide,
   });
   const numPages = calcNumPages({
     elementsLength,
@@ -197,11 +197,11 @@ export const calcFirstAndLastIndexInCarouselView = ({
  * @returns The number of elements that can fit per page, or `undefined` if the content container has no children.
  */
 export const calcNumElementsPerPage = ({
-  rootContainer,
-  viewerContainer,
   contentContainer,
   elementsLength,
   extraPadding,
+  rootContainer,
+  viewerContainer,
 }: {
   rootContainer: HTMLElement;
   viewerContainer: HTMLElement;
@@ -256,8 +256,8 @@ export const calcNumElementsPerPage = ({
  * @returns The calculated gap (in pixels) between the first two child elements of the content container.
  */
 export const calcGapBetweenContentContainerElements = ({
-  contentContainer,
   centerMode,
+  contentContainer,
 }: {
   contentContainer: HTMLElement;
   centerMode: boolean;
@@ -315,11 +315,11 @@ export const calcGapBetweenContentContainerElements = ({
  * @returns The calculated width of a single slice in the carousel.
  */
 export const calcSliceWidth = ({
-  viewerContainer,
-  contentContainer,
   centerMode,
-  numElementsPerPage,
+  contentContainer,
   extraPadding,
+  numElementsPerPage,
+  viewerContainer,
 }: {
   viewerContainer: HTMLElement;
   contentContainer: HTMLElement;
@@ -328,8 +328,8 @@ export const calcSliceWidth = ({
   extraPadding: number;
 }): number => {
   const gap = calcGapBetweenContentContainerElements({
-    contentContainer,
     centerMode,
+    contentContainer,
   });
   const gapSpace = (numElementsPerPage - 1) * gap;
   const horizontalViewerPadding = calcHorizontalElementPadding({
@@ -356,11 +356,11 @@ export const calcSliceWidth = ({
  * @returns The calculated width of the carousel viewer as a string with a `px` unit.
  */
 export const calcViewerWidth = ({
-  viewerContainer,
   contentContainer,
+  extraPadding,
   firstIndexInView,
   lastIndexInView,
-  extraPadding,
+  viewerContainer,
 }: {
   viewerContainer: HTMLElement;
   contentContainer: HTMLElement;
@@ -405,13 +405,13 @@ export const calcViewerWidth = ({
  * @returns The calculated left position as a string with a "px" unit.
  */
 export const calcContentContainerLeftPosition = ({
-  contentContainer,
-  numPages,
-  currentPage,
-  firstIndexInView,
-  extraPadding,
   centerExtremesWhenExtraPadding,
   circular,
+  contentContainer,
+  currentPage,
+  extraPadding,
+  firstIndexInView,
+  numPages,
 }: {
   contentContainer: HTMLElement;
   numPages: number;
@@ -440,13 +440,13 @@ export const calcContentContainerLeftPosition = ({
 };
 
 export default {
-  calcXDistanceBetween2Elements,
   calcAdjustedNumElementsToSlide,
-  calcNumPages,
+  calcContentContainerLeftPosition,
   calcFirstAndLastIndexInCarouselView,
-  calcNumElementsPerPage,
   calcGapBetweenContentContainerElements,
+  calcNumElementsPerPage,
+  calcNumPages,
   calcSliceWidth,
   calcViewerWidth,
-  calcContentContainerLeftPosition,
+  calcXDistanceBetween2Elements,
 };

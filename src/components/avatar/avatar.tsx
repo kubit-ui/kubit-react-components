@@ -3,9 +3,10 @@ import { type ForwardedRef, forwardRef } from 'react';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
 
-import { AvatarStandAlone } from './avatarStandAlone';
 import type { AvatarProps } from './types/avatar';
 import type { AvatarContentType } from './types/content';
+
+import { AvatarStandAlone } from './avatarStandAlone';
 
 /**
  * Avatar component for displaying a customizable user avatar.

@@ -1,11 +1,11 @@
-import type { PropsWithChildren } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { PropsWithChildren } from 'react';
 
 import { TableCaptionVariantType } from '@/lib/designSystem/kubit/components/tableCaption/variants';
 
-import { TableCaption as Story } from '../tableCaption';
 import type { TableCaptionProps } from '../types/tableCaption';
+
+import { TableCaption as Story } from '../tableCaption';
 import { argtypes } from './argtypes';
 
 const meta = {

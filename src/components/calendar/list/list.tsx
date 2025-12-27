@@ -6,6 +6,8 @@ import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
+import type { ListProps } from './types/list';
+
 import { WEEK_DAYS } from '../constants/constants';
 import { getAllDaysInMonth } from '../utils/getAllDaysInMonth';
 import { getFirstDayOfMonth } from '../utils/getFirstDayOfMonth';
@@ -22,7 +24,6 @@ import {
   handleKeyTabMove,
   handleKeyUpMove,
 } from '../utils/handleKeysmoves';
-import type { ListProps } from './types/list';
 
 const NEUTRAL_DATE = 'ddMMyyyy';
 export const List = ({

@@ -10,8 +10,9 @@ import {
 
 import { ESCAPE } from '@/lib/constants/keyboardKeys/keyboardKeys';
 
-import { DropdownSelectedControlled } from './dropdownSelectedControlled';
 import type { DropdownSelectedUnControlledProps } from './types/dropdownSelected';
+
+import { DropdownSelectedControlled } from './dropdownSelectedControlled';
 
 /**
  * Uncontrolled dropdown component for displaying selectable options.

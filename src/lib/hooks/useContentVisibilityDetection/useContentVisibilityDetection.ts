@@ -7,6 +7,7 @@ import type {
   UseContentVisibilityDetectionParamsType,
   UseContentVisibilityDetectionReturnType,
 } from './types/useContentVisibilityDetection';
+
 import { isContentVisibleEnough } from './utils/contentVisibility';
 
 /**

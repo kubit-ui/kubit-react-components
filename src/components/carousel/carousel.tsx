@@ -9,9 +9,10 @@ import {
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
+import type { CarouselRefType, ICarousel } from './types/carousel';
+
 import { CarouselStandAlone } from './carouselStandAlone';
 import { useCarousel } from './hooks/useCarousel';
-import type { CarouselRefType, ICarousel } from './types/carousel';
 import { buildScreenReaderOnly } from './utils/carousel.utils';
 
 const CarouselComponent = (

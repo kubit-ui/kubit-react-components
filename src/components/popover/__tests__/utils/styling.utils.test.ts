@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import type { ArrowStyles } from '../../types/popover';
+
 import { getArrowBorderStyles } from '../../utils/styling.utils';
 
 describe('styling.utils', () => {
@@ -22,10 +23,10 @@ describe('styling.utils', () => {
       expect(result).toMatchObject({
         '--arrow-size': '8px',
         backgroundColor: 'white',
-        height: '8px',
-        width: '8px',
         borderBottom: '1px solid black',
         borderRight: '1px solid black',
+        height: '8px',
+        width: '8px',
       });
     });
 
@@ -41,10 +42,10 @@ describe('styling.utils', () => {
       expect(result).toMatchObject({
         '--arrow-size': '10px',
         backgroundColor: 'white',
-        height: '10px',
-        width: '10px',
         borderLeft: '1px solid black',
         borderTop: '1px solid black',
+        height: '10px',
+        width: '10px',
       });
     });
 
@@ -60,10 +61,10 @@ describe('styling.utils', () => {
       expect(result).toMatchObject({
         '--arrow-size': '12px',
         backgroundColor: 'white',
-        height: '12px',
-        width: '12px',
         borderRight: '1px solid black',
         borderTop: '1px solid black',
+        height: '12px',
+        width: '12px',
       });
     });
 
@@ -79,10 +80,10 @@ describe('styling.utils', () => {
       expect(result).toMatchObject({
         '--arrow-size': '6px',
         backgroundColor: 'white',
-        height: '6px',
-        width: '6px',
         borderBottom: '1px solid black',
         borderLeft: '1px solid black',
+        height: '6px',
+        width: '6px',
       });
     });
 
@@ -99,10 +100,10 @@ describe('styling.utils', () => {
       expect(result).toMatchObject({
         '--arrow-size': '8px',
         backgroundColor: 'white',
-        height: '8px',
-        width: '8px',
         borderBottom: '2px dashed red',
         borderRight: '2px dashed red',
+        height: '8px',
+        width: '8px',
       });
     });
 

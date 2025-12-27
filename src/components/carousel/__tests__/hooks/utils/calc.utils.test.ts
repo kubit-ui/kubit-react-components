@@ -17,23 +17,23 @@ describe('calc.utils', () => {
   // Mock dom helpers
   const DOMRectBuilder = (props: Partial<DOMRect>): DOMRect => {
     return {
+      bottom: props.bottom ?? 0,
+      height: props.height ?? 0,
       left: props.left ?? 0,
       right: props.right ?? 0,
+      toJSON: () => ({}),
       top: props.top ?? 0,
-      bottom: props.bottom ?? 0,
       width: props.width ?? 0,
-      height: props.height ?? 0,
       x: props.x ?? 0,
       y: props.y ?? 0,
-      toJSON: () => ({}),
     };
   };
 
   const createElement = ({
-    offsetLeft,
-    offsetWidth,
     children = [],
     getBoundingClientRect,
+    offsetLeft,
+    offsetWidth,
   }: {
     offsetLeft?: number;
     offsetWidth?: number;
@@ -179,10 +179,10 @@ describe('calc.utils', () => {
   describe('calcFirstAndLastIndexInCarouselView', () => {
     it('should return all elements when elementsLength <= numElementsPerPage', () => {
       const result = calcFirstAndLastIndexInCarouselView({
-        elementsLength: 2,
-        numElementsPerPage: 3,
         currentPage: 0,
+        elementsLength: 2,
         isCircular: false,
+        numElementsPerPage: 3,
       });
 
       expect(result).toEqual({
@@ -193,10 +193,10 @@ describe('calc.utils', () => {
 
     it('should calculate correct indices for non-circular carousel', () => {
       const result = calcFirstAndLastIndexInCarouselView({
-        elementsLength: 10,
-        numElementsPerPage: 3,
-        isCircular: false,
         currentPage: 1,
+        elementsLength: 10,
+        isCircular: false,
+        numElementsPerPage: 3,
       });
 
       expect(result).toEqual({
@@ -207,10 +207,10 @@ describe('calc.utils', () => {
 
     it('should handle circular carousel with cloned elements', () => {
       const result = calcFirstAndLastIndexInCarouselView({
-        elementsLength: 10,
-        numElementsPerPage: 3,
-        isCircular: true,
         currentPage: 1,
+        elementsLength: 10,
+        isCircular: true,
+        numElementsPerPage: 3,
       });
 
       // Cloned elements are numElementsPerPage + 1
@@ -222,10 +222,10 @@ describe('calc.utils', () => {
 
     it('should handle negative currentPage in circular mode', () => {
       const result = calcFirstAndLastIndexInCarouselView({
-        elementsLength: 10,
-        numElementsPerPage: 3,
-        isCircular: true,
         currentPage: -1,
+        elementsLength: 10,
+        isCircular: true,
+        numElementsPerPage: 3,
       });
 
       // Cloned elements are numElementsPerPage + 1
@@ -239,11 +239,11 @@ describe('calc.utils', () => {
   describe('calcNumElementsPerPage', () => {
     it('should return undefined when contentContainer has no children', () => {
       const mockContainers = {
-        viewerContainer: createElement({ offsetWidth: 500 }),
-        rootContainer: createElement({ offsetWidth: 500 }),
         contentContainer: createElement({}),
         elementsLength: 5,
         extraPadding: 10,
+        rootContainer: createElement({ offsetWidth: 500 }),
+        viewerContainer: createElement({ offsetWidth: 500 }),
       };
 
       expect(calcNumElementsPerPage(mockContainers)).toBeUndefined();
@@ -267,11 +267,11 @@ describe('calc.utils', () => {
       });
 
       const mockContainers = {
-        rootContainer,
-        viewerContainer,
         contentContainer,
         elementsLength: 5,
         extraPadding: 0,
+        rootContainer,
+        viewerContainer,
       };
 
       // Assuming each elements is 100px with a gap of 10px
@@ -289,8 +289,8 @@ describe('calc.utils', () => {
       });
 
       const result = calcGapBetweenContentContainerElements({
-        contentContainer,
         centerMode: false,
+        contentContainer,
       });
 
       expect(result).toBe(0);
@@ -309,8 +309,8 @@ describe('calc.utils', () => {
       });
 
       const result = calcGapBetweenContentContainerElements({
-        contentContainer,
         centerMode: false,
+        contentContainer,
       });
 
       expect(result).toBe(10);
@@ -330,8 +330,8 @@ describe('calc.utils', () => {
       });
 
       const result = calcGapBetweenContentContainerElements({
-        contentContainer,
         centerMode: true,
+        contentContainer,
       });
 
       expect(result).toBe(10);
@@ -359,11 +359,11 @@ describe('calc.utils', () => {
       });
 
       const result = calcSliceWidth({
-        viewerContainer,
-        contentContainer,
         centerMode: false,
-        numElementsPerPage: 3,
+        contentContainer,
         extraPadding: 10,
+        numElementsPerPage: 3,
+        viewerContainer,
       });
 
       // viewer width is 300
@@ -398,11 +398,11 @@ describe('calc.utils', () => {
       });
 
       const result = calcViewerWidth({
-        viewerContainer,
         contentContainer,
+        extraPadding: 10,
         firstIndexInView: 0,
         lastIndexInView: 2,
-        extraPadding: 10,
+        viewerContainer,
       });
 
       // Plus extraPadding
@@ -425,11 +425,11 @@ describe('calc.utils', () => {
       });
 
       const result = calcViewerWidth({
-        viewerContainer,
         contentContainer,
+        extraPadding: 0,
         firstIndexInView: 0,
         lastIndexInView: 1,
-        extraPadding: 0,
+        viewerContainer,
       });
 
       expect(result).toBe('200px');
@@ -447,13 +447,13 @@ describe('calc.utils', () => {
       });
 
       const result = calcContentContainerLeftPosition({
-        contentContainer,
-        numPages: 3,
-        currentPage: 1,
-        firstIndexInView: 2,
-        extraPadding: 10,
         centerExtremesWhenExtraPadding: false,
         circular: false,
+        contentContainer,
+        currentPage: 1,
+        extraPadding: 10,
+        firstIndexInView: 2,
+        numPages: 3,
       });
 
       // Distance from the first child to the child it's seen 200
@@ -472,13 +472,13 @@ describe('calc.utils', () => {
       });
 
       const result = calcContentContainerLeftPosition({
-        contentContainer,
-        numPages: 3,
-        currentPage: 1,
-        firstIndexInView: 2,
-        extraPadding: 0,
         centerExtremesWhenExtraPadding: false,
         circular: false,
+        contentContainer,
+        currentPage: 1,
+        extraPadding: 0,
+        firstIndexInView: 2,
+        numPages: 3,
       });
 
       // Distance from the first child to the child it's seen 200
@@ -499,13 +499,13 @@ describe('calc.utils', () => {
       });
 
       const result = calcContentContainerLeftPosition({
-        contentContainer,
-        numPages: 3,
-        currentPage: 2, // last page
-        firstIndexInView: 4,
-        extraPadding: 10,
         centerExtremesWhenExtraPadding: false,
         circular: false,
+        contentContainer,
+        currentPage: 2, // last page
+        extraPadding: 10,
+        firstIndexInView: 4,
+        numPages: 3,
       });
 
       // Distance: 400 - 0 = 400, minus double padding: 20 (double because it's the last page), negated: -380
@@ -521,13 +521,13 @@ describe('calc.utils', () => {
         ],
       });
       const result = calcContentContainerLeftPosition({
-        contentContainer,
-        numPages: 3,
-        currentPage: 1,
-        firstIndexInView: 2,
-        extraPadding: 10,
         centerExtremesWhenExtraPadding: true,
         circular: false,
+        contentContainer,
+        currentPage: 1,
+        extraPadding: 10,
+        firstIndexInView: 2,
+        numPages: 3,
       });
 
       // Distance: 200 - 0 = 200, minus padding: 10, negated: -190
@@ -544,13 +544,13 @@ describe('calc.utils', () => {
       });
 
       const result = calcContentContainerLeftPosition({
-        contentContainer,
-        numPages: 3,
-        currentPage: 1,
-        firstIndexInView: 2,
-        extraPadding: 10,
         centerExtremesWhenExtraPadding: false,
         circular: true,
+        contentContainer,
+        currentPage: 1,
+        extraPadding: 10,
+        firstIndexInView: 2,
+        numPages: 3,
       });
 
       // Distance: 200 - 0 = 200, minus padding: 10, negated: -190

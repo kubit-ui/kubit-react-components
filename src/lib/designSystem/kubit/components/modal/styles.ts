@@ -1,4 +1,5 @@
 import type { ModalVariantStyles } from '@/components/modal/types/modalTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';

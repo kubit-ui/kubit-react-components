@@ -4,8 +4,9 @@ import { axe } from 'vitest-axe';
 import { render } from '@/lib/tests/render/render';
 import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 
-import { Image } from '../image';
 import type { ImageStandAloneProps } from '../types/image';
+
+import { Image } from '../image';
 
 const IMAGE_DESKTOP = '@/storybook/assets/images/image_1.png';
 const IMAGE_LARGE_DESKTOP = '@/storybook/assets/images/image_2.png';

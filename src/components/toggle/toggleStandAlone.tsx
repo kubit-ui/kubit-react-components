@@ -6,6 +6,7 @@ import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCusto
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 
 import type { ToggleStandaloneProps } from './types/toggle';
+
 import { buildComponentProps } from './utils/buildComponentProps';
 import { useToggleTransform } from './utils/thumbTransformCalculations';
 

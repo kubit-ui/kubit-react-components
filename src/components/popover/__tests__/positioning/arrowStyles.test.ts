@@ -20,8 +20,8 @@ describe('arrowStyles', () => {
     it('should position arrow correctly for top placement', () => {
       updateArrowStyles({
         arrowElement,
-        placement: 'top',
         arrowX: 50,
+        placement: 'top',
       });
 
       expect(arrowElement.getAttribute('data-kbt-placement')).toBe('top');
@@ -37,8 +37,8 @@ describe('arrowStyles', () => {
     it('should position arrow correctly for bottom placement', () => {
       updateArrowStyles({
         arrowElement,
-        placement: 'bottom',
         arrowX: 75,
+        placement: 'bottom',
       });
 
       expect(arrowElement.getAttribute('data-kbt-placement')).toBe('bottom');
@@ -54,8 +54,8 @@ describe('arrowStyles', () => {
     it('should position arrow correctly for left placement', () => {
       updateArrowStyles({
         arrowElement,
-        placement: 'left',
         arrowY: 30,
+        placement: 'left',
       });
 
       expect(arrowElement.getAttribute('data-kbt-placement')).toBe('left');
@@ -71,8 +71,8 @@ describe('arrowStyles', () => {
     it('should position arrow correctly for right placement', () => {
       updateArrowStyles({
         arrowElement,
-        placement: 'right',
         arrowY: 60,
+        placement: 'right',
       });
 
       expect(arrowElement.getAttribute('data-kbt-placement')).toBe('right');
@@ -88,8 +88,8 @@ describe('arrowStyles', () => {
     it('should handle compound placements (e.g., top-start)', () => {
       updateArrowStyles({
         arrowElement,
-        placement: 'top-start',
         arrowX: 25,
+        placement: 'top-start',
       });
 
       expect(arrowElement.getAttribute('data-kbt-placement')).toBe('top-start');
@@ -101,8 +101,8 @@ describe('arrowStyles', () => {
     it('should handle compound placements (e.g., right-end)', () => {
       updateArrowStyles({
         arrowElement,
-        placement: 'right-end',
         arrowY: 80,
+        placement: 'right-end',
       });
 
       expect(arrowElement.getAttribute('data-kbt-placement')).toBe('right-end');
@@ -114,8 +114,8 @@ describe('arrowStyles', () => {
     it('should handle missing arrow coordinates gracefully', () => {
       updateArrowStyles({
         arrowElement,
-        placement: 'top',
         arrowX: undefined,
+        placement: 'top',
       });
 
       expect(arrowElement.getAttribute('data-kbt-placement')).toBe('top');
@@ -129,8 +129,8 @@ describe('arrowStyles', () => {
     it('should handle zero coordinates correctly', () => {
       updateArrowStyles({
         arrowElement,
-        placement: 'bottom',
         arrowX: 0,
+        placement: 'bottom',
       });
 
       expect(arrowElement.getAttribute('data-kbt-placement')).toBe('bottom');
@@ -148,8 +148,8 @@ describe('arrowStyles', () => {
 
       updateArrowStyles({
         arrowElement,
-        placement: 'top',
         arrowX: 50,
+        placement: 'top',
       });
 
       // Only the relevant styles should be set, others should be cleared
@@ -166,9 +166,9 @@ describe('arrowStyles', () => {
         arrowElement.style.transform = '';
         updateArrowStyles({
           arrowElement,
-          placement,
           arrowX: 10,
           arrowY: 10,
+          placement,
         });
 
         expect(arrowElement.style.transform).toBe('rotate(45deg)');

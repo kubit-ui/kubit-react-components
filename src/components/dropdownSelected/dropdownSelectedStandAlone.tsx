@@ -6,13 +6,14 @@ import { useId } from '@/lib/hooks/useId/useId';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
+import type { ListOptionsOptionProps } from '../listOptions/types/listOptions';
+import type { DropdownSelectedStandAloneProps } from './types/dropdownSelected';
+
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { ListOptions } from '../listOptions/listOptions';
-import type { ListOptionsOptionProps } from '../listOptions/types/listOptions';
 import { keyDownMove, keyUpMove } from '../listOptions/utils/listOptions.utils';
 import { Popover } from '../popover/popover';
-import type { DropdownSelectedStandAloneProps } from './types/dropdownSelected';
 
 /**
  * Standalone dropdown component for rendering the visual structure and interaction of a dropdown.

@@ -4,8 +4,9 @@ import { InputDecorationVariantType } from '@/lib/designSystem/kubit/components/
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { render } from '@/lib/tests/render/render';
 
-import { InputDecoration } from '../inputDecoration';
 import type { InputDecorationProps } from '../types/inputDecoration';
+
+import { InputDecoration } from '../inputDecoration';
 
 const mockProps: InputDecorationProps = {
   decoration: {

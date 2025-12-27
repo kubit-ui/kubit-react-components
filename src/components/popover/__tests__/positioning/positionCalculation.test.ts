@@ -12,13 +12,13 @@ describe('positionCalculation', () => {
 
       it('should handle different placement conversions for body anchor', () => {
         const placements = [
-          { input: 'top', expected: 'top' },
-          { input: 'right', expected: 'right' },
-          { input: 'left', expected: 'left' },
-          { input: 'bottom', expected: 'bottom' },
+          { expected: 'top', input: 'top' },
+          { expected: 'right', input: 'right' },
+          { expected: 'left', input: 'left' },
+          { expected: 'bottom', input: 'bottom' },
         ] as const;
 
-        placements.forEach(({ input, expected }) => {
+        placements.forEach(({ expected, input }) => {
           const result = determinePositioningConfig(true, 'absolute', input);
 
           expect(result.actualPlacement).toBe(expected);

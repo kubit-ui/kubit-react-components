@@ -7,6 +7,7 @@ import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { IPopoverStandAlone } from './types/popover';
+
 import { getArrowBorderStyles } from './utils/styling.utils';
 
 const PopoverStandAloneComponent = (

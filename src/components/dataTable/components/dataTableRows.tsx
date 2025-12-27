@@ -10,6 +10,7 @@ import type {
   DataTableRowProps,
   DataTableTableRowConfigProps,
 } from '../types/dataTable';
+
 import { applyFlexToCell } from '../utils/cellConfig';
 import { isRowHoverable } from '../utils/hoverable';
 import { applyGridToRow } from '../utils/rowConfig';

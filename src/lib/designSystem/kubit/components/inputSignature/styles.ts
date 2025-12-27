@@ -1,4 +1,5 @@
 import type { InputSignatureVariantStyles } from '@/components/inputSignature/types/inputSignatureTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 import { STATES } from '@/lib/types/states/states';
 

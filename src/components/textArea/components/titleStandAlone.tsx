@@ -1,6 +1,7 @@
-import { Text } from '@/components/text/text';
 import type { TextComponentType } from '@/components/text/types/component';
 import type { CommonTextProps } from '@/lib/types/commons/text';
+
+import { Text } from '@/components/text/text';
 import { processText } from '@/lib/utils/process/processText/processText';
 
 import type { TextAreaCssClasses } from '../types/textArea';

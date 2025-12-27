@@ -4,8 +4,9 @@ import type { GenericImageType } from '@/lib/provider/genericComponentsProvider/
 import type { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { type ImageLoadingType } from './loading';
 import type { PictureSourceProps } from './pictureSource';
+
+import { type ImageLoadingType } from './loading';
 
 export interface ImageStandAloneProps extends DataAttributes {
   images: {

@@ -1,4 +1,5 @@
 import type { VirtualKeyboardVariantStyles } from '@/components/virtualKeyboard/types/virtualKeyboardTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';

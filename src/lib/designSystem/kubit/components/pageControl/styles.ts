@@ -1,4 +1,5 @@
 import type { PageControlStyles } from '@/components/pageControl/types/pageControlTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { ArrowsControlVariant, PageControlVariant } from './variants';

@@ -10,8 +10,9 @@ import {
 } from '@/lib/designSystem/kubit/components/dot/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { Badge as BadgeStory } from '../badge';
 import type { BadgeProps } from '../types/badge';
+
+import { Badge as BadgeStory } from '../badge';
 import { argtypes } from './argtypes';
 
 const meta = {

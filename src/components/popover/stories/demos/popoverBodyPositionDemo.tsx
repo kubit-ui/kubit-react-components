@@ -1,11 +1,11 @@
+import type { Placement } from '@floating-ui/dom';
+
 import {
   type CSSProperties,
   type ComponentProps,
   useRef,
   useState,
 } from 'react';
-
-import type { Placement } from '@floating-ui/dom';
 
 import { Button } from '@/components/button/button';
 import { Text } from '@/components/text/text';
@@ -16,8 +16,9 @@ import {
 } from '@/lib/designSystem/kubit/components/variants';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
 
-import { Popover } from '../../popover';
 import type { BodyDirection } from '../../utils/placement.utils';
+
+import { Popover } from '../../popover';
 
 // Convert body direction to placement
 const getPlacementFromBodyDirection = (

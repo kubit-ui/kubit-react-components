@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
 
-import { ImageStandAlone } from './imageStandAlone';
 import type { IImage } from './types/image';
+
+import { ImageStandAlone } from './imageStandAlone';
 
 /**
  * A flexible image component that supports generic customization.

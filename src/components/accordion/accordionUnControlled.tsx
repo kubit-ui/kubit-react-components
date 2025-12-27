@@ -1,7 +1,8 @@
 import { type MouseEventHandler, forwardRef, useState } from 'react';
 
-import { AccordionControlled } from './accordionControlled';
 import type { IAccordionUnControlled } from './types/accordion';
+
+import { AccordionControlled } from './accordionControlled';
 
 /**
  * `AccordionUnControlled` is a React functional component that provides an uncontrolled accordion behavior.

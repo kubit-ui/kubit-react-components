@@ -2,8 +2,9 @@ import { axe } from 'vitest-axe';
 
 import { render } from '@/lib/tests/render/render';
 
-import { Link } from '../link';
 import type { LinkProps } from '../types/link';
+
+import { Link } from '../link';
 
 const mockProps: LinkProps = {
   alignCenter: true,

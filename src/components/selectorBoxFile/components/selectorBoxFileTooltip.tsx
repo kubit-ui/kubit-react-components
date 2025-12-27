@@ -1,11 +1,12 @@
 import { TooltipUnControlled as Tooltip } from '@/components/tooltip/tooltipUnControlled';
 
-import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type {
   SelectorBoxFileCssClasses,
   SelectorBoxFileTooltipProps,
 } from '../types/selectorBoxFile';
+
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 
 export const SelectorBoxFileTooltip = ({
   cssClasses,

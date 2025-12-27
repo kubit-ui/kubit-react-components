@@ -3,8 +3,9 @@ import { axe } from 'vitest-axe';
 
 import { render } from '@/lib/tests/render/render';
 
-import { List } from '../list';
 import type { ListProps } from '../types/list';
+
+import { List } from '../list';
 
 const mockProps: ListProps = {
   currentDate: new Date(2023, 0, 5),

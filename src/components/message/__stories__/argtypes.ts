@@ -51,6 +51,11 @@ export const argtypes = (): ArgTypes => {
       keyName: 'children',
       name: 'message',
     }),
+    closeIconAriaLabel: getStringtArgTypes({
+      category: CATEGORY_CONTROL.ACCESIBILITY,
+      keyName: 'closeIconAriaLabel',
+      name: 'message',
+    }),
     dataTestId: getStringtArgTypes({
       category: CATEGORY_CONTROL.TESTING,
       keyName: 'dataTestId',
@@ -66,16 +71,6 @@ export const argtypes = (): ArgTypes => {
       keyName: 'extraAriaLabelledBy',
       name: 'message',
     }),
-    closeIconAriaLabel: getStringtArgTypes({
-      category: CATEGORY_CONTROL.ACCESIBILITY,
-      keyName: 'closeIconAriaLabel',
-      name: 'message',
-    }),
-    visible: getBooleanArgTypes({
-      descriptionName: 'message',
-      name: 'visible',
-      subCategory: CATEGORY_CONTROL.MODIFIERS,
-    }),
     variant: {
       ...getVariantArgTypes({
         name: 'message',
@@ -89,5 +84,10 @@ export const argtypes = (): ArgTypes => {
         category: 'MODIFIERS',
       },
     },
+    visible: getBooleanArgTypes({
+      descriptionName: 'message',
+      name: 'visible',
+      subCategory: CATEGORY_CONTROL.MODIFIERS,
+    }),
   };
 };

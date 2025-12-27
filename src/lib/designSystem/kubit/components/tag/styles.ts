@@ -1,4 +1,5 @@
 import type { TagVariantStyles } from '@/components/tag/types/tagTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';

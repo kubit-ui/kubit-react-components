@@ -1,7 +1,8 @@
 import type { Placement } from '@floating-ui/dom';
 
-import { DEFAULT_PLACEMENT, VALID_PLACEMENTS } from '../types/animation';
 import type { AnimationDirection } from './animation.utils';
+
+import { DEFAULT_PLACEMENT, VALID_PLACEMENTS } from '../types/animation';
 
 /**
  * Valid directions when body is used as anchor element.

@@ -1,3 +1,5 @@
+import type { FormatDateType } from '@/lib/utils/date/types/format.types';
+
 import {
   getAddDays,
   getAddMonths,
@@ -13,14 +15,14 @@ import {
 } from '@/lib/utils/date/date';
 import { formatDate } from '@/lib/utils/date/formatDate';
 import { transformDate } from '@/lib/utils/date/transformDate';
-import type { FormatDateType } from '@/lib/utils/date/types/format.types';
+
+import type { DateFormatOptions } from '../utilsProvider/types/utilsProvider';
+import type { KubitProviderProps } from './types/kubitProvider';
 
 import { defaultGenericComponents } from '../genericComponentsProvider/defaultGenericComponents';
 import { GenericComponentsProvider } from '../genericComponentsProvider/genericComponentsProvider';
 import { StylesProvider } from '../stylesProvider/stylesProvider';
-import type { DateFormatOptions } from '../utilsProvider/types/utilsProvider';
 import { UtilsProvider } from '../utilsProvider/utilsProvider';
-import type { KubitProviderProps } from './types/kubitProvider';
 
 export const KubitProvider = ({
   children,

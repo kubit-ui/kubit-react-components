@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { ListOptionsStandAlone } from './listOptionsStandAlone';
 import type { ListOptionsProps } from './types/listOptions';
+
+import { ListOptionsStandAlone } from './listOptionsStandAlone';
 
 export const ListOptions = forwardRef<HTMLDivElement, ListOptionsProps>(
   (

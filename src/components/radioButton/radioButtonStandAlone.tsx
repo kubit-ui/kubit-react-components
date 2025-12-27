@@ -6,8 +6,9 @@ import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import { ElementOrIcon } from './../elementOrIcon/elementOrIcon';
 import type { RadioButtonStandAloneProps } from './types/radioButton';
+
+import { ElementOrIcon } from './../elementOrIcon/elementOrIcon';
 import { buildAriaLabelledBy } from './utils/aria.utils';
 
 const CURSOR_DEFAULT = 'default';

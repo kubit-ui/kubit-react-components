@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { InputDecorationStandAlone } from './inputDecorationStandAlone';
 import type { InputDecorationProps } from './types/inputDecoration';
+
+import { InputDecorationStandAlone } from './inputDecorationStandAlone';
 import { getState } from './utils/state';
 
 export const InputDecoration = forwardRef<HTMLDivElement, InputDecorationProps>(

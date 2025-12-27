@@ -1,9 +1,9 @@
-import { type MutableRefObject, type RefObject, createElement } from 'react';
-
 import { renderHook } from '@testing-library/react';
+import { type MutableRefObject, type RefObject, createElement } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { IUseCarouselSwipeParams } from '../../hooks/types/useCarouselSwipe';
+
 import { useCarouselSwipe } from '../../hooks/useCarouselSwipe';
 
 // Mock useScrollBlock hook
@@ -49,7 +49,7 @@ describe('useCarouselSwipe', () => {
     mockElements = Array.from({ length: 6 }, (_, i) =>
       createElement('div', {
         key: i,
-        style: { width: '100px', height: '100px' },
+        style: { height: '100px', width: '100px' },
       }),
     );
 
@@ -71,12 +71,12 @@ describe('useCarouselSwipe', () => {
     // Mock children positions for drag limit calculations
     Array.from(contentContainer.children).forEach((child, index) => {
       Object.defineProperty(child, 'offsetLeft', {
-        get: () => index * 100, // Each child is 100px wide
         configurable: true,
+        get: () => index * 100, // Each child is 100px wide
       });
       Object.defineProperty(child, 'offsetWidth', {
-        get: () => 100,
         configurable: true,
+        get: () => 100,
       });
     });
   });
@@ -90,18 +90,18 @@ describe('useCarouselSwipe', () => {
 
   const renderUseCarouselSwipe = (props = {}) => {
     const defaultProps = {
-      contentContainerRef,
-      viewerContainerRef,
       allowShiftRef,
+      centerExtremesWhenExtraPadding: false,
+      changePage,
       circular: false,
-      extraPadding: 0,
+      contentContainerRef,
+      currentPageRef,
+      disabled: false,
       elements: mockElements,
+      extraPadding: 0,
       numElementsPerPageRef,
       numPagesRef,
-      currentPageRef,
-      centerExtremesWhenExtraPadding: false,
-      disabled: false,
-      changePage,
+      viewerContainerRef,
     };
 
     return renderHook(() =>
@@ -114,16 +114,16 @@ describe('useCarouselSwipe', () => {
 
   const createTouchEvent = (type: string, clientX: number, clientY = 0) => {
     return new TouchEvent(type, {
-      touches: [{ clientX, clientY } as Touch],
       bubbles: true,
+      touches: [{ clientX, clientY } as Touch],
     });
   };
 
   const createMouseEvent = (type: string, clientX: number, clientY = 0) => {
     return new MouseEvent(type, {
+      bubbles: true,
       clientX,
       clientY,
-      bubbles: true,
     });
   };
 
@@ -510,8 +510,8 @@ describe('useCarouselSwipe', () => {
   describe('extra padding behavior', () => {
     it('should handle drag limits with extra padding', () => {
       renderUseCarouselSwipe({
-        extraPadding: 20,
         centerExtremesWhenExtraPadding: true,
+        extraPadding: 20,
       });
 
       const touchStart = createTouchEvent('touchstart', 100);
@@ -527,8 +527,8 @@ describe('useCarouselSwipe', () => {
 
     it('should handle extra padding without centering extremes', () => {
       renderUseCarouselSwipe({
-        extraPadding: 20,
         centerExtremesWhenExtraPadding: false,
+        extraPadding: 20,
       });
 
       const touchStart = createTouchEvent('touchstart', 100);

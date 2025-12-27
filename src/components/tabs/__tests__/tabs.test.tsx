@@ -8,10 +8,11 @@ import { render } from '@/lib/tests/render/render';
 import { windowMatchMedia } from '@/lib/tests/windowMatchMedia/windowMatchMedia';
 import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 
+import type { TabsUnControlledProps } from '../types/tabs';
+
 import * as UseTabsUtils from '../hooks/useTabs/useTabs';
 import { TabsControlled } from '../tabsControlled';
 import { TabsUnControlled } from '../tabsUnControlled';
-import type { TabsUnControlledProps } from '../types/tabs';
 
 const tabs = [
   { content: 'Tab 1' },

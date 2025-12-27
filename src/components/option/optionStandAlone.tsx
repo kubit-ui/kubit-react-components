@@ -6,6 +6,9 @@ import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
+import type { OptionStandAloneProps } from './types/option';
+import type { OptionStateType } from './types/state';
+
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import {
   isKeyEnterPressed,
@@ -13,8 +16,6 @@ import {
 } from '../../lib/utils/keyboard/keyboard';
 import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { OptionLabelSlice } from './components.ts/optionLabelSlice';
-import type { OptionStandAloneProps } from './types/option';
-import type { OptionStateType } from './types/state';
 import { getHighlightedIndexes, getState } from './utils/option.utils';
 
 export const OptionStandAlone = forwardRef(

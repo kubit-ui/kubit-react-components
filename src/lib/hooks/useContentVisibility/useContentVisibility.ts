@@ -1,11 +1,12 @@
 import { useCallback, useRef } from 'react';
 
-import { useContentVisibilityDetection } from '../useContentVisibilityDetection/useContentVisibilityDetection';
 import type {
   ElementsType,
   UseContentVisibilityParamsType,
   UseContentVisibilityReturnType,
 } from './types/useContentVisibility';
+
+import { useContentVisibilityDetection } from '../useContentVisibilityDetection/useContentVisibilityDetection';
 
 /**
  * Custom React hook to manage the visibility of content within a container.

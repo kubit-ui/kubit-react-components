@@ -30,7 +30,7 @@ export const argtypes = (): ArgTypes => {
       category: CATEGORY_CONTROL.MODIFIERS,
       keyName: 'state',
       name: 'chip',
-      options: { default: 'default', error: 'error', disabled: 'disabled' },
+      options: { default: 'default', disabled: 'disabled', error: 'error' },
     }),
     variant: {
       ...getVariantArgTypes({

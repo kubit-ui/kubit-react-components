@@ -19,13 +19,13 @@ import type { IUsePopoverLifecycle } from './types/usePopoverLifecycle';
 export const usePopoverLifecycle: IUsePopoverLifecycle = ({
   animationExitDuration = 200,
   disableAnimations,
-  open = false,
   disableAutoFocusFirstDescendant = false,
   disableAutoFocusFirstDescendantAfterClose = true,
   disableRestoreFocusAfterClose = false,
   disableScrollBackground = false,
-  preventScrollOnCloseFocus = false,
+  open = false,
   popoverContainerRef,
+  preventScrollOnCloseFocus = false,
 }) => {
   // Save popover DOM element reference
   const popoverRef = useRef<HTMLElement | null>(null);
@@ -176,9 +176,9 @@ export const usePopoverLifecycle: IUsePopoverLifecycle = ({
   );
 
   return {
+    handleInnerRef,
     isClosing,
     isVisible,
-    handleInnerRef,
     popoverRef,
   };
 };

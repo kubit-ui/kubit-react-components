@@ -5,8 +5,9 @@ import { InputDecorationVariantType } from '@/lib/designSystem/kubit/components/
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { render } from '@/lib/tests/render/render';
 
-import { Input } from '../input';
 import type { InputProps } from '../types/input';
+
+import { Input } from '../input';
 
 const mockProps: InputProps = {
   defaultValue: 'test',

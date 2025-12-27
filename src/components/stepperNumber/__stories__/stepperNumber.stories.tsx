@@ -3,8 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { StepperNumberVariantType } from '@/lib/designSystem/kubit/components/stepperNumber/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { StepperNumber as Story } from '../stepperNumber';
 import type { StepperNumberProps } from '../types/stepperNumber';
+
+import { StepperNumber as Story } from '../stepperNumber';
 import { argtypes } from './argtypes';
 
 const meta = {

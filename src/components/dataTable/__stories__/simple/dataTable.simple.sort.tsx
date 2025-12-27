@@ -3,9 +3,10 @@ import { useState } from 'react';
 import { DataTableVariantType } from '@/lib/designSystem/kubit/components/dataTable/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
+import type { DataTableColumnProps } from '../../types/dataTable';
+
 import { ElementOrIcon } from '../../../elementOrIcon/elementOrIcon';
 import { DataTable } from '../../dataTable';
-import type { DataTableColumnProps } from '../../types/dataTable';
 
 const DataTableWithHooks = () => {
   const [sort, setSort] = useState({ direction: 'asc', field: 'ref' });

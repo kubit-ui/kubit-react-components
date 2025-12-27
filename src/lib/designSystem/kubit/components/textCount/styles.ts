@@ -1,4 +1,5 @@
 import type { TextCountStylesType } from '@/components/textArea/components/textCount/types/textCountTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TextCountVariantType } from './variants';

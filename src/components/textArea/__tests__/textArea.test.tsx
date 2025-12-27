@@ -3,8 +3,9 @@ import { fireEvent, screen } from '@testing-library/react';
 import { render } from '@/lib/tests/render/render';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import { TextArea } from '../textArea';
 import type { TextAreaProps } from '../types/textArea';
+
+import { TextArea } from '../textArea';
 
 const mockProps: TextAreaProps = {
   counterVariant: 'DEFAULT',

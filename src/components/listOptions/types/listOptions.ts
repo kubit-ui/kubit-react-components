@@ -8,6 +8,7 @@ import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
 import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type { OptionProps } from '../../option/types/option';
+
 import { type ListOptionsType } from './type';
 
 type ListOptionsCssClasses = ComponentSelected<

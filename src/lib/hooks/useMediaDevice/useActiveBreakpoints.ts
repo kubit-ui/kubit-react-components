@@ -1,6 +1,7 @@
 import { DeviceBreakpointsTypeUtils } from '@/lib/types/breakpoints/breakpoints';
 
 import type { useActiveBreakpointsReturn } from './types/useActiveBreakpoints';
+
 import { useMediaDevice } from './useMediaDevice';
 
 /**

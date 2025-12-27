@@ -4,8 +4,9 @@ import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { IconStandAlone } from './iconStandAlone';
 import type { IconProps } from './types/icon';
+
+import { IconStandAlone } from './iconStandAlone';
 
 export const IconBasic = forwardRef<HTMLSpanElement, IconProps>(
   (

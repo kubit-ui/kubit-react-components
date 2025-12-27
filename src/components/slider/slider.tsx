@@ -12,8 +12,9 @@ import {
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { SliderStandAlone } from './sliderStandAlone';
 import type { SliderOffsetBoundariesProps, SliderProps } from './types/slider';
+
+import { SliderStandAlone } from './sliderStandAlone';
 import {
   calcNewValueAfterKeyPress,
   decrementValue,

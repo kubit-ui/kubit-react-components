@@ -2,8 +2,9 @@ import { type PropsWithChildren, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { TableDividerStandAlone } from './tableDividerStandAlone';
 import type { TableDividerProps } from './types/tableDivider';
+
+import { TableDividerStandAlone } from './tableDividerStandAlone';
 
 export const TableDivider = forwardRef<
   HTMLTableSectionElement,

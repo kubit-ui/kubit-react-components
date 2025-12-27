@@ -1,8 +1,9 @@
 import { type PropsWithChildren, forwardRef } from 'react';
 
+import type { CheckboxBaseUnControlledProps } from './types/checkboxBase';
+
 import { CheckboxBaseControlled } from './checkboxBaseControlled';
 import { useCheckbox } from './hooks/useCheckbox';
-import type { CheckboxBaseUnControlledProps } from './types/checkboxBase';
 
 export const CheckboxBaseUnControlled = forwardRef(
   <Variant extends string = string>(

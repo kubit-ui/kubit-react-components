@@ -1,4 +1,5 @@
 import type { AvatarSizeStyles } from '@/components/avatar/types/avatarTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';

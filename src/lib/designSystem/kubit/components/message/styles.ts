@@ -1,4 +1,5 @@
 import type { MessageVariantStyles } from '@/components/message/types/messageTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { BUTTON } from '../button/styles';

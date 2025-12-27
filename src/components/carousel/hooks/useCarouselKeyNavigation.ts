@@ -8,13 +8,13 @@ import {
 import type { IUseCarouselKeyNavigation } from './types/useCarouselKeyNavigation';
 
 export const useCarouselKeyNavigation: IUseCarouselKeyNavigation = ({
-  rootContainerRef,
   allowShiftRef,
+  changePage,
   circular,
   currentPageRef,
-  numPagesRef,
   disabled = false,
-  changePage,
+  numPagesRef,
+  rootContainerRef,
 }) => {
   useEffect(() => {
     if (disabled) {

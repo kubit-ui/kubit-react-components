@@ -7,8 +7,9 @@ import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { setMonth } from '../../utils/setMonth';
 import type { MonthSelectorProps } from './types/monthSelector';
+
+import { setMonth } from '../../utils/setMonth';
 import {
   keyDownMove,
   keyLeftMove,

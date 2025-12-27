@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { TextStandAlone } from './textStandAlone';
 import type { TextProps } from './types/text';
+
+import { TextStandAlone } from './textStandAlone';
 
 /**
  * Text is a versatile component that renders text content with consistent styling.

@@ -1,4 +1,5 @@
 import type { ChipVariantStyles } from '@/components/chip/types/chipTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';

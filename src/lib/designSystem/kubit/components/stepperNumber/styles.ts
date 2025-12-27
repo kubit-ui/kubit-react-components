@@ -1,5 +1,6 @@
 import type { StepperNumberOrientationType } from '@/components/stepperNumber/types/orientation';
 import type { StepperNumberStyles } from '@/components/stepperNumber/types/stepperNumberTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 import { STATES } from '@/lib/types/states/states';
 

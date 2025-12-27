@@ -1,5 +1,6 @@
 import { waitFor, renderHook } from '@testing-library/react';
 import { type RefObject } from 'react';
+
 import { useInputFocus } from '../useInputFocus';
 
 describe('useInputFocus', () => {

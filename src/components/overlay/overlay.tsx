@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { OverlayStandAlone } from './overlayStandAlone';
 import type { OverlayProps } from './types/overlay';
+
+import { OverlayStandAlone } from './overlayStandAlone';
 
 export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(
   ({ additionalClasses, variant, ...props }, ref): JSX.Element => {

@@ -1,8 +1,9 @@
 import { forwardRef, isValidElement } from 'react';
 
+import type { ElementOrIconProps } from './types/elementOrIcon';
+
 import { IconBasic } from '../icon/icon';
 import { IconHost as Icon } from '../icon/iconHost';
-import type { ElementOrIconProps } from './types/elementOrIcon';
 
 /**
  * Renders either an icon (by name) or a custom React element.

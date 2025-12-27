@@ -3,8 +3,9 @@ import { forwardRef } from 'react';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { STATES } from '@/lib/types/states/states';
 
-import { ChipStandAlone } from './chipStandAlone';
 import type { ChipProps } from './types/chip';
+
+import { ChipStandAlone } from './chipStandAlone';
 
 /**
  * Chip component for displaying a small, customizable label or tag.

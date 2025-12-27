@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { CheckboxStandAlone } from './checkboxStandAlone';
 import type { CheckboxControlledProps } from './types/checkbox';
+
+import { CheckboxStandAlone } from './checkboxStandAlone';
 import { getCheckboxState } from './utils/state.utils';
 
 export const CheckboxControlled = forwardRef(

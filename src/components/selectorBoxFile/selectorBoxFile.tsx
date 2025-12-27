@@ -8,8 +8,9 @@ import {
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { SelectorBoxFileStandAlone } from './selectorBoxFileStandAlone';
 import type { SelectorBoxFileProps } from './types/selectorBoxFile';
+
+import { SelectorBoxFileStandAlone } from './selectorBoxFileStandAlone';
 import { getState } from './utils/state/state';
 
 export const SelectorBoxFile = forwardRef(

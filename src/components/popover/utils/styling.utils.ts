@@ -1,4 +1,5 @@
 import type { ArrowStyles } from '../types/popover';
+
 import { getPlacementDirection } from './placement.utils';
 
 /**

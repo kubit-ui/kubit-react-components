@@ -2,8 +2,9 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { SkeletonStandAlone } from './skeletonStandAlone';
 import type { SkeletonProps } from './types/skeleton';
+
+import { SkeletonStandAlone } from './skeletonStandAlone';
 
 export const Skeleton = forwardRef(
   (

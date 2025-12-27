@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { useEffect, useState } from 'react';
 
 import { PaginationVariantsTheme } from '@/lib/designSystem/kubit/components/pagination/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { Pagination as Story } from '../pagination';
 import type { PaginationButtonControlProps } from '../types/pagination';
+
+import { Pagination as Story } from '../pagination';
 import { argtypes } from './argtypes';
 
 const StoryWithHooks = (args) => {

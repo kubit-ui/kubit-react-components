@@ -5,6 +5,7 @@ import { useId } from '@/lib/hooks/useId/useId';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { IAccordionStandAlone } from './types/accordion';
+
 import { STATE } from './types/state';
 
 export const AccordionStandAlone = forwardRef<

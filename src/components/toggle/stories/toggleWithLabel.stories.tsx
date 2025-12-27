@@ -1,6 +1,6 @@
-import { useId, useState } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { useId, useState } from 'react';
 
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
 import { ToggleVariant } from '@/lib/designSystem/kubit/components/variants';

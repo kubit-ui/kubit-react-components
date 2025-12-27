@@ -3,8 +3,9 @@
  */
 import type { Middleware, Strategy } from '@floating-ui/dom';
 
-import { DEFAULT_PLACEMENT } from '../../types/animation';
 import type { BodyDirection } from '../../utils/placement.utils';
+
+import { DEFAULT_PLACEMENT } from '../../types/animation';
 
 /**
  * Generates CSS position styles based on positioning parameters

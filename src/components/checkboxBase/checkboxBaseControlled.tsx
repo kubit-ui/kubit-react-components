@@ -2,9 +2,10 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
+import type { CheckboxBaseControlledProps } from './types/checkboxBase';
+
 import { getCheckboxState } from '../checkbox/utils/state.utils';
 import { CheckboxBaseStandAlone } from './checkboxBaseStandAlone';
-import type { CheckboxBaseControlledProps } from './types/checkboxBase';
 
 export const CheckboxBaseControlled = forwardRef(
   <Variant extends string = string>(

@@ -3,8 +3,9 @@ import { axe } from 'vitest-axe';
 import { InputBaseVariantType } from '@/lib/designSystem/kubit/components/variants';
 import { render } from '@/lib/tests/render/render';
 
-import { InputBase } from '../inputBase';
 import type { InputBaseProps } from '../types/inputBase';
+
+import { InputBase } from '../inputBase';
 
 const mockProps: InputBaseProps = {
   defaultValue: 'test',

@@ -4,12 +4,13 @@ import { type FC, createContext, useContext, useMemo, useState } from 'react';
 import type { RecoverComponentStyles } from '@/lib/types/cssGenerator/cssGenerator';
 
 import '../../components/screen-reader-only/screen-reader-only';
-import { Provider } from '../cssProvider/provider';
 import type {
   Breakpoints,
   StylesContextProps,
   StylesProviderProps,
 } from './types/stylesProvider';
+
+import { Provider } from '../cssProvider/provider';
 
 export const StylesContext = createContext<StylesContextProps | undefined>(
   undefined,
@@ -54,14 +55,14 @@ const buildMediaQueries = (breakpoints: Breakpoints) => ({
  */
 //! <-- Review the provider building -->
 export const StylesProvider: FC<StylesProviderProps> = ({
+  bernovaProvider,
   breakpoints: initialBreakpoints = defaultBreakpoints,
   children,
   icons: initialIcons = {},
   illustrations: initialIllustrations = {},
-  themeSelected,
-  bernovaProvider,
-  linkId = 'kb-styled-provider',
   jsInCss = true,
+  linkId = 'kb-styled-provider',
+  themeSelected,
 }) => {
   const classes = [];
   const breakpoints = initialBreakpoints;

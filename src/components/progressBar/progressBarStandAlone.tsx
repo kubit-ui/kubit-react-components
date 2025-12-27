@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { classNames } from '@/lib/utils/classNames/classNames';
 
-import { Slider } from '../slider/slider';
 import type { ProgressBarStandAloneProps } from './types/progressBar';
+
+import { Slider } from '../slider/slider';
 
 const SLIDER_MAX_VALUE = 1000;
 const SLIDER_MIN_VALUE = 0;

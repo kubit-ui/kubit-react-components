@@ -7,8 +7,9 @@ import {
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { TextAreaStandAlone } from './textAreaStandAlone';
 import type { TextAreaProps } from './types/textArea';
+
+import { TextAreaStandAlone } from './textAreaStandAlone';
 import { getState } from './utils/state.utils';
 
 const TEXT_AREA = 'TEXT_AREA';

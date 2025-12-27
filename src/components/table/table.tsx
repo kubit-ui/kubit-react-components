@@ -7,12 +7,13 @@ import {
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
+import type { TableProps } from './types/table';
+
 import { useTableHasScroll } from './hooks/useTableHasScroll';
 import { useTableShadow } from './hooks/useTableShadow';
 import { useTableStickyLeftColumns } from './hooks/useTableStickyLeftColumns';
 import { useTableStickyRightColumns } from './hooks/useTableStickyRightColumns';
 import { TableStandAlone } from './tableStandAlone';
-import type { TableProps } from './types/table';
 
 export const Table = forwardRef<HTMLDivElement, PropsWithChildren<TableProps>>(
   (

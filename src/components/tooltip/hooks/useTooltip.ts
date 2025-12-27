@@ -1,3 +1,4 @@
+import { type Coords, arrow, flip, shift } from '@floating-ui/dom';
 import {
   type MutableRefObject,
   type RefObject,
@@ -7,8 +8,6 @@ import {
   useState,
 } from 'react';
 
-import { type Coords, arrow, flip, shift } from '@floating-ui/dom';
-
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useClickOutside } from '@/lib/hooks/useClickOutside/useClickOutside';
 import { useEscPressed } from '@/lib/hooks/useEscPressed/useEscPressed';
@@ -16,10 +15,11 @@ import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakp
 import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 import { POSITIONS } from '@/lib/types/positions/positions';
 
-import { focusElementOrFirstDescendant } from '../../../lib/utils/focusHandlers/focusHandlers';
-import { computePosition } from '../positioning/computePosition';
 import type { TooltipCssClasses } from '../types/tooltip';
 import type { TooltipAlignType } from '../types/tooltipAlign';
+
+import { focusElementOrFirstDescendant } from '../../../lib/utils/focusHandlers/focusHandlers';
+import { computePosition } from '../positioning/computePosition';
 
 interface UseTooltipType<Variant> {
   labelRef: RefObject<HTMLDivElement>;

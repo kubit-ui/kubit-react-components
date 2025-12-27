@@ -3,8 +3,9 @@ import { type ForwardedRef, forwardRef } from 'react';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
 
-import { CardImageStandAlone } from './cardImageStandAlone';
 import type { CardImageProps } from './types/cardImage';
+
+import { CardImageStandAlone } from './cardImageStandAlone';
 
 /**
  * CardImage component for displaying an image card with responsive and theme support.

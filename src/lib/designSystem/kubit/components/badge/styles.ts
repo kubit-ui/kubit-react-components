@@ -1,4 +1,5 @@
 import type { BadgeStylesType } from '@/components/badge/types/badgeTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';

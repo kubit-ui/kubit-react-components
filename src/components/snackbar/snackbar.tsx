@@ -7,9 +7,10 @@ import {
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
+import type { ISnackbar } from './types/snackbar';
+
 import { useSnackbarAutoClose } from './hooks/useSnackbarAutoClose';
 import { SnackbarStandAlone } from './snackbarStandAlone';
-import type { ISnackbar } from './types/snackbar';
 
 const SnackbarComponent = (
   { additionalClasses, closeTimeout, open = false, ...props }: ISnackbar,

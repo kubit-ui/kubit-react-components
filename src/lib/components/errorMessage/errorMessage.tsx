@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { ErrorMessageStandAlone } from './errorMessageStandAlone';
 import type { ErrorMessageProps } from './types/errorMessage';
+
+import { ErrorMessageStandAlone } from './errorMessageStandAlone';
 
 export const ErrorMessage = forwardRef(
   <Variant extends string = string>(

@@ -1,8 +1,9 @@
 import { Text } from '@/components/text/text';
 import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
 
-import { WEEK_DAYS } from '../constants/constants';
 import type { HeaderProps } from './types/header';
+
+import { WEEK_DAYS } from '../constants/constants';
 
 export const Header = ({
   cssClasses,

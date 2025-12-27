@@ -1,4 +1,5 @@
 import type { CarouselOnePageAlignType } from '../../types/carousel';
+
 import calcUtils from './calc.utils';
 
 /**
@@ -17,11 +18,11 @@ import calcUtils from './calc.utils';
  * @returns void
  */
 export const updateSlicesWidth = ({
-  viewerContainer,
-  contentContainer,
   centerMode,
-  numElementsPerPage,
+  contentContainer,
   extraPadding,
+  numElementsPerPage,
+  viewerContainer,
 }: {
   viewerContainer: HTMLElement;
   contentContainer: HTMLElement;
@@ -30,11 +31,11 @@ export const updateSlicesWidth = ({
   extraPadding: number;
 }): void => {
   const sliceWidth = calcUtils.calcSliceWidth({
-    viewerContainer,
-    contentContainer,
     centerMode,
-    numElementsPerPage,
+    contentContainer,
     extraPadding,
+    numElementsPerPage,
+    viewerContainer,
   });
   for (let i = 0; i < contentContainer.childNodes.length; i++) {
     const child = contentContainer.childNodes[i];
@@ -94,11 +95,11 @@ export const updateContentElementsAriaVisibility = ({
  * @returns void
  */
 export const updateViewerWidth = ({
-  viewerContainer,
   contentContainer,
+  extraPadding,
   firstIndexInView,
   lastIndexInView,
-  extraPadding,
+  viewerContainer,
 }: {
   viewerContainer: HTMLElement;
   contentContainer: HTMLElement;
@@ -107,11 +108,11 @@ export const updateViewerWidth = ({
   extraPadding: number;
 }): void => {
   const newWidth = calcUtils.calcViewerWidth({
-    viewerContainer,
     contentContainer,
+    extraPadding,
     firstIndexInView,
     lastIndexInView,
-    extraPadding,
+    viewerContainer,
   });
   viewerContainer.style.width = newWidth;
 };
@@ -190,10 +191,10 @@ export const deleteCenterMode = ({
  *   it clones elements from the start and end of the container to create a seamless circular effect.
  */
 export const manageCircularClones = ({
+  circular,
   contentContainer,
   elementsLength,
   numElementsPerPage,
-  circular,
 }: {
   contentContainer: HTMLElement;
   elementsLength: number;
@@ -255,10 +256,10 @@ const OnePageAlignMap: Record<CarouselOnePageAlignType, string> = {
  *                                If `false`, alignment is applied to the root container.
  */
 export const alignOnePageCarousel = ({
-  rootContainer,
+  allowModifySliceWidth,
   contentContainer,
   onePageAlign,
-  allowModifySliceWidth,
+  rootContainer,
 }: {
   rootContainer: HTMLElement;
   contentContainer: HTMLElement;
@@ -290,10 +291,10 @@ export const alignOnePageCarousel = ({
 export const udpateCarouselPositionOnEdge = ({
   contentContainer,
   currentPage,
-  numPages,
-  numElementsPerPage,
   elementsLength,
   extraPadding,
+  numElementsPerPage,
+  numPages,
 }: {
   contentContainer: HTMLElement;
   currentPage: number;
@@ -321,12 +322,12 @@ export const udpateCarouselPositionOnEdge = ({
 };
 
 export default {
-  updateSlicesWidth,
-  updateContentElementsAriaVisibility,
-  updateViewerWidth,
+  alignOnePageCarousel,
   applyCenterMode,
   deleteCenterMode,
   manageCircularClones,
-  alignOnePageCarousel,
   udpateCarouselPositionOnEdge,
+  updateContentElementsAriaVisibility,
+  updateSlicesWidth,
+  updateViewerWidth,
 };

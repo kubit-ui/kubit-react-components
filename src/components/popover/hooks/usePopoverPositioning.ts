@@ -1,9 +1,3 @@
-/**
- * Specialized hook to handle everything related to popover positioning,
- * including middlewares, position styles and arrows.
- */
-import { type RefObject, useCallback, useEffect, useRef } from 'react';
-
 import {
   type Middleware,
   type MiddlewareData,
@@ -12,8 +6,16 @@ import {
   autoUpdate,
   computePosition as computePositionFloating,
 } from '@floating-ui/dom';
+/**
+ * Specialized hook to handle everything related to popover positioning,
+ * including middlewares, position styles and arrows.
+ */
+import { type RefObject, useCallback, useEffect, useRef } from 'react';
 
 import type { BodyDirection } from '../utils/placement.utils';
+import type { PositioningValues } from './positioning/types';
+import type { IUsePopoverPositioning } from './types/usePopoverPositioning';
+
 import { positionArrow } from './positioning/arrowPositionStyles';
 import {
   calculateMainAxisOffset,
@@ -21,8 +23,6 @@ import {
 } from './positioning/middlewareUtils';
 import { determinePositioningConfig } from './positioning/positionCalculation';
 import { applyPositionStyles } from './positioning/positionStyles';
-import type { PositioningValues } from './positioning/types';
-import type { IUsePopoverPositioning } from './types/usePopoverPositioning';
 
 /**
  * Hook that handles popover positioning and its related components

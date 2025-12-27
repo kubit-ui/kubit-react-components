@@ -78,7 +78,6 @@ export default eslintFlatConfig({
           },
         ],
         'no-undef': 'off',
-        'import/order': 'off',
         '@typescript-eslint/no-magic-numbers': 'off',
         '@typescript-eslint/no-unused-vars': 'off', // fix
         'compat/compat': 'off', // fix
@@ -105,15 +104,11 @@ export default eslintFlatConfig({
             ],
           },
         ],
-        'perfectionist/sort-imports': ['off'],
+        // Disable prettier in ESLint - formatting is handled by Prettier directly
         'prettier/prettier': 'off',
-        'perfectionist/sort-objects': [
-          'off',
-          {
-            order: 'asc',
-            type: 'natural',
-          },
-        ],
+        // Disable import sorting in ESLint - handled by Prettier plugin
+        'sort-imports': 'off',
+        'import/order': 'off',
       },
     },
   ],

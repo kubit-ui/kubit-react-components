@@ -1,20 +1,21 @@
+import type { Mock } from 'vitest';
+
 import { autoUpdate, computePosition } from '@floating-ui/dom';
 import { renderHook } from '@testing-library/react';
-import type { Mock } from 'vitest';
 
 import { usePopoverPositioning } from '../../hooks/usePopoverPositioning';
 
 // Mock floating-ui functions
 vi.mock('@floating-ui/dom', () => ({
+  arrow: vi.fn(() => ({ fn: vi.fn(), name: 'arrow' })),
   autoUpdate: vi.fn(),
   computePosition: vi.fn(),
-  offset: vi.fn(() => ({ name: 'offset', fn: vi.fn() })),
-  flip: vi.fn(() => ({ name: 'flip', fn: vi.fn() })),
-  shift: vi.fn(() => ({ name: 'shift', fn: vi.fn() })),
-  arrow: vi.fn(() => ({ name: 'arrow', fn: vi.fn() })),
-  hide: vi.fn(() => ({ name: 'hide', fn: vi.fn() })),
-  inline: vi.fn(() => ({ name: 'inline', fn: vi.fn() })),
-  size: vi.fn(() => ({ name: 'size', fn: vi.fn() })),
+  flip: vi.fn(() => ({ fn: vi.fn(), name: 'flip' })),
+  hide: vi.fn(() => ({ fn: vi.fn(), name: 'hide' })),
+  inline: vi.fn(() => ({ fn: vi.fn(), name: 'inline' })),
+  offset: vi.fn(() => ({ fn: vi.fn(), name: 'offset' })),
+  shift: vi.fn(() => ({ fn: vi.fn(), name: 'shift' })),
+  size: vi.fn(() => ({ fn: vi.fn(), name: 'size' })),
 }));
 
 const mockComputePosition = computePosition as Mock;
@@ -28,10 +29,10 @@ describe('usePopoverPositioning', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockComputePosition.mockResolvedValue({
+      middlewareData: {},
+      placement: 'bottom',
       x: 100,
       y: 200,
-      placement: 'bottom',
-      middlewareData: {},
     });
     mockAutoUpdate.mockReturnValue(mockCleanup);
   });
@@ -41,10 +42,10 @@ describe('usePopoverPositioning', () => {
       expect(() => {
         renderHook(() =>
           usePopoverPositioning({
-            ref: mockRef,
-            placement: 'bottom',
             anchorElement: mockAnchorElement,
             isVisible: false,
+            placement: 'bottom',
+            ref: mockRef,
             strategy: 'absolute',
           }),
         );
@@ -55,10 +56,10 @@ describe('usePopoverPositioning', () => {
       expect(() => {
         renderHook(() =>
           usePopoverPositioning({
-            ref: mockRef,
-            placement: 'bottom',
             anchorElement: mockAnchorElement,
             isVisible: true,
+            placement: 'bottom',
+            ref: mockRef,
             strategy: 'absolute',
           }),
         );
@@ -70,10 +71,10 @@ describe('usePopoverPositioning', () => {
     it('should not call computePosition when not visible', async () => {
       renderHook(() =>
         usePopoverPositioning({
-          ref: mockRef,
-          placement: 'bottom',
           anchorElement: mockAnchorElement,
           isVisible: false,
+          placement: 'bottom',
+          ref: mockRef,
           strategy: 'absolute',
         }),
       );
@@ -95,10 +96,10 @@ describe('usePopoverPositioning', () => {
 
       renderHook(() =>
         usePopoverPositioning({
-          ref: mockRef,
-          placement: 'bottom',
           anchorElement,
           isVisible: true,
+          placement: 'bottom',
+          ref: mockRef,
           strategy: 'absolute',
         }),
       );
@@ -125,14 +126,14 @@ describe('usePopoverPositioning', () => {
       expect(() => {
         renderHook(() =>
           usePopoverPositioning({
-            ref: mockRef,
-            placement: 'bottom',
             anchorElement: mockAnchorElement,
             isVisible: true,
-            strategy: 'absolute',
             middlewareOptions: {
               edgePadding: 8,
             },
+            placement: 'bottom',
+            ref: mockRef,
+            strategy: 'absolute',
           }),
         );
       }).not.toThrow();
@@ -142,15 +143,15 @@ describe('usePopoverPositioning', () => {
       expect(() => {
         renderHook(() =>
           usePopoverPositioning({
-            ref: mockRef,
-            placement: 'bottom',
             anchorElement: mockAnchorElement,
-            isVisible: true,
-            strategy: 'absolute',
             arrowStyles: {
-              size: 8,
               backgroundColor: '#000',
+              size: 8,
             },
+            isVisible: true,
+            placement: 'bottom',
+            ref: mockRef,
+            strategy: 'absolute',
           }),
         );
       }).not.toThrow();
@@ -163,10 +164,10 @@ describe('usePopoverPositioning', () => {
         expect(() => {
           renderHook(() =>
             usePopoverPositioning({
-              ref: mockRef,
-              placement,
               anchorElement: mockAnchorElement,
               isVisible: true,
+              placement,
+              ref: mockRef,
               strategy: 'absolute',
             }),
           );
@@ -181,10 +182,10 @@ describe('usePopoverPositioning', () => {
         expect(() => {
           renderHook(() =>
             usePopoverPositioning({
-              ref: mockRef,
-              placement: 'bottom',
               anchorElement: mockAnchorElement,
               isVisible: true,
+              placement: 'bottom',
+              ref: mockRef,
               strategy,
             }),
           );
@@ -196,10 +197,10 @@ describe('usePopoverPositioning', () => {
       expect(() => {
         renderHook(() =>
           usePopoverPositioning({
-            ref: mockRef,
-            placement: 'top',
             anchorElement: null,
             isVisible: true,
+            placement: 'top',
+            ref: mockRef,
             strategy: 'absolute',
           }),
         );

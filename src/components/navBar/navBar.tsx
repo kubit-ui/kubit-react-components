@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { NavBarStandAlone } from './navBarStandAlone';
 import type { NavBarProps } from './types/navBar';
+
+import { NavBarStandAlone } from './navBarStandAlone';
 
 /**
  * A component that renders a navigation bar, which can be used as a header, footer, or standalone navigation.

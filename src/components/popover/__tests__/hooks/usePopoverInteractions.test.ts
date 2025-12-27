@@ -22,12 +22,12 @@ const createMockRef = <T>(initialValue: T | null = null): RefObject<T> => ({
 });
 
 const defaultProps = {
-  isVisible: true,
-  popoverRef: createMockRef<HTMLElement>(),
   disableClickOverlayClose: false,
   disableEscapeClose: false,
-  preventCloseOnClickElements: [] as Array<HTMLElement | null | undefined>,
+  isVisible: true,
   onClose: mockOnClose,
+  popoverRef: createMockRef<HTMLElement>(),
+  preventCloseOnClickElements: [] as Array<HTMLElement | null | undefined>,
 };
 
 describe('usePopoverInteractions', () => {
@@ -86,7 +86,7 @@ describe('usePopoverInteractions', () => {
 
   describe('stability across renders', () => {
     it('should provide stable function references across renders', () => {
-      const { result, rerender } = renderHook(() =>
+      const { rerender, result } = renderHook(() =>
         usePopoverInteractions(defaultProps),
       );
 
@@ -98,7 +98,7 @@ describe('usePopoverInteractions', () => {
     });
 
     it('should update handlers when dependencies change', () => {
-      const { result, rerender } = renderHook(
+      const { rerender, result } = renderHook(
         (props) => usePopoverInteractions(props),
         {
           initialProps: defaultProps,
@@ -155,12 +155,12 @@ describe('usePopoverInteractions', () => {
       expect(() => {
         renderHook(() =>
           usePopoverInteractions({
-            isVisible: true,
-            popoverRef: createMockRef<HTMLElement>(),
             disableClickOverlayClose: true,
             disableEscapeClose: true,
-            preventCloseOnClickElements: [document.createElement('div')],
+            isVisible: true,
             onClose: mockOnClose,
+            popoverRef: createMockRef<HTMLElement>(),
+            preventCloseOnClickElements: [document.createElement('div')],
           }),
         );
       }).not.toThrow();

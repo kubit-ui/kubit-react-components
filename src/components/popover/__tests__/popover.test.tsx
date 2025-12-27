@@ -1,12 +1,12 @@
-import { useState } from 'react';
-
 import { act, fireEvent, screen } from '@testing-library/react';
+import { useState } from 'react';
 import { axe } from 'vitest-axe';
 
 import { render } from '@/lib/tests/render/render';
 
-import { Popover } from '../popover';
 import type { IPopover } from '../types/popover';
+
+import { Popover } from '../popover';
 
 // Mock ResizeObserver and window.addEventListener
 const mockResizeObserver = vi.fn(function (this: ResizeObserver) {
@@ -16,18 +16,18 @@ const mockResizeObserver = vi.fn(function (this: ResizeObserver) {
 }) as unknown as typeof ResizeObserver;
 
 const mockProps: IPopover = {
-  open: true,
-  disableScrollBackground: true,
-  onClose: vi.fn(),
-  children: <button type="button">children</button>,
-  role: 'dialog',
   ['aria-label']: 'Test popover dialog', // Add aria-label for accessibility
-  disableAnimations: true,
   arrowStyles: {
     backgroundColor: '#767676',
     border: '1px solid #e0e0e0',
     size: 8,
   },
+  children: <button type="button">children</button>,
+  disableAnimations: true,
+  disableScrollBackground: true,
+  onClose: vi.fn(),
+  open: true,
+  role: 'dialog',
 };
 
 describe('Popover component', () => {
@@ -63,9 +63,9 @@ describe('Popover component', () => {
     const results = await axe(container);
     expect(container).toHTMLValidate({
       rules: {
-        'no-redundant-role': 'off',
-        'no-inline-style': 'off',
         'no-implicit-button-type': 'off',
+        'no-inline-style': 'off',
+        'no-redundant-role': 'off',
       },
     });
     expect(results.violations).toHaveLength(0);
@@ -107,10 +107,10 @@ describe('Popover component', () => {
     await act(async () => {
       // Internal popover element fire the escape keydown
       fireEvent.keyDown(internalButton, {
-        key: 'Escape',
-        code: 'Escape',
-        keyCode: 27,
         charCode: 27,
+        code: 'Escape',
+        key: 'Escape',
+        keyCode: 27,
       });
     });
 
@@ -181,10 +181,10 @@ describe('Popover component', () => {
     await act(async () => {
       // Internal popover element fire the escape keydown
       fireEvent.keyDown(internalButton, {
-        key: 'Escape',
-        code: 'Escape',
-        keyCode: 27,
         charCode: 27,
+        code: 'Escape',
+        key: 'Escape',
+        keyCode: 27,
       });
     });
 
@@ -237,10 +237,10 @@ describe('Popover component', () => {
     await act(async () => {
       // Internal popover element fire the escape keydown
       fireEvent.keyDown(internalButton, {
-        key: 'Escape',
-        code: 'Escape',
-        keyCode: 27,
         charCode: 27,
+        code: 'Escape',
+        key: 'Escape',
+        keyCode: 27,
       });
     });
 

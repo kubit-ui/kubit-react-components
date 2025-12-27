@@ -3,8 +3,9 @@ import { forwardRef } from 'react';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
 
-import { MessageStandAlone } from './messageStandAlone';
 import type { MessageProps } from './types/message';
+
+import { MessageStandAlone } from './messageStandAlone';
 
 export const MessageControlled = forwardRef<
   HTMLDivElement,

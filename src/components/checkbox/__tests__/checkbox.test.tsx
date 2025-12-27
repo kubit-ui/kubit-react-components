@@ -2,9 +2,10 @@ import { fireEvent, screen } from '@testing-library/react';
 
 import { render } from '@/lib/tests/render/render';
 
+import type { CheckboxControlledProps } from '../types/checkbox';
+
 import { CheckboxControlled } from '../checkboxControlled';
 import { CheckboxUnControlled as Checkbox } from '../checkboxUnControlled';
-import type { CheckboxControlledProps } from '../types/checkbox';
 
 const mockProps: CheckboxControlledProps = {
   checkboxBase: {

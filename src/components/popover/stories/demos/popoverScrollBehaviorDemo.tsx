@@ -1,3 +1,4 @@
+import { flip, size } from '@floating-ui/dom';
 import {
   type CSSProperties,
   type ComponentProps,
@@ -6,8 +7,6 @@ import {
   useRef,
   useState,
 } from 'react';
-
-import { flip, size } from '@floating-ui/dom';
 
 import { Text } from '@/components/text/text';
 import { TextVariantType } from '@/lib/designSystem/kubit/components/text/variants';
@@ -298,7 +297,7 @@ export const ScrollBehaviorDemo = (
           disableAnimations={true}
           middlewares={[
             size({
-              apply({ rects, elements }) {
+              apply({ elements, rects }) {
                 Object.assign(elements.floating.style, {
                   minWidth: `${rects.reference.width}px`,
                 });

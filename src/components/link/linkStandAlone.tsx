@@ -4,9 +4,10 @@ import { Text } from '@/components/text/text';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
+import type { LinkStandAloneProps } from './types/link';
+
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
-import type { LinkStandAloneProps } from './types/link';
 
 export const LinkStandAlone = forwardRef<HTMLElement, LinkStandAloneProps>(
   (

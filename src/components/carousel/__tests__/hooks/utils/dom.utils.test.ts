@@ -16,23 +16,23 @@ describe('dom.utils', () => {
   // Mock dom helpers (copied from calc.utils.test.ts)
   const DOMRectBuilder = (props: Partial<DOMRect>): DOMRect => {
     return {
+      bottom: props.bottom ?? 0,
+      height: props.height ?? 0,
       left: props.left ?? 0,
       right: props.right ?? 0,
+      toJSON: () => ({}),
       top: props.top ?? 0,
-      bottom: props.bottom ?? 0,
       width: props.width ?? 0,
-      height: props.height ?? 0,
       x: props.x ?? 0,
       y: props.y ?? 0,
-      toJSON: () => ({}),
     };
   };
 
   const createElement = ({
-    offsetLeft,
-    offsetWidth,
     children = [],
     getBoundingClientRect,
+    offsetLeft,
+    offsetWidth,
     tagName = 'div',
   }: {
     offsetLeft?: number;
@@ -74,11 +74,11 @@ describe('dom.utils', () => {
       vi.mocked(calcUtils.calcSliceWidth).mockReturnValue(150);
 
       domUtils.updateSlicesWidth({
-        viewerContainer,
-        contentContainer,
         centerMode: false,
-        numElementsPerPage: 3,
+        contentContainer,
         extraPadding: 10,
+        numElementsPerPage: 3,
+        viewerContainer,
       });
 
       expect(child1.style.width).toBe('150px');
@@ -144,11 +144,11 @@ describe('dom.utils', () => {
       vi.mocked(calcUtils.calcViewerWidth).mockReturnValue('300px');
 
       domUtils.updateViewerWidth({
-        viewerContainer,
         contentContainer,
+        extraPadding: 20,
         firstIndexInView: 0,
         lastIndexInView: 2,
-        extraPadding: 20,
+        viewerContainer,
       });
 
       expect(viewerContainer.style.width).toBe('300px');
@@ -256,10 +256,10 @@ describe('dom.utils', () => {
       const removeChildSpy = vi.spyOn(contentContainer, 'removeChild');
 
       domUtils.manageCircularClones({
+        circular: false,
         contentContainer,
         elementsLength: 3,
         numElementsPerPage: 2,
-        circular: false,
       });
 
       expect(removeChildSpy).toHaveBeenCalledTimes(2);
@@ -278,10 +278,10 @@ describe('dom.utils', () => {
       const insertBeforeSpy = vi.spyOn(contentContainer, 'insertBefore');
 
       domUtils.manageCircularClones({
+        circular: true,
         contentContainer,
         elementsLength: 4,
         numElementsPerPage: 2,
-        circular: true,
       });
 
       // Should clone numElementsPerPage + 1 = 3 elements to each side
@@ -301,10 +301,10 @@ describe('dom.utils', () => {
       const insertBeforeSpy = vi.spyOn(contentContainer, 'insertBefore');
 
       domUtils.manageCircularClones({
+        circular: false,
         contentContainer,
         elementsLength: 3,
         numElementsPerPage: 2,
-        circular: false,
       });
 
       expect(appendChildSpy).not.toHaveBeenCalled();
@@ -322,10 +322,10 @@ describe('dom.utils', () => {
       const insertBeforeSpy = vi.spyOn(contentContainer, 'insertBefore');
 
       domUtils.manageCircularClones({
+        circular: true,
         contentContainer,
         elementsLength: 2,
         numElementsPerPage: 3,
-        circular: true,
       });
 
       expect(appendChildSpy).not.toHaveBeenCalled();
@@ -339,10 +339,10 @@ describe('dom.utils', () => {
       const contentContainer = createElement();
 
       domUtils.alignOnePageCarousel({
-        rootContainer,
+        allowModifySliceWidth: true,
         contentContainer,
         onePageAlign: 'center',
-        allowModifySliceWidth: true,
+        rootContainer,
       });
 
       expect(contentContainer.style.justifyContent).toBe('center');
@@ -354,10 +354,10 @@ describe('dom.utils', () => {
       const contentContainer = createElement();
 
       domUtils.alignOnePageCarousel({
-        rootContainer,
+        allowModifySliceWidth: false,
         contentContainer,
         onePageAlign: 'left',
-        allowModifySliceWidth: false,
+        rootContainer,
       });
 
       expect(rootContainer.style.justifyContent).toBe('flex-start');
@@ -370,10 +370,10 @@ describe('dom.utils', () => {
 
       // Test RIGHT alignment
       domUtils.alignOnePageCarousel({
-        rootContainer,
+        allowModifySliceWidth: true,
         contentContainer,
         onePageAlign: 'right',
-        allowModifySliceWidth: true,
+        rootContainer,
       });
 
       expect(contentContainer.style.justifyContent).toBe('flex-end');
@@ -395,10 +395,10 @@ describe('dom.utils', () => {
       const result = domUtils.udpateCarouselPositionOnEdge({
         contentContainer,
         currentPage: 3, // numPages = 3, so this is after last page
-        numPages: 3,
-        numElementsPerPage: 2,
         elementsLength: 5,
         extraPadding: 10,
+        numElementsPerPage: 2,
+        numPages: 3,
       });
 
       expect(calcUtils.calcXDistanceBetween2Elements).toHaveBeenCalledWith(
@@ -429,10 +429,10 @@ describe('dom.utils', () => {
       const result = domUtils.udpateCarouselPositionOnEdge({
         contentContainer,
         currentPage: -1,
-        numPages: 3,
-        numElementsPerPage: 2,
         elementsLength: 5,
         extraPadding: 20,
+        numElementsPerPage: 2,
+        numPages: 3,
       });
 
       expect(calcUtils.calcXDistanceBetween2Elements).toHaveBeenCalledWith(
@@ -449,10 +449,10 @@ describe('dom.utils', () => {
       const result = domUtils.udpateCarouselPositionOnEdge({
         contentContainer,
         currentPage: 1,
-        numPages: 3,
-        numElementsPerPage: 2,
         elementsLength: 5,
         extraPadding: 0,
+        numElementsPerPage: 2,
+        numPages: 3,
       });
 
       expect(calcUtils.calcXDistanceBetween2Elements).not.toHaveBeenCalled();
@@ -467,10 +467,10 @@ describe('dom.utils', () => {
       const result = domUtils.udpateCarouselPositionOnEdge({
         contentContainer,
         currentPage: 2, // After last page
-        numPages: 2,
-        numElementsPerPage: 1,
         elementsLength: 2,
         extraPadding: 0,
+        numElementsPerPage: 1,
+        numPages: 2,
       });
 
       expect(result.newPage).toBe(0);

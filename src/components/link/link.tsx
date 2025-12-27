@@ -3,9 +3,10 @@ import { forwardRef } from 'react';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
 
+import type { LinkProps } from './types/link';
+
 import { disabledLink } from './helpers/disabled';
 import { LinkStandAlone } from './linkStandAlone';
-import type { LinkProps } from './types/link';
 
 /**
  * Link is a versatile component that renders a link with consistent styling.

@@ -1,4 +1,5 @@
 import type { AccordionVariantStyles } from '@/components/accordion/types/accordionTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { AccordionVariant } from './variants';

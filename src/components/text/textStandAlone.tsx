@@ -5,8 +5,9 @@ import { forwardRef } from 'react';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import type { TextStandAloneProps } from './types/text';
+
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
 export const TextStandAlone = forwardRef<
   HTMLParagraphElement,
@@ -66,11 +67,11 @@ export const TextStandAlone = forwardRef<
       fontWeight: weight,
       textAlign: align,
       textDecoration: decoration,
+      textSizeAdjust: textSizeAdjust,
       textTransform: transform,
       textWrap: textWrap,
       wordBreak: wordBreak,
       wordWrap: wordWrap,
-      textSizeAdjust: textSizeAdjust,
     };
     return (
       <CustomComponent

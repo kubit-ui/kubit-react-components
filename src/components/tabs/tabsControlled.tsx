@@ -3,8 +3,9 @@ import { type ForwardedRef, forwardRef } from 'react';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
 
-import { TabsStandAlone } from './tabsStandAlone';
 import type { TabsUnControlledProps } from './types/tabs';
+
+import { TabsStandAlone } from './tabsStandAlone';
 
 export const TabsControlled = forwardRef(
   <Variant extends string>(

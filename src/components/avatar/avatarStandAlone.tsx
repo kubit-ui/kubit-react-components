@@ -2,9 +2,10 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
+import type { AvatarStandAloneProps } from './types/avatar';
+
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { DrawContent } from './fragments/drawContent';
-import type { AvatarStandAloneProps } from './types/avatar';
 
 /**
  * Standalone avatar component for displaying a user or entity avatar with flexible content.

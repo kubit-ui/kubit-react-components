@@ -3,8 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CheckboxVariantType } from '@/lib/designSystem/kubit/components/checkbox/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { CheckboxUnControlled as Story } from '../checkboxUnControlled';
 import type { CheckboxUnControlledProps } from '../types/checkbox';
+
+import { CheckboxUnControlled as Story } from '../checkboxUnControlled';
 import { argtypes } from './argtypes';
 
 const StoryWithHooks = (args) => {

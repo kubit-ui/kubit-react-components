@@ -2,8 +2,9 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { ToggleStandalone } from './toggleStandAlone';
 import type { ToggleProps } from './types/toggle';
+
+import { ToggleStandalone } from './toggleStandAlone';
 
 /**
  * Toggle controlled component with generic variant support.

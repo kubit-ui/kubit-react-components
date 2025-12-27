@@ -2,8 +2,9 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { TagStandAlone } from './tagStandAlone';
 import type { TagProps } from './types/tag';
+
+import { TagStandAlone } from './tagStandAlone';
 
 /**
  * A React component that renders a customizable tag element.

@@ -33,7 +33,7 @@ export const argtypes = (): ArgTypes => {
       category: CATEGORY_CONTROL.MODIFIERS,
       keyName: 'orientation',
       name: 'stepperNumber',
-      options: { vertical: 'vertical', horizontal: 'horizontal' },
+      options: { horizontal: 'horizontal', vertical: 'vertical' },
     }),
     stepMaxTruncatedLines: getNumbertArgTypes({
       category: CATEGORY_CONTROL.MODIFIERS,

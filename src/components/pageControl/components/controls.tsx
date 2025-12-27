@@ -1,12 +1,13 @@
 import { RenderIf } from '@/components/renderIf/renderIf';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { isElementOrIconProps } from '../helper/controlType';
 import type {
   PageControlControlProps,
   PageControlCssClasses,
   PageControlStandAloneProps,
 } from '../types/pageControl';
+
+import { isElementOrIconProps } from '../helper/controlType';
 import { ArrowControlStandAlone } from './arrowControlStandAlone';
 import { ButtonControlStandAlone } from './buttonControlStandAlone';
 

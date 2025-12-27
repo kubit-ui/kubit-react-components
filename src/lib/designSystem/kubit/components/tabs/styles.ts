@@ -1,4 +1,5 @@
 import type { TabsVariantStyles } from '@/components/tabs/types/tabsTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 import { STATES } from '@/lib/types/states/states';
 

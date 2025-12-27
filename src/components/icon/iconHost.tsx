@@ -4,8 +4,9 @@ import { StylesContext } from '@/lib/provider/stylesProvider/stylesProvider';
 import { UtilsContext } from '@/lib/provider/utilsProvider/utilsProvider';
 import { isValidHttpUrl } from '@/lib/utils/is/isValidHttpUrl';
 
-import { IconBasic } from './icon';
 import type { IconProps } from './types/icon';
+
+import { IconBasic } from './icon';
 
 export const IconHost = forwardRef<HTMLSpanElement, IconProps>(
   ({ fallbackIcon, icon, ...props }, ref): JSX.Element | null => {

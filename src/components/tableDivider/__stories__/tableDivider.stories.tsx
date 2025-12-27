@@ -1,13 +1,13 @@
-import type { PropsWithChildren } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { PropsWithChildren } from 'react';
 
 import { Tag } from '@/components/tag/tag';
 import { TableDividerVariantType } from '@/lib/designSystem/kubit/components/tableDivider/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { TableDivider as Story } from '../tableDivider';
 import type { TableDividerProps } from '../types/tableDivider';
+
+import { TableDivider as Story } from '../tableDivider';
 import { argtypes } from './argtypes';
 
 const meta = {

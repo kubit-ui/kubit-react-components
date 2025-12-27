@@ -1,6 +1,6 @@
-import { useState } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react';
+
+import { useState } from 'react';
 
 import { Text } from '@/components/text/text';
 import { InputVariantType } from '@/lib/designSystem/kubit/components/input/variants';
@@ -9,12 +9,13 @@ import { InputDecorationVariantType } from '@/lib/designSystem/kubit/components/
 import { TextVariantType } from '@/lib/designSystem/kubit/components/text/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
+import type { InputProps } from '../types/input';
+
 import { NOTE_COLORS, Note } from '../../../lib/storybook/components/note/note';
 import { Icon } from '../../icon/icon';
 import { InputBase } from '../../inputBase/inputBase';
 import { InputDecoration } from '../../inputDecoration/inputDecoration';
 import { Input as Story } from '../input';
-import type { InputProps } from '../types/input';
 import { argtypes } from './argtypes';
 
 const StoryWithHooks = () => {

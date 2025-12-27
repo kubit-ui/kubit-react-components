@@ -1,4 +1,5 @@
 import type { TextAreaVariantStyles } from '@/components/textArea/types/textAreaTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 

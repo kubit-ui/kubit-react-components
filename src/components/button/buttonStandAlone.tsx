@@ -6,8 +6,9 @@ import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import type { ButtonStandAloneProps } from './types/button';
+
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 
 /**
  * Low-level button component for rendering a styled button element.

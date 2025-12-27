@@ -2,13 +2,14 @@ import { type ForwardedRef, forwardRef, useState } from 'react';
 
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
+import type { CalendarStandAloneProps } from './types/calendar';
+
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { Header } from './header/header';
 import { List } from './list/list';
 import { MonthSelector } from './selector/monthSelector/monthSelector';
 import { Selector } from './selector/selector';
 import { YearSelector } from './selector/yearSelector/yearSelector';
-import type { CalendarStandAloneProps } from './types/calendar';
 
 const CalendarStandAloneComponent = (
   {

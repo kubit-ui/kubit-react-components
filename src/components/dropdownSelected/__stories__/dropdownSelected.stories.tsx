@@ -3,8 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { DropdownSelectedVariantType } from '@/lib/designSystem/kubit/components/dropdownSelected/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { DropdownSelectedUnControlled as Story } from '../dropdownSelectedUncontrolled';
 import type { DropdownSelectedUnControlledProps } from '../types/dropdownSelected';
+
+import { DropdownSelectedUnControlled as Story } from '../dropdownSelectedUncontrolled';
 import { argtypes } from './argtypes';
 
 const StoryWithHooks = (args) => {

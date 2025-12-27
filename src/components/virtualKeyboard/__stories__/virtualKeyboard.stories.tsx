@@ -4,6 +4,7 @@ import { VirtualKeyboardVariantType } from '@/lib/designSystem/kubit/components/
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
 import type { VirtualKeyboardProps } from '../types/virtualKeyboard';
+
 import { VirtualKeyboard as Story } from '../virtualKeyboard';
 import { argtypes } from './argtypes';
 

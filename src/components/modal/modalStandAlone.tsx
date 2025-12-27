@@ -4,11 +4,12 @@ import { RenderIf } from '@/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { processText } from '@/lib/utils/process/processText/processText';
 
+import type { ModalStandAloneProps } from './types/modal';
+
 import { NabVar } from '../navBar/navBar';
 import { Overlay } from '../overlay/overlay';
 import { Popover } from '../popover/popover';
 import { ModalHeader } from './fragments/modalHeader';
-import type { ModalStandAloneProps } from './types/modal';
 import { onlyDesktopSize } from './utils/onlyDesktopSize';
 
 export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(

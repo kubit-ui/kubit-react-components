@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import type { InputDecorationStandAloneProps } from './types/inputDecoration';
+
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 
 export const InputDecorationStandAlone = forwardRef<
   HTMLDivElement,

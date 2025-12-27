@@ -6,8 +6,9 @@ import {
 } from '@/lib/designSystem/kubit/components/button/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { Calendar as Story } from '../calendar';
 import type { CalendarProps } from '../types/calendar';
+
+import { Calendar as Story } from '../calendar';
 import { argtypes } from './argtypes';
 
 const meta = {

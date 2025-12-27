@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { DotStandAlone } from './dotStandAlone';
 import type { DotProps } from './types/dot';
+
+import { DotStandAlone } from './dotStandAlone';
 
 /**
  * Dot component for displaying a small badge or counter.

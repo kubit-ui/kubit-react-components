@@ -2,8 +2,9 @@ import { renderHook, screen } from '@testing-library/react';
 
 import { render } from '@/lib/tests/render/render';
 
-import { FORMAT_DATE } from '../../../utils/date/types/format.types';
 import type { UtilsProviderProps } from '../types/utilsProvider';
+
+import { FORMAT_DATE } from '../../../utils/date/types/format.types';
 import { UtilsProvider, useUtilsProvider } from '../utilsProvider';
 
 describe('Utils provider', () => {

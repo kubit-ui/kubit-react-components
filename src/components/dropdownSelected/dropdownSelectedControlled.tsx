@@ -10,9 +10,10 @@ import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
 import { isKeyTabPressed } from '@/lib/utils/keyboard/keyboard';
 
+import type { DropdownSelectedControlledProps } from './types/dropdownSelected';
+
 import { focusFirstDescendant } from '../../lib/utils/focusHandlers/focusHandlers';
 import { DropdownSelectedStandAlone } from './dropdownSelectedStandAlone';
-import type { DropdownSelectedControlledProps } from './types/dropdownSelected';
 
 /**
  * Controlled dropdown component for displaying selectable options.

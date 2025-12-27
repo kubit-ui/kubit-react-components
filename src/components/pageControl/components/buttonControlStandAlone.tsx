@@ -1,4 +1,5 @@
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
+
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { PageControlButtonProps } from '../types/pageControl';

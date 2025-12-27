@@ -11,8 +11,9 @@ import {
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
 
-import { OptionStandAlone } from './optionStandAlone';
 import type { OptionProps } from './types/option';
+
+import { OptionStandAlone } from './optionStandAlone';
 
 export const Option = forwardRef(
   <Variant extends string>(

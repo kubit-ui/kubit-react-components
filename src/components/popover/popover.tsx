@@ -3,11 +3,12 @@ import { forwardRef } from 'react';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useTrapFocus } from '@/lib/hooks/useTrapFocus/useTrapFocus';
 
+import type { IPopover } from './types/popover';
+
 import { usePopoverInteractions } from './hooks/usePopoverInteractions';
 import { usePopoverLifecycle } from './hooks/usePopoverLifecycle';
 import { usePopoverPositioning } from './hooks/usePopoverPositioning';
 import { PopoverStandAlone } from './popoverStandAlone';
-import type { IPopover } from './types/popover';
 
 /**
  * Controlled version of the Popover component with advanced positioning.
@@ -30,10 +31,10 @@ const PopoverComponent = (
     middlewares,
     onClose,
     open = false,
+    popoverContainerRef,
     preventCloseOnClickElements = [],
     preventScrollOnCloseFocus = false,
     strategy = 'absolute',
-    popoverContainerRef,
     ...props
   }: IPopover,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null,
@@ -45,17 +46,17 @@ const PopoverComponent = (
   });
 
   // Reference management
-  const { isVisible, isClosing, handleInnerRef, popoverRef } =
+  const { handleInnerRef, isClosing, isVisible, popoverRef } =
     usePopoverLifecycle({
-      open,
+      animationExitDuration,
       disableAnimations: _disableAnimations,
       disableAutoFocusFirstDescendant,
       disableAutoFocusFirstDescendantAfterClose,
       disableRestoreFocusAfterClose,
       disableScrollBackground,
-      preventScrollOnCloseFocus,
+      open,
       popoverContainerRef,
-      animationExitDuration,
+      preventScrollOnCloseFocus,
     });
 
   // Configure trap focus

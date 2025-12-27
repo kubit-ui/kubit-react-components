@@ -2,13 +2,14 @@ import { forwardRef, useImperativeHandle, useRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
+import type { DataTableProps } from './types/dataTable';
+
 import { DataTableStandAlone } from './dataTableStandAlone';
 import { useDataTableHasScroll } from './hooks/useDataTableHasScroll';
 import { useDataTableShadow } from './hooks/useDataTableShadow';
 import { useDataTableStickyDividers } from './hooks/useDataTableStickyDividers';
 import { useDataTableStickyLeftColumns } from './hooks/useDataTableStickyLeftColumns';
 import { useDataTableStickyRightColumns } from './hooks/useDataTableStickyRightColumns';
-import type { DataTableProps } from './types/dataTable';
 
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ additionalClasses, variant, ...props }, ref) => {

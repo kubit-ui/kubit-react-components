@@ -1,7 +1,8 @@
+import type { DateType, formatPartsType } from './types/parser.types';
+
 import { FORMATTING_TOKENS } from './constants/common.constant';
 import { EXPRESSIONS } from './constants/parser.constant';
 import { formatDateToUTC } from './formatDate';
-import type { DateType, formatPartsType } from './types/parser.types';
 
 const getFormatParts = (format: string) => {
   const formatParts = format.match(FORMATTING_TOKENS) || [];

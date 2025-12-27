@@ -3,8 +3,9 @@ import { forwardRef } from 'react';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useId } from '@/lib/hooks/useId/useId';
 
-import { InputBaseStandAlone } from './inputBaseStandAlone';
 import type { InputBaseProps } from './types/inputBase';
+
+import { InputBaseStandAlone } from './inputBaseStandAlone';
 import { getState } from './utils/state';
 
 export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(

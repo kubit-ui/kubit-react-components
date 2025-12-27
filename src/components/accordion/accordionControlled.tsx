@@ -2,10 +2,11 @@ import { forwardRef, useImperativeHandle, useRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
+import type { IAccordionControlled } from './types/accordion';
+
 import { AccordionStandAlone } from './accordionStandAlone';
 import { useAccordionContentOverflow } from './hooks/useAccordionContentOverflow';
 import { useAccordionInertContent } from './hooks/useAccordionInertContent';
-import type { IAccordionControlled } from './types/accordion';
 
 /**
  * `AccordionControlled` is a React functional component that provides a controlled accordion behavior.

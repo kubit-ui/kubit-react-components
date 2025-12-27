@@ -1,4 +1,5 @@
 import type { ListOptionsOptionProps } from '../../types/listOptions';
+
 import {
   getOptionVariant,
   isSelected,

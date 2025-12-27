@@ -1,6 +1,7 @@
 import { useCallback, useRef } from 'react';
 
 import type { BlockScrollParamsType, ParamsType } from './types/useScrollBlock';
+
 import { getFirstScrollableElement } from './utils/useScrollBlock.utils';
 
 /**

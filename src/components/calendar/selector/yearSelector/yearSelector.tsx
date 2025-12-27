@@ -6,10 +6,11 @@ import { useRoveFocus } from '@/lib/hooks/useRoveFocus/useRoveFocus';
 import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { getYearList } from '../../utils/getYearList';
-import { setYear } from '../../utils/setYear';
 import type { YearSelectorStateType } from './types/state';
 import type { YearSelectorProps } from './types/yearSelector';
+
+import { getYearList } from '../../utils/getYearList';
+import { setYear } from '../../utils/setYear';
 import {
   keyDownMove,
   keyLeftMove,

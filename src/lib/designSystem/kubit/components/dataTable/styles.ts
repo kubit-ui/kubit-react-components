@@ -1,4 +1,5 @@
 import type { DataTableVariantStyles } from '@/components/dataTable/types/dataTableTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TABLE } from '../table/styles';

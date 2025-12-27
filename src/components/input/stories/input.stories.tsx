@@ -5,9 +5,10 @@ import { InputDecorationVariantType } from '@/lib/designSystem/kubit/components/
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { LoaderStory as Loader } from '@/lib/storybook/assets/loader/loader';
 
+import type { InputProps } from '../types/input';
+
 import { NOTE_COLORS, Note } from '../../../lib/storybook/components/note/note';
 import { Input as Story } from '../input';
-import type { InputProps } from '../types/input';
 import { argtypes } from './argtypes';
 
 const StoryWithHooks = (args) => {

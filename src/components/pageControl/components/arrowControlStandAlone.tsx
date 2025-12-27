@@ -1,5 +1,6 @@
-import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
 import type { ElementOrIconProps } from '@/components/elementOrIcon/types/elementOrIcon';
+
+import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
 
 import type { PageControlCssClasses } from '../types/pageControl';
 

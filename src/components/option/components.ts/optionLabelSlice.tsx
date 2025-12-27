@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { CSSProperties } from 'react';
 
-import { Text } from '@/components/text/text';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
+
+import { Text } from '@/components/text/text';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { TextComponentType } from '../../text/types/component';

@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { type Placement, offset, shift } from '@floating-ui/dom';
-import type { Meta, StoryObj } from '@storybook/react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { Popover as Story } from '../popover';
 import { argtypes } from './argtypes';

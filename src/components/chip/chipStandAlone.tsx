@@ -9,8 +9,9 @@ import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCusto
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import type { ChipStandAloneProps } from './types/chip';
+
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 
 /**
  * Standalone chip component for displaying a customizable label, tag, or range.

@@ -5,8 +5,9 @@ import { LinkVariant } from '@/lib/designSystem/kubit/components/link/variants';
 import { TextVariantType } from '@/lib/designSystem/kubit/components/text/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { BreadCrumbs as BreadCrumbsStory } from '../breadcrumbs';
 import type { BreadcrumbsProps } from '../types/breadcrumbs';
+
+import { BreadCrumbs as BreadCrumbsStory } from '../breadcrumbs';
 import { argtypes } from './argtypes';
 
 const meta = {

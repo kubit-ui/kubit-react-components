@@ -2,10 +2,11 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
+import type { PaginationProps } from './types/pagination';
+
 import { adjustMaxCountersNumber } from './helpers/adjustMaxCountersNumber';
 import { buildstepsNumber } from './helpers/getMaxCountersNumber';
 import { PaginationStandAlone } from './paginationStandAlone';
-import type { PaginationProps } from './types/pagination';
 
 export const Pagination = forwardRef(
   <Variant extends string>(

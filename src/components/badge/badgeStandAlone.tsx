@@ -7,8 +7,9 @@ import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCusto
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import type { BadgeStandAloneProps } from './types/badge';
+
+import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 
 /**
  * BadgeStandAlone is a reusable badge component that displays a label, optional icon, and a dot indicator.

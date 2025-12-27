@@ -1,4 +1,5 @@
 import type { CalendarVariantStyles } from '@/components/calendar/types/calendarTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 import { STATES } from '@/lib/types/states/states';
 

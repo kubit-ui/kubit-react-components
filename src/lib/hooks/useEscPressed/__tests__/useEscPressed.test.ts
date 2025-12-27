@@ -1,4 +1,5 @@
-import { fireEvent, renderHook } from '@testing-library/react';
+import { fireEvent } from '@testing-library/dom';
+import { renderHook } from '@testing-library/react';
 
 import { useEscPressed } from '../useEscPressed';
 

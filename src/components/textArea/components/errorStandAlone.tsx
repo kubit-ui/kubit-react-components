@@ -1,14 +1,16 @@
 import type { AriaAttributes } from 'react';
 
+import type { CommonTextProps } from '@/lib/types/commons/text';
+
 import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
-import type { CommonTextProps } from '@/lib/types/commons/text';
 import { STATES } from '@/lib/types/states/states';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type { TextAreaCssClasses } from '../types/textArea';
+
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 
 export const ErrorStandAlone = ({
   cssClasses,

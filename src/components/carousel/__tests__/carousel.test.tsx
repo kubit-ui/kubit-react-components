@@ -3,24 +3,25 @@ import { axe } from 'vitest-axe';
 import { CarouselVariantType } from '@/lib/designSystem/kubit/components/carousel/variants';
 import { render } from '@/lib/tests/render/render';
 
-import { Carousel } from '../carousel';
-import { useCarousel } from '../hooks/useCarousel';
 import type { ICarousel } from '../types/carousel';
 
+import { Carousel } from '../carousel';
+import { useCarousel } from '../hooks/useCarousel';
+
 const mockProps: ICarousel = {
-  variant: CarouselVariantType.DEFAULT,
   elements: [
     <div key="e-1">Element 1</div>,
     <div key="e-2">Element 2</div>,
     <div key="e-3">Element 3</div>,
   ],
+  variant: CarouselVariantType.DEFAULT,
 };
 
 // Mock the hooks that are already tested
 vi.mock('../hooks/useCarousel', () => ({
   useCarousel: vi.fn(() => ({
-    changePage: vi.fn(),
     allowShiftRef: { current: true },
+    changePage: vi.fn(),
   })),
 }));
 const mockUseCarousel = vi.mocked(useCarousel);
@@ -109,8 +110,8 @@ describe('Carousel component', () => {
     mockUseCarousel.mockImplementation((params) => {
       capturedOnNumPagesChange = params.onNumPagesChange;
       return {
-        changePage: vi.fn(),
         allowShiftRef: { current: true },
+        changePage: vi.fn(),
         currentPageRef: { current: 0 },
         numElementsPerPageRef: { current: 1 },
         numPagesRef: { current: 3 },
@@ -132,8 +133,8 @@ describe('Carousel component', () => {
     mockUseCarousel.mockImplementation((params) => {
       capturedOnPageChange = params.onPageChange;
       return {
-        changePage: vi.fn(),
         allowShiftRef: { current: true },
+        changePage: vi.fn(),
         currentPageRef: { current: 0 },
         numElementsPerPageRef: { current: 1 },
         numPagesRef: { current: 3 },
@@ -157,8 +158,8 @@ describe('Carousel component', () => {
     mockUseCarousel.mockImplementation((params) => {
       capturedOnNumElementsPerPageChange = params.onNumElementsPerPageChange;
       return {
-        changePage: vi.fn(),
         allowShiftRef: { current: true },
+        changePage: vi.fn(),
         currentPageRef: { current: 0 },
         numElementsPerPageRef: { current: 1 },
         numPagesRef: { current: 3 },

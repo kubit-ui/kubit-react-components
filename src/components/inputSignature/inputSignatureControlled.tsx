@@ -2,8 +2,9 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { InputSignatureStandAlone } from './inputSignatureStandAlone';
 import type { InputSignatureControlledProps } from './types/inputSignature';
+
+import { InputSignatureStandAlone } from './inputSignatureStandAlone';
 
 export const InputSignatureControlled = forwardRef(
   <Variant extends string>(

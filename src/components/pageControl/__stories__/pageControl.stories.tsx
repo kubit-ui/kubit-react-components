@@ -1,6 +1,6 @@
-import { useState } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { useState } from 'react';
 
 import {
   ArrowsControlVariant,
@@ -8,8 +8,9 @@ import {
 } from '@/lib/designSystem/kubit/components/pageControl/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { PageControl as Story } from '../pageControl';
 import type { PageControlControlProps } from '../types/pageControl';
+
+import { PageControl as Story } from '../pageControl';
 import { argtypes } from './argtypes';
 
 const StoryWithHooks = (args) => {

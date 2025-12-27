@@ -1,8 +1,7 @@
 import './css/table.css';
 
-import type { PropsWithChildren } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { PropsWithChildren } from 'react';
 
 import {
   TableBodyVariantType,
@@ -10,12 +9,13 @@ import {
   TableVariantType,
 } from '@/lib/designSystem/kubit/components/variants';
 
+import type { TableProps } from '../types/table';
+
 import { TableBody } from '../../tableBody/tableBody';
 import { TableCell } from '../../tableCell/tableCell';
 import { TableHead } from '../../tableHead/tableHead';
 import { TableRow } from '../../tableRow/tableRow';
 import { Table as Story } from '../table';
-import type { TableProps } from '../types/table';
 import { argtypes } from './argtypes';
 
 const meta = {

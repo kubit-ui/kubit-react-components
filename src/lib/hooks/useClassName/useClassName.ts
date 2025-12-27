@@ -1,5 +1,6 @@
-import { useStylesContext } from '@/lib/provider/stylesProvider/stylesProvider';
 import type { RecoverComponentStyles } from '@/lib/types/cssGenerator/cssGenerator';
+
+import { useStylesContext } from '@/lib/provider/stylesProvider/stylesProvider';
 
 /**
  * Custom hook to retrieve and combine component class names from the styles provider

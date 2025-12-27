@@ -2,8 +2,9 @@ import { DataTableVariantType } from '@/lib/designSystem/kubit/components/dataTa
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { DividerStory } from '@/lib/storybook/components/divider/divider';
 
-import { ElementOrIcon } from '../../../elementOrIcon/elementOrIcon';
 import type { DataTableProps } from '../../types/dataTable';
+
+import { ElementOrIcon } from '../../../elementOrIcon/elementOrIcon';
 
 export const DataTableGroupsHeadWithReactNodeStory: DataTableProps = {
   columns: [

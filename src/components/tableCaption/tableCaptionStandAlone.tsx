@@ -2,8 +2,9 @@ import { type PropsWithChildren, forwardRef } from 'react';
 
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import type { TableCaptionStandAloneProps } from './types/tableCaption';
+
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
 export const TableCaptionStandAlone = forwardRef<
   HTMLTableSectionElement,

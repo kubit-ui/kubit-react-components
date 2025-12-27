@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { classNames } from '@/lib/utils/classNames/classNames';
 
-import { Popover } from '../popover/popover';
 import type { ISnackbarStandAlone } from './types/snackbar';
+
+import { Popover } from '../popover/popover';
 
 const SnackbarStandAloneComponent = (
   {

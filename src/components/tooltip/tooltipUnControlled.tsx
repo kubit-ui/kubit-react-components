@@ -14,11 +14,12 @@ import { useScrollDetectionWithAutoFocus } from '@/lib/hooks/useScrollDetectionW
 import { useSwipeDown } from '@/lib/hooks/useSwipeDown/useSwipeDown';
 import { useTrapFocus } from '@/lib/hooks/useTrapFocus/useTrapFocus';
 
+import type { TooltipUnControlledProps } from './types/tooltip';
+
 import { isKeyEnterPressed } from '../../lib/utils/keyboard/keyboard';
 import { useTooltip } from './hooks/useTooltip';
 import { useTooltipAsModal } from './hooks/useTooltipAsModal';
 import { TooltipStandAlone } from './tooltipStandAlone';
-import type { TooltipUnControlledProps } from './types/tooltip';
 
 export const TooltipUnControlled = forwardRef(function <
   Variant extends string | undefined,

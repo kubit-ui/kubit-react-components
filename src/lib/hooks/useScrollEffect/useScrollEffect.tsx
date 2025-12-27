@@ -1,10 +1,11 @@
 import { useCallback, useRef } from 'react';
 
-import { changeCssProperty } from '../../utils/changeCssProperty/changeCssProperty';
 import type {
   CustomHookProps,
   CustomHookReturnValue,
 } from './types/useScrollEffect';
+
+import { changeCssProperty } from '../../utils/changeCssProperty/changeCssProperty';
 import { scrollPercentage } from './utils/scrollPercentage';
 
 const MAX_PERCENTAGE = 100;

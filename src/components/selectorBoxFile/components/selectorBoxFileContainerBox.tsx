@@ -6,12 +6,13 @@ import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 import type {
   SelectorBoxFileContainerBoxStateContentProps,
   SelectorBoxFileCssClasses,
 } from '../types/selectorBoxFile';
 import type { SelectorBoxFileStateType } from '../types/state';
+
+import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 
 export interface SelectorBoxFileContainerBoxProps {
   cssClasses?: SelectorBoxFileCssClasses;

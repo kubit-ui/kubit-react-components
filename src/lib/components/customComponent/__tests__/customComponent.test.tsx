@@ -1,6 +1,5 @@
-import { createRef } from 'react';
-
 import { screen } from '@testing-library/react';
+import { createRef } from 'react';
 import { axe } from 'vitest-axe';
 
 import { render } from '@/lib/tests/render/render';

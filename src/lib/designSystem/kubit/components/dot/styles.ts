@@ -1,4 +1,5 @@
 import type { DotThemeStyles } from '@/components/dot/types/dotTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { DotSizeType, DotVariantType } from './variants';

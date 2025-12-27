@@ -19,8 +19,8 @@ vi.mock('@/utils/focusHandlers/focusHandlers', () => ({
 
 vi.mock('@/hooks/useScrollBlock/useScrollBlock', () => ({
   useScrollBlock: () => ({
-    blockScroll: vi.fn(),
     allowScroll: vi.fn(),
+    blockScroll: vi.fn(),
   }),
 }));
 
@@ -176,11 +176,11 @@ describe('usePopoverLifecycle', () => {
   });
 
   it('should provide stable ref objects across renders', () => {
-    const { result, rerender } = renderHook(() => usePopoverLifecycle({}));
+    const { rerender, result } = renderHook(() => usePopoverLifecycle({}));
 
     const initialRefs = {
-      popoverRef: result.current.popoverRef,
       handleInnerRef: result.current.handleInnerRef,
+      popoverRef: result.current.popoverRef,
     };
 
     rerender();
@@ -221,9 +221,9 @@ describe('usePopoverLifecycle', () => {
     const { result } = renderHook(() =>
       usePopoverLifecycle({
         disableAutoFocusFirstDescendant: true,
-        disableScrollBackground: true,
         disableAutoFocusFirstDescendantAfterClose: true,
         disableRestoreFocusAfterClose: true,
+        disableScrollBackground: true,
         preventScrollOnCloseFocus: true,
       }),
     );

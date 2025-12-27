@@ -1,7 +1,6 @@
+import { act, renderHook } from '@testing-library/react';
 // eslint-disable-next-line no-restricted-imports
 import React from 'react';
-
-import { act, renderHook } from '@testing-library/react';
 
 import { useRoveFocus } from '../useRoveFocus';
 

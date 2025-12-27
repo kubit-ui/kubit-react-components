@@ -1,4 +1,5 @@
 import type { InputBaseVariantStyles } from '@/components/inputBase/types/inputBaseTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 import { STATES } from '@/lib/types/states/states';
 

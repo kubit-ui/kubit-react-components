@@ -1,11 +1,13 @@
 import type { ChecboxVariantStyles } from '@/components/checkbox/types/checkboxTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 import { STATES } from '@/lib/types/states/states';
+
+import type { CheckboxVariantType } from './variants';
 
 import { ERROR_MESSAGE } from '../errorMessage/styles';
 import { ErrorMessageVariantType } from '../errorMessage/variants';
 import { TextVariantType } from '../text/variants';
-import type { CheckboxVariantType } from './variants';
 
 type CheckboxVariants = keyof typeof CheckboxVariantType;
 

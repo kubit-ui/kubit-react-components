@@ -1,4 +1,5 @@
 import type { ErrorMessageVariantStyles } from '@/lib/components/errorMessage/types/errorMessageTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TextVariantType } from '../text/variants';

@@ -1,7 +1,8 @@
 import { type ForwardedRef, forwardRef, useState } from 'react';
 
-import { TabsControlled } from './tabsControlled';
 import type { TabsUnControlledProps } from './types/tabs';
+
+import { TabsControlled } from './tabsControlled';
 
 export const TabsUnControlled = forwardRef(function <
   Variant extends string | undefined,

@@ -2,13 +2,14 @@ import { type ForwardedRef, forwardRef, useMemo, useRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
+import type { PageControlProps } from './types/pageControl';
+import type { PageControlDirectionType } from './types/pageControlStates';
+
 import {
   calcFirstLastVisiblePosition,
   getPositionWithIn,
 } from './helper/positions';
 import { PageControlStandAlone } from './pageControlStandAlone';
-import type { PageControlProps } from './types/pageControl';
-import type { PageControlDirectionType } from './types/pageControlStates';
 
 export const PageControl = forwardRef(
   <Variant extends string>(

@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { ResizeObserver } from '@/lib/utils/resizeObserver/resizeObserver';
 
 import type { IUseCarousel } from './types/useCarousel';
+
 import { useCarouselKeyNavigation } from './useCarouselKeyNavigation';
 import { useCarouselSwipe } from './useCarouselSwipe';
 import calcUtils from './utils/calc.utils';
@@ -12,24 +13,24 @@ import CONSTANTS from './utils/constants';
 import domUtils from './utils/dom.utils';
 
 export const useCarousel: IUseCarousel = ({
-  rootContainerRef,
-  viewerContainerRef,
-  contentContainerRef,
-  circular = true,
+  allowModifySliceWidth = false,
+  autoFitContainer = false,
+  centerExtremesWhenExtraPadding = false,
   centerMode = false,
-  extraPadding = 0,
+  circular = true,
+  contentContainerRef,
+  defaultPage = 0,
+  disabled = false,
   elements,
+  extraPadding = 0,
   numElementsPerPage: numElementsPerPageProp,
   numElementsToSlide,
-  defaultPage = 0,
   onePageAlign = 'center',
-  allowModifySliceWidth = false,
-  centerExtremesWhenExtraPadding = false,
-  autoFitContainer = false,
-  disabled = false,
-  onNumPagesChange,
   onNumElementsPerPageChange,
+  onNumPagesChange,
   onPageChange,
+  rootContainerRef,
+  viewerContainerRef,
 }) => {
   const allowShiftRef = useRef(true);
   const previousInformedPageRef = useRef(defaultPage);
@@ -58,10 +59,10 @@ export const useCarousel: IUseCarousel = ({
       const { newPage } = domUtils.udpateCarouselPositionOnEdge({
         contentContainer,
         currentPage: currentPageRef.current,
-        numPages: numPagesRef.current,
-        numElementsPerPage: numElementsPerPageRef.current,
         elementsLength: elements.length,
         extraPadding,
+        numElementsPerPage: numElementsPerPageRef.current,
+        numPages: numPagesRef.current,
       });
       currentPageRef.current = newPage;
       // Checking only in this point if the currentPage has changed allows to call onPageChanged when the transition ends
@@ -73,11 +74,11 @@ export const useCarousel: IUseCarousel = ({
 
       const { firstIndexInView, lastIndexInView } =
         calcUtils.calcFirstAndLastIndexInCarouselView({
+          currentPage: currentPageRef.current,
           elementsLength: elements.length,
+          isCircular: circular,
           numElementsPerPage: numElementsPerPageRef.current,
           numElementsToSlide,
-          currentPage: currentPageRef.current,
-          isCircular: circular,
         });
 
       // Only the show elements should be visible aria visible
@@ -110,7 +111,7 @@ export const useCarousel: IUseCarousel = ({
   );
 
   const changePage = useCallback(
-    ({ newPage, animated = true }: { newPage: number; animated?: boolean }) => {
+    ({ animated = true, newPage }: { newPage: number; animated?: boolean }) => {
       const viewerContainer = viewerContainerRef.current;
       const contentContainer = contentContainerRef.current;
       if (
@@ -141,34 +142,34 @@ export const useCarousel: IUseCarousel = ({
       // Calc first and last index in the carousel view
       const { firstIndexInView, lastIndexInView } =
         calcUtils.calcFirstAndLastIndexInCarouselView({
+          currentPage: currentPageRef.current,
           elementsLength: elements.length,
+          isCircular: circular,
           numElementsPerPage: numElementsPerPageRef.current,
           numElementsToSlide,
-          currentPage: currentPageRef.current,
-          isCircular: circular,
         });
 
       // When isnt allow to modify the slice width, carousel contiainer width must be calculated
       if (!allowModifySliceWidth) {
         domUtils.updateViewerWidth({
-          viewerContainer,
           contentContainer,
+          extraPadding,
           firstIndexInView,
           lastIndexInView,
-          extraPadding,
+          viewerContainer,
         });
       }
 
       // Calc new left translation
       const prevLeftStyle = contentContainer.style.left;
       const newLeftStyle = calcUtils.calcContentContainerLeftPosition({
-        contentContainer,
-        numPages: numPagesRef.current,
-        currentPage: currentPageRef.current,
-        firstIndexInView,
-        extraPadding,
         centerExtremesWhenExtraPadding,
         circular,
+        contentContainer,
+        currentPage: currentPageRef.current,
+        extraPadding,
+        firstIndexInView,
+        numPages: numPagesRef.current,
       });
       contentContainer.style.left = newLeftStyle;
       if (animated && prevLeftStyle !== newLeftStyle) {
@@ -207,24 +208,24 @@ export const useCarousel: IUseCarousel = ({
     if (allowModifySliceWidth) {
       viewerContainer.style.width = '100%';
       domUtils.updateSlicesWidth({
-        viewerContainer,
-        contentContainer,
         centerMode,
-        numElementsPerPage: numElementsPerPageRef.current,
+        contentContainer,
         extraPadding,
+        numElementsPerPage: numElementsPerPageRef.current,
+        viewerContainer,
       });
     }
 
     // Handles the cloning and removal of carousel items to enable the infinite/circular carousel effect.
     domUtils.manageCircularClones({
+      circular,
       contentContainer,
       elementsLength: elements.length,
       numElementsPerPage: numElementsPerPageRef.current,
-      circular,
     });
 
     // Set the page in the right position without animation
-    changePage({ newPage: currentPageRef.current, animated: false });
+    changePage({ animated: false, newPage: currentPageRef.current });
   }, [
     allowModifySliceWidth,
     centerMode,
@@ -249,11 +250,11 @@ export const useCarousel: IUseCarousel = ({
     const newNumElementsPerPage =
       numElementsPerPageProp ||
       calcUtils.calcNumElementsPerPage({
-        rootContainer,
-        viewerContainer,
         contentContainer,
         elementsLength: elements.length,
         extraPadding,
+        rootContainer,
+        viewerContainer,
       }) ||
       1;
 
@@ -286,10 +287,10 @@ export const useCarousel: IUseCarousel = ({
     // If newNumPages <= 1, then align the carousel content attending to onePageAlign
     if (newNumPages <= 1) {
       domUtils.alignOnePageCarousel({
-        rootContainer,
+        allowModifySliceWidth,
         contentContainer,
         onePageAlign,
-        allowModifySliceWidth,
+        rootContainer,
       });
     }
   }, [
@@ -343,34 +344,34 @@ export const useCarousel: IUseCarousel = ({
 
   // Manage swipe events
   useCarouselSwipe({
-    viewerContainerRef,
-    contentContainerRef,
     allowShiftRef,
+    centerExtremesWhenExtraPadding,
+    changePage,
     circular,
-    extraPadding,
+    contentContainerRef,
+    currentPageRef,
+    disabled,
     elements,
+    extraPadding,
     numElementsPerPageRef,
     numPagesRef,
-    currentPageRef,
-    centerExtremesWhenExtraPadding,
-    disabled,
-    changePage,
+    viewerContainerRef,
   });
 
   // Manage key navigation
   useCarouselKeyNavigation({
-    rootContainerRef,
     allowShiftRef,
+    changePage,
     circular,
     currentPageRef,
-    numPagesRef,
     disabled,
-    changePage,
+    numPagesRef,
+    rootContainerRef,
   });
 
   return {
-    changePage,
     allowShiftRef,
+    changePage,
     currentPageRef,
     numElementsPerPageRef,
     numPagesRef,

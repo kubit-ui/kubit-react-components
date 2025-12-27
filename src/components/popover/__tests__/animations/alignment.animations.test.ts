@@ -11,17 +11,17 @@ import { getPositioningTransforms } from '../../utils/animation.utils';
 describe('PopoverV2 - Alignment-specific Animations', () => {
   const mockConfig = {
     ...DEFAULT_POPOVER_ANIMATION_CONFIG,
-    type: 'simple' as const,
-    duration: '300ms',
-    delay: '0ms',
-    timingFunction: 'ease-in-out',
-    iterationCount: 1,
-    transformOrigin: 'center center',
-    opacityStart: 0,
-    opacityEnd: 1,
-    scaleStart: 0.95,
     animationDistanceInPx: 10,
     animationRotationInDeg: 0,
+    delay: '0ms',
+    duration: '300ms',
+    iterationCount: 1,
+    opacityEnd: 1,
+    opacityStart: 0,
+    scaleStart: 0.95,
+    timingFunction: 'ease-in-out',
+    transformOrigin: 'center center',
+    type: 'simple' as const,
   };
 
   describe('getPositioningTransforms', () => {

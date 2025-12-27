@@ -8,9 +8,10 @@ import { useScrollDetectionWithAutoFocus } from '@/lib/hooks/useScrollDetectionW
 import { useScrollEffect } from '@/lib/hooks/useScrollEffect/useScrollEffect';
 import { useSwipeDown } from '@/lib/hooks/useSwipeDown/useSwipeDown';
 
+import type { ModalControlledProps } from './types/modal';
+
 import { Portal } from '../portal/portal';
 import { ModalStandAlone } from './modalStandAlone';
-import type { ModalControlledProps } from './types/modal';
 
 export const ModalControlled = forwardRef(
   <Variant extends string>(

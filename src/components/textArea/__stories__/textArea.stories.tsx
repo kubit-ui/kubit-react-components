@@ -1,12 +1,13 @@
-import { useState } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { useState } from 'react';
 
 import { TextAreaVariantType } from '@/lib/designSystem/kubit/components/textArea/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import { TextArea as Story } from '../textArea';
 import type { TextAreaProps } from '../types/textArea';
+
+import { TextArea as Story } from '../textArea';
 
 const StoryWithHooks = (args) => {
   const [value, setValue] = useState(undefined);

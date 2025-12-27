@@ -1,4 +1,5 @@
 import type { LinkVariantStyles } from '@/components/link/types/linkTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { LinkVariant } from './variants';

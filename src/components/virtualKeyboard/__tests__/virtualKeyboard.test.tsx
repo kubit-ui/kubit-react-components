@@ -1,9 +1,11 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent } from '@testing-library/dom';
+import { screen } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 
 import { render } from '@/lib/tests/render/render';
 
 import type { VirtualKeyboardProps } from '../types/virtualKeyboard';
+
 import { VirtualKeyboard } from '../virtualKeyboard';
 
 const mockProps: VirtualKeyboardProps = {

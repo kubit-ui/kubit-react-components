@@ -2,8 +2,9 @@ import { type ForwardedRef, type PropsWithChildren, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { ContainerStandAlone } from './containerStandAlone';
 import type { ContainerProps } from './types/container';
+
+import { ContainerStandAlone } from './containerStandAlone';
 
 /**
  * Container component for grouping content with consistent styling and structure.

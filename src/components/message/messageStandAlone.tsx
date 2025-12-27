@@ -9,10 +9,11 @@ import { isString } from '@/lib/utils/is/isString';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
+import type { MessageStandAloneProps } from './types/message';
+
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { Link } from '../link/link';
-import type { MessageStandAloneProps } from './types/message';
 
 export const MessageStandAlone = forwardRef<
   HTMLDivElement,

@@ -1,7 +1,8 @@
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { RadioButtonStandAlone } from './radioButtonStandAlone';
 import type { RadioButtonProps } from './types/radioButton';
+
+import { RadioButtonStandAlone } from './radioButtonStandAlone';
 import { getState } from './utils/state.utils';
 
 export const RadioButton = ({

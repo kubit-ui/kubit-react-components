@@ -2,8 +2,9 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { BreadcrumbsStandAlone } from './breadcrumbsStandAlone';
 import type { BreadcrumbsProps } from './types/breadcrumbs';
+
+import { BreadcrumbsStandAlone } from './breadcrumbsStandAlone';
 
 /**
  * Breadcrumbs component for displaying navigation paths.

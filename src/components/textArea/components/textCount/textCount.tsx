@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { TextCountStandAlone } from './textCountStandAlone';
 import type { TextCountProps } from './types/textCount';
+
+import { TextCountStandAlone } from './textCountStandAlone';
 
 const TEXT_COUNT = 'TEXT_COUNT';
 

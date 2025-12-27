@@ -1,6 +1,7 @@
-import { translateValue } from '../../selectorBoxFile/utils/translateValue/translateValue';
 import type { SliderOffsetBoundariesProps } from '../types/slider';
 import type { SliderType } from '../types/type';
+
+import { translateValue } from '../../selectorBoxFile/utils/translateValue/translateValue';
 
 export const calculateChange = ({
   container,
