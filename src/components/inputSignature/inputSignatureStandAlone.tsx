@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';

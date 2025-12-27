@@ -1,15 +1,13 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 
 import { Dot } from '@/components/dot/dot';
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 import { processText } from '@/lib/utils/process/processText/processText';
 
 import type { BadgeStandAloneProps } from './types/badge';
-
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 
 /**
  * BadgeStandAlone is a reusable badge component that displays a label, optional icon, and a dot indicator.
@@ -87,18 +85,18 @@ export const BadgeStandAlone = forwardRef<unknown, BadgeStandAloneProps>(
           {...customProps}
         >
           <span className={cssVariantClasses?.dotcontainer}>
-            <RenderIf condition={!!dot && !!hasDot}>
+            {!!dot && !!hasDot && (
               <span aria-hidden={true} className={cssVariantClasses?.dot}>
                 <Dot {...dot} />
               </span>
-            </RenderIf>
+            )}
             <ElementOrIcon
               className={`${cssVariantClasses?.icon} ${cssSizeClasses?.icon}`}
               {...processIcon(icon)}
               customAttributes={customAttributes}
             />
           </span>
-          <RenderIf condition={!!label}>
+          {!!label && (
             <span
               aria-hidden={true}
               className={cssVariantClasses?.labelcontainer}
@@ -119,7 +117,7 @@ export const BadgeStandAlone = forwardRef<unknown, BadgeStandAloneProps>(
                 customAttributes={customAttributes}
               />
             </span>
-          </RenderIf>
+          )}
           <screen-reader-only aria-live="polite">
             {ariaLiveText}
           </screen-reader-only>

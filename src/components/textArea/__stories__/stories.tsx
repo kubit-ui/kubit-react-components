@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { Icon } from '@/components/icon/icon';
-import { RenderIf } from '@/components/renderIf/renderIf';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
 const themeWithAdditionalInfo = [

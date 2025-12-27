@@ -1,4 +1,4 @@
-import type { OverlayVariantStyles } from '@/components/overlay/types/overlayTheme';
+import type { OverlayVariantStyles } from '@/lib/components/overlay/types/overlayTheme';
 
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 

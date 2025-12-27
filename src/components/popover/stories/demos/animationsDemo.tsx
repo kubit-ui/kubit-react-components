@@ -3,7 +3,7 @@ import './animationsDemo.css';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/button/button';
-import { Overlay } from '@/components/overlay/overlay';
+import { Overlay } from '@/lib/components/overlay/overlay';
 
 import { createSpringAnimation } from '../../animations/spring.animations';
 import { Popover } from '../../popover';

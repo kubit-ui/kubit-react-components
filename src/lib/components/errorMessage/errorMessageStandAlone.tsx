@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
 import { Text } from '@/components/text/text';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';

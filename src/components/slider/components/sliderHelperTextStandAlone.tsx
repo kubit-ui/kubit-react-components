@@ -1,5 +1,5 @@
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 
 import type { SliderCssClasses } from '../types/slider';
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Overlay } from '@/components/overlay/overlay';
+import { Overlay } from '@/lib/components/overlay/overlay';
 
 import { Popover as Story } from '../popover';
 import { argtypes } from './argtypes';

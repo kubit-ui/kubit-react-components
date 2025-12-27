@@ -1,4 +1,4 @@
-import { RenderIf } from '@/components/renderIf/renderIf';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type {

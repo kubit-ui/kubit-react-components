@@ -6,7 +6,7 @@ import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCusto
 
 import type { ItemRoveProps } from './types/itemRove';
 
-import { CustomComponent } from '../../lib/components/customComponent/customComponent';
+import { CustomComponent } from '../customComponent/customComponent';
 
 /**
  * ItemRove component is a navigable item that can be used to create a list of selectable options.

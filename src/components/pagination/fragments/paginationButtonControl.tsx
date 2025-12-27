@@ -1,13 +1,12 @@
 import type { MouseEventHandler } from 'react';
 
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { classNames } from '@/lib/utils/classNames/classNames';
 
 import type {
   PaginationButtonControlProps,
   PaginationCssClasses,
 } from '../types/pagination';
-
-import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 
 export const PaginationButtonControl = ({
   cssClasses,

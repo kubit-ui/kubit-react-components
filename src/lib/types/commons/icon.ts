@@ -1,3 +1,3 @@
-import type { ElementOrIconProps } from '@/components/elementOrIcon/types/elementOrIcon';
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 
 export type CommonIconProps = ElementOrIconProps | string;

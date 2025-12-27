@@ -1,14 +1,12 @@
 import { Children, type ForwardedRef, forwardRef, useMemo } from 'react';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { POSITIONS } from '@/lib/types/positions/positions';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 
 import type { ButtonStandAloneProps } from './types/button';
-
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 
 /**
  * Low-level button component for rendering a styled button element.
@@ -87,7 +85,7 @@ export const ButtonStandAlone = forwardRef(
         {...customProps}
         {...customAttributes}
       >
-        <RenderIf condition={!!loader && !!loading}>
+        {!!loader && !!loading && (
           <span
             className={classNames(
               cssSizeClasses?.loader,
@@ -96,8 +94,8 @@ export const ButtonStandAlone = forwardRef(
           >
             {loader}
           </span>
-        </RenderIf>
-        <RenderIf condition={!loading}>
+        )}
+        {!loading && (
           <>
             <ElementOrIcon
               {...processIcon(icon)}
@@ -108,7 +106,7 @@ export const ButtonStandAlone = forwardRef(
             />
             {children}
           </>
-        </RenderIf>
+        )}
       </button>
     );
   },

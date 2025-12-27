@@ -1,11 +1,11 @@
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 
 import { Button } from '@/components/button/button';
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type {
   SelectorBoxFileButtonProps,
   SelectorBoxFileCssClasses,

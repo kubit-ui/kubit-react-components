@@ -1,6 +1,7 @@
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
@@ -8,7 +9,6 @@ import { processText } from '@/lib/utils/process/processText/processText';
 
 import type { RadioButtonStandAloneProps } from './types/radioButton';
 
-import { ElementOrIcon } from './../elementOrIcon/elementOrIcon';
 import { buildAriaLabelledBy } from './utils/aria.utils';
 
 const CURSOR_DEFAULT = 'default';

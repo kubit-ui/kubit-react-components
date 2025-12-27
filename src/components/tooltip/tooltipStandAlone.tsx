@@ -1,7 +1,8 @@
 import './tooltip.css';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
 import { POSITIONS } from '@/lib/types/positions/positions';
@@ -13,7 +14,6 @@ import { processText } from '@/lib/utils/process/processText/processText';
 
 import type { TooltipStandAloneProps } from './types/tooltip';
 
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { IconHost as Icon } from '../icon/iconHost';
 import { Popover } from '../popover/popover';
 import { TooltipTrigger } from './components/tooltipTrigger';

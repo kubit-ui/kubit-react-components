@@ -1,13 +1,12 @@
 import type { AriaRole, MouseEventHandler } from 'react';
 
 import { Button } from '@/components/button/button';
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
 
 import type { SelectorProps } from './types/selector';
-
-import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
 
 export const Selector = ({
   configAccesibility,

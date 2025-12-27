@@ -1,12 +1,12 @@
 import { Fragment, forwardRef } from 'react';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
+import { TableBody } from '@/components/tableBody/tableBody';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { DataTableStandAloneProps } from './types/dataTable';
 
 import { Table } from '../table/table';
-import { TableBody } from '../tableBody/tableBody';
 import { TableCaption } from '../tableCaption/tableCaption';
 import { TableDivider } from '../tableDivider/tableDivider';
 import { DataTableHead } from './components/dataTableHead';

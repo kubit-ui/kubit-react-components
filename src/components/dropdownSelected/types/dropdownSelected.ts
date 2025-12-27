@@ -6,6 +6,7 @@ import type {
   RefObject,
 } from 'react';
 
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { GenericLinkType } from '@/lib/provider/genericComponentsProvider/types/genericComponentsProvider';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
@@ -14,7 +15,6 @@ import type {
 } from '@/lib/types/cssGenerator/kubit/componentsTypes';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type { ListOptionsProps } from '../../listOptions/types/listOptions';
 import type { IPopover } from '../../popover/types/popover';
 

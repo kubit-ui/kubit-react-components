@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
 
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { useId } from '@/lib/hooks/useId/useId';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { VirtualKeyboardStandAloneProps } from './types/virtualKeyboard';
 
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { DigitButton } from './components/digitButton';
 
 export const VirtualKeyboardStandAlone = forwardRef<

@@ -1,13 +1,13 @@
 import { type CSSProperties, forwardRef } from 'react';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
+import { Overlay } from '@/lib/components/overlay/overlay';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { processText } from '@/lib/utils/process/processText/processText';
 
 import type { ModalStandAloneProps } from './types/modal';
 
 import { NabVar } from '../navBar/navBar';
-import { Overlay } from '../overlay/overlay';
 import { Popover } from '../popover/popover';
 import { ModalHeader } from './fragments/modalHeader';
 import { onlyDesktopSize } from './utils/onlyDesktopSize';

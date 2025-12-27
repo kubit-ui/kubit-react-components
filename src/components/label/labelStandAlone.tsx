@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 
 import type { LabelStandAloneProps } from './types/label';

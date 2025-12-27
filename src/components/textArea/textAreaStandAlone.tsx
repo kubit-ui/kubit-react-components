@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
-import { RenderIf } from '@/components/renderIf/renderIf';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';

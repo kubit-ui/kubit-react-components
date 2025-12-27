@@ -1,6 +1,5 @@
+import type { IconProps } from '@/components/icon/types/icon';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
-
-import type { IconProps } from '../../icon/types/icon';
 
 /**
  * @name ElementOrIconProps
@@ -10,8 +9,7 @@ import type { IconProps } from '../../icon/types/icon';
  * @property {boolean} basic - If true, the icon will be displayed as a basic icon
  */
 export interface ElementOrIconProps
-  extends Omit<IconProps, 'icon'>,
-    DataAttributes {
+  extends Omit<IconProps, 'icon'>, DataAttributes {
   icon?: JSX.Element | HTMLElement | React.ReactNode | string;
   basic?: boolean;
 }

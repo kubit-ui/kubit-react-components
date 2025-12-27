@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { GenericLinkType } from '@/lib/provider/genericComponentsProvider/types/genericComponentsProvider';
 import type {
   ComponentSelected,
@@ -12,7 +13,6 @@ import type {
   ButtonCssClasses,
   ButtonStandAloneProps,
 } from '../../button/types/button';
-import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type { TextComponentType } from '../../text/types/component';
 import type { TextCssClasses } from '../../text/types/text';
 import type { LinkActionType } from './action';

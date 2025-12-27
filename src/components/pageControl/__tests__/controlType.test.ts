@@ -1,4 +1,4 @@
-import type { ElementOrIconProps } from '@/components/elementOrIcon/types/elementOrIcon';
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 
 import { ICONS } from '@/lib/tests/__mocks__/iconMock';
 

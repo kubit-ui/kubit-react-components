@@ -1,7 +1,8 @@
 import { type KeyboardEvent, type MouseEventHandler, forwardRef } from 'react';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
@@ -14,7 +15,6 @@ import {
   isKeyEnterPressed,
   isKeySpacePressed,
 } from '../../lib/utils/keyboard/keyboard';
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { OptionLabelSlice } from './components.ts/optionLabelSlice';
 import { getHighlightedIndexes, getState } from './utils/option.utils';
 

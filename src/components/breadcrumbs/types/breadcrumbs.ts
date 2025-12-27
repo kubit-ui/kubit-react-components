@@ -1,3 +1,4 @@
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
@@ -5,7 +6,6 @@ import type {
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 import type { StateType } from '@/lib/types/states/states';
 
-import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type { LinkProps } from '../../link/types/link';
 import type { TextComponentType } from '../../text/types/component';
 

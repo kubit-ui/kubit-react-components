@@ -1,8 +1,9 @@
 import { type RefObject, forwardRef } from 'react';
 
-import { ItemRove } from '@/components/itemRove/itemRove';
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { ItemRove } from '@/lib/components/itemRove/itemRove';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
 import { STATES } from '@/lib/types/states/states';
@@ -12,7 +13,6 @@ import { processText } from '@/lib/utils/process/processText/processText';
 
 import type { TabsStandAloneProps } from './types/tabs';
 
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { useTabs } from './hooks/useTabs/useTabs';
 
 const MAX_TABS_IN_VIEW = 3;

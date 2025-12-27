@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
 import { Text } from '@/components/text/text';
 import { CustomComponent } from '@/lib/components/customComponent/customComponent';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 import { processText } from '@/lib/utils/process/processText/processText';

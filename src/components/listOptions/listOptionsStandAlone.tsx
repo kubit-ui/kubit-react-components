@@ -5,8 +5,8 @@ import {
   useMemo,
 } from 'react';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { useRoveFocus } from '@/lib/hooks/useRoveFocus/useRoveFocus';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';

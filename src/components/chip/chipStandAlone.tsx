@@ -1,7 +1,8 @@
 import { forwardRef } from 'react';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { STATES } from '@/lib/types/states/states';
 import { isReactNode } from '@/lib/utils/is/isReactNode';
 import { isString } from '@/lib/utils/is/isString';
@@ -10,8 +11,6 @@ import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 import { processText } from '@/lib/utils/process/processText/processText';
 
 import type { ChipStandAloneProps } from './types/chip';
-
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 
 /**
  * Standalone chip component for displaying a customizable label, tag, or range.

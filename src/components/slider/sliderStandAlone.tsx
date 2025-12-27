@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';

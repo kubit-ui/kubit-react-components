@@ -1,7 +1,8 @@
 import { forwardRef, useMemo } from 'react';
 
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
@@ -10,7 +11,6 @@ import type { ListOptionsOptionProps } from '../listOptions/types/listOptions';
 import type { DropdownSelectedStandAloneProps } from './types/dropdownSelected';
 
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 import { ListOptions } from '../listOptions/listOptions';
 import { keyDownMove, keyUpMove } from '../listOptions/utils/listOptions.utils';
 import { Popover } from '../popover/popover';

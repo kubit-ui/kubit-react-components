@@ -1,4 +1,4 @@
-import type { ElementOrIconProps } from '@/components/elementOrIcon/types/elementOrIcon';
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { CommonIconProps } from '@/lib/types/commons/icon';
 
 import { isString } from '../../is/isString';

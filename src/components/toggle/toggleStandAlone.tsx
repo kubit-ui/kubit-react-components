@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
 import { CustomComponent } from '@/lib/components/customComponent/customComponent';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 

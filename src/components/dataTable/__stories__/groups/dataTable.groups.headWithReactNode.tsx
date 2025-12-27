@@ -1,10 +1,9 @@
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { DataTableVariantType } from '@/lib/designSystem/kubit/components/dataTable/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { DividerStory } from '@/lib/storybook/components/divider/divider';
 
 import type { DataTableProps } from '../../types/dataTable';
-
-import { ElementOrIcon } from '../../../elementOrIcon/elementOrIcon';
 
 export const DataTableGroupsHeadWithReactNodeStory: DataTableProps = {
   columns: [

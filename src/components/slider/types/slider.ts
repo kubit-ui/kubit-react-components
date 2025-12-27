@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
   ComponentSelected,
@@ -8,7 +9,6 @@ import type {
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
 import type { ButtonProps } from '../../button/types/button';
-import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type { SliderType } from './type';
 
 export type SliderCssClasses = ComponentSelected<

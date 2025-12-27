@@ -2,6 +2,7 @@
 import type { AriaAttributes, KeyboardEventHandler, ReactNode } from 'react';
 
 import type { NavBarProps } from '@/components/navBar/types/navBar';
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { DeviceBreakpointsType } from '@/lib/types/breakpoints/breakpoints';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
@@ -11,7 +12,6 @@ import type {
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
 import type { ButtonProps } from '../../button/types/button';
-import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type { IPopover } from '../../popover/types/popover';
 
 type ModalCssClasses = ComponentSelected<ComponentsTypesComponents['MODAL']>;

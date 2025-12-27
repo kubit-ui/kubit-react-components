@@ -1,10 +1,10 @@
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
 } from '@/lib/types/cssGenerator/kubit/componentsTypes';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import type { ElementOrIconProps } from '../../elementOrIcon/types/elementOrIcon';
 import type { TextProps } from '../../text/types/text';
 import type { StepperNumberOrientationType } from './orientation';
 import type { StepperNumberprefixSuffixProps } from './prefixSuffix';

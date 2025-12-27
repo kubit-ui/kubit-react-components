@@ -1,12 +1,12 @@
 import { Text } from '@/components/text/text';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
 import { processText } from '@/lib/utils/process/processText/processText';
 
 import type { ModalStandAloneProps } from '../types/modal';
 
 import { Button } from '../../button/button';
-import { ElementOrIcon } from '../../elementOrIcon/elementOrIcon';
-import { RenderIf } from '../../renderIf/renderIf';
 
 type PickedProps =
   | 'blocked'

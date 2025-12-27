@@ -1,4 +1,5 @@
-import type { ElementOrIconProps } from '../../../elementOrIcon/types/elementOrIcon';
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
+
 import type { CalendarCssClasses } from '../../types/calendar';
 import type { CalendarStyleProps } from '../../types/calendarTheme';
 

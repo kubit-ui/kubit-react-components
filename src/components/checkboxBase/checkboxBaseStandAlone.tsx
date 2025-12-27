@@ -1,10 +1,9 @@
 import { forwardRef } from 'react';
 
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 
 import type { CheckboxBaseStandAloneProps } from './types/checkboxBase';
-
-import { ElementOrIcon } from '../elementOrIcon/elementOrIcon';
 
 export const CheckboxBaseStandAlone = forwardRef(
   (

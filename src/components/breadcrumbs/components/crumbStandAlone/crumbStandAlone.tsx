@@ -1,9 +1,9 @@
 import type { RefObject } from 'react';
 
-import { ElementOrIcon } from '@/components/elementOrIcon/elementOrIcon';
 import { Link } from '@/components/link/link';
-import { RenderIf } from '@/components/renderIf/renderIf';
 import { Text } from '@/components/text/text';
+import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useManageState } from '@/lib/hooks/useManageState/useManageState';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
