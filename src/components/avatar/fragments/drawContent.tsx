@@ -1,7 +1,6 @@
 import { Dot } from '@/components/dot/dot';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 import { processText } from '@/lib/utils/process/processText/processText';
 
@@ -29,31 +28,31 @@ export const DrawContent = ({
   maxLengthInitials,
 }: DrawContentProps): JSX.Element => (
   <>
-    <RenderIf condition={!!dot?.number}>
-      <span className={cssClasses?.dot}>
-        <Dot {...dot} />
-      </span>
-    </RenderIf>
-    <RenderIf condition={contentType === 'with-icon'}>
-      <ElementOrIcon
+    {!!dot?.number && (
+    <span className={cssClasses?.dot}>
+      <Dot {...dot} />
+    </span>
+)}
+    {contentType === 'with-icon' && (
+    <ElementOrIcon
         // className={cssClasses?.default}
-        className={cssClasses?.icon}
-        customAttributes={customAttributes}
-        {...processIcon(icon)}
-      />
-    </RenderIf>
-    <RenderIf condition={contentType === 'with-initials'}>
-      <Text
-        additionalClasses={
+      className={cssClasses?.icon}
+      customAttributes={customAttributes}
+      {...processIcon(icon)}
+    />
+)}
+    {contentType === 'with-initials' && (
+    <Text
+      additionalClasses={
           {
             // text: cssClasses?.initials,
           }
         }
-        aria-hidden={true}
-        component="span"
-        customAttributes={customAttributes}
-        {...processText(initials, maxLengthInitials)}
-      />
-    </RenderIf>
+      aria-hidden={true}
+      component="span"
+      customAttributes={customAttributes}
+      {...processText(initials, maxLengthInitials)}
+    />
+)}
   </>
 );

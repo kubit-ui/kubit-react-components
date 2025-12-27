@@ -1,5 +1,4 @@
 import { Text } from '@/components/text/text';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 
 import type { SliderCssClasses } from '../types/slider';
 
@@ -30,34 +29,34 @@ export const SliderHelperTextStandAlone = ({
   }
   return (
     <div className={cssClasses?.helpertextcontainer}>
-      <RenderIf condition={!!leftHelperText}>
-        <div className={cssClasses?.helpertextleftcontainer}>
-          <Text
-            additionalClasses={{
+      {!!leftHelperText && (
+      <div className={cssClasses?.helpertextleftcontainer}>
+        <Text
+          additionalClasses={{
               text: cssClasses?.helpertext,
             }}
-            component="span"
-            customAttributes={customAttributes}
-            id={leftHelperTextId}
-          >
-            {leftHelperText}
-          </Text>
-        </div>
-      </RenderIf>
-      <RenderIf condition={!!rightHelperText}>
-        <div className={cssClasses?.helpertextrightcontainer}>
-          <Text
-            additionalClasses={{
+          component="span"
+          customAttributes={customAttributes}
+          id={leftHelperTextId}
+        >
+          {leftHelperText}
+        </Text>
+      </div>
+)}
+      {!!rightHelperText && (
+      <div className={cssClasses?.helpertextrightcontainer}>
+        <Text
+          additionalClasses={{
               text: cssClasses?.helpertext,
             }}
-            component="span"
-            customAttributes={customAttributes}
-            id={rightHelperTextId}
-          >
-            {rightHelperText}
-          </Text>
-        </div>
-      </RenderIf>
+          component="span"
+          customAttributes={customAttributes}
+          id={rightHelperTextId}
+        >
+          {rightHelperText}
+        </Text>
+      </div>
+)}
     </div>
   );
 };

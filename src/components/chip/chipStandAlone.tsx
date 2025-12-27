@@ -2,7 +2,6 @@ import { forwardRef } from 'react';
 
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { STATES } from '@/lib/types/states/states';
 import { isReactNode } from '@/lib/utils/is/isReactNode';
 import { isString } from '@/lib/utils/is/isString';
@@ -147,20 +146,20 @@ export const ChipStandAlone = forwardRef(
           />
         </span>
 
-        <RenderIf condition={state === STATES.ERROR}>
-          <span aria-live="polite" className={cssClasses?.errorcontainer}>
-            <ElementOrIcon
-              className={cssClasses?.erroricon}
-              {...processIcon(errorIcon)}
-            />
-            <Text
-              additionalClasses={{ text: cssClasses?.errormessage }}
-              component="span"
-              customAttributes={customAttributes}
-              {...processText(errorMessage)}
-            />
-          </span>
-        </RenderIf>
+        {state === STATES.ERROR && (
+        <span aria-live="polite" className={cssClasses?.errorcontainer}>
+          <ElementOrIcon
+            className={cssClasses?.erroricon}
+            {...processIcon(errorIcon)}
+          />
+          <Text
+            additionalClasses={{ text: cssClasses?.errormessage }}
+            component="span"
+            customAttributes={customAttributes}
+            {...processText(errorMessage)}
+          />
+        </span>
+)}
       </>
     );
   },

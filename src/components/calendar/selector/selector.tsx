@@ -3,7 +3,6 @@ import type { AriaRole, MouseEventHandler } from 'react';
 import { Button } from '@/components/button/button';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
 
 import type { SelectorProps } from './types/selector';
@@ -160,7 +159,7 @@ export const Selector = ({
           {...leftArrowIcon}
           aria-label={undefined}
         />
-        <RenderIf condition={showCustomSelector}>
+        {showCustomSelector && (
           <Text
             additionalClasses={{
               text: cssClasses?.backtext,
@@ -169,17 +168,16 @@ export const Selector = ({
           >
             {customBackText}
           </Text>
-        </RenderIf>
+        )}
       </button>
       <div className={cssClasses?.selectoroptionscontainer}>
-        <RenderIf condition={isDaySelector}>
-          {renderButtonSelector(
+        {isDaySelector &&
+          renderButtonSelector(
             'day',
             showDaySelector,
             configAccesibility?.daySelectorAriaLabel,
             configAccesibility?.daySelectorRole,
           )}
-        </RenderIf>
         {renderButtonSelector(
           'month',
           showMonthSelector,

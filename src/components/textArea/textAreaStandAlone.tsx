@@ -1,7 +1,6 @@
 import { forwardRef } from 'react';
 
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
@@ -146,20 +145,20 @@ export const TextAreaStandAlone = forwardRef<
               id={textAreaHelpTextId}
             />
           </div>
-          <RenderIf condition={!!counterVariant}>
-            <TextCount
-              additionalClasses={{
+          {!!counterVariant && (
+          <TextCount
+            additionalClasses={{
                 letftext: cssClasses?.counterleft,
                 righttext: cssClasses?.counterright,
                 text_count: cssClasses?.counter,
               }}
-              currentCharacters={value?.length ?? 0}
-              id={textAreaTextCountId}
-              maxLength={maxLength}
-              screenReaderText={screenReaderTextCount}
-              variant={counterVariant}
-            />
-          </RenderIf>
+            currentCharacters={value?.length ?? 0}
+            id={textAreaTextCountId}
+            maxLength={maxLength}
+            screenReaderText={screenReaderTextCount}
+            variant={counterVariant}
+          />
+)}
         </div>
       </div>
     );

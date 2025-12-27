@@ -4,7 +4,6 @@ import { Button } from '@/components/button/button';
 import { Tag } from '@/components/tag/tag';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { isString } from '@/lib/utils/is/isString';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
@@ -62,8 +61,8 @@ export const MessageStandAlone = forwardRef<
       return null;
     };
 
-    const buildActionButton = () => (
-      <RenderIf condition={!!actionButton?.content}>
+    const buildActionButton = () =>
+      actionButton?.content ? (
         <div className={cssClasses?.actionbuttoncontainer}>
           <Button
             additionalSizeClasses={
@@ -74,11 +73,10 @@ export const MessageStandAlone = forwardRef<
             {actionButton?.content}
           </Button>
         </div>
-      </RenderIf>
-    );
+      ) : null;
 
-    const buildTag = () => (
-      <RenderIf condition={!!tag?.content}>
+    const buildTag = () =>
+      tag?.content ? (
         <Tag
           variant=""
           {...tag}
@@ -86,16 +84,14 @@ export const MessageStandAlone = forwardRef<
             content: tag?.content,
           }}
         />
-      </RenderIf>
-    );
+      ) : null;
 
-    const buildExtraActionButton = () => (
-      <RenderIf condition={!!extraActionButton?.content}>
+    const buildExtraActionButton = () =>
+      extraActionButton?.content ? (
         <div className={cssClasses?.extraactionbuttoncontainer}>
           <Button {...extraActionButton}>{extraActionButton?.content}</Button>
         </div>
-      </RenderIf>
-    );
+      ) : null;
 
     const buildContent = () => {
       return typeof content === 'string' ? (
@@ -136,7 +132,7 @@ export const MessageStandAlone = forwardRef<
         aria-live={ariaLive}
         className={cssClasses?.message}
       >
-        <RenderIf condition={open}>
+        {open && (
           <CustomComponent
             ref={ref}
             className={cssClasses?.container}
@@ -161,8 +157,8 @@ export const MessageStandAlone = forwardRef<
               url={titleAndContentContainerProps?.url || undefined}
               onClick={titleAndContentContainerProps?.onClick}
             >
-              <RenderIf condition={!!title}>{buildTitle()}</RenderIf>
-              <RenderIf condition={!!tag?.content}>{buildTag()}</RenderIf>
+              {!!title && buildTitle()}
+              {!!tag?.content && buildTag()}
               <div
                 className={classNames(cssClasses?.contentcontainer, {
                   [`${cssClasses?.contentcontainerlargemessage}`]:
@@ -170,7 +166,7 @@ export const MessageStandAlone = forwardRef<
                 })}
               >
                 {buildContent()}
-                <RenderIf condition={!!inlineLink?.content}>
+                {!!inlineLink?.content && (
                   <Link
                     decoration="underline"
                     {...inlineLink}
@@ -178,15 +174,15 @@ export const MessageStandAlone = forwardRef<
                   >
                     {inlineLink?.content || ''}
                   </Link>
-                </RenderIf>
+                )}
               </div>
-              <RenderIf condition={!!(extraActionButton || actionButton)}>
+              {!!(extraActionButton || actionButton) && (
                 <div className={cssClasses?.buttonsectioncontainer}>
                   {buildExtraActionButton()}
                   {buildActionButton()}
                 </div>
-              </RenderIf>
-              <RenderIf condition={!!(links && links.length > 0)}>
+              )}
+              {!!(links && links.length > 0) && (
                 <div className={cssClasses?.linkscontainer}>
                   {links?.map((link) =>
                     link.content ? (
@@ -201,11 +197,11 @@ export const MessageStandAlone = forwardRef<
                     ) : null,
                   )}
                 </div>
-              </RenderIf>
+              )}
             </CustomComponent>
             <ElementOrIcon className={cssClasses?.closeicon} {...closeIcon} />
           </CustomComponent>
-        </RenderIf>
+        )}
       </div>
     );
   },

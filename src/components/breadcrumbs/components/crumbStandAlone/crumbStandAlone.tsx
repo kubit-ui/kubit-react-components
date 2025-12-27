@@ -3,7 +3,6 @@ import type { RefObject } from 'react';
 import { Link } from '@/components/link/link';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useManageState } from '@/lib/hooks/useManageState/useManageState';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
@@ -46,7 +45,7 @@ export const CrumbStandAlone = ({
       className={cssClasses?.crumb}
       data-testid={props['data-testid']}
     >
-      <RenderIf condition={!!lastCrumb}>
+      {!!lastCrumb && (
         <Text
           additionalClasses={{
             text: cssClasses?.lastonecrumb,
@@ -57,10 +56,10 @@ export const CrumbStandAlone = ({
         >
           {crumb.name}
         </Text>
-      </RenderIf>
-      <RenderIf condition={!lastCrumb}>
+      )}
+      {!lastCrumb && (
         <>
-          <RenderIf condition={!!link}>
+          {!!link && (
             <div className={cssClasses?.linkcontainer}>
               <Link
                 {...customProps}
@@ -79,7 +78,7 @@ export const CrumbStandAlone = ({
                 {crumb.name}
               </Link>
             </div>
-          </RenderIf>
+          )}
           <div className={cssClasses?.icondividercontainer}>
             <ElementOrIcon
               className={cssClasses?.icondivider}
@@ -87,7 +86,7 @@ export const CrumbStandAlone = ({
             />
           </div>
         </>
-      </RenderIf>
+      )}
     </li>
   );
 };

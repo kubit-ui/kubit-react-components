@@ -1,7 +1,6 @@
 import { forwardRef } from 'react';
 
 import { Text } from '@/components/text/text';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 
 import type { LabelStandAloneProps } from './types/label';
@@ -49,20 +48,20 @@ export const LabelStandAlone = forwardRef<
         weight={weight}
       >
         {children}
-        <RenderIf condition={required}>
-          <Text
-            additionalClasses={{
+        {required && (
+        <Text
+          additionalClasses={{
               text: asteriskCssClasses,
             }}
-            aria-hidden={true}
-            color={asteriskColor}
-            component="span"
-            data-testid={`${dataTestId}Required`}
-            weight={asteriskWeight}
-          >
-            {requiredSymbol}
-          </Text>
-        </RenderIf>
+          aria-hidden={true}
+          color={asteriskColor}
+          component="span"
+          data-testid={`${dataTestId}Required`}
+          weight={asteriskWeight}
+        >
+          {requiredSymbol}
+        </Text>
+)}
       </Text>
     );
   },

@@ -3,7 +3,6 @@ import { type RefObject, forwardRef } from 'react';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { ItemRove } from '@/lib/components/itemRove/itemRove';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
 import { STATES } from '@/lib/types/states/states';
@@ -69,27 +68,25 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
         }
       };
 
-      return (
-        <RenderIf condition={tabsLength > numTabsInView}>
-          <button
-            aria-label={isLeft ? leftControlAriaLabel : rightControlAriaLabel}
-            className={cssClasses?.arrowiconcontainer}
+      return tabsLength > numTabsInView ? (
+        <button
+          aria-label={isLeft ? leftControlAriaLabel : rightControlAriaLabel}
+          className={cssClasses?.arrowiconcontainer}
+          data-position={isLeft ? 'left' : 'right'}
+          data-testid={`${dataTestId}-icon-${direction}`}
+          disabled={disabled}
+          tabIndex={0}
+          type="button"
+          onClick={handleClick}
+        >
+          <ElementOrIcon
+            className={cssClasses?.icon}
+            customAttributes={{ 'data-disabled': disabled }}
             data-position={isLeft ? 'left' : 'right'}
-            data-testid={`${dataTestId}-icon-${direction}`}
-            disabled={disabled}
-            tabIndex={0}
-            type="button"
-            onClick={handleClick}
-          >
-            <ElementOrIcon
-              className={cssClasses?.icon}
-              customAttributes={{ 'data-disabled': disabled }}
-              data-position={isLeft ? 'left' : 'right'}
-              {...(isLeft ? leftIcon : rightIcon)}
-            />
-          </button>
-        </RenderIf>
-      );
+            {...(isLeft ? leftIcon : rightIcon)}
+          />
+        </button>
+      ) : null;
     };
 
     const buildTabContent = () => {

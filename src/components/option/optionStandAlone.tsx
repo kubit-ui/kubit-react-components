@@ -2,13 +2,9 @@ import { type KeyboardEvent, type MouseEventHandler, forwardRef } from 'react';
 
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
-
-import type { OptionStandAloneProps } from './types/option';
-import type { OptionStateType } from './types/state';
 
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import {
@@ -16,6 +12,8 @@ import {
   isKeySpacePressed,
 } from '../../lib/utils/keyboard/keyboard';
 import { OptionLabelSlice } from './components.ts/optionLabelSlice';
+import type { OptionStandAloneProps } from './types/option';
+import type { OptionStateType } from './types/state';
 import { getHighlightedIndexes, getState } from './utils/option.utils';
 
 export const OptionStandAlone = forwardRef(
@@ -128,7 +126,7 @@ export const OptionStandAlone = forwardRef(
               customAttributes={customAttributes}
               {...icon}
             />
-            <RenderIf condition={!!processText(sublabel).children}>
+            {!!processText(sublabel).children && (
               <div
                 className={cssClasses?.sublabelcontainer}
                 {...customAttributesProps}
@@ -142,7 +140,7 @@ export const OptionStandAlone = forwardRef(
                   {...processText(sublabel)}
                 />
               </div>
-            </RenderIf>
+            )}
             <p>
               {typeof label === 'string' ? (
                 <>
@@ -184,15 +182,15 @@ export const OptionStandAlone = forwardRef(
               )}
             </p>
           </div>
-          <RenderIf condition={hasCheckedIcon}>
+          {hasCheckedIcon && (
             <ElementOrIcon
               className={cssClasses?.checkedicon}
               customAttributes={customAttributes}
               {...checkedIcon}
             />
-          </RenderIf>
+          )}
         </div>
-        <RenderIf condition={!!extraContent}>{extraContent}</RenderIf>
+        {!!extraContent && extraContent}
       </CustomComponent>
     );
   },

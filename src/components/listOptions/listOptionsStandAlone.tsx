@@ -6,7 +6,6 @@ import {
 } from 'react';
 
 import { Text } from '@/components/text/text';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { useRoveFocus } from '@/lib/hooks/useRoveFocus/useRoveFocus';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
@@ -84,7 +83,7 @@ export const ListOptionsStandAlone = forwardRef<
         data-testid={dataTestId}
         {...customProps}
       >
-        <RenderIf condition={!!title && options.length > 0}>
+        {!!title && options.length > 0 && (
           <div className={cssClasses?.titlecontainer}>
             <Text
               additionalClasses={{
@@ -93,9 +92,9 @@ export const ListOptionsStandAlone = forwardRef<
               {...processText(title)}
             />
           </div>
-        </RenderIf>
+        )}
         {content}
-        <RenderIf condition={hasOptions}>
+        {hasOptions && (
           <CustomComponent
             ref={listEl as RefObject<HTMLUListElement>}
             aria-label={optionsContainerArias?.['aria-label']}
@@ -158,7 +157,7 @@ export const ListOptionsStandAlone = forwardRef<
               return optionComponent;
             })}
           </CustomComponent>
-        </RenderIf>
+        )}
       </div>
     );
   },

@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 
 import { Icon } from '@/components/icon/icon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
 const themeWithAdditionalInfo = [
@@ -22,10 +21,9 @@ const additionalInfoStyles = {
   marginLeft: '0.25rem',
 };
 
-export const additionalInfoAction = (themeSelected: string): ReactNode => (
-  <RenderIf condition={themeWithAdditionalInfo.includes(themeSelected)}>
+export const additionalInfoAction = (themeSelected: string): ReactNode =>
+  themeWithAdditionalInfo.includes(themeSelected) ? (
     <div style={additionalInfoStyles}>
       <Icon height="1rem" icon={ICONS.PLACEHOLDER} width="1rem" />
     </div>
-  </RenderIf>
-);
+  ) : null;

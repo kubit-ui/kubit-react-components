@@ -3,7 +3,6 @@ import type { CommonTextProps } from '@/lib/types/commons/text';
 
 import { Button } from '@/components/button/button';
 import { Text } from '@/components/text/text';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { processText } from '@/lib/utils/process/processText/processText';
 
 import type {
@@ -37,7 +36,7 @@ export const SelectorBoxFileHeader = ({
   return (
     <>
       <div className={cssClasses?.titlesubtitlecontainer} id={headerId}>
-        <RenderIf condition={!!title}>
+        {!!title && (
           <Text
             additionalClasses={{
               text: cssClasses?.title,
@@ -45,8 +44,8 @@ export const SelectorBoxFileHeader = ({
             component="h5"
             {...processText(title)}
           />
-        </RenderIf>
-        <RenderIf condition={!!subtitle}>
+        )}
+        {!!subtitle && (
           <div className={cssClasses?.actiondescriptioncontainer}>
             <Text
               additionalClasses={{
@@ -60,9 +59,9 @@ export const SelectorBoxFileHeader = ({
               tooltipIcon={tooltipIcon}
             />
           </div>
-        </RenderIf>
+        )}
       </div>
-      <RenderIf condition={!!(description || button)}>
+      {!!(description || button) && (
         <div className={cssClasses?.descriptioncontainer}>
           <Text
             additionalClasses={{
@@ -71,28 +70,24 @@ export const SelectorBoxFileHeader = ({
             {...processText(description)}
           />
 
-          <RenderIf
-            condition={
-              (!!cssClasses?.button_variant || !!button?.size) &&
-              (!!cssClasses?.button_size || !!button?.variant)
-            }
-          >
-            <Button
-              additionalSizeClasses={
-                button?.variant ? undefined : cssClasses?.button_size
-              }
-              additionalVariantClasses={
-                button?.size ? undefined : cssClasses?.button_variant
-              }
-              size={button?.size}
-              variant={button?.variant}
-              {...button}
-            >
-              {button?.content}
-            </Button>
-          </RenderIf>
+          {(!!cssClasses?.button_variant || !!button?.size) &&
+            (!!cssClasses?.button_size || !!button?.variant) && (
+              <Button
+                additionalSizeClasses={
+                  button?.variant ? undefined : cssClasses?.button_size
+                }
+                additionalVariantClasses={
+                  button?.size ? undefined : cssClasses?.button_variant
+                }
+                size={button?.size}
+                variant={button?.variant}
+                {...button}
+              >
+                {button?.content}
+              </Button>
+            )}
         </div>
-      </RenderIf>
+      )}
     </>
   );
 };

@@ -2,7 +2,6 @@ import type { ReactNode } from 'react';
 
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
@@ -59,34 +58,26 @@ export const SelectorBoxFileContainerBox = ({
         className={cssClasses?.containerboxtextscontainer}
         {...pickCustomAttributes(customAttributes)}
       >
-        <RenderIf
-          condition={
-            !!filename &&
-            [STATES.LOADING, STATES.SUCCESS, STATES.ERROR].includes(
-              state as Extract<
-                SelectorBoxFileStateType,
-                'loading' | 'success' | 'error'
-              >,
-            )
-          }
-        >
-          <Text
-            additionalClasses={{
-              text: cssClasses?.containerboxfilename,
-            }}
-            component="span"
-            customAttributes={customAttributes}
-          >
-            {filename}
-          </Text>
-        </RenderIf>
+        {!!filename &&
+          [STATES.LOADING, STATES.SUCCESS, STATES.ERROR].includes(
+            state as Extract<
+              SelectorBoxFileStateType,
+              'loading' | 'success' | 'error'
+            >,
+          ) && (
+            <Text
+              additionalClasses={{
+                text: cssClasses?.containerboxfilename,
+              }}
+              component="span"
+              customAttributes={customAttributes}
+            >
+              {filename}
+            </Text>
+          )}
         <span className={cssClasses?.actiondescriptioncontainer}>
-          <RenderIf
-            condition={
-              !!processText(containerBoxStateContent[state]?.actionText)
-                .children
-            }
-          >
+          {!!processText(containerBoxStateContent[state]?.actionText)
+            .children && (
             <span
               className={cssClasses?.actioniconandactiontextcontainer}
               {...pickCustomAttributes(customAttributes)}
@@ -110,8 +101,8 @@ export const SelectorBoxFileContainerBox = ({
                 }
               </Text>
             </span>
-          </RenderIf>
-          <RenderIf condition={!!containerBoxStateContent[state]?.description}>
+          )}
+          {!!containerBoxStateContent[state]?.description && (
             <Text
               additionalClasses={{
                 text: cssClasses?.containerboxdescription,
@@ -125,10 +116,10 @@ export const SelectorBoxFileContainerBox = ({
                   .children
               }
             </Text>
-          </RenderIf>
+          )}
         </span>
       </span>
-      <RenderIf condition={!!containerBoxStateContent[state]?.iconRight}>
+      {!!containerBoxStateContent[state]?.iconRight && (
         <span>
           <ElementOrIcon
             className={cssClasses?.containerboxicon}
@@ -136,7 +127,7 @@ export const SelectorBoxFileContainerBox = ({
             {...containerBoxStateContent[state]?.iconRight}
           />
         </span>
-      </RenderIf>
+      )}
     </label>
   );
 };

@@ -1,7 +1,6 @@
 import { forwardRef } from 'react';
 
 import { Text } from '@/components/text/text';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
@@ -58,20 +57,20 @@ export const InputSignatureStandAlone = forwardRef<
           data-testid={`${dataTestId}-canvas`}
           {...customAttributesProps}
         />
-        <RenderIf condition={hasPlaceholder}>
-          <div
-            className={cssClasses?.placeholdercontainer}
-            {...customAttributesProps}
-          >
-            <Text
-              additionalClasses={{
+        {hasPlaceholder && (
+        <div
+          className={cssClasses?.placeholdercontainer}
+          {...customAttributesProps}
+        >
+          <Text
+            additionalClasses={{
                 text: cssClasses?.placeholdertext,
               }}
-              customAttributes={customAttributes}
-              {...processText(currentText)}
-            />
-          </div>
-        </RenderIf>
+            customAttributes={customAttributes}
+            {...processText(currentText)}
+          />
+        </div>
+)}
       </div>
     );
   },

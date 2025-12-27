@@ -1,6 +1,5 @@
 import { forwardRef } from 'react';
 
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { InputStandAloneProps } from './types/input';
@@ -30,14 +29,10 @@ export const InputStandAlone = forwardRef<HTMLDivElement, InputStandAloneProps>(
 
     return (
       <div ref={ref} className={cssClasses?.input} {...customProps}>
-        <RenderIf
-          condition={
-            !!(
-              leftDecoration &&
-              (leftDecoration?.variant || cssClasses?.left_decoration)
-            )
-          }
-        >
+        {!!(
+          leftDecoration &&
+          (leftDecoration?.variant || cssClasses?.left_decoration)
+        ) && (
           <InputDecoration
             disabled={disabled}
             error={error}
@@ -47,9 +42,9 @@ export const InputStandAlone = forwardRef<HTMLDivElement, InputStandAloneProps>(
             }
             variant={leftDecoration?.variant}
           />
-        </RenderIf>
+        )}
         <div {...customProps} className={cssClasses?.inputandlabelcontainer}>
-          <RenderIf condition={!!cssClasses?.input}>
+          {!!cssClasses?.input && (
             <InputBase
               disabled={disabled}
               error={error}
@@ -59,16 +54,12 @@ export const InputStandAlone = forwardRef<HTMLDivElement, InputStandAloneProps>(
               {...props}
               additionalClasses={cssClasses?.input_base}
             />
-          </RenderIf>
+          )}
         </div>
-        <RenderIf
-          condition={
-            !!(
-              rightDecoration &&
-              (rightDecoration?.variant || cssClasses?.right_decoration)
-            )
-          }
-        >
+        {!!(
+          rightDecoration &&
+          (rightDecoration?.variant || cssClasses?.right_decoration)
+        ) && (
           <InputDecoration
             disabled={disabled}
             error={error}
@@ -82,7 +73,7 @@ export const InputStandAlone = forwardRef<HTMLDivElement, InputStandAloneProps>(
             }
             variant={rightDecoration?.variant}
           />
-        </RenderIf>
+        )}
       </div>
     );
   },

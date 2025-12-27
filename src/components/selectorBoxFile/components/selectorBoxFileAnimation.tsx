@@ -7,7 +7,6 @@ import {
 
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { SelectorBoxFileCssClasses } from '../types/selectorBoxFile';
@@ -64,34 +63,34 @@ export const SelectorBoxFileAnimation = ({
       {...customAttributesProps}
     >
       {/* Animation containers */}
-      <RenderIf condition={!!topAnimationContainer}>
-        <div
-          {...customAttributesProps}
-          ref={topRef}
-          className={topAnimationContainer}
-        />
-      </RenderIf>
-      <RenderIf condition={!!rightAnimationContainer}>
-        <div
-          {...customAttributesProps}
-          ref={rightRef}
-          className={rightAnimationContainer}
-        />
-      </RenderIf>
-      <RenderIf condition={!!bottomAnimationContainer}>
-        <div
-          {...customAttributesProps}
-          ref={bottomRef}
-          className={bottomAnimationContainer}
-        />
-      </RenderIf>
-      <RenderIf condition={!!leftAnimationContainer}>
-        <div
-          {...customAttributesProps}
-          ref={leftRef}
-          className={leftAnimationContainer}
-        />
-      </RenderIf>
+      {!!topAnimationContainer && (
+      <div
+        {...customAttributesProps}
+        ref={topRef}
+        className={topAnimationContainer}
+      />
+)}
+      {!!rightAnimationContainer && (
+      <div
+        {...customAttributesProps}
+        ref={rightRef}
+        className={rightAnimationContainer}
+      />
+)}
+      {!!bottomAnimationContainer && (
+      <div
+        {...customAttributesProps}
+        ref={bottomRef}
+        className={bottomAnimationContainer}
+      />
+)}
+      {!!leftAnimationContainer && (
+      <div
+        {...customAttributesProps}
+        ref={leftRef}
+        className={leftAnimationContainer}
+      />
+)}
       <div
         {...customAttributesProps}
         className={cssClasses.borderanimationcontainer}

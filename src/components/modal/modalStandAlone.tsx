@@ -1,7 +1,6 @@
 import { type CSSProperties, forwardRef } from 'react';
 
 import { Overlay } from '@/lib/components/overlay/overlay';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { processText } from '@/lib/utils/process/processText/processText';
 
@@ -118,11 +117,11 @@ export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(
           >
             {content}
           </div>
-          <RenderIf condition={!!modalFooterVariant && !!footer}>
+          {!!modalFooterVariant && !!footer && (
             <div className={cssClasses?.footer}>
               <NabVar variant={modalFooterVariant} {...footer} />
             </div>
-          </RenderIf>
+          )}
         </div>
       </Popover>
     );

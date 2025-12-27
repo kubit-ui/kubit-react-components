@@ -1,6 +1,5 @@
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
 import { processText } from '@/lib/utils/process/processText/processText';
 
@@ -34,34 +33,30 @@ export const ModalHeader = ({
 
   return (
     <div className={cssClasses?.headercontainer} data-modal-header={true}>
-      <RenderIf condition={isMobileOrTablet && !blocked && !!dragIcon}>
+      {isMobileOrTablet && !blocked && !!dragIcon && (
         <div
           className={cssClasses?.dragiconcontainer}
           data-modal-draggable-icon={true}
         >
           <ElementOrIcon className={cssClasses?.dragicon} {...dragIcon} />
         </div>
-      </RenderIf>
+      )}
 
       <div className={cssClasses?.headercontentcontainer}>
-        <RenderIf condition={!blocked && !!closeIcon?.icon}>
+        {!blocked && !!closeIcon?.icon && (
           <div className={cssClasses?.closebuttoncontainer}>
             <ElementOrIcon
               className={cssClasses?.closebuttonicon}
               {...closeIcon}
             />
           </div>
-        </RenderIf>
-        <RenderIf
-          condition={
-            !blocked && !!closeButton?.content && !!closeButton?.variant
-          }
-        >
+        )}
+        {!blocked && !!closeButton?.content && !!closeButton?.variant && (
           <Button {...closeButton} variant={closeButton?.variant}>
             {closeButton?.content}
           </Button>
-        </RenderIf>
-        <RenderIf condition={title?.visible === undefined || title.visible}>
+        )}
+        {(title?.visible === undefined || title.visible) && (
           <div className={cssClasses?.titlecontainer}>
             <Text
               additionalClasses={{
@@ -72,17 +67,17 @@ export const ModalHeader = ({
               {...processText(title)}
             />
           </div>
-        </RenderIf>
-        <RenderIf condition={title?.visible === false}>
+        )}
+        {title?.visible === false && (
           <span className={cssClasses?.titlehiddencontainer} id={titleIdFinal}>
             {processText(title).children}
           </span>
-        </RenderIf>
-        <RenderIf condition={!blocked && !!closeIcon?.icon}>
+        )}
+        {!blocked && !!closeIcon?.icon && (
           <div className={cssClasses?.closebuttoncontainer}>
             <span className={cssClasses?.closebuttonicon} />
           </div>
-        </RenderIf>
+        )}
       </div>
     </div>
   );

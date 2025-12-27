@@ -1,6 +1,5 @@
 import { forwardRef } from 'react';
 
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { PageControlStandAloneProps } from './types/pageControl';
@@ -34,7 +33,7 @@ export const PageControlStandAlone = forwardRef<
         className={cssPageControlClasses?.page_control}
         data-testid={dataTestId}
       >
-        <RenderIf condition={dots > 0}>
+        {dots > 0 && (
           <>
             <Controls
               control={leftControl}
@@ -49,14 +48,14 @@ export const PageControlStandAlone = forwardRef<
               position="left"
             />
             <div className={cssPageControlClasses?.dotscontainer}>
-              <RenderIf condition={isBullet && firstVisiblePosition > 0}>
+              {isBullet && firstVisiblePosition > 0 && (
                 <div
                   {...pickCustomAttributes({
                     'data-state': 'last',
                   })}
                   className={cssPageControlClasses?.pagedot}
                 />
-              </RenderIf>
+              )}
               {[...Array(dots)].map((_, _index) => {
                 const index = _index + firstVisiblePosition;
                 const state = index === currentPosition ? 'current' : 'default';
@@ -71,18 +70,14 @@ export const PageControlStandAlone = forwardRef<
                   />
                 );
               })}
-              <RenderIf
-                condition={
-                  isBullet && (lastVisiblePosition ?? 0) < (pages ?? 0) - 1
-                }
-              >
+              {isBullet && (lastVisiblePosition ?? 0) < (pages ?? 0) - 1 && (
                 <div
                   {...pickCustomAttributes({
                     'data-state': 'last',
                   })}
                   className={cssPageControlClasses?.pagedot}
                 />
-              </RenderIf>
+              )}
             </div>
 
             <Controls
@@ -98,7 +93,7 @@ export const PageControlStandAlone = forwardRef<
               position="right"
             />
           </>
-        </RenderIf>
+        )}
       </div>
     );
   },

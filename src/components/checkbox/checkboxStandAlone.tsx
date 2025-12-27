@@ -1,6 +1,5 @@
 import { forwardRef } from 'react';
 
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
@@ -58,17 +57,17 @@ export const CheckboxStandAlone = forwardRef(
         className={cssClasses?.checkbox}
       >
         <div className={cssClasses?.checkboxwithlabelcontainer}>
-          <RenderIf condition={!!checkboxBaseVariant}>
-            <CheckboxBaseControlled
-              {...props}
-              aria-describedby={ariaDescribedBy}
-              aria-hidden={props['aria-hidden']}
-              aria-label={props['aria-label']}
-              aria-labelledby={props['aria-labelledby']}
-              id={checkBoxId}
-              variant={checkboxBaseVariant}
-            />
-          </RenderIf>
+          {!!checkboxBaseVariant && (
+          <CheckboxBaseControlled
+            {...props}
+            aria-describedby={ariaDescribedBy}
+            aria-hidden={props['aria-hidden']}
+            aria-label={props['aria-label']}
+            aria-labelledby={props['aria-labelledby']}
+            id={checkBoxId}
+            variant={checkboxBaseVariant}
+          />
+)}
           <screen-reader-only id={screenReaderId}>
             {screenReaderText}
           </screen-reader-only>
@@ -79,17 +78,17 @@ export const CheckboxStandAlone = forwardRef(
             inputId={checkBoxId}
           />
         </div>
-        <RenderIf condition={!!props.error}>
-          <ErrorMessage
-            aria-live="assertive"
-            cssClasses={cssClasses}
-            data-testid={`${props['data-testid']}-error-message`}
-            {...errorMessage}
-            id={checkBoxErrorId}
-            inputId={checkBoxId}
-            show={props.error && !props.disabled}
-          />
-        </RenderIf>
+        {!!props.error && (
+        <ErrorMessage
+          aria-live="assertive"
+          cssClasses={cssClasses}
+          data-testid={`${props['data-testid']}-error-message`}
+          {...errorMessage}
+          id={checkBoxErrorId}
+          inputId={checkBoxId}
+          show={props.error && !props.disabled}
+        />
+)}
       </div>
     );
   },

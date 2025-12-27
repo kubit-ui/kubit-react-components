@@ -1,4 +1,3 @@
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type {
@@ -35,22 +34,22 @@ export const Controls = ({
       : cssArrowControlClasses?.rightarrowcontrolcontainer;
   return (
     <>
-      <RenderIf condition={control && !isElementOrIconProps(control)}>
-        <ButtonControlStandAlone
+      {control && !isElementOrIconProps(control) && (
+      <ButtonControlStandAlone
+        {...control}
+        cssPageControlClasses={buttonCssClasses}
+        position={position}
+        {...customProps}
+      />
+)}
+      {isElementOrIconProps(control) && (
+      <div className={arrowCssClasses}>
+        <ArrowControlStandAlone
+          cssArrowControlClasses={cssArrowControlClasses}
           {...control}
-          cssPageControlClasses={buttonCssClasses}
-          position={position}
-          {...customProps}
         />
-      </RenderIf>
-      <RenderIf condition={isElementOrIconProps(control)}>
-        <div className={arrowCssClasses}>
-          <ArrowControlStandAlone
-            cssArrowControlClasses={cssArrowControlClasses}
-            {...control}
-          />
-        </div>
-      </RenderIf>
+      </div>
+)}
     </>
   );
 };

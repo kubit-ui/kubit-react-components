@@ -2,7 +2,6 @@ import './tooltip.css';
 
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
 import { POSITIONS } from '@/lib/types/positions/positions';
@@ -130,15 +129,15 @@ export const TooltipStandAlone = ({
     >
       <div className={cssClasses?.tooltipinternalcontainer}>
         {/* Drag Icon */}
-        <RenderIf condition={(isMobile || isTablet) && !!dragIcon}>
-          <div
-            ref={dragIconRef}
-            className={cssClasses?.dragiconcontainer}
-            data-testid={`${dataTestId}-drag`}
-          >
-            <ElementOrIcon className={cssClasses?.dragicon} {...dragIcon} />
-          </div>
-        </RenderIf>
+        {(isMobile || isTablet) && !!dragIcon && (
+        <div
+          ref={dragIconRef}
+          className={cssClasses?.dragiconcontainer}
+          data-testid={`${dataTestId}-drag`}
+        >
+          <ElementOrIcon className={cssClasses?.dragicon} {...dragIcon} />
+        </div>
+)}
 
         {/* Header */}
         <div
@@ -158,17 +157,17 @@ export const TooltipStandAlone = ({
           )}
 
           {/* Title */}
-          <RenderIf condition={!!processedTitle.children}>
-            <div className="kbt-tooltip__title" id={titleId}>
-              <Text
-                additionalClasses={{ text: cssClasses?.title }}
-                component="h2"
-                {...processedTitle}
-              >
-                {processedTitle.children}
-              </Text>
-            </div>
-          </RenderIf>
+          {!!processedTitle.children && (
+          <div className="kbt-tooltip__title" id={titleId}>
+            <Text
+              additionalClasses={{ text: cssClasses?.title }}
+              component="h2"
+              {...processedTitle}
+            >
+              {processedTitle.children}
+            </Text>
+          </div>
+)}
         </div>
 
         {/* Content */}
@@ -186,27 +185,27 @@ export const TooltipStandAlone = ({
           role={contentHasScroll ? 'region' : undefined}
           {...(contentHasScroll && { tabIndex: 0 })}
         >
-          <RenderIf condition={!!content}>
-            <div
-              className={classNames(
+          {!!content && (
+          <div
+            className={classNames(
                 'kbt-tooltip__paragraph',
                 cssClasses?.paragraphcontainer,
                 {
                   [`${cssClasses?.divider}`]: !!processedTitle.children,
                 },
               )}
-              id={contentId}
-            >
-              {isTextContent ? (
-                <Text
-                  additionalClasses={{ text: cssClasses?.paragraph }}
-                  {...processedContent}
-                />
+            id={contentId}
+          >
+            {isTextContent ? (
+              <Text
+                additionalClasses={{ text: cssClasses?.paragraph }}
+                {...processedContent}
+              />
               ) : (
                 processedContent.children
               )}
-            </div>
-          </RenderIf>
+          </div>
+)}
         </div>
       </div>
 

@@ -2,7 +2,6 @@ import { forwardRef, useMemo } from 'react';
 
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
@@ -134,7 +133,7 @@ export const DropdownSelectedStandAlone = forwardRef<
             {...icon}
           />
         </CustomComponent>
-        <RenderIf condition={!!popover}>
+        {!!popover && (
           <Popover
             anchorElement={buttonOrLinkRef?.current}
             component="div"
@@ -158,9 +157,7 @@ export const DropdownSelectedStandAlone = forwardRef<
               className={cssClasses?.listoptionscontainer}
               data-testid={`${dataTestId}-list`}
             >
-              <RenderIf
-                condition={!!listOptions.variant && !!listOptions.optionVariant}
-              >
+              {!!listOptions.variant && !!listOptions.optionVariant && (
                 <ListOptions
                   ref={listOptionsRef}
                   roveFocus={
@@ -175,10 +172,10 @@ export const DropdownSelectedStandAlone = forwardRef<
                     onClosePopover();
                   }}
                 />
-              </RenderIf>
+              )}
             </div>
           </Popover>
-        </RenderIf>
+        )}
       </div>
     );
   },

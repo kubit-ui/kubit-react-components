@@ -5,7 +5,6 @@ import type { CommonTextProps } from '@/lib/types/commons/text';
 
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { STATES } from '@/lib/types/states/states';
 import { processText } from '@/lib/utils/process/processText/processText';
 
@@ -35,11 +34,7 @@ export const ErrorStandAlone = ({
       id={id}
       {...customAttributtes}
     >
-      <RenderIf
-        condition={
-          !!processText(errorMessage).children && state === STATES.ERROR
-        }
-      >
+      {!!processText(errorMessage).children && state === STATES.ERROR && (
         <>
           <ElementOrIcon
             className={cssClasses?.erroricon}
@@ -57,7 +52,7 @@ export const ErrorStandAlone = ({
             {processText(errorMessage).children}
           </Text>
         </>
-      </RenderIf>
+      )}
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
@@ -91,7 +90,7 @@ export const RadioButtonStandAlone = ({
         />
       </div>
       <div className={cssClasses?.infocontainer}>
-        <RenderIf condition={!!label?.content}>
+        {!!label?.content && (
           <div className={cssClasses?.labelcontainer}>
             <Label
               cursor={disabled ? CURSOR_DEFAULT : CURSOR_POINTER}
@@ -105,9 +104,9 @@ export const RadioButtonStandAlone = ({
               {label?.content}
             </Label>
           </div>
-        </RenderIf>
-        <RenderIf condition={!!processText(subTitle).children}>
-          {typeof processText(subTitle) === 'string' ? (
+        )}
+        {!!processText(subTitle).children &&
+          (typeof processText(subTitle) === 'string' ? (
             <Text
               additionalClasses={{
                 text: cssClasses?.sublabel,
@@ -117,9 +116,8 @@ export const RadioButtonStandAlone = ({
             />
           ) : (
             <div id={descriptionId}>{processText(subTitle).children}</div>
-          )}
-        </RenderIf>
-        <RenderIf condition={!!(error && errorMessage)}>
+          ))}
+        {!!(error && errorMessage) && (
           <div
             aria-live={errorAriaLiveType}
             className={cssClasses?.errormessagecontainer}
@@ -132,7 +130,7 @@ export const RadioButtonStandAlone = ({
               }}
               customAttributes={customAttributes}
             >
-              <RenderIf condition={!!errorIcon}>
+              {!!errorIcon && (
                 <span
                   {...customProps}
                   className={cssClasses?.errormessageiconcontainer}
@@ -143,11 +141,11 @@ export const RadioButtonStandAlone = ({
                     {...errorIcon}
                   />
                 </span>
-              </RenderIf>
+              )}
               {errorMessage}
             </Text>
           </div>
-        </RenderIf>
+        )}
       </div>
     </div>
   );

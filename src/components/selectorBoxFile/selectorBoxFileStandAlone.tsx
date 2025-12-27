@@ -1,6 +1,5 @@
 import { forwardRef } from 'react';
 
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { useId } from '@/lib/hooks/useId/useId';
 import { STATES } from '@/lib/types/states/states';
 
@@ -63,18 +62,18 @@ export const SelectorBoxFileStandAlone = forwardRef<
       <div ref={ref}>
         <div className={cssClasses?.selector_box_file} data-testid={dataTestId}>
           <div className={cssClasses?.header}>
-            <RenderIf condition={!!(title || subtitle)}>
-              <SelectorBoxFileHeader
-                button={button}
-                cssClasses={cssClasses}
-                description={description}
-                headerId={inputHeaderId}
-                subtitle={subtitle}
-                title={title}
-                tooltip={tooltip}
-                tooltipIcon={tooltipIcon}
-              />
-            </RenderIf>
+            {!!(title || subtitle) && (
+            <SelectorBoxFileHeader
+              button={button}
+              cssClasses={cssClasses}
+              description={description}
+              headerId={inputHeaderId}
+              subtitle={subtitle}
+              title={title}
+              tooltip={tooltip}
+              tooltipIcon={tooltipIcon}
+            />
+)}
             {/* The data-focus is controlled in SelectorBoxFileAnimation */}
             <SelectorBoxFileAnimation
               cssClasses={cssClasses}

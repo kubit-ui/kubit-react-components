@@ -1,7 +1,6 @@
 import { Fragment, forwardRef } from 'react';
 
 import { TableBody } from '@/components/tableBody/tableBody';
-import { RenderIf } from '@/lib/components/renderIf/renderIf';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { DataTableStandAloneProps } from './types/dataTable';
@@ -72,7 +71,7 @@ export const DataTableStandAlone = forwardRef<
               zIndex: 1,
             })}
           >
-            <RenderIf condition={!!caption?.content}>
+            {!!caption?.content && (
               <TableCaption
                 additionalClasses={cssClasses?.table_caption}
                 component={usingRowGroups ? 'div' : undefined}
@@ -80,7 +79,7 @@ export const DataTableStandAlone = forwardRef<
               >
                 {caption?.content}
               </TableCaption>
-            </RenderIf>
+            )}
             <DataTableHead
               columns={columns}
               cssClasses={cssClasses}
@@ -89,7 +88,7 @@ export const DataTableStandAlone = forwardRef<
               tableHeadRowConfig={config?.tableHeadRow}
               usingRowGroups={usingRowGroups}
             />
-            <RenderIf condition={!usingRowGroups && rows && rows.length > 0}>
+            {!usingRowGroups && rows && rows.length > 0 && (
               <TableBody
                 additionalClasses={cssClasses?.table_body}
                 {...config?.tableBody}
@@ -105,18 +104,18 @@ export const DataTableStandAlone = forwardRef<
                   usingRowGroups={usingRowGroups}
                 />
               </TableBody>
-            </RenderIf>
+            )}
           </Table>
           {rowGroups?.map((rowGroup, index) => {
             return (
               <Fragment
                 key={`${rowGroup.caption?.['data-testid']}-${index.toString()}`}
               >
-                <RenderIf condition={!!rowGroup.divider}>
+                {!!rowGroup.divider && (
                   <TableDivider variant="DEFAULT" {...rowGroup.divider}>
                     {rowGroup.divider?.content}
                   </TableDivider>
-                </RenderIf>
+                )}
                 <Table
                   additionalClasses={cssClasses?.row_group_table}
                   autoLeftStickyCalc={false}
@@ -128,14 +127,14 @@ export const DataTableStandAlone = forwardRef<
                     tableConfig: rowGroup.config?.table,
                   })}
                 >
-                  <RenderIf condition={!!rowGroup.caption?.content}>
+                  {!!rowGroup.caption?.content && (
                     <TableCaption
                       additionalClasses={cssClasses?.row_group_table_caption}
                       {...rowGroup.caption}
                     >
                       {rowGroup.caption?.content}
                     </TableCaption>
-                  </RenderIf>
+                  )}
                   <HiddenDataTableHead
                     columns={columns}
                     cssClasses={cssClasses}
