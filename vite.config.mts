@@ -259,6 +259,32 @@ const generateComponentIndexPlugin = () => {
 };
 
 /**
+ * Plugin to remove storybook-related folders from dist
+ */
+const removeStorybookPlugin = () => {
+  return {
+    closeBundle() {
+      const storybookDirs = [
+        path.resolve(__dirname, 'dist/esm/lib/storybook'),
+        path.resolve(__dirname, 'dist/cjs/lib/storybook'),
+        path.resolve(__dirname, 'dist/types/lib/storybook'),
+      ];
+
+      storybookDirs.forEach((dir) => {
+        if (fs.existsSync(dir)) {
+          fs.rmSync(dir, { force: true, recursive: true });
+          // eslint-disable-next-line no-console
+          console.log(
+            `[remove-storybook] ✓ Removed ${path.relative(__dirname, dir)}`,
+          );
+        }
+      });
+    },
+    name: 'remove-storybook',
+  };
+};
+
+/**
  * Vite configuration for building the library
  */
 export default defineConfig(({ mode }) => ({
@@ -322,6 +348,8 @@ export default defineConfig(({ mode }) => ({
         'src/**/__fixtures__',
         'src/**/stories',
         'src/**/*.stories.*',
+        'src/**/storybook/**',
+        'src/lib/storybook/**',
       ],
       insertTypesEntry: true,
       outDir: 'dist/types',
@@ -332,6 +360,7 @@ export default defineConfig(({ mode }) => ({
     copyCSSProviderPlugin(),
     copyStaticAssetsPlugin(),
     generateComponentIndexPlugin(),
+    removeStorybookPlugin(),
   ],
   resolve: {
     alias: {

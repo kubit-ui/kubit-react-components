@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/react-components",
-  "version": "2.0.0-beta.6",
+  "version": "2.0.0-beta.7",
   "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
   "author": {
     "name": "Kubit",
@@ -73,6 +73,10 @@
     "!dist/**/__fixtures__",
     "!dist/**/tests",
     "!dist/**/storybook",
+    "!dist/**/lib/storybook",
+    "!dist/cjs/lib/storybook",
+    "!dist/esm/lib/storybook",
+    "!dist/types/lib/storybook",
     "!dist/**/node_modules",
     "!dist/**/.tsbuildinfo",
     "!dist/**/*.map"
