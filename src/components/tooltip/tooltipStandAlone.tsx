@@ -1,21 +1,20 @@
 import './tooltip.css';
 
+import { useId } from 'react';
+
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { useId } from '@/lib/hooks/useId/useId';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
 import { POSITIONS } from '@/lib/types/positions/positions';
 import { classNames } from '@/lib/utils/classNames/classNames';
-import { isString } from '@/lib/utils/is/isString';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import type { TooltipStandAloneProps } from './types/tooltip';
-
 import { IconHost as Icon } from '../icon/iconHost';
 import { Popover } from '../popover/popover';
 import { TooltipTrigger } from './components/tooltipTrigger';
+import type { TooltipStandAloneProps } from './types/tooltip';
 import { getAriaDescriptorsBy } from './utils/tooltip.utils';
 
 export const TooltipStandAlone = ({
@@ -52,14 +51,16 @@ export const TooltipStandAlone = ({
 }: TooltipStandAloneProps): JSX.Element => {
   const dataTestId = props['data-testid'] || 'tooltip';
   const customProps = pickCustomAttributes(props);
-  const uniqueId = useId('tooltip');
-  const titleId = `${uniqueId}Title`;
-  const contentId = `${uniqueId}Content`;
+  const reactId = useId();
+  // Sanitize React's useId output (e.g., ":r0:") to be valid HTML ID
+  const uniqueId = `tooltip-${reactId.replace(/:/g, '')}`;
+  const titleId = `${uniqueId}-title`;
+  const contentId = `${uniqueId}-content`;
 
   const processedContent = processText(content);
   const processedTitle = processText(title);
 
-  const isTextContent = isString(processedContent.children);
+  const isTextContent = typeof processedContent.children === 'string';
 
   const { isDesktop, isMobile, isTablet } = useActiveBreakpoints();
   const isDesktopOrTablet = isDesktop || isTablet;
@@ -130,14 +131,14 @@ export const TooltipStandAlone = ({
       <div className={cssClasses?.tooltipinternalcontainer}>
         {/* Drag Icon */}
         {(isMobile || isTablet) && !!dragIcon && (
-        <div
-          ref={dragIconRef}
-          className={cssClasses?.dragiconcontainer}
-          data-testid={`${dataTestId}-drag`}
-        >
-          <ElementOrIcon className={cssClasses?.dragicon} {...dragIcon} />
-        </div>
-)}
+          <div
+            ref={dragIconRef}
+            className={cssClasses?.dragiconcontainer}
+            data-testid={`${dataTestId}-drag`}
+          >
+            <ElementOrIcon className={cssClasses?.dragicon} {...dragIcon} />
+          </div>
+        )}
 
         {/* Header */}
         <div
@@ -158,16 +159,16 @@ export const TooltipStandAlone = ({
 
           {/* Title */}
           {!!processedTitle.children && (
-          <div className="kbt-tooltip__title" id={titleId}>
-            <Text
-              additionalClasses={{ text: cssClasses?.title }}
-              component="h2"
-              {...processedTitle}
-            >
-              {processedTitle.children}
-            </Text>
-          </div>
-)}
+            <div className="kbt-tooltip__title" id={titleId}>
+              <Text
+                additionalClasses={{ text: cssClasses?.title }}
+                component="h2"
+                {...processedTitle}
+              >
+                {processedTitle.children}
+              </Text>
+            </div>
+          )}
         </div>
 
         {/* Content */}
@@ -186,26 +187,26 @@ export const TooltipStandAlone = ({
           {...(contentHasScroll && { tabIndex: 0 })}
         >
           {!!content && (
-          <div
-            className={classNames(
+            <div
+              className={classNames(
                 'kbt-tooltip__paragraph',
                 cssClasses?.paragraphcontainer,
                 {
                   [`${cssClasses?.divider}`]: !!processedTitle.children,
                 },
               )}
-            id={contentId}
-          >
-            {isTextContent ? (
-              <Text
-                additionalClasses={{ text: cssClasses?.paragraph }}
-                {...processedContent}
-              />
+              id={contentId}
+            >
+              {isTextContent ? (
+                <Text
+                  additionalClasses={{ text: cssClasses?.paragraph }}
+                  {...processedContent}
+                />
               ) : (
                 processedContent.children
               )}
-          </div>
-)}
+            </div>
+          )}
         </div>
       </div>
 

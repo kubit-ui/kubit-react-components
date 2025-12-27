@@ -1,10 +1,8 @@
-import { forwardRef } from 'react';
+import { forwardRef, isValidElement } from 'react';
 
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { STATES } from '@/lib/types/states/states';
-import { isReactNode } from '@/lib/utils/is/isReactNode';
-import { isString } from '@/lib/utils/is/isString';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 import { processText } from '@/lib/utils/process/processText/processText';
@@ -52,7 +50,7 @@ export const ChipStandAlone = forwardRef(
     const customProps = pickCustomAttributes(props);
 
     const buildLabel = () => {
-      if (!isString(closeIcon) && closeIcon?.altText) {
+      if (typeof closeIcon !== 'string' && closeIcon?.altText) {
         return closeIcon.altText;
       }
       return deleteText;
@@ -90,7 +88,7 @@ export const ChipStandAlone = forwardRef(
                   (rangeIcon?.icon ? (
                     <ElementOrIcon
                       altText={
-                        isString(label) || isReactNode(label)
+                        typeof label === 'string' || isValidElement(label)
                           ? (processText(rangeSeparator).children as string) ||
                             ''
                           : (processText(rangeSeparator).children as string) ||
@@ -147,19 +145,19 @@ export const ChipStandAlone = forwardRef(
         </span>
 
         {state === STATES.ERROR && (
-        <span aria-live="polite" className={cssClasses?.errorcontainer}>
-          <ElementOrIcon
-            className={cssClasses?.erroricon}
-            {...processIcon(errorIcon)}
-          />
-          <Text
-            additionalClasses={{ text: cssClasses?.errormessage }}
-            component="span"
-            customAttributes={customAttributes}
-            {...processText(errorMessage)}
-          />
-        </span>
-)}
+          <span aria-live="polite" className={cssClasses?.errorcontainer}>
+            <ElementOrIcon
+              className={cssClasses?.erroricon}
+              {...processIcon(errorIcon)}
+            />
+            <Text
+              additionalClasses={{ text: cssClasses?.errormessage }}
+              component="span"
+              customAttributes={customAttributes}
+              {...processText(errorMessage)}
+            />
+          </span>
+        )}
       </>
     );
   },

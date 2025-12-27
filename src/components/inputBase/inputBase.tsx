@@ -1,11 +1,9 @@
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
-import { useId } from '@/lib/hooks/useId/useId';
-
-import type { InputBaseProps } from './types/inputBase';
 
 import { InputBaseStandAlone } from './inputBaseStandAlone';
+import type { InputBaseProps } from './types/inputBase';
 import { getState } from './utils/state';
 
 export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
@@ -19,7 +17,8 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
       variant,
     });
 
-    const uniqueId = useId('inputBase');
+    const reactId = useId();
+    const uniqueId = `inputbase-${reactId.replace(/:/g, '')}`;
     const inputId = id ?? uniqueId;
 
     const state = getState({

@@ -1,18 +1,16 @@
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useId, useMemo } from 'react';
 
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { useId } from '@/lib/hooks/useId/useId';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import type { ListOptionsOptionProps } from '../listOptions/types/listOptions';
-import type { DropdownSelectedStandAloneProps } from './types/dropdownSelected';
-
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { ListOptions } from '../listOptions/listOptions';
+import type { ListOptionsOptionProps } from '../listOptions/types/listOptions';
 import { keyDownMove, keyUpMove } from '../listOptions/utils/listOptions.utils';
 import { Popover } from '../popover/popover';
+import type { DropdownSelectedStandAloneProps } from './types/dropdownSelected';
 
 /**
  * Standalone dropdown component for rendering the visual structure and interaction of a dropdown.
@@ -57,7 +55,8 @@ export const DropdownSelectedStandAlone = forwardRef<
     },
     ref,
   ) => {
-    const BASE_ID = useId('DropdownSelected');
+    const reactId = useId();
+    const BASE_ID = `dropdownselected-${reactId.replace(/:/g, '')}`;
     const ariaControls = open ? `${BASE_ID}-list` : undefined;
     const dataTestId = props['data-testid'] || 'dropdown-selected';
     const customProps = pickCustomAttributes(props);

@@ -1,8 +1,7 @@
+import { isValidElement } from 'react';
+
 import type { TextProps } from '@/components/text/types/text';
 import type { CommonTextProps } from '@/lib/types/commons/text';
-
-import { isReactNode } from '../../is/isReactNode';
-import { isString } from '../../is/isString';
 
 /**
  * Processes a text input and returns it in a standardized format, optionally truncating it to a maximum length.
@@ -37,8 +36,8 @@ export const processText = (
 
   let processedText: string | undefined;
 
-  if (isString(text) || isReactNode(text)) {
-    processedText = isString(text) ? text : undefined;
+  if (typeof text === 'string' || isValidElement(text)) {
+    processedText = typeof text === 'string' ? text : undefined;
   } else if (typeof text === 'object' && 'content' in text) {
     processedText = (text as { content: string }).content;
   }
@@ -47,7 +46,7 @@ export const processText = (
     processedText = processedText.substring(0, maxLength);
   }
 
-  if (isReactNode(text)) {
+  if (isValidElement(text)) {
     return { children: text as React.ReactNode };
   }
 

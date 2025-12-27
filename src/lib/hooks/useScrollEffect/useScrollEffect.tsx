@@ -5,7 +5,6 @@ import type {
   CustomHookReturnValue,
 } from './types/useScrollEffect';
 
-import { changeCssProperty } from '../../utils/changeCssProperty/changeCssProperty';
 import { scrollPercentage } from './utils/scrollPercentage';
 
 const MAX_PERCENTAGE = 100;
@@ -92,7 +91,12 @@ export const useScrollEffect = ({
         },
       ];
 
-      changeCssProperty(innerResizeRef.current, cssProperties);
+      cssProperties.forEach(({ cssPropertyName, cssPropertyValue }) => {
+        innerResizeRef.current?.style.setProperty(
+          cssPropertyName,
+          cssPropertyValue,
+        );
+      });
     }
 
     if (innerShadowRef.current) {

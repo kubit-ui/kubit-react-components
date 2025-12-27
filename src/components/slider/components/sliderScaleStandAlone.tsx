@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 
-import { useId } from '@/lib/hooks/useId/useId';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { SliderCssClasses } from '../types/slider';
@@ -22,7 +21,8 @@ export const SliderScaleStandAlone = ({
   scaleOffsets,
   showScale,
 }: SliderScaleStandAloneProps): JSX.Element | null => {
-  const uniqueTickmarksId = useId('tickmarks');
+  const reactId = useId();
+  const uniqueTickmarksId = `tickmarks-${reactId.replace(/:/g, '')}`;
   const [width, setWidth] = useState('0px');
   const spanRef = useRef<HTMLSpanElement>(null);
 

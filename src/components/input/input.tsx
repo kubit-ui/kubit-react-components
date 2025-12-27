@@ -1,12 +1,16 @@
-import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useId,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
-import { useId } from '@/lib/hooks/useId/useId';
 import { useInputFocus } from '@/lib/hooks/useInputFocus/useInputFocus';
 
-import type { InputProps } from './types/input';
-
 import { InputStandAlone } from './inputStandAlone';
+import type { InputProps } from './types/input';
 import { getState } from './utils/state';
 
 export const Input = forwardRef<HTMLDivElement, InputProps>(
@@ -17,7 +21,8 @@ export const Input = forwardRef<HTMLDivElement, InputProps>(
       variant,
     });
 
-    const uniqueId = useId('input-base');
+    const reactId = useId();
+    const uniqueId = `input-${reactId.replace(/:/g, '')}`;
     const inputBaseId = id || uniqueId;
     const labelId = `${inputBaseId}-label`;
 

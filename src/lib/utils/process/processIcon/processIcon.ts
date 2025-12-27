@@ -1,8 +1,6 @@
 import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { CommonIconProps } from '@/lib/types/commons/icon';
 
-import { isString } from '../../is/isString';
-
 /**
  * Processes an icon input and returns it in a standardized format.
  *
@@ -25,5 +23,5 @@ export const processIcon = (icon?: CommonIconProps): ElementOrIconProps => {
   if (!icon) {
     return {};
   }
-  return isString(icon) ? { icon } : icon;
+  return typeof icon === 'string' ? { icon } : icon;
 };

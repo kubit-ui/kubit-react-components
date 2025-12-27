@@ -1,13 +1,13 @@
+import { useId } from 'react';
+
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { useId } from '@/lib/hooks/useId/useId';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
 import type { RadioButtonStandAloneProps } from './types/radioButton';
-
 import { buildAriaLabelledBy } from './utils/aria.utils';
 
 const CURSOR_DEFAULT = 'default';
@@ -35,7 +35,8 @@ export const RadioButtonStandAlone = ({
   value,
   ...props
 }: RadioButtonStandAloneProps): JSX.Element => {
-  let inputId = useId('RadioButton');
+  const reactId = useId();
+  let inputId = `radiobutton-${reactId.replace(/:/g, '')}`;
 
   inputId = id ?? inputId;
 

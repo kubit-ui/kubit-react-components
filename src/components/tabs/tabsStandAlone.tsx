@@ -1,21 +1,18 @@
-import { type RefObject, forwardRef } from 'react';
+import { type RefObject, forwardRef, useId } from 'react';
 
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { ItemRove } from '@/lib/components/itemRove/itemRove';
-import { useId } from '@/lib/hooks/useId/useId';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
 import { STATES } from '@/lib/types/states/states';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
+import { useTabs } from './hooks/useTabs/useTabs';
 import type { TabsStandAloneProps } from './types/tabs';
 
-import { useTabs } from './hooks/useTabs/useTabs';
-
 const MAX_TABS_IN_VIEW = 3;
-const PRIMARY_TABS_BASE_ID = 'Tabs';
 
 export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
   (
@@ -41,7 +38,8 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
   ) => {
     const { isMobile } = useActiveBreakpoints();
 
-    const BASE_ID = useId(PRIMARY_TABS_BASE_ID);
+    const reactId = useId();
+    const BASE_ID = `tabs-${reactId.replace(/:/g, '')}`;
     const TAB_LIST_ID = `${BASE_ID}-tab-list`;
     const TAB_PANEL_ID = `${BASE_ID}-tab-panel`;
     const tabsLength = tabs?.length ?? 0;

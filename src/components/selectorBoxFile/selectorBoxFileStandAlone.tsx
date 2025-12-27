@@ -1,14 +1,12 @@
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 
-import { useId } from '@/lib/hooks/useId/useId';
 import { STATES } from '@/lib/types/states/states';
-
-import type { SelectorBoxFileStandAloneProps } from './types/selectorBoxFile';
 
 import { SelectorBoxFileAnimation } from './components/selectorBoxFileAnimation';
 import { SelectorBoxFileContainerBox } from './components/selectorBoxFileContainerBox';
 import { SelectorBoxFileErrorMessage } from './components/selectorBoxFileErrorMessage';
 import { SelectorBoxFileHeader } from './components/selectorBoxFileHeader';
+import type { SelectorBoxFileStandAloneProps } from './types/selectorBoxFile';
 
 export const SelectorBoxFileStandAlone = forwardRef<
   HTMLDivElement,
@@ -43,7 +41,8 @@ export const SelectorBoxFileStandAlone = forwardRef<
     },
     ref,
   ) => {
-    const uniqueId = useId('selectorBoxFile');
+    const reactId = useId();
+    const uniqueId = `selectorboxfile-${reactId.replace(/:/g, '')}`;
     const inputId = id ?? uniqueId;
     const inputHeaderId = `${inputId}HeaderId`;
     const inputErrorId = `${inputId}ErrorId`;
@@ -63,17 +62,17 @@ export const SelectorBoxFileStandAlone = forwardRef<
         <div className={cssClasses?.selector_box_file} data-testid={dataTestId}>
           <div className={cssClasses?.header}>
             {!!(title || subtitle) && (
-            <SelectorBoxFileHeader
-              button={button}
-              cssClasses={cssClasses}
-              description={description}
-              headerId={inputHeaderId}
-              subtitle={subtitle}
-              title={title}
-              tooltip={tooltip}
-              tooltipIcon={tooltipIcon}
-            />
-)}
+              <SelectorBoxFileHeader
+                button={button}
+                cssClasses={cssClasses}
+                description={description}
+                headerId={inputHeaderId}
+                subtitle={subtitle}
+                title={title}
+                tooltip={tooltip}
+                tooltipIcon={tooltipIcon}
+              />
+            )}
             {/* The data-focus is controlled in SelectorBoxFileAnimation */}
             <SelectorBoxFileAnimation
               cssClasses={cssClasses}

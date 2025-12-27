@@ -1,20 +1,19 @@
 import {
   type RefObject,
   forwardRef,
+  useId,
   useImperativeHandle,
   useMemo,
 } from 'react';
 
 import { Text } from '@/components/text/text';
-import { useId } from '@/lib/hooks/useId/useId';
 import { useRoveFocus } from '@/lib/hooks/useRoveFocus/useRoveFocus';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import type { ListOptionsStandAloneProps } from './types/listOptions';
-
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { Option } from '../option/option';
+import type { ListOptionsStandAloneProps } from './types/listOptions';
 import {
   getOptionVariant,
   isSelected,

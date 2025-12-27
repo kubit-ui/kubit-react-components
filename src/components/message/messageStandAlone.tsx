@@ -5,7 +5,6 @@ import { Tag } from '@/components/tag/tag';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { classNames } from '@/lib/utils/classNames/classNames';
-import { isString } from '@/lib/utils/is/isString';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
@@ -108,7 +107,7 @@ export const MessageStandAlone = forwardRef<
     };
 
     const buildTitle = () => {
-      return isString(processedTitle.children) ? (
+      return typeof processedTitle.children === 'string' ? (
         <div
           aria-errormessage={ariaMessageId}
           className={cssClasses?.titlecontainer}

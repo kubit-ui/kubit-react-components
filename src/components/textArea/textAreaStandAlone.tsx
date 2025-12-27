@@ -1,18 +1,16 @@
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
-import { useId } from '@/lib/hooks/useId/useId';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
-
-import type { TextAreaStateType } from './types/state';
-import type { TextAreaStandAloneProps } from './types/textArea';
 
 import { ErrorStandAlone } from './components/errorStandAlone';
 import { HelpMessageStandAlone } from './components/helpMessageStandAlone';
 import { TextCount } from './components/textCount/textCount';
 import { TitleStandAlone } from './components/titleStandAlone';
+import type { TextAreaStateType } from './types/state';
+import type { TextAreaStandAloneProps } from './types/textArea';
 import { buildAriaDescribedBy } from './utils/aria.utils';
 
 export const TextAreaStandAlone = forwardRef<
@@ -47,7 +45,8 @@ export const TextAreaStandAlone = forwardRef<
     },
     ref,
   ) => {
-    const uniqueId = useId('textArea');
+    const reactId = useId();
+    const uniqueId = `textarea-${reactId.replace(/:/g, '')}`;
     const textAreaId = id ?? uniqueId;
     const textAreaHelpTextId = `${textAreaId}HelpText`;
     const textAreaErrorId = `${textAreaId}Error`;
@@ -146,19 +145,19 @@ export const TextAreaStandAlone = forwardRef<
             />
           </div>
           {!!counterVariant && (
-          <TextCount
-            additionalClasses={{
+            <TextCount
+              additionalClasses={{
                 letftext: cssClasses?.counterleft,
                 righttext: cssClasses?.counterright,
                 text_count: cssClasses?.counter,
               }}
-            currentCharacters={value?.length ?? 0}
-            id={textAreaTextCountId}
-            maxLength={maxLength}
-            screenReaderText={screenReaderTextCount}
-            variant={counterVariant}
-          />
-)}
+              currentCharacters={value?.length ?? 0}
+              id={textAreaTextCountId}
+              maxLength={maxLength}
+              screenReaderText={screenReaderTextCount}
+              variant={counterVariant}
+            />
+          )}
         </div>
       </div>
     );

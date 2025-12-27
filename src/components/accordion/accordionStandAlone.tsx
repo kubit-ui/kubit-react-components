@@ -1,11 +1,9 @@
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 
 import { CustomComponent } from '@/lib/components/customComponent/customComponent';
-import { useId } from '@/lib/hooks/useId/useId';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { IAccordionStandAlone } from './types/accordion';
-
 import { STATE } from './types/state';
 
 export const AccordionStandAlone = forwardRef<
@@ -25,7 +23,8 @@ export const AccordionStandAlone = forwardRef<
     }: IAccordionStandAlone,
     ref: React.ForwardedRef<HTMLDivElement>,
   ): JSX.Element => {
-    const accordionId = useId('accordion');
+    const reactId = useId();
+    const accordionId = `accordion-${reactId.replace(/:/g, '')}`;
     const contentId = `${accordionId}-content`;
     const customAttributes = {
       'data-state': expanded ? STATE.EXPANDED : STATE.COLLAPSED,

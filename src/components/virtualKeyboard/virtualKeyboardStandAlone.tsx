@@ -1,13 +1,11 @@
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { useId } from '@/lib/hooks/useId/useId';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import type { VirtualKeyboardStandAloneProps } from './types/virtualKeyboard';
-
 import { DigitButton } from './components/digitButton';
+import type { VirtualKeyboardStandAloneProps } from './types/virtualKeyboard';
 
 export const VirtualKeyboardStandAlone = forwardRef<
   HTMLDivElement,
@@ -28,7 +26,8 @@ export const VirtualKeyboardStandAlone = forwardRef<
     },
     ref,
   ) => {
-    const uniqueId = useId('virtualKeyboard');
+    const reactId = useId();
+    const uniqueId = `virtualkeyboard-${reactId.replace(/:/g, '')}`;
     const virtualKeyboardId = id ?? uniqueId;
 
     const customAttributes = {

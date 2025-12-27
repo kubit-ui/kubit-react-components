@@ -1,7 +1,6 @@
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 
 import { Text } from '@/components/text/text';
-import { useId } from '@/lib/hooks/useId/useId';
 
 import type { LabelStandAloneProps } from './types/label';
 
@@ -28,7 +27,8 @@ export const LabelStandAlone = forwardRef<
     },
     ref,
   ): JSX.Element => {
-    const uniqueId = useId('label');
+    const reactId = useId();
+    const uniqueId = `label-${reactId.replace(/:/g, '')}`;
     const labelId = id ?? uniqueId;
     const dataTestId = props['data-testid'] || 'label';
 
@@ -49,19 +49,19 @@ export const LabelStandAlone = forwardRef<
       >
         {children}
         {required && (
-        <Text
-          additionalClasses={{
+          <Text
+            additionalClasses={{
               text: asteriskCssClasses,
             }}
-          aria-hidden={true}
-          color={asteriskColor}
-          component="span"
-          data-testid={`${dataTestId}Required`}
-          weight={asteriskWeight}
-        >
-          {requiredSymbol}
-        </Text>
-)}
+            aria-hidden={true}
+            color={asteriskColor}
+            component="span"
+            data-testid={`${dataTestId}Required`}
+            weight={asteriskWeight}
+          >
+            {requiredSymbol}
+          </Text>
+        )}
       </Text>
     );
   },

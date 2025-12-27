@@ -1,14 +1,12 @@
-import { type CSSProperties, forwardRef } from 'react';
+import { type CSSProperties, forwardRef, useId } from 'react';
 
 import { Overlay } from '@/lib/components/overlay/overlay';
-import { useId } from '@/lib/hooks/useId/useId';
 import { processText } from '@/lib/utils/process/processText/processText';
-
-import type { ModalStandAloneProps } from './types/modal';
 
 import { NabVar } from '../navBar/navBar';
 import { Popover } from '../popover/popover';
 import { ModalHeader } from './fragments/modalHeader';
+import type { ModalStandAloneProps } from './types/modal';
 import { onlyDesktopSize } from './utils/onlyDesktopSize';
 
 export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(
@@ -42,9 +40,11 @@ export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(
     },
     ref,
   ) => {
-    const uniqueModalId = useId('modal');
+    const reactModalId = useId();
+    const uniqueModalId = `modal-${reactModalId.replace(/:/g, '')}`;
     const modalId = id ?? uniqueModalId;
-    const uniqueTitleId = useId('modal-title');
+    const reactTitleId = useId();
+    const uniqueTitleId = `modal-title-${reactTitleId.replace(/:/g, '')}`;
     const titleIdFinal = processText(title).id ?? uniqueTitleId;
     const modalFooterVariant = footer?.variant;
     const dataTestId = props['data-testid'] || 'modal';
