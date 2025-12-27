@@ -1,0 +1,54 @@
+# Test files
+**/*.test.*
+**/*.spec.*
+**/__tests__
+**/__mocks__
+**/__fixtures__
+**/tests
+
+# Storybook
+**/*.stories.*
+**/storybook
+
+# Development files
+**/*.map
+**/.tsbuildinfo
+.DS_Store
+Thumbs.db
+
+# Node modules (should never be in dist but just in case)
+**/node_modules
+
+# Source files (only ship dist)
+src/
+.storybook/
+scripts/
+__reports__/
+
+# Config files
+tsconfig*.json
+vite.config.*
+vitest.config.*
+vitest.setup.*
+eslint.config.*
+bernova.config.json
+.prettierrc*
+.htmlvalidate.json
+.jsbeautifyrc
+
+# Git files
+.git/
+.github/
+.gitignore
+
+# CI/CD
+.gitlab-ci.yml
+.travis.yml
+
+# Documentation (keep only essential)
+CONTRIBUTING.md
+PUBLISH_GUIDE.md
+
+# Duplicate CSS in cjs/esm (keep only in dist/styles)
+dist/cjs/**/*.css
+dist/esm/**/*.css

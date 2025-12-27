@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/react-components",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
   "author": {
     "name": "Kubit",
@@ -55,15 +55,27 @@
     "*.ico"
   ],
   "files": [
-    "dist",
+    "dist/cjs",
+    "dist/esm",
+    "dist/types",
     "dist/styles",
     "package.json",
     "README.md",
     "LICENSE.md",
+    "CHANGELOG.md",
+    "!dist/cjs/lib/designSystem/**/css/*.css",
+    "!dist/esm/lib/designSystem/**/css/*.css",
+    "!dist/**/*.test.*",
+    "!dist/**/*.test.d.ts",
+    "!dist/**/*.stories.*",
+    "!dist/**/__tests__",
+    "!dist/**/__mocks__",
+    "!dist/**/__fixtures__",
     "!dist/**/tests",
-    "!dist/**/**/*.test.*",
     "!dist/**/storybook",
-    "!dist/**/**/stories"
+    "!dist/**/node_modules",
+    "!dist/**/.tsbuildinfo",
+    "!dist/**/*.map"
   ],
   "exports": {
     ".": {
@@ -105,7 +117,11 @@
     "test:coverage": "vitest --coverage.enabled=true --run",
     "typecheck": "tsc --noEmit",
     "validate": "yarn lint && yarn typecheck && yarn dist",
-    "publish-figma": "npx figma connect publish"
+    "publish-figma": "npx figma connect publish",
+    "pack:check": "npm pack --dry-run",
+    "pack:size": "npm pack --dry-run 2>&1 | grep -E '(unpacked size|package size|total files)'",
+    "pack:analyze": "npm pack && tar -tzf *.tgz | head -50 && rm *.tgz",
+    "prepublishOnly": "yarn dist && yarn pack:size"
   },
   "peerDependencies": {
     "react": ">=17.0.0 || >=18.3.1",
