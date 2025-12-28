@@ -9,6 +9,12 @@ import '../src/lib/designSystem/kubit/css/kubit.css';
 import { KubitProvider } from '../src/lib/provider/kubitProvider/kubitProvider';
 import { useStylesContext } from '../src/lib/provider/stylesProvider/stylesProvider';
 import '../src/lib/storybook/components/replaceContent/replaceContent';
+import bundleSizesData from './bundle-sizes.json';
+import { BundleSizePanel } from './components/bundleSize/BundleSizePanel';
+import {
+  extractComponentName,
+  getBundleSize,
+} from './components/bundleSize/utils';
 import { Note } from './components/note/note';
 
 const NOTE_PORTAL_ID = 'storybook-note-portal';
@@ -50,6 +56,14 @@ const preview: Preview = {
       const noteParams = context.parameters.note;
       const notePortal =
         typeof window !== 'undefined' ? ensureNotePortal() : null;
+
+      // Get bundle size for component if available
+      let bundleSize = context.parameters.bundleSize;
+      if (!bundleSize && context.title) {
+        const componentName = extractComponentName(context.title);
+        bundleSize = getBundleSize(componentName);
+      }
+
       return (
         <>
           {notePortal &&
@@ -72,6 +86,11 @@ const preview: Preview = {
           <KubitProvider>
             <ThemeDecorator theme={context.globals.theme}>
               <Story />
+              {bundleSize && context.viewMode === 'docs' && (
+                <div style={{ marginTop: '2rem', maxWidth: '800px' }}>
+                  <BundleSizePanel bundleSize={bundleSize} />
+                </div>
+              )}
             </ThemeDecorator>
           </KubitProvider>
         </>

@@ -1,8 +1,10 @@
 import react from '@vitejs/plugin-react';
+import cssnano from 'cssnano';
 import fs from 'fs';
 import { glob } from 'glob';
 import { fileURLToPath } from 'node:url';
 import path from 'path';
+import postcss from 'postcss';
 import { minify } from 'terser';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -123,10 +125,74 @@ const copyCSSProviderPlugin = () => {
 
 /**
  * Plugin to copy static assets (svg, fonts, images, css) to ESM and CJS directories
+ * CSS files are minified during the copy process
  */
 const copyStaticAssetsPlugin = () => {
+  // Initialize postcss with cssnano for CSS minification
+  const cssProcessor = postcss([
+    cssnano({
+      preset: [
+        'default',
+        {
+          discardComments: { removeAll: true },
+          minifyFontValues: true,
+          minifyGradients: true,
+          normalizeWhitespace: true,
+          reduceTransforms: true,
+        },
+      ],
+    }),
+  ]);
+
+  /**
+   * Minify CSS content
+   */
+  const minifyCSS = async (
+    srcPath: string,
+    destPath: string,
+    relativePath: string,
+  ): Promise<void> => {
+    try {
+      const cssContent = fs.readFileSync(srcPath, 'utf-8');
+      const result = await cssProcessor.process(cssContent, {
+        from: srcPath,
+        to: destPath,
+      });
+      fs.writeFileSync(destPath, result.css);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `[copy-static-assets] ⚠ Error minifying ${relativePath}:`,
+        error,
+      );
+      // Fallback to copying without minification
+      fs.copyFileSync(srcPath, destPath);
+    }
+  };
+
+  /**
+   * Copy file to destination, minifying if CSS
+   */
+  const copyFile = async (
+    srcPath: string,
+    relativePath: string,
+    ext: string,
+    outputDirs: string[],
+  ): Promise<void> => {
+    for (const outDir of outputDirs) {
+      const destPath = path.join(outDir, relativePath);
+      fs.mkdirSync(path.dirname(destPath), { recursive: true });
+
+      if (ext === 'css') {
+        await minifyCSS(srcPath, destPath, relativePath);
+      } else {
+        fs.copyFileSync(srcPath, destPath);
+      }
+    }
+  };
+
   return {
-    closeBundle() {
+    async closeBundle() {
       const extensions = ['svg', 'ttf', 'eot', 'css', 'png', 'jpg', 'otf'];
       const srcDir = path.resolve(__dirname, 'src');
       const outputDirs = [
@@ -134,7 +200,7 @@ const copyStaticAssetsPlugin = () => {
         path.resolve(__dirname, 'dist/cjs'),
       ];
 
-      const copyRecursive = (src: string, destBase: string) => {
+      const copyRecursive = async (src: string): Promise<void> => {
         for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
           const srcPath = path.join(src, entry.name);
           const relativePath = path.relative(srcDir, srcPath);
@@ -148,23 +214,21 @@ const copyStaticAssetsPlugin = () => {
             ) {
               continue;
             }
-            copyRecursive(srcPath, destBase);
+            await copyRecursive(srcPath);
           } else {
             const ext = path.extname(entry.name).slice(SECOND_INDEX);
             if (extensions.includes(ext)) {
-              outputDirs.forEach((outDir) => {
-                const destPath = path.join(outDir, relativePath);
-                fs.mkdirSync(path.dirname(destPath), { recursive: true });
-                fs.copyFileSync(srcPath, destPath);
-              });
+              await copyFile(srcPath, relativePath, ext, outputDirs);
             }
           }
         }
       };
 
-      copyRecursive(srcDir, '');
+      await copyRecursive(srcDir);
       // eslint-disable-next-line no-console
-      console.log('[copy-static-assets] ✓ Copied static assets to ESM and CJS');
+      console.log(
+        '[copy-static-assets] ✓ Copied and minified static assets to ESM and CJS',
+      );
     },
     name: 'copy-static-assets',
   };

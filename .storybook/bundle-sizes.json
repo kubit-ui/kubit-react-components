@@ -1,0 +1,1364 @@
+{
+  "metadata": {
+    "generated": "2025-12-28T19:26:53.511Z",
+    "totalComponents": 54,
+    "totalSize": {
+      "raw": 252232,
+      "gzip": 117035,
+      "formatted": "246.32 KB",
+      "gzipFormatted": "114.29 KB"
+    }
+  },
+  "components": {
+    "accordion": {
+      "component": "accordion",
+      "sizes": {
+        "js": {
+          "raw": 3716,
+          "gzip": 1983,
+          "formatted": "3.63 KB",
+          "gzipFormatted": "1.94 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 3716,
+          "gzip": 1983,
+          "formatted": "3.63 KB",
+          "gzipFormatted": "1.94 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.422Z"
+    },
+    "avatar": {
+      "component": "avatar",
+      "sizes": {
+        "js": {
+          "raw": 2755,
+          "gzip": 1353,
+          "formatted": "2.69 KB",
+          "gzipFormatted": "1.32 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 2755,
+          "gzip": 1353,
+          "formatted": "2.69 KB",
+          "gzipFormatted": "1.32 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.424Z"
+    },
+    "badge": {
+      "component": "badge",
+      "sizes": {
+        "js": {
+          "raw": 2569,
+          "gzip": 1259,
+          "formatted": "2.51 KB",
+          "gzipFormatted": "1.23 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 2569,
+          "gzip": 1259,
+          "formatted": "2.51 KB",
+          "gzipFormatted": "1.23 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.425Z"
+    },
+    "breadcrumbs": {
+      "component": "breadcrumbs",
+      "sizes": {
+        "js": {
+          "raw": 3501,
+          "gzip": 1884,
+          "formatted": "3.42 KB",
+          "gzipFormatted": "1.84 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 3501,
+          "gzip": 1884,
+          "formatted": "3.42 KB",
+          "gzipFormatted": "1.84 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.427Z"
+    },
+    "button": {
+      "component": "button",
+      "sizes": {
+        "js": {
+          "raw": 2348,
+          "gzip": 1185,
+          "formatted": "2.29 KB",
+          "gzipFormatted": "1.16 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 2348,
+          "gzip": 1185,
+          "formatted": "2.29 KB",
+          "gzipFormatted": "1.16 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.428Z"
+    },
+    "calendar": {
+      "component": "calendar",
+      "sizes": {
+        "js": {
+          "raw": 18551,
+          "gzip": 8361,
+          "formatted": "18.12 KB",
+          "gzipFormatted": "8.17 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 18551,
+          "gzip": 8361,
+          "formatted": "18.12 KB",
+          "gzipFormatted": "8.17 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.434Z"
+    },
+    "cardImage": {
+      "component": "cardImage",
+      "sizes": {
+        "js": {
+          "raw": 1846,
+          "gzip": 888,
+          "formatted": "1.8 KB",
+          "gzipFormatted": "888 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1846,
+          "gzip": 888,
+          "formatted": "1.8 KB",
+          "gzipFormatted": "888 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.435Z"
+    },
+    "carousel": {
+      "component": "carousel",
+      "sizes": {
+        "js": {
+          "raw": 16926,
+          "gzip": 6871,
+          "formatted": "16.53 KB",
+          "gzipFormatted": "6.71 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 16926,
+          "gzip": 6871,
+          "formatted": "16.53 KB",
+          "gzipFormatted": "6.71 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.439Z"
+    },
+    "checkbox": {
+      "component": "checkbox",
+      "sizes": {
+        "js": {
+          "raw": 4294,
+          "gzip": 2425,
+          "formatted": "4.19 KB",
+          "gzipFormatted": "2.37 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 4294,
+          "gzip": 2425,
+          "formatted": "4.19 KB",
+          "gzipFormatted": "2.37 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.441Z"
+    },
+    "checkboxBase": {
+      "component": "checkboxBase",
+      "sizes": {
+        "js": {
+          "raw": 2295,
+          "gzip": 1350,
+          "formatted": "2.24 KB",
+          "gzipFormatted": "1.32 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 2295,
+          "gzip": 1350,
+          "formatted": "2.24 KB",
+          "gzipFormatted": "1.32 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.443Z"
+    },
+    "chip": {
+      "component": "chip",
+      "sizes": {
+        "js": {
+          "raw": 2720,
+          "gzip": 1192,
+          "formatted": "2.66 KB",
+          "gzipFormatted": "1.16 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 2720,
+          "gzip": 1192,
+          "formatted": "2.66 KB",
+          "gzipFormatted": "1.16 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.443Z"
+    },
+    "container": {
+      "component": "container",
+      "sizes": {
+        "js": {
+          "raw": 1207,
+          "gzip": 696,
+          "formatted": "1.18 KB",
+          "gzipFormatted": "696 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1207,
+          "gzip": 696,
+          "formatted": "1.18 KB",
+          "gzipFormatted": "696 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.444Z"
+    },
+    "dataTable": {
+      "component": "dataTable",
+      "sizes": {
+        "js": {
+          "raw": 13333,
+          "gzip": 5876,
+          "formatted": "13.02 KB",
+          "gzipFormatted": "5.74 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 13333,
+          "gzip": 5876,
+          "formatted": "13.02 KB",
+          "gzipFormatted": "5.74 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.458Z"
+    },
+    "dot": {
+      "component": "dot",
+      "sizes": {
+        "js": {
+          "raw": 1218,
+          "gzip": 757,
+          "formatted": "1.19 KB",
+          "gzipFormatted": "757 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1218,
+          "gzip": 757,
+          "formatted": "1.19 KB",
+          "gzipFormatted": "757 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.459Z"
+    },
+    "dropdownSelected": {
+      "component": "dropdownSelected",
+      "sizes": {
+        "js": {
+          "raw": 5202,
+          "gzip": 2527,
+          "formatted": "5.08 KB",
+          "gzipFormatted": "2.47 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 5202,
+          "gzip": 2527,
+          "formatted": "5.08 KB",
+          "gzipFormatted": "2.47 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.460Z"
+    },
+    "icon": {
+      "component": "icon",
+      "sizes": {
+        "js": {
+          "raw": 3724,
+          "gzip": 1835,
+          "formatted": "3.64 KB",
+          "gzipFormatted": "1.79 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 3724,
+          "gzip": 1835,
+          "formatted": "3.64 KB",
+          "gzipFormatted": "1.79 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.461Z"
+    },
+    "image": {
+      "component": "image",
+      "sizes": {
+        "js": {
+          "raw": 2040,
+          "gzip": 1210,
+          "formatted": "1.99 KB",
+          "gzipFormatted": "1.18 KB"
+        },
+        "css": {
+          "raw": 504,
+          "gzip": 261,
+          "formatted": "504 B",
+          "gzipFormatted": "261 B"
+        },
+        "total": {
+          "raw": 2544,
+          "gzip": 1471,
+          "formatted": "2.48 KB",
+          "gzipFormatted": "1.44 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.463Z"
+    },
+    "input": {
+      "component": "input",
+      "sizes": {
+        "js": {
+          "raw": 2607,
+          "gzip": 1414,
+          "formatted": "2.55 KB",
+          "gzipFormatted": "1.38 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 2607,
+          "gzip": 1414,
+          "formatted": "2.55 KB",
+          "gzipFormatted": "1.38 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.465Z"
+    },
+    "inputBase": {
+      "component": "inputBase",
+      "sizes": {
+        "js": {
+          "raw": 1549,
+          "gzip": 1045,
+          "formatted": "1.51 KB",
+          "gzipFormatted": "1.02 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1549,
+          "gzip": 1045,
+          "formatted": "1.51 KB",
+          "gzipFormatted": "1.02 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.467Z"
+    },
+    "inputDecoration": {
+      "component": "inputDecoration",
+      "sizes": {
+        "js": {
+          "raw": 1741,
+          "gzip": 1106,
+          "formatted": "1.7 KB",
+          "gzipFormatted": "1.08 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1741,
+          "gzip": 1106,
+          "formatted": "1.7 KB",
+          "gzipFormatted": "1.08 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.468Z"
+    },
+    "inputSignature": {
+      "component": "inputSignature",
+      "sizes": {
+        "js": {
+          "raw": 4945,
+          "gzip": 2417,
+          "formatted": "4.83 KB",
+          "gzipFormatted": "2.36 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 4945,
+          "gzip": 2417,
+          "formatted": "4.83 KB",
+          "gzipFormatted": "2.36 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.469Z"
+    },
+    "label": {
+      "component": "label",
+      "sizes": {
+        "js": {
+          "raw": 816,
+          "gzip": 518,
+          "formatted": "816 B",
+          "gzipFormatted": "518 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 816,
+          "gzip": 518,
+          "formatted": "816 B",
+          "gzipFormatted": "518 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.470Z"
+    },
+    "link": {
+      "component": "link",
+      "sizes": {
+        "js": {
+          "raw": 4751,
+          "gzip": 2346,
+          "formatted": "4.64 KB",
+          "gzipFormatted": "2.29 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 4751,
+          "gzip": 2346,
+          "formatted": "4.64 KB",
+          "gzipFormatted": "2.29 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.471Z"
+    },
+    "listOptions": {
+      "component": "listOptions",
+      "sizes": {
+        "js": {
+          "raw": 3239,
+          "gzip": 1684,
+          "formatted": "3.16 KB",
+          "gzipFormatted": "1.64 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 3239,
+          "gzip": 1684,
+          "formatted": "3.16 KB",
+          "gzipFormatted": "1.64 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.472Z"
+    },
+    "message": {
+      "component": "message",
+      "sizes": {
+        "js": {
+          "raw": 4173,
+          "gzip": 1774,
+          "formatted": "4.08 KB",
+          "gzipFormatted": "1.73 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 4173,
+          "gzip": 1774,
+          "formatted": "4.08 KB",
+          "gzipFormatted": "1.73 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.473Z"
+    },
+    "modal": {
+      "component": "modal",
+      "sizes": {
+        "js": {
+          "raw": 6255,
+          "gzip": 2917,
+          "formatted": "6.11 KB",
+          "gzipFormatted": "2.85 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 6255,
+          "gzip": 2917,
+          "formatted": "6.11 KB",
+          "gzipFormatted": "2.85 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.474Z"
+    },
+    "navBar": {
+      "component": "navBar",
+      "sizes": {
+        "js": {
+          "raw": 1414,
+          "gzip": 812,
+          "formatted": "1.38 KB",
+          "gzipFormatted": "812 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1414,
+          "gzip": 812,
+          "formatted": "1.38 KB",
+          "gzipFormatted": "812 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.475Z"
+    },
+    "option": {
+      "component": "option",
+      "sizes": {
+        "js": {
+          "raw": 4736,
+          "gzip": 2189,
+          "formatted": "4.63 KB",
+          "gzipFormatted": "2.14 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 4736,
+          "gzip": 2189,
+          "formatted": "4.63 KB",
+          "gzipFormatted": "2.14 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.476Z"
+    },
+    "pageControl": {
+      "component": "pageControl",
+      "sizes": {
+        "js": {
+          "raw": 4621,
+          "gzip": 2399,
+          "formatted": "4.51 KB",
+          "gzipFormatted": "2.34 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 4621,
+          "gzip": 2399,
+          "formatted": "4.51 KB",
+          "gzipFormatted": "2.34 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.478Z"
+    },
+    "pagination": {
+      "component": "pagination",
+      "sizes": {
+        "js": {
+          "raw": 3603,
+          "gzip": 1977,
+          "formatted": "3.52 KB",
+          "gzipFormatted": "1.93 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 3603,
+          "gzip": 1977,
+          "formatted": "3.52 KB",
+          "gzipFormatted": "1.93 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.480Z"
+    },
+    "popover": {
+      "component": "popover",
+      "sizes": {
+        "js": {
+          "raw": 15000,
+          "gzip": 6415,
+          "formatted": "14.65 KB",
+          "gzipFormatted": "6.26 KB"
+        },
+        "css": {
+          "raw": 10358,
+          "gzip": 1294,
+          "formatted": "10.12 KB",
+          "gzipFormatted": "1.26 KB"
+        },
+        "total": {
+          "raw": 25358,
+          "gzip": 7709,
+          "formatted": "24.76 KB",
+          "gzipFormatted": "7.53 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.486Z"
+    },
+    "portal": {
+      "component": "portal",
+      "sizes": {
+        "js": {
+          "raw": 324,
+          "gzip": 267,
+          "formatted": "324 B",
+          "gzipFormatted": "267 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 324,
+          "gzip": 267,
+          "formatted": "324 B",
+          "gzipFormatted": "267 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.487Z"
+    },
+    "progressBar": {
+      "component": "progressBar",
+      "sizes": {
+        "js": {
+          "raw": 1872,
+          "gzip": 1013,
+          "formatted": "1.83 KB",
+          "gzipFormatted": "1013 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1872,
+          "gzip": 1013,
+          "formatted": "1.83 KB",
+          "gzipFormatted": "1013 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.487Z"
+    },
+    "radioButton": {
+      "component": "radioButton",
+      "sizes": {
+        "js": {
+          "raw": 3644,
+          "gzip": 1817,
+          "formatted": "3.56 KB",
+          "gzipFormatted": "1.77 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 3644,
+          "gzip": 1817,
+          "formatted": "3.56 KB",
+          "gzipFormatted": "1.77 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.488Z"
+    },
+    "selectorBoxFile": {
+      "component": "selectorBoxFile",
+      "sizes": {
+        "js": {
+          "raw": 11318,
+          "gzip": 4960,
+          "formatted": "11.05 KB",
+          "gzipFormatted": "4.84 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 11318,
+          "gzip": 4960,
+          "formatted": "11.05 KB",
+          "gzipFormatted": "4.84 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.491Z"
+    },
+    "skeleton": {
+      "component": "skeleton",
+      "sizes": {
+        "js": {
+          "raw": 1176,
+          "gzip": 709,
+          "formatted": "1.15 KB",
+          "gzipFormatted": "709 B"
+        },
+        "css": {
+          "raw": 362,
+          "gzip": 204,
+          "formatted": "362 B",
+          "gzipFormatted": "204 B"
+        },
+        "total": {
+          "raw": 1538,
+          "gzip": 913,
+          "formatted": "1.5 KB",
+          "gzipFormatted": "913 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.492Z"
+    },
+    "slider": {
+      "component": "slider",
+      "sizes": {
+        "js": {
+          "raw": 18004,
+          "gzip": 6869,
+          "formatted": "17.58 KB",
+          "gzipFormatted": "6.71 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 18004,
+          "gzip": 6869,
+          "formatted": "17.58 KB",
+          "gzipFormatted": "6.71 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.494Z"
+    },
+    "snackbar": {
+      "component": "snackbar",
+      "sizes": {
+        "js": {
+          "raw": 2015,
+          "gzip": 1177,
+          "formatted": "1.97 KB",
+          "gzipFormatted": "1.15 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 2015,
+          "gzip": 1177,
+          "formatted": "1.97 KB",
+          "gzipFormatted": "1.15 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.495Z"
+    },
+    "stepperNumber": {
+      "component": "stepperNumber",
+      "sizes": {
+        "js": {
+          "raw": 4459,
+          "gzip": 2084,
+          "formatted": "4.35 KB",
+          "gzipFormatted": "2.04 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 4459,
+          "gzip": 2084,
+          "formatted": "4.35 KB",
+          "gzipFormatted": "2.04 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.496Z"
+    },
+    "table": {
+      "component": "table",
+      "sizes": {
+        "js": {
+          "raw": 5636,
+          "gzip": 2854,
+          "formatted": "5.5 KB",
+          "gzipFormatted": "2.79 KB"
+        },
+        "css": {
+          "raw": 92,
+          "gzip": 91,
+          "formatted": "92 B",
+          "gzipFormatted": "91 B"
+        },
+        "total": {
+          "raw": 5728,
+          "gzip": 2945,
+          "formatted": "5.59 KB",
+          "gzipFormatted": "2.88 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.498Z"
+    },
+    "tableBody": {
+      "component": "tableBody",
+      "sizes": {
+        "js": {
+          "raw": 996,
+          "gzip": 642,
+          "formatted": "996 B",
+          "gzipFormatted": "642 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 996,
+          "gzip": 642,
+          "formatted": "996 B",
+          "gzipFormatted": "642 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.499Z"
+    },
+    "tableCaption": {
+      "component": "tableCaption",
+      "sizes": {
+        "js": {
+          "raw": 1020,
+          "gzip": 646,
+          "formatted": "1020 B",
+          "gzipFormatted": "646 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1020,
+          "gzip": 646,
+          "formatted": "1020 B",
+          "gzipFormatted": "646 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.499Z"
+    },
+    "tableCell": {
+      "component": "tableCell",
+      "sizes": {
+        "js": {
+          "raw": 1696,
+          "gzip": 940,
+          "formatted": "1.66 KB",
+          "gzipFormatted": "940 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1696,
+          "gzip": 940,
+          "formatted": "1.66 KB",
+          "gzipFormatted": "940 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.500Z"
+    },
+    "tableDivider": {
+      "component": "tableDivider",
+      "sizes": {
+        "js": {
+          "raw": 1045,
+          "gzip": 654,
+          "formatted": "1.02 KB",
+          "gzipFormatted": "654 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1045,
+          "gzip": 654,
+          "formatted": "1.02 KB",
+          "gzipFormatted": "654 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.501Z"
+    },
+    "tableFoot": {
+      "component": "tableFoot",
+      "sizes": {
+        "js": {
+          "raw": 996,
+          "gzip": 637,
+          "formatted": "996 B",
+          "gzipFormatted": "637 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 996,
+          "gzip": 637,
+          "formatted": "996 B",
+          "gzipFormatted": "637 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.501Z"
+    },
+    "tableHead": {
+      "component": "tableHead",
+      "sizes": {
+        "js": {
+          "raw": 1067,
+          "gzip": 670,
+          "formatted": "1.04 KB",
+          "gzipFormatted": "670 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1067,
+          "gzip": 670,
+          "formatted": "1.04 KB",
+          "gzipFormatted": "670 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.502Z"
+    },
+    "tableRow": {
+      "component": "tableRow",
+      "sizes": {
+        "js": {
+          "raw": 1167,
+          "gzip": 704,
+          "formatted": "1.14 KB",
+          "gzipFormatted": "704 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1167,
+          "gzip": 704,
+          "formatted": "1.14 KB",
+          "gzipFormatted": "704 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.503Z"
+    },
+    "tabs": {
+      "component": "tabs",
+      "sizes": {
+        "js": {
+          "raw": 5523,
+          "gzip": 2786,
+          "formatted": "5.39 KB",
+          "gzipFormatted": "2.72 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 5523,
+          "gzip": 2786,
+          "formatted": "5.39 KB",
+          "gzipFormatted": "2.72 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.504Z"
+    },
+    "tag": {
+      "component": "tag",
+      "sizes": {
+        "js": {
+          "raw": 1400,
+          "gzip": 749,
+          "formatted": "1.37 KB",
+          "gzipFormatted": "749 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1400,
+          "gzip": 749,
+          "formatted": "1.37 KB",
+          "gzipFormatted": "749 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.505Z"
+    },
+    "text": {
+      "component": "text",
+      "sizes": {
+        "js": {
+          "raw": 1590,
+          "gzip": 898,
+          "formatted": "1.55 KB",
+          "gzipFormatted": "898 B"
+        },
+        "css": {
+          "raw": 180,
+          "gzip": 134,
+          "formatted": "180 B",
+          "gzipFormatted": "134 B"
+        },
+        "total": {
+          "raw": 1770,
+          "gzip": 1032,
+          "formatted": "1.73 KB",
+          "gzipFormatted": "1.01 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.505Z"
+    },
+    "textArea": {
+      "component": "textArea",
+      "sizes": {
+        "js": {
+          "raw": 7503,
+          "gzip": 3861,
+          "formatted": "7.33 KB",
+          "gzipFormatted": "3.77 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 7503,
+          "gzip": 3861,
+          "formatted": "7.33 KB",
+          "gzipFormatted": "3.77 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.507Z"
+    },
+    "toggle": {
+      "component": "toggle",
+      "sizes": {
+        "js": {
+          "raw": 4744,
+          "gzip": 2245,
+          "formatted": "4.63 KB",
+          "gzipFormatted": "2.19 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 4744,
+          "gzip": 2245,
+          "formatted": "4.63 KB",
+          "gzipFormatted": "2.19 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.508Z"
+    },
+    "tooltip": {
+      "component": "tooltip",
+      "sizes": {
+        "js": {
+          "raw": 12481,
+          "gzip": 5485,
+          "formatted": "12.19 KB",
+          "gzipFormatted": "5.36 KB"
+        },
+        "css": {
+          "raw": 824,
+          "gzip": 339,
+          "formatted": "824 B",
+          "gzipFormatted": "339 B"
+        },
+        "total": {
+          "raw": 13305,
+          "gzip": 5824,
+          "formatted": "12.99 KB",
+          "gzipFormatted": "5.69 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.510Z"
+    },
+    "virtualKeyboard": {
+      "component": "virtualKeyboard",
+      "sizes": {
+        "js": {
+          "raw": 2541,
+          "gzip": 1380,
+          "formatted": "2.48 KB",
+          "gzipFormatted": "1.35 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 2541,
+          "gzip": 1380,
+          "formatted": "2.48 KB",
+          "gzipFormatted": "1.35 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2025-12-28T19:26:53.511Z"
+    }
+  }
+}
