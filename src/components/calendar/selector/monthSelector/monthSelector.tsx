@@ -98,8 +98,8 @@ export const MonthSelector = ({
             {...pickCustomAttributes(customAttributes)}
           >
             <CustomComponent
+              aria-disabled={setDisabledMonths(index)}
               aria-label={month.charAt(0).toUpperCase() + month.slice(1)}
-              ariaDisabled={setDisabledMonths(index)}
               className={cssClasses?.monthelement}
               component="button"
               focus={focus === index}

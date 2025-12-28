@@ -1,4 +1,4 @@
-import { waitFor, renderHook } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { type RefObject } from 'react';
 
 import { useInputFocus } from '../useInputFocus';
@@ -8,7 +8,10 @@ describe('useInputFocus', () => {
 
   beforeEach(() => {
     inputRef = { current: document.createElement('input') };
-    Object.defineProperty(inputRef.current, 'value', { configurable: true, writable: true });
+    Object.defineProperty(inputRef.current, 'value', {
+      configurable: true,
+      writable: true,
+    });
   });
 
   it('should initialize focused state as false', async () => {
@@ -18,18 +21,37 @@ describe('useInputFocus', () => {
 
   it('should update focused state on focus event', async () => {
     const { result } = renderHook(() => useInputFocus({ inputRef }));
-    if (inputRef.current) {
-      inputRef.current.dispatchEvent(new Event('focus'));
-    }
+
+    await act(async () => {
+      if (inputRef.current) {
+        inputRef.current.dispatchEvent(new Event('focus', { bubbles: true }));
+      }
+      // Wait for the event to be processed
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+
     await waitFor(() => expect(result.current.focused).toBeTruthy());
   });
 
   it('should update focused state on blur event', async () => {
     const { result } = renderHook(() => useInputFocus({ inputRef }));
-    if (inputRef.current) {
-      inputRef.current.dispatchEvent(new Event('focus'));
-      inputRef.current.dispatchEvent(new Event('blur'));
-    }
+
+    await act(async () => {
+      if (inputRef.current) {
+        inputRef.current.dispatchEvent(new Event('focus', { bubbles: true }));
+        // Wait for the focus event to be processed
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      }
+    });
+
+    await act(async () => {
+      if (inputRef.current) {
+        inputRef.current.dispatchEvent(new Event('blur', { bubbles: true }));
+      }
+      // Wait for the blur event to be processed
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+
     await waitFor(() => expect(result.current.focused).toBeFalsy());
   });
 
@@ -37,11 +59,20 @@ describe('useInputFocus', () => {
     const { unmount } = renderHook(() => useInputFocus({ inputRef }));
     let removeEventListenerSpy;
     if (inputRef.current) {
-      removeEventListenerSpy = vi.spyOn(inputRef.current, 'removeEventListener');
+      removeEventListenerSpy = vi.spyOn(
+        inputRef.current,
+        'removeEventListener',
+      );
     }
     unmount();
 
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('focus', expect.any(Function));
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('blur', expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith(
+      'focus',
+      expect.any(Function),
+    );
+    expect(removeEventListenerSpy).toHaveBeenCalledWith(
+      'blur',
+      expect.any(Function),
+    );
   });
 });

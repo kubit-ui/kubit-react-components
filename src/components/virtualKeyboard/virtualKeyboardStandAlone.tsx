@@ -4,8 +4,9 @@ import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
-import { DigitButton } from './components/digitButton';
 import type { VirtualKeyboardStandAloneProps } from './types/virtualKeyboard';
+
+import { DigitButton } from './components/digitButton';
 
 export const VirtualKeyboardStandAlone = forwardRef<
   HTMLDivElement,

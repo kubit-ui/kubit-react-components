@@ -60,7 +60,7 @@ export const Option = forwardRef(
     return (
       <OptionStandAlone
         {...props}
-        ref={innerRef}
+        ref={innerRef as React.ForwardedRef<HTMLElement>}
         componentLink={genericLinkComponent}
         cssClasses={cssClasses}
         focus={focused}

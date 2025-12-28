@@ -9,8 +9,9 @@ import {
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useInputFocus } from '@/lib/hooks/useInputFocus/useInputFocus';
 
-import { InputStandAlone } from './inputStandAlone';
 import type { InputProps } from './types/input';
+
+import { InputStandAlone } from './inputStandAlone';
 import { getState } from './utils/state';
 
 export const Input = forwardRef<HTMLDivElement, InputProps>(

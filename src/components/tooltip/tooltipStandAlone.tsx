@@ -11,10 +11,11 @@ import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCusto
 import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
 import { processText } from '@/lib/utils/process/processText/processText';
 
+import type { TooltipStandAloneProps } from './types/tooltip';
+
 import { IconHost as Icon } from '../icon/iconHost';
 import { Popover } from '../popover/popover';
 import { TooltipTrigger } from './components/tooltipTrigger';
-import type { TooltipStandAloneProps } from './types/tooltip';
 import { getAriaDescriptorsBy } from './utils/tooltip.utils';
 
 export const TooltipStandAlone = ({

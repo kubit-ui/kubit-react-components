@@ -132,7 +132,7 @@ describe('useTooltip', () => {
     expect(document.body).toHTMLValidate();
   });
 
-  it('Use Tooltip - computePosition should be called if labelRef and tooltipRef', () => {
+  it('Use Tooltip - computePosition should be called if labelRef and tooltipRef', async () => {
     window.matchMedia = windowMatchMedia('onlyDesktop');
     vi.spyOn(useMediaDevice, 'useMediaDevice').mockImplementation(
       () => DEVICE_BREAKPOINTS.DESKTOP,
@@ -156,11 +156,14 @@ describe('useTooltip', () => {
       useTooltip({ labelRef, tooltipRef, variant }),
     );
 
-    act(() => {
+    await act(async () => {
       result.current.showTooltip();
+      // Wait for computePosition to complete
+      await vi.waitFor(() => {
+        expect(computePositionMock).toHaveBeenCalled();
+      });
     });
 
-    expect(computePositionMock).toHaveBeenCalled();
     expect(document.body).toHTMLValidate();
   });
 

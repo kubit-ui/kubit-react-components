@@ -1,70 +1,60 @@
-import { render, unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
+import { render, screen, waitFor } from '@testing-library/react';
 
 import { Portal } from '../portal';
 
 describe('Portal', () => {
-  let container: HTMLElement | null = null;
-
-  beforeEach(() => {
-    // Set up a DOM element as a render target
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-
   afterEach(() => {
-    // Clean up on exiting
-    if (container) {
-      unmountComponentAtNode(container);
-      container.remove();
-    }
-    container = null;
+    // Clean up any portal wrappers created during tests
+    document.querySelectorAll('[id*="wrapper"]').forEach((el) => el.remove());
   });
 
   it('renders children inside the body element', () => {
-    act(() => {
-      render(
-        <Portal>
-          <div>Test Content</div>
-        </Portal>,
-        container,
-      );
-    });
+    render(
+      <Portal>
+        <div data-testid="portal-content">Test Content</div>
+      </Portal>,
+    );
 
-    expect(document.body.innerHTML).toContain('<div>Test Content</div>');
+    const content = screen.getByTestId('portal-content');
+    expect(content).toBeInTheDocument();
+    expect(document.body).toContainElement(content);
   });
 
-  it('renders children inside a custom wrapper element', () => {
+  it('renders children inside a custom wrapper element', async () => {
     const wrapperId = 'custom-wrapper';
 
-    act(() => {
-      render(
-        <Portal wrapperId={wrapperId}>
-          <div>Test Content</div>
-        </Portal>,
-        container,
-      );
+    render(
+      <Portal wrapperId={wrapperId}>
+        <div data-testid="portal-content">Test Content</div>
+      </Portal>,
+    );
+
+    await waitFor(() => {
+      const wrapperElement = document.getElementById(wrapperId);
+      expect(wrapperElement).toBeTruthy();
     });
 
+    const content = screen.getByTestId('portal-content');
     const wrapperElement = document.getElementById(wrapperId);
-    expect(wrapperElement).toBeTruthy();
-    expect(wrapperElement?.innerHTML).toContain('<div>Test Content</div>');
+    expect(wrapperElement).toContainElement(content);
   });
 
-  it('creates a new wrapper element if the custom wrapper element does not exist', () => {
+  it('creates a new wrapper element if the custom wrapper element does not exist', async () => {
     const wrapperId = 'non-existent-wrapper';
 
-    act(() => {
-      render(
-        <Portal wrapperId={wrapperId}>
-          <div>Test Content</div>
-        </Portal>,
-        container,
-      );
+    render(
+      <Portal wrapperId={wrapperId}>
+        <div data-testid="portal-content">Test Content</div>
+      </Portal>,
+    );
+
+    await waitFor(() => {
+      const wrapperElement = document.getElementById(wrapperId);
+      expect(wrapperElement).toBeTruthy();
     });
 
+    const content = screen.getByTestId('portal-content');
     const wrapperElement = document.getElementById(wrapperId);
-    expect(wrapperElement).toBeTruthy();
-    expect(wrapperElement?.innerHTML).toContain('<div>Test Content</div>');
+    expect(wrapperElement).toContainElement(content);
   });
 });

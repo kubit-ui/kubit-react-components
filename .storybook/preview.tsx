@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import type { Preview } from '@storybook/react';
 import ReactDOM from 'react-dom';
 
+import '../src/lib/designSystem/kubit/css/kubit.css';
 import { KubitProvider } from '../src/lib/provider/kubitProvider/kubitProvider';
 import { useStylesContext } from '../src/lib/provider/stylesProvider/stylesProvider';
 import '../src/lib/storybook/components/replaceContent/replaceContent';
@@ -44,31 +45,65 @@ const ThemeDecorator = ({
 };
 
 const preview: Preview = {
+  decorators: [
+    (Story, context) => {
+      const noteParams = context.parameters.note;
+      const notePortal =
+        typeof window !== 'undefined' ? ensureNotePortal() : null;
+      return (
+        <>
+          {notePortal &&
+            noteParams &&
+            ReactDOM.createPortal(
+              <div
+                style={{
+                  margin: '0 auto',
+                  padding: '1rem',
+                }}
+              >
+                <Note
+                  heading={noteParams.title}
+                  text={noteParams.text || []}
+                  variant={noteParams.variant || 'information'}
+                />
+              </div>,
+              notePortal,
+            )}
+          <KubitProvider>
+            <ThemeDecorator theme={context.globals.theme}>
+              <Story />
+            </ThemeDecorator>
+          </KubitProvider>
+        </>
+      );
+    },
+  ],
   globalTypes: {
     theme: {
-      name: 'Theme',
-      description: 'Global theme for components',
       defaultValue: 'kubit',
+      description: 'Global theme for components',
+      name: 'Theme',
       toolbar: {
-        title: 'Theme',
         dynamicTitle: true,
         icon: 'paintbrush',
-        items: [{ value: 'kubit', title: 'kubit' }],
+        items: [{ title: 'kubit', value: 'kubit' }],
+        title: 'Theme',
       },
     },
   },
+
   parameters: {
     // Accessibility
     a11y: {
       config: {
         rules: [
           {
-            id: 'color-contrast',
             enabled: true,
+            id: 'color-contrast',
           },
           {
-            id: 'landmark-one-main',
             enabled: false, // Disable for component-level testing
+            id: 'landmark-one-main',
           },
         ],
       },
@@ -82,8 +117,6 @@ const preview: Preview = {
         { name: 'gray', value: '#f5f5f5' },
       ],
     },
-    // Deep Controls
-    deepControls: { enabled: true },
     // Controls
     controls: {
       expanded: true,
@@ -93,6 +126,8 @@ const preview: Preview = {
       },
       sort: 'requiredFirst',
     },
+    // Deep Controls
+    deepControls: { enabled: true },
     // Docs
     docs: {
       toc: {
@@ -120,64 +155,30 @@ const preview: Preview = {
     // Viewport
     viewport: {
       viewports: {
+        desktop: {
+          name: 'Desktop',
+          styles: { height: '900px', width: '1440px' },
+          type: 'desktop',
+        },
         // Custom viewports for your design system
         mobile: {
           name: 'Mobile',
-          styles: { width: '375px', height: '667px' },
+          styles: { height: '667px', width: '375px' },
           type: 'mobile',
         },
         tablet: {
           name: 'Tablet',
-          styles: { width: '768px', height: '1024px' },
+          styles: { height: '1024px', width: '768px' },
           type: 'tablet',
-        },
-        desktop: {
-          name: 'Desktop',
-          styles: { width: '1440px', height: '900px' },
-          type: 'desktop',
         },
         wide: {
           name: 'Wide Screen',
-          styles: { width: '1920px', height: '1080px' },
+          styles: { height: '1080px', width: '1920px' },
           type: 'desktop',
         },
       },
     },
   },
-
-  decorators: [
-    (Story, context) => {
-      const noteParams = context.parameters.note;
-      const notePortal =
-        typeof window !== 'undefined' ? ensureNotePortal() : null;
-      return (
-        <>
-          {notePortal &&
-            noteParams &&
-            ReactDOM.createPortal(
-              <div
-                style={{
-                  padding: '1rem',
-                  margin: '0 auto',
-                }}
-              >
-                <Note
-                  variant={noteParams.variant || 'information'}
-                  heading={noteParams.title}
-                  text={noteParams.text || []}
-                />
-              </div>,
-              notePortal,
-            )}
-          <KubitProvider>
-            <ThemeDecorator theme={context.globals.theme}>
-              <Story />
-            </ThemeDecorator>
-          </KubitProvider>
-        </>
-      );
-    },
-  ],
 };
 
 export default preview;

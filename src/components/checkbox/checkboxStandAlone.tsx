@@ -2,10 +2,11 @@ import { forwardRef, useId } from 'react';
 
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
+import type { CheckboxStandAloneProps } from './types/checkbox';
+
 import { CheckboxBaseControlled } from '../checkboxBase/checkboxBaseControlled';
 import { ErrorMessage } from './components/errorMessage';
 import { Label } from './components/label';
-import type { CheckboxStandAloneProps } from './types/checkbox';
 import { buildAriaDescribedBy } from './utils/aria.utils';
 
 export const CheckboxStandAlone = forwardRef(

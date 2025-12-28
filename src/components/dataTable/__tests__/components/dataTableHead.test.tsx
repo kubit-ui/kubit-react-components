@@ -6,9 +6,14 @@ import { DataTableHead } from '../../components/dataTableHead';
 
 const mockProps = {};
 
+// Helper to render DataTableHead with proper table structure
+const renderWithTable = (component: React.ReactElement) => {
+  return render(<table>{component}</table>);
+};
+
 describe('DataTableHead', () => {
   it('Should render a tableHead with thead tag', () => {
-    render(
+    renderWithTable(
       <DataTableHead
         {...mockProps}
         tableHeadConfig={{ 'data-testid': 'thead-id' }}
@@ -21,6 +26,7 @@ describe('DataTableHead', () => {
   });
 
   it('When using row groups, should render a tableHead with div tag', () => {
+    // When using row groups, the component uses CSS Grid, not HTML table structure
     render(
       <DataTableHead
         {...mockProps}
@@ -41,7 +47,7 @@ describe('DataTableHead', () => {
       { field: 'field2', headerContent: 'Header 2' },
     ];
 
-    render(<DataTableHead {...mockProps} columns={columns} />);
+    renderWithTable(<DataTableHead {...mockProps} columns={columns} />);
 
     const header1 = screen.getByText('Header 1');
     const header2 = screen.getByText('Header 2');
@@ -56,6 +62,7 @@ describe('DataTableHead', () => {
       { field: 'field2', headerContent: 'Header 2', with: '100px' },
     ];
 
+    // When using row groups, the component uses CSS Grid, not HTML table structure
     render(
       <DataTableHead {...mockProps} columns={columns} usingRowGroups={true} />,
     );
@@ -84,7 +91,7 @@ describe('DataTableHead', () => {
       },
     ];
 
-    render(<DataTableHead {...mockProps} columns={columns} />);
+    renderWithTable(<DataTableHead {...mockProps} columns={columns} />);
 
     const header1 = screen.getByTestId('tableCellHeader1');
 
@@ -106,6 +113,7 @@ describe('DataTableHead', () => {
       },
     ];
 
+    // When using row groups, the component uses CSS Grid, not HTML table structure
     render(
       <DataTableHead {...mockProps} columns={columns} usingRowGroups={true} />,
     );

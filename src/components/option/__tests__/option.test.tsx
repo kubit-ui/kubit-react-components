@@ -10,7 +10,6 @@ import * as OptionUtils from '../utils/option.utils';
 
 const mockProps = {
   label: 'label',
-  ref: vi.fn(),
   sublabel: { content: 'sublabel' },
   variant: 'SIDE_MENU_LEVEL_1',
 };

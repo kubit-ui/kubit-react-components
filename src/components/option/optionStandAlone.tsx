@@ -18,31 +18,34 @@ import { OptionLabelSlice } from './components.ts/optionLabelSlice';
 import { getHighlightedIndexes, getState } from './utils/option.utils';
 
 export const OptionStandAlone = forwardRef(
-  ({
-    checkedIcon,
-    component,
-    componentLink,
-    cssClasses,
-    disabled: disabledProp,
-    extraContent,
-    focus,
-    hover,
-    icon,
-    label,
-    labelCharsHighlighted,
-    multiSelect,
-    onBlur,
-    onClick,
-    onFocus,
-    onMouseEnter,
-    onMouseLeave,
-    role,
-    selected,
-    sublabel,
-    tabIndex,
-    url,
-    ...props
-  }: OptionStandAloneProps) => {
+  (
+    {
+      checkedIcon,
+      component,
+      componentLink,
+      cssClasses,
+      disabled: disabledProp,
+      extraContent,
+      focus,
+      hover,
+      icon,
+      label,
+      labelCharsHighlighted,
+      multiSelect,
+      onBlur,
+      onClick,
+      onFocus,
+      onMouseEnter,
+      onMouseLeave,
+      role,
+      selected,
+      sublabel,
+      tabIndex,
+      url,
+      ...props
+    }: OptionStandAloneProps,
+    ref: React.ForwardedRef<HTMLElement>,
+  ) => {
     const filling =
       !!labelCharsHighlighted && labelCharsHighlighted?.length > 0;
     const state = getState(
@@ -94,6 +97,7 @@ export const OptionStandAlone = forwardRef(
     }
     return (
       <CustomComponent
+        ref={ref}
         aria-disabled={disabled}
         className={cssClasses?.option}
         {...customProps}

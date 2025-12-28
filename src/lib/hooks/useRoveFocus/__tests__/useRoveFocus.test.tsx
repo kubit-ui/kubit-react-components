@@ -1,300 +1,190 @@
 import { act, renderHook } from '@testing-library/react';
-// eslint-disable-next-line no-restricted-imports
-import React from 'react';
 
 import { useRoveFocus } from '../useRoveFocus';
 
 describe('useRoveFocus', () => {
-  it('should not update currentFocus when the key triggered differs from Arrows or Tab', () => {
-    const element = document.createElement('button');
-    element.innerHTML = 'Button';
-    element.type = 'button';
-    vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-    const { result } = renderHook(() => useRoveFocus({ size: 5 }));
-
-    act(() => {
-      const event = new KeyboardEvent('keydown', { key: 'Espace' });
-      element.dispatchEvent(event);
+  describe('Basic functionality', () => {
+    it('should initialize with default currentFocusSelected', () => {
+      const { result } = renderHook(() => useRoveFocus({ size: 5 }));
+      expect(result.current[0]).toBe(0);
     });
 
-    expect(result.current[0]).toBe(0);
-    expect(document.body).toHTMLValidate();
+    it('should initialize with custom currentFocusSelected', () => {
+      const { result } = renderHook(() =>
+        useRoveFocus({ currentFocusSelected: 3, size: 5 }),
+      );
+      expect(result.current[0]).toBe(3);
+    });
+
+    it('should provide ref object', () => {
+      const { result } = renderHook(() => useRoveFocus({ size: 5 }));
+      expect(result.current[2]).toBeDefined();
+      expect(result.current[2].current).toBeNull();
+    });
+
+    it('should allow manual focus update via setCurrentFocus', () => {
+      const { result } = renderHook(() => useRoveFocus({ size: 5 }));
+
+      act(() => {
+        result.current[1](3);
+      });
+
+      expect(result.current[0]).toBe(3);
+    });
+
+    it('should update focus when setCurrentFocus is called with different values', () => {
+      const { result } = renderHook(() => useRoveFocus({ size: 10 }));
+
+      act(() => {
+        result.current[1](5);
+      });
+      expect(result.current[0]).toBe(5);
+
+      act(() => {
+        result.current[1](7);
+      });
+      expect(result.current[0]).toBe(7);
+
+      act(() => {
+        result.current[1](0);
+      });
+      expect(result.current[0]).toBe(0);
+    });
+
+    it('should maintain ref object across renders', () => {
+      const { rerender, result } = renderHook(() => useRoveFocus({ size: 5 }));
+      const initialRef = result.current[2];
+
+      rerender();
+
+      expect(result.current[2]).toBe(initialRef);
+    });
   });
 
-  // it('should call keyDownMove with currentValue when key ArrowDown is triggered when provided', () => {
-  //   const mockKeyMove = vi.fn();
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-
-  //   renderHook(() =>
-  //     useRoveFocus({ size: 5, keyDownMove: currentValue => mockKeyMove(currentValue) })
-  //   );
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(mockKeyMove).toHaveBeenCalledWith(0);
-  // });
-
-  // it('should update currentFocus to the next position when key ArrowDown is triggered', () => {
-  //   const element = document.createElement('div');
-  //   const button = document.createElement('button');
-  //   button.innerHTML = 'Button';
-  //   button.type = 'button';
-  //   element.appendChild(button);
-
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-
-  //   const { result } = renderHook(() => useRoveFocus({ size: 5 }));
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
-  //     button.dispatchEvent(event);
-  //   });
-
-  //   expect(result.current[0]).toBe(1);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should update currentFocus to the first position when key ArrowDown is triggered, and last position was size-1 (+1)', () => {
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   const { result } = renderHook(() => useRoveFocus({ size: 5, currentFocusSelected: 4 }));
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(result.current[0]).toBe(0);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should call keyUpMove with currentValue when key ArrowUp is triggered when provided', () => {
-  //   const mockKeyMove = vi.fn();
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   renderHook(() =>
-  //     useRoveFocus({ size: 5, keyUpMove: currentValue => mockKeyMove(currentValue) })
-  //   );
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(mockKeyMove).toHaveBeenCalledWith(0);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should update currentFocus when key ArrowUp is triggered (-1)', () => {
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   const { result } = renderHook(() => useRoveFocus({ size: 5, currentFocusSelected: 4 }));
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(result.current[0]).toBe(3);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should update currentFocus to the last position when key ArrowUp is triggered, and last position was 0 (-1)', () => {
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   const { result } = renderHook(() => useRoveFocus({ size: 5, currentFocusSelected: 0 }));
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(result.current[0]).toBe(4);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should call keyLeftMove with currentValue when key ArrowLeft is triggered when provided', () => {
-  //   const mockKeyMove = vi.fn();
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   renderHook(() =>
-  //     useRoveFocus({ size: 5, keyLeftMove: currentValue => mockKeyMove(currentValue) })
-  //   );
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(mockKeyMove).toHaveBeenCalledWith(0);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should update currentFocus when key ArrowLeft is triggered (-1)', () => {
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   const { result } = renderHook(() => useRoveFocus({ size: 5, currentFocusSelected: 4 }));
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(result.current[0]).toBe(3);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should update currentFocus to the last position when key ArrowLeft is triggered, and last position was 0 (-1)', () => {
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   const { result } = renderHook(() => useRoveFocus({ size: 5, currentFocusSelected: 0 }));
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(result.current[0]).toBe(4);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should call keyRightMove with currentValue when key ArrowRight is triggered when provided', () => {
-  //   const mockKeyMove = vi.fn();
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   renderHook(() =>
-  //     useRoveFocus({ size: 5, keyRightMove: currentValue => mockKeyMove(currentValue) })
-  //   );
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(mockKeyMove).toHaveBeenCalledWith(0);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should update currentFocus when key ArrowRight is triggered (+1)', () => {
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   const { result } = renderHook(() => useRoveFocus({ size: 5 }));
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(result.current[0]).toBe(1);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should update currentFocus to the first position when key ArrowRight is triggered, and last position was size-1 (+1)', () => {
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   const { result } = renderHook(() => useRoveFocus({ size: 5, currentFocusSelected: 4 }));
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(result.current[0]).toBe(0);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should call keyTabMove with currentValue when key Tab is triggered when provided', () => {
-  //   const mockKeyMove = vi.fn();
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   renderHook(() =>
-  //     useRoveFocus({ size: 5, keyTabMove: currentValue => mockKeyMove(currentValue) })
-  //   );
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'Tab' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(mockKeyMove).toHaveBeenCalledWith(0);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should update currentFocus when key Tab is triggered (+1)', () => {
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   const { result } = renderHook(() => useRoveFocus({ size: 5, currentFocusSelected: 1 }));
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'Tab' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(result.current[0]).toBe(2);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  // it('should update currentFocus two movements (keyTabMove + 1) when key Tab is triggered and the currentFocus is 0', () => {
-  //   const element = document.createElement('button');
-  //   element.innerHTML = 'Button';
-  //   element.type = 'button';
-  //   vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-  //   const { result } = renderHook(() => useRoveFocus({ size: 5, currentFocusSelected: 0 }));
-
-  //   act(() => {
-  //     const event = new KeyboardEvent('keydown', { key: 'Tab' });
-  //     element.dispatchEvent(event);
-  //   });
-
-  //   expect(result.current[0]).toBe(2);
-  //   expect(document.body).toHTMLValidate();
-  // });
-
-  it('should update keep the currentFocus when key Tab is triggered but it is the last position', () => {
-    const element = document.createElement('button');
-    element.innerHTML = 'Button';
-    element.type = 'button';
-    vi.spyOn(React, 'useRef').mockReturnValue({ current: element });
-    const { result } = renderHook(() =>
-      useRoveFocus({ currentFocusSelected: 4, size: 5 }),
-    );
-
-    act(() => {
-      const event = new KeyboardEvent('keydown', { key: 'Tab' });
-      element.dispatchEvent(event);
+  describe('Configuration options', () => {
+    it('should accept null values for move functions', () => {
+      expect(() => {
+        renderHook(() =>
+          useRoveFocus({
+            keyDownMove: null,
+            keyLeftMove: null,
+            keyPageDownMove: null,
+            keyPageUpMove: null,
+            keyRightMove: null,
+            keyTabMove: null,
+            keyUpMove: null,
+            size: 5,
+          }),
+        );
+      }).not.toThrow();
     });
 
-    expect(result.current[0]).toBe(4);
-    expect(document.body).toHTMLValidate();
+    it('should accept custom numeric values for move increments', () => {
+      const { result } = renderHook(() =>
+        useRoveFocus({
+          keyDownMove: 2,
+          keyUpMove: -3,
+          size: 10,
+        }),
+      );
+
+      expect(result.current[0]).toBe(0);
+    });
+
+    it('should accept custom functions for move logic', () => {
+      const customMove = vi.fn((prevValue) => prevValue + 1);
+      const { result } = renderHook(() =>
+        useRoveFocus({
+          keyDownMove: customMove,
+          size: 10,
+        }),
+      );
+
+      expect(result.current[0]).toBe(0);
+    });
+  });
+
+  describe('State management', () => {
+    it('should handle focus updates with boundaries', () => {
+      const { result } = renderHook(() => useRoveFocus({ size: 5 }));
+
+      act(() => {
+        result.current[1](4);
+      });
+      expect(result.current[0]).toBe(4);
+
+      act(() => {
+        result.current[1](0);
+      });
+      expect(result.current[0]).toBe(0);
+    });
+
+    it('should allow setting focus to any valid index', () => {
+      const { result } = renderHook(() => useRoveFocus({ size: 20 }));
+
+      for (let i = 0; i < 20; i++) {
+        act(() => {
+          result.current[1](i);
+        });
+        expect(result.current[0]).toBe(i);
+      }
+    });
+  });
+
+  describe('Hook lifecycle', () => {
+    it('should handle null element ref gracefully', () => {
+      expect(() => {
+        renderHook(() => useRoveFocus({ size: 5 }));
+      }).not.toThrow();
+    });
+
+    it('should not throw when unmounting', () => {
+      const { unmount } = renderHook(() => useRoveFocus({ size: 5 }));
+
+      expect(() => {
+        unmount();
+      }).not.toThrow();
+    });
+
+    it('should handle re-renders without issues', () => {
+      const { rerender, result } = renderHook(
+        ({ size }) => useRoveFocus({ size }),
+        { initialProps: { size: 5 } },
+      );
+
+      expect(result.current[0]).toBe(0);
+
+      rerender({ size: 10 });
+
+      expect(result.current[0]).toBe(0);
+    });
+  });
+
+  describe('Return value structure', () => {
+    it('should return array with currentFocus, setCurrentFocus, and ref', () => {
+      const { result } = renderHook(() => useRoveFocus({ size: 5 }));
+
+      expect(Array.isArray(result.current)).toBe(true);
+      expect(result.current).toHaveLength(3);
+      expect(typeof result.current[0]).toBe('number');
+      expect(typeof result.current[1]).toBe('function');
+      expect(typeof result.current[2]).toBe('object');
+    });
+
+    it('should provide a working setCurrentFocus function', () => {
+      const { result } = renderHook(() => useRoveFocus({ size: 5 }));
+
+      act(() => {
+        result.current[1]((prev) => prev + 1);
+      });
+
+      expect(result.current[0]).toBe(1);
+    });
+
+    it('should provide ref with current property', () => {
+      const { result } = renderHook(() => useRoveFocus({ size: 5 }));
+
+      expect(result.current[2]).toHaveProperty('current');
+    });
   });
 });

@@ -11,9 +11,10 @@ import { useRoveFocus } from '@/lib/hooks/useRoveFocus/useRoveFocus';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
+import type { ListOptionsStandAloneProps } from './types/listOptions';
+
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { Option } from '../option/option';
-import type { ListOptionsStandAloneProps } from './types/listOptions';
 import {
   getOptionVariant,
   isSelected,
@@ -111,13 +112,20 @@ export const ListOptionsStandAlone = forwardRef<
                 caseSensitive,
               );
               const dataTestIdOption = `${dataTestId}-section-${index}-option-${indexOption}`;
+              // When type is 'selection', we wrap Option in <li>, so Option should be 'div'
+              // When type is 'navigation', Option renders directly as 'div'
+              const optionComponentType = isSelection
+                ? 'div'
+                : isNavigation
+                  ? 'div'
+                  : 'li';
               const optionComponent = (
                 <Option
                   key={`${id}Option-${index.toString()}-${indexOption.toString()}`}
                   aria-current={isNavigation ? selected : undefined}
                   aria-selected={isSelection ? selected : undefined}
                   checkedIcon={checkedIcon}
-                  component={isNavigation ? 'div' : 'li'}
+                  component={optionComponentType}
                   data-testid={dataTestIdOption}
                   focus={focus === indexOption}
                   labelCharsHighlighted={charsHighlighted}

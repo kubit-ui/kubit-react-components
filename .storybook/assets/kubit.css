@@ -738,7 +738,7 @@ body *:focus-visible { box-shadow: 0 0 0 0.25rem #fff; outline-color: #2C71DB; o
 .carousel__content[data-center-mode="true"] > *[data-highlighted] { transform: scale(1); }
 .carousel__content[data-shifting="true"] { transition: left 0.5s ease-out; }
 .carousel__content > * { flex-shrink: 0; }
-.carousel__viewer { cursor: grab; overflow: hidden; padding: 0.5rem; position: relative; }
+.carousel__viewer { cursor: grab; overflow: hidden; position: relative; padding: 0.5rem; }
 .carousel__viewer[data-allow-modify-slice-width="false"] { width: 0px; }
 .carousel__viewer[data-allow-modify-slice-width="true"] { width: 100%; }
 .carousel__viewer[data-disabled="true"] { cursor: default; }

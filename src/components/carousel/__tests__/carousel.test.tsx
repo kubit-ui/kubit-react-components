@@ -1,3 +1,4 @@
+import { act } from 'react';
 import { axe } from 'vitest-axe';
 
 import { CarouselVariantType } from '@/lib/designSystem/kubit/components/carousel/variants';
@@ -121,7 +122,9 @@ describe('Carousel component', () => {
     render(<Carousel {...mockProps} onNumPagesChange={onNumPagesChange} />);
 
     // Simulate the hook calling onNumPagesChange
-    capturedOnNumPagesChange?.(3);
+    await act(async () => {
+      capturedOnNumPagesChange?.(3);
+    });
 
     expect(onNumPagesChange).toHaveBeenCalledWith(3);
   });
@@ -144,7 +147,9 @@ describe('Carousel component', () => {
     render(<Carousel {...mockProps} onPageChange={onPageChange} />);
 
     // Simulate the hook calling onPageChange
-    capturedOnPageChange?.(3);
+    await act(async () => {
+      capturedOnPageChange?.(3);
+    });
 
     expect(onPageChange).toHaveBeenCalledWith(3);
   });

@@ -9,8 +9,9 @@ import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import { processText } from '@/lib/utils/process/processText/processText';
 
-import { useTabs } from './hooks/useTabs/useTabs';
 import type { TabsStandAloneProps } from './types/tabs';
+
+import { useTabs } from './hooks/useTabs/useTabs';
 
 const MAX_TABS_IN_VIEW = 3;
 

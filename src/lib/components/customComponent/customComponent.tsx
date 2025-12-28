@@ -31,8 +31,33 @@ export const CustomComponent = forwardRef(
   ) => {
     const Component = component || 'span';
 
+    // List of custom props that should not be passed to DOM elements
+    const customProps = [
+      'middlewareOptions',
+      'pressEscapeClose',
+      'onSelectItem',
+      'ariaDisabled',
+      'focus',
+      'index',
+    ];
+
+    // Filter out custom props when rendering native HTML elements
+    const isNativeElement = typeof Component === 'string';
+    const filteredProps = isNativeElement
+      ? Object.keys(props).reduce(
+          (acc, key) => {
+            if (!customProps.includes(key)) {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              acc[key] = (props as any)[key];
+            }
+            return acc;
+          },
+          {} as Record<string, unknown>,
+        )
+      : props;
+
     return (
-      <Component ref={ref} className={className} {...props}>
+      <Component ref={ref} className={className} {...filteredProps}>
         {children}
       </Component>
     );

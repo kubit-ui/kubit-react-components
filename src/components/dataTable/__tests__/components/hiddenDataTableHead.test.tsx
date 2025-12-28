@@ -6,6 +6,10 @@ import { HiddenDataTableHead } from '../../components/hiddenDataTableHead';
 
 const mockProps = {};
 
+const renderWithTable = (component: React.ReactElement) => {
+  return render(<table>{component}</table>);
+};
+
 describe('HiddenDataTableHead', () => {
   it('Should render a tableHead with its cells', () => {
     const columns = [
@@ -22,7 +26,7 @@ describe('HiddenDataTableHead', () => {
       },
     ];
 
-    render(<HiddenDataTableHead {...mockProps} columns={columns} />);
+    renderWithTable(<HiddenDataTableHead {...mockProps} columns={columns} />);
 
     const header1 = screen.getByText('Header 1');
     const header2 = screen.getByText('Header 2');

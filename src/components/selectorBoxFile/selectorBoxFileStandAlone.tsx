@@ -2,11 +2,12 @@ import { forwardRef, useId } from 'react';
 
 import { STATES } from '@/lib/types/states/states';
 
+import type { SelectorBoxFileStandAloneProps } from './types/selectorBoxFile';
+
 import { SelectorBoxFileAnimation } from './components/selectorBoxFileAnimation';
 import { SelectorBoxFileContainerBox } from './components/selectorBoxFileContainerBox';
 import { SelectorBoxFileErrorMessage } from './components/selectorBoxFileErrorMessage';
 import { SelectorBoxFileHeader } from './components/selectorBoxFileHeader';
-import type { SelectorBoxFileStandAloneProps } from './types/selectorBoxFile';
 
 export const SelectorBoxFileStandAlone = forwardRef<
   HTMLDivElement,

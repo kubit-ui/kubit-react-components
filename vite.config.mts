@@ -3,6 +3,7 @@ import fs from 'fs';
 import { glob } from 'glob';
 import { fileURLToPath } from 'node:url';
 import path from 'path';
+import { minify } from 'terser';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -53,11 +54,11 @@ const copyCSSPlugin = () => {
 };
 
 /**
- * Plugin to copy cssProvider JavaScript files
+ * Plugin to copy cssProvider JavaScript files and minify them
  */
 const copyCSSProviderPlugin = () => {
   return {
-    closeBundle() {
+    async closeBundle() {
       const cssProviderDir = path.resolve(
         __dirname,
         'src/lib/provider/cssProvider',
@@ -73,27 +74,48 @@ const copyCSSProviderPlugin = () => {
         path.resolve(__dirname, 'dist/cjs/lib/provider/cssProvider'),
       ];
 
-      outputDirs.forEach((outputDir) => {
+      for (const outputDir of outputDirs) {
         fs.mkdirSync(outputDir, { recursive: true });
         fs.mkdirSync(path.join(outputDir, 'stats'), { recursive: true });
 
-        filesToCopy.forEach(({ dest, src }) => {
+        for (const { dest, src } of filesToCopy) {
           const srcPath = path.join(cssProviderDir, src);
           const destPath = path.join(outputDir, dest);
 
           if (fs.existsSync(srcPath)) {
-            fs.copyFileSync(srcPath, destPath);
+            // Read the source file
+            const code = fs.readFileSync(srcPath, 'utf-8');
+
+            // Minify the JavaScript code
+            const minified = await minify(code, {
+              compress: {
+                dead_code: true,
+                drop_console: false, // Keep console for this file
+                drop_debugger: true,
+              },
+              format: {
+                comments: false,
+              },
+              mangle: {
+                properties: false,
+              },
+            });
+
+            // Write the minified code
+            fs.writeFileSync(destPath, minified.code || code);
           } else {
             // eslint-disable-next-line no-console
             console.warn(
               `[copy-css-provider-assets] ⚠ File not found: ${srcPath}`,
             );
           }
-        });
-      });
+        }
+      }
 
       // eslint-disable-next-line no-console
-      console.log('[copy-css-provider-assets] ✓ Copied cssProvider JS files');
+      console.log(
+        '[copy-css-provider-assets] ✓ Copied and minified cssProvider JS files',
+      );
     },
     name: 'copy-css-provider-assets',
   };

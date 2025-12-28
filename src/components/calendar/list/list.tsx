@@ -235,13 +235,13 @@ export const List = ({
               {...pickCustomAttributes(customAttributes)}
             >
               <CustomComponent
+                aria-disabled={isDisabled}
                 aria-label={formatDate(day, {
                   day: 'numeric',
                   month: 'long',
                   weekday: 'long',
                   year: 'numeric',
                 })}
-                ariaDisabled={isDisabled}
                 className={cssClasses?.dayslist}
                 component="button"
                 data-testid={`${dataTestId}-${dayIndex + WEEK_DAYS * index}`}

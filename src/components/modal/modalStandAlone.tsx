@@ -3,10 +3,11 @@ import { type CSSProperties, forwardRef, useId } from 'react';
 import { Overlay } from '@/lib/components/overlay/overlay';
 import { processText } from '@/lib/utils/process/processText/processText';
 
+import type { ModalStandAloneProps } from './types/modal';
+
 import { NabVar } from '../navBar/navBar';
 import { Popover } from '../popover/popover';
 import { ModalHeader } from './fragments/modalHeader';
-import type { ModalStandAloneProps } from './types/modal';
 import { onlyDesktopSize } from './utils/onlyDesktopSize';
 
 export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(

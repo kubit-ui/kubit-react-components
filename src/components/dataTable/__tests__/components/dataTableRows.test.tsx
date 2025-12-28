@@ -6,6 +6,15 @@ import { DataTableRows } from '../../components/dataTableRows';
 
 const mockProps = {};
 
+// Helper to render DataTableRows with proper table structure
+const renderWithTable = (component: React.ReactElement) => {
+  return render(
+    <table>
+      <tbody>{component}</tbody>
+    </table>,
+  );
+};
+
 describe('DataTableRows', () => {
   it('Should render a set of rows', () => {
     const columns = [
@@ -15,7 +24,9 @@ describe('DataTableRows', () => {
 
     const rows = [{ field1: 'value1', field2: 'value2' }];
 
-    render(<DataTableRows {...mockProps} columns={columns} rows={rows} />);
+    renderWithTable(
+      <DataTableRows {...mockProps} columns={columns} rows={rows} />,
+    );
 
     const rowsFound = screen.getAllByRole('row');
     const cell1 = screen.getByText('value1');
@@ -34,7 +45,7 @@ describe('DataTableRows', () => {
 
     const rows = [{ field1: 'value1', field2: 'value2', id: 'row1' }];
 
-    render(
+    renderWithTable(
       <DataTableRows
         {...mockProps}
         activeRows={['row1']}
@@ -69,7 +80,9 @@ describe('DataTableRows', () => {
       },
     ];
 
-    render(<DataTableRows {...mockProps} columns={columns} rows={rows} />);
+    renderWithTable(
+      <DataTableRows {...mockProps} columns={columns} rows={rows} />,
+    );
 
     const rowsFound = screen.getAllByRole('row');
     const cell1 = screen.getByText('value1');
@@ -92,7 +105,9 @@ describe('DataTableRows', () => {
 
     const rows = [{ field1: 'value1', field2: 'value2' }];
 
-    render(<DataTableRows {...mockProps} columns={columns} rows={rows} />);
+    renderWithTable(
+      <DataTableRows {...mockProps} columns={columns} rows={rows} />,
+    );
 
     const rowsFound = screen.getAllByRole('row');
     const cell1 = screen.getByText('VALUE1');
@@ -120,7 +135,7 @@ describe('DataTableRows', () => {
       },
     ];
 
-    render(
+    renderWithTable(
       <DataTableRows
         {...mockProps}
         activeRows={['row1']}

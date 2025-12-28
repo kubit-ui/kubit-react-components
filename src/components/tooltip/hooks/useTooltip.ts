@@ -103,10 +103,12 @@ export const useTooltip = <Variant>({
 
       // Apply the position calculated by floating-ui directly
       // The shift middleware will have already handled keeping the tooltip in the viewport
-      Object.assign(props.tooltipRef.current.style, {
-        left: `${x}px`,
-        top: `${y}px`,
-      });
+      if (props.tooltipRef.current?.style) {
+        Object.assign(props.tooltipRef.current.style, {
+          left: `${x}px`,
+          top: `${y}px`,
+        });
+      }
 
       // Arrow position is calculated correctly by the arrow middleware
       // We can use these values directly
@@ -172,7 +174,9 @@ export const useTooltip = <Variant>({
       if (!props.tooltipRef.current) {
         return;
       }
-      props.tooltipRef.current.style.display = 'flex';
+      if (props.tooltipRef.current.style) {
+        props.tooltipRef.current.style.display = 'flex';
+      }
       updateTooltipPosition();
       focusElementOrFirstDescendant(props.tooltipRef.current, {
         preventScroll: true,
@@ -198,7 +202,9 @@ export const useTooltip = <Variant>({
       if (!props.tooltipRef.current) {
         return;
       }
-      props.tooltipRef.current.style.display = 'none';
+      if (props.tooltipRef.current.style) {
+        props.tooltipRef.current.style.display = 'none';
+      }
     }
     setOpen(false);
     props.onOpenClose?.(false);
