@@ -108,8 +108,8 @@
   "scripts": {
     "start": "yarn storybook",
     "storybook": "storybook dev -c .storybook -p 6006",
-    "build": "yarn build-storybook",
-    "prebuild-storybook": "yarn generate-css && yarn generate:bundle-sizes",
+    "build": "yarn dist && yarn build-storybook",
+    "prebuild-storybook": "yarn generate-css",
     "build-storybook": "storybook build -c .storybook -o bundle --disable-telemetry",
     "generate-css": "bernova --config bernova.config.json",
     "generate:bundle-sizes": "node scripts/generate-bundle-sizes.mjs",

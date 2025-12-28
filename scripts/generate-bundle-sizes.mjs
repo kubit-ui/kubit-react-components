@@ -148,9 +148,32 @@ function main() {
   console.log('📦 Generating bundle size information...\n');
 
   if (!fs.existsSync(distEsmDir)) {
-    console.error('❌ Error: dist/esm/components directory not found.');
-    console.error('   Please run `yarn dist` first.\n');
-    process.exit(1);
+    console.warn('⚠️  Warning: dist/esm/components directory not found.');
+    console.warn('   Creating empty bundle-sizes.json. Run `yarn dist` to populate.\n');
+    
+    // Create empty bundle sizes file
+    const emptyOutput = {
+      metadata: {
+        generated: new Date().toISOString(),
+        totalComponents: 0,
+        totalSize: {
+          raw: 0,
+          gzip: 0,
+          formatted: '0 B',
+          gzipFormatted: '0 B',
+        },
+      },
+      components: {},
+    };
+
+    const storybookDir = path.dirname(outputFile);
+    if (!fs.existsSync(storybookDir)) {
+      fs.mkdirSync(storybookDir, { recursive: true });
+    }
+
+    fs.writeFileSync(outputFile, JSON.stringify(emptyOutput, null, 2));
+    console.log('📄 Created empty bundle-sizes.json\n');
+    return;
   }
 
   const components = fs
