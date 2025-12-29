@@ -7,6 +7,15 @@ import type {
   GenericLinkProps,
 } from './types/genericComponentsProvider';
 
+/**
+ * Default Link component implementation.
+ * Renders a standard HTML anchor element with proper accessibility attributes.
+ * Used as the fallback when no custom Link component is provided.
+ *
+ * @param props - Link component props
+ * @param ref - Forwarded ref to the anchor element
+ * @returns Standard anchor element with all provided props
+ */
 const Link = forwardRef(function Link(
   {
     children,
@@ -53,6 +62,16 @@ const Link = forwardRef(function Link(
     </a>
   );
 });
+
+/**
+ * Default Image component implementation.
+ * Renders a standard HTML img element with proper accessibility.
+ * Used as the fallback when no custom Image component is provided.
+ *
+ * @param props - Image component props (all standard img attributes)
+ * @param ref - Forwarded ref to the img element
+ * @returns Standard img element with all provided props and guaranteed alt attribute
+ */
 const Image = forwardRef(function Image(
   props: GenericImageProps,
   ref: unknown,
@@ -66,6 +85,21 @@ const Image = forwardRef(function Image(
     />
   );
 });
+
+/**
+ * Default implementations for generic components.
+ * Provides standard HTML-based Link and Image components.
+ * These are used when the application doesn't provide custom implementations.
+ *
+ * @example
+ * ```tsx
+ * import { defaultGenericComponents } from './defaultGenericComponents';
+ *
+ * <GenericComponentsProvider value={defaultGenericComponents}>
+ *   <App />
+ * </GenericComponentsProvider>
+ * ```
+ */
 export const defaultGenericComponents = {
   IMAGE: Image,
   LINK: Link,

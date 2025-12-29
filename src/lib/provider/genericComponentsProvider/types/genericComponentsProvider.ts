@@ -8,6 +8,10 @@ import type {
 
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
+/**
+ * Subset of ARIA attributes applicable to link elements.
+ * Ensures proper accessibility for navigation components.
+ */
 type GenericLinkAriaAttributes = Pick<
   AriaAttributes,
   | 'aria-label'
@@ -18,71 +22,78 @@ type GenericLinkAriaAttributes = Pick<
 >;
 
 /**
- * Defines the properties for a generic link component.
- * @property {string} url - The URL the link points to.
- * @property {string | JSX.Element} children - The content inside the link.
- * @property {string} [className] - Optional CSS class for styling.
- * @property {string} [target] - Specifies where to open the linked document.
- * @property {boolean} [aria-disabled] - Indicates that the element is perceivable but disabled.
- * @property {string} [aria-label] - Defines a string value that labels the current element.
- * @property {string} [aria-describedby] - Defines a string value that labels the current element.
- * @property {string} [aria-current] - Defines value for the current element.
- * @property {() => void} [onClick] - Function to call when the link is clicked.
- * @property {() => void} [onFocus] - Function to call when the link is focused.
- * @property {() => void} [onMouseEnter] - Function to call when the mouse enters the link area.
- * @property {() => void} [onMouseLeave] - Function to call when the mouse leaves the link area.
- * @property {ROLES} [role] - ARIA role to describe the link's type.
- * @property {string} [dataTestId] - Test ID for testing purposes.
- * @property {boolean} [draggable] - Indicates whether the element can be dragged.
+ * Props for a generic link component.
+ * Provides a flexible interface for custom link implementations that can be used
+ * throughout the component library (e.g., for React Router, Next.js Link, etc.).
  */
 export type GenericLinkProps = {
+  /** The destination URL for the link */
   url: string;
+  /** Optional unique identifier for the link element */
   id?: string;
+  /** Content to be displayed inside the link */
   children: string | JSX.Element;
+  /** Optional CSS class name(s) for styling */
   className?: string;
+  /** Specifies where to open the linked document ('_blank', '_self', '_parent', '_top') */
   target?: string;
+  /** Callback function invoked when the link is clicked */
   onClick?: () => void;
+  /** Callback function invoked when the link receives focus */
   onFocus?: () => void;
+  /** Callback function invoked when the mouse pointer enters the link area */
   onMouseEnter?: () => void;
+  /** Callback function invoked when the mouse pointer leaves the link area */
   onMouseLeave?: () => void;
+  /** Relationship between the current document and the linked document */
   rel?: string;
+  /** ARIA role to override the default link role if needed */
   role?: AriaRole;
+  /** Test ID for automated testing purposes */
   dataTestId?: string;
+  /** Whether the element can be dragged */
   draggable?: boolean;
 } & GenericLinkAriaAttributes &
   DataAttributes;
 
 /**
- * Defines the type for a generic link component, which can be either a functional component or a forward ref component.
+ * Type definition for a generic link component.
+ * Can be either a functional component or a forward ref component to support refs.
  */
 export type GenericLinkType =
   | ((props: GenericLinkProps) => JSX.Element)
   | ForwardRefExoticComponent<GenericLinkProps & RefAttributes<unknown>>;
 
 /**
- * Defines the properties for a generic image component.
+ * Props for a generic image component.
+ * Inherits all standard HTML image attributes.
  */
 export type GenericImageProps = ImgHTMLAttributes<HTMLImageElement>;
 
 /**
- * Defines the type for a generic image component, which can be either a functional component or a forward ref component.
+ * Type definition for a generic image component.
+ * Can be either a functional component or a forward ref component to support refs.
  */
 export type GenericImageType =
   | ((props: GenericImageProps) => JSX.Element)
   | ForwardRefExoticComponent<GenericImageProps & RefAttributes<unknown>>;
 
 /**
- * Defines the types for generic components, including links and images.
+ * Collection of generic component implementations.
+ * Allows customization of primitive components used throughout the library.
  */
 export interface GenericComponentsType {
+  /** Link component implementation (required) */
   LINK: GenericLinkType;
+  /** Image component implementation (optional) */
   IMAGE?: GenericImageType;
 }
 
 /**
- * Provides the interface for the generic components provider.
- * @property {GenericComponentsType} value - The actual components to be provided.
+ * Props for the GenericComponentsProvider.
+ * Wraps the application with custom component implementations.
  */
 export interface GenericComponentsProviderProps {
+  /** The custom generic components to be made available to child components */
   value: GenericComponentsType;
 }

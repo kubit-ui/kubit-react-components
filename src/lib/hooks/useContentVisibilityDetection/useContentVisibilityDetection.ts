@@ -7,10 +7,30 @@ import type {
   UseContentVisibilityDetectionParamsType,
   UseContentVisibilityDetectionReturnType,
 } from './types/useContentVisibilityDetection';
-
 import { isContentVisibleEnough } from './utils/contentVisibility';
 
 /**
+ * @deprecated This hook has been merged into `useContentVisibility` for simplicity.
+ * Please use `useContentVisibility` instead, which now includes all functionality from this hook.
+ *
+ * @example
+ * **Migration guide:**
+ * ```tsx
+ * // Before (deprecated):
+ * const { handleContentVisibilityDetection } = useContentVisibilityDetection({
+ *   minVisibleHeight: 150,
+ *   onContentVisible: handleVisible,
+ *   onContentInvisible: handleInvisible
+ * });
+ *
+ * // After (recommended):
+ * const { handleContentVisibility } = useContentVisibility({
+ *   minVisibleHeight: 150,
+ *   onContentVisible: handleVisible,
+ *   onContentInvisible: handleInvisible
+ * });
+ * ```
+ *
  * Custom React hook to detect and manage the visibility of content within a container.
  *
  * @param minVisibleHeight - The minimum height (in pixels) required for the content to be considered visible.

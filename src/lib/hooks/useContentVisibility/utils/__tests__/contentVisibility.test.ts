@@ -1,4 +1,4 @@
-import { isContentVisibleEnough } from '../utils/contentVisibility';
+import { isContentVisibleEnough } from '../contentVisibility';
 
 describe('isContentVisibleEnough', () => {
   let container: HTMLDivElement;
