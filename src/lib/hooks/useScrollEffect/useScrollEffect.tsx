@@ -4,6 +4,7 @@ import type {
   CustomHookProps,
   CustomHookReturnValue,
 } from './types/useScrollEffect';
+
 import { scrollPercentage } from './utils/scrollPercentage';
 
 const MAX_PERCENTAGE = 100;

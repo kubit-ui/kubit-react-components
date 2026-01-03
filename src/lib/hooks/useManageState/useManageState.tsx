@@ -7,8 +7,9 @@ import {
   useState,
 } from 'react';
 
-import { STATES, type StateType } from '../../types/states/states';
 import type { ParamsType } from './types/useManageState';
+
+import { STATES, type StateType } from '../../types/states/states';
 
 /**
  * A custom React hook to manage and track interactive states of an element.

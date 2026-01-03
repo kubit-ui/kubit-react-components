@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated": "2026-01-03T13:14:47.770Z",
+    "generated": "2026-01-03T13:15:39.482Z",
     "totalComponents": 54,
     "totalSize": {
       "raw": 252087,
@@ -33,7 +33,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.737Z"
+      "timestamp": "2026-01-03T13:15:39.448Z"
     },
     "avatar": {
       "component": "avatar",
@@ -58,7 +58,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.739Z"
+      "timestamp": "2026-01-03T13:15:39.450Z"
     },
     "badge": {
       "component": "badge",
@@ -83,7 +83,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.739Z"
+      "timestamp": "2026-01-03T13:15:39.451Z"
     },
     "breadcrumbs": {
       "component": "breadcrumbs",
@@ -108,7 +108,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.740Z"
+      "timestamp": "2026-01-03T13:15:39.452Z"
     },
     "button": {
       "component": "button",
@@ -133,7 +133,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.741Z"
+      "timestamp": "2026-01-03T13:15:39.452Z"
     },
     "calendar": {
       "component": "calendar",
@@ -158,7 +158,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.744Z"
+      "timestamp": "2026-01-03T13:15:39.454Z"
     },
     "cardImage": {
       "component": "cardImage",
@@ -183,7 +183,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.744Z"
+      "timestamp": "2026-01-03T13:15:39.455Z"
     },
     "carousel": {
       "component": "carousel",
@@ -208,7 +208,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.745Z"
+      "timestamp": "2026-01-03T13:15:39.456Z"
     },
     "checkbox": {
       "component": "checkbox",
@@ -233,7 +233,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.746Z"
+      "timestamp": "2026-01-03T13:15:39.457Z"
     },
     "checkboxBase": {
       "component": "checkboxBase",
@@ -258,7 +258,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.747Z"
+      "timestamp": "2026-01-03T13:15:39.457Z"
     },
     "chip": {
       "component": "chip",
@@ -283,7 +283,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.747Z"
+      "timestamp": "2026-01-03T13:15:39.458Z"
     },
     "container": {
       "component": "container",
@@ -308,7 +308,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.747Z"
+      "timestamp": "2026-01-03T13:15:39.458Z"
     },
     "dataTable": {
       "component": "dataTable",
@@ -333,7 +333,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.749Z"
+      "timestamp": "2026-01-03T13:15:39.460Z"
     },
     "dot": {
       "component": "dot",
@@ -358,7 +358,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.750Z"
+      "timestamp": "2026-01-03T13:15:39.460Z"
     },
     "dropdownSelected": {
       "component": "dropdownSelected",
@@ -383,7 +383,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.750Z"
+      "timestamp": "2026-01-03T13:15:39.461Z"
     },
     "icon": {
       "component": "icon",
@@ -408,7 +408,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.750Z"
+      "timestamp": "2026-01-03T13:15:39.461Z"
     },
     "image": {
       "component": "image",
@@ -433,7 +433,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.751Z"
+      "timestamp": "2026-01-03T13:15:39.461Z"
     },
     "input": {
       "component": "input",
@@ -458,7 +458,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.752Z"
+      "timestamp": "2026-01-03T13:15:39.462Z"
     },
     "inputBase": {
       "component": "inputBase",
@@ -483,7 +483,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.752Z"
+      "timestamp": "2026-01-03T13:15:39.463Z"
     },
     "inputDecoration": {
       "component": "inputDecoration",
@@ -508,7 +508,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.753Z"
+      "timestamp": "2026-01-03T13:15:39.463Z"
     },
     "inputSignature": {
       "component": "inputSignature",
@@ -533,7 +533,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.753Z"
+      "timestamp": "2026-01-03T13:15:39.464Z"
     },
     "label": {
       "component": "label",
@@ -558,7 +558,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.754Z"
+      "timestamp": "2026-01-03T13:15:39.464Z"
     },
     "link": {
       "component": "link",
@@ -583,7 +583,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.754Z"
+      "timestamp": "2026-01-03T13:15:39.464Z"
     },
     "listOptions": {
       "component": "listOptions",
@@ -608,7 +608,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.755Z"
+      "timestamp": "2026-01-03T13:15:39.465Z"
     },
     "message": {
       "component": "message",
@@ -633,7 +633,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.755Z"
+      "timestamp": "2026-01-03T13:15:39.465Z"
     },
     "modal": {
       "component": "modal",
@@ -658,7 +658,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.755Z"
+      "timestamp": "2026-01-03T13:15:39.466Z"
     },
     "navBar": {
       "component": "navBar",
@@ -683,7 +683,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.756Z"
+      "timestamp": "2026-01-03T13:15:39.466Z"
     },
     "option": {
       "component": "option",
@@ -708,7 +708,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.756Z"
+      "timestamp": "2026-01-03T13:15:39.466Z"
     },
     "pageControl": {
       "component": "pageControl",
@@ -733,7 +733,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.757Z"
+      "timestamp": "2026-01-03T13:15:39.467Z"
     },
     "pagination": {
       "component": "pagination",
@@ -758,7 +758,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.757Z"
+      "timestamp": "2026-01-03T13:15:39.468Z"
     },
     "popover": {
       "component": "popover",
@@ -783,7 +783,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.759Z"
+      "timestamp": "2026-01-03T13:15:39.469Z"
     },
     "portal": {
       "component": "portal",
@@ -808,7 +808,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.759Z"
+      "timestamp": "2026-01-03T13:15:39.470Z"
     },
     "progressBar": {
       "component": "progressBar",
@@ -833,7 +833,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.760Z"
+      "timestamp": "2026-01-03T13:15:39.470Z"
     },
     "radioButton": {
       "component": "radioButton",
@@ -858,7 +858,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.760Z"
+      "timestamp": "2026-01-03T13:15:39.471Z"
     },
     "selectorBoxFile": {
       "component": "selectorBoxFile",
@@ -883,7 +883,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.761Z"
+      "timestamp": "2026-01-03T13:15:39.472Z"
     },
     "skeleton": {
       "component": "skeleton",
@@ -908,7 +908,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.761Z"
+      "timestamp": "2026-01-03T13:15:39.472Z"
     },
     "slider": {
       "component": "slider",
@@ -933,7 +933,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.762Z"
+      "timestamp": "2026-01-03T13:15:39.474Z"
     },
     "snackbar": {
       "component": "snackbar",
@@ -958,7 +958,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.763Z"
+      "timestamp": "2026-01-03T13:15:39.474Z"
     },
     "stepperNumber": {
       "component": "stepperNumber",
@@ -983,7 +983,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.763Z"
+      "timestamp": "2026-01-03T13:15:39.474Z"
     },
     "table": {
       "component": "table",
@@ -1008,7 +1008,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.764Z"
+      "timestamp": "2026-01-03T13:15:39.475Z"
     },
     "tableBody": {
       "component": "tableBody",
@@ -1033,7 +1033,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.765Z"
+      "timestamp": "2026-01-03T13:15:39.476Z"
     },
     "tableCaption": {
       "component": "tableCaption",
@@ -1058,7 +1058,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.765Z"
+      "timestamp": "2026-01-03T13:15:39.476Z"
     },
     "tableCell": {
       "component": "tableCell",
@@ -1083,7 +1083,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.765Z"
+      "timestamp": "2026-01-03T13:15:39.476Z"
     },
     "tableDivider": {
       "component": "tableDivider",
@@ -1108,7 +1108,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.765Z"
+      "timestamp": "2026-01-03T13:15:39.477Z"
     },
     "tableFoot": {
       "component": "tableFoot",
@@ -1133,7 +1133,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.765Z"
+      "timestamp": "2026-01-03T13:15:39.477Z"
     },
     "tableHead": {
       "component": "tableHead",
@@ -1158,7 +1158,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.766Z"
+      "timestamp": "2026-01-03T13:15:39.477Z"
     },
     "tableRow": {
       "component": "tableRow",
@@ -1183,7 +1183,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.766Z"
+      "timestamp": "2026-01-03T13:15:39.477Z"
     },
     "tabs": {
       "component": "tabs",
@@ -1208,7 +1208,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.767Z"
+      "timestamp": "2026-01-03T13:15:39.478Z"
     },
     "tag": {
       "component": "tag",
@@ -1233,7 +1233,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.767Z"
+      "timestamp": "2026-01-03T13:15:39.478Z"
     },
     "text": {
       "component": "text",
@@ -1258,7 +1258,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.767Z"
+      "timestamp": "2026-01-03T13:15:39.478Z"
     },
     "textArea": {
       "component": "textArea",
@@ -1283,7 +1283,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.768Z"
+      "timestamp": "2026-01-03T13:15:39.479Z"
     },
     "toggle": {
       "component": "toggle",
@@ -1308,7 +1308,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.768Z"
+      "timestamp": "2026-01-03T13:15:39.480Z"
     },
     "tooltip": {
       "component": "tooltip",
@@ -1333,7 +1333,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.769Z"
+      "timestamp": "2026-01-03T13:15:39.481Z"
     },
     "virtualKeyboard": {
       "component": "virtualKeyboard",
@@ -1358,7 +1358,7 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:14:47.770Z"
+      "timestamp": "2026-01-03T13:15:39.482Z"
     }
   }
 }

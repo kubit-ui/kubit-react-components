@@ -1,6 +1,5 @@
-import { createRef } from 'react';
-
 import { fireEvent, render, renderHook, screen } from '@testing-library/react';
+import { createRef } from 'react';
 import { axe } from 'vitest-axe';
 
 import { useClickOutside } from '../useClickOutside';
