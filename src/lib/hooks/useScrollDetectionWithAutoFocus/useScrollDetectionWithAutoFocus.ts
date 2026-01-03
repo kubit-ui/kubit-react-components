@@ -10,17 +10,34 @@ import type {
 
 /**
  * A custom React hook that combines scroll detection with an auto-focus mechanism.
+ *
+ * @deprecated This hook will be removed in the next major version.
+ * For simple auto-focus on scroll, use `useScrollDetection({ autoFocus: true })` instead.
+ * This hook provides more complex focus management based on parent element and document position.
+ *
+ * @example
+ * **Migration guide for simple cases:**
+ * ```tsx
+ * // ❌ Old way (will be deprecated):
+ * const { handleScrollDetection, hasScroll } = useScrollDetectionWithAutoFocus({
+ *   disabled: false,
+ *   parentElementRef: modalRef
+ * });
+ *
+ * // ✅ New way (for simple auto-focus):
+ * const { handleScrollDetection, hasScroll } = useScrollDetection({
+ *   autoFocus: true
+ * });
+ * ```
+ *
  * This hook detects whether an element has scrollable content and, if necessary, automatically focuses on the element.
- * It is particularly useful for managing accessibility and user experience in scrollable containers.
+ * It is particularly useful for managing accessibility and user experience in scrollable containers with complex focus requirements.
  *
- * @param {UseScrollDetectionWithAutoFocusParamsType} params - Parameters for the hook.
- * @param {boolean} [params.disabled=false] - A flag to disable the scroll detection and auto-focus behavior.
- * @param {RefObject<HTMLElement>} params.parentElementRef - A reference to the parent element, used to determine focus behavior.
+ * @param params - Parameters for the hook
+ * @param params.disabled - A flag to disable the scroll detection and auto-focus behavior
+ * @param params.parentElementRef - A reference to the parent element, used to determine focus behavior
  *
- * @returns {UseScrollDetectionWithAutoFocusReturnType} An object containing:
- * - `handleScrollDetection`: A function to observe an element and detect if it has scrollable content.
- * - `hasScroll`: A boolean indicating whether the observed element currently has scrollable content.
- *
+ * @returns Object containing handleScrollDetection function and hasScroll state
  */
 export const useScrollDetectionWithAutoFocus = ({
   disabled = false,

@@ -10,16 +10,15 @@ import {
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
-import { useScrollDetectionWithAutoFocus } from '@/lib/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
+import { useScrollDetection } from '@/lib/hooks/useScrollDetection/useScrollDetection';
 import { useSwipeDown } from '@/lib/hooks/useSwipeDown/useSwipeDown';
 import { useTrapFocus } from '@/lib/hooks/useTrapFocus/useTrapFocus';
-
-import type { TooltipUnControlledProps } from './types/tooltip';
 
 import { isKeyEnterPressed } from '../../lib/utils/keyboard/keyboard';
 import { useTooltip } from './hooks/useTooltip';
 import { useTooltipAsModal } from './hooks/useTooltipAsModal';
 import { TooltipStandAlone } from './tooltipStandAlone';
+import type { TooltipUnControlledProps } from './types/tooltip';
 
 export const TooltipUnControlled = forwardRef(function <
   Variant extends string | undefined,
@@ -71,8 +70,8 @@ export const TooltipUnControlled = forwardRef(function <
   const {
     handleScrollDetection: contentRefHandler,
     hasScroll: contentHasScroll,
-  } = useScrollDetectionWithAutoFocus({
-    parentElementRef: tooltipRef,
+  } = useScrollDetection({
+    autoFocus: true,
   });
   const isBeingClicked = useRef(false);
   const handleWrapperFocus: FocusEventHandler<HTMLElement> = () => {
@@ -157,10 +156,9 @@ export const TooltipUnControlled = forwardRef(function <
     popover?.onClose?.();
     hideTooltip();
   };
-  const { setDragIconRef, setPopoverRef } = useSwipeDown(
-    undefined,
-    hideTooltip,
-  );
+  const { setDragIconRef, setPopoverRef } = useSwipeDown({
+    onClose: hideTooltip,
+  });
   useTrapFocus({
     ref: tooltipRef,
     trapFocus: open && tooltipAsModalValue,

@@ -4,14 +4,13 @@ import { syncInnerAndForwardedRef } from '@/lib/hooks/syncRefs/syncRefs';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useContentVisibility } from '@/lib/hooks/useContentVisibility/useContentVisibility';
 import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
-import { useScrollDetectionWithAutoFocus } from '@/lib/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
+import { useScrollDetection } from '@/lib/hooks/useScrollDetection/useScrollDetection';
 import { useScrollEffect } from '@/lib/hooks/useScrollEffect/useScrollEffect';
 import { useSwipeDown } from '@/lib/hooks/useSwipeDown/useSwipeDown';
 
-import type { ModalControlledProps } from './types/modal';
-
 import { Portal } from '../portal/portal';
 import { ModalStandAlone } from './modalStandAlone';
+import type { ModalControlledProps } from './types/modal';
 
 export const ModalControlled = forwardRef(
   <Variant extends string>(
@@ -40,20 +39,18 @@ export const ModalControlled = forwardRef(
       shadowStyles: /* styles?.headerContainer?.box_shadow*/ 'none',
     });
     const { handleContentVisibility } = useContentVisibility({});
-    const { setDragIconRef: handleDraggableIconSwipeDown } = useSwipeDown(
-      undefined,
-      () => onClose?.(),
-    );
+    const { setDragIconRef: handleDraggableIconSwipeDown } = useSwipeDown({
+      onClose,
+    });
 
     // const { setDragIconRef: handleDraggableIconSwipeDown, setPopoverRef: handlePopoverSwipeDown } =
-    // useSwipeDown(props.popover?.animationOptions, () => props.onClose?.());
+    // useSwipeDown({ animationOptions: props.popover?.animationOptions, onClose: props.onClose });
 
     const {
       handleScrollDetection: handleContentScrollDetection,
       hasScroll: contentHasScroll,
-    } = useScrollDetectionWithAutoFocus({
-      disabled: disableFocusableContent,
-      parentElementRef: innerRef,
+    } = useScrollDetection({
+      autoFocus: !disableFocusableContent,
     });
     const handleInnerRef = useCallback((node) => {
       innerRef.current = node;
@@ -74,7 +71,9 @@ export const ModalControlled = forwardRef(
       });
       handleContentScrollEffect(modalContent);
       handleContentScrollDetection(modalContent);
-      handleDraggableIconSwipeDown(modalDraggableIcon);
+      if (modalDraggableIcon) {
+        handleDraggableIconSwipeDown(modalDraggableIcon);
+      }
     }, []);
     const handlePopoverCloseInternally = () => {
       onClose?.();

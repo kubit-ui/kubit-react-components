@@ -29,6 +29,7 @@ describe('useScrollDetection', () => {
 
   beforeEach(() => {
     element = document.createElement('div');
+    resizeObserverDisconnectMock.mockClear();
   });
 
   it('Should return hasScroll false if it does not have scroll', () => {
@@ -70,5 +71,104 @@ describe('useScrollDetection', () => {
 
     expect(resizeObserverDisconnectMock).toHaveBeenCalled();
     expect(document.body).toHTMLValidate();
+  });
+
+  describe('autoFocus option', () => {
+    it('should auto focus element when autoFocus is true and scroll is detected', () => {
+      Object.defineProperty(element, 'scrollHeight', {
+        value: 200,
+      });
+      Object.defineProperty(element, 'clientHeight', {
+        value: 100,
+      });
+
+      const focusSpy = vi.spyOn(element, 'focus');
+
+      const { result } = renderHook(() =>
+        useScrollDetection({
+          autoFocus: true,
+        }),
+      );
+
+      act(() => {
+        result.current.handleScrollDetection(element);
+      });
+
+      expect(result.current.hasScroll).toBe(true);
+      expect(focusSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not auto focus when autoFocus is false', () => {
+      Object.defineProperty(element, 'scrollHeight', {
+        value: 200,
+      });
+      Object.defineProperty(element, 'clientHeight', {
+        value: 100,
+      });
+
+      const focusSpy = vi.spyOn(element, 'focus');
+
+      const { result } = renderHook(() =>
+        useScrollDetection({
+          autoFocus: false,
+        }),
+      );
+
+      act(() => {
+        result.current.handleScrollDetection(element);
+      });
+
+      expect(result.current.hasScroll).toBe(true);
+      expect(focusSpy).not.toHaveBeenCalled();
+    });
+
+    it('should not auto focus when element does not have scroll', () => {
+      const focusSpy = vi.spyOn(element, 'focus');
+
+      const { result } = renderHook(() =>
+        useScrollDetection({
+          autoFocus: true,
+        }),
+      );
+
+      act(() => {
+        result.current.handleScrollDetection(element);
+      });
+
+      expect(result.current.hasScroll).toBe(false);
+      expect(focusSpy).not.toHaveBeenCalled();
+    });
+
+    it('should focus only once even with multiple resize events', () => {
+      Object.defineProperty(element, 'scrollHeight', {
+        value: 200,
+      });
+      Object.defineProperty(element, 'clientHeight', {
+        value: 100,
+      });
+
+      const focusSpy = vi.spyOn(element, 'focus');
+
+      const { result } = renderHook(() =>
+        useScrollDetection({
+          autoFocus: true,
+        }),
+      );
+
+      act(() => {
+        result.current.handleScrollDetection(element);
+      });
+
+      // Simulate multiple resize callbacks
+      act(() => {
+        result.current.handleScrollDetection(element);
+      });
+
+      act(() => {
+        result.current.handleScrollDetection(element);
+      });
+
+      expect(focusSpy).toHaveBeenCalledTimes(1);
+    });
   });
 });

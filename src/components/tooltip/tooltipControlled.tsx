@@ -2,13 +2,12 @@ import { useImperativeHandle, useRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
-import { useScrollDetectionWithAutoFocus } from '@/lib/hooks/useScrollDetectionWithAutoFocus/useScrollDetectionWithAutoFocus';
-
-import type { TooltipControlledProps } from './types/tooltip';
+import { useScrollDetection } from '@/lib/hooks/useScrollDetection/useScrollDetection';
 
 import { useTooltipAsModal } from './hooks/useTooltipAsModal';
 import { useTooltipAsModalAriaLabel } from './hooks/useTooltipAsModalAriaLabel';
 import { TooltipStandAlone } from './tooltipStandAlone';
+import type { TooltipControlledProps } from './types/tooltip';
 
 export const TooltipControlled = <Variant extends string>({
   additionalClasses,
@@ -36,7 +35,7 @@ export const TooltipControlled = <Variant extends string>({
   const {
     handleScrollDetection: contentRefHandler,
     hasScroll: contentHasScroll,
-  } = useScrollDetectionWithAutoFocus({ parentElementRef: innerTooltipRef });
+  } = useScrollDetection({ autoFocus: true });
 
   useImperativeHandle(tooltipRef, () => {
     return innerTooltipRef.current as HTMLDivElement;
