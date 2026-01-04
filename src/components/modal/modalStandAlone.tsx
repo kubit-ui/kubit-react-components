@@ -1,7 +1,7 @@
 import { type CSSProperties, forwardRef, useId } from 'react';
 
 import { Overlay } from '@/lib/components/overlay/overlay';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { ModalStandAloneProps } from './types/modal';
 
@@ -46,7 +46,7 @@ export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(
     const modalId = id ?? uniqueModalId;
     const reactTitleId = useId();
     const uniqueTitleId = `modal-title-${reactTitleId.replace(/:/g, '')}`;
-    const titleIdFinal = processText(title).id ?? uniqueTitleId;
+    const titleIdFinal = processTextProp(title).id ?? uniqueTitleId;
     const modalFooterVariant = footer?.variant;
     const dataTestId = props['data-testid'] || 'modal';
     return (

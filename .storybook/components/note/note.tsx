@@ -11,9 +11,9 @@ interface INote {
 }
 
 export const Note = ({
-  variant = 'information',
   heading,
   text,
+  variant = 'information',
 }: INote): JSX.Element => {
   return (
     <div className={`kbt-note-container kbt-note-${variant}`}>

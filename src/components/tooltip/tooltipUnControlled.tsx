@@ -8,6 +8,7 @@ import {
   useRef,
 } from 'react';
 
+import { ENTER } from '@/lib/constants/keyboardKeys/keyboardKeys';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
 import { useScrollDetection } from '@/lib/hooks/useScrollDetection/useScrollDetection';
@@ -16,7 +17,7 @@ import { useTrapFocus } from '@/lib/hooks/useTrapFocus/useTrapFocus';
 
 import type { TooltipUnControlledProps } from './types/tooltip';
 
-import { isKeyEnterPressed } from '../../lib/utils/keyboard/keyboard';
+import { isKeyPressed } from '../../lib/utils/keyboard/keyboard';
 import { useTooltip } from './hooks/useTooltip';
 import { useTooltipAsModal } from './hooks/useTooltipAsModal';
 import { TooltipStandAlone } from './tooltipStandAlone';
@@ -148,7 +149,7 @@ export const TooltipUnControlled = forwardRef(function <
   const handleTriggerKeyDown: KeyboardEventHandler<HTMLDivElement> = (
     event,
   ) => {
-    if (isKeyEnterPressed(event.key) && !open) {
+    if (isKeyPressed(event.key, ENTER.key) && !open) {
       showTooltip();
       event.preventDefault();
     }

@@ -9,7 +9,7 @@ import {
 import { Text } from '@/components/text/text';
 import { useRoveFocus } from '@/lib/hooks/useRoveFocus/useRoveFocus';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { ListOptionsStandAloneProps } from './types/listOptions';
 
@@ -89,7 +89,7 @@ export const ListOptionsStandAlone = forwardRef<
               additionalClasses={{
                 text: cssClasses?.title,
               }}
-              {...processText(title)}
+              {...processTextProp(title)}
             />
           </div>
         )}

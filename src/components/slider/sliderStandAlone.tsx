@@ -2,7 +2,7 @@ import { forwardRef, useId } from 'react';
 
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { SliderStandAloneProps } from './types/slider';
 
@@ -70,7 +70,7 @@ export const SliderStandAlone = forwardRef<
 
     // auxiliar ids
     const labelId =
-      processText(label).children && !range ? `${id}Label` : undefined;
+      processTextProp(label).children && !range ? `${id}Label` : undefined;
     const leftHelperTextId = `${id}LeftHelperText`;
     const rightHelperTextId = `${id}RightHelperText`;
 
@@ -94,7 +94,7 @@ export const SliderStandAlone = forwardRef<
             component="label"
             customAttributes={customAttributes}
             id={labelId}
-            {...processText(label)}
+            {...processTextProp(label)}
           />
         </div>
         {/* Scale */}

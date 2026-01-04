@@ -1,8 +1,10 @@
 import { Dot } from '@/components/dot/dot';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
-import { processText } from '@/lib/utils/process/processText/processText';
+import {
+  processIconProp,
+  processTextProp,
+} from '@/lib/utils/process/processCommonProp';
 
 import type { AvatarStandAloneProps } from '../types/avatar';
 
@@ -29,30 +31,30 @@ export const DrawContent = ({
 }: DrawContentProps): JSX.Element => (
   <>
     {!!dot?.number && (
-    <span className={cssClasses?.dot}>
-      <Dot {...dot} />
-    </span>
-)}
+      <span className={cssClasses?.dot}>
+        <Dot {...dot} />
+      </span>
+    )}
     {contentType === 'with-icon' && (
-    <ElementOrIcon
+      <ElementOrIcon
         // className={cssClasses?.default}
-      className={cssClasses?.icon}
-      customAttributes={customAttributes}
-      {...processIcon(icon)}
-    />
-)}
+        className={cssClasses?.icon}
+        customAttributes={customAttributes}
+        {...processIconProp(icon)}
+      />
+    )}
     {contentType === 'with-initials' && (
-    <Text
-      additionalClasses={
+      <Text
+        additionalClasses={
           {
             // text: cssClasses?.initials,
           }
         }
-      aria-hidden={true}
-      component="span"
-      customAttributes={customAttributes}
-      {...processText(initials, maxLengthInitials)}
-    />
-)}
+        aria-hidden={true}
+        component="span"
+        customAttributes={customAttributes}
+        {...processTextProp(initials, maxLengthInitials)}
+      />
+    )}
   </>
 );

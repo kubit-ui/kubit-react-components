@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { ComponentName } from '../componentName';
 import type { ComponentNameProps } from '../types/componentName';
+
+import { ComponentName } from '../componentName';
 import { argtypes } from './argtypes';
 
 /**
@@ -94,7 +95,7 @@ export const Disabled: Story = {
  */
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+    <div style={{ alignItems: 'center', display: 'flex', gap: '1rem' }}>
       <ComponentName {...commonArgs} size="small" />
       <ComponentName {...commonArgs} size="medium" />
       <ComponentName {...commonArgs} size="large" />
@@ -140,14 +141,14 @@ export const Responsive: Story = {
     ...commonArgs,
   },
   parameters: {
-    viewport: {
-      defaultViewport: 'mobile',
-    },
     docs: {
       description: {
         story:
           'Use the viewport toolbar to see how the component adapts to different screen sizes.',
       },
+    },
+    viewport: {
+      defaultViewport: 'mobile',
     },
   },
 };
@@ -162,15 +163,15 @@ export const AccessibilityExample: Story = {
   },
   parameters: {
     a11y: {
-      element: '#storybook-root',
       config: {
         rules: [
           {
-            id: 'color-contrast',
             enabled: true,
+            id: 'color-contrast',
           },
         ],
       },
+      element: '#storybook-root',
     },
   },
 };

@@ -2,7 +2,7 @@ import { type PropsWithChildren, forwardRef } from 'react';
 
 import { Text } from '@/components/text/text';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { ContainerStandAloneProps } from './types/container';
 
@@ -50,7 +50,7 @@ export const ContainerStandAlone = forwardRef(
         <div className={cssClasses?.header}>
           <Text
             additionalClasses={{ text: cssClasses?.title }}
-            {...processText(title)}
+            {...processTextProp(title)}
           />
         </div>
         <div ref={ref} className={cssClasses?.content}>

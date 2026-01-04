@@ -1,1 +1,0 @@
-export { syncInnerAndForwardedRef } from './syncRefs';

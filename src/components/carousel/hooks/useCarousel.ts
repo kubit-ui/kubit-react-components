@@ -1,8 +1,4 @@
- 
- 
 import { useCallback, useEffect, useRef } from 'react';
-
-import { ResizeObserver } from '@/lib/utils/resizeObserver/resizeObserver';
 
 import type { IUseCarousel } from './types/useCarousel';
 

@@ -1,8 +1,8 @@
 import './storybook.css';
 
-import React, { useEffect } from 'react';
-
 import type { Preview } from '@storybook/react';
+
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import '../src/lib/designSystem/kubit/css/kubit.css';

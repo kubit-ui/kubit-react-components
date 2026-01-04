@@ -1,23 +1,38 @@
-import {
-  ARROW_DOWN,
-  ARROW_LEFT,
-  ARROW_RIGHT,
-  ARROW_UP,
-  ENTER,
-  ESCAPE,
-  SPACE,
-  TAB,
-} from '@/lib/constants/keyboardKeys/keyboardKeys';
-
-export const isKeyEnterPressed = (key: string): boolean => key === ENTER.key;
-export const isKeySpacePressed = (key: string): boolean => key === SPACE.key;
-export const isArrowLeftPressed = (key: string): boolean =>
-  key === ARROW_LEFT.key;
-export const isArrowRightPressed = (key: string): boolean =>
-  key === ARROW_RIGHT.key;
-export const isArrowDownPressed = (key: string): boolean =>
-  key === ARROW_DOWN.key;
-export const isArrowUpPressed = (key: string): boolean => key === ARROW_UP.key;
-export const isKeyEscapePressed = (key: string): boolean =>
-  ESCAPE.key.some((escKey) => escKey === key);
-export const isKeyTabPressed = (key: string): boolean => key === TAB.key;
+/**
+ * Universal keyboard key checker that supports single keys and arrays of keys.
+ *
+ * This function provides a flexible way to check if a pressed key matches any of the target keys.
+ * It handles both simple string comparisons and arrays of possible key values (e.g., for browser compatibility).
+ *
+ * @param pressedKey - The key value from the keyboard event (e.g., event.key)
+ * @param targetKeys - One or more target keys to check against. Can be strings or arrays of strings.
+ * @returns `true` if the pressed key matches any of the target keys, otherwise `false`
+ *
+ * @example
+ * ```typescript
+ * import { ENTER, SPACE, ESCAPE } from '@/lib/constants/keyboardKeys/keyboardKeys';
+ *
+ * // Check for a single key
+ * isKeyPressed(event.key, ENTER.key) // true if Enter was pressed
+ *
+ * // Check for multiple keys (e.g., Enter OR Space)
+ * isKeyPressed(event.key, ENTER.key, SPACE.key) // true if Enter or Space
+ *
+ * // Works with arrays (e.g., ESCAPE has multiple values for browser compatibility)
+ * isKeyPressed(event.key, ...ESCAPE.key) // true if Escape or Esc
+ *
+ * // Combine single and multiple keys
+ * isKeyPressed(event.key, ENTER.key, SPACE.key, ...ESCAPE.key)
+ * ```
+ */
+export const isKeyPressed = (
+  pressedKey: string,
+  ...targetKeys: (string | string[])[]
+): boolean => {
+  return targetKeys.some((target) => {
+    if (Array.isArray(target)) {
+      return target.includes(pressedKey);
+    }
+    return pressedKey === target;
+  });
+};

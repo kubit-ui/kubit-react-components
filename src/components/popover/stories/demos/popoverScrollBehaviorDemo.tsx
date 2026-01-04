@@ -9,12 +9,13 @@ import {
 } from 'react';
 
 import { Text } from '@/components/text/text';
-import { TextVariantType } from '@/lib/designSystem/kubit/components/text/variants';
 import {
-  isKeyEnterPressed,
-  isKeyEscapePressed,
-  isKeySpacePressed,
-} from '@/lib/utils/keyboard/keyboard';
+  ENTER,
+  ESCAPE,
+  SPACE,
+} from '@/lib/constants/keyboardKeys/keyboardKeys';
+import { TextVariantType } from '@/lib/designSystem/kubit/components/text/variants';
+import { isKeyPressed } from '@/lib/utils/keyboard/keyboard';
 
 import { Popover } from '../../popover';
 
@@ -136,11 +137,11 @@ const ColorIndicator: FC<ColorIndicatorProps> = ({ color }) => (
 // Custom hooks
 const useKeyboardHandlers = (onToggle: () => void, onClose: () => void) => {
   const handleSelectKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (isKeyEnterPressed(e.key) || isKeySpacePressed(e.key)) {
+    if (isKeyPressed(e.key, ENTER.key, SPACE.key)) {
       e.preventDefault();
       onToggle();
     }
-    if (isKeyEscapePressed(e.key)) {
+    if (isKeyPressed(e.key, ...ESCAPE.key)) {
       onClose();
     }
   };
@@ -149,7 +150,7 @@ const useKeyboardHandlers = (onToggle: () => void, onClose: () => void) => {
     e: React.KeyboardEvent<HTMLDivElement>,
     onSelect: () => void,
   ) => {
-    if (isKeyEnterPressed(e.key) || isKeySpacePressed(e.key)) {
+    if (isKeyPressed(e.key, ENTER.key, SPACE.key)) {
       e.preventDefault();
       onSelect();
     }

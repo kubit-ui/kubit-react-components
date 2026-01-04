@@ -1,7 +1,5 @@
 import { type RefObject, useEffect } from 'react';
 
-import { ResizeObserver } from '@/lib/utils/resizeObserver/resizeObserver';
-
 interface UseTableShadowParamsType {
   ref: RefObject<HTMLDivElement>;
   headBoxShadow?: string;

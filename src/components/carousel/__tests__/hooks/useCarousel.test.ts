@@ -74,11 +74,20 @@ describe('useCarousel', () => {
   let onPageChange: ReturnType<typeof vi.fn>;
 
   // Mock ResizeObserver and window.addEventListener
-  const mockResizeObserver = vi.fn(() => ({
-    disconnect: vi.fn(),
-    observe: vi.fn(),
-    unobserve: vi.fn(),
-  }));
+  class MockResizeObserver {
+    callback;
+    disconnect = vi.fn();
+    observe = vi.fn((target) => {
+      // Trigger callback immediately when observe is called
+      if (this.callback) {
+        this.callback([{ target }], this);
+      }
+    });
+    unobserve = vi.fn();
+    constructor(callback) {
+      this.callback = callback;
+    }
+  }
 
   beforeEach(() => {
     // Create DOM elements
@@ -102,7 +111,7 @@ describe('useCarousel', () => {
     onPageChange = vi.fn();
 
     // Mock window methods
-    global.ResizeObserver = mockResizeObserver;
+    vi.stubGlobal('ResizeObserver', MockResizeObserver);
     global.addEventListener = vi.fn();
     global.removeEventListener = vi.fn();
 

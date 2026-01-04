@@ -7,7 +7,7 @@ import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakp
 import { STATES } from '@/lib/types/states/states';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { TabsStandAloneProps } from './types/tabs';
 
@@ -191,7 +191,7 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
                         component="span"
                         customAttributes={customAttributes}
                         data-hidden={!!hideLabelForSingleTab}
-                        {...processText(tab)}
+                        {...processTextProp(tab)}
                       />
                     </ItemRove>
                   ) : (
@@ -205,9 +205,9 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
                       <Text
                         additionalClasses={{ text: cssClasses?.label }}
                         data-hidden={!!hideLabelForSingleTab}
-                        {...processText(tab)}
+                        {...processTextProp(tab)}
                       >
-                        {processText(tab).children}
+                        {processTextProp(tab).children}
                       </Text>
                     </div>
                   )}

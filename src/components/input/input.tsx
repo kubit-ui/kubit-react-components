@@ -4,10 +4,10 @@ import {
   useId,
   useImperativeHandle,
   useRef,
+  useState,
 } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
-import { useInputFocus } from '@/lib/hooks/useInputFocus/useInputFocus';
 
 import type { InputProps } from './types/input';
 
@@ -44,7 +44,11 @@ export const Input = forwardRef<HTMLDivElement, InputProps>(
 
     useImperativeHandle(ref, () => innerRef.current as HTMLDivElement, []);
 
-    const { focused } = useInputFocus({ inputRef });
+    // Track focus state inline (replaces useInputFocus hook)
+    const [focused, setFocused] = useState(false);
+    const handleFocus = useCallback(() => setFocused(true), []);
+    const handleBlur = useCallback(() => setFocused(false), []);
+
     const filled = Boolean(props.defaultValue ?? props.value);
     const state = getState({
       disabled: props.disabled,
@@ -63,6 +67,8 @@ export const Input = forwardRef<HTMLDivElement, InputProps>(
         focused={focused}
         inputBaseId={inputBaseId}
         labelId={labelId}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
         {...props}
       />
     );

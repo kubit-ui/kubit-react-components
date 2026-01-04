@@ -2,7 +2,7 @@ import type { TextComponentType } from '@/components/text/types/component';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 
 import { Text } from '@/components/text/text';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { TextAreaCssClasses } from '../types/textArea';
 
@@ -25,10 +25,10 @@ export const TitleStandAlone = ({
           text: cssClasses?.title,
         }}
         customAttributes={customAttributtes}
-        {...processText(title)}
-        component={(processText(title).component as TextComponentType) ?? 'p'}
+        {...processTextProp(title)}
+        component={(processTextProp(title).component as TextComponentType) ?? 'p'}
       >
-        {processText(title).children}
+        {processTextProp(title).children}
       </Text>
     </div>
   );

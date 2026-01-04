@@ -2,18 +2,16 @@ import { type KeyboardEvent, type MouseEventHandler, forwardRef } from 'react';
 
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { ENTER, SPACE } from '@/lib/constants/keyboardKeys/keyboardKeys';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { OptionStandAloneProps } from './types/option';
 import type { OptionStateType } from './types/state';
 
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
-import {
-  isKeyEnterPressed,
-  isKeySpacePressed,
-} from '../../lib/utils/keyboard/keyboard';
+import { isKeyPressed } from '../../lib/utils/keyboard/keyboard';
 import { OptionLabelSlice } from './components.ts/optionLabelSlice';
 import { getHighlightedIndexes, getState } from './utils/option.utils';
 
@@ -110,10 +108,7 @@ export const OptionStandAlone = forwardRef(
         onClick={handleClickOption}
         onFocus={onFocus}
         onKeyDown={(event: KeyboardEvent<HTMLDivElement>) => {
-          if (
-            !disabled &&
-            (isKeyEnterPressed(event.key) || isKeySpacePressed(event.key))
-          ) {
+          if (!disabled && isKeyPressed(event.key, ENTER.key, SPACE.key)) {
             onClick?.(event);
           }
         }}
@@ -131,7 +126,7 @@ export const OptionStandAlone = forwardRef(
               customAttributes={customAttributes}
               {...icon}
             />
-            {!!processText(sublabel).children && (
+            {!!processTextProp(sublabel).children && (
               <div
                 className={cssClasses?.sublabelcontainer}
                 {...customAttributesProps}
@@ -142,7 +137,7 @@ export const OptionStandAlone = forwardRef(
                   }}
                   component="span"
                   customAttributes={customAttributes}
-                  {...processText(sublabel)}
+                  {...processTextProp(sublabel)}
                 />
               </div>
             )}

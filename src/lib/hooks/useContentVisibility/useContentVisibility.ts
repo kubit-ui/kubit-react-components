@@ -1,7 +1,5 @@
 import { useCallback, useRef } from 'react';
 
-import { ResizeObserver } from '@/lib/utils/resizeObserver/resizeObserver';
-
 import type {
   ElementsType,
   UseContentVisibilityParamsType,

@@ -3,7 +3,7 @@ import { type ForwardedRef, forwardRef } from 'react';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useManageState } from '@/lib/hooks/useManageState/useManageState';
 import { STATES } from '@/lib/types/states/states';
-import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
+import { processIconProp } from '@/lib/utils/process/processCommonProp';
 
 import type { ButtonProps } from './types/button';
 
@@ -69,7 +69,7 @@ export const Button = forwardRef(
       states: Object.values(STATES),
     });
 
-    if (!children && !processIcon(icon).icon) {
+    if (!children && !processIconProp(icon).icon) {
       return null;
     }
 

@@ -1,12 +1,12 @@
 import { type ForwardedRef, forwardRef, useCallback, useRef } from 'react';
 
-import { syncInnerAndForwardedRef } from '@/lib/hooks/syncRefs/syncRefs';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useContentVisibility } from '@/lib/hooks/useContentVisibility/useContentVisibility';
 import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
 import { useScrollDetection } from '@/lib/hooks/useScrollDetection/useScrollDetection';
 import { useScrollEffect } from '@/lib/hooks/useScrollEffect/useScrollEffect';
 import { useSwipeDown } from '@/lib/hooks/useSwipeDown/useSwipeDown';
+import { syncInnerAndForwardedRef } from '@/lib/utils/refs/syncRefs';
 
 import type { ModalControlledProps } from './types/modal';
 

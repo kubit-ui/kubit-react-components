@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import { Link } from '@/components/link/link';
 import { Text } from '@/components/text/text';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { CardImageStandAloneProps } from './types/cardImage';
 
@@ -73,11 +73,11 @@ export const CardImageStandAlone = forwardRef<
             <Text
               additionalClasses={{ text: cssClasses?.title }}
               component="h3"
-              {...processText(title)}
+              {...processTextProp(title)}
             />
             <Text
               additionalClasses={{ text: cssClasses?.description }}
-              {...processText(description)}
+              {...processTextProp(description)}
             />
           </div>
           {link?.url && (

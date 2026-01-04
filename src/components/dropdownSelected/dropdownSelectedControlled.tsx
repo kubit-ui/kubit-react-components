@@ -6,9 +6,10 @@ import {
   useRef,
 } from 'react';
 
+import { TAB } from '@/lib/constants/keyboardKeys/keyboardKeys';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
-import { isKeyTabPressed } from '@/lib/utils/keyboard/keyboard';
+import { isKeyPressed } from '@/lib/utils/keyboard/keyboard';
 
 import type { DropdownSelectedControlledProps } from './types/dropdownSelected';
 
@@ -60,7 +61,7 @@ export const DropdownSelectedControlled = forwardRef(
     > = (event) => {
       if (
         open &&
-        isKeyTabPressed(event.key) &&
+        isKeyPressed(event.key, TAB.key) &&
         !event.shiftKey &&
         listOptionsRef.current
       ) {

@@ -4,7 +4,7 @@ import type { CommonTextProps } from '@/lib/types/commons/text';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { STATES } from '@/lib/types/states/states';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { SelectorBoxFileCssClasses } from '../types/selectorBoxFile';
 import type { SelectorBoxFileStateType } from '../types/state';
@@ -25,7 +25,7 @@ export const SelectorBoxFileErrorMessage = ({
 }: SelectorBoxFileErrorMessageProps): JSX.Element | null => {
   return (
     <div aria-live="polite">
-      {!processText(errorMessage) || state !== STATES.ERROR ? null : (
+      {!processTextProp(errorMessage) || state !== STATES.ERROR ? null : (
         <div className={cssClasses?.errormessagecontainer} id={errorMessageId}>
           <ElementOrIcon
             className={cssClasses?.errormessageicon}
@@ -35,7 +35,7 @@ export const SelectorBoxFileErrorMessage = ({
             additionalClasses={{
               text: cssClasses?.errormessage,
             }}
-            {...processText(errorMessage)}
+            {...processTextProp(errorMessage)}
           />
         </div>
       )}

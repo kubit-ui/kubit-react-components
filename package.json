@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/react-components",
-  "version": "2.0.0-beta.11",
+  "version": "2.0.0-beta.12",
   "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
   "author": {
     "name": "Kubit",
@@ -112,7 +112,7 @@
     "prebuild-storybook": "yarn generate-css",
     "build-storybook": "storybook build -c .storybook -o bundle --disable-telemetry",
     "generate-css": "bernova --config bernova.config.json",
-    "generate:bundle-sizes": "node scripts/generate-bundle-sizes.mjs",
+    "generate:bundle-sizes": "node public/scripts/generate-bundle-sizes.mjs",
     "postdist": "yarn generate:bundle-sizes",
     "dev": "vite",
     "lint": "eslint src",

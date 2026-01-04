@@ -4,8 +4,9 @@
  */
 import { useCallback, useEffect, useMemo } from 'react';
 
+import { ESCAPE } from '@/lib/constants/keyboardKeys/keyboardKeys';
 import { useClickOutside } from '@/lib/hooks/useClickOutside/useClickOutside';
-import { isKeyEscapePressed } from '@/lib/utils/keyboard/keyboard';
+import { isKeyPressed } from '@/lib/utils/keyboard/keyboard';
 
 import type { IUsePopoverInteractions } from './types/usePopoverInteractions';
 
@@ -63,7 +64,7 @@ export const usePopoverInteractions: IUsePopoverInteractions = ({
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (isKeyEscapePressed(event.key)) {
+      if (isKeyPressed(event.key, ...ESCAPE.key)) {
         event.preventDefault();
         event.stopPropagation();
         if (!disableEscapeClose) {

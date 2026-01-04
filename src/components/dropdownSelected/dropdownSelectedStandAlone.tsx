@@ -3,7 +3,7 @@ import { forwardRef, useId, useMemo } from 'react';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { ListOptionsOptionProps } from '../listOptions/types/listOptions';
 import type { DropdownSelectedStandAloneProps } from './types/dropdownSelected';
@@ -124,7 +124,7 @@ export const DropdownSelectedStandAlone = forwardRef<
               text: open ? cssClasses?.labelopened : cssClasses?.labelclosed,
             }}
             component="span"
-            {...processText(label)}
+            {...processTextProp(label)}
           />
           <ElementOrIcon
             className={open ? cssClasses?.iconopened : cssClasses?.iconclosed}

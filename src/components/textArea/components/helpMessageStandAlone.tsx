@@ -1,7 +1,7 @@
 import type { CommonTextProps } from '@/lib/types/commons/text';
 
 import { Text } from '@/components/text/text';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { TextAreaCssClasses } from '../types/textArea';
 
@@ -24,7 +24,7 @@ export const HelpMessageStandAlone = ({
       component="small"
       customAttributes={customAttributtes}
       id={id}
-      {...processText(helpMessage)}
+      {...processTextProp(helpMessage)}
     />
   );
 };

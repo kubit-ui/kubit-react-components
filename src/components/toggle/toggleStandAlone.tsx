@@ -3,7 +3,7 @@ import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { CustomComponent } from '@/lib/components/customComponent/customComponent';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
+import { processIconProp } from '@/lib/utils/process/processCommonProp';
 
 import type { ToggleStandaloneProps } from './types/toggle';
 
@@ -157,7 +157,7 @@ const ToggleStandAloneComponent = (
           <ElementOrIcon
             className={cssClasses?.icon}
             data-disabled={disabled ? true : undefined}
-            {...processIcon(rightIcon)}
+            {...processIconProp(rightIcon)}
           />
         </div>
 
@@ -170,7 +170,7 @@ const ToggleStandAloneComponent = (
           <ElementOrIcon
             className={cssClasses?.icon}
             data-disabled={disabled ? true : undefined}
-            {...processIcon(leftIcon)}
+            {...processIconProp(leftIcon)}
           />
         </div>
       </span>

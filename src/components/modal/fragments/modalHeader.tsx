@@ -1,7 +1,7 @@
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { ModalStandAloneProps } from '../types/modal';
 
@@ -64,13 +64,13 @@ export const ModalHeader = ({
               }}
               component="h1"
               id={titleIdFinal}
-              {...processText(title)}
+              {...processTextProp(title)}
             />
           </div>
         )}
         {title?.visible === false && (
           <span className={cssClasses?.titlehiddencontainer} id={titleIdFinal}>
-            {processText(title).children}
+            {processTextProp(title).children}
           </span>
         )}
         {!blocked && !!closeIcon?.icon && (

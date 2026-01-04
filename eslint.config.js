@@ -42,19 +42,19 @@ export default eslintFlatConfig({
     vi: 'readonly',
     window: 'readonly',
   },
-  noIndexImportConfig: {
-    aliases: {
-      '@/components': './src/components/*',
-      '@/styles': './src/styles/*',
-      '@/lib': './src/lib/*',
-    },
-  },
   ignores: [
     'src/lib/provider/cssProvider/**/*',
     'src/lib/types/cssGenerator/**/*',
     'src/lib/designSystem/kubit/css/cssVars.js',
     'src/lib/tests/__mocks__/assetMock.js',
   ],
+  noIndexImportConfig: {
+    aliases: {
+      '@/components': './src/components/*',
+      '@/lib': './src/lib/*',
+      '@/styles': './src/styles/*',
+    },
+  },
   overrides: [
     {
       files: ['**/*.{js,jsx,ts,tsx}'],
@@ -66,6 +66,11 @@ export default eslintFlatConfig({
             selector: 'TSEnumDeclaration',
           },
         ],
+        '@typescript-eslint/consistent-type-imports': 'error',
+        '@typescript-eslint/no-magic-numbers': 'off',
+        '@typescript-eslint/no-unused-vars': 'off', // fix
+        'compat/compat': 'off', // fix
+        complexity: 'off',
         'import/no-extraneous-dependencies': [
           'error',
           {
@@ -77,38 +82,33 @@ export default eslintFlatConfig({
             ],
           },
         ],
-        'no-undef': 'off',
-        '@typescript-eslint/no-magic-numbers': 'off',
-        '@typescript-eslint/no-unused-vars': 'off', // fix
-        'compat/compat': 'off', // fix
-        complexity: 'off',
-        'react/no-multi-comp': 'off',
-        'unused-imports/no-unused-imports': 'off', // fix
-        '@typescript-eslint/consistent-type-imports': 'error',
+        'import/order': 'off',
         'jsx-quotes': ['error', 'prefer-double'],
-        'react/jsx-boolean-value': 'off',
-        'react/jsx-curly-brace-presence': [
-          'error',
-          { props: 'never', children: 'ignore' },
-        ],
         'no-restricted-imports': [
           'error',
           {
             paths: [
               {
-                name: 'react',
                 importNames: ['default'],
                 message:
                   'Import only the necessary functions from React, such as useState or forwardRef.',
+                name: 'react',
               },
             ],
           },
         ],
+        'no-undef': 'off',
         // Disable prettier in ESLint - formatting is handled by Prettier directly
         'prettier/prettier': 'off',
+        'react/jsx-boolean-value': 'off',
+        'react/jsx-curly-brace-presence': [
+          'error',
+          { children: 'ignore', props: 'never' },
+        ],
+        'react/no-multi-comp': 'off',
         // Disable import sorting in ESLint - handled by Prettier plugin
         'sort-imports': 'off',
-        'import/order': 'off',
+        'unused-imports/no-unused-imports': 'off', // fix
       },
     },
   ],

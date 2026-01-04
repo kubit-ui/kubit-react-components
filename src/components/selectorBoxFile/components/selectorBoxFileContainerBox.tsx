@@ -4,7 +4,7 @@ import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type {
   SelectorBoxFileContainerBoxStateContentProps,
@@ -76,7 +76,7 @@ export const SelectorBoxFileContainerBox = ({
             </Text>
           )}
         <span className={cssClasses?.actiondescriptioncontainer}>
-          {!!processText(containerBoxStateContent[state]?.actionText)
+          {!!processTextProp(containerBoxStateContent[state]?.actionText)
             .children && (
             <span
               className={cssClasses?.actioniconandactiontextcontainer}
@@ -93,10 +93,10 @@ export const SelectorBoxFileContainerBox = ({
                 }}
                 component="span"
                 customAttributes={customAttributes}
-                {...processText(containerBoxStateContent[state]?.actionText)}
+                {...processTextProp(containerBoxStateContent[state]?.actionText)}
               >
                 {
-                  processText(containerBoxStateContent[state]?.actionText)
+                  processTextProp(containerBoxStateContent[state]?.actionText)
                     .children
                 }
               </Text>
@@ -109,10 +109,10 @@ export const SelectorBoxFileContainerBox = ({
               }}
               component="span"
               customAttributes={customAttributes}
-              {...processText(containerBoxStateContent[state]?.description)}
+              {...processTextProp(containerBoxStateContent[state]?.description)}
             >
               {
-                processText(containerBoxStateContent[state]?.description)
+                processTextProp(containerBoxStateContent[state]?.description)
                   .children
               }
             </Text>

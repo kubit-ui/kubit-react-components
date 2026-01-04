@@ -10,8 +10,10 @@ vi.mock('@/hooks/useClickOutside/useClickOutside', () => ({
   useClickOutside: vi.fn(),
 }));
 
-vi.mock('@/utils/keyboard/keyboard.utility', () => ({
-  isKeyEscapePressed: vi.fn((key: string) => key === 'Escape'),
+vi.mock('@/utils/keyboard/keyboard', () => ({
+  isKeyPressed: vi.fn((key: string, ...targetKeys: string[]) =>
+    targetKeys.includes(key),
+  ),
 }));
 
 const mockOnClose = vi.fn();

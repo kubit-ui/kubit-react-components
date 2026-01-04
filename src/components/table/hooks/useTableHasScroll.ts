@@ -1,6 +1,5 @@
 import { type RefObject, useEffect, useState } from 'react';
 
-import { ResizeObserver } from '../../../lib/utils/resizeObserver/resizeObserver';
 import { hasScroll as checkHasSroll } from '../../../lib/utils/scroll/hasScroll';
 
 interface UseTableHasScrollParamsType {

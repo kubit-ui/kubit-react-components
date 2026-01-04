@@ -4,8 +4,10 @@ import { Dot } from '@/components/dot/dot';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
-import { processText } from '@/lib/utils/process/processText/processText';
+import {
+  processIconProp,
+  processTextProp,
+} from '@/lib/utils/process/processCommonProp';
 
 import type { BadgeStandAloneProps } from './types/badge';
 
@@ -92,7 +94,7 @@ export const BadgeStandAlone = forwardRef<unknown, BadgeStandAloneProps>(
             )}
             <ElementOrIcon
               className={`${cssVariantClasses?.icon} ${cssSizeClasses?.icon}`}
-              {...processIcon(icon)}
+              {...processIconProp(icon)}
               customAttributes={customAttributes}
             />
           </span>
@@ -106,14 +108,14 @@ export const BadgeStandAlone = forwardRef<unknown, BadgeStandAloneProps>(
                   text: `${cssSizeClasses?.label} ${cssVariantClasses?.label}`,
                 }}
                 component="span"
-                {...processText(label)}
+                {...processTextProp(label)}
                 customAttributes={customAttributes}
               />
               <ElementOrIcon
                 className={cssVariantClasses?.labelicon}
                 rotate={active ? '180deg' : '0deg'}
                 transitionDuration="0.2s"
-                {...processIcon(labelIcon)}
+                {...processIconProp(labelIcon)}
                 customAttributes={customAttributes}
               />
             </span>

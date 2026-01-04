@@ -4,8 +4,10 @@ import { Text } from '@/components/text/text';
 import { CustomComponent } from '@/lib/components/customComponent/customComponent';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
-import { processText } from '@/lib/utils/process/processText/processText';
+import {
+  processIconProp,
+  processTextProp,
+} from '@/lib/utils/process/processCommonProp';
 
 import type { TagStandAloneProps } from './types/tag';
 
@@ -65,11 +67,11 @@ export const TagStandAlone = forwardRef<HTMLDivElement, TagStandAloneProps>(
         {...customProps}
       >
         <>
-          <ElementOrIcon className={cssClasses?.icon} {...processIcon(icon)} />
+          <ElementOrIcon className={cssClasses?.icon} {...processIconProp(icon)} />
           <Text
             additionalClasses={{ text: cssClasses?.label }}
             component="span"
-            {...processText(label)}
+            {...processTextProp(label)}
           />
         </>
       </CustomComponent>

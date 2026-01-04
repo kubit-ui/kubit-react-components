@@ -1,12 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
-  stories: [
-    '../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-    '../.storybook/**/*.@(mdx|stories.@(js|jsx|ts|tjx|tdx|tsx))',
-  ],
-  staticDirs: ['./assets'],
-
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-a11y',
@@ -15,6 +9,9 @@ const config: StorybookConfig = {
     'storybook-addon-deep-controls',
     'storybook-addon-pseudo-states',
   ],
+  docs: {
+    defaultName: 'Documentation',
+  },
 
   framework: {
     name: '@storybook/react-vite',
@@ -25,9 +22,12 @@ const config: StorybookConfig = {
     },
   },
 
-  docs: {
-    defaultName: 'Documentation',
-  },
+  staticDirs: ['./assets'],
+
+  stories: [
+    '../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../.storybook/**/*.@(mdx|stories.@(js|jsx|ts|tjx|tdx|tsx))',
+  ],
 
   typescript: {
     reactDocgen: 'react-docgen-typescript',

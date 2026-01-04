@@ -22,7 +22,7 @@ Thumbs.db
 # Source files (only ship dist)
 src/
 .storybook/
-scripts/
+public/
 __reports__/
 
 # Config files

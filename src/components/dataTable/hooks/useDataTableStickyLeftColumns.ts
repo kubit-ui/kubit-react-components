@@ -1,6 +1,5 @@
 import { type RefObject, useEffect } from 'react';
 
-import { ResizeObserver } from '../../../lib/utils/resizeObserver/resizeObserver';
 import { hasHorizontalScroll } from '../../../lib/utils/scroll/hasScroll';
 
 interface UseDataTableStickyLeftColumnsParamsType {

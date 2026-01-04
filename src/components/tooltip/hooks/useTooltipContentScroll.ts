@@ -1,6 +1,5 @@
 import { type RefObject, useCallback, useRef, useState } from 'react';
 
-import { ResizeObserver } from '../../../lib/utils/resizeObserver/resizeObserver';
 import { hasScroll as checkHasScroll } from '../../../lib/utils/scroll/hasScroll';
 
 interface UseTooltipContentScrollParamsType {

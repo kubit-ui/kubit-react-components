@@ -8,7 +8,8 @@ import {
 
 import type { ModalUnControlledProps } from './types/modal';
 
-import { isKeyEscapePressed } from '../../lib/utils/keyboard/keyboard';
+import { ESCAPE } from '../../lib/constants/keyboardKeys/keyboardKeys';
+import { isKeyPressed } from '../../lib/utils/keyboard/keyboard';
 import { ModalControlled } from './modalControlled';
 
 export const ModalUnControlled = forwardRef<
@@ -30,7 +31,7 @@ export const ModalUnControlled = forwardRef<
     const [open, setOpen] = useState(openProp);
 
     const onKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
-      if (props?.blocked && isKeyEscapePressed(event.key)) {
+      if (props?.blocked && isKeyPressed(event.key, ...ESCAPE.key)) {
         return event.stopPropagation();
       }
       return null;

@@ -42,7 +42,7 @@ export default defineConfig({
         'vitest.config.ts',
         'app/__reports__/test-coverage/lcov-report',
         'prettify.js',
-        'scripts/**',
+        'public/**',
       ],
       provider: 'v8',
       reporter: ['text', 'json', 'lcov', 'html', 'json-summary'],

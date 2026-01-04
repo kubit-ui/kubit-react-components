@@ -90,7 +90,7 @@ beforeAll(() => {
   // This appears when tests interact with links or window.location
   // It's not an error, just jsdom notifying about a limitation
   const originalStderrWrite = process.stderr.write.bind(process.stderr);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   process.stderr.write = ((
     chunk: any,
     encoding?: any,

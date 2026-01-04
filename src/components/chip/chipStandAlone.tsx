@@ -4,8 +4,10 @@ import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
-import { processText } from '@/lib/utils/process/processText/processText';
+import {
+  processIconProp,
+  processTextProp,
+} from '@/lib/utils/process/processCommonProp';
 
 import type { ChipStandAloneProps } from './types/chip';
 
@@ -62,7 +64,7 @@ export const ChipStandAlone = forwardRef(
           <Text
             additionalClasses={{ text: cssClasses?.label }}
             component="span"
-            {...processText(label)}
+            {...processTextProp(label)}
             customAttributes={customAttributes}
           />
         );
@@ -89,13 +91,13 @@ export const ChipStandAlone = forwardRef(
                     <ElementOrIcon
                       altText={
                         typeof label === 'string' || isValidElement(label)
-                          ? (processText(rangeSeparator).children as string) ||
+                          ? (processTextProp(rangeSeparator).children as string) ||
                             ''
-                          : (processText(rangeSeparator).children as string) ||
+                          : (processTextProp(rangeSeparator).children as string) ||
                             ''
                       }
                       className={cssClasses?.rangeicon}
-                      {...processIcon(rangeIcon)}
+                      {...processIconProp(rangeIcon)}
                       customAttributes={customAttributes}
                     />
                   ) : (
@@ -105,7 +107,7 @@ export const ChipStandAlone = forwardRef(
                       }}
                       component="span"
                       customAttributes={customAttributes}
-                      {...processText(rangeSeparator)}
+                      {...processTextProp(rangeSeparator)}
                     />
                   ))}
               </span>
@@ -129,7 +131,7 @@ export const ChipStandAlone = forwardRef(
           {!range && leftIcon && (
             <ElementOrIcon
               className={cssClasses?.lefticon}
-              {...processIcon(leftIcon)}
+              {...processIconProp(leftIcon)}
             />
           )}
 
@@ -138,7 +140,7 @@ export const ChipStandAlone = forwardRef(
           <ElementOrIcon
             className={cssClasses?.closeicon}
             disabled={state === STATES.DISABLED}
-            {...processIcon(closeIcon)}
+            {...processIconProp(closeIcon)}
             altText={buildLabel()}
             customAttributes={customAttributes}
           />
@@ -148,13 +150,13 @@ export const ChipStandAlone = forwardRef(
           <span aria-live="polite" className={cssClasses?.errorcontainer}>
             <ElementOrIcon
               className={cssClasses?.erroricon}
-              {...processIcon(errorIcon)}
+              {...processIconProp(errorIcon)}
             />
             <Text
               additionalClasses={{ text: cssClasses?.errormessage }}
               component="span"
               customAttributes={customAttributes}
-              {...processText(errorMessage)}
+              {...processTextProp(errorMessage)}
             />
           </span>
         )}

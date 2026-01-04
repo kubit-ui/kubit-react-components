@@ -4,7 +4,7 @@ import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { POSITIONS } from '@/lib/types/positions/positions';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
+import { processIconProp } from '@/lib/utils/process/processCommonProp';
 
 import type { ButtonStandAloneProps } from './types/button';
 
@@ -98,7 +98,7 @@ export const ButtonStandAlone = forwardRef(
         {!loading && (
           <>
             <ElementOrIcon
-              {...processIcon(icon)}
+              {...processIconProp(icon)}
               className={classNames(
                 cssSizeClasses?.icon,
                 cssVariantClasses?.icon,

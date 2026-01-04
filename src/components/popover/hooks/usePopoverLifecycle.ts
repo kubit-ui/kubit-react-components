@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { syncInnerAndForwardedRef } from '@/lib/hooks/syncRefs/syncRefs';
 import { useScrollBlock } from '@/lib/hooks/useScrollBlock/useScrollBlock';
 import { convertDurationToNumber } from '@/lib/hooks/useSwipeDown/utils/convertDurationToNumber';
 import { focusFirstDescendant } from '@/lib/utils/focusHandlers/focusHandlers';
+import { syncInnerAndForwardedRef } from '@/lib/utils/refs/syncRefs';
 
 import type { IUsePopoverLifecycle } from './types/usePopoverLifecycle';
 

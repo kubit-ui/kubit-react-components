@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 
 import {
-  isArrowLeftPressed,
-  isArrowRightPressed,
-} from '@/lib/utils/keyboard/keyboard';
+  ARROW_LEFT,
+  ARROW_RIGHT,
+} from '@/lib/constants/keyboardKeys/keyboardKeys';
+import { isKeyPressed } from '@/lib/utils/keyboard/keyboard';
 
 import type { IUseCarouselKeyNavigation } from './types/useCarouselKeyNavigation';
 
@@ -40,9 +41,9 @@ export const useCarouselKeyNavigation: IUseCarouselKeyNavigation = ({
       if (!allowShiftRef.current || numPagesRef.current <= 1) {
         return;
       }
-      if (isArrowLeftPressed(event.key)) {
+      if (isKeyPressed(event.key, ARROW_LEFT.key)) {
         handleLeftPressed();
-      } else if (isArrowRightPressed(event.key)) {
+      } else if (isKeyPressed(event.key, ARROW_RIGHT.key)) {
         handleRightPressed();
       }
     };

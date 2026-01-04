@@ -3,7 +3,7 @@ import type { CommonTextProps } from '@/lib/types/commons/text';
 
 import { Button } from '@/components/button/button';
 import { Text } from '@/components/text/text';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type {
   SelectorBoxFileButtonProps,
@@ -42,7 +42,7 @@ export const SelectorBoxFileHeader = ({
               text: cssClasses?.title,
             }}
             component="h5"
-            {...processText(title)}
+            {...processTextProp(title)}
           />
         )}
         {!!subtitle && (
@@ -51,7 +51,7 @@ export const SelectorBoxFileHeader = ({
               additionalClasses={{
                 text: cssClasses?.subtitle,
               }}
-              {...processText(subtitle)}
+              {...processTextProp(subtitle)}
             />
             <SelectorBoxFileTooltip
               cssClasses={cssClasses}
@@ -67,7 +67,7 @@ export const SelectorBoxFileHeader = ({
             additionalClasses={{
               text: cssClasses?.description,
             }}
-            {...processText(description)}
+            {...processTextProp(description)}
           />
 
           {(!!cssClasses?.button_variant || !!button?.size) &&

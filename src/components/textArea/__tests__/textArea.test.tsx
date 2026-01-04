@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 
 import { render } from '@/lib/tests/render/render';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { TextAreaProps } from '../types/textArea';
 
@@ -51,7 +51,7 @@ describe('TextArea component', () => {
   it('when error, errorMessage should be shown', () => {
     const { container } = render(<TextArea {...mockProps} error={true} />);
     const errorMessage = screen.getByText(
-      processText(mockProps.errorMessage).children as string,
+      processTextProp(mockProps.errorMessage).children as string,
     );
     expect(errorMessage).not.toBeNull();
     expect(container).toHTMLValidate({
@@ -66,7 +66,7 @@ describe('TextArea component', () => {
       <TextArea {...mockProps} disabled={true} error={true} />,
     );
     const errorMessage = screen.queryByText(
-      processText(mockProps.errorMessage).children as string,
+      processTextProp(mockProps.errorMessage).children as string,
     );
     expect(errorMessage).toBeNull();
     expect(container).toHTMLValidate({

@@ -8,8 +8,10 @@ import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakp
 import { POSITIONS } from '@/lib/types/positions/positions';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
-import { processText } from '@/lib/utils/process/processText/processText';
+import {
+  processIconProp,
+  processTextProp,
+} from '@/lib/utils/process/processCommonProp';
 
 import type { TooltipStandAloneProps } from './types/tooltip';
 
@@ -58,8 +60,8 @@ export const TooltipStandAlone = ({
   const titleId = `${uniqueId}-title`;
   const contentId = `${uniqueId}-content`;
 
-  const processedContent = processText(content);
-  const processedTitle = processText(title);
+  const processedContent = processTextProp(content);
+  const processedTitle = processTextProp(title);
 
   const isTextContent = typeof processedContent.children === 'string';
 
@@ -147,12 +149,12 @@ export const TooltipStandAlone = ({
           style={getTooltipStyle(!!processedTitle.children, !!closeIcon?.icon)}
         >
           {/* Close Icon */}
-          {processIcon(closeIcon).icon && (
+          {processIconProp(closeIcon).icon && (
             <div className={cssClasses?.closebuttoncontainer}>
               <Icon
-                {...processIcon(closeIcon)}
+                {...processIconProp(closeIcon)}
                 className={cssClasses?.closebuttonicon}
-                icon={processIcon(closeIcon).icon as string}
+                icon={processIconProp(closeIcon).icon as string}
                 onClick={onCloseIconClick}
               />
             </div>

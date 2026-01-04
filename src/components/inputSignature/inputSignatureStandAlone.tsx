@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import { Text } from '@/components/text/text';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { InputSignatureStandAloneProps } from './types/inputSignature';
 
@@ -67,7 +67,7 @@ export const InputSignatureStandAlone = forwardRef<
                 text: cssClasses?.placeholdertext,
               }}
             customAttributes={customAttributes}
-            {...processText(currentText)}
+            {...processTextProp(currentText)}
           />
         </div>
 )}

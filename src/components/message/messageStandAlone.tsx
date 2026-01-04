@@ -6,7 +6,7 @@ import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { MessageStandAloneProps } from './types/message';
 
@@ -46,8 +46,8 @@ export const MessageStandAlone = forwardRef<
     const dataTestId = props['data-testid'] || 'message';
     const customProps = pickCustomAttributes(props);
 
-    const processedContent = processText(content);
-    const processedTitle = processText(title);
+    const processedContent = processTextProp(content);
+    const processedTitle = processTextProp(title);
 
     const isLargeMessage =
       typeof processedContent.children === 'string' &&

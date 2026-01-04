@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
+import { processIconProp } from '@/lib/utils/process/processCommonProp';
 
 import type { CheckboxBaseStandAloneProps } from './types/checkboxBase';
 
@@ -38,7 +38,7 @@ export const CheckboxBaseStandAlone = forwardRef(
             className={cssClasses?.icon}
             complex={true}
             data-state={props['data-state']}
-            {...processIcon(checkedIcon)}
+            {...processIconProp(checkedIcon)}
           />
         </span>
       </div>

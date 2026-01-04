@@ -4,8 +4,10 @@ import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processIcon } from '@/lib/utils/process/processIcon/processIcon';
-import { processText } from '@/lib/utils/process/processText/processText';
+import {
+  processIconProp,
+  processTextProp,
+} from '@/lib/utils/process/processCommonProp';
 
 import type { ErrorMessageProps } from './types/errorMessage';
 
@@ -35,13 +37,13 @@ export const ErrorMessageStandAlone = forwardRef(
           <>
             <ElementOrIcon
               className={cssClasses?.icon}
-              {...processIcon(icon)}
+              {...processIconProp(icon)}
             />
             <Text
               additionalClasses={{
                 text: cssClasses?.typography,
               }}
-              {...processText(message)}
+              {...processTextProp(message)}
             />
           </>
         )}

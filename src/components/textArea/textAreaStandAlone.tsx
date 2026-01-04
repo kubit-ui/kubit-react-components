@@ -3,7 +3,7 @@ import { forwardRef, useId } from 'react';
 import { LabelStandAlone as Label } from '@/components/label/labelStandAlone';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { TextAreaStateType } from './types/state';
 import type { TextAreaStandAloneProps } from './types/textArea';
@@ -93,16 +93,16 @@ export const TextAreaStandAlone = forwardRef<
               inputId={textAreaId}
               required={required}
               textCssClasses={cssClasses?.label}
-              {...processText(label)}
+              {...processTextProp(label)}
             >
-              {processText(label).children}
+              {processTextProp(label).children}
             </Label>
             {additionalInfo}
           </div>
           <textarea
             aria-describedby={buildAriaDescribedBy({
-              errorMessage: processText(errorMessage).children as string,
-              helpMessage: processText(helpMessage).children as string,
+              errorMessage: processTextProp(errorMessage).children as string,
+              helpMessage: processTextProp(helpMessage).children as string,
               state,
               textAreaErrorId,
               textAreaHelpTextId,

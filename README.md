@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://kubit-ui.com">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./assets/banner_kubit_readme.png">
-      <img src="./assets/banner_kubit_readme.png" width="70%">
+      <source media="(prefers-color-scheme: dark)" srcset="./public/assets/banner_kubit_readme.png">
+      <img src="./public/assets/banner_kubit_readme.png" width="70%">
     </picture>
   </a>
 </p>

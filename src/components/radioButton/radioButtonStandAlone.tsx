@@ -5,7 +5,7 @@ import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processText } from '@/lib/utils/process/processText/processText';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { RadioButtonStandAloneProps } from './types/radioButton';
 
@@ -41,7 +41,7 @@ export const RadioButtonStandAlone = ({
 
   inputId = id ?? inputId;
 
-  const descriptionId = processText(subTitle).id && `${inputId}__description`;
+  const descriptionId = processTextProp(subTitle).id && `${inputId}__description`;
 
   const errorMessageId = errorMessage && `${inputId}__error`;
 
@@ -107,17 +107,17 @@ export const RadioButtonStandAlone = ({
             </Label>
           </div>
         )}
-        {!!processText(subTitle).children &&
-          (typeof processText(subTitle) === 'string' ? (
+        {!!processTextProp(subTitle).children &&
+          (typeof processTextProp(subTitle) === 'string' ? (
             <Text
               additionalClasses={{
                 text: cssClasses?.sublabel,
               }}
-              {...processText(subTitle)}
+              {...processTextProp(subTitle)}
               id={descriptionId}
             />
           ) : (
-            <div id={descriptionId}>{processText(subTitle).children}</div>
+            <div id={descriptionId}>{processTextProp(subTitle).children}</div>
           ))}
         {!!(error && errorMessage) && (
           <div
