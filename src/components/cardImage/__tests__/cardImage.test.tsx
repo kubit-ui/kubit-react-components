@@ -36,4 +36,68 @@ describe('CardImage component', () => {
     const text = screen.getByText('title');
     expect(text).toBeDefined();
   });
+
+  it('Should render with link', () => {
+    render(
+      <CardImage
+        {...mockProps}
+        link={{ content: 'Read more', url: '/details' }}
+      />,
+    );
+
+    const linkText = screen.getByText('Read more');
+    expect(linkText).toBeDefined();
+  });
+
+  it('Should not render link when url is missing', () => {
+    render(
+      <CardImage {...mockProps} link={{ content: 'Read more', url: '' }} />,
+    );
+
+    const linkText = screen.queryByText('Read more');
+    expect(linkText).toBeNull();
+  });
+
+  it('Should render with description', () => {
+    render(
+      <CardImage
+        {...mockProps}
+        description={{ content: 'Card description text' }}
+      />,
+    );
+
+    const description = screen.getByText('Card description text');
+    expect(description).toBeDefined();
+  });
+
+  it('Should render with onClick handler', () => {
+    const onClick = vi.fn();
+    render(<CardImage {...mockProps} onClick={onClick} />);
+
+    const text = screen.getByText('title');
+    expect(text).toBeDefined();
+  });
+
+  it('Should render with custom component', () => {
+    render(<CardImage {...mockProps} component="article" />);
+
+    const text = screen.getByText('title');
+    expect(text).toBeDefined();
+  });
+
+  it('Should render image for specific device', () => {
+    render(
+      <CardImage
+        {...mockProps}
+        image={{
+          [DEVICE_BREAKPOINTS.DESKTOP]: 'desktop.jpg',
+          [DEVICE_BREAKPOINTS.MOBILE]: 'mobile.jpg',
+          [DEVICE_BREAKPOINTS.TABLET]: 'tablet.jpg',
+        }}
+      />,
+    );
+
+    const text = screen.getByText('title');
+    expect(text).toBeDefined();
+  });
 });

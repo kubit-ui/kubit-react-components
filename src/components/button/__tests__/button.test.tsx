@@ -115,4 +115,108 @@ describe('Button component', () => {
     const results = await axe(container);
     expect(results.violations).toHaveLength(0);
   });
+
+  it('Should render Button with loading state', async () => {
+    const { container } = render(
+      <Button {...mockProps} loader={<div>Loading...</div>} loading={true}>
+        {children}
+      </Button>,
+    );
+
+    const button = screen.getByTestId('button-component');
+    expect(button).toBeDefined();
+    expect(button.getAttribute('data-loading')).toBe('true');
+
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+
+  it('Should render Button without loading when loading is false', async () => {
+    const { container } = render(
+      <Button {...mockProps} loader={<div>Loading...</div>} loading={false}>
+        {children}
+      </Button>,
+    );
+
+    const button = screen.getByTestId('button-component');
+    expect(button).toBeDefined();
+    expect(button.getAttribute('data-loading')).toBe('false');
+
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+
+  it('Should render Button with fullWidth', async () => {
+    const { container } = render(
+      <Button {...mockProps} fullWidth={true}>
+        {children}
+      </Button>,
+    );
+
+    const button = screen.getByTestId('button-component');
+    expect(button).toBeDefined();
+    expect(button.getAttribute('data-full-width')).toBe('true');
+
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+
+  it('Should render Button with iconPosition RIGHT', async () => {
+    const { container } = render(
+      <Button {...mockProps} iconPosition="right">
+        {children}
+      </Button>,
+    );
+
+    const button = screen.getByTestId('button-component');
+    expect(button).toBeDefined();
+    expect(button.getAttribute('data-position')).toBe('right');
+
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+
+  it('Should render Button with custom alignText', async () => {
+    const { container } = render(
+      <Button {...mockProps} alignText="center">
+        {children}
+      </Button>,
+    );
+
+    const button = screen.getByTestId('button-component');
+    expect(button).toBeDefined();
+
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+
+  it('Should render Button with disabled state', async () => {
+    const { container } = render(
+      <Button {...mockProps} disabled={true}>
+        {children}
+      </Button>,
+    );
+
+    const button = screen.getByTestId('button-component');
+    expect(button).toBeDefined();
+    expect(button).toBeDisabled();
+
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+
+  it('Should render Button with form attribute', async () => {
+    const { container } = render(
+      <Button {...mockProps} form="my-form">
+        {children}
+      </Button>,
+    );
+
+    const button = screen.getByTestId('button-component');
+    expect(button).toBeDefined();
+    expect(button.getAttribute('form')).toBe('my-form');
+
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
 });

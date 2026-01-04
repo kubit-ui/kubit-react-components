@@ -63,5 +63,14 @@ describe('Keyboard utility', () => {
     it('should return false when no target keys provided', () => {
       expect(isKeyPressed(ENTER.key)).toBe(false);
     });
+
+    it('should handle empty array in targetKeys', () => {
+      expect(isKeyPressed('a', [])).toBe(false);
+    });
+
+    it('should handle mixed empty and non-empty arrays', () => {
+      expect(isKeyPressed(ENTER.key, [], ENTER.key)).toBe(true);
+      expect(isKeyPressed('x', [], 'y', 'z')).toBe(false);
+    });
   });
 });

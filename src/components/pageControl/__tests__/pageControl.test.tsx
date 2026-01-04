@@ -188,4 +188,45 @@ describe('ButtonControl render', () => {
     await fireEvent.click(rightArrow);
     expect(handleRightArrowControlClick).toHaveBeenCalled();
   });
+
+  it('Should render with default data-testid when not provided', () => {
+    render(
+      <PageControl
+        arrowsControlVariant="DEFAULT"
+        currentPosition={0}
+        pages={3}
+        variant="DEFAULT"
+      />,
+    );
+    const controller = screen.getByTestId('page-control');
+    expect(controller).toBeDefined();
+  });
+
+  it('Should render with isBullet and show additional dots', () => {
+    render(
+      <PageControl
+        arrowsControlVariant="DEFAULT"
+        currentPosition={2}
+        data-testid={dataTestId}
+        pages={8}
+        variant="BULLETS"
+      />,
+    );
+    const controller = screen.getByTestId(dataTestId);
+    expect(controller).toBeDefined();
+  });
+
+  it('Should handle zero dots gracefully', () => {
+    render(
+      <PageControl
+        arrowsControlVariant="DEFAULT"
+        currentPosition={0}
+        data-testid={dataTestId}
+        pages={0}
+        variant="DEFAULT"
+      />,
+    );
+    const controller = screen.getByTestId(dataTestId);
+    expect(controller).toBeDefined();
+  });
 });

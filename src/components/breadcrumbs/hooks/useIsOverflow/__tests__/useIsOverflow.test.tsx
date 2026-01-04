@@ -60,4 +60,20 @@ describe('useIsOverflow', () => {
     });
     expect(getByTestId('overflow').textContent).toBe('no-overflow');
   });
+
+  it('should handle null ref gracefully', () => {
+    function TestComponentWithNullRef() {
+      const { isOverflow } = useIsOverflow();
+      return (
+        <div>
+          <span data-testid="overflow">
+            {isOverflow ? 'overflow' : 'no-overflow'}
+          </span>
+        </div>
+      );
+    }
+
+    const { getByTestId } = render(<TestComponentWithNullRef />);
+    expect(getByTestId('overflow').textContent).toBe('no-overflow');
+  });
 });

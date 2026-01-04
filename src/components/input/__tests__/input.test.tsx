@@ -58,4 +58,47 @@ describe('Input Component', () => {
     // expect(container).toHTMLValidate();
     // expect(results.violations).toHaveLength(0);
   });
+
+  it('Should handle filled state when value is provided', () => {
+    const { getByTestId } = render(<Input {...mockProps} value="test value" />);
+    const input = getByTestId('input-base');
+    expect(input).toBeInTheDocument();
+  });
+
+  it('Should handle empty state when no value is provided', () => {
+    const { getByTestId } = render(
+      <Input {...mockProps} defaultValue={undefined} value={undefined} />,
+    );
+    const input = getByTestId('input-base');
+    expect(input).toBeInTheDocument();
+  });
+
+  it('Should handle disabled state', () => {
+    const { getByTestId } = render(<Input {...mockProps} disabled={true} />);
+    const input = getByTestId('input-base');
+    expect(input).toBeInTheDocument();
+    expect(input).toBeDisabled();
+  });
+
+  it('Should handle error state', () => {
+    const { getByTestId } = render(<Input {...mockProps} error={true} />);
+    const input = getByTestId('input-base');
+    expect(input).toHaveAttribute('data-state', 'ERROR_FILLED');
+  });
+
+  it('Should generate unique id when id is not provided', () => {
+    const { getByTestId } = render(<Input {...mockProps} id={undefined} />);
+    const input = getByTestId('input-base');
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveAttribute('id');
+  });
+
+  it('Should use provided id in inputBaseId', () => {
+    const { getByTestId } = render(<Input {...mockProps} id="custom-id" />);
+    const input = getByTestId('input-base');
+    // Verify the input has an id attribute
+    const inputId = input.getAttribute('id');
+    expect(inputId).toBeTruthy();
+    expect(inputId).toContain('inputbase');
+  });
 });

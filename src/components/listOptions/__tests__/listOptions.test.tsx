@@ -85,4 +85,51 @@ describe('ListOptions component', () => {
 
     expect(screen.getByText('labelTest')).not.toBeNull();
   });
+
+  it('Should render with default data-testid when not provided', () => {
+    const mockWithoutTestId = { ...MOCK };
+    render(<ListOptions {...mockWithoutTestId} />);
+
+    const listOptions = screen.getByTestId('list-options');
+    expect(listOptions).toBeDefined();
+  });
+
+  it('Should render with multiple options', () => {
+    const mockWithMoreOptions = {
+      ...MOCK,
+      options: [
+        ...MOCK.options,
+        {
+          disabled: false,
+          icon: { icon: 'ERROR' },
+          label: 'labelTest3',
+          value: 3,
+          variant: 'SIDE_MENU_LEVEL_1',
+        },
+      ],
+    };
+
+    render(<ListOptions {...mockWithMoreOptions} />);
+
+    expect(screen.getByText('labelTest3')).not.toBeNull();
+  });
+
+  it('Should render with disabled options', () => {
+    const mockWithDisabledOption = {
+      ...MOCK,
+      options: [
+        {
+          disabled: true,
+          icon: { icon: 'ERROR' },
+          label: 'disabledOption',
+          value: 4,
+          variant: 'SIDE_MENU_LEVEL_1',
+        },
+      ],
+    };
+
+    render(<ListOptions {...mockWithDisabledOption} />);
+
+    expect(screen.getByText('disabledOption')).not.toBeNull();
+  });
 });

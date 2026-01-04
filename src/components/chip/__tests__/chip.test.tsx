@@ -119,4 +119,46 @@ describe('Chip Component', () => {
     const results = await axe(container);
     expect(results.violations).toHaveLength(0);
   });
+
+  it('Chip component - with onCloseIconClick', async () => {
+    const onCloseIconClick = vi.fn();
+    const { container } = render(
+      <Chip
+        {...mockProps}
+        closeIcon={{
+          altText: 'close',
+          icon: <Icon altText="close_icon" icon="UNICORN" />,
+          onClick: onCloseIconClick,
+        }}
+      />,
+    );
+
+    const chip = screen.getByTestId('chip-component');
+    expect(chip).not.toBeNull();
+
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+
+  it('Chip component - with disabled state', async () => {
+    const { container } = render(
+      <Chip {...mockProps} state={STATES.DISABLED} />,
+    );
+
+    const chip = screen.getByTestId('chip-component');
+    expect(chip).not.toBeNull();
+
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
+
+  it('Chip component - without close icon', async () => {
+    const { container } = render(<Chip {...mockProps} />);
+
+    const chip = screen.getByTestId('chip-component');
+    expect(chip).not.toBeNull();
+
+    const results = await axe(container);
+    expect(results.violations).toHaveLength(0);
+  });
 });

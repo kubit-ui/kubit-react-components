@@ -44,4 +44,37 @@ describe('translateValue', () => {
     });
     expect(result).toBe(0);
   });
+
+  it('should return outputMin when inputMin equals inputMax', () => {
+    const result = translateValue({
+      inputMax: 50,
+      inputMin: 50,
+      outputMax: 10,
+      outputMin: 5,
+      value: 50,
+    });
+    expect(result).toBe(5);
+  });
+
+  it('should constrain value below minimum to outputMin', () => {
+    const result = translateValue({
+      inputMax: 100,
+      inputMin: 0,
+      outputMax: 10,
+      outputMin: 0,
+      value: -50,
+    });
+    expect(result).toBe(0);
+  });
+
+  it('should handle decimal values', () => {
+    const result = translateValue({
+      inputMax: 1,
+      inputMin: 0,
+      outputMax: 100,
+      outputMin: 0,
+      value: 0.75,
+    });
+    expect(result).toBe(75);
+  });
 });

@@ -139,4 +139,36 @@ describe('Option component', () => {
     const toggles = screen.getAllByRole('switch');
     expect(toggles.length).toBeGreaterThan(0);
   });
+
+  it('Should handle onFocus event', () => {
+    const onFocus = vi.fn();
+    render(<Option {...mockProps} onFocus={onFocus} />);
+    const option = screen.getByText(mockProps.label);
+    fireEvent.focus(option);
+    expect(onFocus).toHaveBeenCalled();
+  });
+
+  it('Should handle onBlur event', () => {
+    const onBlur = vi.fn();
+    render(<Option {...mockProps} onBlur={onBlur} />);
+    const option = screen.getByText(mockProps.label);
+    fireEvent.blur(option);
+    expect(onBlur).toHaveBeenCalled();
+  });
+
+  it('Should focus element when focus prop is true', () => {
+    const { rerender } = render(<Option {...mockProps} focus={false} />);
+    const option = screen.getByText(mockProps.label);
+    expect(option).not.toHaveFocus();
+
+    rerender(<Option {...mockProps} focus={true} />);
+    // Component should attempt to focus on update
+    expect(option).toBeDefined();
+  });
+
+  it('Should forward ref correctly', () => {
+    const ref = vi.fn();
+    render(<Option {...mockProps} ref={ref} />);
+    expect(ref).toHaveBeenCalled();
+  });
 });

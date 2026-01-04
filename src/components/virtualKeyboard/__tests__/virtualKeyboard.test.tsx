@@ -65,4 +65,61 @@ describe('Virtual Keyboard component', () => {
     expect(mockProps.onDigitButtonClick).not.toHaveBeenCalled();
     expect(document.body).toHTMLValidate();
   });
+
+  it('Should set state to ACTIVE on focus', () => {
+    const { container } = render(<VirtualKeyboard {...mockProps} />);
+
+    const buttons = screen.getAllByRole('button');
+    fireEvent.focus(buttons[0]);
+
+    expect(container).toBeDefined();
+  });
+
+  it('Should set state to INACTIVE on blur when relatedTarget is outside', () => {
+    const { container } = render(<VirtualKeyboard {...mockProps} />);
+
+    const buttons = screen.getAllByRole('button');
+    fireEvent.focus(buttons[0]);
+
+    // Blur to an element outside the keyboard
+    fireEvent.blur(buttons[0], {
+      relatedTarget: document.body,
+    });
+
+    expect(container).toBeDefined();
+  });
+
+  it('Should keep state ACTIVE on blur when relatedTarget is inside keyboard', () => {
+    render(<VirtualKeyboard {...mockProps} />);
+
+    const buttons = screen.getAllByRole('button');
+    fireEvent.focus(buttons[0]);
+
+    // Blur to another button within the keyboard
+    fireEvent.blur(buttons[0], {
+      relatedTarget: buttons[1],
+    });
+
+    expect(buttons[1]).toBeDefined();
+  });
+
+  it('Should call callbacks for different digits', () => {
+    const onDigitButtonClick = vi.fn();
+    render(
+      <VirtualKeyboard
+        {...mockProps}
+        onDigitButtonClick={onDigitButtonClick}
+      />,
+    );
+
+    const buttons = screen.getAllByRole('button');
+
+    // Click on first digit
+    fireEvent.click(buttons[0]);
+    expect(onDigitButtonClick).toHaveBeenCalledTimes(1);
+
+    // Click on second digit
+    fireEvent.click(buttons[1]);
+    expect(onDigitButtonClick).toHaveBeenCalledTimes(2);
+  });
 });

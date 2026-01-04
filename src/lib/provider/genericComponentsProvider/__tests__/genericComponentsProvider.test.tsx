@@ -1,4 +1,4 @@
-import { render } from '@/lib/tests/render/render';
+import { render, renderHook } from '@testing-library/react';
 
 import {
   GenericComponentContext,
@@ -7,6 +7,24 @@ import {
 } from '../genericComponentsProvider';
 
 describe('GenericComponentsProvider', () => {
+  let consoleErrorSpy: ReturnType<typeof vi.spyOn>;
+  let consoleWarnSpy: ReturnType<typeof vi.spyOn>;
+
+  beforeAll(() => {
+    // Suppress console errors and warnings for tests that expect errors
+    consoleErrorSpy = vi
+      .spyOn(console, 'error')
+      .mockImplementation(() => undefined);
+    consoleWarnSpy = vi
+      .spyOn(console, 'warn')
+      .mockImplementation(() => undefined);
+  });
+
+  afterAll(() => {
+    consoleErrorSpy.mockRestore();
+    consoleWarnSpy.mockRestore();
+  });
+
   it('should render children correctly when provided', () => {
     const { getByText } = render(
       <GenericComponentsProvider
@@ -35,22 +53,17 @@ describe('GenericComponentsProvider', () => {
   });
 
   it('should throw an error when context value is null', () => {
-    vi.spyOn(console, 'error').mockImplementation(() => {
-      // Suppress error output in test environment
-    });
-
-    const TestComponent = () => {
-      useGenericComponents();
-      return <div />;
-    };
-
-    expect(() =>
-      render(
-        <GenericComponentContext.Provider value={null}>
-          <TestComponent />
-        </GenericComponentContext.Provider>,
-      ),
-    ).toThrow(
+    // Test that the hook throws an error when used without a proper provider
+    // Console errors are suppressed globally via beforeAll/afterAll hooks
+    expect(() => {
+      renderHook(() => useGenericComponents(), {
+        wrapper: ({ children }: { children: React.ReactNode }) => (
+          <GenericComponentContext.Provider value={null}>
+            {children}
+          </GenericComponentContext.Provider>
+        ),
+      });
+    }).toThrow(
       'Generic components context is being used without a provider or with an unsupported value',
     );
   });

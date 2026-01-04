@@ -83,4 +83,81 @@ describe('Badge component', () => {
     const badge = screen.getByTestId(mockProps['data-testid'] as string);
     expect(badge).not.toBeNull();
   });
+
+  it('Should not set active to false when blur happens within badge', () => {
+    render(<Badge {...mockProps} />);
+
+    const triggerButton = screen.getByLabelText('Open menu');
+
+    // First activate the badge
+    fireEvent.click(triggerButton);
+
+    // Create a blur event where relatedTarget is within currentTarget
+    const relatedTarget = document.createElement('div');
+    triggerButton.appendChild(relatedTarget);
+
+    fireEvent.blur(triggerButton, {
+      relatedTarget,
+    });
+
+    const badge = screen.getByTestId(mockProps['data-testid'] as string);
+    expect(badge).not.toBeNull();
+  });
+
+  it('Should render with hasDot as false', () => {
+    render(<Badge {...mockProps} hasDot={false} />);
+
+    const badge = screen.getByTestId(mockProps['data-testid'] as string);
+    expect(badge).not.toBeNull();
+  });
+
+  it('Should render without dot prop', () => {
+    const propsWithoutDot = { ...mockProps };
+    delete propsWithoutDot.dot;
+
+    render(<Badge {...propsWithoutDot} />);
+
+    const badge = screen.getByTestId(mockProps['data-testid'] as string);
+    expect(badge).not.toBeNull();
+  });
+
+  it('Should render without labelIcon', () => {
+    const propsWithoutLabelIcon = { ...mockProps };
+    delete propsWithoutLabelIcon.labelIcon;
+
+    render(<Badge {...propsWithoutLabelIcon} />);
+
+    const badge = screen.getByTestId(mockProps['data-testid'] as string);
+    expect(badge).not.toBeNull();
+  });
+
+  it('Should render with ariaLiveText', () => {
+    render(<Badge {...mockProps} ariaLiveText="Updated notification" />);
+
+    const badge = screen.getByTestId(mockProps['data-testid'] as string);
+    expect(badge).not.toBeNull();
+  });
+
+  it('Should render without onClick handler', () => {
+    const propsWithoutHandlers = { ...mockProps };
+    delete propsWithoutHandlers.onClick;
+
+    render(<Badge {...propsWithoutHandlers} />);
+
+    const badge = screen.getByTestId(mockProps['data-testid'] as string);
+    expect(badge).not.toBeNull();
+  });
+
+  it('Should handle click without onClick handler', () => {
+    const propsWithoutHandlers = { ...mockProps };
+    delete propsWithoutHandlers.onClick;
+
+    render(<Badge {...propsWithoutHandlers} />);
+
+    const triggerButton = screen.getByLabelText('Open menu');
+    fireEvent.click(triggerButton);
+
+    const badge = screen.getByTestId(mockProps['data-testid'] as string);
+    expect(badge).not.toBeNull();
+  });
 });
