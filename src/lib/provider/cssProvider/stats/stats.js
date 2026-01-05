@@ -388,7 +388,7 @@ export const cssClasses = {
     $_secondary_alt: {
       button: 'button button--secondary_alt',
     },
-    dynamic_values: e=>Object.entries(e).reduce((e,[t,s])=>{const r="--"+t.toLocaleLowerCase().replace("$","");return e.string+=r+": "+s+"; ",e.object[r]=s,e},{string:"",object:{}}),
+    dynamic_values: styles=>Object.entries(styles).reduce((acc,[key,value])=>{const varName="--"+key.toLocaleLowerCase().replace("$","");return acc.string+=varName+": "+value+"; ",acc.object[varName]=value,acc},{string:"",object:{}}),
   },
   CALENDAR: {
     calendar: 'calendar',
@@ -664,7 +664,7 @@ export const cssClasses = {
     button: 'icon__button',
     complex: 'icon__complex',
     svg: 'icon__svg',
-    dynamic_values: e=>Object.entries(e).reduce((e,[t,s])=>{const r="--"+t.toLocaleLowerCase().replace("$","");return e.string+=r+": "+s+"; ",e.object[r]=s,e},{string:"",object:{}}),
+    dynamic_values: styles=>Object.entries(styles).reduce((acc,[key,value])=>{const varName="--"+key.toLocaleLowerCase().replace("$","");return acc.string+=varName+": "+value+"; ",acc.object[varName]=value,acc},{string:"",object:{}}),
   },
   INPUT: {
     input: 'input',
@@ -1308,7 +1308,7 @@ export const cssClasses = {
     $_header_cell_secondary: {
       table_cell: 'table_cell table_cell--header_cell_secondary',
     },
-    dynamic_values: e=>Object.entries(e).reduce((e,[t,s])=>{const r="--"+t.toLocaleLowerCase().replace("$","");return e.string+=r+": "+s+"; ",e.object[r]=s,e},{string:"",object:{}}),
+    dynamic_values: styles=>Object.entries(styles).reduce((acc,[key,value])=>{const varName="--"+key.toLocaleLowerCase().replace("$","");return acc.string+=varName+": "+value+"; ",acc.object[varName]=value,acc},{string:"",object:{}}),
   },
   TABLE_DIVIDER: {
     table_divider: 'table_divider',
