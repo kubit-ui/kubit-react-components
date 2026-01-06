@@ -5,6 +5,20 @@ import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCusto
 
 import type { TextCountStandAloneProps } from './types/textCount';
 
+/**
+ * Standalone text counter component for textarea fields.
+ *
+ * This component displays the current character count and maximum length
+ * for a textarea input with accessibility support.
+ *
+ * @example
+ * ```tsx
+ * <TextCountStandAlone
+ *   currentCharacters={150}
+ *   maxLength={500}
+ * />
+ * ```
+ */
 const TextCountStandAloneComponent = (
   {
     cssClasses,

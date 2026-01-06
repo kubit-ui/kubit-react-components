@@ -15,6 +15,25 @@ import { useTableStickyLeftColumns } from './hooks/useTableStickyLeftColumns';
 import { useTableStickyRightColumns } from './hooks/useTableStickyRightColumns';
 import { TableStandAlone } from './tableStandAlone';
 
+/**
+ * Table component with automatic sticky column calculations and scroll shadow effects.
+ *
+ * This component wraps TableStandAlone and adds automatic sticky positioning for left
+ * and right columns, scroll shadow effects, and responsive behavior. It manages scroll
+ * state and column positioning internally.
+ *
+ * @example
+ * ```tsx
+ * <Table
+ *   variant="primary"
+ *   autoLeftStickyCalc={true}
+ *   autoRightStickyCalc={true}
+ * >
+ *   <thead>...</thead>
+ *   <tbody>...</tbody>
+ * </Table>
+ * ```
+ */
 export const Table = forwardRef<HTMLDivElement, PropsWithChildren<TableProps>>(
   (
     {

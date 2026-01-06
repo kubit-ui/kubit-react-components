@@ -6,6 +6,22 @@ import type { TableRowStandAloneProps } from './types/tableRow';
 
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
+/**
+ * Standalone table row component for rendering tr elements.
+ *
+ * This component renders a table row with support for active state, hover effects,
+ * and click interactions.
+ *
+ * @example
+ * ```tsx
+ * <TableRowStandAlone
+ *   active={true}
+ *   onClick={() => {}}
+ * >
+ *   <td>Row content</td>
+ * </TableRowStandAlone>
+ * ```
+ */
 export const TableRowStandAlone = forwardRef<
   HTMLTableRowElement,
   PropsWithChildren<TableRowStandAloneProps>

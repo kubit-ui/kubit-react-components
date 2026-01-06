@@ -1,3 +1,9 @@
+/**
+ * Builds the aria-labelledby attribute string from multiple ID sources.
+ *
+ * @param params - Object containing description, error, and screen reader IDs
+ * @returns Combined aria-labelledby string or undefined if empty
+ */
 export const buildAriaLabelledBy = ({
   descriptionId,
   error,

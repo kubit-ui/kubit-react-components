@@ -9,6 +9,23 @@ import type { TextStandAloneProps } from './types/text';
 
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
+/**
+ * Standalone text component for rendering customizable text elements.
+ *
+ * This component renders text with customizable HTML element type (p, span, h1, etc.),
+ * color, weight, alignment, and other typographic properties.
+ *
+ * @example
+ * ```tsx
+ * <TextStandAlone
+ *   component="h1"
+ *   color="primary"
+ *   weight="bold"
+ * >
+ *   Heading text
+ * </TextStandAlone>
+ * ```
+ */
 export const TextStandAlone = forwardRef<
   HTMLParagraphElement,
   TextStandAloneProps

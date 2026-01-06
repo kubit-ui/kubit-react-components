@@ -9,6 +9,12 @@ interface GetInputSignatureState {
   disabled?: boolean;
 }
 
+/**
+ * Determines the visual state of a signature input.
+ *
+ * @param params - Signature input state flags
+ * @returns The calculated signature input state
+ */
 export const getInputSignatureState = ({
   active,
   disabled,

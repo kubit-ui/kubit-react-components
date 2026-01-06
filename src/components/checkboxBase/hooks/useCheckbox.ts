@@ -10,7 +10,18 @@ interface ReturnType {
   handleToggleIsChecked: () => void;
 }
 
-export const useCheckbox = ({ disabled, initialChecked }: ParamsType): ReturnType => {
+/**
+ * Custom hook for managing checkbox checked state.
+ *
+ * @param params - Configuration object
+ * @param params.initialChecked - Initial checked state
+ * @param params.disabled - Whether the checkbox is disabled
+ * @returns Object with checked state and toggle handler
+ */
+export const useCheckbox = ({
+  disabled,
+  initialChecked,
+}: ParamsType): ReturnType => {
   const [isChecked, setIsChecked] = useState(initialChecked);
 
   const handleToggleIsChecked: () => void = () => {

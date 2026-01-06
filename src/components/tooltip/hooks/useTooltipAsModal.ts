@@ -1,9 +1,15 @@
 import { useMemo } from 'react';
 
-// Order to get the value:
-// 1st: We get by props the value
-// 2nd: We get by theme the value
-// 3rd: We dont get nothing, then We return false and tooltip acts like a tooltip
+/**
+ * Custom hook to determine if tooltip should behave as a modal.
+ *
+ * Priority order: prop value > theme value > false (default tooltip behavior).
+ *
+ * @param params - Configuration object
+ * @param params.propTooltipAsModal - Tooltip as modal from props
+ * @param params.styleTooltipAsModal - Tooltip as modal from theme
+ * @returns Boolean indicating if tooltip should act as modal
+ */
 export const useTooltipAsModal = ({
   propTooltipAsModal,
   styleTooltipAsModal,

@@ -5,6 +5,11 @@ import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCusto
 
 import type { IconComplexProps, IconStandAloneProps } from './types/icon';
 
+/**
+ * Internal complex icon component with advanced animation support.
+ *
+ * This component handles icons with twist animations and complex styling.
+ */
 const IconComplex = forwardRef<HTMLSpanElement, IconComplexProps>(
   (
     {
@@ -51,6 +56,21 @@ const IconComplex = forwardRef<HTMLSpanElement, IconComplexProps>(
   },
 );
 
+/**
+ * Standalone icon component for displaying icons with customizable styles and animations.
+ *
+ * This component renders an icon element with support for rotation, color, sizing, and
+ * optional complex animations. It can display either simple or complex icons based on the prop.
+ *
+ * @example
+ * ```tsx
+ * <IconStandAlone
+ *   icon={<MyIcon />}
+ *   color="primary"
+ *   rotate="90deg"
+ * />
+ * ```
+ */
 export const IconStandAlone = forwardRef<HTMLSpanElement, IconStandAloneProps>(
   (
     {

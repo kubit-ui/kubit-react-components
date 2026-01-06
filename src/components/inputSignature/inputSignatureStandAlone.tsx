@@ -7,6 +7,20 @@ import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { InputSignatureStandAloneProps } from './types/inputSignature';
 
+/**
+ * Standalone signature input component for capturing handwritten signatures.
+ *
+ * This component renders a canvas element for signature capture with optional
+ * placeholder text, error messages, and state management.
+ *
+ * @example
+ * ```tsx
+ * <InputSignatureStandAlone
+ *   canvasRef={canvasRef}
+ *   placeholder={{ content: "Sign here" }}
+ * />
+ * ```
+ */
 export const InputSignatureStandAlone = forwardRef<
   HTMLDivElement,
   InputSignatureStandAloneProps
@@ -58,19 +72,19 @@ export const InputSignatureStandAlone = forwardRef<
           {...customAttributesProps}
         />
         {hasPlaceholder && (
-        <div
-          className={cssClasses?.placeholdercontainer}
-          {...customAttributesProps}
-        >
-          <Text
-            additionalClasses={{
+          <div
+            className={cssClasses?.placeholdercontainer}
+            {...customAttributesProps}
+          >
+            <Text
+              additionalClasses={{
                 text: cssClasses?.placeholdertext,
               }}
-            customAttributes={customAttributes}
-            {...processTextProp(currentText)}
-          />
-        </div>
-)}
+              customAttributes={customAttributes}
+              {...processTextProp(currentText)}
+            />
+          </div>
+        )}
       </div>
     );
   },

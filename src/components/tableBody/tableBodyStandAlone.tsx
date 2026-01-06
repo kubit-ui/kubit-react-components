@@ -6,6 +6,18 @@ import type { TableBodyStandAloneProps } from './types/tableBody';
 
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
+/**
+ * Standalone table body component for rendering the tbody element.
+ *
+ * This component renders the body section of a table containing data rows.
+ *
+ * @example
+ * ```tsx
+ * <TableBodyStandAlone>
+ *   <tr><td>Data</td></tr>
+ * </TableBodyStandAlone>
+ * ```
+ */
 export const TableBodyStandAlone = forwardRef<
   HTMLTableSectionElement,
   PropsWithChildren<TableBodyStandAloneProps>

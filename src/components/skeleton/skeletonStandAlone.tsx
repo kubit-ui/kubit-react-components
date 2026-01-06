@@ -7,6 +7,21 @@ import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCusto
 
 import type { SkeletonStandAloneProps } from './types/skeleton';
 
+/**
+ * Standalone skeleton component for displaying loading placeholders.
+ *
+ * This component renders an animated skeleton loader with customizable dimensions
+ * and styling. It's used to indicate content is loading.
+ *
+ * @example
+ * ```tsx
+ * <SkeletonStandAlone
+ *   width="200px"
+ *   height="50px"
+ *   animation={true}
+ * />
+ * ```
+ */
 export const SkeletonStandAlone = forwardRef<
   HTMLDivElement,
   SkeletonStandAloneProps

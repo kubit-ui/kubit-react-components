@@ -12,9 +12,18 @@ interface SliderHelperTextStandAloneProps {
 }
 
 /**
- * @description
- * SliderHelperTextStandAlone component is used to display helper text for the slider.
- * It can be displayed on the left or right side of the slider.
+ * Standalone slider helper text component for displaying descriptive text.
+ *
+ * This component renders helper text on the left or right side of the slider
+ * to provide additional context or instructions.
+ *
+ * @example
+ * ```tsx
+ * <SliderHelperTextStandAlone
+ *   leftHelperText="Min"
+ *   rightHelperText="Max"
+ * />
+ * ```
  */
 export const SliderHelperTextStandAlone = ({
   cssClasses,
@@ -30,33 +39,33 @@ export const SliderHelperTextStandAlone = ({
   return (
     <div className={cssClasses?.helpertextcontainer}>
       {!!leftHelperText && (
-      <div className={cssClasses?.helpertextleftcontainer}>
-        <Text
-          additionalClasses={{
+        <div className={cssClasses?.helpertextleftcontainer}>
+          <Text
+            additionalClasses={{
               text: cssClasses?.helpertext,
             }}
-          component="span"
-          customAttributes={customAttributes}
-          id={leftHelperTextId}
-        >
-          {leftHelperText}
-        </Text>
-      </div>
-)}
+            component="span"
+            customAttributes={customAttributes}
+            id={leftHelperTextId}
+          >
+            {leftHelperText}
+          </Text>
+        </div>
+      )}
       {!!rightHelperText && (
-      <div className={cssClasses?.helpertextrightcontainer}>
-        <Text
-          additionalClasses={{
+        <div className={cssClasses?.helpertextrightcontainer}>
+          <Text
+            additionalClasses={{
               text: cssClasses?.helpertext,
             }}
-          component="span"
-          customAttributes={customAttributes}
-          id={rightHelperTextId}
-        >
-          {rightHelperText}
-        </Text>
-      </div>
-)}
+            component="span"
+            customAttributes={customAttributes}
+            id={rightHelperTextId}
+          >
+            {rightHelperText}
+          </Text>
+        </div>
+      )}
     </div>
   );
 };

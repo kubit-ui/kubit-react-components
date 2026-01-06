@@ -6,6 +6,22 @@ import type { ISnackbarStandAlone } from './types/snackbar';
 
 import { Popover } from '../popover/popover';
 
+/**
+ * Standalone snackbar component for displaying temporary notifications.
+ *
+ * This component renders a notification message that appears at the bottom or top
+ * of the screen, typically with auto-dismiss behavior.
+ *
+ * @example
+ * ```tsx
+ * <SnackbarStandAlone
+ *   open={true}
+ *   onClose={() => {}}
+ * >
+ *   Operation successful
+ * </SnackbarStandAlone>
+ * ```
+ */
 const SnackbarStandAloneComponent = (
   {
     children,

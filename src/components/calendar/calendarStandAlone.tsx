@@ -11,6 +11,22 @@ import { MonthSelector } from './selector/monthSelector/monthSelector';
 import { Selector } from './selector/selector';
 import { YearSelector } from './selector/yearSelector/yearSelector';
 
+/**
+ * Standalone calendar component for date selection with month and year navigation.
+ *
+ * This component renders a fully featured calendar with date selection, month/year selectors,
+ * and support for date ranges. It handles navigation between months and years, and manages
+ * disabled dates and accessibility features.
+ *
+ * @example
+ * ```tsx
+ * <CalendarStandAlone
+ *   currentDate={new Date()}
+ *   selectedDate={new Date()}
+ *   onDayClick={(date) => console.log(date)}
+ * />
+ * ```
+ */
 const CalendarStandAloneComponent = (
   {
     configAccesibility,

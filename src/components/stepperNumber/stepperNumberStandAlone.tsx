@@ -13,6 +13,22 @@ import { buildAriaCurrent } from './helpers/aria';
 import { buildScreenReaderText } from './helpers/screnReader';
 import { mapToStepState } from './helpers/stepState';
 
+/**
+ * Standalone stepper number component for displaying numbered step indicators.
+ *
+ * This component renders a single step in a stepper sequence with number, label,
+ * optional description, and visual state indicators (active, completed, error).
+ *
+ * @example
+ * ```tsx
+ * <StepperNumberStandAlone
+ *   number={1}
+ *   label="Step 1"
+ *   state="active"
+ * />
+ * ```
+ */
+
 const defaultStep = 0;
 
 export const StepperNumberStandAlone = forwardRef<

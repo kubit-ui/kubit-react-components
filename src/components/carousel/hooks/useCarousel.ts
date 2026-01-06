@@ -8,6 +8,15 @@ import calcUtils from './utils/calc.utils';
 import CONSTANTS from './utils/constants';
 import domUtils from './utils/dom.utils';
 
+/**
+ * Main carousel hook managing all carousel behavior and interactions.
+ *
+ * Handles pagination, scrolling, keyboard navigation, swipe gestures,
+ * and element positioning for the carousel component.
+ *
+ * @param params - Carousel configuration object
+ * @returns Object with carousel state and control methods
+ */
 export const useCarousel: IUseCarousel = ({
   allowModifySliceWidth = false,
   autoFitContainer = false,

@@ -5,6 +5,19 @@ import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { TextAreaCssClasses } from '../types/textArea';
 
+/**
+ * Standalone help message component for textarea fields.
+ *
+ * This component displays helper text below the textarea to provide
+ * additional context or instructions.
+ *
+ * @example
+ * ```tsx
+ * <HelpMessageStandAlone
+ *   helpMessage={{ content: "Maximum 500 characters" }}
+ * />
+ * ```
+ */
 export const HelpMessageStandAlone = ({
   cssClasses,
   customAttributtes,

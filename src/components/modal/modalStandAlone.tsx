@@ -10,6 +10,23 @@ import { Popover } from '../popover/popover';
 import { ModalHeader } from './fragments/modalHeader';
 import { onlyDesktopSize } from './utils/onlyDesktopSize';
 
+/**
+ * Standalone modal component for displaying overlay dialogs.
+ *
+ * This component renders a modal dialog with overlay, header, content area, and footer.
+ * It supports responsive sizing, blocking behavior, and custom styling.
+ *
+ * @example
+ * ```tsx
+ * <ModalStandAlone
+ *   open={true}
+ *   title={{ content: "Modal Title" }}
+ *   onClose={() => {}}
+ * >
+ *   Modal content
+ * </ModalStandAlone>
+ * ```
+ */
 export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(
   (
     {

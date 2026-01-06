@@ -10,6 +10,20 @@ const SLIDER_MAX_VALUE = 1000;
 const SLIDER_MIN_VALUE = 0;
 const SLIDER_PERCENTAGE_CONVERSION = 10;
 
+/**
+ * Standalone progress bar component for displaying task or loading progress.
+ *
+ * This component renders a horizontal progress indicator using an internal slider.
+ * It displays progress as a percentage from 0 to 100.
+ *
+ * @example
+ * ```tsx
+ * <ProgressBarStandalone
+ *   progress={75}
+ *   label="Loading..."
+ * />
+ * ```
+ */
 export const ProgressBarStandalone = forwardRef<
   HTMLDivElement,
   ProgressBarStandAloneProps

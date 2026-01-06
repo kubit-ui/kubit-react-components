@@ -6,6 +6,19 @@ import type { TableCellStandAloneProps } from './types/tableCell';
 
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
+/**
+ * Standalone table cell component for rendering td or th elements.
+ *
+ * This component renders a table cell with flexible positioning, alignment,
+ * and styling options including sticky behavior and custom dimensions.
+ *
+ * @example
+ * ```tsx
+ * <TableCellStandAlone component="td">
+ *   Cell content
+ * </TableCellStandAlone>
+ * ```
+ */
 export const TableCellStandAlone = forwardRef<
   HTMLTableCellElement,
   PropsWithChildren<TableCellStandAloneProps>

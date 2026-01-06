@@ -13,6 +13,21 @@ import type { TabsStandAloneProps } from './types/tabs';
 
 import { useTabs } from './hooks/useTabs/useTabs';
 
+/**
+ * Standalone tabs component for displaying tabbed navigation interfaces.
+ *
+ * This component renders a set of tabs with keyboard navigation and panel content.
+ * It supports responsive behavior, icons, and custom styling.
+ *
+ * @example
+ * ```tsx
+ * <TabsStandAlone
+ *   tabs={[{ label: "Tab 1", content: <div>Content 1</div> }]}
+ *   activeTab={0}
+ * />
+ * ```
+ */
+
 const MAX_TABS_IN_VIEW = 3;
 
 export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(

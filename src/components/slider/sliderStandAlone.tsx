@@ -15,6 +15,22 @@ import { buildAriaDescribedBy } from './utils/accessibility.utils';
 import { getState } from './utils/state.utils';
 import { isActive } from './utils/ui.utils';
 
+/**
+ * Standalone slider component for numeric input via a range control.
+ *
+ * This component renders a slider with thumb, scale, buttons, labels, and helper text.
+ * It supports min/max values, step increments, and visual states.
+ *
+ * @example
+ * ```tsx
+ * <SliderStandAlone
+ *   min={0}
+ *   max={100}
+ *   value={50}
+ *   onChange={(value) => console.log(value)}
+ * />
+ * ```
+ */
 export const SliderStandAlone = forwardRef<
   HTMLDivElement,
   SliderStandAloneProps

@@ -4,6 +4,17 @@ import { Text } from '@/components/text/text';
 
 import type { LabelStandAloneProps } from './types/label';
 
+/**
+ * LabelStandAlone component renders an accessible label element with optional required indicator.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <LabelStandAlone inputId="email" required requiredSymbol="*">
+ *   Email Address
+ * </LabelStandAlone>
+ * ```
+ */
 export const LabelStandAlone = forwardRef<
   HTMLParagraphElement,
   LabelStandAloneProps

@@ -9,6 +9,22 @@ import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCusto
 
 import type { LinkAsButtonStandAloneProps } from '../types/link';
 
+/**
+ * Standalone link-as-button component for rendering links styled as buttons.
+ *
+ * This component renders a link that appears and behaves like a button,
+ * combining navigation functionality with button visual styling.
+ *
+ * @example
+ * ```tsx
+ * <LinkAsButtonStandAlone
+ *   href="/page"
+ *   variant="primary"
+ * >
+ *   Go to page
+ * </LinkAsButtonStandAlone>
+ * ```
+ */
 export const LinkAsButtonStandAlone = forwardRef(
   (
     {

@@ -12,6 +12,21 @@ import type {
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { PaginationButtonControl } from './fragments/paginationButtonControl';
 
+/**
+ * Standalone pagination component for navigating through pages of content.
+ *
+ * This component renders pagination controls with page numbers, previous/next buttons,
+ * and optional compact mode for mobile devices.
+ *
+ * @example
+ * ```tsx
+ * <PaginationStandAlone
+ *   currentPage={3}
+ *   totalPages={10}
+ *   onPageChange={(page) => console.log(page)}
+ * />
+ * ```
+ */
 export const PaginationStandAlone = forwardRef<
   HTMLDivElement,
   PaginationStandAloneProps

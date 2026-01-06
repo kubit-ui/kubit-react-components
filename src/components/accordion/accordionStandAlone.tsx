@@ -7,6 +7,23 @@ import type { IAccordionStandAlone } from './types/accordion';
 
 import { STATE } from './types/state';
 
+/**
+ * Standalone accordion component for displaying collapsible content sections.
+ *
+ * This component renders an expandable/collapsible section with a header and content area.
+ * It manages ARIA attributes for accessibility and supports custom header components.
+ *
+ * @example
+ * ```tsx
+ * <AccordionStandAlone
+ *   header="Section Title"
+ *   expanded={true}
+ *   onHeaderClick={() => {}}
+ * >
+ *   Section content
+ * </AccordionStandAlone>
+ * ```
+ */
 export const AccordionStandAlone = forwardRef<
   HTMLDivElement,
   IAccordionStandAlone

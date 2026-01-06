@@ -5,6 +5,21 @@ import { processIconProp } from '@/lib/utils/process/processCommonProp';
 
 import type { CheckboxBaseStandAloneProps } from './types/checkboxBase';
 
+/**
+ * Standalone base checkbox component for rendering the visual checkbox element.
+ *
+ * This component renders the underlying checkbox input with a custom checked icon.
+ * It is used as the foundation for higher-level checkbox components.
+ *
+ * @example
+ * ```tsx
+ * <CheckboxBaseStandAlone
+ *   checked={true}
+ *   checkedIcon={<CheckIcon />}
+ *   onChange={() => {}}
+ * />
+ * ```
+ */
 export const CheckboxBaseStandAlone = forwardRef(
   (
     {

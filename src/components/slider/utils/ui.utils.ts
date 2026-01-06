@@ -5,6 +5,14 @@ import {
 
 import type { SliderTooltipProps } from '../types/slider';
 
+/**
+ * Checks if a slider control point is currently active.
+ *
+ * @param state - Whether the state is active
+ * @param currentActivePoint - The currently active point identifier
+ * @param checkActivePoint - The point identifier to check
+ * @returns True if the point is active
+ */
 export const isActive = (
   state: boolean,
   currentActivePoint: string,
@@ -13,7 +21,15 @@ export const isActive = (
   return state && currentActivePoint === checkActivePoint;
 };
 
-// Do not show tooltip on grabbing if desktops
+/**
+ * Determines if the slider tooltip should be visible.
+ * Hides tooltip on desktop during drag/press.
+ *
+ * @param tooltip - Tooltip configuration
+ * @param pressed - Whether the thumb is being pressed
+ * @param device - Current device type
+ * @returns True if tooltip should be shown
+ */
 export const isTooltipVisible = (
   tooltip: SliderTooltipProps | undefined,
   pressed: boolean,

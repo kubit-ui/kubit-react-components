@@ -10,6 +10,20 @@ import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { TextAreaCssClasses } from '../types/textArea';
 
+/**
+ * Standalone error message component for textarea fields.
+ *
+ * This component displays error messages with optional icon for textarea inputs.
+ * It manages accessibility attributes and visual error states.
+ *
+ * @example
+ * ```tsx
+ * <ErrorStandAlone
+ *   errorMessage={{ content: "This field is required" }}
+ *   state="error"
+ * />
+ * ```
+ */
 export const ErrorStandAlone = ({
   cssClasses,
   customAttributtes,

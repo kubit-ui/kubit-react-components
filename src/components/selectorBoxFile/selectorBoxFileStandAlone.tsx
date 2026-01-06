@@ -9,6 +9,20 @@ import { SelectorBoxFileContainerBox } from './components/selectorBoxFileContain
 import { SelectorBoxFileErrorMessage } from './components/selectorBoxFileErrorMessage';
 import { SelectorBoxFileHeader } from './components/selectorBoxFileHeader';
 
+/**
+ * Standalone file selector component for drag-and-drop or click-to-upload file selection.
+ *
+ * This component renders a file input area with drag-and-drop support, upload button,
+ * error messages, and visual feedback for file selection states.
+ *
+ * @example
+ * ```tsx
+ * <SelectorBoxFileStandAlone
+ *   accept="image/*"
+ *   onChange={(files) => console.log(files)}
+ * />
+ * ```
+ */
 export const SelectorBoxFileStandAlone = forwardRef<
   HTMLDivElement,
   SelectorBoxFileStandAloneProps

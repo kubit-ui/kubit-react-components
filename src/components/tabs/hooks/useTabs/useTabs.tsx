@@ -20,6 +20,18 @@ interface ReturnType {
   listEl: React.RefObject<HTMLElement>;
 }
 
+/**
+ * Custom hook for managing tabs navigation and positioning.
+ *
+ * Handles tab scrolling, focus management, and keyboard navigation for tab components.
+ * Includes responsive behavior and roving focus pattern.
+ *
+ * @param params - Configuration for tabs behavior
+ * @param params.tabsLength - Total number of tabs
+ * @param params.numTabsInView - Number of tabs visible at once
+ * @param params.selectedTab - Currently selected tab index or id
+ * @returns Object with position, focus state, and navigation handlers
+ */
 export const useTabs = ({
   numTabsInView,
   selectedTab,

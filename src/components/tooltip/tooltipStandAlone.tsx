@@ -20,6 +20,21 @@ import { Popover } from '../popover/popover';
 import { TooltipTrigger } from './components/tooltipTrigger';
 import { getAriaDescriptorsBy } from './utils/tooltip.utils';
 
+/**
+ * Standalone tooltip component for displaying contextual help text.
+ *
+ * This component renders a tooltip with title, content, optional icon, and close button.
+ * It supports multiple positions and responsive behavior.
+ *
+ * @example
+ * ```tsx
+ * <TooltipStandAlone
+ *   title={{ content: "Help" }}
+ *   content={{ content: "This is helpful information" }}
+ *   align="top"
+ * />
+ * ```
+ */
 export const TooltipStandAlone = ({
   align,
   children,

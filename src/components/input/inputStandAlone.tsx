@@ -7,6 +7,21 @@ import type { InputStandAloneProps } from './types/input';
 import { InputBase } from '../inputBase/inputBase';
 import { InputDecoration } from '../inputDecoration/inputDecoration';
 
+/**
+ * Standalone input component with label and decoration support.
+ *
+ * This component renders a complete input field with optional left and right decorations,
+ * label, and visual states (focused, error, filled, disabled).
+ *
+ * @example
+ * ```tsx
+ * <InputStandAlone
+ *   label={{ content: "Email" }}
+ *   inputBaseId="email"
+ *   focused={false}
+ * />
+ * ```
+ */
 export const InputStandAlone = forwardRef<HTMLDivElement, InputStandAloneProps>(
   (
     {

@@ -8,6 +8,21 @@ interface SliderButtonStandAloneProps extends SliderButtonProps {
   cssClasses?: SliderCssClasses;
   customAttributes?: Record<string, string>;
 }
+
+/**
+ * Standalone slider button component for increment/decrement controls.
+ *
+ * This component renders a button used to increase or decrease the slider value.
+ * It returns null if required CSS classes are not provided.
+ *
+ * @example
+ * ```tsx
+ * <SliderButtonStandAlone
+ *   content="+"
+ *   onClick={() => {}}
+ * />
+ * ```
+ */
 export const SliderButtonStandAlone = ({
   content,
   cssClasses,

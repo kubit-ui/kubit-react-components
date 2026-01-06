@@ -15,6 +15,21 @@ import { isKeyPressed } from '../../lib/utils/keyboard/keyboard';
 import { OptionLabelSlice } from './components.ts/optionLabelSlice';
 import { getHighlightedIndexes, getState } from './utils/option.utils';
 
+/**
+ * Standalone option component for rendering selectable list items.
+ *
+ * This component renders a single option with label, icon, and visual states (selected, highlighted, disabled).
+ * It supports keyboard navigation and click interactions.
+ *
+ * @example
+ * ```tsx
+ * <OptionStandAlone
+ *   label="Option 1"
+ *   selected={true}
+ *   onClick={() => {}}
+ * />
+ * ```
+ */
 export const OptionStandAlone = forwardRef(
   (
     {

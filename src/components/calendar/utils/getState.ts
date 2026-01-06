@@ -15,6 +15,12 @@ interface getStatePropsType {
 
 const NEUTRAL_DATE = 'ddMMyyyy';
 
+/**
+ * Determines the visual state of a calendar day based on selection status.
+ *
+ * @param params - Configuration object
+ * @returns The state of the day (default, selected, in range, etc.)
+ */
 export const getStateDay = ({
   dayFormatted,
   formatDate,

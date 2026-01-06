@@ -1,3 +1,9 @@
+/**
+ * Groups an array of days into weeks (arrays of 7 days each).
+ *
+ * @param dayList - Array of dates or undefined values
+ * @returns Array of week arrays, each containing up to 7 days
+ */
 export const groupDaysByWeeks = (
   dayList: (Date | undefined)[],
 ): (Date | undefined)[][] => {

@@ -13,6 +13,21 @@ import type { MessageStandAloneProps } from './types/message';
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { Link } from '../link/link';
 
+/**
+ * Standalone message component for displaying alerts, notifications, or informational messages.
+ *
+ * This component renders a message box with optional title, content, icon, action buttons,
+ * links, and tags. It supports different visual states and accessibility features.
+ *
+ * @example
+ * ```tsx
+ * <MessageStandAlone
+ *   title={{ content: "Success" }}
+ *   content={{ content: "Operation completed" }}
+ *   infoIcon={{ icon: <InfoIcon /> }}
+ * />
+ * ```
+ */
 export const MessageStandAlone = forwardRef<
   HTMLDivElement,
   MessageStandAloneProps

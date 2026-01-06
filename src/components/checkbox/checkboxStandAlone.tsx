@@ -9,6 +9,20 @@ import { ErrorMessage } from './components/errorMessage';
 import { Label } from './components/label';
 import { buildAriaDescribedBy } from './utils/aria.utils';
 
+/**
+ * Standalone checkbox component with label and error message support.
+ *
+ * This component renders a checkbox input with an associated label and optional error message.
+ * It manages accessibility attributes and integrates with CheckboxBase for the input element.
+ *
+ * @example
+ * ```tsx
+ * <CheckboxStandAlone
+ *   label={{ content: "Accept terms" }}
+ *   checkboxBase={{ checked: true, onChange: () => {} }}
+ * />
+ * ```
+ */
 export const CheckboxStandAlone = forwardRef(
   (
     {

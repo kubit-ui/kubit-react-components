@@ -14,6 +14,22 @@ import { TextCount } from './components/textCount/textCount';
 import { TitleStandAlone } from './components/titleStandAlone';
 import { buildAriaDescribedBy } from './utils/aria.utils';
 
+/**
+ * Standalone textarea component for multi-line text input.
+ *
+ * This component renders a textarea field with label, title, character counter,
+ * helper text, and error messages. It manages accessibility and visual states.
+ *
+ * @example
+ * ```tsx
+ * <TextAreaStandAlone
+ *   label={{ content: "Comments" }}
+ *   maxLength={500}
+ *   showCounter={true}
+ * />
+ * ```
+ */
+
 export const TextAreaStandAlone = forwardRef<
   HTMLDivElement,
   TextAreaStandAloneProps

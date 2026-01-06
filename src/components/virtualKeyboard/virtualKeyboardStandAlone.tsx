@@ -8,6 +8,20 @@ import type { VirtualKeyboardStandAloneProps } from './types/virtualKeyboard';
 
 import { DigitButton } from './components/digitButton';
 
+/**
+ * Standalone virtual keyboard component for numeric input.
+ *
+ * This component renders a virtual numeric keypad with customizable layout
+ * and button actions for digit entry and deletion.
+ *
+ * @example
+ * ```tsx
+ * <VirtualKeyboardStandAlone
+ *   onDigitClick={(digit) => console.log(digit)}
+ *   onDelete={() => console.log('delete')}
+ * />
+ * ```
+ */
 export const VirtualKeyboardStandAlone = forwardRef<
   HTMLDivElement,
   VirtualKeyboardStandAloneProps

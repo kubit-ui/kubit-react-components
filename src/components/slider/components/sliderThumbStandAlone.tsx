@@ -13,6 +13,22 @@ import type { SliderCssClasses, SliderTooltipProps } from '../types/slider';
 import { type SliderStateType } from '../types/state';
 import { isTooltipVisible } from '../utils/ui.utils';
 
+/**
+ * Standalone slider thumb component for the draggable handle.
+ *
+ * This component renders the movable thumb/handle on the slider track with
+ * optional tooltip display showing the current value.
+ *
+ * @example
+ * ```tsx
+ * <SliderThumbStandAlone
+ *   value={50}
+ *   min={0}
+ *   max={100}
+ *   disabled={false}
+ * />
+ * ```
+ */
 interface SliderThumbStandAloneProps extends DataAttributes {
   state: SliderStateType;
   style?: CSSProperties;

@@ -6,6 +6,21 @@ import type { PageControlStandAloneProps } from './types/pageControl';
 
 import { Controls } from './components/controls';
 
+/**
+ * Standalone page control component for carousel or pagination navigation.
+ *
+ * This component renders navigation controls (arrows and dots) for moving between pages or slides.
+ * It supports custom arrow controls and visual indicators for the current page.
+ *
+ * @example
+ * ```tsx
+ * <PageControlStandAlone
+ *   totalPages={5}
+ *   currentPage={2}
+ *   onPageChange={(page) => console.log(page)}
+ * />
+ * ```
+ */
 export const PageControlStandAlone = forwardRef<
   HTMLDivElement,
   PageControlStandAloneProps

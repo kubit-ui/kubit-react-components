@@ -14,6 +14,22 @@ import { buildAriaLabelledBy } from './utils/aria.utils';
 const CURSOR_DEFAULT = 'default';
 const CURSOR_POINTER = 'pointer';
 
+/**
+ * Standalone radio button component for rendering selectable radio inputs.
+ *
+ * This component renders a radio button with label, optional legend, error message,
+ * and custom icon states. It handles accessibility attributes and visual states.
+ *
+ * @example
+ * ```tsx
+ * <RadioButtonStandAlone
+ *   label={{ content: "Option A" }}
+ *   checked={true}
+ *   onChange={() => {}}
+ * />
+ * ```
+ */
+
 export const RadioButtonStandAlone = ({
   altVariant = false,
   checked,
@@ -41,7 +57,8 @@ export const RadioButtonStandAlone = ({
 
   inputId = id ?? inputId;
 
-  const descriptionId = processTextProp(subTitle).id && `${inputId}__description`;
+  const descriptionId =
+    processTextProp(subTitle).id && `${inputId}__description`;
 
   const errorMessageId = errorMessage && `${inputId}__error`;
 

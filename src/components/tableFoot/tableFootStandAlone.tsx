@@ -6,6 +6,19 @@ import type { TableFootStandAloneProps } from './types/tableFoot';
 
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
+/**
+ * Standalone table footer component for rendering the tfoot element.
+ *
+ * This component renders the footer section of a table, typically containing
+ * summary rows or totals.
+ *
+ * @example
+ * ```tsx
+ * <TableFootStandAlone>
+ *   <tr><td>Total</td></tr>
+ * </TableFootStandAlone>
+ * ```
+ */
 export const TableFootStandAlone = forwardRef<
   HTMLTableSectionElement,
   PropsWithChildren<TableFootStandAloneProps>

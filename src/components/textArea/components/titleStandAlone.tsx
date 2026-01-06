@@ -6,6 +6,19 @@ import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { TextAreaCssClasses } from '../types/textArea';
 
+/**
+ * Standalone title component for textarea fields.
+ *
+ * This component displays a title or heading above the textarea field.
+ * Returns null if no title is provided.
+ *
+ * @example
+ * ```tsx
+ * <TitleStandAlone
+ *   title={{ content: "Comments Section" }}
+ * />
+ * ```
+ */
 export const TitleStandAlone = ({
   cssClasses,
   customAttributtes,
@@ -26,7 +39,9 @@ export const TitleStandAlone = ({
         }}
         customAttributes={customAttributtes}
         {...processTextProp(title)}
-        component={(processTextProp(title).component as TextComponentType) ?? 'p'}
+        component={
+          (processTextProp(title).component as TextComponentType) ?? 'p'
+        }
       >
         {processTextProp(title).children}
       </Text>

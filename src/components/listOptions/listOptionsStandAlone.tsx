@@ -18,6 +18,20 @@ import { Option } from '../option/option';
 import {
   getOptionVariant,
   isSelected,
+  /**
+   * Standalone list options component for displaying a list of selectable options.
+   *
+   * This component renders a list of options with keyboard navigation support via roving focus.
+   * It handles option selection, highlighting, and accessibility features.
+   *
+   * @example
+   * ```tsx
+   * <ListOptionsStandAlone
+   *   options={[{ label: "Option 1" }, { label: "Option 2" }]}
+   *   onOptionClick={(option) => console.log(option)}
+   * />
+   * ```
+   */
   keyDownMove,
   keyUpMove,
 } from './utils/listOptions.utils';

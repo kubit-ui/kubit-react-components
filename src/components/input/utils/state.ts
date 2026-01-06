@@ -7,6 +7,12 @@ interface IInputState {
   focused?: boolean;
 }
 
+/**
+ * Determines the visual state of an input based on its current conditions.
+ *
+ * @param params - Input state flags
+ * @returns The calculated input state
+ */
 export const getState = ({
   disabled,
   error,

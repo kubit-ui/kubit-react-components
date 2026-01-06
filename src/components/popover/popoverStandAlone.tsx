@@ -10,6 +10,22 @@ import type { IPopoverStandAlone } from './types/popover';
 
 import { getArrowBorderStyles } from './utils/styling.utils';
 
+/**
+ * Standalone popover component for displaying floating content relative to an anchor element.
+ *
+ * This component renders a positioned popover with optional arrow pointer.
+ * It supports custom positioning, styling, and animation states.
+ *
+ * @example
+ * ```tsx
+ * <PopoverStandAlone
+ *   anchorElement={buttonRef.current}
+ *   open={true}
+ * >
+ *   Popover content
+ * </PopoverStandAlone>
+ * ```
+ */
 const PopoverStandAloneComponent = (
   {
     anchorElement,

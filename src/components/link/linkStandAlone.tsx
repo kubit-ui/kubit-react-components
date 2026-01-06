@@ -9,6 +9,23 @@ import type { LinkStandAloneProps } from './types/link';
 
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 
+/**
+ * Standalone link component for rendering customizable hyperlinks or link-style elements.
+ *
+ * This component renders a link with optional icon, custom color, decoration, and states.
+ * It can be rendered as an anchor, button, or text element depending on configuration.
+ *
+ * @example
+ * ```tsx
+ * <LinkStandAlone
+ *   href="/page"
+ *   icon={<LinkIcon />}
+ *   color="primary"
+ * >
+ *   Click here
+ * </LinkStandAlone>
+ * ```
+ */
 export const LinkStandAlone = forwardRef<HTMLElement, LinkStandAloneProps>(
   (
     {

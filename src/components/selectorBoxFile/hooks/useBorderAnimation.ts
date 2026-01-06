@@ -19,6 +19,16 @@ interface ReturnType {
   leftRef?: ForwardedRef<HTMLDivElement>;
 }
 
+/**
+ * Custom hook for managing border animation in selector box file component.
+ *
+ * Animates a border effect around the component perimeter based on percentage.
+ *
+ * @param params - Configuration object
+ * @param params.percentage - Animation completion percentage (0-100)
+ * @param params.onAnimationCompleted - Callback when animation completes
+ * @returns Refs for the four border elements (top, right, bottom, left)
+ */
 const FIRST_QUARTER = 25;
 const SECOND_QUARTER = 50;
 const THIRD_QUARTER = 75;

@@ -16,6 +16,21 @@ import {
   applyZIndexToWrapper,
 } from './utils/tableConfig';
 
+/**
+ * Standalone data table component for displaying structured tabular data.
+ *
+ * This component renders a complete table with headers, body, rows, and cells.
+ * It supports scrolling, sticky columns, active row selection, and custom configurations
+ * for complex table layouts.
+ *
+ * @example
+ * ```tsx
+ * <DataTableStandAlone
+ *   columns={[{ field: 'name', header: 'Name' }]}
+ *   rows={[{ name: 'John' }]}
+ * />
+ * ```
+ */
 export const DataTableStandAlone = forwardRef<
   HTMLDivElement,
   DataTableStandAloneProps

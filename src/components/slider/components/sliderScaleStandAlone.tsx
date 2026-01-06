@@ -12,8 +12,18 @@ export interface SliderScaleStandAloneProps {
 }
 
 /**
- * @description
- * SliderScaleStandAlone component is used to display a scale for the slider.
+ * Standalone slider scale component for displaying tick marks.
+ *
+ * This component renders scale marks along the slider track to indicate
+ * value positions or intervals.
+ *
+ * @example
+ * ```tsx
+ * <SliderScaleStandAlone
+ *   showScale={true}
+ *   scaleOffsets={[0, 25, 50, 75, 100]}
+ * />
+ * ```
  */
 export const SliderScaleStandAlone = ({
   cssClasses,

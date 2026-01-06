@@ -5,12 +5,26 @@ import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCusto
 import type { PageControlButtonProps } from '../types/pageControl';
 
 interface ButtonControlStandAloneProps
-  extends PageControlButtonProps,
-    DataAttributes {
+  extends PageControlButtonProps, DataAttributes {
   cssPageControlClasses?: string;
   position?: 'left' | 'right';
 }
 
+/**
+ * Standalone button control component for page control navigation.
+ *
+ * This component renders a navigation button for page controls,
+ * typically used for pagination or carousel navigation.
+ *
+ * @example
+ * ```tsx
+ * <ButtonControlStandAlone
+ *   position="left"
+ *   disabled={false}
+ *   onClick={() => {}}
+ * />
+ * ```
+ */
 export const ButtonControlStandAlone = ({
   cssPageControlClasses,
   disabled = false,

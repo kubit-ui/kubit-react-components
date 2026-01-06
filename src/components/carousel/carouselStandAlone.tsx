@@ -2,6 +2,21 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import type { ICarouselStandAlone } from './types/carousel';
 
+/**
+ * Standalone carousel component for displaying a scrollable list of elements.
+ *
+ * This component renders a carousel container with viewer and content areas,
+ * supporting center mode, custom widths, and accessibility features for screen readers.
+ *
+ * @example
+ * ```tsx
+ * <CarouselStandAlone
+ *   elements={slides}
+ *   centerMode={true}
+ *   disabled={false}
+ * />
+ * ```
+ */
 const CarouselStandAloneComponent = (
   {
     allowModifySliceWidth,
