@@ -4,7 +4,7 @@ import { Tag } from '../tag';
 
 figma.connect(
   Tag,
-  'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/WIP-Kubit-v.2.0.0?node-id=4980%3A9439',
+  'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=4980%3A9439',
   {
     example: (props) => <Tag label={props.type} variant={props.type} />,
     imports: ['import { Tag} from "@kubit-ui-web/react-components";'],

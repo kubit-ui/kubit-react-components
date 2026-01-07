@@ -27,11 +27,6 @@ export interface ChipStandAloneProps extends DataAttributes {
   rangeIcon?: ElementOrIconProps;
   errorMessage?: CommonTextProps;
   rangeSeparator?: CommonTextProps;
-  /**
-   * @deprecated
-   * Use closeIcon -> altText instead
-   */
-  deleteText?: string;
   state: ChipStateType;
   cssClasses?: ChipCssClasses;
 }

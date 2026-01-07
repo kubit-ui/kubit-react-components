@@ -35,7 +35,6 @@ export const ChipStandAlone = forwardRef(
     {
       closeIcon,
       cssClasses,
-      deleteText = 'Delete',
       errorIcon,
       errorMessage = { content: 'Error message' },
       label,
@@ -55,7 +54,7 @@ export const ChipStandAlone = forwardRef(
       if (typeof closeIcon !== 'string' && closeIcon?.altText) {
         return closeIcon.altText;
       }
-      return deleteText;
+      return 'Close';
     };
 
     const buildRangeOrLabel = () => {
@@ -91,10 +90,10 @@ export const ChipStandAlone = forwardRef(
                     <ElementOrIcon
                       altText={
                         typeof label === 'string' || isValidElement(label)
-                          ? (processTextProp(rangeSeparator).children as string) ||
-                            ''
-                          : (processTextProp(rangeSeparator).children as string) ||
-                            ''
+                          ? (processTextProp(rangeSeparator)
+                              .children as string) || ''
+                          : (processTextProp(rangeSeparator)
+                              .children as string) || ''
                       }
                       className={cssClasses?.rangeicon}
                       {...processIconProp(rangeIcon)}

@@ -88,19 +88,6 @@ export const BUTTON: ButtonVariantStyles<ButtonVariants> = {
     padding_right: cssVars.spacings_spacing_300,
     padding_top: cssVars.spacings_spacing_250,
   },
-  [ButtonSizeType.MEDIUM]: {
-    _icon: {
-      height: cssVars.sizes_size_250,
-      width: cssVars.sizes_size_250,
-    },
-    font_size: cssVars.font_size_body_100,
-    gap: cssVars.spacings_spacing_150,
-    line_height: cssVars.line_height_200,
-    padding_bottom: cssVars.spacings_spacing_250,
-    padding_left: cssVars.spacings_spacing_300,
-    padding_right: cssVars.spacings_spacing_300,
-    padding_top: cssVars.spacings_spacing_250,
-  },
   [ButtonSizeType.SMALL]: {
     _icon: {
       height: cssVars.sizes_size_200,

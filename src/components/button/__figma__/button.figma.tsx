@@ -4,10 +4,10 @@ import { Button } from '../button';
 
 figma.connect(
   Button,
-  'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/WIP-Kubit-v.2.0.0?node-id=4933%3A604',
+  'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=4933%3A604',
   {
     example: (props) => (
-      <Button size={props.size} variant={props.type}>
+      <Button loading={props.loading} size={props.size} variant={props.type}>
         {props.type}
       </Button>
     ),
@@ -19,15 +19,16 @@ figma.connect(
       },
     ],
     props: {
-      size: figma.enum('Size', {
-        Big: 'BIG',
+      loading: figma.boolean('loading'),
+      size: figma.enum('size', {
+        Large: 'LARGE',
         Small: 'SMALL',
       }),
-      state: figma.enum('State', {
+      state: figma.enum('state', {
         Default: 'DEFAULT',
         Disabled: 'DISABLED',
       }),
-      type: figma.enum('Type', {
+      type: figma.enum('variant', {
         Primary: 'PRIMARY',
         Secondary: 'SECONDARY',
         'Secondary alt': 'SECONDARY_ALT',

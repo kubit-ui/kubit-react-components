@@ -16,7 +16,7 @@ export const CALENDAR: CalendarVariantStyles<CalendarVariants> = {
     button_size: {
       component: BUTTON,
       name: 'button',
-      variant: ButtonSizeType.MEDIUM,
+      variant: ButtonSizeType.LARGE,
     },
     button_variant: {
       component: BUTTON,

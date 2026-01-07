@@ -9,9 +9,5 @@ export const ButtonVariantType = {
 
 export const ButtonSizeType = {
   LARGE: 'LARGE',
-  /**
-   * @deprecated `MEDIUM` will be removed. Use `LARGE` instead
-   */
-  MEDIUM: 'MEDIUM',
   SMALL: 'SMALL',
 } as const;
