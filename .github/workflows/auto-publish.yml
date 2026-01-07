@@ -1,0 +1,519 @@
+name: Auto Publish to NPM
+
+# Auto-publish workflow for Kubit React Components
+#
+# @kubit-ui-web/react-components is a customizable, accessible library of React web components
+# This workflow automatically publishes new versions to NPM when PRs are merged
+#
+# ⚠️  CRITICAL: This workflow requires two secrets to be configured in the repository:
+#
+# 1. NPM_TOKEN (REQUIRED): An NPM automation token for publishing packages
+#    Step-by-step setup:
+#    a) Go to https://www.npmjs.com/settings/tokens
+#    b) Click "Generate New Token" → Select "Automation" type
+#    c) Grant "Read and publish" permissions
+#    d) Copy the token and add it as a repository secret named NPM_TOKEN
+#    e) ⚠️ Must be AUTOMATION token (not Classic/Granular) to bypass 2FA
+#
+# 2. RELEASE_TOKEN (Optional, for protected branches): GitHub Personal Access Token
+#    Step-by-step setup:
+#    a) Go to GitHub → Settings → Developer settings → Personal access tokens
+#    b) Generate "Classic" token with permissions: repo + workflow
+#    c) Add as repository secret named RELEASE_TOKEN
+#    d) Required only if main/master branch has protection rules
+#
+# 🔧 Troubleshooting: If publish fails with ENEEDAUTH, check NPM_TOKEN configuration
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+  actions: read
+
+jobs:
+  auto-publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Validate branch patterns
+        id: validate-branch
+        run: |
+          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+          echo "Branch name: $BRANCH_NAME"
+
+          # Simplified pattern that properly handles hyphens, underscores, and dots
+          if [[ "$BRANCH_NAME" =~ ^(feat|feature|fix|bugfix|break|breaking|hotfix|chore)/[a-zA-Z0-9._-]+$ ]]; then
+            echo "Branch pattern accepted: $BRANCH_NAME"
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
+            echo "branch_name=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
+          else
+            echo "Branch '$BRANCH_NAME' doesn't match required patterns"
+            echo "should_publish=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install dependencies
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          corepack enable
+          yarn install --frozen-lockfile
+
+      - name: Build project
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: yarn build
+
+      - name: Validate package integrity
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          # Verify that package.json is well-formed
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          echo "Package name: $PACKAGE_NAME"
+
+          # Verify main entry point exists
+          MAIN_FILE=$(node -p "require('./package.json').main")
+          if [ ! -f "$MAIN_FILE" ]; then
+            echo "Main file $MAIN_FILE does not exist"
+            echo "Building the project first..."
+            yarn build
+            if [ ! -f "$MAIN_FILE" ]; then
+              echo "Main file $MAIN_FILE still does not exist after build"
+              exit 1
+            fi
+          fi
+          echo "Main file exists: $MAIN_FILE"
+
+          # Verify module entry point exists
+          MODULE_FILE=$(node -p "require('./package.json').module")
+          if [ ! -f "$MODULE_FILE" ]; then
+            echo "Module file $MODULE_FILE does not exist after build"
+            exit 1
+          fi
+          echo "Module file exists: $MODULE_FILE"
+
+          # Verify types entry point exists
+          TYPES_FILE=$(node -p "require('./package.json').types")
+          if [ ! -f "$TYPES_FILE" ]; then
+            echo "Types file $TYPES_FILE does not exist after build"
+            exit 1
+          fi
+          echo "Types file exists: $TYPES_FILE"
+
+      - name: Configure Git
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          # Configure git with release token for branch protection bypass
+          git config --local user.email "kubit-bot@github.com"
+          git config --local user.name "Kubit Release Bot"
+
+          # Set up authentication for push operations
+          if [ -n "${{ secrets.RELEASE_TOKEN }}" ]; then
+            echo "Using RELEASE_TOKEN with branch protection bypass permissions"
+            git remote set-url origin https://x-access-token:${{ secrets.RELEASE_TOKEN }}@github.com/${{ github.repository }}.git
+          else
+            echo "Using default GITHUB_TOKEN - may fail on protected branches"
+            echo "Add RELEASE_TOKEN secret with 'Contents: write' and 'Pull requests: write' permissions"
+          fi
+
+      - name: Determine version bump (Enhanced)
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        id: version-bump
+        run: |
+          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+
+          echo "Analyzing PR for version bump..."
+          echo "Branch: $BRANCH_NAME"
+          echo "Title: $PR_TITLE"
+
+          # 1. Check explicit breaking change markers
+          # Use GitHub context directly to avoid shell injection issues
+          if [[ "${{ contains(github.event.pull_request.body, 'BREAKING CHANGE:') }}" == "true" ]] || \
+             echo "$PR_TITLE" | grep -q "!" || \
+             echo "$PR_TITLE" | grep -qi "\[breaking\]" || \
+             [[ $BRANCH_NAME =~ ^break/ ]] || \
+             [[ $BRANCH_NAME =~ ^breaking/ ]]; then
+            VERSION_TYPE="major"
+            REASON="Breaking change detected"
+            echo "MAJOR: $REASON"
+
+          # 2. Check conventional commits in title
+          elif echo "$PR_TITLE" | grep -Eq "^(feat|feature)(\(.+\))?!:" || \
+               echo "$PR_TITLE" | grep -Eq "^(fix|bugfix)(\(.+\))?!:"; then
+            VERSION_TYPE="major"
+            REASON="Breaking change in conventional commit"
+            echo "MAJOR: $REASON"
+
+          # 3. Check features (minor)
+          elif echo "$PR_TITLE" | grep -Eq "^(feat|feature)(\(.+\))?:" || \
+               [[ $BRANCH_NAME =~ ^feat/ ]] || \
+               [[ $BRANCH_NAME =~ ^feature/ ]] || \
+               echo "$PR_TITLE" | grep -qi "\[feature\]"; then
+            VERSION_TYPE="minor"
+            REASON="New feature detected"
+            echo "MINOR: $REASON"
+
+          # 4. Check fixes and other changes (patch)
+          else
+            VERSION_TYPE="patch"
+            REASON="Bug fix or other changes"
+            echo "PATCH: $REASON"
+          fi
+
+          # Get current version
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "Current version: $CURRENT_VERSION"
+
+          # Calculate new version
+          NEW_VERSION=$(node -e "
+            const current = '$CURRENT_VERSION';
+            const type = '$VERSION_TYPE';
+            const parts = current.split('.').map(Number);
+
+            if (type === 'major') {
+              parts[0]++;
+              parts[1] = 0;
+              parts[2] = 0;
+            } else if (type === 'minor') {
+              parts[1]++;
+              parts[2] = 0;
+            } else {
+              parts[2]++;
+            }
+
+            console.log(parts.join('.'));
+          ")
+
+          echo "New version will be: $NEW_VERSION"
+          echo "Decision reason: $REASON"
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
+          echo "reason=$REASON" >> $GITHUB_OUTPUT
+
+      - name: Check if version already exists
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          NEW_VERSION="${{ steps.version-bump.outputs.new_version }}"
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+
+          # Check if version already exists in NPM
+          if npm view "$PACKAGE_NAME@$NEW_VERSION" version 2>/dev/null; then
+            echo "Version $NEW_VERSION already exists in NPM"
+            exit 1
+          fi
+
+          # Check if tag already exists
+          if git tag -l | grep -q "^v$NEW_VERSION$"; then
+            echo "Tag v$NEW_VERSION already exists"
+            exit 1
+          fi
+
+      - name: Update version and commit
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          NEW_VERSION="${{ steps.version-bump.outputs.new_version }}"
+          VERSION_TYPE="${{ steps.version-bump.outputs.version_type }}"
+          BRANCH_NAME="${{ steps.validate-branch.outputs.branch_name }}"
+          REASON="${{ steps.version-bump.outputs.reason }}"
+
+          # Update package.json
+          npm version $NEW_VERSION --no-git-tag-version
+
+          # Commit and tag
+          git add package.json
+          # Add lock file only if it exists and is not ignored
+          if [ -f "yarn.lock" ] && ! git check-ignore yarn.lock; then
+            git add yarn.lock
+          fi
+          git commit -m "chore(release): $NEW_VERSION
+
+          Released from: $BRANCH_NAME
+          Type: $VERSION_TYPE
+          Reason: $REASON
+
+          [skip ci]"
+
+          git tag "v$NEW_VERSION" -m "Release v$NEW_VERSION"
+
+      - name: Verify NPM authentication
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          echo "Verifying NPM authentication..."
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "❌ NPM_TOKEN secret is not configured"
+            echo "Please add NPM_TOKEN secret in repository settings"
+            exit 1
+          fi
+
+          echo "✅ NPM_TOKEN secret is present"
+          echo "Testing NPM authentication..."
+
+          # Test authentication
+          if npm whoami; then
+            echo "✅ NPM authentication successful"
+          else
+            echo "❌ NPM authentication failed"
+            echo "Token may be invalid, expired, or not an automation token"
+            exit 1
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Dry run publish (verification)
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          echo "Performing dry run..."
+          npm publish --dry-run --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to NPM
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        id: npm-publish
+        run: |
+          NEW_VERSION="${{ steps.version-bump.outputs.new_version }}"
+          VERSION_TYPE="${{ steps.version-bump.outputs.version_type }}"
+
+          echo "Publishing to NPM..."
+
+          if [[ "$VERSION_TYPE" == "major" ]]; then
+            echo "Publishing MAJOR version $NEW_VERSION"
+            npm publish --access public --tag latest
+          else
+            npm publish --access public --tag latest
+          fi
+
+          echo "Successfully published to NPM"
+          echo "published=true" >> $GITHUB_OUTPUT
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push changes and tags
+        if: steps.npm-publish.outputs.published == 'true'
+        run: |
+          echo "Pushing changes to repository..."
+
+          if [ -n "${{ secrets.RELEASE_TOKEN }}" ]; then
+            echo "Using RELEASE_TOKEN to bypass branch protection"
+            git push origin main
+            git push origin --tags
+            echo "Changes and tags pushed successfully to main"
+          else
+            echo "Using GITHUB_TOKEN - attempting push (may fail on protected branches)"
+            if git push origin main && git push origin --tags; then
+              echo "Changes and tags pushed successfully"
+            else
+              echo "Push failed - likely due to branch protection rules"
+              echo "Consider adding RELEASE_TOKEN secret with bypass permissions"
+              exit 1
+            fi
+          fi
+
+      - name: Create GitHub Release
+        if: steps.npm-publish.outputs.published == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.version-bump.outputs.new_version }}
+          name: Release v${{ steps.version-bump.outputs.new_version }}
+          body: |
+            ## 🚀 Release v${{ steps.version-bump.outputs.new_version }}
+
+            **Type:** ${{ steps.version-bump.outputs.version_type }} release
+            **Branch:** `${{ steps.validate-branch.outputs.branch_name }}`
+            **Previous:** `${{ steps.version-bump.outputs.current_version }}`
+
+            ### 📝 Changes
+            - ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})
+
+            ### 📦 Installation
+            ```bash
+            npm install @kubit-ui-web/react-components@${{ steps.version-bump.outputs.new_version }}
+            # or
+            yarn add @kubit-ui-web/react-components@${{ steps.version-bump.outputs.new_version }}
+            ```
+
+            ### 🔧 Usage
+            ```jsx
+            // Import Kubit React components
+            import { Button, Input, Card } from '@kubit-ui-web/react-components';
+
+            function App() {
+              return (
+                <div>
+                  <Button>Click me</Button>
+                  <Input placeholder="Enter text" />
+                  <Card>Component content</Card>
+                </div>
+              );
+            }
+            ```
+
+            ### 🔗 Links
+            - [NPM Package](https://www.npmjs.com/package/@kubit-ui-web/react-components/v/${{ steps.version-bump.outputs.new_version }})
+            - [Full Changelog](https://github.com/${{ github.repository }}/compare/v${{ steps.version-bump.outputs.current_version }}...v${{ steps.version-bump.outputs.new_version }})
+          draft: false
+          prerelease: ${{ steps.version-bump.outputs.version_type == 'major' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Success notification
+        if: steps.npm-publish.outputs.published == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { version_type, new_version, current_version } = {
+              version_type: '${{ steps.version-bump.outputs.version_type }}',
+              new_version: '${{ steps.version-bump.outputs.new_version }}',
+              current_version: '${{ steps.version-bump.outputs.current_version }}'
+            };
+            const branchName = '${{ steps.validate-branch.outputs.branch_name }}';
+
+            const emoji = version_type === 'major' ? '💥' : version_type === 'minor' ? '✨' : '🐛';
+
+            const comment = `## ${emoji} Auto-publish Successful!
+
+            | Field | Value |
+            |-------|-------|
+            | **Branch** | \`${branchName}\` |
+            | **Type** | \`${version_type}\` |
+            | **Version** | \`${current_version}\` → \`${new_version}\` |
+            | **NPM** | [@kubit-ui-web/react-components@${new_version}](https://www.npmjs.com/package/@kubit-ui-web/react-components/v/${new_version}) |
+
+            ### 📦 Installation
+            \`\`\`bash
+            npm install @kubit-ui-web/react-components@${new_version}
+            # or
+            yarn add @kubit-ui-web/react-components@${new_version}
+            \`\`\`
+
+            ### 🔧 Usage Example
+            \`\`\`jsx
+            // Import Kubit React components
+            import { Button, Input, Card } from '@kubit-ui-web/react-components';
+
+            function App() {
+              return (
+                <div>
+                  <Button>Click me</Button>
+                  <Input placeholder="Enter text" />
+                  <Card>Component content</Card>
+                </div>
+              );
+            }
+            \`\`\`
+
+            ### ✅ Completed Steps
+            - [x] Package integrity validated
+            - [x] Published to NPM
+            - [x] GitHub release created
+            - [x] Repository tagged
+
+            🎉 **Ready to use!**`;
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+      - name: Failure notification
+        if: failure() && steps.validate-branch.outputs.should_publish == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = `## ❌ Auto-publish Failed
+
+            The automatic publication process failed. Please check the [workflow logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.
+
+            ### 🔧 Common Solutions
+            - **NPM Token**: Verify NPM_TOKEN is valid and has publish permissions
+            - **Release Token**: Add RELEASE_TOKEN secret to bypass branch protection rules
+            - **Token Permissions**: Check that tokens have correct permissions
+            - **Version Conflict**: Check if version already exists in NPM
+            - **Package Issues**: Ensure package.json and main entry point are valid
+
+            ### 🔐 Required Secrets Configuration
+            1. **NPM_TOKEN** (❗ REQUIRED):
+               - Go to [npmjs.com](https://www.npmjs.com) → Account → Access Tokens → Generate New Token
+               - Select **"Automation"** type (bypasses 2FA if enabled)
+               - Grant **"Read and publish"** permissions
+               - Copy token and add as repository secret named \`NPM_TOKEN\`
+               - ⚠️ Must be an **Automation token**, not Classic or Granular
+
+            2. **RELEASE_TOKEN** (Required for protected branches):
+               - Go to GitHub → Settings → Developer settings → Personal access tokens
+               - Generate **"Classic"** token with these permissions:
+                 - \`repo\` (Full control of repositories)
+                 - \`workflow\` (Update GitHub Action workflows)
+               - Add as repository secret named \`RELEASE_TOKEN\`
+
+            ### 📞 Debugging Steps
+            1. **Check NPM_TOKEN**: Ensure it's an "Automation" token with publish permissions
+            2. **Test Locally**: Run \`npm login\` and \`npm whoami\` to verify token works
+            3. **Repository Secrets**: Verify secrets are added in Settings → Secrets and variables → Actions
+            4. **Token Expiry**: NPM automation tokens don't expire, but check if accidentally deleted
+            5. **Package Permissions**: Ensure token owner has publish rights to the \`@kubit-ui-web/react-components\` package
+
+            ### 🚨 Quick Fix
+            If urgent, create NPM_TOKEN secret with a fresh automation token from npmjs.com`;
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+      - name: Skip notification
+        if: steps.validate-branch.outputs.should_publish == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branchName = '${{ github.event.pull_request.head.ref }}';
+
+            const comment = `## ℹ️ Auto-publish Skipped
+
+            Branch \`${branchName}\` doesn't match required patterns for auto-publishing.
+
+            ### 📋 Required Patterns
+            | Pattern | Version Bump | Detection Method |
+            |---------|--------------|------------------|
+            | \`feat/\*\` or \`feature/\*\` | **minor** | Branch prefix or PR title |
+            | \`fix/\*\` or \`bugfix/\*\` | **patch** | Branch prefix or default |
+            | \`break/\*\` or \`breaking/\*\` | **major** | Branch prefix |
+            | \`hotfix/\*\` or \`chore/\*\` | **patch** | Branch prefix |
+
+            ### 🎯 Advanced Version Detection
+            - **MAJOR**: \`BREAKING CHANGE:\` in PR body, \`!\` in title, or \`[breaking]\` tag
+            - **MINOR**: \`feat:\` or \`feature:\` in PR title, or \`[feature]\` tag
+            - **PATCH**: Default for fixes and other changes
+
+            ### 🚀 To Auto-publish
+            Create a new PR from a branch with the appropriate prefix, or use the [manual publish workflow](https://github.com/${{ github.repository }}/actions/workflows/manual-publish.yml).`;
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
