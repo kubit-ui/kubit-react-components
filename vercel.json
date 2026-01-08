@@ -1,6 +1,6 @@
 {
-  "buildCommand": "corepack enable && corepack prepare pnpm@10.27.0 --activate && pnpm install && pnpm dist && pnpm build-storybook",
-  "installCommand": "corepack enable && corepack prepare pnpm@10.27.0 --activate && pnpm install",
+  "installCommand": "npm install -g pnpm@10.27.0 && pnpm install",
+  "buildCommand": "pnpm dist && pnpm build-storybook",
   "framework": null,
   "outputDirectory": "storybook-static"
 }
