@@ -206,11 +206,18 @@ const copyStaticAssetsPlugin = () => {
           const relativePath = path.relative(srcDir, srcPath);
 
           if (entry.isDirectory()) {
-            // Skip test directories
+            // Skip test directories and unnecessary folders
             if (
-              ['__tests__', '__mocks__', '__fixtures__', 'stories'].includes(
-                entry.name,
-              )
+              [
+                '__tests__',
+                '__mocks__',
+                '__fixtures__',
+                'stories',
+                '__stories__',
+                '.storybook',
+                'assets',
+                'scripts',
+              ].includes(entry.name)
             ) {
               continue;
             }
@@ -371,6 +378,55 @@ const removeStorybookPlugin = () => {
 };
 
 /**
+ * Plugin to remove unnecessary folders from dist
+ * Removes .storybook, assets, scripts, node_modules, and .DS_Store files
+ */
+const removeUnnecessaryFoldersPlugin = () => {
+  return {
+    closeBundle() {
+      const dirsToRemove = [
+        path.resolve(__dirname, 'dist/esm/.storybook'),
+        path.resolve(__dirname, 'dist/cjs/.storybook'),
+        path.resolve(__dirname, 'dist/esm/assets'),
+        path.resolve(__dirname, 'dist/cjs/assets'),
+        path.resolve(__dirname, 'dist/esm/scripts'),
+        path.resolve(__dirname, 'dist/cjs/scripts'),
+        path.resolve(__dirname, 'dist/esm/node_modules'),
+        path.resolve(__dirname, 'dist/cjs/node_modules'),
+        path.resolve(__dirname, 'dist/types/node_modules'),
+      ];
+
+      dirsToRemove.forEach((dir) => {
+        if (fs.existsSync(dir)) {
+          fs.rmSync(dir, { force: true, recursive: true });
+          // eslint-disable-next-line no-console
+          console.log(
+            `[remove-unnecessary] ✓ Removed ${path.relative(__dirname, dir)}`,
+          );
+        }
+      });
+
+      // Remove .DS_Store files
+      const removePattern = path.resolve(__dirname, 'dist/**/.DS_Store');
+      const dsStoreFiles = glob.sync(removePattern);
+      dsStoreFiles.forEach((file) => {
+        if (fs.existsSync(file)) {
+          fs.rmSync(file, { force: true });
+        }
+      });
+
+      if (dsStoreFiles.length > EMPTY_LENGTH) {
+        // eslint-disable-next-line no-console
+        console.log(
+          `[remove-unnecessary] ✓ Removed ${dsStoreFiles.length} .DS_Store files`,
+        );
+      }
+    },
+    name: 'remove-unnecessary-folders',
+  };
+};
+
+/**
  * Vite configuration for building the library
  */
 export default defineConfig(({ mode }) => ({
@@ -447,6 +503,7 @@ export default defineConfig(({ mode }) => ({
     copyStaticAssetsPlugin(),
     generateComponentIndexPlugin(),
     removeStorybookPlugin(),
+    removeUnnecessaryFoldersPlugin(),
   ],
   resolve: {
     alias: {

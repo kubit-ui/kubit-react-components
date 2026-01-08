@@ -9,6 +9,7 @@
 # Storybook
 **/*.stories.*
 **/storybook
+**/.storybook
 
 # Development files
 **/*.map
@@ -18,6 +19,11 @@ Thumbs.db
 
 # Node modules (should never be in dist but just in case)
 **/node_modules
+
+# Unnecessary dist folders
+dist/**/.storybook
+dist/**/assets
+dist/**/scripts
 
 # Source files (only ship dist)
 src/
