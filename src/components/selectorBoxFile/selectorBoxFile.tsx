@@ -42,9 +42,6 @@ export const SelectorBoxFile = forwardRef(
       errorMaxSizeMessage = {
         content: '',
       },
-      errorMessage = {
-        content: '',
-      },
       fileExtension,
       loading = false,
       maxSize,
@@ -99,15 +96,6 @@ export const SelectorBoxFile = forwardRef(
         validSize: _validSize,
       });
     };
-    const getErrorMessage = () => {
-      if (!validFile.validExtension) {
-        return errorFileExtensionMessage;
-      }
-      if (!validFile.validSize) {
-        return errorMaxSizeMessage;
-      }
-      return errorMessage;
-    };
     const hasError = () => {
       return error || !validFile.validExtension || !validFile.validSize;
     };
@@ -120,7 +108,6 @@ export const SelectorBoxFile = forwardRef(
         {...props}
         ref={ref}
         cssClasses={cssClasses}
-        errorMessage={getErrorMessage()}
         focus={focus}
         percentage={percentage}
         state={getState(loading, success, hasError(), disabled)}

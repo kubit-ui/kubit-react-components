@@ -15,13 +15,7 @@ import { CATEGORY_CONTROL } from '@/lib/storybook/constants/categoryControl';
 export const argtypes = (): ArgTypes => {
   return {
     ...configArgTypes,
-    ...getDisabledArgTypes([
-      'onChange',
-      'onDragEnd',
-      'onDragStart',
-      'progressAnimation',
-      'tooltip',
-    ]),
+    ...getDisabledArgTypes(['progressAnimation']),
     barAriaLabel: getStringtArgTypes({
       category: CATEGORY_CONTROL.ACCESIBILITY,
       keyName: 'barAriaLabel',

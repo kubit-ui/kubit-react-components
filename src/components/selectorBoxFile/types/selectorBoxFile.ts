@@ -6,34 +6,11 @@ import type {
 } from '@/lib/types/cssGenerator/kubit/componentsTypes';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import type { ButtonProps } from '../../button/types/button';
-import type { TooltipUnControlledProps } from '../../tooltip/types/tooltip';
 import type { SelectorBoxFileStateType } from './state';
 
 export type SelectorBoxFileCssClasses = ComponentSelected<
   ComponentsTypesComponents['SELECTOR_BOX_FILE']
 >;
-/**
- * Represents the type for the button in the SelectorBoxFile component.
- */
-export type SelectorBoxFileButtonProps = Omit<
-  ButtonProps,
-  'children' | 'variant' | 'size'
-> & {
-  content: string;
-  variant?: string;
-  size?: string;
-};
-
-/**
- * Represents the type for the tooltip in the SelectorBoxFile component.
- */
-export type SelectorBoxFileTooltipProps = Omit<
-  TooltipUnControlledProps,
-  'children' | 'variant'
-> & {
-  variant?: string;
-};
 
 /**
  * Represents the mapping of states to content in the SelectorBoxFile component.
@@ -54,16 +31,8 @@ export type SelectorBoxFileContainerBoxStateContentProps = {
  */
 export interface SelectorBoxFileStandAloneProps extends DataAttributes {
   state: SelectorBoxFileStateType;
-  title?: CommonTextProps;
-  subtitle?: CommonTextProps;
-  tooltipIcon?: ElementOrIconProps;
-  tooltip?: SelectorBoxFileTooltipProps;
   containerBoxStateContent: SelectorBoxFileContainerBoxStateContentProps;
   filename?: string;
-  errorMessageIcon?: ElementOrIconProps;
-  errorMessage?: CommonTextProps;
-  errorMaxSizeMessage?: CommonTextProps;
-  errorFileExtensionMessage?: CommonTextProps;
   focus: boolean;
   onFocus: React.FocusEventHandler<HTMLInputElement>;
   onBlur: React.FocusEventHandler<HTMLInputElement>;
@@ -74,8 +43,6 @@ export interface SelectorBoxFileStandAloneProps extends DataAttributes {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onClick?: React.MouseEventHandler<HTMLInputElement>;
   onAnimationCompleted?: () => void;
-  description?: CommonTextProps;
-  button?: SelectorBoxFileButtonProps;
   maxSize?: number;
   fileExtension?: string[];
   loader?: React.ReactNode;
@@ -92,13 +59,15 @@ export interface SelectorBoxFileStandAloneProps extends DataAttributes {
 export interface SelectorBoxFileProps<
   Variant = undefined extends string ? unknown : string,
 > extends Omit<
-    SelectorBoxFileStandAloneProps,
-    'state' | 'focus' | 'onFocus' | 'onBlur' | 'onChange' | 'percentage'
-  > {
+  SelectorBoxFileStandAloneProps,
+  'state' | 'focus' | 'onFocus' | 'onBlur' | 'onChange' | 'percentage'
+> {
   loading?: boolean;
   success?: boolean;
   error?: boolean;
   disabled?: boolean;
+  errorMaxSizeMessage?: CommonTextProps;
+  errorFileExtensionMessage?: CommonTextProps;
   percentage?: number;
   variant?: Variant;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;

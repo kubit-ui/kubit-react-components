@@ -1,20 +1,12 @@
-// TO DO: RESOLVE THE TESTS
 import { fireEvent, screen } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 
-import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { render } from '@/lib/tests/render/render';
-import { POSITIONS } from '@/lib/types/positions/positions';
 import { STATES } from '@/lib/types/states/states';
 
 import { SelectorBoxFile } from '../selectorBoxFile';
 
 const mockProps = {
-  button: {
-    content: 'Link description',
-    icon: { altText: 'altText', icon: ICONS.PLACEHOLDER },
-    iconPosition: POSITIONS.LEFT,
-  },
   containerBoxStateContent: {
     [STATES.DEFAULT]: {
       actionText: { content: 'Browse and select a file' },
@@ -39,31 +31,13 @@ const mockProps = {
       icon: { icon: 'CHECKMARK' },
     },
   },
-  description: { content: 'DescriptionNoLink' },
-  errorMessage: { content: 'Error uploading document' },
-  errorMessageIcon: { icon: 'ERROR_BI_COLOR' },
   filename: '12345678asdfghj.pdf',
-  subtitle: { content: 'Subtitle: Lorem ipsum dolor si' },
-  title: { content: 'Title: Lorem Impsum' },
-  tooltip: {
-    align: POSITIONS.RIGHT,
-    closeIcon: { altText: 'Close popover', icon: 'CLOSE' },
-    content: { content: 'Tooltip content' },
-    title: { content: 'Tooltip title' },
-  },
-  tooltipIcon: { altText: 'altTextTooltipIcon', icon: 'WARNING_IN_A_CIRCLE' },
   variant: 'DEFAULT',
 };
 
 describe('SelectorBoxFile', () => {
-  it('Title and subtitle may be presen', async () => {
+  it('Should render the component with the containerBoxStateContent', async () => {
     const { container } = render(<SelectorBoxFile {...mockProps} />);
-    const title = screen.getByText(mockProps.title.content);
-    expect(title).not.toBeNull();
-    const subtitle = screen.getByText(mockProps.subtitle.content);
-    expect(subtitle).not.toBeNull();
-    const tooltipIcon = screen.getByLabelText(mockProps.tooltipIcon.altText);
-    expect(tooltipIcon).not.toBeNull();
     const inputFile = screen.getByLabelText(
       new RegExp(
         mockProps.containerBoxStateContent[STATES.DEFAULT].actionText.content,
@@ -73,9 +47,7 @@ describe('SelectorBoxFile', () => {
 
     const results = await axe(container);
     expect(container).toHTMLValidate({
-      // Fix in the future: Currently the tooltip have internal div, so the tooltip can not be used next to text
       rules: {
-        'element-permitted-content': 'off',
         'no-dup-class': 'off',
         'no-inline-style': 'off',
       },
@@ -83,81 +55,7 @@ describe('SelectorBoxFile', () => {
     expect(results.violations).toHaveLength(0);
   });
 
-  it('Title may not be present', () => {
-    render(<SelectorBoxFile {...mockProps} title={undefined} />);
-    const title = screen.queryByText(mockProps.title.content);
-    expect(title).toBeNull();
-    const subtitle = screen.getByText(mockProps.subtitle.content);
-    expect(subtitle).not.toBeNull();
-  });
-
-  it('Subtitle may not be present', () => {
-    render(<SelectorBoxFile {...mockProps} subtitle={undefined} />);
-    const title = screen.getByText(mockProps.title.content);
-    expect(title).not.toBeNull();
-    const subtitle = screen.queryByText(mockProps.subtitle.content);
-    expect(subtitle).toBeNull();
-  });
-
-  it('Title and subtitle may not be present', () => {
-    render(
-      <SelectorBoxFile {...mockProps} subtitle={undefined} title={undefined} />,
-    );
-    const title = screen.queryByText(mockProps.title.content);
-    expect(title).toBeNull();
-    const subtitle = screen.queryByText(mockProps.subtitle.content);
-    expect(subtitle).toBeNull();
-  });
-
-  it('When errorMessage and error, error message is shown', () => {
-    render(<SelectorBoxFile {...mockProps} error={true} />);
-    const errorMessage = screen.getByText(mockProps.errorMessage.content);
-    expect(errorMessage).not.toBeNull();
-  });
-
-  it('errorMessage is optional even for error state', async () => {
-    const { container } = render(
-      <SelectorBoxFile {...mockProps} error={true} errorMessage={undefined} />,
-    );
-    const inputFile = screen.getByLabelText(
-      new RegExp(
-        mockProps.containerBoxStateContent[STATES.ERROR].actionText.content,
-      ),
-    );
-    expect(inputFile).not.toBeNull();
-
-    const results = await axe(container);
-    expect(container).toHTMLValidate({
-      // Fix in the future: Currently the tooltip have internal div, so the tooltip can not be used next to text
-      rules: {
-        'element-permitted-content': 'off',
-        'no-dup-class': 'off',
-        'no-inline-style': 'off',
-      },
-    });
-    expect(results.violations).toHaveLength(0);
-  });
-
-  it('Tooltip icon may not be present', () => {
-    render(<SelectorBoxFile {...mockProps} tooltipIcon={undefined} />);
-    const tooltipIcon = screen.queryByLabelText(mockProps.tooltipIcon.altText);
-    expect(tooltipIcon).toBeNull();
-  });
-
-  it('Tooltip may not be present', () => {
-    render(<SelectorBoxFile {...mockProps} tooltip={undefined} />);
-    const tooltip = screen.queryByRole('dialog');
-    expect(tooltip).toBeNull();
-  });
-
-  // it('Description and descriptionLink may be present', () => {
-  //   render(<SelectorBoxFile {...mockProps} />);
-  //   const linkButtonName = mockProps.button.icon.altText + ' ' + mockProps.button.content;
-  //   const linkButton = screen.getByRole('button', { name: linkButtonName });
-  //   expect(linkButton).not.toBeNull();
-  // });
-
-  it('May not have actionText for ha given state', async () => {
+  it('May not have actionText for a given state', async () => {
     const { container } = render(
       <SelectorBoxFile
         {...mockProps}
@@ -178,9 +76,7 @@ describe('SelectorBoxFile', () => {
 
     const results = await axe(container);
     expect(container).toHTMLValidate({
-      // Fix in the future: Currently the tooltip have internal div, so the tooltip can not be used next to text
       rules: {
-        'element-permitted-content': 'off',
         'no-dup-class': 'off',
         'no-inline-style': 'off',
       },

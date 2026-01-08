@@ -75,49 +75,47 @@ export const SelectorBoxFileContainerBox = ({
               {filename}
             </Text>
           )}
-        <span className={cssClasses?.actiondescriptioncontainer}>
-          {!!processTextProp(containerBoxStateContent[state]?.actionText)
-            .children && (
-            <span
-              className={cssClasses?.actioniconandactiontextcontainer}
-              {...pickCustomAttributes(customAttributes)}
-            >
-              <ElementOrIcon
-                className={cssClasses?.actionicon}
-                customAttributes={customAttributes}
-                {...containerBoxStateContent[state]?.actionIcon}
-              />
-              <Text
-                additionalClasses={{
-                  text: cssClasses?.containerboxactiontext,
-                }}
-                component="span"
-                customAttributes={customAttributes}
-                {...processTextProp(containerBoxStateContent[state]?.actionText)}
-              >
-                {
-                  processTextProp(containerBoxStateContent[state]?.actionText)
-                    .children
-                }
-              </Text>
-            </span>
-          )}
-          {!!containerBoxStateContent[state]?.description && (
+        {!!processTextProp(containerBoxStateContent[state]?.actionText)
+          .children && (
+          <span
+            className={cssClasses?.actioniconandactiontextcontainer}
+            {...pickCustomAttributes(customAttributes)}
+          >
+            <ElementOrIcon
+              className={cssClasses?.actionicon}
+              customAttributes={customAttributes}
+              {...containerBoxStateContent[state]?.actionIcon}
+            />
             <Text
               additionalClasses={{
-                text: cssClasses?.containerboxdescription,
+                text: cssClasses?.containerboxactiontext,
               }}
               component="span"
               customAttributes={customAttributes}
-              {...processTextProp(containerBoxStateContent[state]?.description)}
+              {...processTextProp(containerBoxStateContent[state]?.actionText)}
             >
               {
-                processTextProp(containerBoxStateContent[state]?.description)
+                processTextProp(containerBoxStateContent[state]?.actionText)
                   .children
               }
             </Text>
-          )}
-        </span>
+          </span>
+        )}
+        {!!containerBoxStateContent[state]?.description && (
+          <Text
+            additionalClasses={{
+              text: cssClasses?.containerboxdescription,
+            }}
+            component="span"
+            customAttributes={customAttributes}
+            {...processTextProp(containerBoxStateContent[state]?.description)}
+          >
+            {
+              processTextProp(containerBoxStateContent[state]?.description)
+                .children
+            }
+          </Text>
+        )}
       </span>
       {!!containerBoxStateContent[state]?.iconRight && (
         <span>

@@ -162,7 +162,7 @@
     "@vitejs/plugin-react": "^5.1.2",
     "@vitest/coverage-v8": "^4.0.16",
     "@vitest/ui": "^4.0.16",
-    "bernova": "0.2.1",
+    "bernova": "1.0.0",
     "cssnano": "^7.1.2",
     "eslint": "^9.39.2",
     "eslint-config-kubit": "1.2.0",

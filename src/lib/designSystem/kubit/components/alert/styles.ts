@@ -1,4 +1,5 @@
 import type { AlertVariantStyles } from '@/components/alert/types/alertTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';

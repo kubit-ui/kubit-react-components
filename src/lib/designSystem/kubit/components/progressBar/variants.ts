@@ -1,6 +1,5 @@
 export const ProgressBarVariantType = {
   DEFAULT: 'DEFAULT',
-  INTERACTIVE: 'INTERACTIVE',
 } as const;
 
 export const ProgressBarSizeType = {

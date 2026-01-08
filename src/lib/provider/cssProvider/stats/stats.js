@@ -1,6 +1,6 @@
 /* CssThemes */
 export const cssThemes = {
-  'kubit': { css: '/Users/n128691/PROJECTS/OPEN_SOURCE/kubit-react-components/src/lib/designSystem/kubit/css/kubit.css', foreign: { before: [],  after: [], }, },
+  'kubit': { css: '../../designSystem/kubit/css/kubit.css', foreign: { before: [],  after: [], }, },
 }
 /* CssThemes */
 
@@ -288,24 +288,23 @@ export const cssClasses = {
     },
   },
   ALERT: {
-    alert: 'alert',
     container: 'alert__container',
     contentcontainer: 'alert__contentcontainer',
     description: 'alert__description',
     $_error: {
-      alert: 'alert alert--error',
+      alert: 'alert--error',
       container: 'alert__container alert__container--error',
     },
     $_informative: {
-      alert: 'alert alert--informative',
+      alert: 'alert--informative',
       container: 'alert__container alert__container--informative',
     },
     $_success: {
-      alert: 'alert alert--success',
+      alert: 'alert--success',
       container: 'alert__container alert__container--success',
     },
     $_warning: {
-      alert: 'alert alert--warning',
+      alert: 'alert--warning',
       container: 'alert__container alert__container--warning',
     },
   },
@@ -1055,7 +1054,6 @@ export const cssClasses = {
   },
   SELECTOR_BOX_FILE: {
     selector_box_file: 'selector_box_file',
-    actiondescriptioncontainer: 'selector_box_file__actiondescriptioncontainer',
     actionicon: 'selector_box_file__actionicon',
     actioniconandactiontextcontainer: 'selector_box_file__actioniconandactiontextcontainer',
     animationcontainer: 'selector_box_file__animationcontainer',
@@ -1068,56 +1066,12 @@ export const cssClasses = {
     containerboxfilename: 'selector_box_file__containerboxfilename',
     containerboxicon: 'selector_box_file__containerboxicon',
     containerboxtextscontainer: 'selector_box_file__containerboxtextscontainer',
-    description: 'selector_box_file__description',
-    descriptioncontainer: 'selector_box_file__descriptioncontainer',
-    errormessage: 'selector_box_file__errormessage',
-    errormessagecontainer: 'selector_box_file__errormessagecontainer',
-    errormessageicon: 'selector_box_file__errormessageicon',
     header: 'selector_box_file__header',
     leftanimationcontainer: 'selector_box_file__leftanimationcontainer',
     rightanimationcontainer: 'selector_box_file__rightanimationcontainer',
-    subtitle: 'selector_box_file__subtitle',
-    subtitletooltipcontainer: 'selector_box_file__subtitletooltipcontainer',
-    title: 'selector_box_file__title',
-    titlesubtitlecontainer: 'selector_box_file__titlesubtitlecontainer',
-    tooltipicon: 'selector_box_file__tooltipicon',
-    tooltipiconcontainer: 'selector_box_file__tooltipiconcontainer',
     topanimationcontainer: 'selector_box_file__topanimationcontainer',
     $_default: {
       selector_box_file: 'selector_box_file selector_box_file--default',
-    },
-    button_size: {
-      icon: 'button__icon button__icon--small',
-      button: 'button button--small',
-      loader: 'button__loader',
-    },
-    button_variant: {
-      button: 'button button--action_secondary',
-      icon: 'button__icon',
-      loader: 'button__loader',
-    },
-    tooltip: {
-      arrowcontainer: 'tooltip__arrowcontainer tooltip__arrowcontainer--default',
-      arrowposition: 'tooltip__arrowposition tooltip__arrowposition--default',
-      arrowsize: 'tooltip__arrowsize tooltip__arrowsize--default',
-      closebuttoncontainer: 'tooltip__closebuttoncontainer tooltip__closebuttoncontainer--default',
-      closebuttonicon: 'tooltip__closebuttonicon tooltip__closebuttonicon--default',
-      headercontainer: 'tooltip__headercontainer tooltip__headercontainer--default',
-      paragraph: 'tooltip__paragraph tooltip__paragraph--default',
-      paragraphcontainer: 'tooltip__paragraphcontainer tooltip__paragraphcontainer--default',
-      title: 'tooltip__title tooltip__title--default',
-      tooltipexternalcontainer: 'tooltip__tooltipexternalcontainer tooltip__tooltipexternalcontainer--default',
-      tooltipinternalcontainer: 'tooltip__tooltipinternalcontainer tooltip__tooltipinternalcontainer--default',
-      popover: {
-        arrow: 'popover__arrow',
-        popover: 'popover',
-      },
-      arrow: 'tooltip__arrow',
-      divider: 'tooltip__divider',
-      dragicon: 'tooltip__dragicon',
-      dragiconcontainer: 'tooltip__dragiconcontainer',
-      tooltipalignstyles: 'tooltip__tooltipalignstyles',
-      tooltipasmodal: 'tooltip__tooltipasmodal',
     },
   },
   SKELETON: {

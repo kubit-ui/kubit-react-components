@@ -1,19 +1,7 @@
 import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
 export interface SelectorBoxFileStyleProps extends CssLibPropsType {
-  _actionDescriptionContainer?: CssLibPropsType;
   _header?: CssLibPropsType;
-  _titleSubtitleContainer?: CssLibPropsType;
-  _title?: CssLibPropsType;
-  _subtitle?: CssLibPropsType;
-  _subtitleTooltipContainer?: CssLibPropsType;
-  _descriptionContainer?: CssLibPropsType;
-  _description?: CssLibPropsType;
-  _tooltipIconContainer?: CssLibPropsType;
-  _tooltipIcon?: CssLibPropsType;
-  _errorMessageContainer?: CssLibPropsType;
-  _errorMessageIcon?: CssLibPropsType;
-  _errorMessage?: CssLibPropsType;
   _animationContainer?: CssLibPropsType;
   _topAnimationContainer?: CssLibPropsType;
   _leftAnimationContainer?: CssLibPropsType;
@@ -31,11 +19,6 @@ export interface SelectorBoxFileStyleProps extends CssLibPropsType {
   _containerActionContainer?: CssLibPropsType;
 }
 
-// $foreign?: {
-//   buttonVariant?: object;
-//   buttonSize?: object;
-//   tooltip;
-// };
 export type SelectorBoxFileVariantStyles<Variant extends string> =
   SelectorBoxFileStyleProps & {
     [key in Variant]?: SelectorBoxFileStyleProps;

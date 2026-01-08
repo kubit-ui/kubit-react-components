@@ -13,13 +13,9 @@ export const argtypes = (): ArgTypes => {
   return {
     ...configArgTypes,
     ...getDisabledArgTypes([
-      'button',
       'containerBoxStateContent',
-      'description',
       'errorFileExtensionMessage',
       'errorMaxSizeMessage',
-      'errorMessage',
-      'errorMessageIcon',
       'fileExtension',
       'loader',
       'onAnimationCompleted',
@@ -27,10 +23,6 @@ export const argtypes = (): ArgTypes => {
       'onClick',
       'onFileError',
       'onSizeError',
-      'subtitle',
-      'title',
-      'tooltip',
-      'tooltipIcon',
     ]),
     accept: getStringtArgTypes({
       category: CATEGORY_CONTROL.CONTENT,

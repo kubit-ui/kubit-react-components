@@ -1,4 +1,3 @@
-// TO DO: RESOLVE THE TESTS
 import { screen } from '@testing-library/react';
 
 import { render } from '@/lib/tests/render/render';
@@ -6,11 +5,9 @@ import { render } from '@/lib/tests/render/render';
 import { ProgressBar } from '../progressBar';
 
 const MOCK_PROPS = {
-  barAriaLabel: 'aria-label-0',
-  barProgressDuration: 2000,
+  barAriaLabel: 'Loading progress',
   'data-testid': 'progress-bar',
   size: 'SMALL',
-  useAsSlider: false,
   variant: 'DEFAULT',
 };
 
@@ -57,54 +54,43 @@ describe('ProgressBar', () => {
     expect(bar).toBeDefined();
   });
 
-  it('Should render as slider when useAsSlider is true', () => {
-    const onChangeMock = vi.fn();
-    render(
-      <ProgressBar
-        {...MOCK_PROPS}
-        percentProgressCompleted={30}
-        useAsSlider={true}
-        onChange={onChangeMock}
-      />,
-    );
-    const progressBarContainer = screen.getByTestId(
-      `${MOCK_PROPS['data-testid']}-progressbar`,
-    );
-    expect(progressBarContainer).toBeDefined();
-  });
-
-  it('Should call onChange with correct value when slider changes', () => {
-    const onChangeMock = vi.fn();
-    render(
-      <ProgressBar
-        {...MOCK_PROPS}
-        percentProgressCompleted={30}
-        useAsSlider={true}
-        onChange={onChangeMock}
-      />,
-    );
-    // Slider is rendered, but testing its onChange through user interaction
-    // would require complex slider interaction tests
-    expect(
-      screen.getByTestId(`${MOCK_PROPS['data-testid']}-progressbar`),
-    ).toBeDefined();
-  });
-
-  it('Should handle onDragStart and onDragEnd when useAsSlider is true', () => {
-    const onDragStartMock = vi.fn();
-    const onDragEndMock = vi.fn();
+  it('Should render with progressAnimation', () => {
     render(
       <ProgressBar
         {...MOCK_PROPS}
         percentProgressCompleted={50}
-        useAsSlider={true}
-        onDragEnd={onDragEndMock}
-        onDragStart={onDragStartMock}
+        progressAnimation={{
+          duration: '2s',
+          timingFunction: 'ease-in-out',
+        }}
       />,
     );
-    const progressBarContainer = screen.getByTestId(
-      `${MOCK_PROPS['data-testid']}-progressbar`,
+    const bar = screen.getByTestId(`${MOCK_PROPS['data-testid']}`);
+    expect(bar).toBeDefined();
+  });
+
+  it('Should render with custom colors', () => {
+    render(
+      <ProgressBar
+        {...MOCK_PROPS}
+        color={{
+          bar: 'lightblue',
+          progressBar: 'darkblue',
+        }}
+        percentProgressCompleted={50}
+      />,
     );
-    expect(progressBarContainer).toBeDefined();
+    const bar = screen.getByTestId(`${MOCK_PROPS['data-testid']}`);
+    expect(bar).toBeDefined();
+  });
+
+  it('Should have proper ARIA attributes', () => {
+    render(<ProgressBar {...MOCK_PROPS} percentProgressCompleted={50} />);
+    const bar = screen.getByTestId(`${MOCK_PROPS['data-testid']}`);
+    expect(bar).toHaveAttribute('role', 'progressbar');
+    expect(bar).toHaveAttribute('aria-valuenow', '50');
+    expect(bar).toHaveAttribute('aria-valuemin', '0');
+    expect(bar).toHaveAttribute('aria-valuemax', '100');
+    expect(bar).toHaveAttribute('aria-label', MOCK_PROPS.barAriaLabel);
   });
 });

@@ -3,39 +3,14 @@ import type { SelectorBoxFileVariantStyles } from '@/components/selectorBoxFile/
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 import { STATES } from '@/lib/types/states/states';
 
-import { BUTTON } from '../button/styles';
-import { ButtonSizeType, ButtonVariantType } from '../button/variants';
 import { TEXT } from '../text/styles';
 import { TextVariantType } from '../text/variants';
-import { TOOLTIP } from '../tooltip/styles';
-import { TooltipVariantType } from '../tooltip/variants';
 import { SelectorBoxFileVariantType } from './variants';
 
 type SelectorBoxFileVariants = keyof typeof SelectorBoxFileVariantType;
 
 export const SELECTOR_BOX_FILE: SelectorBoxFileVariantStyles<SelectorBoxFileVariants> =
   {
-    $foreign: {
-      button_size: {
-        component: BUTTON,
-        name: 'button',
-        variant: ButtonSizeType.SMALL,
-      },
-      button_variant: {
-        component: BUTTON,
-        name: 'button',
-        variant: ButtonVariantType.ACTION_SECONDARY,
-      },
-      tooltip: {
-        component: TOOLTIP,
-        name: 'tooltip',
-        variant: TooltipVariantType.DEFAULT,
-      },
-    },
-    _actionDescriptionContainer: {
-      display: 'flex',
-      flex_direction: 'column',
-    },
     _actionIcon: {
       $attributes: {
         'data-state': {
@@ -147,33 +122,6 @@ export const SELECTOR_BOX_FILE: SelectorBoxFileVariantStyles<SelectorBoxFileVari
       flex_direction: 'column',
       word_break: 'break-word',
     },
-    _description: {
-      ...TEXT[TextVariantType.PARAGRAPH_MEDIUM_EXTENDED],
-      color: cssVars.colors_neutral_color_bg_50,
-      font_weight: cssVars.font_weight_400,
-    },
-    _descriptionContainer: {
-      align_items: 'baseline',
-      display: 'flex',
-      flex_direction: 'column',
-      gap: cssVars.spacings_spacing_150,
-    },
-    _errorMessage: {
-      ...TEXT[TextVariantType.DEFAULT],
-      color: cssVars.colors_feedback_color_feedbackerror_font_50,
-      font_weight: cssVars.font_weight_400,
-    },
-    _errorMessageContainer: {
-      align_items: 'start',
-      display: 'flex',
-      flex_direction: 'row',
-      gap: cssVars.spacings_spacing_100,
-      margin_top: cssVars.spacings_spacing_150,
-    },
-    _errorMessageIcon: {
-      height: cssVars.spacings_spacing_300,
-      width: cssVars.spacings_spacing_300,
-    },
     _header: {
       display: 'flex',
       flex_direction: 'column',
@@ -184,46 +132,6 @@ export const SELECTOR_BOX_FILE: SelectorBoxFileVariantStyles<SelectorBoxFileVari
     },
     _rightAnimationContainer: {
       padding: cssVars.spacings_spacing_0,
-    },
-    _subtitle: {
-      ...TEXT[TextVariantType.PARAGRAPH_MEDIUM_EXTENDED],
-      color: cssVars.colors_neutral_color_bg_50,
-      font_weight: cssVars.font_weight_400,
-    },
-    _subtitleTooltipContainer: {
-      $advancedSelectors: [
-        {
-          child: {
-            $target: '*:nth-child(1)',
-            display: 'inline',
-          },
-        },
-        {
-          child: {
-            $target: '*:nth-child(2)',
-            vertical_align: 'middle',
-          },
-        },
-      ],
-      padding: cssVars.spacings_spacing_0,
-    },
-    _title: {
-      ...TEXT[TextVariantType.PARAGRAPH_LARGE_EXTENDED],
-      color: cssVars.colors_neutral_color_bg_50,
-      font_weight: cssVars.font_weight_600,
-    },
-    _titleSubtitleContainer: {
-      display: 'flex',
-      flex_direction: 'column',
-      gap: cssVars.spacings_spacing_150,
-    },
-    _tooltipIcon: {
-      height: cssVars.spacings_spacing_400,
-      width: cssVars.spacings_spacing_400,
-    },
-    _tooltipIconContainer: {
-      display: 'inline',
-      margin_left: cssVars.spacings_spacing_100,
     },
     _topAnimationContainer: {
       padding: cssVars.spacings_spacing_0,

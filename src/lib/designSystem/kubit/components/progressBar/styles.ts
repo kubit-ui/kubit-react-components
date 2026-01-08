@@ -2,8 +2,6 @@ import type { ProgressBarStyles } from '@/components/progressBar/types/progressB
 
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
-import { SLIDER } from '../slider/styles';
-import { SliderVariantType } from '../slider/variants';
 import { ProgressBarSizeType, ProgressBarVariantType } from './variants';
 
 type ProgressBarVariant = keyof typeof ProgressBarVariantType;
@@ -13,13 +11,6 @@ export const PROGRESS_BAR: ProgressBarStyles<
   ProgressBarVariant,
   ProgressBarSize
 > = {
-  $foreign: {
-    slider: {
-      component: SLIDER,
-      name: 'slider',
-      variant: SliderVariantType.PRIMARY,
-    },
-  },
   _bar: {
     background_color: cssVars.colors_neutral_color_bg_100,
     border_radius: cssVars.radius_100,
@@ -59,10 +50,5 @@ export const PROGRESS_BAR: ProgressBarStyles<
     },
   },
   [ProgressBarVariantType.DEFAULT]: {},
-  [ProgressBarVariantType.INTERACTIVE]: {
-    _barContainer: {
-      cursor: 'pointer',
-    },
-  },
   width: 'inherit',
 };

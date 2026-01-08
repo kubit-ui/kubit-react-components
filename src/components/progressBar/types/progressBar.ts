@@ -4,8 +4,6 @@ import type {
 } from '@/lib/types/cssGenerator/kubit/componentsTypes';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import type { SliderTooltipProps } from '../../slider/types/slider';
-
 type ProgressBarCssClasses = ComponentSelected<
   ComponentsTypesComponents['PROGRESS_BAR']
 >;
@@ -27,12 +25,6 @@ export interface ProgressBarStandAloneProps extends DataAttributes {
   cssSizeClasses?: ProgressBarCssClasses;
   barAriaLabel?: string;
   progressCompleted: number;
-  // Slider callbacks
-  onChange?: (value: number) => void;
-  onDragStart?: () => void;
-  onDragEnd?: () => void;
-  tooltip?: SliderTooltipProps;
-  useAsSlider?: boolean;
   progressAnimation?: {
     duration?: string;
     timingFunction?: string;

@@ -1,8 +1,6 @@
 export { SelectorBoxFile } from './selectorBoxFile';
 export type {
   SelectorBoxFileCssClasses,
-  SelectorBoxFileButtonProps,
-  SelectorBoxFileTooltipProps,
   SelectorBoxFileContainerBoxStateContentProps,
   SelectorBoxFileStandAloneProps,
   SelectorBoxFileProps,

@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { SelectorBoxFileVariantType } from '@/lib/designSystem/kubit/components/selectorBoxFile/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { LoaderStory as Loader } from '@/lib/storybook/assets/loader/loader';
-import { POSITIONS } from '@/lib/types/positions/positions';
 import { STATES } from '@/lib/types/states/states';
 
 import type { SelectorBoxFileProps } from '../types/selectorBoxFile';
@@ -63,11 +62,6 @@ export default meta;
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
 const commonArgs: SelectorBoxFileProps = {
-  button: {
-    content: 'Link description',
-    icon: { altText: 'altText', icon: ICONS.PLACEHOLDER },
-    iconPosition: POSITIONS.LEFT,
-  },
   containerBoxStateContent: {
     [STATES.DEFAULT]: {
       actionText: { content: 'Browse and select a file' },
@@ -94,19 +88,11 @@ const commonArgs: SelectorBoxFileProps = {
       icon: { icon: ICONS.PLACEHOLDER },
     },
   },
-  description: { content: 'Description' },
   disabled: false,
   error: false,
   fileExtension: ['pdf', 'jpeg'],
   loading: false,
-  subtitle: { content: 'You can select a file and delete it after adding' },
   success: false,
-  title: { content: 'Example of use' },
-  tooltip: {
-    content: { content: 'This is a tooltip content' },
-    title: { content: 'This is a tooltip title' },
-  },
-  tooltipIcon: { icon: ICONS.PLACEHOLDER },
   variant: SelectorBoxFileVariantType.DEFAULT,
 };
 
@@ -176,27 +162,11 @@ const StoryWithHooksValidation = (args) => {
 export const SelectorBoxFileExtensionValidation: Story = {
   args: {
     ...commonArgs,
-    description: {
-      content:
-        'This way you can put whatever you want to check the file with onChange prop. \
-      This is useful for some edge cases where extensions are not supported natively by the OS, \
-      like it happens with .heic files for Windows. \
-      This example allows .pdf, .jpeg and .heic files.',
-    },
     errorMaxSizeMessage: {
       content: 'The error message for maxSize can still be displayed',
     },
-    errorMessage: {
-      content:
-        'This is a custom error message that launches when error property is set to true',
-    },
     fileExtension: undefined,
     maxSize: 20,
-    subtitle: {
-      content:
-        'Do not add fileExtension prop and use onChange to validate the file extension',
-    },
-    title: { content: 'Example for custom file extension handling' },
   },
   render: ({ ...args }) => <StoryWithHooksValidation {...args} />,
 };
