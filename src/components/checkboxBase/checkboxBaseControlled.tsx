@@ -7,6 +7,22 @@ import type { CheckboxBaseControlledProps } from './types/checkboxBase';
 import { getCheckboxState } from '../checkbox/utils/state.utils';
 import { CheckboxBaseStandAlone } from './checkboxBaseStandAlone';
 
+/**
+ * CheckboxBaseControlled component for managed checkbox state.
+ *
+ * This is a low-level checkbox component where the checked state is controlled
+ * externally. It handles error states, required validation, and applies appropriate
+ * styling based on the checkbox state (checked, unchecked, indeterminate, disabled).
+ *
+ * @example
+ * ```tsx
+ * <CheckboxBaseControlled
+ *   checked={isChecked}
+ *   onChange={(e) => setIsChecked(e.target.checked)}
+ *   error={hasError}
+ * />
+ * ```
+ */
 export const CheckboxBaseControlled = forwardRef(
   <Variant extends string = string>(
     {

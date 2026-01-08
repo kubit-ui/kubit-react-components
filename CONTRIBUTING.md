@@ -154,6 +154,42 @@ git commit -m "feat!: redesign Button component API with new prop structure"
 - Follow the existing **code style** and patterns used in the project
 - Ensure **accessibility** standards are met (WCAG 2.1 AA)
 
+### Requirements
+
+Before contributing, ensure you have the following installed:
+
+- **Node.js**: v25.x or higher (recommended: v25.2.1)
+- **pnpm**: v10.x or higher
+- **Git**: Latest version
+
+You can check your versions with:
+
+```sh
+node --version  # Should show v25.x.x
+pnpm --version  # Should show 10.x.x
+```
+
+#### Installing Node.js 25
+
+Using **nvm** (recommended):
+
+```sh
+# Install nvm if you don't have it
+# Visit: https://github.com/nvm-sh/nvm
+
+# Install and use Node.js 25
+nvm install 25
+nvm use 25
+
+# Or use the .nvmrc file in the project
+nvm use
+```
+
+Using **official installer**:
+
+- Download from [nodejs.org](https://nodejs.org/)
+- Choose version 25.x LTS
+
 ### Development Setup
 
 Before contributing, make sure you have the development environment set up:

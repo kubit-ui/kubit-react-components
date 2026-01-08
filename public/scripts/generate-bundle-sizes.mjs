@@ -150,7 +150,7 @@ function main() {
   if (!fs.existsSync(distEsmDir)) {
     console.warn('⚠️  Warning: dist/esm/components directory not found.');
     console.warn(
-      '   Creating empty bundle-sizes.json. Run `yarn dist` to populate.\n',
+      '   Creating empty bundle-sizes.json. Run `pnpm dist` to populate.\n',
     );
 
     // Create empty bundle sizes file

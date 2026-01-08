@@ -15,6 +15,22 @@ import { CarouselStandAlone } from './carouselStandAlone';
 import { useCarousel } from './hooks/useCarousel';
 import { buildScreenReaderOnly } from './utils/carousel.utils';
 
+/**
+ * Carousel component for displaying a sliding gallery of items.
+ *
+ * This component provides a customizable carousel with support for pagination,
+ * circular navigation, center mode, and responsive behavior. It manages internal
+ * state for the current page and number of pages, and exposes methods via ref.
+ *
+ * @example
+ * ```tsx
+ * <Carousel numElementsPerPage={3} circular>
+ *   <div>Slide 1</div>
+ *   <div>Slide 2</div>
+ *   <div>Slide 3</div>
+ * </Carousel>
+ * ```
+ */
 const CarouselComponent = (
   {
     additionalClasses,

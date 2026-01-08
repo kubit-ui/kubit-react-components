@@ -22,6 +22,23 @@ import { useTooltip } from './hooks/useTooltip';
 import { useTooltipAsModal } from './hooks/useTooltipAsModal';
 import { TooltipStandAlone } from './tooltipStandAlone';
 
+/**
+ * TooltipUnControlled component with internal visibility management.
+ *
+ * This component renders a tooltip that manages its own open/close state based
+ * on user interactions (hover, focus). It handles modal behavior on mobile devices,
+ * scroll detection, swipe gestures, and focus trapping automatically.
+ *
+ * @example
+ * ```tsx
+ * <TooltipUnControlled
+ *   title="Helpful information"
+ *   variant="default"
+ * >
+ *   <button>Hover me</button>
+ * </TooltipUnControlled>
+ * ```
+ */
 export const TooltipUnControlled = forwardRef(function <
   Variant extends string | undefined,
 >(

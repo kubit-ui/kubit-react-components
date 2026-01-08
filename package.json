@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/react-components",
-  "version": "2.0.0-beta.17",
+  "version": "2.0.0-beta.18",
   "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
   "author": {
     "name": "Kubit",
@@ -22,9 +22,10 @@
   },
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=20.x",
-    "npm": ">=7.0.0"
+    "node": ">=25.0.0",
+    "pnpm": ">=10.0.0"
   },
+  "packageManager": "pnpm@10.27.0",
   "keywords": [
     "react",
     "storybook",
@@ -106,14 +107,14 @@
     }
   },
   "scripts": {
-    "start": "yarn storybook",
+    "start": "pnpm storybook",
     "storybook": "storybook dev -c .storybook -p 6006",
-    "build": "yarn dist && yarn build-storybook",
-    "prebuild-storybook": "yarn generate-css",
+    "build": "pnpm dist && pnpm build-storybook",
+    "prebuild-storybook": "pnpm generate-css",
     "build-storybook": "storybook build -c .storybook -o bundle --disable-telemetry",
     "generate-css": "bernova --config bernova.config.json",
     "generate:bundle-sizes": "node public/scripts/generate-bundle-sizes.mjs",
-    "postdist": "yarn generate:bundle-sizes",
+    "postdist": "pnpm generate:bundle-sizes",
     "dev": "vite",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
@@ -121,17 +122,19 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "predist": "rm -rf dist",
     "dist": "vite build",
-    "test": "yarn lint && yarn typecheck && vitest --coverage.enabled=true --silent --run",
+    "test": "pnpm lint && pnpm typecheck && vitest --coverage.enabled=true --silent --run",
     "test:ci": "vitest --ui --coverage.enabled=true",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage.enabled=true --run",
     "typecheck": "tsc --noEmit",
-    "validate": "yarn format:check && yarn lint && yarn typecheck && yarn dist",
+    "validate": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm dist",
     "publish-figma": "npx figma connect publish",
-    "pack:check": "npm pack --dry-run",
-    "pack:size": "npm pack --dry-run 2>&1 | grep -E '(unpacked size|package size|total files)'",
-    "pack:analyze": "npm pack && tar -tzf *.tgz | head -50 && rm *.tgz",
-    "prepublishOnly": "yarn dist && yarn pack:size"
+    "pack:check": "pnpm pack --dry-run",
+    "pack:size": "pnpm pack --dry-run 2>&1 | grep -E '(unpacked size|package size|total files)'",
+    "pack:analyze": "pnpm pack && tar -tzf *.tgz | head -50 && rm *.tgz",
+    "prepublishOnly": "pnpm dist && pnpm pack:size",
+    "clean": "rm -rf dist node_modules .pnpm-store",
+    "postinstall": "echo 'postinstall'"
   },
   "peerDependencies": {
     "react": ">=17.0.0 || >=18.3.1",
@@ -151,7 +154,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^14.6.1",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.1",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^25.0.3",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
@@ -177,11 +180,15 @@
     "terser": "^5.44.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.52.0",
-    "vite": "7.3.0",
+    "vite": "7.3.1",
     "vite-plugin-dts": "^4.5.4",
     "vite-tsconfig-paths": "^6.0.3",
     "vitest": "^4.0.16",
     "vitest-axe": "^0.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "bugs": {
     "url": "https://github.com/kubit-ui/kubit-react-components/issues"

@@ -9,6 +9,23 @@ import type { MessageUnControlledProps } from './types/message';
 
 import { MessageControlled } from './messageControlled';
 
+/**
+ * MessageUnControlled component with internal visibility state.
+ *
+ * This component renders a message that manages its own open/close state internally.
+ * It displays by default and can be dismissed by the user via a close button.
+ * Useful for notifications that don't require external state management.
+ *
+ * @example
+ * ```tsx
+ * <MessageUnControlled
+ *   variant="info"
+ *   title="Information"
+ *   description="This is an informational message"
+ *   defaultOpen={true}
+ * />
+ * ```
+ */
 export const MessageUnControlled = forwardRef<
   HTMLDivElement,
   MessageUnControlledProps<string>

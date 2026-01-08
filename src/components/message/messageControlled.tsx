@@ -7,6 +7,23 @@ import type { MessageProps } from './types/message';
 
 import { MessageStandAlone } from './messageStandAlone';
 
+/**
+ * MessageControlled component for displaying notification messages.
+ *
+ * This component renders styled messages with icons, close buttons, and optional
+ * action links. Useful for alerts, notifications, success/error messages, and
+ * informational banners. State is controlled externally via props.
+ *
+ * @example
+ * ```tsx
+ * <MessageControlled
+ *   variant="success"
+ *   title="Success!"
+ *   description="Your changes have been saved."
+ *   onClose={() => {}}
+ * />
+ * ```
+ */
 export const MessageControlled = forwardRef<
   HTMLDivElement,
   MessageProps<string>

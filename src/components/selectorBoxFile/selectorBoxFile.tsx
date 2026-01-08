@@ -13,6 +13,23 @@ import type { SelectorBoxFileProps } from './types/selectorBoxFile';
 import { SelectorBoxFileStandAlone } from './selectorBoxFileStandAlone';
 import { getState } from './utils/state/state';
 
+/**
+ * SelectorBoxFile component for file upload with drag-and-drop support.
+ *
+ * This component provides a file selection interface with validation for file type
+ * and size, upload progress display, error handling, and visual feedback states
+ * (loading, success, error). It manages internal state for file selection and focus.
+ *
+ * @example
+ * ```tsx
+ * <SelectorBoxFile
+ *   accept="image/*"
+ *   maxSize={5000000}
+ *   onChange={(files) => console.log(files)}
+ *   onSizeError={(file) => alert('File too large')}
+ * />
+ * ```
+ */
 export const SelectorBoxFile = forwardRef(
   <Variant extends string>(
     {

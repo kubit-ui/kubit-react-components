@@ -14,6 +14,23 @@ import type { InputProps } from './types/input';
 import { InputStandAlone } from './inputStandAlone';
 import { getState } from './utils/state';
 
+/**
+ * Input component for text input fields.
+ *
+ * This component provides a styled text input with support for labels, helper text,
+ * error messages, icons, and various states (disabled, error, success). It manages
+ * focus state internally and applies appropriate styling.
+ *
+ * @example
+ * ```tsx
+ * <Input
+ *   label="Email"
+ *   type="email"
+ *   placeholder="Enter your email"
+ *   error="Invalid email"
+ * />
+ * ```
+ */
 export const Input = forwardRef<HTMLDivElement, InputProps>(
   ({ additionalClasses, id, variant, ...props }, ref): JSX.Element => {
     const cssClasses = useClassName({

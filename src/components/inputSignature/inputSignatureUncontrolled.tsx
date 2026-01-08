@@ -9,6 +9,25 @@ import { useDraw } from './hook/useDraw';
 import { InputSignatureControlled } from './inputSignatureControlled';
 import { getInputSignatureState } from './utils/getInputSignatureState';
 
+/**
+ * InputSignatureUnControlled component with internal signature management.
+ *
+ * This component provides a canvas-based signature capture that manages its own
+ * state internally. It handles drawing, clearing, and state updates automatically.
+ * Exposes methods via ref for resetting the signature canvas.
+ *
+ * @example
+ * ```tsx
+ * const signatureRef = useRef();
+ *
+ * <InputSignatureUnControlled
+ *   ref={signatureRef}
+ *   onChange={(dataUrl) => console.log(dataUrl)}
+ * />
+ *
+ * // Reset signature: signatureRef.current.reset()
+ * ```
+ */
 export const InputSignatureUnControlled = forwardRef<
   InputSignatureCustomHandle | undefined,
   InputSignatureUnControlledProps<string>

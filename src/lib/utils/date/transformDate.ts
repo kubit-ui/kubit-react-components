@@ -33,6 +33,23 @@ const getDataObject = (date: string, formatParts: formatPartsType) => {
   return dateObject;
 };
 
+/**
+ * Transforms a date string or timestamp into a Date object using a specified format.
+ *
+ * @param date - The date as a string or timestamp number
+ * @param format - The format pattern of the input date string (e.g., 'dd/MM/yyyy')
+ * @returns A Date object parsed from the input
+ *
+ * @remarks
+ * If no format is provided or date is a number, it will be converted directly to a Date.
+ * Supports tokens like dd, MM, yyyy, HH, mm, ss for parsing.
+ *
+ * @example
+ * ```typescript
+ * transformDate('15/01/2024', 'dd/MM/yyyy'); // Date object for Jan 15, 2024
+ * transformDate(1705334400000); // Date from timestamp
+ * ```
+ */
 export const transformDate = (date: string | number, format?: string): Date => {
   if (typeof date === 'number' || !format) {
     return formatDateToUTC(date);

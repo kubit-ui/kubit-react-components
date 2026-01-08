@@ -30,21 +30,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '25'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Setup Yarn and dependencies
-        run: |
-          corepack enable
-          yarn --version
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
-          # Check if yarn.lock exists and install accordingly
-          if [ -f "yarn.lock" ]; then
-            echo "yarn.lock found - installing with frozen lockfile"
-            yarn install --frozen-lockfile --prefer-offline
+      - name: Install dependencies
+        run: |
+          pnpm --version
+
+          # Check if pnpm-lock.yaml exists and install accordingly
+          if [ -f "pnpm-lock.yaml" ]; then
+            echo "pnpm-lock.yaml found - installing with frozen lockfile"
+            pnpm install --frozen-lockfile
           else
-            echo "No yarn.lock found - running fresh install"
-            yarn install
+            echo "No pnpm-lock.yaml found - running fresh install"
+            pnpm install
             echo "Dependencies installed and lockfile generated"
           fi
 
@@ -89,8 +93,8 @@ jobs:
         run: |
           echo "Running tests..."
 
-          if yarn run --help | grep -q "test"; then
-            if yarn test; then
+          if pnpm run --help | grep -q "test"; then
+            if pnpm test; then
               echo "✅ Tests passed"
               echo "tests_valid=true" >> $GITHUB_OUTPUT
             else

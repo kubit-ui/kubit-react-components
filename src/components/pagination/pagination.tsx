@@ -8,6 +8,26 @@ import { adjustMaxCountersNumber } from './helpers/adjustMaxCountersNumber';
 import { buildstepsNumber } from './helpers/getMaxCountersNumber';
 import { PaginationStandAlone } from './paginationStandAlone';
 
+/**
+ * Pagination component for navigating through multiple pages.
+ *
+ * This component renders a pagination control with page numbers and navigation buttons.
+ * It automatically adjusts the visible page numbers based on screen size and configuration.
+ * Useful for implementing page navigation in lists, tables, or content galleries.
+ *
+ * Accepts a generic type parameter `<Variant extends string>` for custom variant styling.
+ *
+ * @example
+ * ```tsx
+ * <Pagination
+ *   variant="default"
+ *   currentStep={5}
+ *   maxStepsNumber={100}
+ *   maxCountersNumber={7}
+ *   onStepChange={handlePageChange}
+ * />
+ * ```
+ */
 export const Pagination = forwardRef(
   <Variant extends string>(
     {

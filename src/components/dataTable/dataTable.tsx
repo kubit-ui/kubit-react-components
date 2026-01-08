@@ -11,6 +11,21 @@ import { useDataTableStickyDividers } from './hooks/useDataTableStickyDividers';
 import { useDataTableStickyLeftColumns } from './hooks/useDataTableStickyLeftColumns';
 import { useDataTableStickyRightColumns } from './hooks/useDataTableStickyRightColumns';
 
+/**
+ * DataTable component for displaying structured data in a table format.
+ *
+ * This component provides advanced table functionality including sticky columns,
+ * scrollable content, shadow effects, and divider management. It handles complex
+ * table behaviors automatically through internal hooks.
+ *
+ * @example
+ * ```tsx
+ * <DataTable variant="striped">
+ *   <TableHead>...</TableHead>
+ *   <TableBody>...</TableBody>
+ * </DataTable>
+ * ```
+ */
 export const DataTable = forwardRef<HTMLDivElement, DataTableProps>(
   ({ additionalClasses, variant, ...props }, ref) => {
     const cssClasses = useClassName({

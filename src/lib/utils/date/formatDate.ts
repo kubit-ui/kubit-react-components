@@ -7,6 +7,24 @@ import { isValidDate } from './validateDate';
 
 const addZero = (value: number) => `${value < 10 ? '0' : ''}${value}`;
 
+/**
+ * Formats a date according to the specified format and locale.
+ *
+ * @param date - The date to format
+ * @param format - The format to apply: can be a string pattern (e.g., 'dd/MM/yyyy'), a DateFormatOptions object, or a FormatDateType
+ * @param locale - The locale to use for formatting (default: current locale)
+ * @returns The formatted date string
+ *
+ * @remarks
+ * Supports various tokens: d, dd (day), M, MM, MMM, MMMM (month), yy, yyyy (year), H, HH (hour), m, mm (minute), s, ss (second), W, WW (weekday)
+ *
+ * @example
+ * ```typescript
+ * const date = new Date('2024-01-15');
+ * formatDate(date, 'dd/MM/yyyy'); // '15/01/2024'
+ * formatDate(date, 'MMMM dd, yyyy', 'en-US'); // 'January 15, 2024'
+ * ```
+ */
 export const formatDate = (
   date: Date,
   format: DateFormatOptions | FormatDateType | string,
@@ -86,6 +104,19 @@ export const formatDate = (
   });
 };
 
+/**
+ * Converts a date to UTC format, adjusting for timezone differences.
+ *
+ * @param date - The date to convert (Date object, string, or timestamp)
+ * @returns A Date object in UTC timezone
+ * @throws Error if the date is invalid
+ *
+ * @example
+ * ```typescript
+ * const localDate = new Date('2024-01-15T10:30:00');
+ * const utcDate = formatDateToUTC(localDate);
+ * ```
+ */
 export const formatDateToUTC = (date: Date | string | number): Date => {
   const dateObj = new Date(date);
 

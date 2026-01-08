@@ -8,6 +8,24 @@ import { StepperNumberStandAlone } from './stepperNumberStandAlone';
 
 const STEPPER_NUMBER = 'STEPPER_NUMBER';
 
+/**
+ * StepperNumber component for incrementing/decrementing numeric values.
+ *
+ * This component provides plus/minus buttons for adjusting numeric values with
+ * configurable step intervals. Supports both horizontal and vertical orientations.
+ *
+ * @example
+ * ```tsx
+ * <StepperNumber
+ *   value={5}
+ *   min={0}
+ *   max={10}
+ *   step={1}
+ *   onChange={(newValue) => console.log(newValue)}
+ *   orientation="horizontal"
+ * />
+ * ```
+ */
 export const StepperNumber = forwardRef<
   HTMLDivElement,
   StepperNumberProps<string>

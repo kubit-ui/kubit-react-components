@@ -12,6 +12,23 @@ import { ESCAPE } from '../../lib/constants/keyboardKeys/keyboardKeys';
 import { isKeyPressed } from '../../lib/utils/keyboard/keyboard';
 import { ModalControlled } from './modalControlled';
 
+/**
+ * ModalUnControlled component with internal state management.
+ *
+ * This component renders a modal that manages its own open/close state internally.
+ * It automatically syncs with prop changes and handles keyboard interactions.
+ * Useful when you don't need external control over the modal's visibility.
+ *
+ * @example
+ * ```tsx
+ * <ModalUnControlled
+ *   open={true}
+ *   onClose={() => console.log('closed')}
+ * >
+ *   Modal content
+ * </ModalUnControlled>
+ * ```
+ */
 export const ModalUnControlled = forwardRef<
   HTMLDivElement,
   PropsWithChildren<ModalUnControlledProps<string | undefined>>

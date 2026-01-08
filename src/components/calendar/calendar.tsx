@@ -6,6 +6,28 @@ import type { CalendarProps } from './types/calendar';
 
 import { CalendarStandAlone } from './calendarStandAlone';
 
+/**
+ * Calendar component for date selection.
+ *
+ * This component provides an interactive calendar interface for selecting single dates
+ * or date ranges. It supports month/year navigation, date restrictions, and customizable variants.
+ *
+ * @example
+ * ```tsx
+ * <Calendar
+ *   selectedDate={new Date()}
+ *   onSelectedDateChange={(date) => console.log(date)}
+ * />
+ *
+ * // Date range selection:
+ * <Calendar
+ *   hasRange
+ *   selectedDate={startDate}
+ *   secondSelectedDate={endDate}
+ *   onSelectedDateChange={(dates) => console.log(dates)}
+ * />
+ * ```
+ */
 export const Calendar = forwardRef(
   <Variant extends string>(
     {

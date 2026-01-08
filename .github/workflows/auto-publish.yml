@@ -52,8 +52,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '25'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
       - name: Validate branch patterns
         id: validate-branch
@@ -74,12 +79,12 @@ jobs:
       - name: Install dependencies
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
-          corepack enable
-          yarn install --frozen-lockfile
+          pnpm --version
+          pnpm install --frozen-lockfile
 
       - name: Build project
         if: steps.validate-branch.outputs.should_publish == 'true'
-        run: yarn build
+        run: pnpm build
 
       - name: Validate package integrity
         if: steps.validate-branch.outputs.should_publish == 'true'
@@ -93,7 +98,7 @@ jobs:
           if [ ! -f "$MAIN_FILE" ]; then
             echo "Main file $MAIN_FILE does not exist"
             echo "Building the project first..."
-            yarn build
+            pnpm build
             if [ ! -f "$MAIN_FILE" ]; then
               echo "Main file $MAIN_FILE still does not exist after build"
               exit 1

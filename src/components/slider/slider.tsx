@@ -33,6 +33,31 @@ import {
 
 const ON_CHANGE_DEBOUNCE_TIMEOUT = 50;
 
+/**
+ * Slider component for selecting values within a range.
+ *
+ * This component provides a draggable slider control for selecting single values
+ * or value ranges. It supports keyboard navigation, custom min/max/step values,
+ * tooltips, and range selection. Handles both mouse and touch interactions.
+ *
+ * @example
+ * ```tsx
+ * <Slider
+ *   min={0}
+ *   max={100}
+ *   value={50}
+ *   onChange={(value) => console.log(value)}
+ * />
+ *
+ * // Range slider:
+ * <Slider
+ *   min={0}
+ *   max={100}
+ *   rangeValue={[25, 75]}
+ *   onChange={(range) => console.log(range)}
+ * />
+ * ```
+ */
 export const Slider = forwardRef(
   <Variant extends string>(
     {

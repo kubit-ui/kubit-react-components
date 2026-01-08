@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/vitest';
 import 'html-validate/vitest';
 import { beforeAll, vi } from 'vitest';
 
@@ -90,7 +90,7 @@ beforeAll(() => {
   // This appears when tests interact with links or window.location
   // It's not an error, just jsdom notifying about a limitation
   const originalStderrWrite = process.stderr.write.bind(process.stderr);
-   
+
   process.stderr.write = ((
     chunk: any,
     encoding?: any,

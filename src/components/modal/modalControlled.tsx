@@ -13,6 +13,24 @@ import type { ModalControlledProps } from './types/modal';
 import { Portal } from '../portal/portal';
 import { ModalStandAlone } from './modalStandAlone';
 
+/**
+ * ModalControlled component for displaying overlay dialogs.
+ *
+ * This component manages modal visibility externally through props. It provides
+ * scroll detection, swipe-down gestures, focus management, and portal rendering.
+ * Use this when you need full control over the modal's open/close state.
+ *
+ * @example
+ * ```tsx
+ * <ModalControlled
+ *   open={isOpen}
+ *   onClose={() => setIsOpen(false)}
+ *   variant="default"
+ * >
+ *   Modal content here
+ * </ModalControlled>
+ * ```
+ */
 export const ModalControlled = forwardRef(
   <Variant extends string>(
     {

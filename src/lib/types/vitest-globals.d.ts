@@ -1,8 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /// <reference types="vitest/globals" />
-import '@testing-library/jest-dom';
+/// <reference types="@testing-library/jest-dom/vitest" />
 import 'html-validate/vitest';
-import 'vitest';
 
 declare global {
   namespace jest {

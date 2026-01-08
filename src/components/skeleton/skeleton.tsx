@@ -6,6 +6,20 @@ import type { SkeletonProps } from './types/skeleton';
 
 import { SkeletonStandAlone } from './skeletonStandAlone';
 
+/**
+ * Skeleton component for displaying loading placeholders.
+ *
+ * This component renders animated placeholder shapes while content is loading.
+ * It supports different shapes (rectangle, circle, text) and variants for styling.
+ * Useful for improving perceived performance by showing content structure during loading.
+ *
+ * @example
+ * ```tsx
+ * <Skeleton variant="rectangular" shapeVariant="image" />
+ * <Skeleton variant="text" shapeVariant="heading" />
+ * <Skeleton variant="circular" shapeVariant="avatar" />
+ * ```
+ */
 export const Skeleton = forwardRef(
   (
     {

@@ -12,6 +12,24 @@ import type { ISnackbar } from './types/snackbar';
 import { useSnackbarAutoClose } from './hooks/useSnackbarAutoClose';
 import { SnackbarStandAlone } from './snackbarStandAlone';
 
+/**
+ * Snackbar component for displaying temporary notification messages.
+ *
+ * This component shows brief messages at the bottom or top of the screen.
+ * It supports auto-close functionality with customizable timeout and pause on hover/focus.
+ * Useful for showing feedback messages, alerts, or non-critical notifications.
+ *
+ * @example
+ * ```tsx
+ * <Snackbar
+ *   open={isOpen}
+ *   onClose={handleClose}
+ *   closeTimeout={3000}
+ * >
+ *   Message sent successfully!
+ * </Snackbar>
+ * ```
+ */
 const SnackbarComponent = (
   { additionalClasses, closeTimeout, open = false, ...props }: ISnackbar,
   ref: ForwardedRef<HTMLDivElement> | undefined | null,

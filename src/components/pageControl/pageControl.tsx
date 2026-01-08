@@ -11,6 +11,23 @@ import {
 } from './helper/positions';
 import { PageControlStandAlone } from './pageControlStandAlone';
 
+/**
+ * PageControl component for pagination/slide navigation indicators.
+ *
+ * This component displays navigation dots or bullets with arrow controls for
+ * paginated content like carousels. It handles position tracking, visibility
+ * of dots, and direction-based navigation.
+ *
+ * @example
+ * ```tsx
+ * <PageControl
+ *   pages={10}
+ *   currentPosition={3}
+ *   onPageChange={(page) => console.log(page)}
+ *   isBullet
+ * />
+ * ```
+ */
 export const PageControl = forwardRef(
   <Variant extends string>(
     {

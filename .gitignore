@@ -15,7 +15,6 @@ node_modules/
 *yalc*
 
 ## Config files
-/package-lock.json
 globalConfig
 localConfig
 
@@ -44,8 +43,10 @@ coverage/
 ## Environment
 .env
 
-## Yarn
+## Package managers
 yarn.lock
+package-lock.json
+.pnpm-store/
 
 ## Webpack config
 config/webpack/microfront/config.js
@@ -54,3 +55,5 @@ config/webpack/microfront/config.json
 ## CLI
 /cli/test-output/**/*.*
 /bamboo-specs/target
+
+pnpm-lock.yaml

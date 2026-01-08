@@ -14,6 +14,23 @@ import { getState } from './utils/state.utils';
 
 const TEXT_AREA = 'TEXT_AREA';
 
+/**
+ * TextArea component for multi-line text input.
+ *
+ * This component provides a styled textarea with support for labels, error states,
+ * character counting, and focus management. It handles internal focus state and
+ * applies appropriate styling based on filled and error states.
+ *
+ * @example
+ * ```tsx
+ * <TextArea
+ *   label="Comments"
+ *   placeholder="Enter your comments"
+ *   maxLength={500}
+ *   error="Required field"
+ * />
+ * ```
+ */
 export const TextArea = forwardRef(function <
   Variant extends string | undefined,
 >(

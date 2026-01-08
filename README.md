@@ -229,16 +229,12 @@ To run Storybook locally:
 2. Install dependencies:
 
    ```bash
-   npm install
-   # or
-   yarn install
+   pnpm install
    ```
 
 3. Start Storybook:
    ```bash
-   npm run storybook
-   # or
-   yarn storybook
+   pnpm storybook
    ```
 
 This will start the Storybook server at `http://localhost:6006` where you can see all components in action.
@@ -249,19 +245,13 @@ Run the test suite to ensure everything works correctly:
 
 ```bash
 # Run all tests
-npm run test
-# or
-yarn test
+pnpm test
 
 # Watch mode (for development)
-npm run test:watch
-# or
-yarn test:watch
+pnpm test:watch
 
 # Coverage report
-npm run test:coverage
-# or
-yarn test:coverage
+pnpm test:coverage
 ```
 
 **Test Stack:**
@@ -302,15 +292,15 @@ We welcome contributions from the community! Here's how you can help:
 4. **Install Dependencies**:
 
    ```bash
-   yarn install
+   pnpm install
    ```
 
 5. **Make Changes**: Make your changes and test them thoroughly.
 
    ```bash
-   yarn test
-   yarn lint
-   yarn typecheck
+   pnpm test
+   pnpm lint
+   pnpm typecheck
    ```
 
 6. **Commit Changes**: Use conventional commits for your messages.
@@ -340,25 +330,25 @@ We welcome contributions from the community! Here's how you can help:
 
 ```bash
 # Start development server
-yarn dev
+pnpm dev
 
 # Run Storybook
-yarn storybook
+pnpm storybook
 
 # Build library
-yarn dist
+pnpm dist
 
 # Run tests
-yarn test
+pnpm test
 
 # Lint code
-yarn lint
+pnpm lint
 
 # Type check
-yarn typecheck
+pnpm typecheck
 
 # Check package size
-yarn pack:size
+pnpm pack:size
 ```
 
 For more detailed information, please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md) file.

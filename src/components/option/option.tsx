@@ -15,6 +15,24 @@ import type { OptionProps } from './types/option';
 
 import { OptionStandAlone } from './optionStandAlone';
 
+/**
+ * Option component for rendering selectable list items.
+ *
+ * This component represents a single option within a list, dropdown, or menu.
+ * It manages focus states and supports custom variants for flexible styling.
+ * Useful for building accessible select menus, autocomplete lists, or navigation options.
+ *
+ * Accepts a generic type parameter `<Variant extends string>` for custom variant values.
+ *
+ * @example
+ * ```tsx
+ * <Option value="option1" variant="default">Option 1</Option>
+ *
+ * // With custom variant:
+ * type MyVariant = "primary" | "secondary";
+ * <Option<MyVariant> variant="primary" value="item">Primary Option</Option>
+ * ```
+ */
 export const Option = forwardRef(
   <Variant extends string>(
     {

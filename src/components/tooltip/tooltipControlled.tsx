@@ -10,6 +10,25 @@ import { useTooltipAsModal } from './hooks/useTooltipAsModal';
 import { useTooltipAsModalAriaLabel } from './hooks/useTooltipAsModalAriaLabel';
 import { TooltipStandAlone } from './tooltipStandAlone';
 
+/**
+ * TooltipControlled component for displaying contextual information.
+ *
+ * This component renders a tooltip that can be shown on hover or focus.
+ * It supports modal behavior on mobile devices and adjusts positioning based
+ * on scroll detection. State is managed externally via props.
+ *
+ * @example
+ * ```tsx
+ * <TooltipControlled
+ *   variant="default"
+ *   title="Help text"
+ *   open={isOpen}
+ *   onOpenChange={setIsOpen}
+ * >
+ *   <button>Hover me</button>
+ * </TooltipControlled>
+ * ```
+ */
 export const TooltipControlled = <Variant extends string>({
   additionalClasses,
   tooltipAriaLabel,
