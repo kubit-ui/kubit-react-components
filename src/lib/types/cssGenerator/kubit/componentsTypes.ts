@@ -94,10 +94,6 @@ export type ComponentsTypesComponents = {
       button: string,
       icon: string,
     },
-    $_medium: {
-      button: string,
-      icon: string,
-    },
     $_small: {
       button: string,
       icon: string,

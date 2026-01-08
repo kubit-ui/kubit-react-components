@@ -362,10 +362,6 @@ export const cssClasses = {
       button: 'button button--large',
       icon: 'button__icon button__icon--large',
     },
-    $_medium: {
-      button: 'button button--medium',
-      icon: 'button__icon button__icon--medium',
-    },
     $_small: {
       button: 'button button--small',
       icon: 'button__icon button__icon--small',
@@ -417,8 +413,8 @@ export const cssClasses = {
     yearlistitem: 'calendar__yearlistitem',
     yearslist: 'calendar__yearslist',
     button_size: {
-      icon: 'button__icon button__icon--medium',
-      button: 'button button--medium',
+      icon: 'button__icon button__icon--large',
+      button: 'button button--large',
       loader: 'button__loader',
     },
     button_variant: {

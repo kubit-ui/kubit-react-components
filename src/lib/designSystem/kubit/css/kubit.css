@@ -635,8 +635,6 @@ body *:focus-visible { box-shadow: 0 0 0 0.25rem #fff; outline-color: #2C71DB; o
 .button__loader { align-items: center; display: flex; position: absolute; }
 .button--large { font-size: var(--font-size-font-body-100); gap: var(--spacings-spacing-150); line-height: var(--line-height-line-height-200); padding-bottom: var(--spacings-spacing-250); padding-left: var(--spacings-spacing-300); padding-right: var(--spacings-spacing-300); padding-top: var(--spacings-spacing-250); }
 .button__icon--large { height: var(--sizes-size-250); width: var(--sizes-size-250); }
-.button--medium { font-size: var(--font-size-font-body-100); gap: var(--spacings-spacing-150); line-height: var(--line-height-line-height-200); padding-bottom: var(--spacings-spacing-250); padding-left: var(--spacings-spacing-300); padding-right: var(--spacings-spacing-300); padding-top: var(--spacings-spacing-250); }
-.button__icon--medium { height: var(--sizes-size-250); width: var(--sizes-size-250); }
 .button--small { font-size: var(--font-size-font-body-150); gap: var(--spacings-spacing-100); line-height: var(--line-height-line-height-250); padding-bottom: var(--spacings-spacing-150); padding-left: var(--spacings-spacing-250); padding-right: var(--spacings-spacing-250); padding-top: var(--spacings-spacing-150); }
 .button__icon--small { height: var(--sizes-size-200); width: var(--sizes-size-200); }
 .button--action_primary { padding-bottom: var(--spacings-spacing-0); padding-left: var(--spacings-spacing-0); padding-right: var(--spacings-spacing-0); padding-top: var(--spacings-spacing-0); -webkit-text-decoration: underline; text-decoration: underline; color: var(--colors-accent-color-accent-default-font-100); }

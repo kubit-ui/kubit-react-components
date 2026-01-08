@@ -362,10 +362,6 @@ export interface CssClasses {
       button: string,
       icon: string,
     },
-    $_medium: {
-      button: string,
-      icon: string,
-    },
     $_small: {
       button: string,
       icon: string,
