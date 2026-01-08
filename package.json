@@ -130,7 +130,7 @@
     "validate": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm dist",
     "publish-figma": "npx figma connect publish",
     "pack:check": "pnpm pack --dry-run",
-    "pack:size": "pnpm pack --dry-run 2>&1 | grep -E '(unpacked size|package size|total files)'",
+    "pack:size": "pnpm pack --dry-run 2>&1 | tail -1",
     "pack:analyze": "pnpm pack && tar -tzf *.tgz | head -50 && rm *.tgz",
     "prepublishOnly": "pnpm dist && pnpm pack:size",
     "clean": "rm -rf dist node_modules .pnpm-store",
