@@ -53,5 +53,4 @@ export const ALERT: AlertVariantStyles<AlertVariants> = {
       border_color: cssVars.colors_feedback_color_feedbackwarning_border_100,
     },
   },
-  padding: cssVars.spacings_spacing_0,
 };

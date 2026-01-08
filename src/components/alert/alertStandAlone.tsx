@@ -56,18 +56,14 @@ export const AlertStandAlone = forwardRef<HTMLDivElement, AlertStandAloneProps>(
     return (
       <div
         {...customProps}
+        ref={ref}
         aria-live={ariaLive}
-        className={cssClasses?.message}
+        className={cssClasses?.container}
+        data-testid={dataTestId}
+        id={id}
+        role={role}
       >
-        <div
-          ref={ref}
-          className={cssClasses?.container}
-          data-testid={dataTestId}
-          id={id}
-          role={role}
-        >
-          <div className={cssClasses?.contentcontainer}>{buildContent()}</div>
-        </div>
+        <div className={cssClasses?.contentcontainer}>{buildContent()}</div>
       </div>
     );
   },

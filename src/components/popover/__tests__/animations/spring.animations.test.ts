@@ -8,7 +8,7 @@ import {
   generateSpringKeyframes,
 } from '../../animations/spring.animations';
 
-describe('PopoverV2 - Spring Animations', () => {
+describe('Popover - Spring Animations', () => {
   describe('generateSpringKeyframes', () => {
     test('should generate keyframes for all directions', () => {
       const directions = ['up', 'down', 'left', 'right', 'fade'] as const;

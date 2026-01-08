@@ -8,7 +8,7 @@ import { getPlacementAnimation } from '../../animations/popover.animations';
 import { DEFAULT_POPOVER_ANIMATION_CONFIG } from '../../types/animation';
 import { getPositioningTransforms } from '../../utils/animation.utils';
 
-describe('PopoverV2 - Alignment-specific Animations', () => {
+describe('Popover - Alignment-specific Animations', () => {
   const mockConfig = {
     ...DEFAULT_POPOVER_ANIMATION_CONFIG,
     animationDistanceInPx: 10,

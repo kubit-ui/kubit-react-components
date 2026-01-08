@@ -2,8 +2,9 @@ import { forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { AlertStandAlone } from './alertStandAlone';
 import type { AlertProps } from './types/alert';
+
+import { AlertStandAlone } from './alertStandAlone';
 
 /**
  * Alert component for displaying notification messages.

@@ -1,18 +1,18 @@
 export type {
-  PopoverAnimationTimingFunction as PopoverV2AnimationTimingFunction,
-  AnimationConfigType as PopoverV2AnimationConfigTypes,
-  AnimationType as PopoverV2AnimationTypes,
+  PopoverAnimationTimingFunction as PopoverAnimationTimingFunction,
+  AnimationConfigType as PopoverAnimationConfigTypes,
+  AnimationType as PopoverAnimationTypes,
 } from './animation';
 
 export {
-  PopoverAnimationTimingFunction as PopoverV2AnimationTimingFunctions,
+  PopoverAnimationTimingFunction as PopoverAnimationTimingFunctions,
   ANIMATION_CONFIG_TYPES,
   ANIMATION_TYPES,
 } from './animation';
 
 export type {
-  IPopover as IPopoverV2,
+  IPopover as IPopover,
   ArrowStyles,
   MiddlewareOptions,
-  PopoverComponent as PopoverV2Component,
+  PopoverComponent as PopoverComponent,
 } from './popover';

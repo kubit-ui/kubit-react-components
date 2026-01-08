@@ -14,7 +14,7 @@ import {
   type InternalAnimationConfig,
 } from '../../types/animation';
 
-describe('PopoverV2 - Popover Animations', () => {
+describe('Popover - Popover Animations', () => {
   const mockConfig = {
     ...DEFAULT_POPOVER_ANIMATION_CONFIG,
     delay: '0ms',

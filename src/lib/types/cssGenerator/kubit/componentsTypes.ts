@@ -76,24 +76,19 @@ export type ComponentsTypesComponents = {
     };
   };
   ALERT: {
-    alert: string;
     container: string;
     contentcontainer: string;
     description: string;
     $_error: {
-      alert: string;
       container: string;
     };
     $_informative: {
-      alert: string;
       container: string;
     };
     $_success: {
-      alert: string;
       container: string;
     };
     $_warning: {
-      alert: string;
       container: string;
     };
   };

@@ -14,7 +14,7 @@ const meta = {
       'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/Popover',
   },
   tags: ['autodocs', 'resources'],
-  title: 'Components/Resources/PopoverV2',
+  title: 'Components/Resources/Popover',
 } satisfies Meta<typeof Story>;
 
 export default meta;

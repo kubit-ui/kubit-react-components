@@ -53,7 +53,7 @@ export const VALID_PLACEMENTS_WITH_CENTER = [
 ] as const;
 
 /**
- * Timing functions available for PopoverV2 animations
+ * Timing functions available for Popover animations
  */
 export const PopoverAnimationTimingFunction = {
   CUBIC_BEZIER: 'cubic-bezier(0.16, 1, 0.3, 1)', // Default smooth cubic bezier

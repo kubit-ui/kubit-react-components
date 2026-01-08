@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { VALID_PLACEMENTS } from '../../types/animation';
 import { getAvailableDirections } from '../../utils/placement.utils';
 
-describe('PopoverV2 - Animation Utilities', () => {
+describe('Popover - Animation Utilities', () => {
   describe('getAvailableDirections', () => {
     it('should return correct directions for vertical placements', () => {
       const verticalPlacements = VALID_PLACEMENTS.filter(
