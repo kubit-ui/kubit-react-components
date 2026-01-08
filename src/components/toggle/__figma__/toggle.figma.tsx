@@ -6,7 +6,7 @@ figma.connect(
   ToggleUncontrolled,
   'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=5491%3A55326',
   {
-    example: (props) => <ToggleUncontrolled variant={props.variant} />,
+    example: () => <ToggleUncontrolled />,
     imports: [
       'import { ToggleUncontrolled } from "@kubit-ui-web/react-components";',
     ],
@@ -16,10 +16,6 @@ figma.connect(
         url: 'Url',
       },
     ],
-    props: {
-      variant: figma.enum('variant', {
-        Default: 'DEFAULT',
-      }),
-    },
+    props: {},
   },
 );

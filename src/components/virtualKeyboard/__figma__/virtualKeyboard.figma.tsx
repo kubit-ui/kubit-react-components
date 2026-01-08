@@ -6,10 +6,9 @@ figma.connect(
   VirtualKeyboard,
   'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=5512%3A93516',
   {
-    example: (props) => (
+    example: () => (
       <VirtualKeyboard
         icon={{ icon: 'ICON' }}
-        variant={props.variant}
         onDigitButtonClick={() => undefined}
         onRemoveButtonClick={() => undefined}
       />
@@ -23,10 +22,6 @@ figma.connect(
         url: 'Url',
       },
     ],
-    props: {
-      variant: figma.enum('variant', {
-        Default: 'DEFAULT',
-      }),
-    },
+    props: {},
   },
 );

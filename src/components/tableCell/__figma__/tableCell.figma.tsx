@@ -6,7 +6,7 @@ figma.connect(
   TableCell,
   'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=5508%3A18611',
   {
-    example: (props) => <TableCell variant={props.variant} />,
+    example: () => <TableCell>Content</TableCell>,
     imports: ['import { TableCell } from "@kubit-ui-web/react-components";'],
     links: [
       {
@@ -14,10 +14,6 @@ figma.connect(
         url: 'Url',
       },
     ],
-    props: {
-      variant: figma.enum('variant', {
-        Default: 'DEFAULT',
-      }),
-    },
+    props: {},
   },
 );

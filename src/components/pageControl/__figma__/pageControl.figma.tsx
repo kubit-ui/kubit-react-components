@@ -6,9 +6,7 @@ figma.connect(
   PageControl,
   'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=5214%3A37733',
   {
-    example: (props) => (
-      <PageControl currentPosition={0} pages={5} variant={props.variant} />
-    ),
+    example: () => <PageControl currentPosition={0} pages={5} />,
     imports: ['import { PageControl } from "@kubit-ui-web/react-components";'],
     links: [
       {
@@ -16,10 +14,6 @@ figma.connect(
         url: 'Url',
       },
     ],
-    props: {
-      variant: figma.enum('variant', {
-        Default: 'DEFAULT',
-      }),
-    },
+    props: {},
   },
 );

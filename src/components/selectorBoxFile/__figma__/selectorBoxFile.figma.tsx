@@ -8,7 +8,7 @@ figma.connect(
   SelectorBoxFile,
   'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=5104%3A11052',
   {
-    example: (props) => (
+    example: () => (
       <SelectorBoxFile
         containerBoxStateContent={
           {
@@ -19,7 +19,6 @@ figma.connect(
             },
           } as never
         }
-        variant={props.variant}
       />
     ),
     imports: [
@@ -31,10 +30,6 @@ figma.connect(
         url: 'Url',
       },
     ],
-    props: {
-      variant: figma.enum('variant', {
-        Default: 'DEFAULT',
-      }),
-    },
+    props: {},
   },
 );

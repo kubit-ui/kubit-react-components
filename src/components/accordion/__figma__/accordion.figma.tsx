@@ -6,11 +6,7 @@ figma.connect(
   Accordion,
   'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=5501%3A89639',
   {
-    example: (props) => (
-      <Accordion header="Header" variant={props.variant}>
-        Content
-      </Accordion>
-    ),
+    example: () => <Accordion header="Header">Content</Accordion>,
     imports: ['import { Accordion } from "@kubit-ui-web/react-components";'],
     links: [
       {
@@ -18,10 +14,6 @@ figma.connect(
         url: 'Url',
       },
     ],
-    props: {
-      variant: figma.enum('variant', {
-        Default: 'DEFAULT',
-      }),
-    },
+    props: {},
   },
 );

@@ -6,7 +6,7 @@ figma.connect(
   TableRow,
   'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=5508%3A22142',
   {
-    example: (props) => <TableRow variant={props.variant} />,
+    example: () => <TableRow>Content</TableRow>,
     imports: ['import { TableRow } from "@kubit-ui-web/react-components";'],
     links: [
       {
@@ -14,10 +14,6 @@ figma.connect(
         url: 'Url',
       },
     ],
-    props: {
-      variant: figma.enum('variant', {
-        Default: 'DEFAULT',
-      }),
-    },
+    props: {},
   },
 );

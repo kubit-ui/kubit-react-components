@@ -6,7 +6,7 @@ figma.connect(
   ProgressBar,
   'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=5501%3A87528',
   {
-    example: (props) => <ProgressBar variant={props.variant} />,
+    example: () => <ProgressBar />,
     imports: ['import { ProgressBar } from "@kubit-ui-web/react-components";'],
     links: [
       {
@@ -14,10 +14,6 @@ figma.connect(
         url: 'Url',
       },
     ],
-    props: {
-      variant: figma.enum('variant', {
-        Default: 'DEFAULT',
-      }),
-    },
+    props: {},
   },
 );

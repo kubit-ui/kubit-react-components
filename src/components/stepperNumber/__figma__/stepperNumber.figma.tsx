@@ -6,7 +6,7 @@ figma.connect(
   StepperNumber,
   'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=5236%3A62100',
   {
-    example: (props) => <StepperNumber variant={props.variant} />,
+    example: () => <StepperNumber />,
     imports: [
       'import { StepperNumber } from "@kubit-ui-web/react-components";',
     ],
@@ -16,10 +16,6 @@ figma.connect(
         url: 'Url',
       },
     ],
-    props: {
-      variant: figma.enum('variant', {
-        Default: 'DEFAULT',
-      }),
-    },
+    props: {},
   },
 );
