@@ -343,11 +343,11 @@ export const AnimationsDemo: React.FC = () => {
         @keyframes ${keyframeName} {
           ${animation.keyframesCSS}
         }
-        
+
         .${className}[data-kbt-closing="false"] {
           animation: ${keyframeName} ${animation.duration} ease-out !important;
         }
-        
+
         .${className}[data-kbt-closing="true"] {
           animation: ${keyframeName} ${animation.duration} ease-in reverse !important;
         }
@@ -379,13 +379,13 @@ export const AnimationsDemo: React.FC = () => {
       <div className="demo-section">
         <h3 className="demo-section-title">🎯 Built-in CSS Animations</h3>
         <p className="demo-section-description">
-          PopoverV2 uses pure CSS animations that automatically adapt to
+          Popover uses pure CSS animations that automatically adapt to
           placement. The animations are optimized for performance and work
           consistently across all placements.
         </p>
         <pre className="demo-code-block">
-          {`// No animation configuration needed - PopoverV2 handles everything
-<Popover 
+          {`// No animation configuration needed - Popover handles everything
+<Popover
   placement="bottom"  // Animation direction determined automatically
   open={isOpen}
   onClose={handleClose}
@@ -424,7 +424,7 @@ export const AnimationsDemo: React.FC = () => {
         </p>
         <pre className="demo-code-block">
           {`// Spring physics animations with realistic movement
-import { createSpringAnimation } from '@/components/popoverV2/animations/spring.animations';
+import { createSpringAnimation } from '@/components/popover/animations/spring.animations';
 
 // Create spring animation
 const springAnimation = createSpringAnimation('down', {

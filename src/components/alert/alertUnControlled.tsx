@@ -5,30 +5,29 @@ import {
   useState,
 } from 'react';
 
-import type { MessageUnControlledProps } from './types/message';
-
-import { MessageControlled } from './messageControlled';
+import { AlertControlled } from './alertControlled';
+import type { AlertUnControlledProps } from './types/alert';
 
 /**
- * MessageUnControlled component with internal visibility state.
+ * AlertUnControlled component with internal visibility state.
  *
- * This component renders a message that manages its own open/close state internally.
+ * This component renders an alert that manages its own open/close state internally.
  * It displays by default and can be dismissed by the user via a close button.
  * Useful for notifications that don't require external state management.
  *
  * @example
  * ```tsx
- * <MessageUnControlled
+ * <AlertUnControlled
  *   variant="info"
- *   title="Information"
- *   description="This is an informational message"
+ *   content={{ content: "This is an informational alert" }}
  *   defaultOpen={true}
+ *   closeIcon={{ icon: <CloseIcon /> }}
  * />
  * ```
  */
-export const MessageUnControlled = forwardRef<
+export const AlertUnControlled = forwardRef<
   HTMLDivElement,
-  MessageUnControlledProps<string>
+  AlertUnControlledProps<string>
 >(({ closeIcon, defaultOpen = true, ...props }, ref) => {
   const [open, setOpen] = useState(defaultOpen);
 
@@ -46,7 +45,7 @@ export const MessageUnControlled = forwardRef<
   );
 
   return (
-    <MessageControlled
+    <AlertControlled
       {...props}
       ref={ref}
       closeIcon={
@@ -57,4 +56,4 @@ export const MessageUnControlled = forwardRef<
   );
 });
 
-export { MessageUnControlled as Message };
+export { AlertUnControlled as Alert };

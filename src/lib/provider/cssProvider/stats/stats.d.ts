@@ -287,6 +287,28 @@ export interface CssClasses {
       accordion: string,
     },
   },
+  ALERT: {
+    alert: string,
+    container: string,
+    contentcontainer: string,
+    description: string,
+    $_error: {
+      alert: string,
+      container: string,
+    },
+    $_informative: {
+      alert: string,
+      container: string,
+    },
+    $_success: {
+      alert: string,
+      container: string,
+    },
+    $_warning: {
+      alert: string,
+      container: string,
+    },
+  },
   AVATAR: {
     avatar: string,
     dot: string,
@@ -781,49 +803,6 @@ export interface CssClasses {
       optionscontainer: string,
       title: string,
       titlecontainer: string,
-    },
-  },
-  MESSAGE: {
-    message: string,
-    actionbuttoncontainer: string,
-    buttonsectioncontainer: string,
-    closeicon: string,
-    container: string,
-    contentcontainer: string,
-    contentcontainerlargemessage: string,
-    description: string,
-    extraactionbuttoncontainer: string,
-    headercontainer: string,
-    headercontainerlargemessage: string,
-    infoicon: string,
-    linkcontainer: string,
-    linkscontainer: string,
-    title: string,
-    titlecontainer: string,
-    $_error: {
-      message: string,
-      container: string,
-      infoicon: string,
-    },
-    $_informative: {
-      message: string,
-      container: string,
-      infoicon: string,
-    },
-    $_success: {
-      message: string,
-      container: string,
-      infoicon: string,
-    },
-    $_warning: {
-      message: string,
-      container: string,
-      infoicon: string,
-    },
-    action_button: {
-      button: string,
-      icon: string,
-      loader: string,
     },
   },
   MODAL: {
@@ -1555,6 +1534,7 @@ export interface CssClasses {
 export interface CssAvailableComponents {
   'kubit': {
   ACCORDION: 'ACCORDION',
+  ALERT: 'ALERT',
   AVATAR: 'AVATAR',
   BADGE: 'BADGE',
   BREADCRUMBS: 'BREADCRUMBS',
@@ -1579,7 +1559,6 @@ export interface CssAvailableComponents {
   LINK: 'LINK',
   LINK_AS_BUTTON: 'LINK_AS_BUTTON',
   LIST_OPTIONS: 'LIST_OPTIONS',
-  MESSAGE: 'MESSAGE',
   MODAL: 'MODAL',
   NAVBAR: 'NAVBAR',
   OPTION: 'OPTION',

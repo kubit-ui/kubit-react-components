@@ -1,4 +1,5 @@
 import { ACCORDION } from './accordion/styles';
+import { ALERT } from './alert/styles';
 import { AVATAR } from './avatar/styles';
 import { BADGE } from './badge/styles';
 import { BREADCRUMBS } from './breadcrumbs/styles';
@@ -23,7 +24,6 @@ import { ITEM_ROVE } from './itemRove/styles';
 import { LINK } from './link/styles';
 import { LINK_AS_BUTTON } from './linkAsButton/styles';
 import { LIST_OPTIONS } from './listOptions/styles';
-import { MESSAGE } from './message/styles';
 import { MODAL } from './modal/styles';
 import { NAVBAR } from './navBar/styles';
 import { OPTION } from './option/styles';
@@ -57,6 +57,7 @@ import { VIRTUAL_KEYBOARD } from './virtualKeyboard/styles';
 
 export const KUBIT_STYLES = {
   ACCORDION,
+  ALERT,
   AVATAR,
   BADGE,
   BREADCRUMBS,
@@ -81,7 +82,6 @@ export const KUBIT_STYLES = {
   LINK,
   LINK_AS_BUTTON,
   LIST_OPTIONS,
-  MESSAGE,
   MODAL,
   NAVBAR,
   OPTION,

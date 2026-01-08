@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import { useEffect, useState } from 'react';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from '@/components/button/button';
 import { createSpringAnimation } from '@/components/popover/animations/spring.animations';
@@ -39,9 +39,9 @@ const meta = {
           The snackbar position is controlled by the <strong>popover</strong>{' '}
           configuration. The animation shown here is configured using{' '}
           <strong>additionalClasses</strong> with realistic spring physics from{' '}
-          <strong>createSpringAnimation()</strong>. See PopoverV2 stories for
-          more details about placement options, positioning controls, and
-          animation examples.
+          <strong>createSpringAnimation()</strong>. See Popover stories for more
+          details about placement options, positioning controls, and animation
+          examples.
         </span>,
         <span key="note-4">
           This is a behavioral demonstration and should not be used for
@@ -91,7 +91,7 @@ const StoryWithHooks = (args) => {
       @keyframes ${keyframeName} {
         ${springAnimation.keyframesCSS}
       }
-      
+
       @keyframes slide-down-exit {
         0% { opacity: 1; transform: translateX(-50%) translateY(0); }
         25% { opacity: 0.9; transform: translateX(-50%) translateY(10px); }
@@ -99,13 +99,13 @@ const StoryWithHooks = (args) => {
         75% { opacity: 0.4; transform: translateX(-50%) translateY(60px); }
         100% { opacity: 0; transform: translateX(-50%) translateY(80px); }
       }
-      
+
       /* Spring entrance animation */
       [data-kbt-id="popover"][data-kbt-placement="bottom"].${className}[data-snackbar-closing="false"] {
         animation: ${keyframeName} ${springAnimation.duration} ease-out ;
         transform-origin: center top ;
       }
-      
+
       /* Slide-down exit animation with high specificity */
       html body [data-kbt-id="popover"][data-kbt-placement="bottom"].${className}[data-snackbar-closing="true"],
       html body [data-kbt-id="popover"].${className}[data-snackbar-closing="true"],
@@ -277,7 +277,7 @@ export const PopoverBodyLikeAnchorElement: Story = {
     docs: {
       source: {
         code: `import { useEffect, useState } from 'react';
-import { createSpringAnimation } from '@/components/popoverV2/animations/spring.animations';
+import { createSpringAnimation } from '@/components/popover/animations/spring.animations';
 
 const SnackbarWithAnimation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -307,17 +307,17 @@ const SnackbarWithAnimation = () => {
       @keyframes \${keyframeName} {
         \${springAnimation.keyframesCSS}
       }
-      
+
       @keyframes slide-down-exit {
         0% { opacity: 1; transform: translateX(-50%) translateY(0); }
         100% { opacity: 0; transform: translateX(-50%) translateY(80px); }
       }
-      
+
       [data-kbt-id="popover"].\${className}[data-snackbar-closing="false"] {
         animation: \${keyframeName} \${springAnimation.duration} ease-out;
         transform-origin: center top;
       }
-      
+
       [data-kbt-id="popover"].\${className}[data-snackbar-closing="true"] {
         animation: slide-down-exit 800ms cubic-bezier(0.4, 0.0, 1.0, 1.0);
         animation-fill-mode: forwards;

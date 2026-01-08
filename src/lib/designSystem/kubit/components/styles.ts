@@ -1,4 +1,5 @@
 export * from './accordion/styles';
+export * from './alert/styles';
 export * from './avatar/styles';
 export * from './badge/styles';
 export * from './breadcrumbs/styles';
@@ -21,7 +22,6 @@ export * from './inputSignature/styles';
 export * from './link/styles';
 export * from './linkAsButton/styles';
 export * from './listOptions/styles';
-export * from './message/styles';
 export * from './modal/styles';
 export * from './option/styles';
 export * from './overlay/styles';

@@ -1,4 +1,4 @@
-export const MessageVariantType = {
+export const AlertVariantType = {
   ERROR: 'ERROR',
   INFORMATIVE: 'INFORMATIVE',
   SUCCESS: 'SUCCESS',

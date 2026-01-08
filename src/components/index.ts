@@ -1,4 +1,5 @@
 export * from './accordion';
+export * from './alert';
 export * from './avatar';
 export * from './badge';
 export * from './breadcrumbs';
@@ -22,7 +23,6 @@ export * from './inputSignature';
 export * from './label';
 export * from './link';
 export * from './listOptions';
-export * from './message';
 export * from './modal';
 export * from './navBar';
 export * from './option';

@@ -1,4 +1,5 @@
 export * from './accordion/variants';
+export * from './alert/variants';
 export * from './avatar/variants';
 export * from './badge/variants';
 export * from './breadcrumbs/variants';
@@ -19,7 +20,6 @@ export * from './inputDecoration/variants';
 export * from './inputSignature/variants';
 export * from './link/variants';
 export * from './listOptions/variants';
-export * from './message/variants';
 export * from './modal/variants';
 export * from './option/variants';
 export * from './overlay/variants';

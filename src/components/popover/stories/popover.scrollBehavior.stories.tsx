@@ -14,7 +14,7 @@ const meta = {
     note: popoverScrollBehaviorNotes,
   },
   tags: ['autodocs', 'resources'],
-  title: 'Components/Resources/PopoverV2',
+  title: 'Components/Resources/Popover',
 } satisfies Meta<typeof Story>;
 
 export default meta;

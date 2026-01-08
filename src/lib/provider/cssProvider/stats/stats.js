@@ -287,6 +287,28 @@ export const cssClasses = {
       accordion: 'accordion accordion--standard',
     },
   },
+  ALERT: {
+    alert: 'alert',
+    container: 'alert__container',
+    contentcontainer: 'alert__contentcontainer',
+    description: 'alert__description',
+    $_error: {
+      alert: 'alert alert--error',
+      container: 'alert__container alert__container--error',
+    },
+    $_informative: {
+      alert: 'alert alert--informative',
+      container: 'alert__container alert__container--informative',
+    },
+    $_success: {
+      alert: 'alert alert--success',
+      container: 'alert__container alert__container--success',
+    },
+    $_warning: {
+      alert: 'alert alert--warning',
+      container: 'alert__container alert__container--warning',
+    },
+  },
   AVATAR: {
     avatar: 'avatar',
     dot: 'avatar__dot',
@@ -781,49 +803,6 @@ export const cssClasses = {
       optionscontainer: 'list_options__optionscontainer list_options__optionscontainer--side_menu_section',
       title: 'list_options__title list_options__title--side_menu_section',
       titlecontainer: 'list_options__titlecontainer list_options__titlecontainer--side_menu_section',
-    },
-  },
-  MESSAGE: {
-    message: 'message',
-    actionbuttoncontainer: 'message__actionbuttoncontainer',
-    buttonsectioncontainer: 'message__buttonsectioncontainer',
-    closeicon: 'message__closeicon',
-    container: 'message__container',
-    contentcontainer: 'message__contentcontainer',
-    contentcontainerlargemessage: 'message__contentcontainerlargemessage',
-    description: 'message__description',
-    extraactionbuttoncontainer: 'message__extraactionbuttoncontainer',
-    headercontainer: 'message__headercontainer',
-    headercontainerlargemessage: 'message__headercontainerlargemessage',
-    infoicon: 'message__infoicon',
-    linkcontainer: 'message__linkcontainer',
-    linkscontainer: 'message__linkscontainer',
-    title: 'message__title',
-    titlecontainer: 'message__titlecontainer',
-    $_error: {
-      message: 'message message--error',
-      container: 'message__container message__container--error',
-      infoicon: 'message__infoicon message__infoicon--error',
-    },
-    $_informative: {
-      message: 'message message--informative',
-      container: 'message__container message__container--informative',
-      infoicon: 'message__infoicon message__infoicon--informative',
-    },
-    $_success: {
-      message: 'message message--success',
-      container: 'message__container message__container--success',
-      infoicon: 'message__infoicon message__infoicon--success',
-    },
-    $_warning: {
-      message: 'message message--warning',
-      container: 'message__container message__container--warning',
-      infoicon: 'message__infoicon message__infoicon--warning',
-    },
-    action_button: {
-      button: 'button button--action_primary',
-      icon: 'button__icon',
-      loader: 'button__loader',
     },
   },
   MODAL: {
@@ -1555,6 +1534,7 @@ export const cssClasses = {
 export const cssAvailableComponents = {
   'kubit': {
   ACCORDION: 'ACCORDION',
+  ALERT: 'ALERT',
   AVATAR: 'AVATAR',
   BADGE: 'BADGE',
   BREADCRUMBS: 'BREADCRUMBS',
@@ -1579,7 +1559,6 @@ export const cssAvailableComponents = {
   LINK: 'LINK',
   LINK_AS_BUTTON: 'LINK_AS_BUTTON',
   LIST_OPTIONS: 'LIST_OPTIONS',
-  MESSAGE: 'MESSAGE',
   MODAL: 'MODAL',
   NAVBAR: 'NAVBAR',
   OPTION: 'OPTION',
