@@ -47,9 +47,9 @@ export interface ProgressBarProps<
     ? string | undefined
     : string | unknown,
 > extends Omit<
-    ProgressBarStandAloneProps,
-    'cssVariantClasses' | 'cssSizeClasses' | 'progressCompleted'
-  > {
+  ProgressBarStandAloneProps,
+  'cssVariantClasses' | 'cssSizeClasses' | 'progressCompleted'
+> {
   variant?: Variant;
   size?: Size;
 

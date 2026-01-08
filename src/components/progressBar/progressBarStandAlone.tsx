@@ -58,10 +58,7 @@ export const ProgressBarStandalone = forwardRef<
             aria-valuemax={100}
             aria-valuemin={0}
             aria-valuenow={progressCompleted}
-            className={classNames(
-              cssSizeClasses?.bar,
-              cssVariantClasses?.bar,
-            )}
+            className={classNames(cssSizeClasses?.bar, cssVariantClasses?.bar)}
             data-testid={dataTestId}
             role="progressbar"
             style={barStyle}

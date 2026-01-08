@@ -1,5 +1,4 @@
 import type { ProgressBarStyles } from '@/components/progressBar/types/progressBarTheme';
-
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { ProgressBarSizeType, ProgressBarVariantType } from './variants';
