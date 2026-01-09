@@ -1,6 +1,6 @@
 import type { ArgTypes } from 'storybook/internal/types';
 
-import { DropdownSelectedVariantType } from '@/lib/designSystem/kubit/components/dropdownSelected/variants';
+import { SelectVariantType } from '@/lib/designSystem/kubit/components/select/variants';
 import { configArgTypes } from '@/lib/storybook/argtypes/argtypes';
 import { getBooleanArgTypes } from '@/lib/storybook/argtypes/booleanArgTypes';
 import { getDisabledArgTypes } from '@/lib/storybook/argtypes/disabledArgTypes';
@@ -13,35 +13,35 @@ export const argtypes = (): ArgTypes => {
     ...configArgTypes,
     ...getDisabledArgTypes(['icon', 'label', 'options']),
     closePopoverOnScroll: getBooleanArgTypes({
-      descriptionName: 'dropdownSelected',
+      descriptionName: 'select',
       name: 'closePopoverOnScroll',
       subCategory: CATEGORY_CONTROL.MODIFIERS,
     }),
     defaultOpen: getBooleanArgTypes({
-      descriptionName: 'dropdownSelected',
+      descriptionName: 'select',
       name: 'defaultOpen',
       subCategory: CATEGORY_CONTROL.MODIFIERS,
     }),
     openAndCloseOnHover: getBooleanArgTypes({
-      descriptionName: 'dropdownSelected',
+      descriptionName: 'select',
       name: 'openAndCloseOnHover',
       subCategory: CATEGORY_CONTROL.MODIFIERS,
     }),
     url: getStringtArgTypes({
       category: CATEGORY_CONTROL.CONTENT,
       keyName: 'url',
-      name: 'dropdownSelected',
+      name: 'select',
     }),
     urlTarget: getStringtArgTypes({
       category: CATEGORY_CONTROL.MODIFIERS,
       keyName: 'urlTarget',
-      name: 'dropdownSelected',
+      name: 'select',
     }),
     variant: getVariantArgTypes({
       category: CATEGORY_CONTROL.MODIFIERS,
       keyVariant: 'variant',
-      name: 'dropdownSelected',
-      variants: Object.keys(DropdownSelectedVariantType).reduce(
+      name: 'select',
+      variants: Object.keys(SelectVariantType).reduce(
         (acc, key) => ({
           ...acc,
           [key]: key,

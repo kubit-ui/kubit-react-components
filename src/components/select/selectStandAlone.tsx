@@ -9,7 +9,7 @@ import {
 } from '@/lib/utils/process/processCommonProp';
 
 import type { ListOptionsOptionProps } from '../listOptions/types/listOptions';
-import type { DropdownSelectedStandAloneProps } from './types/dropdownSelected';
+import type { SelectStandAloneProps } from './types/select';
 
 import { CustomComponent } from '../../lib/components/customComponent/customComponent';
 import { ListOptions } from '../listOptions/listOptions';
@@ -17,22 +17,22 @@ import { keyDownMove, keyUpMove } from '../listOptions/utils/listOptions.utils';
 import { Popover } from '../popover/popover';
 
 /**
- * Standalone dropdown component for rendering the visual structure and interaction of a dropdown.
+ * Standalone select component for rendering the visual structure and interaction of a select.
  *
- * This component is responsible for the low-level rendering of a dropdown, including the button or link,
- * label, icon, and the list of selectable options. It is typically used internally by higher-level dropdown
+ * This component is responsible for the low-level rendering of a select, including the button or link,
+ * label, icon, and the list of selectable options. It is typically used internally by higher-level select
  * components to provide a consistent and accessible UI.
  *
  * Accepts generic type parameters for custom variant or option types, enabling flexible theming and structure.
  *
  * @example
  * ```tsx
- * <DropdownSelectedStandAlone open label="Select an option" listOptions={options} />
+ * <SelectStandAlone open label="Select an option" listOptions={options} />
  * ```
  */
-export const DropdownSelectedStandAlone = forwardRef<
+export const SelectStandAlone = forwardRef<
   HTMLDivElement,
-  DropdownSelectedStandAloneProps
+  SelectStandAloneProps
 >(
   (
     {
@@ -60,9 +60,9 @@ export const DropdownSelectedStandAlone = forwardRef<
     ref,
   ) => {
     const reactId = useId();
-    const BASE_ID = `dropdownselected-${reactId.replace(/:/g, '')}`;
+    const BASE_ID = `select-${reactId.replace(/:/g, '')}`;
     const ariaControls = open ? `${BASE_ID}-list` : undefined;
-    const dataTestId = props['data-testid'] || 'dropdown-selected';
+    const dataTestId = props['data-testid'] || 'select';
     const customProps = pickCustomAttributes(props);
 
     const keyTabMove =
@@ -98,14 +98,14 @@ export const DropdownSelectedStandAlone = forwardRef<
     return (
       <div
         ref={ref}
-        className={cssClasses?.dropdown_selected}
+        className={cssClasses?.select}
         data-testid={dataTestId}
         role="combobox"
         onBlur={onBlur}
         onFocus={onFocus}
         onKeyDown={onKeyDown}
         {...customProps}
-        aria-controls="dropdown-selected-list"
+        aria-controls="select-list"
         aria-expanded={open}
         tabIndex={0}
       >

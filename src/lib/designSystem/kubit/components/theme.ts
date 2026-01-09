@@ -13,7 +13,6 @@ import { CHIP } from './chip/styles';
 import { CONTAINER } from './container/styles';
 import { DATA_TABLE } from './dataTable/styles';
 import { DOT } from './dot/styles';
-import { DROPDOWN_SELECTED } from './dropdownSelected/styles';
 import { ERROR_MESSAGE } from './errorMessage/styles';
 import { ICON } from './icon/styles';
 import { INPUT } from './input/styles';
@@ -32,6 +31,7 @@ import { PAGINATION } from './pagination/styles';
 import { POPOVER } from './popover/styles';
 import { PROGRESS_BAR } from './progressBar/styles';
 import { RADIO_BUTTON } from './radioButton/styles';
+import { SELECT } from './select/styles';
 import { SELECTOR_BOX_FILE } from './selectorBoxFile/styles';
 import { SKELETON } from './skeleton/styles';
 import { SLIDER } from './slider/styles';
@@ -70,7 +70,6 @@ export const KUBIT_STYLES = {
   CONTAINER,
   DATA_TABLE,
   DOT,
-  DROPDOWN_SELECTED,
   ERROR_MESSAGE,
   ICON,
   INPUT,
@@ -89,6 +88,7 @@ export const KUBIT_STYLES = {
   POPOVER,
   PROGRESS_BAR,
   RADIO_BUTTON,
+  SELECT,
   SELECTOR_BOX_FILE,
   SKELETON,
   SLIDER,

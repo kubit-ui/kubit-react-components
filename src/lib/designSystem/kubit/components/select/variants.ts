@@ -1,4 +1,4 @@
-export const DropdownSelectedVariantType = {
+export const SelectVariantType = {
   DEFAULT: 'DEFAULT',
   SIDE_MENU: 'SIDE_MENU',
   TOPBAR: 'TOPBAR',

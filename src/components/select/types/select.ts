@@ -18,36 +18,34 @@ import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 import type { ListOptionsProps } from '../../listOptions/types/listOptions';
 import type { IPopover } from '../../popover/types/popover';
 
-type DropdownSelectedCssClasses = ComponentSelected<
-  ComponentsTypesComponents['DROPDOWN_SELECTED']
->;
+type SelectCssClasses = ComponentSelected<ComponentsTypesComponents['SELECT']>;
 
 /**
- * Represents the type for the list options in the DropdownSelected component.
+ * Represents the type for the list options in the Select component.
  */
-export type DropdownSelectedListOptionsProps = Omit<
+export type SelectListOptionsProps = Omit<
   ListOptionsProps,
   'selectedValue' | 'onOptionClick'
 >;
 
 /**
- * Represents the type for the popover in the DropdownSelected component.
+ * Represents the type for the popover in the Select component.
  */
-export type DropdownSelectedPopoverProps = Omit<IPopover, 'children' | 'open'>;
+export type SelectPopoverProps = Omit<IPopover, 'children' | 'open'>;
 
 /**
- * Interface for the standalone DropdownSelected component.
+ * Interface for the standalone Select component.
  * Includes properties for state, event handlers, and CSS classes.
  */
-export interface DropdownSelectedStandAloneProps extends DataAttributes {
+export interface SelectStandAloneProps extends DataAttributes {
   open: boolean;
-  popover?: DropdownSelectedPopoverProps;
+  popover?: SelectPopoverProps;
   onButtonClick: MouseEventHandler<HTMLButtonElement | HTMLLinkElement>;
   onButtonKeyDown: KeyboardEventHandler<HTMLButtonElement | HTMLLinkElement>;
   onClosePopover: () => void;
   label: CommonTextProps;
   icon: CommonIconProps;
-  listOptions: DropdownSelectedListOptionsProps;
+  listOptions: SelectListOptionsProps;
   optionSelected?: string;
   onOptionClick: (value: string) => void;
   listOptionsRef: RefObject<HTMLDivElement>;
@@ -60,26 +58,26 @@ export interface DropdownSelectedStandAloneProps extends DataAttributes {
   onFocus?: FocusEventHandler<HTMLDivElement>;
   onBlur?: FocusEventHandler<HTMLDivElement>;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
-  cssClasses?: DropdownSelectedCssClasses;
+  cssClasses?: SelectCssClasses;
 }
 
 /**
- * Interface for the controlled DropdownSelected component.
- * Extends the DropdownSelectedStandAloneProps interface and adds a variant and additional CSS classes.
+ * Interface for the controlled Select component.
+ * Extends the SelectStandAloneProps interface and adds a variant and additional CSS classes.
  *
- * @template Variant - The type of the variant for the DropdownSelected.
+ * @template Variant - The type of the variant for the Select.
  */
-export interface DropdownSelectedControlledProps<
+export interface SelectControlledProps<
   Variant = undefined extends string ? unknown : string,
 > extends Omit<
-  DropdownSelectedStandAloneProps,
+  SelectStandAloneProps,
   'listOptionsRef' | 'onButtonKeyDown' | 'component'
 > {
   variant?: Variant;
-  additionalClasses?: Partial<DropdownSelectedCssClasses>;
+  additionalClasses?: Partial<SelectCssClasses>;
 }
 
-type DropdownSelectedOmittedProps =
+type SelectOmittedProps =
   | 'buttonOrLinkRef'
   | 'open'
   | 'onButtonClick'
@@ -93,12 +91,12 @@ type DropdownSelectedOmittedProps =
   | 'onKeyDown';
 
 /**
- * Interface for the uncontrolled DropdownSelected component.
- * Extends the DropdownSelectedProps interface and adds default properties.
+ * Interface for the uncontrolled Select component.
+ * Extends the SelectProps interface and adds default properties.
  */
-export interface DropdownSelectedUnControlledProps extends Omit<
-  DropdownSelectedControlledProps,
-  DropdownSelectedOmittedProps
+export interface SelectUnControlledProps extends Omit<
+  SelectControlledProps,
+  SelectOmittedProps
 > {
   defaultOpen?: boolean;
   defaultOptionSelected?: string;

@@ -10,27 +10,27 @@ import {
 
 import { ESCAPE } from '@/lib/constants/keyboardKeys/keyboardKeys';
 
-import type { DropdownSelectedUnControlledProps } from './types/dropdownSelected';
+import type { SelectUnControlledProps } from './types/select';
 
-import { DropdownSelectedControlled } from './dropdownSelectedControlled';
+import { SelectControlled } from './selectControlled';
 
 /**
- * Uncontrolled dropdown component for displaying selectable options.
+ * Uncontrolled select component for displaying selectable options.
  *
  * This component manages its own open/close state and selected option internally, so you do not need
- * to control the dropdown state from the parent. It is useful when you want a simple dropdown that handles
+ * to control the select state from the parent. It is useful when you want a simple select that handles
  * its own toggle and selection logic. You can optionally receive state changes via callbacks.
  *
- * Internally, it wraps {@link DropdownSelectedControlled} and passes the necessary props.
+ * Internally, it wraps {@link SelectControlled} and passes the necessary props.
  *
  * @example
  * ```tsx
- * <DropdownSelectedUnControlled defaultOpen />
+ * <SelectUnControlled defaultOpen />
  * ```
  */
-export const DropdownSelectedUnControlled = forwardRef<
+export const SelectUnControlled = forwardRef<
   HTMLDivElement,
-  DropdownSelectedUnControlledProps
+  SelectUnControlledProps
 >(
   (
     {
@@ -109,7 +109,7 @@ export const DropdownSelectedUnControlled = forwardRef<
     };
 
     return (
-      <DropdownSelectedControlled
+      <SelectControlled
         {...props}
         ref={ref}
         buttonOrLinkRef={buttonOrLinkRef}
@@ -126,4 +126,4 @@ export const DropdownSelectedUnControlled = forwardRef<
   },
 );
 
-export { DropdownSelectedUnControlled as DropdownSelected };
+export { SelectUnControlled as Select };

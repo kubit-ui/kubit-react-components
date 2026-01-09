@@ -624,8 +624,8 @@ export interface CssClasses {
       dot: string,
     },
   },
-  DROPDOWN_SELECTED: {
-    dropdown_selected: string,
+  SELECT: {
+    select: string,
     buttonorlinkcontainer: string,
     iconclosed: string,
     iconopened: string,
@@ -633,7 +633,7 @@ export interface CssClasses {
     labelopened: string,
     listoptionscontainer: string,
     $_default: {
-      dropdown_selected: string,
+      select: string,
       buttonorlinkcontainer: string,
       iconclosed: string,
       iconopened: string,
@@ -642,7 +642,7 @@ export interface CssClasses {
       listoptionscontainer: string,
     },
     $_side_menu: {
-      dropdown_selected: string,
+      select: string,
       buttonorlinkcontainer: string,
       iconclosed: string,
       iconopened: string,
@@ -651,7 +651,7 @@ export interface CssClasses {
       listoptionscontainer: string,
     },
     $_topbar: {
-      dropdown_selected: string,
+      select: string,
       buttonorlinkcontainer: string,
       iconclosed: string,
       iconopened: string,
@@ -660,7 +660,7 @@ export interface CssClasses {
       listoptionscontainer: string,
     },
     $_topbar_tab: {
-      dropdown_selected: string,
+      select: string,
       buttonorlinkcontainer: string,
       iconclosed: string,
       iconopened: string,
@@ -1413,7 +1413,7 @@ export interface CssAvailableComponents {
   CONTAINER: 'CONTAINER',
   DATA_TABLE: 'DATA_TABLE',
   DOT: 'DOT',
-  DROPDOWN_SELECTED: 'DROPDOWN_SELECTED',
+  SELECT: 'SELECT',
   ERROR_MESSAGE: 'ERROR_MESSAGE',
   ICON: 'ICON',
   INPUT: 'INPUT',

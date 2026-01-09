@@ -11,30 +11,30 @@ import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
 import { isKeyPressed } from '@/lib/utils/keyboard/keyboard';
 
-import type { DropdownSelectedControlledProps } from './types/dropdownSelected';
+import type { SelectControlledProps } from './types/select';
 
 import { focusFirstDescendant } from '../../lib/utils/focusHandlers/focusHandlers';
-import { DropdownSelectedStandAlone } from './dropdownSelectedStandAlone';
+import { SelectStandAlone } from './selectStandAlone';
 
 /**
- * Controlled dropdown component for displaying selectable options.
+ * Controlled select component for displaying selectable options.
  *
- * This component renders a dropdown that is fully controlled by its parent, allowing for custom open/close logic,
- * keyboard navigation, and flexible theming. It is useful when you need to manage the dropdown state and behavior externally.
+ * This component renders a select that is fully controlled by its parent, allowing for custom open/close logic,
+ * keyboard navigation, and flexible theming. It is useful when you need to manage the select state and behavior externally.
  *
- * Internally, it wraps {@link DropdownSelectedStandAlone} and handles keyboard focus and scroll-based closing.
+ * Internally, it wraps {@link SelectStandAlone} and handles keyboard focus and scroll-based closing.
  * Accepts a generic type parameter `<Variant extends string>` to allow for custom variant values, enabling flexible styling.
  *
  * @example
  * ```tsx
- * <DropdownSelectedControlled open listOptions={options} />
+ * <SelectControlled open listOptions={options} />
  *
  * // With a custom variant type:
  * type MyVariant = "primary" | "secondary";
- * <DropdownSelectedControlled<MyVariant> variant="primary" open listOptions={options} />
+ * <SelectControlled<MyVariant> variant="primary" open listOptions={options} />
  * ```
  */
-export const DropdownSelectedControlled = forwardRef(
+export const SelectControlled = forwardRef(
   <Variant extends string>(
     {
       additionalClasses,
@@ -45,13 +45,13 @@ export const DropdownSelectedControlled = forwardRef(
       url,
       variant,
       ...props
-    }: DropdownSelectedControlledProps<Variant>,
+    }: SelectControlledProps<Variant>,
     ref: ForwardedRef<HTMLDivElement> | undefined | null,
   ): JSX.Element => {
     const { LINK } = useGenericComponents();
     const cssClasses = useClassName({
       additionalClassNames: additionalClasses,
-      component: 'DROPDOWN_SELECTED',
+      component: 'SELECT',
       variant,
     });
     const listOptionsRef = useRef<HTMLDivElement>(null);
@@ -87,7 +87,7 @@ export const DropdownSelectedControlled = forwardRef(
     }, [closePopoverOnScroll, onClosePopover]);
 
     return (
-      <DropdownSelectedStandAlone
+      <SelectStandAlone
         ref={ref}
         component={!url ? 'button' : LINK}
         cssClasses={cssClasses}

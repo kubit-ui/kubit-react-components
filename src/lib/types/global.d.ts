@@ -16,7 +16,6 @@ import type { DataTableVariantStyles } from '../../components/dataTable/types/da
 import type { DividerVariantStyles } from '../../components/divider/types/dividerTheme';
 import type { DotVariantStyles } from '../../components/dot/types/dotTheme';
 import type { DrawerVariantStyles } from '../../components/drawer/types/drawerTheme';
-import type { DropdownSelectedVariantStyles } from '../../components/dropdownSelected/types/dropdownSelectedTheme';
 import type { IconHighlightedVariantStyles } from '../../components/iconHighlighted/types/iconHighlightedTheme';
 import type { InputVariantStyles } from '../../components/input/types/inputTheme';
 import type { InputBaseVariantStyles } from '../../components/inputBase/types/inputBaseTheme';
@@ -47,6 +46,7 @@ import type { ProgressBarVariantStyles } from '../../components/progressBar/type
 import type { QuickButtonVariantStyles } from '../../components/quickButton/types/quickButtonTheme';
 import type { RadioButtonVariantStyles } from '../../components/radioButton/types/radioButtonTheme';
 import type { RadioButtonGroupStylesType } from '../../components/radioButtonGroup/types/radioButtonGroup';
+import type { SelectVariantStyles } from '../../components/select/types/selectTheme';
 import type { SelectorBoxVariantStyles } from '../../components/selectorBox/types/selectorBoxTheme';
 import type { SelectorBoxFileVariantStyles } from '../../components/selectorBoxFile/types/selectorBoxFileTheme';
 import type { SkeletonVariantStyles } from '../../components/skeleton/types/skeletonTheme';
@@ -100,8 +100,7 @@ declare global {
   type KubitDataTableGlobalStyles<Variant> = DataTableVariantStyles<Variant>;
   type KubitDotGlobalStyles<Variant, Size> = DotVariantStyles<Variant, Size>;
   type KubitDrawerGlobalStyles<Variant> = DrawerVariantStyles<Variant>;
-  type KubitDropdownSelectedGlobalStyles<Variant> =
-    DropdownSelectedVariantStyles<Variant>;
+  type KubitSelectGlobalStyles<Variant> = SelectVariantStyles<Variant>;
   type KubitIconHighlightedGlobalStyles<Variant, Size> =
     IconHighlightedVariantStyles<Variant, Size>;
   type KubitInputGlobalStyles<Variant> = InputVariantStyles<Variant>;

@@ -1,6 +1,6 @@
 import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
 
-export interface DropdownSelectedStyleProps extends CssLibPropsType {
+export interface SelectStyleProps extends CssLibPropsType {
   _buttonOrLinkContainer?: CssLibPropsType;
   _labelOpened?: CssLibPropsType;
   _labelClosed?: CssLibPropsType;
@@ -9,7 +9,6 @@ export interface DropdownSelectedStyleProps extends CssLibPropsType {
   _listOptionsContainer?: CssLibPropsType;
 }
 
-export type DropdownSelectedVariantStyles<Variant extends string> =
-  DropdownSelectedStyleProps & {
-    [key in Variant]: DropdownSelectedStyleProps;
-  };
+export type SelectVariantStyles<Variant extends string> = SelectStyleProps & {
+  [key in Variant]: SelectStyleProps;
+};

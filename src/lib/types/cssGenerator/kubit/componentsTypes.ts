@@ -1,4 +1,4 @@
-export type ComponentsTypesAvailableComponents = 'ACCORDION' | 'ALERT' | 'AVATAR' | 'BADGE' | 'BREADCRUMBS' | 'BUTTON' | 'CALENDAR' | 'CARD_IMAGE' | 'CAROUSEL' | 'CHECKBOX' | 'CHECKBOX_BASE' | 'CHIP' | 'CONTAINER' | 'DATA_TABLE' | 'DOT' | 'DROPDOWN_SELECTED' | 'ERROR_MESSAGE' | 'ICON' | 'INPUT' | 'INPUT_BASE' | 'INPUT_DECORATION' | 'INPUT_SIGNATURE' | 'ITEM_ROVE' | 'LINK' | 'LINK_AS_BUTTON' | 'LIST_OPTIONS' | 'MODAL' | 'OPTION' | 'OVERLAY' | 'PAGE_CONTROL' | 'PAGINATION' | 'POPOVER' | 'PROGRESS_BAR' | 'RADIO_BUTTON' | 'SELECTOR_BOX_FILE' | 'SKELETON' | 'SLIDER' | 'SNACKBAR' | 'STEPPER_NUMBER' | 'TABLE' | 'TABLE_BODY' | 'TABLE_CAPTION' | 'TABLE_CELL' | 'TABLE_DIVIDER' | 'TABLE_FOOT' | 'TABLE_HEAD' | 'TABLE_ROW' | 'TABS' | 'TAG' | 'TEXT' | 'TEXT_AREA' | 'TEXT_COUNT' | 'TOGGLE' | 'TOOLTIP' | 'VIRTUAL_KEYBOARD'
+export type ComponentsTypesAvailableComponents = 'ACCORDION' | 'ALERT' | 'AVATAR' | 'BADGE' | 'BREADCRUMBS' | 'BUTTON' | 'CALENDAR' | 'CARD_IMAGE' | 'CAROUSEL' | 'CHECKBOX' | 'CHECKBOX_BASE' | 'CHIP' | 'CONTAINER' | 'DATA_TABLE' | 'DOT' | 'SELECT' | 'ERROR_MESSAGE' | 'ICON' | 'INPUT' | 'INPUT_BASE' | 'INPUT_DECORATION' | 'INPUT_SIGNATURE' | 'ITEM_ROVE' | 'LINK' | 'LINK_AS_BUTTON' | 'LIST_OPTIONS' | 'MODAL' | 'OPTION' | 'OVERLAY' | 'PAGE_CONTROL' | 'PAGINATION' | 'POPOVER' | 'PROGRESS_BAR' | 'RADIO_BUTTON' | 'SELECTOR_BOX_FILE' | 'SKELETON' | 'SLIDER' | 'SNACKBAR' | 'STEPPER_NUMBER' | 'TABLE' | 'TABLE_BODY' | 'TABLE_CAPTION' | 'TABLE_CELL' | 'TABLE_DIVIDER' | 'TABLE_FOOT' | 'TABLE_HEAD' | 'TABLE_ROW' | 'TABS' | 'TAG' | 'TEXT' | 'TEXT_AREA' | 'TEXT_COUNT' | 'TOGGLE' | 'TOOLTIP' | 'VIRTUAL_KEYBOARD'
 
 type NonVariablesKeys<T> = {
   [K in keyof T]: K extends `$${string}` ? never : K;
@@ -356,8 +356,8 @@ export type ComponentsTypesComponents = {
       dot: string,
     },
   },
-  DROPDOWN_SELECTED: {
-    dropdown_selected: string,
+  SELECT: {
+    select: string,
     buttonorlinkcontainer: string,
     iconclosed: string,
     iconopened: string,
@@ -365,7 +365,7 @@ export type ComponentsTypesComponents = {
     labelopened: string,
     listoptionscontainer: string,
     $_default: {
-      dropdown_selected: string,
+      select: string,
       buttonorlinkcontainer: string,
       iconclosed: string,
       iconopened: string,
@@ -374,7 +374,7 @@ export type ComponentsTypesComponents = {
       listoptionscontainer: string,
     },
     $_side_menu: {
-      dropdown_selected: string,
+      select: string,
       buttonorlinkcontainer: string,
       iconclosed: string,
       iconopened: string,
@@ -383,7 +383,7 @@ export type ComponentsTypesComponents = {
       listoptionscontainer: string,
     },
     $_topbar: {
-      dropdown_selected: string,
+      select: string,
       buttonorlinkcontainer: string,
       iconclosed: string,
       iconopened: string,
@@ -392,7 +392,7 @@ export type ComponentsTypesComponents = {
       listoptionscontainer: string,
     },
     $_topbar_tab: {
-      dropdown_selected: string,
+      select: string,
       buttonorlinkcontainer: string,
       iconclosed: string,
       iconopened: string,

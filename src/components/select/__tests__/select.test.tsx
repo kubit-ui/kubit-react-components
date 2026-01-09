@@ -1,13 +1,13 @@
 // TO DO: RESOLVE THE TESTS
 import { render } from '@/lib/tests/render/render';
 
-import type { DropdownSelectedUnControlledProps } from '../types/dropdownSelected';
+import type { SelectUnControlledProps } from '../types/select';
 
-import { DropdownSelectedUnControlled as DropdownSelected } from '../dropdownSelectedUncontrolled';
+import { SelectUnControlled as Select } from '../selectUncontrolled';
 
-const mockProps: DropdownSelectedUnControlledProps = {
+const mockProps: SelectUnControlledProps = {
   closePopoverOnScroll: true,
-  'data-testid': 'dropdown-selected',
+  'data-testid': 'select',
   icon: { altText: 'Alt text icon', icon: 'CLOSE' },
   label: { content: 'Label' },
   listOptions: {
@@ -29,10 +29,10 @@ const mockProps: DropdownSelectedUnControlledProps = {
   variant: 'DEFAULT',
 };
 
-describe('DropdownSelected component', () => {
-  it('Should render DropdownSelected component', async () => {
-    const { getByTestId } = render(<DropdownSelected {...mockProps} />);
-    const component = getByTestId('dropdown-selected');
+describe('Select component', () => {
+  it('Should render Select component', async () => {
+    const { getByTestId } = render(<Select {...mockProps} />);
+    const component = getByTestId('select');
 
     expect(component).not.toBeNull();
     // const results = await axe(container);
@@ -41,14 +41,14 @@ describe('DropdownSelected component', () => {
   });
 
   // it('onClick button', async () => {
-  //   const { container, getByRole, getByTestId } = render(<DropdownSelected {...mockProps} />);
+  //   const { container, getByRole, getByTestId } = render(<Select {...mockProps} />);
 
   //   const button = getByRole('button');
   //   expect(button).not.toBeNull();
 
   //   fireEvent.click(button);
 
-  //   const optionsAfterClick = getByTestId('dropdown-selected-list');
+  //   const optionsAfterClick = getByTestId('select-list');
   //   expect(optionsAfterClick).not.toBeNull();
 
   //   const results = await axe(container, {
@@ -68,7 +68,7 @@ describe('DropdownSelected component', () => {
   // it('onClick option', async () => {
   //   const mockOnClickOption = vi.fn();
   //   const { container, getByRole, queryByText } = render(
-  //     <DropdownSelected {...mockProps} onOptionClick={mockOnClickOption} />
+  //     <Select {...mockProps} onOptionClick={mockOnClickOption} />
   //   );
 
   //   const button = getByRole('button');

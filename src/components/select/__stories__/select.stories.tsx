@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { DropdownSelectedVariantType } from '@/lib/designSystem/kubit/components/dropdownSelected/variants';
+import { SelectVariantType } from '@/lib/designSystem/kubit/components/select/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import type { DropdownSelectedUnControlledProps } from '../types/dropdownSelected';
+import type { SelectUnControlledProps } from '../types/select';
 
-import { DropdownSelectedUnControlled as Story } from '../dropdownSelectedUncontrolled';
+import { SelectUnControlled as Story } from '../selectUncontrolled';
 import { argtypes } from './argtypes';
 
 const StoryWithHooks = (args) => {
@@ -20,15 +20,15 @@ const meta = {
   argTypes: argtypes(),
   component: Story,
   render: ({ ...args }) => <StoryWithHooks {...args} />,
-  tags: ['autodocs', 'navigation'],
-  title: 'Components/Navigation/DropdownSelected',
+  tags: ['autodocs', 'forms'],
+  title: 'Components/Forms/Select',
 } satisfies Meta<typeof Story>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
-const commonArgs: DropdownSelectedUnControlledProps = {
+const commonArgs: SelectUnControlledProps = {
   closePopoverOnScroll: true,
   icon: { altText: 'Alt text icon', icon: ICONS.CHEVRON_DOWN },
   label: { content: 'Label' },
@@ -48,10 +48,10 @@ const commonArgs: DropdownSelectedUnControlledProps = {
     variant: 'CODE_VIEWER_SUBTHEME',
   },
 
-  variant: DropdownSelectedVariantType.DEFAULT,
+  variant: SelectVariantType.DEFAULT,
 };
 
-export const DropdownSelected: Story = {
+export const Select: Story = {
   args: {
     ...commonArgs,
   },
