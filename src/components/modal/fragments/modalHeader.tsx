@@ -1,7 +1,10 @@
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
-import { processTextProp } from '@/lib/utils/process/processCommonProp';
+import {
+  processIconProp,
+  processTextProp,
+} from '@/lib/utils/process/processCommonProp';
 
 import type { ModalStandAloneProps } from '../types/modal';
 
@@ -38,16 +41,19 @@ export const ModalHeader = ({
           className={cssClasses?.dragiconcontainer}
           data-modal-draggable-icon={true}
         >
-          <ElementOrIcon className={cssClasses?.dragicon} {...dragIcon} />
+          <ElementOrIcon
+            className={cssClasses?.dragicon}
+            {...processIconProp(dragIcon)}
+          />
         </div>
       )}
 
       <div className={cssClasses?.headercontentcontainer}>
-        {!blocked && !!closeIcon?.icon && (
+        {!blocked && !!closeIcon && (
           <div className={cssClasses?.closebuttoncontainer}>
             <ElementOrIcon
               className={cssClasses?.closebuttonicon}
-              {...closeIcon}
+              {...processIconProp(closeIcon)}
             />
           </div>
         )}
@@ -73,7 +79,7 @@ export const ModalHeader = ({
             {processTextProp(title).children}
           </span>
         )}
-        {!blocked && !!closeIcon?.icon && (
+        {!blocked && !!closeIcon && (
           <div className={cssClasses?.closebuttoncontainer}>
             <span className={cssClasses?.closebuttonicon} />
           </div>

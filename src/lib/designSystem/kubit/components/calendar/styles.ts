@@ -21,7 +21,7 @@ export const CALENDAR: CalendarVariantStyles<CalendarVariants> = {
     button_variant: {
       component: BUTTON,
       name: 'button',
-      variant: ButtonVariantType.ACTION_PRIMARY,
+      variant: ButtonVariantType.GHOST_PRIMARY,
     },
   },
   $mediaQueries: {

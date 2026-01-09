@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 import type { AriaAttributes, KeyboardEventHandler, ReactNode } from 'react';
 
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { DeviceBreakpointsType } from '@/lib/types/breakpoints/breakpoints';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
   ComponentSelected,
@@ -67,7 +67,7 @@ export interface ModalStandAloneProps extends DataAttributes {
   popover?: ModalPopoverProps;
   blocked?: boolean;
   title?: CommonTextProps & { visible?: boolean };
-  closeIcon?: ElementOrIconProps;
+  closeIcon?: CommonIconProps;
   closeButton?: ModalButtonProps;
   contentContainer?: ModalContentContainerProps;
   content?: ReactNode;
@@ -78,7 +78,7 @@ export interface ModalStandAloneProps extends DataAttributes {
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
   onPopoverCloseInternally?: () => void;
   cssClasses?: ModalCssClasses;
-  dragIcon?: ElementOrIconProps;
+  dragIcon?: CommonIconProps;
 }
 
 type ModalOmittedProps = 'styles' | 'device' | 'contentHasScroll';

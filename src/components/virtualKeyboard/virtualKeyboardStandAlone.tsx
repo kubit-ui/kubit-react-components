@@ -3,6 +3,7 @@ import { forwardRef, useId } from 'react';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+import { processIconProp } from '@/lib/utils/process/processCommonProp';
 
 import type { VirtualKeyboardStandAloneProps } from './types/virtualKeyboard';
 
@@ -85,7 +86,7 @@ export const VirtualKeyboardStandAlone = forwardRef<
           <ElementOrIcon
             className={cssClasses?.iconcontainer}
             customAttributes={customAttributes}
-            {...icon}
+            {...processIconProp(icon)}
           />
         </button>
       </div>

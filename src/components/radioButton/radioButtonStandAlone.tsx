@@ -5,7 +5,10 @@ import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processTextProp } from '@/lib/utils/process/processCommonProp';
+import {
+  processIconProp,
+  processTextProp,
+} from '@/lib/utils/process/processCommonProp';
 
 import type { RadioButtonStandAloneProps } from './types/radioButton';
 
@@ -157,7 +160,7 @@ export const RadioButtonStandAlone = ({
                   <ElementOrIcon
                     className={cssClasses?.errormessageicon}
                     customAttributes={customAttributes}
-                    {...errorIcon}
+                    {...processIconProp(errorIcon)}
                   />
                 </span>
               )}

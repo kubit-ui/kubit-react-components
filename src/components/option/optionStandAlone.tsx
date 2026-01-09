@@ -5,7 +5,10 @@ import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { ENTER, SPACE } from '@/lib/constants/keyboardKeys/keyboardKeys';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processTextProp } from '@/lib/utils/process/processCommonProp';
+import {
+  processIconProp,
+  processTextProp,
+} from '@/lib/utils/process/processCommonProp';
 
 import type { OptionStandAloneProps } from './types/option';
 import type { OptionStateType } from './types/state';
@@ -139,7 +142,7 @@ export const OptionStandAlone = forwardRef(
             <ElementOrIcon
               className={cssClasses?.icon}
               customAttributes={customAttributes}
-              {...icon}
+              {...processIconProp(icon)}
             />
             {!!processTextProp(sublabel).children && (
               <div
@@ -201,7 +204,7 @@ export const OptionStandAlone = forwardRef(
             <ElementOrIcon
               className={cssClasses?.checkedicon}
               customAttributes={customAttributes}
-              {...checkedIcon}
+              {...processIconProp(checkedIcon)}
             />
           )}
         </div>

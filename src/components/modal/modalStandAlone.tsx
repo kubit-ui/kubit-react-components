@@ -3,9 +3,10 @@ import { type CSSProperties, forwardRef, useId } from 'react';
 import { Overlay } from '@/lib/components/overlay/overlay';
 import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
+import type { ModalStandAloneProps } from './types/modal';
+
 import { Popover } from '../popover/popover';
 import { ModalHeader } from './fragments/modalHeader';
-import type { ModalStandAloneProps } from './types/modal';
 import { onlyDesktopSize } from './utils/onlyDesktopSize';
 
 /**

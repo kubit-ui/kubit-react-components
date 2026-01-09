@@ -1,13 +1,15 @@
 import type { CSSProperties, KeyboardEventHandler } from 'react';
 
+import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
+import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
+
 import { TooltipUnControlled as Tooltip } from '@/components/tooltip/tooltipUnControlled';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
-import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { SliderCssClasses, SliderTooltipProps } from '../types/slider';
+
 import { type SliderStateType } from '../types/state';
 import { isTooltipVisible } from '../utils/ui.utils';
 

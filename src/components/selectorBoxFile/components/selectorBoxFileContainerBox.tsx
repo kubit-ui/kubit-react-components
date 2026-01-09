@@ -4,7 +4,10 @@ import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processTextProp } from '@/lib/utils/process/processCommonProp';
+import {
+  processIconProp,
+  processTextProp,
+} from '@/lib/utils/process/processCommonProp';
 
 import type {
   SelectorBoxFileContainerBoxStateContentProps,
@@ -46,12 +49,12 @@ export const SelectorBoxFileContainerBox = ({
         <ElementOrIcon
           className={cssClasses?.containerboxicon}
           customAttributes={customAttributes}
-          {...containerBoxStateContent[state]?.icon}
+          {...processIconProp(containerBoxStateContent[state]?.icon)}
         />
         <ElementOrIcon
           className={cssClasses?.containerboxicon}
           customAttributes={customAttributes}
-          {...containerBoxStateContent[state]?.icon}
+          {...processIconProp(containerBoxStateContent[state]?.icon)}
         />
       </span>
       <span
@@ -84,7 +87,7 @@ export const SelectorBoxFileContainerBox = ({
             <ElementOrIcon
               className={cssClasses?.actionicon}
               customAttributes={customAttributes}
-              {...containerBoxStateContent[state]?.actionIcon}
+              {...processIconProp(containerBoxStateContent[state]?.actionIcon)}
             />
             <Text
               additionalClasses={{
@@ -122,7 +125,7 @@ export const SelectorBoxFileContainerBox = ({
           <ElementOrIcon
             className={cssClasses?.containerboxicon}
             customAttributes={customAttributes}
-            {...containerBoxStateContent[state]?.iconRight}
+            {...processIconProp(containerBoxStateContent[state]?.iconRight)}
           />
         </span>
       )}

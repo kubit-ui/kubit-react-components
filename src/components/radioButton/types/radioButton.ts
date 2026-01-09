@@ -1,6 +1,6 @@
 import type { AriaAttributes } from 'react';
 
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
   ComponentSelected,
@@ -38,14 +38,13 @@ export type RadioButtonAriaProps = Pick<
  * Includes properties for state, labels, event handlers, and CSS classes.
  */
 export interface RadioButtonStandAloneProps
-  extends RadioButtonAriaProps,
-    DataAttributes {
+  extends RadioButtonAriaProps, DataAttributes {
   cssClasses?: RadioButtonCssClasses;
   checked?: boolean;
   name?: string;
   label?: RadioButtonLabelProps;
   errorMessage?: string;
-  errorIcon?: ElementOrIconProps;
+  errorIcon?: CommonIconProps;
   errorAriaLiveType?: AriaAttributes['aria-live'];
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;

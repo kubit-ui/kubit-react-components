@@ -1,4 +1,4 @@
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
@@ -61,7 +61,7 @@ export interface BreadcrumbStandAloneProps extends DataAttributes {
   crumb: BreadcrumbProps;
   lastCrumb?: boolean;
   lastOneCrumbComponent?: TextComponentType;
-  dividerIcon?: ElementOrIconProps;
+  dividerIcon?: CommonIconProps;
 }
 
 /**
@@ -77,13 +77,12 @@ type BreadcrumbAriaAttributes = Pick<
  * Includes ARIA attributes, crumbs, and optional properties.
  */
 export interface BreadcrumbsStandAloneProps
-  extends BreadcrumbAriaAttributes,
-    DataAttributes {
+  extends BreadcrumbAriaAttributes, DataAttributes {
   link?: BreadcrumbLinkProps;
   id?: string;
   crumbs: BreadcrumbProps[];
   minCharLimit?: number;
-  dividerIcon?: ElementOrIconProps;
+  dividerIcon?: CommonIconProps;
   lastOneCrumbComponent?: TextComponentType;
   cssClasses?: BreadcrumbsCssClasses;
 }

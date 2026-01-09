@@ -387,22 +387,22 @@ export interface CssClasses {
       button: string,
       icon: string,
     },
-    $_action_primary: {
+    $_alternative: {
       button: string,
     },
-    $_action_secondary: {
+    $_ghost_alt: {
       button: string,
     },
-    $_action_secondary_alt: {
+    $_ghost_primary: {
+      button: string,
+    },
+    $_ghost_secondary: {
       button: string,
     },
     $_primary: {
       button: string,
     },
     $_secondary: {
-      button: string,
-    },
-    $_secondary_alt: {
       button: string,
     },
     dynamic_values: (styles: { '$alignText': string; }) => { string: string; object: object } ,

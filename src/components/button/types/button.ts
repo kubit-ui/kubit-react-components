@@ -6,7 +6,7 @@ import type {
   ReactNode,
 } from 'react';
 
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
@@ -54,12 +54,13 @@ export interface ButtonStylesProps {
  * Includes ARIA attributes, event handlers, and additional attributes.
  */
 export interface ButtonStandAloneProps
-  extends PropsWithChildren<ButtonStylesProps>,
+  extends
+    PropsWithChildren<ButtonStylesProps>,
     ButtonAriaProps,
     DataAttributes {
   type?: HTMLButtonElement['type'];
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  icon?: ElementOrIconProps;
+  icon?: CommonIconProps;
   form?: string;
   role?: AriaRole;
   title?: string;

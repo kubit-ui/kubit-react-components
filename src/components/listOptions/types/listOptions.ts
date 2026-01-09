@@ -1,5 +1,5 @@
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { UseRoveFocusProps } from '@/lib/hooks/useRoveFocus/types/useRoveFocus';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
   ComponentSelected,
@@ -58,7 +58,7 @@ export interface ListOptionsStandAloneProps extends DataAttributes {
       | React.MouseEvent<HTMLDivElement>,
   ) => void;
   multiSelect?: boolean;
-  checkedIcon?: ElementOrIconProps;
+  checkedIcon?: CommonIconProps;
   id?: string;
   roveFocus?: UseRoveFocusProps;
   index?: number;

@@ -31,9 +31,12 @@ const BUTTON_PROPS = {
     Small: 'SMALL',
   }),
   variant: figma.enum('variant', {
+    Alternative: 'ALTERNATIVE',
+    'Ghost alternative': 'GHOST_ALT',
+    'Ghost primary': 'GHOST_PRIMARY',
+    'Ghost secondary': 'GHOST_SECONDARY',
     Primary: 'PRIMARY',
     Secondary: 'SECONDARY',
-    'Secondary alt': 'SECONDARY_ALT',
   }),
 };
 
@@ -45,7 +48,7 @@ figma.connect(Button, FIGMA_URL, {
   example: (props) => (
     <Button
       disabled={props.disabled}
-      icon={{ icon: 'icon' }}
+      icon="your icon"
       iconPosition="left"
       loading={props.loading}
       size={props.size}
@@ -68,7 +71,7 @@ figma.connect(Button, FIGMA_URL, {
   example: (props) => (
     <Button
       disabled={props.disabled}
-      icon={{ icon: 'icon' }}
+      icon="your icon"
       iconPosition="right"
       loading={props.loading}
       size={props.size}

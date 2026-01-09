@@ -3,7 +3,10 @@ import { forwardRef, useId, useMemo } from 'react';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processTextProp } from '@/lib/utils/process/processCommonProp';
+import {
+  processIconProp,
+  processTextProp,
+} from '@/lib/utils/process/processCommonProp';
 
 import type { ListOptionsOptionProps } from '../listOptions/types/listOptions';
 import type { DropdownSelectedStandAloneProps } from './types/dropdownSelected';
@@ -130,7 +133,7 @@ export const DropdownSelectedStandAlone = forwardRef<
             className={open ? cssClasses?.iconopened : cssClasses?.iconclosed}
             rotate={open ? '180deg' : '0deg'}
             transitionDuration="0.2s"
-            {...icon}
+            {...processIconProp(icon)}
           />
         </CustomComponent>
         {!!popover && (

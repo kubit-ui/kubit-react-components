@@ -1,4 +1,4 @@
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
@@ -15,7 +15,7 @@ type InputDecorationCssClasses = ComponentSelected<
  */
 export interface InputDecorationStandAloneProps extends DataAttributes {
   disabled?: boolean;
-  decoration?: ElementOrIconProps;
+  decoration?: CommonIconProps;
   cssClasses?: InputDecorationCssClasses;
   component?: React.ElementType;
 }

@@ -387,23 +387,23 @@ export const cssClasses = {
       button: 'button button--small',
       icon: 'button__icon button__icon--small',
     },
-    $_action_primary: {
-      button: 'button button--action_primary',
+    $_alternative: {
+      button: 'button button--alternative',
     },
-    $_action_secondary: {
-      button: 'button button--action_secondary',
+    $_ghost_alt: {
+      button: 'button button--ghost_alt',
     },
-    $_action_secondary_alt: {
-      button: 'button button--action_secondary_alt',
+    $_ghost_primary: {
+      button: 'button button--ghost_primary',
+    },
+    $_ghost_secondary: {
+      button: 'button button--ghost_secondary',
     },
     $_primary: {
       button: 'button button--primary',
     },
     $_secondary: {
       button: 'button button--secondary',
-    },
-    $_secondary_alt: {
-      button: 'button button--secondary_alt',
     },
     dynamic_values: e=>Object.entries(e).reduce((e,[t,s])=>{const r="--"+t.toLocaleLowerCase().replace("$","");return e.string+=r+": "+s+"; ",e.object[r]=s,e},{string:"",object:{}}),
   },
@@ -439,7 +439,7 @@ export const cssClasses = {
       loader: 'button__loader',
     },
     button_variant: {
-      button: 'button button--action_primary',
+      button: 'button button--ghost_primary',
       icon: 'button__icon',
       loader: 'button__loader',
     },

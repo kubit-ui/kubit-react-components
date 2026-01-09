@@ -6,6 +6,7 @@ import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { useManageState } from '@/lib/hooks/useManageState/useManageState';
 import { STATES } from '@/lib/types/states/states';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+import { processIconProp } from '@/lib/utils/process/processCommonProp';
 
 import type { BreadcrumbStandAloneProps } from '../../types/breadcrumbs';
 
@@ -82,7 +83,7 @@ export const CrumbStandAlone = ({
           <div className={cssClasses?.icondividercontainer}>
             <ElementOrIcon
               className={cssClasses?.icondivider}
-              {...dividerIcon}
+              {...processIconProp(dividerIcon)}
             />
           </div>
         </>

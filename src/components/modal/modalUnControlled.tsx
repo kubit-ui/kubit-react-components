@@ -6,6 +6,8 @@ import {
   useState,
 } from 'react';
 
+import { processIconProp } from '@/lib/utils/process/processCommonProp';
+
 import type { ModalUnControlledProps } from './types/modal';
 
 import { ESCAPE } from '../../lib/constants/keyboardKeys/keyboardKeys';
@@ -65,7 +67,7 @@ export const ModalUnControlled = forwardRef<
 
     const handleCloseIconClick = (e) => {
       handleClose();
-      closeIcon?.onClick?.(e);
+      processIconProp(closeIcon)?.onClick?.(e);
     };
 
     const handleCloseButtonClick = (e) => {
@@ -84,7 +86,7 @@ export const ModalUnControlled = forwardRef<
           }
         }
         closeIcon={{
-          ...closeIcon,
+          ...processIconProp(closeIcon),
           onClick: handleCloseIconClick,
         }}
         open={open}

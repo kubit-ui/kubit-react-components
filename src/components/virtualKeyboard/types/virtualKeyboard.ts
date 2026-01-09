@@ -1,4 +1,4 @@
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
@@ -39,7 +39,7 @@ export interface VirtualKeyboardStandAloneProps extends DataAttributes {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   onRemoveButtonClick: React.MouseEventHandler<HTMLButtonElement>;
-  icon: ElementOrIconProps;
+  icon: CommonIconProps;
   cssClasses?: VirtualKeyboardCssClasses;
 }
 

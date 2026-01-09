@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { GenericLinkType } from '@/lib/provider/genericComponentsProvider/types/genericComponentsProvider';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
   ComponentSelected,
@@ -30,11 +30,11 @@ type OptionAriaProps = Pick<
  * Includes ARIA attributes, labels, icons, event handlers, and CSS classes.
  */
 export interface OptionStandAloneProps extends OptionAriaProps, DataAttributes {
-  icon?: ElementOrIconProps;
+  icon?: CommonIconProps;
   sublabel?: CommonTextProps;
   label: ReactNode;
   labelCharsHighlighted?: string;
-  checkedIcon?: ElementOrIconProps;
+  checkedIcon?: CommonIconProps;
   multiSelect?: boolean;
   disabled?: boolean;
   selected?: boolean;
@@ -67,9 +67,9 @@ export interface OptionStandAloneProps extends OptionAriaProps, DataAttributes {
 export interface OptionProps<
   Variant = undefined extends string ? unknown : string,
 > extends Omit<
-    OptionStandAloneProps,
-    'componentLink' | 'hover' | 'onMouseEnter' | 'onMouseLeave'
-  > {
+  OptionStandAloneProps,
+  'componentLink' | 'hover' | 'onMouseEnter' | 'onMouseLeave'
+> {
   variant?: Variant;
   additionalClasses?: Partial<OptionCssClasses>;
 }

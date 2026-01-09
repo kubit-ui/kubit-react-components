@@ -53,8 +53,10 @@ export interface IconStandAloneProps extends IconAriaProps, DataAttributes {
  * Interface for the Icon component with additional properties.
  * Extends the IconStandAloneProps interface and adds screen reader text.
  */
-export interface IconProps
-  extends Omit<IconStandAloneProps, 'onKeyDown' | 'linearIcon'> {
+export interface IconProps extends Omit<
+  IconStandAloneProps,
+  'onKeyDown' | 'linearIcon'
+> {
   screenReaderText?: string;
 }
 

@@ -1,4 +1,4 @@
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
   ComponentSelected,
@@ -17,10 +17,10 @@ export type SelectorBoxFileCssClasses = ComponentSelected<
  */
 export type SelectorBoxFileContainerBoxStateContentProps = {
   [key in SelectorBoxFileStateType]: {
-    icon?: ElementOrIconProps;
-    iconRight?: ElementOrIconProps;
+    icon?: CommonIconProps;
+    iconRight?: CommonIconProps;
     actionText?: CommonTextProps;
-    actionIcon?: ElementOrIconProps;
+    actionIcon?: CommonIconProps;
     description?: CommonTextProps;
   };
 };

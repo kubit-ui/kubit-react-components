@@ -6,8 +6,8 @@ import type {
   RefObject,
 } from 'react';
 
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { GenericLinkType } from '@/lib/provider/genericComponentsProvider/types/genericComponentsProvider';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
   ComponentSelected,
@@ -46,7 +46,7 @@ export interface DropdownSelectedStandAloneProps extends DataAttributes {
   onButtonKeyDown: KeyboardEventHandler<HTMLButtonElement | HTMLLinkElement>;
   onClosePopover: () => void;
   label: CommonTextProps;
-  icon: ElementOrIconProps;
+  icon: CommonIconProps;
   listOptions: DropdownSelectedListOptionsProps;
   optionSelected?: string;
   onOptionClick: (value: string) => void;

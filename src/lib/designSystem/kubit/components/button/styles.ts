@@ -101,7 +101,62 @@ export const BUTTON: ButtonVariantStyles<ButtonVariants> = {
     padding_right: cssVars.spacings_spacing_250,
     padding_top: cssVars.spacings_spacing_150,
   },
-  [ButtonVariantType.ACTION_PRIMARY]: {
+  [ButtonVariantType.ALTERNATIVE]: {
+    ...commonPropsDefault,
+    $attributes: {
+      'data-loading': {
+        background_color: cssVars.colors_accent_color_loading_bg_150,
+        border_color: cssVars.colors_accent_color_loading_border_100,
+      },
+    },
+    $pseudoClasses: {
+      active: {
+        background_color: cssVars.colors_accent_color_pressed_bg_150,
+        color: cssVars.colors_accent_color_default_font_150,
+        text_decoration: 'none',
+      },
+      disabled: {
+        background_color: cssVars.colors_disabled_color_accentdisabled_bg_50,
+        border_color: cssVars.colors_disabled_color_accentdisabled_border_100,
+        color: cssVars.colors_disabled_color_accentdisabled_font_100,
+        hover: {
+          background_color: cssVars.colors_disabled_color_accentdisabled_bg_50,
+          border_color: cssVars.colors_disabled_color_accentdisabled_border_100,
+          color: cssVars.colors_disabled_color_accentdisabled_font_100,
+        },
+      },
+      hover: {
+        background_color: cssVars.colors_accent_color_hover_bg_150,
+        color: cssVars.colors_accent_color_default_font_150,
+      },
+    },
+    background_color: cssVars.colors_accent_color_default_bg_50,
+    border: cssVars.borders_border_100,
+    border_color: cssVars.colors_accent_color_default_border_150,
+    border_style: 'solid',
+    color: cssVars.colors_accent_color_default_font_150,
+  },
+  [ButtonVariantType.GHOST_ALT]: {
+    ...actionCommonProps,
+    $pseudoClasses: {
+      active: {
+        color: cssVars.colors_accent_color_default_font_150,
+        text_decoration: 'none',
+      },
+      disabled: {
+        color: cssVars.colors_disabled_color_accentdisabled_font_100,
+        hover: {
+          color: cssVars.colors_disabled_color_accentdisabled_font_100,
+        },
+      },
+      hover: {
+        background_color: cssVars.colors_pressed_color_accent_bg_200,
+        color: cssVars.colors_pressed_color_accent_font_100,
+      },
+    },
+    color: cssVars.colors_accent_color_default_font_150,
+  },
+  [ButtonVariantType.GHOST_PRIMARY]: {
     ...actionCommonProps,
     $pseudoClasses: {
       active: {
@@ -121,7 +176,7 @@ export const BUTTON: ButtonVariantStyles<ButtonVariants> = {
     },
     color: cssVars.colors_accent_color_default_font_100,
   },
-  [ButtonVariantType.ACTION_SECONDARY]: {
+  [ButtonVariantType.GHOST_SECONDARY]: {
     ...actionCommonProps,
     $pseudoClasses: {
       active: {
@@ -140,26 +195,6 @@ export const BUTTON: ButtonVariantStyles<ButtonVariants> = {
       },
     },
     color: cssVars.colors_accent_color_default_font_50,
-  },
-  [ButtonVariantType.ACTION_SECONDARY_ALT]: {
-    ...actionCommonProps,
-    $pseudoClasses: {
-      active: {
-        color: cssVars.colors_accent_color_default_font_150,
-        text_decoration: 'none',
-      },
-      disabled: {
-        color: cssVars.colors_disabled_color_accentdisabled_font_100,
-        hover: {
-          color: cssVars.colors_disabled_color_accentdisabled_font_100,
-        },
-      },
-      hover: {
-        background_color: cssVars.colors_pressed_color_accent_bg_200,
-        color: cssVars.colors_pressed_color_accent_font_100,
-      },
-    },
-    color: cssVars.colors_accent_color_default_font_150,
   },
   [ButtonVariantType.PRIMARY]: {
     ...commonPropsDefault,
@@ -223,41 +258,6 @@ export const BUTTON: ButtonVariantStyles<ButtonVariants> = {
     border_color: cssVars.colors_accent_color_default_border_50,
     border_style: 'solid',
     color: cssVars.colors_accent_color_default_font_50,
-  },
-  [ButtonVariantType.SECONDARY_ALT]: {
-    ...commonPropsDefault,
-    $attributes: {
-      'data-loading': {
-        background_color: cssVars.colors_accent_color_loading_bg_150,
-        border_color: cssVars.colors_accent_color_loading_border_100,
-      },
-    },
-    $pseudoClasses: {
-      active: {
-        background_color: cssVars.colors_accent_color_pressed_bg_150,
-        color: cssVars.colors_accent_color_default_font_150,
-        text_decoration: 'none',
-      },
-      disabled: {
-        background_color: cssVars.colors_disabled_color_accentdisabled_bg_50,
-        border_color: cssVars.colors_disabled_color_accentdisabled_border_100,
-        color: cssVars.colors_disabled_color_accentdisabled_font_100,
-        hover: {
-          background_color: cssVars.colors_disabled_color_accentdisabled_bg_50,
-          border_color: cssVars.colors_disabled_color_accentdisabled_border_100,
-          color: cssVars.colors_disabled_color_accentdisabled_font_100,
-        },
-      },
-      hover: {
-        background_color: cssVars.colors_accent_color_hover_bg_150,
-        color: cssVars.colors_accent_color_default_font_150,
-      },
-    },
-    background_color: cssVars.colors_accent_color_default_bg_50,
-    border: cssVars.borders_border_100,
-    border_color: cssVars.colors_accent_color_default_border_150,
-    border_style: 'solid',
-    color: cssVars.colors_accent_color_default_font_150,
   },
   cursor: 'pointer',
   display: 'inline-flex',
