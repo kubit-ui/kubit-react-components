@@ -1,6 +1,4 @@
 {
-  "installCommand": "npm install -g pnpm@9.14.4 && pnpm install",
-  "buildCommand": "pnpm dist && pnpm build-storybook",
   "framework": null,
-  "outputDirectory": "storybook-static"
+  "outputDirectory": "bundle"
 }
