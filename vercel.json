@@ -2,5 +2,8 @@
   "installCommand": "pnpm install",
   "buildCommand": "pnpm build",
   "framework": null,
-  "outputDirectory": "bundle"
+  "outputDirectory": "bundle",
+  "env": {
+    "NODE_VERSION": "20"
+  }
 }
