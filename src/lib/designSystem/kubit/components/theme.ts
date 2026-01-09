@@ -25,7 +25,6 @@ import { LINK } from './link/styles';
 import { LINK_AS_BUTTON } from './linkAsButton/styles';
 import { LIST_OPTIONS } from './listOptions/styles';
 import { MODAL } from './modal/styles';
-import { NAVBAR } from './navBar/styles';
 import { OPTION } from './option/styles';
 import { OVERLAY } from './overlay/styles';
 import { PAGE_CONTROL } from './pageControl/styles';
@@ -83,7 +82,6 @@ export const KUBIT_STYLES = {
   LINK_AS_BUTTON,
   LIST_OPTIONS,
   MODAL,
-  NAVBAR,
   OPTION,
   OVERLAY,
   PAGE_CONTROL,

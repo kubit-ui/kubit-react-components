@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 import type { AriaAttributes, KeyboardEventHandler, ReactNode } from 'react';
 
-import type { NavBarProps } from '@/components/navBar/types/navBar';
 import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { DeviceBreakpointsType } from '@/lib/types/breakpoints/breakpoints';
 import type { CommonTextProps } from '@/lib/types/commons/text';
@@ -21,13 +20,6 @@ type ModalCssClasses = ComponentSelected<ComponentsTypesComponents['MODAL']>;
  */
 export type ModalButtonProps = Omit<ButtonProps, 'children' | 'variant'> & {
   content?: ReactNode;
-  variant?: string;
-};
-
-/**
- * Represents the type for the footer in the Modal component.
- */
-export type ModalFooterProps = Omit<NavBarProps, 'variant'> & {
   variant?: string;
 };
 
@@ -81,7 +73,7 @@ export interface ModalStandAloneProps extends DataAttributes {
   content?: ReactNode;
   contentScrollArias?: Pick<AriaAttributes, 'aria-label' | 'aria-labelledby'>;
   contentHasScroll: boolean;
-  footer?: ModalFooterProps;
+  footer?: ReactNode;
   device: DeviceBreakpointsType;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;
   onPopoverCloseInternally?: () => void;

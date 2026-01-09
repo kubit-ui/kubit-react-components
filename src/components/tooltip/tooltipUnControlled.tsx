@@ -45,7 +45,6 @@ export const TooltipUnControlled = forwardRef(function <
   {
     additionalClasses,
     align,
-    closeIcon,
     onOpenClose,
     popover,
     tooltipAriaLabel,
@@ -129,12 +128,6 @@ export const TooltipUnControlled = forwardRef(function <
       hideTooltip();
     }
   };
-  const handleCloseIconClick: MouseEventHandler<HTMLButtonElement> = (
-    event,
-  ) => {
-    closeIcon?.onClick?.(event);
-    hideTooltip();
-  };
   const handleTriggerMouseDown: MouseEventHandler<HTMLElement> = () => {
     isBeingClicked.current = true;
   };
@@ -175,7 +168,7 @@ export const TooltipUnControlled = forwardRef(function <
     popover?.onClose?.();
     hideTooltip();
   };
-  const { setDragIconRef, setPopoverRef } = useSwipeDown({
+  const { setPopoverRef } = useSwipeDown({
     onClose: hideTooltip,
   });
   useTrapFocus({
@@ -189,7 +182,6 @@ export const TooltipUnControlled = forwardRef(function <
       contentHasScroll={contentHasScroll}
       contentRef={contentRefHandler}
       cssClasses={cssClasses}
-      dragIconRef={setDragIconRef as never}
       labelRef={labelRef}
       mediaDevice={mediaDevice}
       popover={{
@@ -200,7 +192,6 @@ export const TooltipUnControlled = forwardRef(function <
       tooltipAriaLabel={tooltipAriaLabel}
       tooltipAsModal={tooltipAsModalValue}
       tooltipRef={tooltipRef}
-      onCloseIconClick={handleCloseIconClick}
       onPopoverCloseInternally={handlePopoverCloseInternally}
       onTooltipFocus={handleFocusTooltip}
       onTriggerClick={handleTriggerClick}

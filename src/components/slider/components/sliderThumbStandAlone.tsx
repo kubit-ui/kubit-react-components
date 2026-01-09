@@ -131,17 +131,7 @@ export const SliderThumbStandAlone = ({
         additionalClasses={cssClasses?.tooltip}
         align={tooltipAlign}
         childrenAsButton={false}
-        closeIcon={
-          tooltip?.closeIcon
-            ? {
-                'aria-label': tooltip.closeIconAriaLabel,
-                color: tooltip.closeIconColor,
-                icon: tooltip.closeIcon,
-              }
-            : undefined
-        }
         content={{ content: tooltip?.content }}
-        title={{ content: tooltip?.title }}
         tooltipAsModal={false}
       >
         <div

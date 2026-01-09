@@ -24,7 +24,6 @@ export * from './label';
 export * from './link';
 export * from './listOptions';
 export * from './modal';
-export * from './navBar';
 export * from './option';
 export * from './pageControl';
 export * from './pagination';

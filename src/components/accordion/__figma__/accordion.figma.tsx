@@ -6,7 +6,11 @@ figma.connect(
   Accordion,
   'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=5501%3A89639',
   {
-    example: () => <Accordion header="Header">Content</Accordion>,
+    example: () => (
+      <Accordion header="Header" variant="DEFAULT">
+        Content
+      </Accordion>
+    ),
     imports: ['import { Accordion } from "@kubit-ui-web/react-components";'],
     links: [
       {

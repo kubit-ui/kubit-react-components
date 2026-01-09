@@ -2,7 +2,6 @@ export { TooltipControlled } from './tooltipControlled';
 export { Tooltip } from './tooltipUnControlled';
 export type {
   TooltipCssClasses,
-  TooltipCloseIconProps,
   TooltipPopoverProps,
   TooltipStandAloneProps,
   TooltipControlledProps,

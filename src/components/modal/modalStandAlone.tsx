@@ -5,7 +5,6 @@ import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { ModalStandAloneProps } from './types/modal';
 
-import { NabVar } from '../navBar/navBar';
 import { Popover } from '../popover/popover';
 import { ModalHeader } from './fragments/modalHeader';
 import { onlyDesktopSize } from './utils/onlyDesktopSize';
@@ -64,7 +63,6 @@ export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(
     const reactTitleId = useId();
     const uniqueTitleId = `modal-title-${reactTitleId.replace(/:/g, '')}`;
     const titleIdFinal = processTextProp(title).id ?? uniqueTitleId;
-    const modalFooterVariant = footer?.variant;
     const dataTestId = props['data-testid'] || 'modal';
     return (
       <Popover
@@ -96,7 +94,6 @@ export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(
               minWidth: customWidthAllDevices
                 ? minWidth
                 : onlyDesktopSize(device, minWidth),
-              paddingBottom: footer?.rightItems ? '0' : undefined,
             } as CSSProperties
           }
         >
@@ -135,11 +132,7 @@ export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(
           >
             {content}
           </div>
-          {!!modalFooterVariant && !!footer && (
-            <div className={cssClasses?.footer}>
-              <NabVar variant={modalFooterVariant} {...footer} />
-            </div>
-          )}
+          {!!footer && <div className={cssClasses?.footer}>{footer}</div>}
         </div>
       </Popover>
     );

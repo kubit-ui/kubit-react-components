@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { TooltipVariantType } from '@/lib/designSystem/kubit/components/tooltip/variants';
-import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { POSITIONS } from '@/lib/types/positions/positions';
 
 import { TooltipUnControlled as Story } from '../tooltipUnControlled';
@@ -15,16 +14,16 @@ const meta = {
       description: {
         component: `
         Component.
-          
+
          ## Implementation
-          
-          This component uses [Floating UI](https://floating-ui.com/docs/platform) for intelligent positioning, 
-          ensuring that tooltips are displayed correctly even in space-constrained situations, 
+
+          This component uses [Floating UI](https://floating-ui.com/docs/platform) for intelligent positioning,
+          ensuring that tooltips are displayed correctly even in space-constrained situations,
           automatically adapting itself to stay within the viewport and providing accurate positioning with respect to the
           with respect to the reference element.
-          
+
           ## Features
-          
+
           - Adaptive positioning (top, bottom, left, right)
           - Overflow detection and automatic repositioning
           - Support for custom content
@@ -106,7 +105,6 @@ const commonArgs = {
   contentScrollArias: {
     'aria-label': 'Tooltip content scroll',
   },
-  title: { content: 'Tootltip title' },
   tooltipAsModal: false,
   triggerAsButton: {
     'aria-label': 'Tooltip trigger',
@@ -121,10 +119,9 @@ export const Tooltip: Story = {
   render: (args) => <StoryWithHooks {...args} />,
 };
 
-export const TooltipComplex: Story = {
+export const TooltipWithModal: Story = {
   args: {
     ...commonArgs,
-    closeIcon: { altText: 'Close icon', icon: ICONS.PLACEHOLDER },
     tooltipAsModal: true,
     variant: TooltipVariantType.DEFAULT,
   },

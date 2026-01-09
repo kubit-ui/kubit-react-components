@@ -8,6 +8,7 @@ import { TooltipControlled } from '../tooltipControlled';
 
 const mockProps = {
   children: 'children',
+  content: { content: 'content' },
   onBlur: vi.fn(),
   onClick: vi.fn(),
   onFocus: vi.fn(),
@@ -16,7 +17,6 @@ const mockProps = {
   onMouseUp: vi.fn(),
   onWrapperMouseEnter: vi.fn(),
   onWrapperMouseLeave: vi.fn(),
-  title: { content: 'title' },
   variant: 'DEFAULT',
 };
 
@@ -57,8 +57,8 @@ describe('Tooltip Controlled', () => {
 
     fireEvent.mouseEnter(label);
 
-    const title = screen.getByText(mockProps.title.content);
-    expect(title).not.toBeNull();
+    const content = screen.getByText(mockProps.content.content);
+    expect(content).not.toBeNull();
     expect(container).toHTMLValidate();
   });
 });

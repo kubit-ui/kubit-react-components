@@ -17,21 +17,6 @@
   display: flex;
 }
 
-.kbt-tooltip__header-content {
-  display: flex;
-  align-items: flex-start;
-}
-
-.kbt-tooltip__close-icon {
-  display: flex;
-  justify-content: flex-end;
-  align-self: flex-end;
-}
-
-.kbt-tooltip__title {
-  word-break: break-word;
-}
-
 .kbt-tooltip__paragraph {
   word-break: break-word;
 }

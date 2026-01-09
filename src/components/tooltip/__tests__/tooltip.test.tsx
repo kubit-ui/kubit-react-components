@@ -19,9 +19,7 @@ const mockResizeObserver = vi.fn(function (this: ResizeObserver) {
 
 const mockProps = {
   children: 'text',
-  closeIcon: { altText: 'close icon', icon: 'UNICORN' },
   content: { content: 'content' },
-  title: { content: 'title' },
   triggerAsButton: {
     'aria-label': 'Tooltip trigger',
   },
@@ -63,10 +61,8 @@ describe('Tooltip', () => {
 
     fireEvent.mouseEnter(label);
 
-    const title = screen.queryByText(mockProps.title?.content as string);
     const content = screen.queryByText(mockProps.content?.content as string);
 
-    expect(title).toBeNull();
     expect(content).toBeNull();
   });
 
@@ -90,10 +86,8 @@ describe('Tooltip', () => {
 
     fireEvent.mouseEnter(label);
 
-    const title = screen.getByText(mockProps.title?.content as string);
     const content = screen.getByText(mockProps.content?.content as string);
 
-    expect(title).toBeVisible();
     expect(content).toBeVisible();
   });
 
@@ -105,10 +99,8 @@ describe('Tooltip', () => {
 
     fireEvent.mouseEnter(label);
 
-    const title = screen.getByText(mockProps.title?.content as string);
     const content = screen.getByText(mockProps.content?.content as string);
 
-    expect(title).toBeVisible();
     expect(content).toBeVisible();
   });
 
@@ -124,10 +116,8 @@ describe('Tooltip', () => {
 
     fireEvent.mouseEnter(label);
 
-    const title = screen.getByText(mockProps.title?.content as string);
     const content = screen.getByText(mockProps.content?.content as string);
 
-    expect(title).toBeVisible();
     expect(content).toBeVisible();
   });
 
@@ -139,10 +129,8 @@ describe('Tooltip', () => {
 
     fireEvent.mouseEnter(label);
 
-    const title = screen.getByText(mockProps.title?.content as string);
     const content = screen.getByText(mockProps.content?.content as string);
 
-    expect(title).toBeVisible();
     expect(content).toBeVisible();
   });
 
@@ -269,15 +257,12 @@ describe('Tooltip', () => {
 
     fireEvent.click(label);
 
-    const title = screen.getByText(mockProps.title?.content as string);
     const content = screen.getByText(mockProps.content?.content as string);
 
-    expect(title).toBeVisible();
     expect(content).toBeVisible();
 
     fireEvent.click(label);
 
-    expect(title).not.toBeVisible();
     expect(content).not.toBeVisible();
   });
 
@@ -339,15 +324,9 @@ describe('Tooltip', () => {
     const label = screen.getByText(mockProps.children as string);
     fireEvent.mouseDown(label);
 
-    const title = screen.queryByText(mockProps.title?.content as string);
     const content = screen.queryByText(mockProps.content?.content as string);
-    const closeIcon = screen.queryByRole('button', {
-      name: mockProps.closeIcon?.altText,
-    });
 
-    expect(title).toBeNull();
     expect(content).toBeNull();
-    expect(closeIcon).toBeNull();
   });
 
   // it('Tooltip - mobile - it shows tooltip when clicked and not on focus', () => {
@@ -399,21 +378,13 @@ describe('Tooltip', () => {
 
     fireEvent.mouseEnter(label);
 
-    const title = screen.queryByText(mockProps.title?.content as string);
     const content = screen.queryByText(mockProps.content?.content as string);
-    const closeIcon = screen.queryByRole('button', {
-      name: mockProps.closeIcon?.altText,
-    });
 
-    expect(title).toBeNull();
     expect(content).toBeNull();
-    expect(closeIcon).toBeNull();
 
     fireEvent.mouseLeave(label);
 
-    expect(title).toBeNull();
     expect(content).toBeNull();
-    expect(closeIcon).toBeNull();
   });
 
   // it('Tooltip - mobile - close on press escape', () => {
@@ -443,10 +414,8 @@ describe('Tooltip', () => {
 
     fireEvent.click(label);
 
-    const title = screen.getByText(mockProps.title?.content as string);
     const content = screen.getByText(mockProps.content?.content as string);
 
-    expect(title).toBeVisible();
     expect(content).toBeVisible();
   });
 
@@ -456,10 +425,8 @@ describe('Tooltip', () => {
 
     fireEvent.keyDown(label, ENTER);
 
-    const title = screen.getByText(mockProps.title?.content as string);
     const content = screen.getByText(mockProps.content?.content as string);
 
-    expect(title).toBeVisible();
     expect(content).toBeVisible();
   });
 

@@ -2,7 +2,6 @@ export { ModalControlled } from './modalControlled';
 export { Modal } from './modalUnControlled';
 export type {
   ModalButtonProps,
-  ModalFooterProps,
   ModalPopoverProps,
   ModalStyledProps,
   ModalContentContainerProps,

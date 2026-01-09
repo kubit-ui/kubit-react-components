@@ -3,19 +3,14 @@ import './tooltip.css';
 import { useId } from 'react';
 
 import { Text } from '@/components/text/text';
-import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
 import { POSITIONS } from '@/lib/types/positions/positions';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import {
-  processIconProp,
-  processTextProp,
-} from '@/lib/utils/process/processCommonProp';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { TooltipStandAloneProps } from './types/tooltip';
 
-import { IconHost as Icon } from '../icon/iconHost';
 import { Popover } from '../popover/popover';
 import { TooltipTrigger } from './components/tooltipTrigger';
 import { getAriaDescriptorsBy } from './utils/tooltip.utils';
@@ -23,13 +18,12 @@ import { getAriaDescriptorsBy } from './utils/tooltip.utils';
 /**
  * Standalone tooltip component for displaying contextual help text.
  *
- * This component renders a tooltip with title, content, optional icon, and close button.
+ * This component renders a tooltip with content only.
  * It supports multiple positions and responsive behavior.
  *
  * @example
  * ```tsx
  * <TooltipStandAlone
- *   title={{ content: "Help" }}
  *   content={{ content: "This is helpful information" }}
  *   align="top"
  * />
@@ -39,18 +33,14 @@ export const TooltipStandAlone = ({
   align,
   children,
   childrenAsButton = true,
-  closeIcon,
   content,
   contentHasScroll,
   contentRef,
   contentScrollArias,
   cssClasses,
   disabled,
-  dragIcon,
-  dragIconRef,
   labelRef,
   mediaDevice,
-  onCloseIconClick,
   onPopoverCloseInternally,
   onTooltipFocus,
   onTooltipKeyDown,
@@ -60,7 +50,6 @@ export const TooltipStandAlone = ({
   onTriggerMouseUp,
   popover,
   popoverOpen,
-  title,
   tooltipAriaLabel,
   tooltipAsModal,
   tooltipRef,
@@ -72,15 +61,13 @@ export const TooltipStandAlone = ({
   const reactId = useId();
   // Sanitize React's useId output (e.g., ":r0:") to be valid HTML ID
   const uniqueId = `tooltip-${reactId.replace(/:/g, '')}`;
-  const titleId = `${uniqueId}-title`;
   const contentId = `${uniqueId}-content`;
 
   const processedContent = processTextProp(content);
-  const processedTitle = processTextProp(title);
 
   const isTextContent = typeof processedContent.children === 'string';
 
-  const { isDesktop, isMobile, isTablet } = useActiveBreakpoints();
+  const { isDesktop, isTablet } = useActiveBreakpoints();
   const isDesktopOrTablet = isDesktop || isTablet;
 
   if (disabled) {
@@ -96,22 +83,9 @@ export const TooltipStandAlone = ({
   const ariaDescriptorsBy = getAriaDescriptorsBy({
     contentId,
     hasContent: !!content,
-    hasTitle: !!processedTitle.children,
-    titleId,
+    hasTitle: false,
+    titleId: '',
   });
-
-  const getTooltipStyle = (hasTitle: boolean, hasCloseIcon: boolean) => {
-    if (hasTitle && hasCloseIcon) {
-      return { justifyContent: 'space-between' };
-    }
-    if (hasTitle) {
-      return { justifyContent: 'flex-end' };
-    }
-    if (hasCloseIcon) {
-      return { justifyContent: 'flex-start' };
-    }
-    return { display: 'none' };
-  };
 
   const customAttributes = {
     'data-align': align || POSITIONS.TOP,
@@ -122,14 +96,7 @@ export const TooltipStandAlone = ({
     <div
       ref={tooltipRef}
       aria-label={isDesktopOrTablet ? tooltipAriaLabel : undefined}
-      aria-labelledby={
-        isDesktopOrTablet
-          ? getAriaDescriptorsBy({
-              hasTitle: !!processedTitle.children,
-              titleId,
-            })
-          : undefined
-      }
+      aria-labelledby={isDesktopOrTablet ? undefined : undefined}
       aria-modal={isDesktopOrTablet && tooltipAsModal ? true : undefined}
       className={classNames(
         'kbt-tooltip__external-container',
@@ -147,48 +114,6 @@ export const TooltipStandAlone = ({
       {...customProps}
     >
       <div className={cssClasses?.tooltipinternalcontainer}>
-        {/* Drag Icon */}
-        {(isMobile || isTablet) && !!dragIcon && (
-          <div
-            ref={dragIconRef}
-            className={cssClasses?.dragiconcontainer}
-            data-testid={`${dataTestId}-drag`}
-          >
-            <ElementOrIcon className={cssClasses?.dragicon} {...dragIcon} />
-          </div>
-        )}
-
-        {/* Header */}
-        <div
-          className={classNames(cssClasses?.title, cssClasses?.headercontainer)}
-          style={getTooltipStyle(!!processedTitle.children, !!closeIcon?.icon)}
-        >
-          {/* Close Icon */}
-          {processIconProp(closeIcon).icon && (
-            <div className={cssClasses?.closebuttoncontainer}>
-              <Icon
-                {...processIconProp(closeIcon)}
-                className={cssClasses?.closebuttonicon}
-                icon={processIconProp(closeIcon).icon as string}
-                onClick={onCloseIconClick}
-              />
-            </div>
-          )}
-
-          {/* Title */}
-          {!!processedTitle.children && (
-            <div className="kbt-tooltip__title" id={titleId}>
-              <Text
-                additionalClasses={{ text: cssClasses?.title }}
-                component="h2"
-                {...processedTitle}
-              >
-                {processedTitle.children}
-              </Text>
-            </div>
-          )}
-        </div>
-
         {/* Content */}
         <div
           ref={contentRef}
@@ -209,9 +134,6 @@ export const TooltipStandAlone = ({
               className={classNames(
                 'kbt-tooltip__paragraph',
                 cssClasses?.paragraphcontainer,
-                {
-                  [`${cssClasses?.divider}`]: !!processedTitle.children,
-                },
               )}
               id={contentId}
             >
@@ -273,10 +195,7 @@ export const TooltipStandAlone = ({
               : undefined
           }
           aria-label={popover?.['aria-label'] || tooltipAriaLabel}
-          aria-labelledby={getAriaDescriptorsBy({
-            hasTitle: !!processedTitle.children,
-            titleId,
-          })}
+          aria-labelledby={undefined}
           aria-modal={tooltipAsModal || undefined}
           component="div"
           disableAutoFocusFirstDescendantAfterClose={true}

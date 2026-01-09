@@ -8,7 +8,6 @@ import type {
   ReactNode,
 } from 'react';
 
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 import type { DeviceBreakpointsType } from '@/lib/types/breakpoints/breakpoints';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
@@ -17,7 +16,6 @@ import type {
 } from '@/lib/types/cssGenerator/kubit/componentsTypes';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
-import type { IconProps } from '../../icon/types/icon';
 import type { IPopover } from '../../popover/types/popover';
 
 import { type TooltipAlignType } from './tooltipAlign';
@@ -25,12 +23,6 @@ import { type TooltipAlignType } from './tooltipAlign';
 export type TooltipCssClasses = ComponentSelected<
   ComponentsTypesComponents['TOOLTIP']
 >;
-/**
- * Represents the type for the close icon in the Tooltip component.
- */
-export type TooltipCloseIconProps = Omit<IconProps, 'icon'> & {
-  icon?: string;
-};
 
 /**
  * Represents the type for the popover in the Tooltip component.
@@ -45,7 +37,6 @@ export interface TooltipStandAloneProps extends DataAttributes {
   disabled?: boolean;
   mediaDevice: DeviceBreakpointsType;
   align?: TooltipAlignType | string;
-  title?: CommonTextProps;
   contentHasScroll?: boolean;
   content?: CommonTextProps;
   contentRef?: ForwardedRef<HTMLDivElement> | undefined;
@@ -57,11 +48,9 @@ export interface TooltipStandAloneProps extends DataAttributes {
   onTriggerClick?: MouseEventHandler<HTMLElement>;
   onTriggerMouseDown?: MouseEventHandler<HTMLElement>;
   onTriggerMouseUp?: MouseEventHandler<HTMLElement>;
-  onCloseIconClick?: MouseEventHandler<HTMLElement>;
   children: JSX.Element | string | ReactNode;
   popoverOpen?: boolean;
   cssClasses?: TooltipCssClasses;
-  closeIcon?: IconProps;
   childrenAsButton?: boolean;
   triggerAsButton?: Pick<
     AriaAttributes,
@@ -81,8 +70,6 @@ export interface TooltipStandAloneProps extends DataAttributes {
   onTriggerKeyDown?: KeyboardEventHandler<HTMLDivElement>;
   onTooltipKeyDown?: KeyboardEventHandler<HTMLElement>;
   popover?: TooltipPopoverProps;
-  dragIcon?: ElementOrIconProps;
-  dragIconRef?: MutableRefObject<HTMLDivElement | null>;
   tooltipAriaLabel?: string;
 }
 

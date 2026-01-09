@@ -1,7 +1,6 @@
 import { RADIUS } from '../../foundations/borders';
 import { COLORS } from '../../foundations/colors';
 import { SHADOW } from '../../foundations/shadow';
-import { SIZES } from '../../foundations/sizes';
 import { SPACINGS } from '../../foundations/spacings';
 import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
 import { Z_INDEX } from '../../foundations/zIndex';
@@ -52,31 +51,10 @@ export const TOOLTIP = {
   _arrowSize: {
     margin: SPACINGS.spacing_0,
   },
-  _closeButtonContainer: {
-    margin: SPACINGS.spacing_0,
-  },
-  _closeButtonIcon: {
-    margin: SPACINGS.spacing_0,
-  },
-  _divider: {
-    margin: SPACINGS.spacing_0,
-  },
-  _dragIcon: {
-    margin: SPACINGS.spacing_0,
-  },
-  _dragIconContainer: {
-    margin: SPACINGS.spacing_0,
-  },
-  _headerContainer: {
-    margin: SPACINGS.spacing_0,
-  },
   _paragraph: {
     margin: SPACINGS.spacing_0,
   },
   _paragraphContainer: {
-    margin: SPACINGS.spacing_0,
-  },
-  _title: {
     margin: SPACINGS.spacing_0,
   },
   _tooltipAlignStyles: {
@@ -103,17 +81,6 @@ export const TOOLTIP = {
       height: '10px',
       width: '10px',
     },
-    _closeButtonContainer: {
-      margin_bottom: SPACINGS.spacing_300,
-    },
-    _closeButtonIcon: {
-      color: COLORS.ACCENT.color_accent_default_icon_150,
-      height: SIZES.size_300,
-      width: SIZES.size_300,
-    },
-    _headerContainer: {
-      flex_direction: 'column',
-    },
     _paragraph: {
       font_weight: FONT_WEIGHT.font_weight_400,
       text_align: TEXT_ALIGN.left,
@@ -122,12 +89,6 @@ export const TOOLTIP = {
     },
     _paragraphContainer: {
       flex_direction: 'column',
-    },
-    _title: {
-      color: COLORS.NEUTRAL.color_neutral_font_250,
-      font_weight: FONT_WEIGHT.font_weight_400,
-      text_align: TEXT_ALIGN.left,
-      ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXPANDED],
     },
     _tooltipExternalContainer: {
       box_sizing: 'border-box',
