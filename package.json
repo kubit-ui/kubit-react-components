@@ -22,7 +22,7 @@
   },
   "license": "Apache-2.0",
   "engines": {
-    "node": "20"
+    "node": "24"
   },
   "packageManager": "pnpm@10.27.0",
   "keywords": [

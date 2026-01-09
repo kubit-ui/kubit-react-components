@@ -9,7 +9,4 @@ export type {
   ModalControlledProps,
   ModalUnControlledProps,
 } from './types/modal';
-export type {
-  ModalStyleProps,
-  ModalVariantStyles,
-} from './types/modalTheme';
+export type { ModalStyleProps, ModalVariantStyles } from './types/modalTheme';
