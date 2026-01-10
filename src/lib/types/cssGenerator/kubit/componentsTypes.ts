@@ -1,4 +1,4 @@
-export type ComponentsTypesAvailableComponents = 'ACCORDION' | 'ALERT' | 'AVATAR' | 'BADGE' | 'BREADCRUMBS' | 'BUTTON' | 'CALENDAR' | 'CARD_IMAGE' | 'CAROUSEL' | 'CHECKBOX' | 'CHECKBOX_BASE' | 'CHIP' | 'CONTAINER' | 'DATA_TABLE' | 'DOT' | 'ERROR_MESSAGE' | 'ICON' | 'INPUT' | 'INPUT_BASE' | 'INPUT_DECORATION' | 'INPUT_SIGNATURE' | 'ITEM_ROVE' | 'LINK' | 'LINK_AS_BUTTON' | 'LIST_OPTIONS' | 'MODAL' | 'OPTION' | 'OVERLAY' | 'PAGE_CONTROL' | 'PAGINATION' | 'POPOVER' | 'PROGRESS_BAR' | 'RADIO_BUTTON' | 'SELECT' | 'SELECTOR_BOX_FILE' | 'SKELETON' | 'SLIDER' | 'SNACKBAR' | 'STEPPER_NUMBER' | 'TABLE' | 'TABLE_BODY' | 'TABLE_CAPTION' | 'TABLE_CELL' | 'TABLE_DIVIDER' | 'TABLE_FOOT' | 'TABLE_HEAD' | 'TABLE_ROW' | 'TABS' | 'TAG' | 'TEXT' | 'TEXT_AREA' | 'TEXT_COUNT' | 'TOGGLE' | 'TOOLTIP' | 'VIRTUAL_KEYBOARD'
+export type ComponentsTypesAvailableComponents = 'ACCORDION' | 'ALERT' | 'AVATAR' | 'BADGE' | 'BREADCRUMBS' | 'BUTTON' | 'CALENDAR' | 'CARD' | 'CAROUSEL' | 'CHECKBOX' | 'CHECKBOX_BASE' | 'CHIP' | 'CONTAINER' | 'DATA_TABLE' | 'DOT' | 'ERROR_MESSAGE' | 'ICON' | 'INPUT' | 'INPUT_BASE' | 'INPUT_DECORATION' | 'INPUT_SIGNATURE' | 'ITEM_ROVE' | 'LINK' | 'LINK_AS_BUTTON' | 'LIST_OPTIONS' | 'MODAL' | 'OPTION' | 'OVERLAY' | 'PAGE_CONTROL' | 'PAGINATION' | 'POPOVER' | 'PROGRESS_BAR' | 'RADIO_BUTTON' | 'SELECT' | 'SELECTOR_BOX_FILE' | 'SKELETON' | 'SLIDER' | 'SNACKBAR' | 'STEPPER_NUMBER' | 'TABLE' | 'TABLE_BODY' | 'TABLE_CAPTION' | 'TABLE_CELL' | 'TABLE_DIVIDER' | 'TABLE_FOOT' | 'TABLE_HEAD' | 'TABLE_ROW' | 'TABS' | 'TAG' | 'TEXT' | 'TEXT_AREA' | 'TEXT_COUNT' | 'TOGGLE' | 'TOOLTIP' | 'VIRTUAL_KEYBOARD'
 
 type NonVariablesKeys<T> = {
   [K in keyof T]: K extends `$${string}` ? never : K;
@@ -176,22 +176,16 @@ export type ComponentsTypesComponents = {
       loader: string,
     },
   },
-  CARD_IMAGE: {
-    card_image: string,
+  CARD: {
+    card: string,
     content: string,
-    description: string,
-    descriptioncontainer: string,
-    imagecontainer: string,
-    linkcontainer: string,
-    textcontainer: string,
-    title: string,
-    titlecontainer: string,
-    $_alternative: {
-      card_image: string,
-    },
+    footer: string,
+    header: string,
     $_default: {
-      card_image: string,
-      description: string,
+      card: string,
+      content: string,
+      footer: string,
+      header: string,
     },
   },
   CAROUSEL: {

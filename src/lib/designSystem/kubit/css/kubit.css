@@ -725,17 +725,15 @@ body *:focus-visible { box-shadow: 0 0 0 0.25rem #fff; outline-color: #2C71DB; o
 .calendar__yearelement[data-state="selected"] { background-color: var(--colors-accent-color-accent-default-border-100); border-radius: var(--radius-radius-50); }
 .calendar__yearlistitem { text-align: center; }
 .calendar__yearslist { display: grid; grid-gap: var(--spacings-spacing-300); gap: var(--spacings-spacing-300); grid-template-columns: repeat(4, 1fr); height: -moz-fit-content; height: fit-content; justify-content: space-between; left: var(--spacings-spacing-0); max-height: 18rem; overflow: auto; padding: var(--spacings-spacing-150); position: relative; top: var(--spacings-spacing-0); width: var(--spacings-spacing-100-percent); }
-.card_image { cursor: pointer; display: flex; flex-direction: column; }
-.card_image__content { display: flex; flex-direction: column; height: var(--spacings-spacing-100-percent); justify-content: space-between; padding: var(--spacings-spacing-150); }
-.card_image__description { color: var(--colors-neutral-color-neutral-bg-100); font-weight: var(--font-weight-font-weight-400); text-align: var(--text-align-left); }
-.card_image__descriptioncontainer { margin-bottom: var(--spacings-spacing-150); }
-.card_image__imagecontainer { background-position: var(--spacings-spacing-50-percent) var(--spacings-spacing-50-percent); background-size: auto; border-top-left-radius: var(--radius-radius-50); border-top-right-radius: var(--radius-radius-50); flex: 1; height: 12rem; max-height: 12rem; min-height: 12rem; }
-.card_image__linkcontainer { display: flex; justify-content: var(--text-align-left); }
-.card_image__textcontainer { padding: var(--spacings-spacing-0); }
-.card_image__title { color: var(--colors-neutral-color-neutral-bg-100); font-weight: var(--font-weight-font-weight-600); }
-.card_image__titlecontainer { margin-bottom: var(--spacings-spacing-150); }
-.card_image--alternative { background-color: var(--colors-neutral-color-neutral-bg-100); border-radius: var(--radius-radius-50); }
-.card_image--default { background-color: var(--colors-neutral-color-neutral-bg-100); border-radius: var(--radius-radius-50); box-shadow: var(--shadow-shadow-10); }
+.card { border-radius: var(--radius-radius-00); border-style: solid; border-width: var(--borders-border-50); cursor: default; display: flex; flex-direction: column; overflow: hidden; transition: all 0.2s ease-in-out; }
+.card__content { padding: var(--spacings-spacing-400); }
+.card__footer { padding: var(--spacings-spacing-400); padding-top: var(--spacings-spacing-0); }
+.card__header { padding: var(--spacings-spacing-400); padding-bottom: var(--spacings-spacing-0); }
+.card--default { background-color: var(--colors-neutral-color-neutral-bg-250); border-color: var(--colors-neutral-color-neutral-border-50); }
+.card__footer--default { color: var(--colors-neutral-color-neutral-icon-50); }
+.card__header--default { font-weight: var(--font-weight-font-weight-600); }
+.card--default:hover { box-shadow: var(--shadow-shadow-10); transform: translateY(-2px); }
+.card--default[data-state="selected"] { border-color: var(--colors-brand-color-brand-border-100); box-shadow: var(--shadow-shadow-10); }
 .carousel { display: flex; }
 .carousel__content { align-items: stretch; display: flex; flex-direction: row; gap: var(--spacings-spacing-300); left: 0; position: relative; }
 .carousel__content[data-center-mode="true"] > * { transform: scale(0.85); transition: transform 0.5s ease-out; }
@@ -1438,8 +1436,9 @@ body *:focus-visible { box-shadow: 0 0 0 0.25rem #fff; outline-color: #2C71DB; o
 .calendar__backtext { font-size: 0.875rem; line-height: 1.25rem; }
 .calendar__dayslist { font-size: 0.875rem; line-height: 1.25rem; }
 .calendar { border-color: var(--colors-neutral-color-neutral-border-50); border-style: solid; border-width: var(--borders-border-100); margin-top: var(--spacings-spacing-150); padding: var(--spacings-spacing-300) var(--spacings-spacing-0); }
-.card_image__title { font-size: 1rem; line-height: 1.5rem; }
-.card_image__description--default { font-size: 1rem; line-height: 1.5rem; }
+.card__content--default { font-size: 1rem; line-height: 1.5rem; }
+.card__footer--default { font-size: 0.875rem; line-height: 1.25rem; }
+.card__header--default { font-size: 1.25rem; line-height: 1.5rem; }
 .chip__errormessage { font-size: 0.75rem; line-height: 1rem; }
 .chip__label { font-size: 0.875rem; line-height: 1.25rem; }
 .chip__rangeitemseparator { font-size: 0.875rem; line-height: 1.25rem; }
@@ -1519,8 +1518,9 @@ body *:focus-visible { box-shadow: 0 0 0 0.25rem #fff; outline-color: #2C71DB; o
 .calendar__backtext { font-size: 0.75rem; line-height: 1rem; }
 .calendar__dayslist { font-size: 0.75rem; line-height: 1rem; }
 .calendar { box-shadow: none; padding: var(--spacings-spacing-0); }
-.card_image__title { font-size: 0.875rem; line-height: 1.25rem; }
-.card_image__description--default { font-size: 0.875rem; line-height: 1.25rem; }
+.card__content--default { font-size: 0.875rem; line-height: 1.25rem; }
+.card__footer--default { font-size: 0.75rem; line-height: 1rem; }
+.card__header--default { font-size: 1.125rem; line-height: 1.5rem; }
 .chip__errormessage { font-size: 0.75rem; line-height: 1rem; }
 .chip__label { font-size: 0.75rem; line-height: 1rem; }
 .chip__rangeitemseparator { font-size: 0.75rem; line-height: 1rem; }

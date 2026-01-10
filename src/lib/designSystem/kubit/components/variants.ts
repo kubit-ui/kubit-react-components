@@ -5,6 +5,7 @@ export * from './badge/variants';
 export * from './breadcrumbs/variants';
 export * from './button/variants';
 export * from './calendar/variants';
+export * from './card/variants';
 export * from './carousel/variants';
 export * from './checkbox/variants';
 export * from './checkboxBase/variants';

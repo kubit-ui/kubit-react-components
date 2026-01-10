@@ -5,6 +5,7 @@ import { BADGE } from './badge/styles';
 import { BREADCRUMBS } from './breadcrumbs/styles';
 import { BUTTON } from './button/styles';
 import { CALENDAR } from './calendar/styles';
+import { CARD } from './card/styles';
 import { CAROUSEL } from './carousel/styles';
 import { CHECKBOX } from './checkbox/styles';
 import { CHECKBOX_BASE } from './checkboxBase/styles';
@@ -61,6 +62,7 @@ export const KUBIT_STYLES = {
   BREADCRUMBS,
   BUTTON,
   CALENDAR,
+  CARD,
   CAROUSEL,
   CHECKBOX,
   CHECKBOX_BASE,
