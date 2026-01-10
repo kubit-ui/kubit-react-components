@@ -5,7 +5,6 @@ export * from './badge/styles';
 export * from './breadcrumbs/styles';
 export * from './button/styles';
 export * from './calendar/styles';
-export * from './cardImage/styles';
 export * from './carousel/styles';
 export * from './checkbox/styles';
 export * from './checkboxBase/styles';
