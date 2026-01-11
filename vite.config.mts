@@ -438,7 +438,13 @@ export default defineConfig(({ mode }) => ({
     minify: 'terser',
     outDir: 'dist',
     rollupOptions: {
-      external: ['react', 'react-dom', '@floating-ui/dom'],
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
+        '@floating-ui/dom',
+      ],
       output: [
         // ESM with individual modules
         {
