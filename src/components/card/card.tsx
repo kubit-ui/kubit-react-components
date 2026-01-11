@@ -2,8 +2,9 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import { CardStandAlone } from './cardStandAlone';
 import type { CardProps } from './types/card';
+
+import { CardStandAlone } from './cardStandAlone';
 
 /**
  * Card component for displaying content in a structured container.

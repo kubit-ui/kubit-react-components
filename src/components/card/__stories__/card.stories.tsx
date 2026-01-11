@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { ReplaceContent } from '../../../lib/storybook/components/replaceContent/replaceContent';
 import { Card as CardStory } from '../card';
 import { argtypes } from './argtypes';
 
@@ -16,12 +17,20 @@ type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
 const commonArgs = {
   content: (
-    <replace-content>
+    <ReplaceContent>
       This is the card content area where you can add any content
-    </replace-content>
+    </ReplaceContent>
   ),
-  footer: <replace-content>Card footer information</replace-content>,
-  header: <replace-content>Card Title</replace-content>,
+  footer: (
+    <ReplaceContent height="100px" iconHeight={20}>
+      Card footer information
+    </ReplaceContent>
+  ),
+  header: (
+    <ReplaceContent height="100px" iconHeight={20}>
+      Card Title
+    </ReplaceContent>
+  ),
   variant: 'DEFAULT',
 };
 

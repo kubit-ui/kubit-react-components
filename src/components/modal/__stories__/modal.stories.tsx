@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { ModalVariantType } from '@/lib/designSystem/kubit/components/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
+import { ReplaceContent } from '@/lib/storybook/components/replaceContent/replaceContent';
 
 import { ModalControlled as Story } from '../modalControlled';
 import { argtypes } from './argtypes';
@@ -48,7 +49,7 @@ type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
 const commonArgs = {
   closeIcon: { icon: ICONS.CLOSE },
-  content: <replace-content>Sixth slide</replace-content>,
+  content: <ReplaceContent>Sixth slide</ReplaceContent>,
   contentScrollArias: {
     'aria-label': 'Modal content scroll',
   },

@@ -138,14 +138,14 @@ describe('useClassName', () => {
       () =>
         useClassName({
           additionalClassNames: {},
-          component: 'CARD_IMAGE',
+          component: 'CARD',
         }),
       { wrapper },
     );
 
     expect(mockGetComponentStyles).toHaveBeenCalledWith({
       additionalClassNames: {},
-      component: 'CARD_IMAGE',
+      component: 'CARD',
       variant: '',
     });
     expect(result.current).toEqual({

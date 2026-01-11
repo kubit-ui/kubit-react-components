@@ -1,11 +1,12 @@
+import { userEvent } from '@testing-library/user-event';
 import { useState } from 'react';
-
 import { axe } from 'vitest-axe';
 
 import { render } from '@/lib/tests/render/render';
 
-import { Card } from '../card';
 import type { CardProps } from '../types/card';
+
+import { Card } from '../card';
 
 const mockProps: CardProps<'DEFAULT' | 'PRIMARY' | 'SECONDARY'> = {
   content: 'Card content',
@@ -154,6 +155,7 @@ describe('Card Component', () => {
   it('Should handle mouse events', async () => {
     const handleMouseEnter = vi.fn();
     const handleMouseLeave = vi.fn();
+    const user = userEvent.setup();
     const { getByTestId } = renderCard({
       onMouseEnter: handleMouseEnter,
       onMouseLeave: handleMouseLeave,
@@ -161,10 +163,10 @@ describe('Card Component', () => {
 
     const card = getByTestId('card');
 
-    card.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+    await user.hover(card);
     expect(handleMouseEnter).toHaveBeenCalledTimes(1);
 
-    card.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+    await user.unhover(card);
     expect(handleMouseLeave).toHaveBeenCalledTimes(1);
   });
 
@@ -190,7 +192,7 @@ describe('Card Component', () => {
     expect(results.violations).toHaveLength(0);
   });
 
-  it('Should work with controlled state', () => {
+  it('Should work with controlled state', async () => {
     const ControlledCard = () => {
       const [state, setState] = useState<'default' | 'selected'>('default');
 
@@ -205,6 +207,7 @@ describe('Card Component', () => {
       );
     };
 
+    const user = userEvent.setup();
     const { getByRole, getByTestId } = render(<ControlledCard />);
 
     const card = getByTestId('card');
@@ -212,11 +215,11 @@ describe('Card Component', () => {
 
     // Test click to select
     const button = getByRole('button');
-    button.click();
+    await user.click(button);
     expect(card).toHaveAttribute('data-state', 'selected');
 
     // Test click to deselect
-    button.click();
+    await user.click(button);
     expect(card).toHaveAttribute('data-state', 'default');
   });
 });

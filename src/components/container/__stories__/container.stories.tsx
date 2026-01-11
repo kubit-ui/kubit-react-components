@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { ReplaceContent } from '../../../lib/storybook/components/replaceContent/replaceContent';
 import { Container as ContainerStory } from '../container';
 import { argtypes } from './argtypes';
 
@@ -15,7 +16,7 @@ export default meta;
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
 const commonArgs = {
-  children: <replace-content>Replace here your Content</replace-content>,
+  children: <ReplaceContent>Replace here your Content</ReplaceContent>,
   title: "I'm a container",
   variant: 'DEFAULT',
 };

@@ -1,4 +1,5 @@
 import type { CardVariantStyles } from '@/components/card/types/cardTheme';
+
 import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';

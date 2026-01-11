@@ -1,6 +1,5 @@
 declare namespace JSX {
   interface IntrinsicElements {
-    'replace-content': unknown;
     'screen-reader-only': unknown;
     'kbt-image': {
       alt?: string;
