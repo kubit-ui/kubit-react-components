@@ -31,7 +31,6 @@ export const InputStandAlone = forwardRef<HTMLDivElement, InputStandAloneProps>(
       filled,
       focused,
       inputBaseId,
-      label,
       labelId,
       leftDecoration,
       required,

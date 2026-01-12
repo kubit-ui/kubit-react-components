@@ -9,7 +9,6 @@ export * from './carousel/styles';
 export * from './checkbox/styles';
 export * from './checkboxBase/styles';
 export * from './chip/styles';
-export * from './container/styles';
 export * from './dataTable/styles';
 export * from './dot/styles';
 export * from './errorMessage/styles';

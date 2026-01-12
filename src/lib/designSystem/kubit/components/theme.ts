@@ -10,7 +10,6 @@ import { CAROUSEL } from './carousel/styles';
 import { CHECKBOX } from './checkbox/styles';
 import { CHECKBOX_BASE } from './checkboxBase/styles';
 import { CHIP } from './chip/styles';
-import { CONTAINER } from './container/styles';
 import { DATA_TABLE } from './dataTable/styles';
 import { DOT } from './dot/styles';
 import { ERROR_MESSAGE } from './errorMessage/styles';
@@ -67,7 +66,6 @@ export const KUBIT_STYLES = {
   CHECKBOX,
   CHECKBOX_BASE,
   CHIP,
-  CONTAINER,
   DATA_TABLE,
   DOT,
   ERROR_MESSAGE,

@@ -508,21 +508,6 @@ export const cssClasses = {
       rangeitemtext: 'chip__rangeitemtext chip__rangeitemtext--default',
     },
   },
-  CONTAINER: {
-    container: 'container',
-    content: 'container__content',
-    header: 'container__header',
-    title: 'container__title',
-    $_alternative: {
-      container: 'container container--alternative',
-    },
-    $_default: {
-      container: 'container container--default',
-    },
-    $_secondary: {
-      container: 'container container--secondary',
-    },
-  },
   DATA_TABLE: {
     data_table: 'data_table',
     headboxshadow: 'data_table__headboxshadow',
@@ -725,32 +710,10 @@ export const cssClasses = {
     optionscontainer: 'list_options__optionscontainer',
     title: 'list_options__title',
     titlecontainer: 'list_options__titlecontainer',
-    $_code_viewer_subtheme: {
-      list_options: 'list_options list_options--code_viewer_subtheme',
-    },
     $_default: {
       list_options: 'list_options list_options--default',
       title: 'list_options__title list_options__title--default',
       titlecontainer: 'list_options__titlecontainer list_options__titlecontainer--default',
-    },
-    $_dropdown_selected_section: {
-      list_options: 'list_options list_options--dropdown_selected_section',
-      optionscontainer: 'list_options__optionscontainer list_options__optionscontainer--dropdown_selected_section',
-    },
-    $_input_dropdown_default: {
-      list_options: 'list_options list_options--input_dropdown_default',
-    },
-    $_input_dropdown_section: {
-      list_options: 'list_options list_options--input_dropdown_section',
-    },
-    $_input_search: {
-      list_options: 'list_options list_options--input_search',
-    },
-    $_side_menu_section: {
-      list_options: 'list_options list_options--side_menu_section',
-      optionscontainer: 'list_options__optionscontainer list_options__optionscontainer--side_menu_section',
-      title: 'list_options__title list_options__title--side_menu_section',
-      titlecontainer: 'list_options__titlecontainer list_options__titlecontainer--side_menu_section',
     },
   },
   MODAL: {
@@ -1404,7 +1367,6 @@ export const cssAvailableComponents = {
   CHECKBOX: 'CHECKBOX',
   CHECKBOX_BASE: 'CHECKBOX_BASE',
   CHIP: 'CHIP',
-  CONTAINER: 'CONTAINER',
   DATA_TABLE: 'DATA_TABLE',
   DOT: 'DOT',
   ERROR_MESSAGE: 'ERROR_MESSAGE',

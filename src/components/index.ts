@@ -10,7 +10,6 @@ export * from './carousel';
 export * from './checkbox';
 export * from './checkboxBase';
 export * from './chip';
-export * from './container';
 export * from './dataTable';
 export * from './dot';
 export * from './icon';

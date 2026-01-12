@@ -133,7 +133,10 @@ const CarouselStory = ({
 const meta = {
   argTypes: argtypes(),
   component: CarouselStory,
-  tags: ['autodocs', 'navigation'],
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['navigation'],
   title: 'Components/Navigation/Carousel',
 } satisfies Meta<ICarouselStory>;
 
@@ -149,9 +152,201 @@ const commonArgs: ICarouselStory = {
   variant: CarouselVariantType.DEFAULT,
 };
 
-export const Carousel: Story = {
+/**
+ * Basic carousel with default configuration.
+ * Shows multiple elements per page with standard navigation.
+ */
+export const Basic: Story = {
   args: {
     ...commonArgs,
+    numElementsPerPage: 3,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Carousel
+  variant="DEFAULT"
+  numElementsPerPage={3}
+  elements={slides}
+  screenReaderOnly={{
+    content: 'Page {{currentPage}} of {{numPages}}'
+  }}
+/>`,
+      },
+    },
+  },
+};
+
+/**
+ * Circular carousel with infinite loop.
+ * Navigation wraps around from last to first slide.
+ */
+export const Circular: Story = {
+  args: {
+    ...commonArgs,
+    circular: true,
+    numElementsPerPage: 3,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Carousel
+  variant="DEFAULT"
+  numElementsPerPage={3}
+  circular={true}
+  elements={slides}
+/>`,
+      },
+    },
+  },
+};
+
+/**
+ * Center mode carousel.
+ * Highlights center element with partial views of adjacent items.
+ */
+export const CenterMode: Story = {
+  args: {
+    ...commonArgs,
+    centerMode: true,
+    extraPadding: 50,
+    numElementsPerPage: 1,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Carousel
+  variant="DEFAULT"
+  numElementsPerPage={1}
+  centerMode={true}
+  extraPadding={50}
+  elements={slides}
+/>`,
+      },
+    },
+  },
+};
+
+/**
+ * Single element per page.
+ * Full-width display for featured content.
+ */
+export const SingleElement: Story = {
+  args: {
+    ...commonArgs,
+    autoFitContainer: true,
+    numElementsPerPage: 1,
+    onePageAlign: 'center',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Carousel
+  variant="DEFAULT"
+  numElementsPerPage={1}
+  autoFitContainer={true}
+  onePageAlign="center"
+  elements={slides}
+/>`,
+      },
+    },
+  },
+};
+
+/**
+ * Multiple elements with custom slide amount.
+ * Slide 2 elements at a time while showing 4.
+ */
+export const CustomSlide: Story = {
+  args: {
+    ...commonArgs,
+    numElementsPerPage: 4,
+    numElementsToSlide: 2,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Carousel
+  variant="DEFAULT"
+  numElementsPerPage={4}
+  numElementsToSlide={2}
+  elements={slides}
+/>`,
+      },
+    },
+  },
+};
+
+/**
+ * Disabled carousel.
+ * All interactions are disabled.
+ */
+export const Disabled: Story = {
+  args: {
+    ...commonArgs,
+    disabled: true,
+    numElementsPerPage: 3,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Carousel
+  variant="DEFAULT"
+  numElementsPerPage={3}
+  disabled={true}
+  elements={slides}
+/>`,
+      },
+    },
+  },
+};
+
+/**
+ * Carousel with custom alignment.
+ * Align content to left when only one page.
+ */
+export const LeftAligned: Story = {
+  args: {
+    ...commonArgs,
+    numElementsPerPage: 3,
+    onePageAlign: 'left',
+    testNumCarouselElements: 3,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Carousel
+  variant="DEFAULT"
+  numElementsPerPage={3}
+  onePageAlign="left"
+  elements={slides}
+/>`,
+      },
+    },
+  },
+};
+
+/**
+ * Auto-fit container carousel.
+ * Automatically adjusts to container width.
+ */
+export const AutoFit: Story = {
+  args: {
+    ...commonArgs,
+    autoFitContainer: true,
+    numElementsPerPage: 3,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Carousel
+  variant="DEFAULT"
+  numElementsPerPage={3}
+  autoFitContainer={true}
+  elements={slides}
+/>`,
+      },
+    },
   },
 };
 
@@ -279,7 +474,9 @@ export const CarouselIntegrationExample: Story = {
     circular: true,
     screenReaderOnly: undefined,
   },
-  render: (args) => <CarouselIntegrationExampleStory {...args} />,
+  render: (args: ICarouselStory) => (
+    <CarouselIntegrationExampleStory {...args} />
+  ),
 };
 
 export const CarouselWithAdditionalClasses: Story = {

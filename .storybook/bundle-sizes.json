@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "generated": "2026-01-03T13:27:12.206Z",
-    "totalComponents": 54,
+    "generated": "2026-01-12T16:38:25.843Z",
+    "totalComponents": 52,
     "totalSize": {
-      "raw": 252087,
-      "gzip": 116992,
-      "formatted": "246.18 KB",
-      "gzipFormatted": "114.25 KB"
+      "raw": 237299,
+      "gzip": 111565,
+      "formatted": "231.74 KB",
+      "gzipFormatted": "108.95 KB"
     }
   },
   "components": {
@@ -14,10 +14,10 @@
       "component": "accordion",
       "sizes": {
         "js": {
-          "raw": 3716,
-          "gzip": 1983,
-          "formatted": "3.63 KB",
-          "gzipFormatted": "1.94 KB"
+          "raw": 3663,
+          "gzip": 1960,
+          "formatted": "3.58 KB",
+          "gzipFormatted": "1.91 KB"
         },
         "css": {
           "raw": 0,
@@ -26,23 +26,48 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 3716,
-          "gzip": 1983,
-          "formatted": "3.63 KB",
-          "gzipFormatted": "1.94 KB"
+          "raw": 3663,
+          "gzip": 1960,
+          "formatted": "3.58 KB",
+          "gzipFormatted": "1.91 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.176Z"
+      "timestamp": "2026-01-12T16:38:25.804Z"
+    },
+    "alert": {
+      "component": "alert",
+      "sizes": {
+        "js": {
+          "raw": 1215,
+          "gzip": 744,
+          "formatted": "1.19 KB",
+          "gzipFormatted": "744 B"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 1215,
+          "gzip": 744,
+          "formatted": "1.19 KB",
+          "gzipFormatted": "744 B"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2026-01-12T16:38:25.805Z"
     },
     "avatar": {
       "component": "avatar",
       "sizes": {
         "js": {
-          "raw": 2755,
-          "gzip": 1353,
-          "formatted": "2.69 KB",
-          "gzipFormatted": "1.32 KB"
+          "raw": 2608,
+          "gzip": 1337,
+          "formatted": "2.55 KB",
+          "gzipFormatted": "1.31 KB"
         },
         "css": {
           "raw": 0,
@@ -51,23 +76,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 2755,
-          "gzip": 1353,
-          "formatted": "2.69 KB",
-          "gzipFormatted": "1.32 KB"
+          "raw": 2608,
+          "gzip": 1337,
+          "formatted": "2.55 KB",
+          "gzipFormatted": "1.31 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.177Z"
+      "timestamp": "2026-01-12T16:38:25.806Z"
     },
     "badge": {
       "component": "badge",
       "sizes": {
         "js": {
-          "raw": 2569,
-          "gzip": 1259,
-          "formatted": "2.51 KB",
-          "gzipFormatted": "1.23 KB"
+          "raw": 2450,
+          "gzip": 1252,
+          "formatted": "2.39 KB",
+          "gzipFormatted": "1.22 KB"
         },
         "css": {
           "raw": 0,
@@ -76,23 +101,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 2569,
-          "gzip": 1259,
-          "formatted": "2.51 KB",
-          "gzipFormatted": "1.23 KB"
+          "raw": 2450,
+          "gzip": 1252,
+          "formatted": "2.39 KB",
+          "gzipFormatted": "1.22 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.178Z"
+      "timestamp": "2026-01-12T16:38:25.806Z"
     },
     "breadcrumbs": {
       "component": "breadcrumbs",
       "sizes": {
         "js": {
-          "raw": 3501,
-          "gzip": 1884,
-          "formatted": "3.42 KB",
-          "gzipFormatted": "1.84 KB"
+          "raw": 3518,
+          "gzip": 1893,
+          "formatted": "3.44 KB",
+          "gzipFormatted": "1.85 KB"
         },
         "css": {
           "raw": 0,
@@ -101,22 +126,22 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 3501,
-          "gzip": 1884,
-          "formatted": "3.42 KB",
-          "gzipFormatted": "1.84 KB"
+          "raw": 3518,
+          "gzip": 1893,
+          "formatted": "3.44 KB",
+          "gzipFormatted": "1.85 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.179Z"
+      "timestamp": "2026-01-12T16:38:25.807Z"
     },
     "button": {
       "component": "button",
       "sizes": {
         "js": {
-          "raw": 2348,
-          "gzip": 1185,
-          "formatted": "2.29 KB",
+          "raw": 2317,
+          "gzip": 1186,
+          "formatted": "2.26 KB",
           "gzipFormatted": "1.16 KB"
         },
         "css": {
@@ -126,23 +151,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 2348,
-          "gzip": 1185,
-          "formatted": "2.29 KB",
+          "raw": 2317,
+          "gzip": 1186,
+          "formatted": "2.26 KB",
           "gzipFormatted": "1.16 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.179Z"
+      "timestamp": "2026-01-12T16:38:25.808Z"
     },
     "calendar": {
       "component": "calendar",
       "sizes": {
         "js": {
-          "raw": 18551,
-          "gzip": 8361,
-          "formatted": "18.12 KB",
-          "gzipFormatted": "8.17 KB"
+          "raw": 18286,
+          "gzip": 8317,
+          "formatted": "17.86 KB",
+          "gzipFormatted": "8.12 KB"
         },
         "css": {
           "raw": 0,
@@ -151,23 +176,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 18551,
-          "gzip": 8361,
-          "formatted": "18.12 KB",
-          "gzipFormatted": "8.17 KB"
+          "raw": 18286,
+          "gzip": 8317,
+          "formatted": "17.86 KB",
+          "gzipFormatted": "8.12 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.181Z"
+      "timestamp": "2026-01-12T16:38:25.810Z"
     },
-    "cardImage": {
-      "component": "cardImage",
+    "card": {
+      "component": "card",
       "sizes": {
         "js": {
-          "raw": 1846,
-          "gzip": 888,
-          "formatted": "1.8 KB",
-          "gzipFormatted": "888 B"
+          "raw": 1495,
+          "gzip": 864,
+          "formatted": "1.46 KB",
+          "gzipFormatted": "864 B"
         },
         "css": {
           "raw": 0,
@@ -176,23 +201,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 1846,
-          "gzip": 888,
-          "formatted": "1.8 KB",
-          "gzipFormatted": "888 B"
+          "raw": 1495,
+          "gzip": 864,
+          "formatted": "1.46 KB",
+          "gzipFormatted": "864 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.182Z"
+      "timestamp": "2026-01-12T16:38:25.810Z"
     },
     "carousel": {
       "component": "carousel",
       "sizes": {
         "js": {
-          "raw": 16926,
-          "gzip": 6871,
-          "formatted": "16.53 KB",
-          "gzipFormatted": "6.71 KB"
+          "raw": 16902,
+          "gzip": 6863,
+          "formatted": "16.51 KB",
+          "gzipFormatted": "6.7 KB"
         },
         "css": {
           "raw": 0,
@@ -201,22 +226,22 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 16926,
-          "gzip": 6871,
-          "formatted": "16.53 KB",
-          "gzipFormatted": "6.71 KB"
+          "raw": 16902,
+          "gzip": 6863,
+          "formatted": "16.51 KB",
+          "gzipFormatted": "6.7 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.183Z"
+      "timestamp": "2026-01-12T16:38:25.811Z"
     },
     "checkbox": {
       "component": "checkbox",
       "sizes": {
         "js": {
-          "raw": 4294,
-          "gzip": 2425,
-          "formatted": "4.19 KB",
+          "raw": 4298,
+          "gzip": 2428,
+          "formatted": "4.2 KB",
           "gzipFormatted": "2.37 KB"
         },
         "css": {
@@ -226,23 +251,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 4294,
-          "gzip": 2425,
-          "formatted": "4.19 KB",
+          "raw": 4298,
+          "gzip": 2428,
+          "formatted": "4.2 KB",
           "gzipFormatted": "2.37 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.184Z"
+      "timestamp": "2026-01-12T16:38:25.812Z"
     },
     "checkboxBase": {
       "component": "checkboxBase",
       "sizes": {
         "js": {
-          "raw": 2295,
-          "gzip": 1350,
-          "formatted": "2.24 KB",
-          "gzipFormatted": "1.32 KB"
+          "raw": 2248,
+          "gzip": 1334,
+          "formatted": "2.2 KB",
+          "gzipFormatted": "1.3 KB"
         },
         "css": {
           "raw": 0,
@@ -251,23 +276,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 2295,
-          "gzip": 1350,
-          "formatted": "2.24 KB",
-          "gzipFormatted": "1.32 KB"
+          "raw": 2248,
+          "gzip": 1334,
+          "formatted": "2.2 KB",
+          "gzipFormatted": "1.3 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.184Z"
+      "timestamp": "2026-01-12T16:38:25.812Z"
     },
     "chip": {
       "component": "chip",
       "sizes": {
         "js": {
-          "raw": 2720,
-          "gzip": 1192,
-          "formatted": "2.66 KB",
-          "gzipFormatted": "1.16 KB"
+          "raw": 2577,
+          "gzip": 1173,
+          "formatted": "2.52 KB",
+          "gzipFormatted": "1.15 KB"
         },
         "css": {
           "raw": 0,
@@ -276,48 +301,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 2720,
-          "gzip": 1192,
-          "formatted": "2.66 KB",
-          "gzipFormatted": "1.16 KB"
+          "raw": 2577,
+          "gzip": 1173,
+          "formatted": "2.52 KB",
+          "gzipFormatted": "1.15 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.184Z"
-    },
-    "container": {
-      "component": "container",
-      "sizes": {
-        "js": {
-          "raw": 1207,
-          "gzip": 696,
-          "formatted": "1.18 KB",
-          "gzipFormatted": "696 B"
-        },
-        "css": {
-          "raw": 0,
-          "gzip": 0,
-          "formatted": "0 B",
-          "gzipFormatted": "0 B"
-        },
-        "total": {
-          "raw": 1207,
-          "gzip": 696,
-          "formatted": "1.18 KB",
-          "gzipFormatted": "696 B"
-        }
-      },
-      "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.185Z"
+      "timestamp": "2026-01-12T16:38:25.812Z"
     },
     "dataTable": {
       "component": "dataTable",
       "sizes": {
         "js": {
-          "raw": 13333,
-          "gzip": 5876,
-          "formatted": "13.02 KB",
-          "gzipFormatted": "5.74 KB"
+          "raw": 12812,
+          "gzip": 5774,
+          "formatted": "12.51 KB",
+          "gzipFormatted": "5.64 KB"
         },
         "css": {
           "raw": 0,
@@ -326,23 +326,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 13333,
-          "gzip": 5876,
-          "formatted": "13.02 KB",
-          "gzipFormatted": "5.74 KB"
+          "raw": 12812,
+          "gzip": 5774,
+          "formatted": "12.51 KB",
+          "gzipFormatted": "5.64 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.187Z"
+      "timestamp": "2026-01-12T16:38:25.814Z"
     },
     "dot": {
       "component": "dot",
       "sizes": {
         "js": {
-          "raw": 1218,
-          "gzip": 757,
-          "formatted": "1.19 KB",
-          "gzipFormatted": "757 B"
+          "raw": 1190,
+          "gzip": 743,
+          "formatted": "1.16 KB",
+          "gzipFormatted": "743 B"
         },
         "css": {
           "raw": 0,
@@ -351,48 +351,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 1218,
-          "gzip": 757,
-          "formatted": "1.19 KB",
-          "gzipFormatted": "757 B"
+          "raw": 1190,
+          "gzip": 743,
+          "formatted": "1.16 KB",
+          "gzipFormatted": "743 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.187Z"
-    },
-    "dropdownSelected": {
-      "component": "dropdownSelected",
-      "sizes": {
-        "js": {
-          "raw": 5202,
-          "gzip": 2527,
-          "formatted": "5.08 KB",
-          "gzipFormatted": "2.47 KB"
-        },
-        "css": {
-          "raw": 0,
-          "gzip": 0,
-          "formatted": "0 B",
-          "gzipFormatted": "0 B"
-        },
-        "total": {
-          "raw": 5202,
-          "gzip": 2527,
-          "formatted": "5.08 KB",
-          "gzipFormatted": "2.47 KB"
-        }
-      },
-      "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.187Z"
+      "timestamp": "2026-01-12T16:38:25.814Z"
     },
     "icon": {
       "component": "icon",
       "sizes": {
         "js": {
-          "raw": 3724,
-          "gzip": 1835,
-          "formatted": "3.64 KB",
-          "gzipFormatted": "1.79 KB"
+          "raw": 3671,
+          "gzip": 1816,
+          "formatted": "3.58 KB",
+          "gzipFormatted": "1.77 KB"
         },
         "css": {
           "raw": 0,
@@ -401,23 +376,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 3724,
-          "gzip": 1835,
-          "formatted": "3.64 KB",
-          "gzipFormatted": "1.79 KB"
+          "raw": 3671,
+          "gzip": 1816,
+          "formatted": "3.58 KB",
+          "gzipFormatted": "1.77 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.188Z"
+      "timestamp": "2026-01-12T16:38:25.815Z"
     },
     "image": {
       "component": "image",
       "sizes": {
         "js": {
-          "raw": 2040,
-          "gzip": 1210,
-          "formatted": "1.99 KB",
-          "gzipFormatted": "1.18 KB"
+          "raw": 1975,
+          "gzip": 1188,
+          "formatted": "1.93 KB",
+          "gzipFormatted": "1.16 KB"
         },
         "css": {
           "raw": 504,
@@ -426,22 +401,22 @@
           "gzipFormatted": "261 B"
         },
         "total": {
-          "raw": 2544,
-          "gzip": 1471,
-          "formatted": "2.48 KB",
-          "gzipFormatted": "1.44 KB"
+          "raw": 2479,
+          "gzip": 1449,
+          "formatted": "2.42 KB",
+          "gzipFormatted": "1.42 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.188Z"
+      "timestamp": "2026-01-12T16:38:25.815Z"
     },
     "input": {
       "component": "input",
       "sizes": {
         "js": {
-          "raw": 2607,
-          "gzip": 1414,
-          "formatted": "2.55 KB",
+          "raw": 2538,
+          "gzip": 1411,
+          "formatted": "2.48 KB",
           "gzipFormatted": "1.38 KB"
         },
         "css": {
@@ -451,23 +426,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 2607,
-          "gzip": 1414,
-          "formatted": "2.55 KB",
+          "raw": 2538,
+          "gzip": 1411,
+          "formatted": "2.48 KB",
           "gzipFormatted": "1.38 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.189Z"
+      "timestamp": "2026-01-12T16:38:25.816Z"
     },
     "inputBase": {
       "component": "inputBase",
       "sizes": {
         "js": {
-          "raw": 1549,
-          "gzip": 1045,
-          "formatted": "1.51 KB",
-          "gzipFormatted": "1.02 KB"
+          "raw": 1521,
+          "gzip": 1026,
+          "formatted": "1.49 KB",
+          "gzipFormatted": "1 KB"
         },
         "css": {
           "raw": 0,
@@ -476,23 +451,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 1549,
-          "gzip": 1045,
-          "formatted": "1.51 KB",
-          "gzipFormatted": "1.02 KB"
+          "raw": 1521,
+          "gzip": 1026,
+          "formatted": "1.49 KB",
+          "gzipFormatted": "1 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.190Z"
+      "timestamp": "2026-01-12T16:38:25.816Z"
     },
     "inputDecoration": {
       "component": "inputDecoration",
       "sizes": {
         "js": {
-          "raw": 1741,
-          "gzip": 1106,
-          "formatted": "1.7 KB",
-          "gzipFormatted": "1.08 KB"
+          "raw": 1801,
+          "gzip": 1123,
+          "formatted": "1.76 KB",
+          "gzipFormatted": "1.1 KB"
         },
         "css": {
           "raw": 0,
@@ -501,23 +476,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 1741,
-          "gzip": 1106,
-          "formatted": "1.7 KB",
-          "gzipFormatted": "1.08 KB"
+          "raw": 1801,
+          "gzip": 1123,
+          "formatted": "1.76 KB",
+          "gzipFormatted": "1.1 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.190Z"
+      "timestamp": "2026-01-12T16:38:25.817Z"
     },
     "inputSignature": {
       "component": "inputSignature",
       "sizes": {
         "js": {
-          "raw": 4945,
-          "gzip": 2417,
-          "formatted": "4.83 KB",
-          "gzipFormatted": "2.36 KB"
+          "raw": 4898,
+          "gzip": 2401,
+          "formatted": "4.78 KB",
+          "gzipFormatted": "2.34 KB"
         },
         "css": {
           "raw": 0,
@@ -526,23 +501,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 4945,
-          "gzip": 2417,
-          "formatted": "4.83 KB",
-          "gzipFormatted": "2.36 KB"
+          "raw": 4898,
+          "gzip": 2401,
+          "formatted": "4.78 KB",
+          "gzipFormatted": "2.34 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.191Z"
+      "timestamp": "2026-01-12T16:38:25.818Z"
     },
     "label": {
       "component": "label",
       "sizes": {
         "js": {
-          "raw": 816,
-          "gzip": 518,
-          "formatted": "816 B",
-          "gzipFormatted": "518 B"
+          "raw": 807,
+          "gzip": 512,
+          "formatted": "807 B",
+          "gzipFormatted": "512 B"
         },
         "css": {
           "raw": 0,
@@ -551,23 +526,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 816,
-          "gzip": 518,
-          "formatted": "816 B",
-          "gzipFormatted": "518 B"
+          "raw": 807,
+          "gzip": 512,
+          "formatted": "807 B",
+          "gzipFormatted": "512 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.191Z"
+      "timestamp": "2026-01-12T16:38:25.818Z"
     },
     "link": {
       "component": "link",
       "sizes": {
         "js": {
-          "raw": 4751,
-          "gzip": 2346,
-          "formatted": "4.64 KB",
-          "gzipFormatted": "2.29 KB"
+          "raw": 4712,
+          "gzip": 2314,
+          "formatted": "4.6 KB",
+          "gzipFormatted": "2.26 KB"
         },
         "css": {
           "raw": 0,
@@ -576,22 +551,22 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 4751,
-          "gzip": 2346,
-          "formatted": "4.64 KB",
-          "gzipFormatted": "2.29 KB"
+          "raw": 4712,
+          "gzip": 2314,
+          "formatted": "4.6 KB",
+          "gzipFormatted": "2.26 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.191Z"
+      "timestamp": "2026-01-12T16:38:25.818Z"
     },
     "listOptions": {
       "component": "listOptions",
       "sizes": {
         "js": {
-          "raw": 3239,
-          "gzip": 1684,
-          "formatted": "3.16 KB",
+          "raw": 3190,
+          "gzip": 1675,
+          "formatted": "3.12 KB",
           "gzipFormatted": "1.64 KB"
         },
         "css": {
@@ -601,48 +576,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 3239,
-          "gzip": 1684,
-          "formatted": "3.16 KB",
+          "raw": 3190,
+          "gzip": 1675,
+          "formatted": "3.12 KB",
           "gzipFormatted": "1.64 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.192Z"
-    },
-    "message": {
-      "component": "message",
-      "sizes": {
-        "js": {
-          "raw": 4173,
-          "gzip": 1774,
-          "formatted": "4.08 KB",
-          "gzipFormatted": "1.73 KB"
-        },
-        "css": {
-          "raw": 0,
-          "gzip": 0,
-          "formatted": "0 B",
-          "gzipFormatted": "0 B"
-        },
-        "total": {
-          "raw": 4173,
-          "gzip": 1774,
-          "formatted": "4.08 KB",
-          "gzipFormatted": "1.73 KB"
-        }
-      },
-      "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.192Z"
+      "timestamp": "2026-01-12T16:38:25.820Z"
     },
     "modal": {
       "component": "modal",
       "sizes": {
         "js": {
-          "raw": 6197,
-          "gzip": 2896,
-          "formatted": "6.05 KB",
-          "gzipFormatted": "2.83 KB"
+          "raw": 6115,
+          "gzip": 2883,
+          "formatted": "5.97 KB",
+          "gzipFormatted": "2.82 KB"
         },
         "css": {
           "raw": 0,
@@ -651,48 +601,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 6197,
-          "gzip": 2896,
-          "formatted": "6.05 KB",
-          "gzipFormatted": "2.83 KB"
+          "raw": 6115,
+          "gzip": 2883,
+          "formatted": "5.97 KB",
+          "gzipFormatted": "2.82 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.193Z"
-    },
-    "navBar": {
-      "component": "navBar",
-      "sizes": {
-        "js": {
-          "raw": 1414,
-          "gzip": 812,
-          "formatted": "1.38 KB",
-          "gzipFormatted": "812 B"
-        },
-        "css": {
-          "raw": 0,
-          "gzip": 0,
-          "formatted": "0 B",
-          "gzipFormatted": "0 B"
-        },
-        "total": {
-          "raw": 1414,
-          "gzip": 812,
-          "formatted": "1.38 KB",
-          "gzipFormatted": "812 B"
-        }
-      },
-      "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.193Z"
+      "timestamp": "2026-01-12T16:38:25.820Z"
     },
     "option": {
       "component": "option",
       "sizes": {
         "js": {
           "raw": 4736,
-          "gzip": 2189,
+          "gzip": 2207,
           "formatted": "4.63 KB",
-          "gzipFormatted": "2.14 KB"
+          "gzipFormatted": "2.16 KB"
         },
         "css": {
           "raw": 0,
@@ -702,22 +627,22 @@
         },
         "total": {
           "raw": 4736,
-          "gzip": 2189,
+          "gzip": 2207,
           "formatted": "4.63 KB",
-          "gzipFormatted": "2.14 KB"
+          "gzipFormatted": "2.16 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.193Z"
+      "timestamp": "2026-01-12T16:38:25.821Z"
     },
     "pageControl": {
       "component": "pageControl",
       "sizes": {
         "js": {
-          "raw": 4621,
-          "gzip": 2399,
-          "formatted": "4.51 KB",
-          "gzipFormatted": "2.34 KB"
+          "raw": 4525,
+          "gzip": 2372,
+          "formatted": "4.42 KB",
+          "gzipFormatted": "2.32 KB"
         },
         "css": {
           "raw": 0,
@@ -726,23 +651,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 4621,
-          "gzip": 2399,
-          "formatted": "4.51 KB",
-          "gzipFormatted": "2.34 KB"
+          "raw": 4525,
+          "gzip": 2372,
+          "formatted": "4.42 KB",
+          "gzipFormatted": "2.32 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.194Z"
+      "timestamp": "2026-01-12T16:38:25.821Z"
     },
     "pagination": {
       "component": "pagination",
       "sizes": {
         "js": {
-          "raw": 3603,
-          "gzip": 1977,
-          "formatted": "3.52 KB",
-          "gzipFormatted": "1.93 KB"
+          "raw": 3539,
+          "gzip": 1951,
+          "formatted": "3.46 KB",
+          "gzipFormatted": "1.91 KB"
         },
         "css": {
           "raw": 0,
@@ -751,23 +676,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 3603,
-          "gzip": 1977,
-          "formatted": "3.52 KB",
-          "gzipFormatted": "1.93 KB"
+          "raw": 3539,
+          "gzip": 1951,
+          "formatted": "3.46 KB",
+          "gzipFormatted": "1.91 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.195Z"
+      "timestamp": "2026-01-12T16:38:25.822Z"
     },
     "popover": {
       "component": "popover",
       "sizes": {
         "js": {
-          "raw": 15000,
-          "gzip": 6415,
-          "formatted": "14.65 KB",
-          "gzipFormatted": "6.26 KB"
+          "raw": 15049,
+          "gzip": 6425,
+          "formatted": "14.7 KB",
+          "gzipFormatted": "6.27 KB"
         },
         "css": {
           "raw": 10358,
@@ -776,14 +701,14 @@
           "gzipFormatted": "1.26 KB"
         },
         "total": {
-          "raw": 25358,
-          "gzip": 7709,
-          "formatted": "24.76 KB",
-          "gzipFormatted": "7.53 KB"
+          "raw": 25407,
+          "gzip": 7719,
+          "formatted": "24.81 KB",
+          "gzipFormatted": "7.54 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.196Z"
+      "timestamp": "2026-01-12T16:38:25.825Z"
     },
     "portal": {
       "component": "portal",
@@ -808,16 +733,16 @@
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.196Z"
+      "timestamp": "2026-01-12T16:38:25.825Z"
     },
     "progressBar": {
       "component": "progressBar",
       "sizes": {
         "js": {
-          "raw": 1872,
-          "gzip": 1013,
-          "formatted": "1.83 KB",
-          "gzipFormatted": "1013 B"
+          "raw": 1587,
+          "gzip": 889,
+          "formatted": "1.55 KB",
+          "gzipFormatted": "889 B"
         },
         "css": {
           "raw": 0,
@@ -826,23 +751,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 1872,
-          "gzip": 1013,
-          "formatted": "1.83 KB",
-          "gzipFormatted": "1013 B"
+          "raw": 1587,
+          "gzip": 889,
+          "formatted": "1.55 KB",
+          "gzipFormatted": "889 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.197Z"
+      "timestamp": "2026-01-12T16:38:25.828Z"
     },
     "radioButton": {
       "component": "radioButton",
       "sizes": {
         "js": {
-          "raw": 3644,
-          "gzip": 1817,
-          "formatted": "3.56 KB",
-          "gzipFormatted": "1.77 KB"
+          "raw": 3601,
+          "gzip": 1824,
+          "formatted": "3.52 KB",
+          "gzipFormatted": "1.78 KB"
         },
         "css": {
           "raw": 0,
@@ -851,23 +776,48 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 3644,
-          "gzip": 1817,
-          "formatted": "3.56 KB",
-          "gzipFormatted": "1.77 KB"
+          "raw": 3601,
+          "gzip": 1824,
+          "formatted": "3.52 KB",
+          "gzipFormatted": "1.78 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.197Z"
+      "timestamp": "2026-01-12T16:38:25.829Z"
+    },
+    "select": {
+      "component": "select",
+      "sizes": {
+        "js": {
+          "raw": 5066,
+          "gzip": 2488,
+          "formatted": "4.95 KB",
+          "gzipFormatted": "2.43 KB"
+        },
+        "css": {
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
+        },
+        "total": {
+          "raw": 5066,
+          "gzip": 2488,
+          "formatted": "4.95 KB",
+          "gzipFormatted": "2.43 KB"
+        }
+      },
+      "treeshakeable": true,
+      "timestamp": "2026-01-12T16:38:25.829Z"
     },
     "selectorBoxFile": {
       "component": "selectorBoxFile",
       "sizes": {
         "js": {
-          "raw": 11318,
-          "gzip": 4960,
-          "formatted": "11.05 KB",
-          "gzipFormatted": "4.84 KB"
+          "raw": 7749,
+          "gzip": 3527,
+          "formatted": "7.57 KB",
+          "gzipFormatted": "3.44 KB"
         },
         "css": {
           "raw": 0,
@@ -876,23 +826,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 11318,
-          "gzip": 4960,
-          "formatted": "11.05 KB",
-          "gzipFormatted": "4.84 KB"
+          "raw": 7749,
+          "gzip": 3527,
+          "formatted": "7.57 KB",
+          "gzipFormatted": "3.44 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.198Z"
+      "timestamp": "2026-01-12T16:38:25.832Z"
     },
     "skeleton": {
       "component": "skeleton",
       "sizes": {
         "js": {
-          "raw": 1176,
-          "gzip": 709,
-          "formatted": "1.15 KB",
-          "gzipFormatted": "709 B"
+          "raw": 1148,
+          "gzip": 693,
+          "formatted": "1.12 KB",
+          "gzipFormatted": "693 B"
         },
         "css": {
           "raw": 362,
@@ -901,23 +851,23 @@
           "gzipFormatted": "204 B"
         },
         "total": {
-          "raw": 1538,
-          "gzip": 913,
-          "formatted": "1.5 KB",
-          "gzipFormatted": "913 B"
+          "raw": 1510,
+          "gzip": 897,
+          "formatted": "1.47 KB",
+          "gzipFormatted": "897 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.198Z"
+      "timestamp": "2026-01-12T16:38:25.832Z"
     },
     "slider": {
       "component": "slider",
       "sizes": {
         "js": {
-          "raw": 18004,
-          "gzip": 6869,
-          "formatted": "17.58 KB",
-          "gzipFormatted": "6.71 KB"
+          "raw": 17687,
+          "gzip": 6801,
+          "formatted": "17.27 KB",
+          "gzipFormatted": "6.64 KB"
         },
         "css": {
           "raw": 0,
@@ -926,23 +876,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 18004,
-          "gzip": 6869,
-          "formatted": "17.58 KB",
-          "gzipFormatted": "6.71 KB"
+          "raw": 17687,
+          "gzip": 6801,
+          "formatted": "17.27 KB",
+          "gzipFormatted": "6.64 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.199Z"
+      "timestamp": "2026-01-12T16:38:25.834Z"
     },
     "snackbar": {
       "component": "snackbar",
       "sizes": {
         "js": {
-          "raw": 2015,
-          "gzip": 1177,
-          "formatted": "1.97 KB",
-          "gzipFormatted": "1.15 KB"
+          "raw": 1983,
+          "gzip": 1162,
+          "formatted": "1.94 KB",
+          "gzipFormatted": "1.13 KB"
         },
         "css": {
           "raw": 0,
@@ -951,23 +901,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 2015,
-          "gzip": 1177,
-          "formatted": "1.97 KB",
-          "gzipFormatted": "1.15 KB"
+          "raw": 1983,
+          "gzip": 1162,
+          "formatted": "1.94 KB",
+          "gzipFormatted": "1.13 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.200Z"
+      "timestamp": "2026-01-12T16:38:25.835Z"
     },
     "stepperNumber": {
       "component": "stepperNumber",
       "sizes": {
         "js": {
-          "raw": 4459,
-          "gzip": 2084,
-          "formatted": "4.35 KB",
-          "gzipFormatted": "2.04 KB"
+          "raw": 4379,
+          "gzip": 2076,
+          "formatted": "4.28 KB",
+          "gzipFormatted": "2.03 KB"
         },
         "css": {
           "raw": 0,
@@ -976,48 +926,48 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 4459,
-          "gzip": 2084,
-          "formatted": "4.35 KB",
-          "gzipFormatted": "2.04 KB"
+          "raw": 4379,
+          "gzip": 2076,
+          "formatted": "4.28 KB",
+          "gzipFormatted": "2.03 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.200Z"
+      "timestamp": "2026-01-12T16:38:25.835Z"
     },
     "table": {
       "component": "table",
       "sizes": {
         "js": {
-          "raw": 5636,
-          "gzip": 2854,
-          "formatted": "5.5 KB",
-          "gzipFormatted": "2.79 KB"
+          "raw": 5313,
+          "gzip": 2764,
+          "formatted": "5.19 KB",
+          "gzipFormatted": "2.7 KB"
         },
         "css": {
-          "raw": 92,
-          "gzip": 91,
-          "formatted": "92 B",
-          "gzipFormatted": "91 B"
+          "raw": 0,
+          "gzip": 0,
+          "formatted": "0 B",
+          "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 5728,
-          "gzip": 2945,
-          "formatted": "5.59 KB",
-          "gzipFormatted": "2.88 KB"
+          "raw": 5313,
+          "gzip": 2764,
+          "formatted": "5.19 KB",
+          "gzipFormatted": "2.7 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.201Z"
+      "timestamp": "2026-01-12T16:38:25.836Z"
     },
     "tableBody": {
       "component": "tableBody",
       "sizes": {
         "js": {
-          "raw": 996,
-          "gzip": 642,
-          "formatted": "996 B",
-          "gzipFormatted": "642 B"
+          "raw": 968,
+          "gzip": 625,
+          "formatted": "968 B",
+          "gzipFormatted": "625 B"
         },
         "css": {
           "raw": 0,
@@ -1026,23 +976,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 996,
-          "gzip": 642,
-          "formatted": "996 B",
-          "gzipFormatted": "642 B"
+          "raw": 968,
+          "gzip": 625,
+          "formatted": "968 B",
+          "gzipFormatted": "625 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.201Z"
+      "timestamp": "2026-01-12T16:38:25.836Z"
     },
     "tableCaption": {
       "component": "tableCaption",
       "sizes": {
         "js": {
-          "raw": 1020,
-          "gzip": 646,
-          "formatted": "1020 B",
-          "gzipFormatted": "646 B"
+          "raw": 992,
+          "gzip": 628,
+          "formatted": "992 B",
+          "gzipFormatted": "628 B"
         },
         "css": {
           "raw": 0,
@@ -1051,23 +1001,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 1020,
-          "gzip": 646,
-          "formatted": "1020 B",
-          "gzipFormatted": "646 B"
+          "raw": 992,
+          "gzip": 628,
+          "formatted": "992 B",
+          "gzipFormatted": "628 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.201Z"
+      "timestamp": "2026-01-12T16:38:25.836Z"
     },
     "tableCell": {
       "component": "tableCell",
       "sizes": {
         "js": {
-          "raw": 1696,
-          "gzip": 940,
-          "formatted": "1.66 KB",
-          "gzipFormatted": "940 B"
+          "raw": 1664,
+          "gzip": 928,
+          "formatted": "1.63 KB",
+          "gzipFormatted": "928 B"
         },
         "css": {
           "raw": 0,
@@ -1076,23 +1026,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 1696,
-          "gzip": 940,
-          "formatted": "1.66 KB",
-          "gzipFormatted": "940 B"
+          "raw": 1664,
+          "gzip": 928,
+          "formatted": "1.63 KB",
+          "gzipFormatted": "928 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.202Z"
+      "timestamp": "2026-01-12T16:38:25.837Z"
     },
     "tableDivider": {
       "component": "tableDivider",
       "sizes": {
         "js": {
-          "raw": 1045,
-          "gzip": 654,
-          "formatted": "1.02 KB",
-          "gzipFormatted": "654 B"
+          "raw": 1017,
+          "gzip": 640,
+          "formatted": "1017 B",
+          "gzipFormatted": "640 B"
         },
         "css": {
           "raw": 0,
@@ -1101,23 +1051,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 1045,
-          "gzip": 654,
-          "formatted": "1.02 KB",
-          "gzipFormatted": "654 B"
+          "raw": 1017,
+          "gzip": 640,
+          "formatted": "1017 B",
+          "gzipFormatted": "640 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.202Z"
+      "timestamp": "2026-01-12T16:38:25.837Z"
     },
     "tableFoot": {
       "component": "tableFoot",
       "sizes": {
         "js": {
-          "raw": 996,
-          "gzip": 637,
-          "formatted": "996 B",
-          "gzipFormatted": "637 B"
+          "raw": 968,
+          "gzip": 623,
+          "formatted": "968 B",
+          "gzipFormatted": "623 B"
         },
         "css": {
           "raw": 0,
@@ -1126,23 +1076,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 996,
-          "gzip": 637,
-          "formatted": "996 B",
-          "gzipFormatted": "637 B"
+          "raw": 968,
+          "gzip": 623,
+          "formatted": "968 B",
+          "gzipFormatted": "623 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.202Z"
+      "timestamp": "2026-01-12T16:38:25.837Z"
     },
     "tableHead": {
       "component": "tableHead",
       "sizes": {
         "js": {
-          "raw": 1067,
-          "gzip": 670,
-          "formatted": "1.04 KB",
-          "gzipFormatted": "670 B"
+          "raw": 1039,
+          "gzip": 654,
+          "formatted": "1.01 KB",
+          "gzipFormatted": "654 B"
         },
         "css": {
           "raw": 0,
@@ -1151,23 +1101,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 1067,
-          "gzip": 670,
-          "formatted": "1.04 KB",
-          "gzipFormatted": "670 B"
+          "raw": 1039,
+          "gzip": 654,
+          "formatted": "1.01 KB",
+          "gzipFormatted": "654 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.202Z"
+      "timestamp": "2026-01-12T16:38:25.838Z"
     },
     "tableRow": {
       "component": "tableRow",
       "sizes": {
         "js": {
-          "raw": 1167,
-          "gzip": 704,
-          "formatted": "1.14 KB",
-          "gzipFormatted": "704 B"
+          "raw": 1139,
+          "gzip": 689,
+          "formatted": "1.11 KB",
+          "gzipFormatted": "689 B"
         },
         "css": {
           "raw": 0,
@@ -1176,23 +1126,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 1167,
-          "gzip": 704,
-          "formatted": "1.14 KB",
-          "gzipFormatted": "704 B"
+          "raw": 1139,
+          "gzip": 689,
+          "formatted": "1.11 KB",
+          "gzipFormatted": "689 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.203Z"
+      "timestamp": "2026-01-12T16:38:25.838Z"
     },
     "tabs": {
       "component": "tabs",
       "sizes": {
         "js": {
-          "raw": 5523,
-          "gzip": 2786,
-          "formatted": "5.39 KB",
-          "gzipFormatted": "2.72 KB"
+          "raw": 5443,
+          "gzip": 2770,
+          "formatted": "5.32 KB",
+          "gzipFormatted": "2.71 KB"
         },
         "css": {
           "raw": 0,
@@ -1201,23 +1151,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 5523,
-          "gzip": 2786,
-          "formatted": "5.39 KB",
-          "gzipFormatted": "2.72 KB"
+          "raw": 5443,
+          "gzip": 2770,
+          "formatted": "5.32 KB",
+          "gzipFormatted": "2.71 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.203Z"
+      "timestamp": "2026-01-12T16:38:25.839Z"
     },
     "tag": {
       "component": "tag",
       "sizes": {
         "js": {
-          "raw": 1400,
-          "gzip": 749,
-          "formatted": "1.37 KB",
-          "gzipFormatted": "749 B"
+          "raw": 1312,
+          "gzip": 739,
+          "formatted": "1.28 KB",
+          "gzipFormatted": "739 B"
         },
         "css": {
           "raw": 0,
@@ -1226,23 +1176,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 1400,
-          "gzip": 749,
-          "formatted": "1.37 KB",
-          "gzipFormatted": "749 B"
+          "raw": 1312,
+          "gzip": 739,
+          "formatted": "1.28 KB",
+          "gzipFormatted": "739 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.203Z"
+      "timestamp": "2026-01-12T16:38:25.840Z"
     },
     "text": {
       "component": "text",
       "sizes": {
         "js": {
-          "raw": 1590,
-          "gzip": 898,
-          "formatted": "1.55 KB",
-          "gzipFormatted": "898 B"
+          "raw": 1558,
+          "gzip": 875,
+          "formatted": "1.52 KB",
+          "gzipFormatted": "875 B"
         },
         "css": {
           "raw": 180,
@@ -1251,22 +1201,22 @@
           "gzipFormatted": "134 B"
         },
         "total": {
-          "raw": 1770,
-          "gzip": 1032,
-          "formatted": "1.73 KB",
-          "gzipFormatted": "1.01 KB"
+          "raw": 1738,
+          "gzip": 1009,
+          "formatted": "1.7 KB",
+          "gzipFormatted": "1009 B"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.204Z"
+      "timestamp": "2026-01-12T16:38:25.840Z"
     },
     "textArea": {
       "component": "textArea",
       "sizes": {
         "js": {
-          "raw": 7503,
-          "gzip": 3861,
-          "formatted": "7.33 KB",
+          "raw": 7336,
+          "gzip": 3858,
+          "formatted": "7.16 KB",
           "gzipFormatted": "3.77 KB"
         },
         "css": {
@@ -1276,23 +1226,23 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 7503,
-          "gzip": 3861,
-          "formatted": "7.33 KB",
+          "raw": 7336,
+          "gzip": 3858,
+          "formatted": "7.16 KB",
           "gzipFormatted": "3.77 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.205Z"
+      "timestamp": "2026-01-12T16:38:25.841Z"
     },
     "toggle": {
       "component": "toggle",
       "sizes": {
         "js": {
-          "raw": 4744,
-          "gzip": 2245,
-          "formatted": "4.63 KB",
-          "gzipFormatted": "2.19 KB"
+          "raw": 4689,
+          "gzip": 2228,
+          "formatted": "4.58 KB",
+          "gzipFormatted": "2.18 KB"
         },
         "css": {
           "raw": 0,
@@ -1301,48 +1251,48 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 4744,
-          "gzip": 2245,
-          "formatted": "4.63 KB",
-          "gzipFormatted": "2.19 KB"
+          "raw": 4689,
+          "gzip": 2228,
+          "formatted": "4.58 KB",
+          "gzipFormatted": "2.18 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.205Z"
+      "timestamp": "2026-01-12T16:38:25.841Z"
     },
     "tooltip": {
       "component": "tooltip",
       "sizes": {
         "js": {
-          "raw": 12394,
-          "gzip": 5463,
-          "formatted": "12.1 KB",
-          "gzipFormatted": "5.33 KB"
+          "raw": 11054,
+          "gzip": 5064,
+          "formatted": "10.79 KB",
+          "gzipFormatted": "4.95 KB"
         },
         "css": {
-          "raw": 824,
-          "gzip": 339,
-          "formatted": "824 B",
-          "gzipFormatted": "339 B"
+          "raw": 656,
+          "gzip": 298,
+          "formatted": "656 B",
+          "gzipFormatted": "298 B"
         },
         "total": {
-          "raw": 13218,
-          "gzip": 5802,
-          "formatted": "12.91 KB",
-          "gzipFormatted": "5.67 KB"
+          "raw": 11710,
+          "gzip": 5362,
+          "formatted": "11.44 KB",
+          "gzipFormatted": "5.24 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.206Z"
+      "timestamp": "2026-01-12T16:38:25.842Z"
     },
     "virtualKeyboard": {
       "component": "virtualKeyboard",
       "sizes": {
         "js": {
-          "raw": 2541,
-          "gzip": 1380,
-          "formatted": "2.48 KB",
-          "gzipFormatted": "1.35 KB"
+          "raw": 2567,
+          "gzip": 1390,
+          "formatted": "2.51 KB",
+          "gzipFormatted": "1.36 KB"
         },
         "css": {
           "raw": 0,
@@ -1351,14 +1301,14 @@
           "gzipFormatted": "0 B"
         },
         "total": {
-          "raw": 2541,
-          "gzip": 1380,
-          "formatted": "2.48 KB",
-          "gzipFormatted": "1.35 KB"
+          "raw": 2567,
+          "gzip": 1390,
+          "formatted": "2.51 KB",
+          "gzipFormatted": "1.36 KB"
         }
       },
       "treeshakeable": true,
-      "timestamp": "2026-01-03T13:27:12.206Z"
+      "timestamp": "2026-01-12T16:38:25.843Z"
     }
   }
 }

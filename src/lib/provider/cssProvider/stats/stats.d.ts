@@ -508,21 +508,6 @@ export interface CssClasses {
       rangeitemtext: string,
     },
   },
-  CONTAINER: {
-    container: string,
-    content: string,
-    header: string,
-    title: string,
-    $_alternative: {
-      container: string,
-    },
-    $_default: {
-      container: string,
-    },
-    $_secondary: {
-      container: string,
-    },
-  },
   DATA_TABLE: {
     data_table: string,
     headboxshadow: string,
@@ -725,30 +710,8 @@ export interface CssClasses {
     optionscontainer: string,
     title: string,
     titlecontainer: string,
-    $_code_viewer_subtheme: {
-      list_options: string,
-    },
     $_default: {
       list_options: string,
-      title: string,
-      titlecontainer: string,
-    },
-    $_dropdown_selected_section: {
-      list_options: string,
-      optionscontainer: string,
-    },
-    $_input_dropdown_default: {
-      list_options: string,
-    },
-    $_input_dropdown_section: {
-      list_options: string,
-    },
-    $_input_search: {
-      list_options: string,
-    },
-    $_side_menu_section: {
-      list_options: string,
-      optionscontainer: string,
       title: string,
       titlecontainer: string,
     },
@@ -1404,7 +1367,6 @@ export interface CssAvailableComponents {
   CHECKBOX: 'CHECKBOX',
   CHECKBOX_BASE: 'CHECKBOX_BASE',
   CHIP: 'CHIP',
-  CONTAINER: 'CONTAINER',
   DATA_TABLE: 'DATA_TABLE',
   DOT: 'DOT',
   ERROR_MESSAGE: 'ERROR_MESSAGE',

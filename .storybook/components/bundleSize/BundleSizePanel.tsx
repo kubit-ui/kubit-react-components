@@ -1,4 +1,7 @@
+/* eslint-disable no-restricted-imports */
 import './bundleSize.css';
+
+import React from 'react';
 
 interface BundleSizeData {
   sizes?: {

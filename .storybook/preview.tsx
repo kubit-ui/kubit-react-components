@@ -1,8 +1,8 @@
 import './storybook.css';
 
-import type { Preview } from '@storybook/react';
-
 import React, { useEffect } from 'react';
+
+import type { Preview } from '@storybook/react';
 import ReactDOM from 'react-dom';
 
 import '../src/lib/designSystem/kubit/css/kubit.css';
@@ -53,16 +53,45 @@ const ThemeDecorator = ({
 const preview: Preview = {
   decorators: [
     (Story, context) => {
+      // Setup source code channel listener
+      useEffect(() => {
+        if (typeof window === 'undefined') {
+          return;
+        }
+
+        // Access Storybook's global channel
+        const channel = (window as any).__STORYBOOK_ADDONS_CHANNEL__;
+
+        if (!channel) {
+          return;
+        }
+
+        const handleSourceRequest = () => {
+          const sourceCode =
+            context.parameters?.docs?.source?.code ||
+            context.parameters?.docs?.source?.originalSource ||
+            context.parameters?.storySource?.source ||
+            '';
+
+          channel.emit('sourceCodeResponse', {
+            source: sourceCode,
+            storyId: context.id,
+          });
+        };
+
+        channel.on('requestSourceCode', handleSourceRequest);
+
+        // Send initial source code
+        handleSourceRequest();
+
+        return () => {
+          channel.off?.('requestSourceCode', handleSourceRequest);
+        };
+      }, [context.id, context.parameters]);
+
       const noteParams = context.parameters.note;
       const notePortal =
         typeof window !== 'undefined' ? ensureNotePortal() : null;
-
-      // Get bundle size for component if available
-      let bundleSize = context.parameters.bundleSize;
-      if (!bundleSize && context.title) {
-        const componentName = extractComponentName(context.title);
-        bundleSize = getBundleSize(componentName);
-      }
 
       return (
         <>
@@ -86,11 +115,6 @@ const preview: Preview = {
           <KubitProvider>
             <ThemeDecorator theme={context.globals.theme}>
               <Story />
-              {bundleSize && context.viewMode === 'docs' && (
-                <div style={{ marginTop: '2rem', maxWidth: '800px' }}>
-                  <BundleSizePanel bundleSize={bundleSize} />
-                </div>
-              )}
             </ThemeDecorator>
           </KubitProvider>
         </>
@@ -149,6 +173,11 @@ const preview: Preview = {
     deepControls: { enabled: true },
     // Docs
     docs: {
+      source: {
+        excludeDecorators: true,
+        format: false,
+        type: 'code',
+      },
       toc: {
         headingSelector: 'h2, h3',
         ignoreSelector: '.docs-story',

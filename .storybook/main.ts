@@ -8,6 +8,8 @@ const config: StorybookConfig = {
     '@storybook/addon-docs',
     'storybook-addon-deep-controls',
     'storybook-addon-pseudo-states',
+    './addons/bundle-size/preset.ts',
+    './addons/source-code/preset.ts',
   ],
   docs: {
     defaultName: 'Documentation',
@@ -25,7 +27,7 @@ const config: StorybookConfig = {
   staticDirs: ['./assets'],
 
   stories: [
-    '../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/components/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))',
     '../.storybook/**/*.@(mdx|stories.@(js|jsx|ts|tjx|tdx|tsx))',
   ],
 

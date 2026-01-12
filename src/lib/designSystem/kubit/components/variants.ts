@@ -10,7 +10,6 @@ export * from './carousel/variants';
 export * from './checkbox/variants';
 export * from './checkboxBase/variants';
 export * from './chip/variants';
-export * from './container/variants';
 export * from './dataTable/variants';
 export * from './dot/variants';
 export * from './input/variants';

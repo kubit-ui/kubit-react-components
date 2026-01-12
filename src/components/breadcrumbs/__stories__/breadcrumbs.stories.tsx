@@ -5,18 +5,16 @@ import { LinkVariant } from '@/lib/designSystem/kubit/components/link/variants';
 import { TextVariantType } from '@/lib/designSystem/kubit/components/text/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import type { BreadcrumbsProps } from '../types/breadcrumbs';
-
 import { BreadCrumbs as BreadCrumbsStory } from '../breadcrumbs';
 import { argtypes } from './argtypes';
 
 const meta = {
   argTypes: argtypes(),
   component: BreadCrumbsStory,
-  render: ({ ...args }) => {
-    return <BreadCrumbsStory {...args} />;
+  parameters: {
+    layout: 'centered',
   },
-  tags: ['autodocs', 'navigation'],
+  tags: ['navigation'],
   title: 'Components/Navigation/Breadcrumb',
 } satisfies Meta<typeof BreadCrumbsStory>;
 
@@ -24,149 +22,396 @@ export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
-const commonArgs: BreadcrumbsProps = {
-  ['aria-label']: 'Navigation breadcrumb',
-  crumbs: [
-    {
-      id: 'home',
-      name: 'Home',
-      url: '/',
+/**
+ * Basic breadcrumbs navigation with multiple levels.
+ * Use this to show the current page's location within the site hierarchy.
+ */
+export const Basic: Story = {
+  args: {
+    ['aria-label']: 'Breadcrumb navigation',
+    crumbs: [
+      { id: 'home', name: 'Home', url: '/' },
+      { id: 'products', name: 'Products', url: '/products' },
+      { id: 'category', name: 'Electronics', url: '/products/electronics' },
+      { name: 'Current Page', url: '#' },
+    ],
+    dividerIcon: ICONS.CHEVRON_RIGHT,
+    link: {
+      action: 'navigation',
+      textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED,
+      variant: LinkVariant.PRIMARY,
     },
-    {
-      id: 'products',
-      name: 'Products',
-      url: '/products',
-    },
-    {
-      id: 'category',
-      name: 'Electronics',
-      url: '/products/electronics',
-    },
-    {
-      name: 'Current Page',
-      url: '#',
-    },
-  ],
-  dividerIcon: { icon: ICONS.CHEVRON_RIGHT },
-  link: {
-    action: 'navigation',
-    textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED,
+    variant: BreadcrumbsVariant.DEFAULT,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Breadcrumbs
+  variant={BreadcrumbsVariant.DEFAULT}
+  aria-label="Breadcrumb navigation"
+  dividerIcon={ICONS.CHEVRON_RIGHT}
+  crumbs={[
+    { id: 'home', name: 'Home', url: '/' },
+    { id: 'products', name: 'Products', url: '/products' },
+    { id: 'category', name: 'Electronics', url: '/products/electronics' },
+    { name: 'Current Page', url: '#' }
+  ]}
+  link={{
     variant: LinkVariant.PRIMARY,
-  },
-  variant: BreadcrumbsVariant.DEFAULT,
-};
-
-export const Breadcrumb: Story = {
-  args: {
-    ...commonArgs,
-  },
-};
-
-export const BreadcrumbWithAdditionalClasses: Story = {
-  args: {
-    ...commonArgs,
-    additionalClasses: {
-      breadcrumbs: 'custom-breadcrumbs',
-      crumb: 'custom-crumb',
-      icondivider: 'custom-divider',
-      link: 'custom-link',
+    action: 'navigation',
+    textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED
+  }}
+/>`,
+      },
     },
   },
 };
 
-export const BreadcrumbWithLongText: Story = {
+/**
+ * Alternative breadcrumbs variant.
+ * Use this for a different visual style in specific contexts.
+ */
+export const Alternative: Story = {
   args: {
-    ...commonArgs,
+    ['aria-label']: 'Breadcrumb navigation',
+    crumbs: [
+      { id: 'home', name: 'Home', url: '/' },
+      { id: 'products', name: 'Products', url: '/products' },
+      { name: 'Current Page', url: '#' },
+    ],
+    dividerIcon: ICONS.CHEVRON_RIGHT,
+    link: {
+      action: 'navigation',
+      textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED,
+      variant: LinkVariant.PRIMARY,
+    },
+    variant: BreadcrumbsVariant.ALTERNATIVE,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Breadcrumbs
+  variant={BreadcrumbsVariant.ALTERNATIVE}
+  aria-label="Breadcrumb navigation"
+  dividerIcon={ICONS.CHEVRON_RIGHT}
+  crumbs={[
+    { id: 'home', name: 'Home', url: '/' },
+    { id: 'products', name: 'Products', url: '/products' },
+    { name: 'Current Page', url: '#' }
+  ]}
+  link={{
+    variant: LinkVariant.PRIMARY,
+    action: 'navigation',
+    textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED
+  }}
+/>`,
+      },
+    },
+  },
+};
+
+/**
+ * Breadcrumbs with custom divider icon.
+ * You can use any icon as a separator between crumbs.
+ */
+export const CustomDivider: Story = {
+  args: {
+    ['aria-label']: 'Breadcrumb navigation',
+    crumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Products', url: '/products' },
+      { name: 'Electronics', url: '/products/electronics' },
+      { name: 'Current', url: '#' },
+    ],
+    dividerIcon: ICONS.CHEVRON_UP,
+    link: {
+      action: 'navigation',
+      textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED,
+      variant: LinkVariant.PRIMARY,
+    },
+    variant: BreadcrumbsVariant.DEFAULT,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Breadcrumbs
+  variant={BreadcrumbsVariant.DEFAULT}
+  aria-label="Breadcrumb navigation"
+  dividerIcon={ICONS.CHEVRON_UP}
+  crumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Products', url: '/products' },
+    { name: 'Electronics', url: '/products/electronics' },
+    { name: 'Current', url: '#' }
+  ]}
+  link={{
+    variant: LinkVariant.PRIMARY,
+    action: 'navigation',
+    textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED
+  }}
+/>`,
+      },
+    },
+  },
+};
+
+/**
+ * Breadcrumbs with long text and character limit.
+ * Text longer than minCharLimit will be truncated with ellipsis.
+ */
+export const WithLongText: Story = {
+  args: {
+    ['aria-label']: 'Breadcrumb navigation',
     crumbs: [
       {
         id: 'level-a',
-        name: 'Level A con un texto largo de más de 20 caracteres',
-        url: 'https://google.com',
-      }, // Over 20 chars
-      {
-        id: 'level-b',
-        name: 'Level B veinte chars',
-        url: '#',
-      }, // 20 chars
-      {
-        name: 'Level C veinte chars',
-        url: '#',
-      }, // 20 chars
-      {
-        name: 'Level D con un texto largo de más de 20 caracteres',
-        url: '#',
-      }, // Over 20 chars
-      {
-        name: 'Level E',
-        url: '#',
-      },
-      {
-        id: 'level-f',
-        name: 'Level F con un texto largo de más de 20 caracteres',
-        url: '#',
-      }, // Over 20 chars
-    ],
-  },
-};
-
-export const BreadcrumbAlternative: Story = {
-  args: {
-    ...commonArgs,
-    variant: BreadcrumbsVariant.ALTERNATIVE,
-  },
-};
-
-export const BreadcrumbWithCustomDivider: Story = {
-  args: {
-    ...commonArgs,
-    dividerIcon: { icon: ICONS.CHEVRON_UP },
-  },
-};
-
-export const BreadcrumbWithMinCharLimit: Story = {
-  args: {
-    ...commonArgs,
-    crumbs: [
-      {
-        name: 'Short',
+        name: 'Level A with very long text exceeding 20 characters',
         url: '/',
       },
       {
+        id: 'level-b',
         name: 'Medium Length Text',
-        url: '/products',
+        url: '/medium',
       },
       {
-        name: 'Very Long Text That Exceeds The Minimum Character Limit',
-        url: '/products/electronics',
+        name: 'Another very long breadcrumb text that should be truncated',
+        url: '/long',
       },
-      {
-        name: 'Current',
-        url: '#',
-      },
+      { name: 'Current Page', url: '#' },
     ],
-    minCharLimit: 15,
+    dividerIcon: ICONS.CHEVRON_RIGHT,
+    link: {
+      action: 'navigation',
+      textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED,
+      variant: LinkVariant.PRIMARY,
+    },
+    minCharLimit: 20,
+    variant: BreadcrumbsVariant.DEFAULT,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Breadcrumbs
+  variant={BreadcrumbsVariant.DEFAULT}
+  aria-label="Breadcrumb navigation"
+  dividerIcon={ICONS.CHEVRON_RIGHT}
+  minCharLimit={20}
+  crumbs={[
+    {
+      id: 'level-a',
+      name: 'Level A with very long text exceeding 20 characters',
+      url: '/'
+    },
+    {
+      id: 'level-b',
+      name: 'Medium Length Text',
+      url: '/medium'
+    },
+    {
+      name: 'Another very long breadcrumb text that should be truncated',
+      url: '/long'
+    },
+    { name: 'Current Page', url: '#' }
+  ]}
+  link={{
+    variant: LinkVariant.PRIMARY,
+    action: 'navigation',
+    textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED
+  }}
+/>`,
+      },
+    },
   },
 };
 
-export const BreadcrumbWithCustomLink: Story = {
+/**
+ * Breadcrumbs with custom link styling.
+ * You can customize the link variant and text appearance.
+ */
+export const CustomLinkStyle: Story = {
   args: {
-    ...commonArgs,
+    ['aria-label']: 'Breadcrumb navigation',
+    crumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Products', url: '/products' },
+      { name: 'Current', url: '#' },
+    ],
+    dividerIcon: ICONS.CHEVRON_RIGHT,
     link: {
       action: 'navigation',
       textVariant: TextVariantType.HEADING_H4_EXTENDED,
       variant: LinkVariant.SECONDARY,
     },
+    variant: BreadcrumbsVariant.DEFAULT,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Breadcrumbs
+  variant={BreadcrumbsVariant.DEFAULT}
+  aria-label="Breadcrumb navigation"
+  dividerIcon={ICONS.CHEVRON_RIGHT}
+  crumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Products', url: '/products' },
+    { name: 'Current', url: '#' }
+  ]}
+  link={{
+    variant: LinkVariant.SECONDARY,
+    action: 'navigation',
+    textVariant: TextVariantType.HEADING_H4_EXTENDED
+  }}
+/>`,
+      },
+    },
   },
 };
 
-export const BreadcrumbSingleLevel: Story = {
+/**
+ * Single level breadcrumb.
+ * Use when there's only one navigation level to display.
+ */
+export const SingleLevel: Story = {
   args: {
-    ...commonArgs,
-    crumbs: [
-      {
-        name: 'Home Page',
-        url: '/',
+    ['aria-label']: 'Breadcrumb navigation',
+    crumbs: [{ name: 'Home Page', url: '/' }],
+    dividerIcon: ICONS.CHEVRON_RIGHT,
+    link: {
+      action: 'navigation',
+      textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED,
+      variant: LinkVariant.PRIMARY,
+    },
+    variant: BreadcrumbsVariant.DEFAULT,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Breadcrumbs
+  variant={BreadcrumbsVariant.DEFAULT}
+  aria-label="Breadcrumb navigation"
+  dividerIcon={ICONS.CHEVRON_RIGHT}
+  crumbs={[
+    { name: 'Home Page', url: '/' }
+  ]}
+  link={{
+    variant: LinkVariant.PRIMARY,
+    action: 'navigation',
+    textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED
+  }}
+/>`,
       },
+    },
+  },
+};
+
+/**
+ * Deep navigation hierarchy breadcrumbs.
+ * Shows multiple levels of nested navigation paths.
+ */
+export const DeepHierarchy: Story = {
+  args: {
+    ['aria-label']: 'Breadcrumb navigation',
+    crumbs: [
+      { id: 'home', name: 'Home', url: '/' },
+      { id: 'shop', name: 'Shop', url: '/shop' },
+      { id: 'electronics', name: 'Electronics', url: '/shop/electronics' },
+      {
+        id: 'computers',
+        name: 'Computers',
+        url: '/shop/electronics/computers',
+      },
+      {
+        id: 'laptops',
+        name: 'Laptops',
+        url: '/shop/electronics/computers/laptops',
+      },
+      { name: 'Gaming Laptops', url: '#' },
     ],
+    dividerIcon: ICONS.CHEVRON_RIGHT,
+    link: {
+      action: 'navigation',
+      textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED,
+      variant: LinkVariant.PRIMARY,
+    },
+    variant: BreadcrumbsVariant.DEFAULT,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Breadcrumbs
+  variant={BreadcrumbsVariant.DEFAULT}
+  aria-label="Breadcrumb navigation"
+  dividerIcon={ICONS.CHEVRON_RIGHT}
+  crumbs={[
+    { id: 'home', name: 'Home', url: '/' },
+    { id: 'shop', name: 'Shop', url: '/shop' },
+    { id: 'electronics', name: 'Electronics', url: '/shop/electronics' },
+    { id: 'computers', name: 'Computers', url: '/shop/electronics/computers' },
+    { id: 'laptops', name: 'Laptops', url: '/shop/electronics/computers/laptops' },
+    { name: 'Gaming Laptops', url: '#' }
+  ]}
+  link={{
+    variant: LinkVariant.PRIMARY,
+    action: 'navigation',
+    textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED
+  }}
+/>`,
+      },
+    },
+  },
+};
+
+/**
+ * Breadcrumbs with custom CSS classes.
+ * Override default styling for specific use cases.
+ */
+export const WithCustomClasses: Story = {
+  args: {
+    additionalClasses: {
+      breadcrumbs: 'custom-breadcrumbs-wrapper',
+      crumb: 'custom-crumb-item',
+      icondivider: 'custom-divider-icon',
+      link: 'custom-link-style',
+    },
+    ['aria-label']: 'Breadcrumb navigation',
+    crumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Products', url: '/products' },
+      { name: 'Current', url: '#' },
+    ],
+    dividerIcon: ICONS.CHEVRON_RIGHT,
+    link: {
+      action: 'navigation',
+      textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED,
+      variant: LinkVariant.PRIMARY,
+    },
+    variant: BreadcrumbsVariant.DEFAULT,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Breadcrumbs
+  variant={BreadcrumbsVariant.DEFAULT}
+  aria-label="Breadcrumb navigation"
+  dividerIcon={ICONS.CHEVRON_RIGHT}
+  crumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Products', url: '/products' },
+    { name: 'Current', url: '#' }
+  ]}
+  link={{
+    variant: LinkVariant.PRIMARY,
+    action: 'navigation',
+    textVariant: TextVariantType.PARAGRAPH_MEDIUM_EXTENDED
+  }}
+  additionalClasses={{
+    breadcrumbs: 'custom-breadcrumbs-wrapper',
+    crumb: 'custom-crumb-item',
+    icondivider: 'custom-divider-icon',
+    link: 'custom-link-style'
+  }}
+/>`,
+      },
+    },
   },
 };

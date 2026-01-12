@@ -53,8 +53,8 @@ export const Dot = forwardRef(
     });
 
     const formattedNumber =
-      typeof number === 'number' && typeof maxNumber === 'number'
-        ? number > maxNumber
+      typeof number === 'number'
+        ? typeof maxNumber === 'number' && number > maxNumber
           ? `+${maxNumber}`
           : number.toString()
         : undefined;

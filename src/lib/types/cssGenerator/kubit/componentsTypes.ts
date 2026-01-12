@@ -1,4 +1,4 @@
-export type ComponentsTypesAvailableComponents = 'ACCORDION' | 'ALERT' | 'AVATAR' | 'BADGE' | 'BREADCRUMBS' | 'BUTTON' | 'CALENDAR' | 'CARD' | 'CAROUSEL' | 'CHECKBOX' | 'CHECKBOX_BASE' | 'CHIP' | 'CONTAINER' | 'DATA_TABLE' | 'DOT' | 'ERROR_MESSAGE' | 'ICON' | 'INPUT' | 'INPUT_BASE' | 'INPUT_DECORATION' | 'INPUT_SIGNATURE' | 'ITEM_ROVE' | 'LINK' | 'LINK_AS_BUTTON' | 'LIST_OPTIONS' | 'MODAL' | 'OPTION' | 'OVERLAY' | 'PAGE_CONTROL' | 'PAGINATION' | 'POPOVER' | 'PROGRESS_BAR' | 'RADIO_BUTTON' | 'SELECT' | 'SELECTOR_BOX_FILE' | 'SKELETON' | 'SLIDER' | 'SNACKBAR' | 'STEPPER_NUMBER' | 'TABLE' | 'TABLE_BODY' | 'TABLE_CAPTION' | 'TABLE_CELL' | 'TABLE_DIVIDER' | 'TABLE_FOOT' | 'TABLE_HEAD' | 'TABLE_ROW' | 'TABS' | 'TAG' | 'TEXT' | 'TEXT_AREA' | 'TEXT_COUNT' | 'TOGGLE' | 'TOOLTIP' | 'VIRTUAL_KEYBOARD'
+export type ComponentsTypesAvailableComponents = 'ACCORDION' | 'ALERT' | 'AVATAR' | 'BADGE' | 'BREADCRUMBS' | 'BUTTON' | 'CALENDAR' | 'CARD' | 'CAROUSEL' | 'CHECKBOX' | 'CHECKBOX_BASE' | 'CHIP' | 'DATA_TABLE' | 'DOT' | 'ERROR_MESSAGE' | 'ICON' | 'INPUT' | 'INPUT_BASE' | 'INPUT_DECORATION' | 'INPUT_SIGNATURE' | 'ITEM_ROVE' | 'LINK' | 'LINK_AS_BUTTON' | 'LIST_OPTIONS' | 'MODAL' | 'OPTION' | 'OVERLAY' | 'PAGE_CONTROL' | 'PAGINATION' | 'POPOVER' | 'PROGRESS_BAR' | 'RADIO_BUTTON' | 'SELECT' | 'SELECTOR_BOX_FILE' | 'SKELETON' | 'SLIDER' | 'SNACKBAR' | 'STEPPER_NUMBER' | 'TABLE' | 'TABLE_BODY' | 'TABLE_CAPTION' | 'TABLE_CELL' | 'TABLE_DIVIDER' | 'TABLE_FOOT' | 'TABLE_HEAD' | 'TABLE_ROW' | 'TABS' | 'TAG' | 'TEXT' | 'TEXT_AREA' | 'TEXT_COUNT' | 'TOGGLE' | 'TOOLTIP' | 'VIRTUAL_KEYBOARD'
 
 type NonVariablesKeys<T> = {
   [K in keyof T]: K extends `$${string}` ? never : K;
@@ -240,21 +240,6 @@ export type ComponentsTypesComponents = {
       rangeitemtext: string,
     },
   },
-  CONTAINER: {
-    container: string,
-    content: string,
-    header: string,
-    title: string,
-    $_alternative: {
-      container: string,
-    },
-    $_default: {
-      container: string,
-    },
-    $_secondary: {
-      container: string,
-    },
-  },
   DATA_TABLE: {
     data_table: string,
     headboxshadow: string,
@@ -457,30 +442,8 @@ export type ComponentsTypesComponents = {
     optionscontainer: string,
     title: string,
     titlecontainer: string,
-    $_code_viewer_subtheme: {
-      list_options: string,
-    },
     $_default: {
       list_options: string,
-      title: string,
-      titlecontainer: string,
-    },
-    $_dropdown_selected_section: {
-      list_options: string,
-      optionscontainer: string,
-    },
-    $_input_dropdown_default: {
-      list_options: string,
-    },
-    $_input_dropdown_section: {
-      list_options: string,
-    },
-    $_input_search: {
-      list_options: string,
-    },
-    $_side_menu_section: {
-      list_options: string,
-      optionscontainer: string,
       title: string,
       titlecontainer: string,
     },

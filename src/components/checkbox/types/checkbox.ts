@@ -1,6 +1,5 @@
 import type { DOMAttributes, InputHTMLAttributes, Ref } from 'react';
 
-import type { LabelStandAloneProps } from '@/components/label/types/label';
 import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
@@ -12,13 +11,6 @@ import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 export type CheckboxCssClasses = ComponentSelected<
   ComponentsTypesComponents['CHECKBOX']
 >;
-
-export type CheckboxLabelType = Omit<
-  LabelStandAloneProps,
-  'children' | 'inputId'
-> & {
-  content?: string | JSX.Element;
-};
 
 export interface CheckboxMessageType {
   message?: CommonTextProps;
@@ -44,7 +36,8 @@ type InputHtmlAttributesType = Pick<
  * Interface for the checkbox standalone component
  */
 export interface CheckboxStandAloneProps
-  extends InputActionsType,
+  extends
+    InputActionsType,
     DataAttributes,
     InputHtmlAttributesType,
     CheckboxAriaAttributes {
@@ -61,7 +54,9 @@ export interface CheckboxStandAloneProps
    */
   inputRef?: Ref<HTMLInputElement>;
   // components
-  label?: CheckboxLabelType;
+  label?: CommonTextProps & {
+    requiredSymbol?: string | JSX.Element;
+  };
   errorMessage?: CheckboxMessageType;
   checkedIcon?: CommonIconProps;
   checkboxBase?: { variant?: string };

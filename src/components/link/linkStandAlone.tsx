@@ -58,10 +58,13 @@ export const LinkStandAlone = forwardRef<HTMLElement, LinkStandAloneProps>(
       cssTextClasses?.text,
     );
     const iconContainerStyle: CSSProperties = {
+      color,
       flexDirection: iconPosition === 'left' ? 'row' : 'row-reverse',
+      fontWeight: weight,
+      textDecoration: decoration,
     };
-    const style = {
-      color: color,
+    const style: CSSProperties = {
+      color,
       fontWeight: weight,
       textDecoration: decoration,
     };

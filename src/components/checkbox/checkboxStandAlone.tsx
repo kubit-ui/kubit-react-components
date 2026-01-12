@@ -1,6 +1,7 @@
 import { forwardRef, useId } from 'react';
 
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+import { processTextProp } from '@/lib/utils/process/processCommonProp';
 
 import type { CheckboxStandAloneProps } from './types/checkbox';
 
@@ -86,7 +87,7 @@ export const CheckboxStandAlone = forwardRef(
             {screenReaderText}
           </screen-reader-only>
           <Label
-            {...label}
+            content={processTextProp(label).children}
             cssClasses={cssClasses}
             id={checkBoxLabelId}
             inputId={checkBoxId}

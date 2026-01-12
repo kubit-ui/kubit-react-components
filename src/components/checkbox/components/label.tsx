@@ -1,10 +1,12 @@
 import { LabelStandAlone as KubitLabel } from '@/components/label/labelStandAlone';
 
-import type { CheckboxCssClasses, CheckboxLabelType } from '../types/checkbox';
+import type { CheckboxCssClasses } from '../types/checkbox';
 
-interface ICheckboxLabel extends CheckboxLabelType {
+interface ICheckboxLabel {
   cssClasses?: CheckboxCssClasses;
   inputId: string;
+  content?: string | JSX.Element;
+  id?: string;
 }
 
 export const Label = ({ ...props }: ICheckboxLabel): JSX.Element | null => {

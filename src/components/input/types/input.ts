@@ -9,10 +9,6 @@ import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
 type InputCssClasses = ComponentSelected<ComponentsTypesComponents['INPUT']>;
 
-interface IInputLabelProps {
-  variant?: string;
-}
-
 export type InputModeType =
   | 'none'
   | 'text'
@@ -37,7 +33,8 @@ export type InputActionsType = Pick<
 >;
 
 export interface InputStandAloneProps
-  extends DataAttributes,
+  extends
+    DataAttributes,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'value'>,
     Omit<AriaAttributes, 'aria-invalid'>,
     InputActionsType {
@@ -48,7 +45,6 @@ export interface InputStandAloneProps
   required?: boolean;
   rightDecoration?: InputDecorationProps;
   leftDecoration?: InputDecorationProps;
-  label?: IInputLabelProps;
   /** Value to perform truncation logic */
   truncate?: boolean;
   /** HTML Standard attribute to focus automatically
