@@ -1,107 +1,287 @@
-import { act, fireEvent, renderHook } from '@testing-library/react';
-
-import * as useMediaDevice from '@/lib/hooks/useMediaDevice/useMediaDevice';
-import { windowMatchMedia } from '@/lib/tests/windowMatchMedia/windowMatchMedia';
-import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
+import { act, renderHook } from '@testing-library/react';
 
 import { useSwipeDown } from '../useSwipeDown';
 
-let containerRefMock;
-let dragRefMock;
-let onCloseMock;
-let containerRoot;
+const createMockElements = () => {
+  const mockPopoverElement = document.createElement('div');
+  const mockDragElement = document.createElement('div');
+  return { mockPopoverElement, mockDragElement };
+};
+const captureEventHandlers = () => {
+  const eventListeners: Record<string, EventListener> = {};
+  const originalAddEventListener = document.addEventListener;
+  document.addEventListener = vi.fn(
+    (
+      event: string,
+      handler: EventListener,
+      options?: AddEventListenerOptions | boolean,
+    ) => {
+      eventListeners[event] = handler;
+      originalAddEventListener.call(document, event, handler, options);
+    },
+  );
+  return {
+    eventListeners,
+    restore: () => (document.addEventListener = originalAddEventListener),
+  };
+};
 
-describe('useSwipeDown hook', () => {
+const createTouchEvent = (type: string, clientY: number, useTouches = true) => {
+  const touchData = { clientY } as Touch;
+  const event = new TouchEvent(type, {
+    bubbles: true,
+    cancelable: true,
+    touches: useTouches ? [touchData] : [],
+    changedTouches: !useTouches ? [touchData] : [],
+  });
+  Object.defineProperty(event, 'preventDefault', {
+    value: vi.fn(),
+    writable: true,
+  });
+  return event;
+};
+
+describe('useSwipeDown', () => {
+  let mockHandleClose: ReturnType<typeof vi.fn>;
+  let mockAddEventListener: ReturnType<typeof vi.fn>;
+  let mockRemoveEventListener: ReturnType<typeof vi.fn>;
+
+  beforeEach(() => {
+    mockHandleClose = vi.fn();
+    mockAddEventListener = vi.fn();
+    mockRemoveEventListener = vi.fn();
+
+    Object.defineProperty(document, 'addEventListener', {
+      value: mockAddEventListener,
+      writable: true,
+    });
+
+    Object.defineProperty(document, 'removeEventListener', {
+      value: mockRemoveEventListener,
+      writable: true,
+    });
+  });
+
   afterEach(() => {
     vi.clearAllMocks();
     vi.resetAllMocks();
     vi.restoreAllMocks();
   });
-  beforeEach(() => {
-    window.matchMedia = windowMatchMedia('onlyMobile');
-    vi.spyOn(useMediaDevice, 'useMediaDevice').mockImplementation(
-      () => DEVICE_BREAKPOINTS.MOBILE,
+
+  it('should initialize correctly', () => {
+    const { result } = renderHook(() =>
+      useSwipeDown({ handleClose: mockHandleClose }),
     );
-    const container = document.createElement('div');
-    const content = document.createElement('div');
 
-    containerRoot?.remove();
-
-    containerRoot = document.createElement('div');
-
-    container.appendChild(content);
-
-    containerRoot.appendChild(container);
-    containerRefMock = {
-      current: container,
-    };
-    dragRefMock = {
-      current: content,
-    };
-    onCloseMock = vi.fn();
-
-    document.body.appendChild(containerRoot);
-    const { result } = renderHook(() => useSwipeDown(onCloseMock));
-
-    act(() => {
-      result.current.setPopoverRef?.(containerRefMock.current);
-      result.current.setDragIconRef?.(dragRefMock.current);
-    });
+    expect(result.current.setPopoverRef).toBeDefined();
+    expect(result.current.setDragIconRef).toBeDefined();
   });
-  describe('useSwipeDown hook', () => {
-    it('should set popover and drag icon refs', () => {
-      const { result } = renderHook(() => useSwipeDown());
+
+  describe('Event Listener Management', () => {
+    it('should clean up event listeners when drag element is unmounted', () => {
+      const { result } = renderHook(() =>
+        useSwipeDown({ handleClose: mockHandleClose }),
+      );
+      const mockDragElement = document.createElement('div');
+      const mockAddElementListener = vi.fn();
+      const mockRemoveElementListener = vi.fn();
+
+      mockDragElement.addEventListener = mockAddElementListener;
+      mockDragElement.removeEventListener = mockRemoveElementListener;
 
       act(() => {
-        result.current.setPopoverRef?.(containerRefMock.current);
-        result.current.setDragIconRef?.(dragRefMock.current);
+        result.current.setDragIconRef(mockDragElement);
       });
 
-      expect(result.current.setPopoverRef).toBeDefined();
-      expect(result.current.setDragIconRef).toBeDefined();
-      expect(document.body).toHTMLValidate();
-    });
-    it('Should swipeDown', () => {
-      // Simulate down swipe
-      fireEvent.mouseDown(dragRefMock.current, { clientY: 100 }); // Start swipe
-      fireEvent.mouseMove(dragRefMock.current, { clientY: 50 }); // Swipe down
-      fireEvent.mouseUp(dragRefMock.current, { clientY: 0 }); // End swipe
-      expect(containerRefMock.current.style.bottom).toBe('0px');
-      expect(document.body).toHTMLValidate();
-    });
-    it('Should not swipeDown on desktop', () => {
-      window.matchMedia = windowMatchMedia('onlyDesktop');
-      vi.spyOn(useMediaDevice, 'useMediaDevice').mockImplementation(
-        () => DEVICE_BREAKPOINTS.DESKTOP,
+      expect(mockAddElementListener).toHaveBeenCalledWith(
+        'mousedown',
+        expect.any(Function),
+        {
+          passive: false,
+        },
       );
-      expect(containerRefMock.current.style.bottom).toBe('');
-      expect(document.body).toHTMLValidate();
-    });
-    it('Should not swipeDown if the ref is not ready', () => {
-      containerRefMock.current = null;
-      renderHook(() => useSwipeDown(onCloseMock));
-      // Simulate down swipe
-      fireEvent.mouseDown(dragRefMock.current, { clientY: 100 }); // Start swipe
-      fireEvent.mouseMove(dragRefMock.current, { clientY: 50 }); // Swipe down
-      fireEvent.mouseUp(dragRefMock.current, { clientY: 0 }); // End swipe
-      expect(containerRefMock.current).toBe(null);
-      expect(document.body).toHTMLValidate();
-    });
-    it('If event type is touchstart, should set the yStart.current with the first touch clientY', () => {
-      fireEvent.touchStart(dragRefMock.current, {
-        touches: [{ clientY: 100 }],
+      expect(mockAddElementListener).toHaveBeenCalledWith(
+        'touchstart',
+        expect.any(Function),
+        {
+          passive: false,
+        },
+      );
+
+      act(() => {
+        result.current.setDragIconRef(null);
       });
-      expect(containerRefMock.current.style.bottom).toBe('');
-      expect(document.body).toHTMLValidate();
+
+      expect(mockRemoveElementListener).toHaveBeenCalledWith(
+        'mousedown',
+        expect.any(Function),
+      );
+      expect(mockRemoveElementListener).toHaveBeenCalledWith(
+        'touchstart',
+        expect.any(Function),
+      );
     });
-    it('If event type is touchmove, should set the yEnd.current with the last touch clientY and swipe down', () => {
-      fireEvent.touchStart(dragRefMock.current, {
-        touches: [{ clientY: 100 }],
+  });
+
+  describe('Drag Behavior', () => {
+    it('should close when drag distance exceeds threshold', () => {
+      const { result } = renderHook(() =>
+        useSwipeDown({ handleClose: mockHandleClose }),
+      );
+      const { mockPopoverElement, mockDragElement } = createMockElements();
+      const { eventListeners, restore } = captureEventHandlers();
+
+      act(() => {
+        result.current.setPopoverRef(mockPopoverElement);
+        result.current.setDragIconRef(mockDragElement);
       });
-      fireEvent.touchMove(dragRefMock.current, { touches: [{ clientY: 50 }] });
-      fireEvent.touchEnd(dragRefMock.current, { touches: [{ clientY: 0 }] });
-      expect(containerRefMock.current.style.bottom).toBe('0px');
-      expect(document.body).toHTMLValidate();
+
+      const touchStartEvent = createTouchEvent('touchstart', 100);
+      act(() => mockDragElement.dispatchEvent(touchStartEvent));
+
+      const touchEndEvent = createTouchEvent('touchend', 150, false);
+      act(() => eventListeners['touchend']?.(touchEndEvent));
+
+      restore();
+      expect(mockHandleClose).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not close when drag distance is too small', () => {
+      const { result } = renderHook(() =>
+        useSwipeDown({ handleClose: mockHandleClose }),
+      );
+      const { mockPopoverElement, mockDragElement } = createMockElements();
+      const { eventListeners, restore } = captureEventHandlers();
+
+      act(() => {
+        result.current.setPopoverRef(mockPopoverElement);
+        result.current.setDragIconRef(mockDragElement);
+      });
+
+      const touchStartEvent = createTouchEvent('touchstart', 100);
+      act(() => mockDragElement.dispatchEvent(touchStartEvent));
+
+      const touchEndEvent = createTouchEvent('touchend', 105, false);
+      act(() => eventListeners['touchend']?.(touchEndEvent));
+
+      restore();
+      expect(mockHandleClose).not.toHaveBeenCalled();
+    });
+
+    it('should update popover bottom style during drag downward', () => {
+      const { result } = renderHook(() =>
+        useSwipeDown({ handleClose: mockHandleClose }),
+      );
+      const { mockPopoverElement, mockDragElement } = createMockElements();
+      const { eventListeners, restore } = captureEventHandlers();
+
+      act(() => {
+        result.current.setPopoverRef(mockPopoverElement);
+        result.current.setDragIconRef(mockDragElement);
+      });
+
+      const touchStartEvent = createTouchEvent('touchstart', 100);
+      act(() => mockDragElement.dispatchEvent(touchStartEvent));
+
+      const touchMoveEvent = createTouchEvent('touchmove', 150);
+      act(() => eventListeners['touchmove']?.(touchMoveEvent));
+
+      restore();
+      expect(mockPopoverElement.style.bottom).toBe('-50px');
+    });
+
+    it('should not update style when moving upward', () => {
+      const { result } = renderHook(() =>
+        useSwipeDown({ handleClose: mockHandleClose }),
+      );
+      const { mockPopoverElement, mockDragElement } = createMockElements();
+      const { eventListeners, restore } = captureEventHandlers();
+
+      act(() => {
+        result.current.setPopoverRef(mockPopoverElement);
+        result.current.setDragIconRef(mockDragElement);
+      });
+
+      const touchStartEvent = createTouchEvent('touchstart', 100);
+      act(() => mockDragElement.dispatchEvent(touchStartEvent));
+
+      const touchMoveEvent = createTouchEvent('touchmove', 50);
+      act(() => eventListeners['touchmove']?.(touchMoveEvent));
+
+      restore();
+      expect(mockPopoverElement.style.bottom).toBe('');
+    });
+
+    it('should handle mouse events correctly', () => {
+      const { result } = renderHook(() =>
+        useSwipeDown({ handleClose: mockHandleClose }),
+      );
+      const { mockPopoverElement, mockDragElement } = createMockElements();
+      const { eventListeners, restore } = captureEventHandlers();
+
+      act(() => {
+        result.current.setPopoverRef(mockPopoverElement);
+        result.current.setDragIconRef(mockDragElement);
+      });
+
+      const mouseDownEvent = new MouseEvent('mousedown', { clientY: 100 });
+      Object.defineProperty(mouseDownEvent, 'preventDefault', {
+        value: vi.fn(),
+      });
+      act(() => mockDragElement.dispatchEvent(mouseDownEvent));
+
+      const mouseMoveEvent = {
+        type: 'mousemove',
+        clientY: 150,
+        preventDefault: vi.fn(),
+      };
+      act(() =>
+        eventListeners['mousemove']?.(mouseMoveEvent as unknown as MouseEvent),
+      );
+
+      const mouseUpEvent = { type: 'mouseup', clientY: 150 };
+      act(() =>
+        eventListeners['mouseup']?.(mouseUpEvent as unknown as MouseEvent),
+      );
+
+      restore();
+      expect(mockHandleClose).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('Edge Cases', () => {
+    it('should prevent double drag initiation', () => {
+      const { result } = renderHook(() =>
+        useSwipeDown({ handleClose: mockHandleClose }),
+      );
+      const { mockDragElement } = createMockElements();
+
+      act(() => result.current.setDragIconRef(mockDragElement));
+
+      const touchStartEvent1 = createTouchEvent('touchstart', 100);
+      act(() => mockDragElement.dispatchEvent(touchStartEvent1));
+
+      mockAddEventListener.mockClear();
+
+      const touchStartEvent2 = createTouchEvent('touchstart', 150);
+      act(() => mockDragElement.dispatchEvent(touchStartEvent2));
+
+      expect(mockAddEventListener).not.toHaveBeenCalled();
+    });
+
+    it('should not handle events when not dragging', () => {
+      const { result } = renderHook(() =>
+        useSwipeDown({ handleClose: mockHandleClose }),
+      );
+      const { mockDragElement } = createMockElements();
+
+      act(() => result.current.setDragIconRef(mockDragElement));
+
+      const touchMoveEvent = createTouchEvent('touchmove', 150);
+      act(() => document.dispatchEvent(touchMoveEvent));
+
+      expect(touchMoveEvent.preventDefault).not.toHaveBeenCalled();
+      expect(mockHandleClose).not.toHaveBeenCalled();
     });
   });
 });

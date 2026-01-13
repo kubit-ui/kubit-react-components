@@ -15,12 +15,11 @@ import { useScrollDetection } from '@/lib/hooks/useScrollDetection/useScrollDete
 import { useSwipeDown } from '@/lib/hooks/useSwipeDown/useSwipeDown';
 import { useTrapFocus } from '@/lib/hooks/useTrapFocus/useTrapFocus';
 
-import type { TooltipUnControlledProps } from './types/tooltip';
-
 import { isKeyPressed } from '../../lib/utils/keyboard/keyboard';
 import { useTooltip } from './hooks/useTooltip';
 import { useTooltipAsModal } from './hooks/useTooltipAsModal';
 import { TooltipStandAlone } from './tooltipStandAlone';
+import type { TooltipUnControlledProps } from './types/tooltip';
 
 /**
  * TooltipUnControlled component with internal visibility management.
@@ -169,7 +168,7 @@ export const TooltipUnControlled = forwardRef(function <
     hideTooltip();
   };
   const { setPopoverRef } = useSwipeDown({
-    onClose: hideTooltip,
+    handleClose: hideTooltip,
   });
   useTrapFocus({
     ref: tooltipRef,

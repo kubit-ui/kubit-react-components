@@ -8,10 +8,9 @@ import { useScrollEffect } from '@/lib/hooks/useScrollEffect/useScrollEffect';
 import { useSwipeDown } from '@/lib/hooks/useSwipeDown/useSwipeDown';
 import { syncInnerAndForwardedRef } from '@/lib/utils/refs/syncRefs';
 
-import type { ModalControlledProps } from './types/modal';
-
 import { Portal } from '../portal/portal';
 import { ModalStandAlone } from './modalStandAlone';
+import type { ModalControlledProps } from './types/modal';
 
 /**
  * ModalControlled component for displaying overlay dialogs.
@@ -58,12 +57,12 @@ export const ModalControlled = forwardRef(
       shadowStyles: /* styles?.headerContainer?.box_shadow*/ 'none',
     });
     const { handleContentVisibility } = useContentVisibility({});
-    const { setDragIconRef: handleDraggableIconSwipeDown } = useSwipeDown({
-      onClose,
+    const {
+      setDragIconRef: handleDraggableIconSwipeDown,
+      setPopoverRef: handlePopoverSwipeDown,
+    } = useSwipeDown({
+      handleClose: onClose,
     });
-
-    // const { setDragIconRef: handleDraggableIconSwipeDown, setPopoverRef: handlePopoverSwipeDown } =
-    // useSwipeDown({ animationOptions: props.popover?.animationOptions, onClose: props.onClose });
 
     const {
       handleScrollDetection: handleContentScrollDetection,
@@ -106,6 +105,7 @@ export const ModalControlled = forwardRef(
         device={device}
         popover={{
           ...popover,
+          popoverContainerRef: handlePopoverSwipeDown,
         }}
         onPopoverCloseInternally={handlePopoverCloseInternally}
       />
