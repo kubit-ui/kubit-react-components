@@ -41,6 +41,8 @@
     "typeRoots": ["src/lib/types", "node_modules/@types", "node_modules"],
     "removeComments": false,
     "erasableSyntaxOnly": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "paths": {
       "@/*": ["./src/*"]
     }
