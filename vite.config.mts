@@ -421,6 +421,24 @@ const removeUnnecessaryFoldersPlugin = () => {
           `[remove-unnecessary] ✓ Removed ${dsStoreFiles.length} .DS_Store files`,
         );
       }
+
+      // Remove auto-generated CSS bundles
+      const cssFilesToRemove = [
+        path.resolve(__dirname, 'dist/esm/react-components.css'),
+        path.resolve(__dirname, 'dist/cjs/react-components.css'),
+        path.resolve(__dirname, 'dist/esm/style.css'),
+        path.resolve(__dirname, 'dist/cjs/style.css'),
+      ];
+
+      cssFilesToRemove.forEach((file) => {
+        if (fs.existsSync(file)) {
+          fs.rmSync(file, { force: true });
+          // eslint-disable-next-line no-console
+          console.log(
+            `[remove-unnecessary] ✓ Removed auto-generated CSS: ${path.relative(__dirname, file)}`,
+          );
+        }
+      });
     },
     name: 'remove-unnecessary-folders',
   };
@@ -431,6 +449,7 @@ const removeUnnecessaryFoldersPlugin = () => {
  */
 export default defineConfig(({ mode }) => ({
   build: {
+    cssCodeSplit: false,
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'KubitUI',
@@ -448,6 +467,10 @@ export default defineConfig(({ mode }) => ({
       output: [
         // ESM with individual modules
         {
+          assetFileNames: () => {
+            // Prevent CSS file generation
+            return 'assets/[name].[ext]';
+          },
           dir: 'dist/esm',
           entryFileNames: '[name].js',
           exports: 'named',
@@ -457,6 +480,10 @@ export default defineConfig(({ mode }) => ({
         },
         // CJS with individual modules
         {
+          assetFileNames: () => {
+            // Prevent CSS file generation
+            return 'assets/[name].[ext]';
+          },
           dir: 'dist/cjs',
           entryFileNames: '[name].js',
           exports: 'named',
