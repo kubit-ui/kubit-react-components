@@ -8,7 +8,7 @@ import { argtypes } from './argtypes';
 const meta = {
   argTypes: argtypes(),
   component: Story,
-  tags: ['autodocs', 'containment'],
+  tags: ['containment'],
   title: 'Components/Containment/Slider',
 } satisfies Meta<typeof Story>;
 

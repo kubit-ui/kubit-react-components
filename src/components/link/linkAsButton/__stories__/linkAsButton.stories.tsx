@@ -18,7 +18,7 @@ const meta = {
   render: ({ ...args }) => {
     return <LinkAsButtonStory {...args} loader={<Loader />} />;
   },
-  tags: ['autodocs', 'actions'],
+  tags: ['actions'],
   title: 'Components/Actions/LinkAsButton',
 } satisfies Meta<typeof LinkAsButtonStory>;
 

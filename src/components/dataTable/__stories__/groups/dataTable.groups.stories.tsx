@@ -14,7 +14,7 @@ import { DataTableGroupsVerticalAlignStory } from './dataTable.groups.verticalAl
 const meta: Meta<typeof DataTable> = {
   argTypes: argtypes(),
   component: DataTable,
-  tags: ['autodocs', 'table'],
+  tags: ['table'],
   title: 'Components/Table/DataTable/Groups',
 };
 

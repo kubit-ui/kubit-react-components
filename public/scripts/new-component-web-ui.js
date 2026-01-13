@@ -131,14 +131,14 @@ USAGE:
 MODES:
   Interactive Mode (default):
     node new-component-web-ui.js
-    
+
   Automatic Mode:
     node new-component-web-ui.js --name <ComponentName> [FLAGS]
 
 OPTIONS:
   -n, --name <name>        Component name (PascalCase) - enables automatic mode
   -s, --states             Include component states (DEFAULT, HOVER, etc.)
-  -c, --controlled         Generate both Controlled and Uncontrolled versions  
+  -c, --controlled         Generate both Controlled and Uncontrolled versions
   -r, --responsive         Include responsive logic and breakpoint handling
   -h, --help              Show this help information
   -v, --version           Show version information
@@ -154,13 +154,13 @@ EXAMPLES:
 
   # Basic automatic mode (all options default to false)
   node new-component-web-ui.js --name ToggleV2
-  
+
   # Automatic mode with specific features
   node new-component-web-ui.js --name ToggleV2 --states --controlled
-  
+
   # Using short flags
   node new-component-web-ui.js -n ToggleV2 -s -c -r
-  
+
   # Combined short flags
   node new-component-web-ui.js -n ToggleV2 -scr
 
@@ -306,11 +306,11 @@ import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakp
 
   const responsiveLogic = needsResponsive
     ? `
-  
+
   // ==========================================================================
   // RESPONSIVE LOGIC - Get current device breakpoints
   // ==========================================================================
-  
+
   // Get active breakpoints for responsive behavior
   const { isMobile, isTablet, isDesktop, isMobileOrTablet } = useActiveBreakpoints();`
     : '';
@@ -368,17 +368,17 @@ export const ${internalPascalName}StandAlone = forwardRef(
         {/* Add component content here */}${
           needsResponsive
             ? `
-        
+
         {/* Example: Conditional rendering based on breakpoints */}
         {isMobileOrTablet && (
           <div className="kbt-${toKebabCase(internalComponentName)}__mobile-content">
             Mobile/Tablet content
           </div>
         )}
-        
+
         {isDesktop && (
           <div className="kbt-${toKebabCase(internalComponentName)}__desktop-content">
-            Desktop content  
+            Desktop content
           </div>
         )}`
             : ''
@@ -778,14 +778,14 @@ describe('${pascalName}', () => {
 
     it('should render controlled version correctly', () => {
       const { container } = render(<${internalPascalName}Controlled {...controlledProps} />);
-      
+
       const component = container.firstChild;
       expect(component).toBeInTheDocument();
     });
 
     it('should have no accessibility violations in controlled mode', async () => {
       const { container } = render(<${internalPascalName}Controlled {...controlledProps} />);
-      
+
       const results = await axe(container);
       expect(results.violations).toHaveLength(0);
     });
@@ -799,14 +799,14 @@ describe('${pascalName}', () => {
 
     it('should render uncontrolled version correctly', () => {
       const { container } = render(<${internalPascalName}Uncontrolled {...uncontrolledProps} />);
-      
+
       const component = container.firstChild;
       expect(component).toBeInTheDocument();
     });
 
     it('should have no accessibility violations in uncontrolled mode', async () => {
       const { container } = render(<${internalPascalName}Uncontrolled {...uncontrolledProps} />);
-      
+
       const results = await axe(container);
       expect(results.violations).toHaveLength(0);
     });
@@ -830,14 +830,14 @@ describe('${pascalName}', () => {
 
   it('should render component correctly', () => {
     const { container } = render(<${internalPascalName} {...defaultProps} />);
-    
+
     const component = container.firstChild;
     expect(component).toBeInTheDocument();
   });
 
   it('should have no accessibility violations', async () => {
     const { container } = render(<${internalPascalName} {...defaultProps} />);
-    
+
     const results = await axe(container);
     expect(results.violations).toHaveLength(0);
   });
@@ -862,7 +862,7 @@ const meta = {
     githubUrl: '<URL FOR THE COMPONENT SOURCE>',
     layout: 'centered',
   },
-  tags: ['autodocs', 'actions'],
+  tags: ['actions'],
   title: 'Components/<COMPONENT_GROUP>/${pascalName}',
 } satisfies Meta<typeof ${internalPascalName}Story>;
 
@@ -897,7 +897,7 @@ const meta = {
     githubUrl: '<URL FOR THE COMPONENT SOURCE>',
     layout: 'centered',
   },
-  tags: ['autodocs', 'actions'],
+  tags: ['actions'],
   title: 'Components/<COMPONENT_GROUP>/${pascalName}/Controlled',
 } satisfies Meta<typeof ${internalPascalName}ControlledStory>;
 
@@ -932,7 +932,7 @@ const meta = {
     githubUrl: '<URL FOR THE COMPONENT SOURCE>',
     layout: 'centered',
   },
-  tags: ['autodocs', 'actions'],
+  tags: ['actions'],
   title: 'Components/<COMPONENT_GROUP>/${pascalName}/Uncontrolled',
 } satisfies Meta<typeof ${internalPascalName}UncontrolledStory>;
 
@@ -1089,19 +1089,19 @@ const generateCssTemplate = (componentName, pascalName, hasStates) => {
 
   return `/*
  * ${pascalName} Component CSS - Venus Architecture
- * 
+ *
  * This file contains STRUCTURAL BASE STYLES for the ${pascalName} component.
  * These styles are theme-independent and handle layout, positioning, and behaviors
  * that don't change based on design system tokens.
- * 
+ *
  * VENUS HYBRID STYLING APPROACH:
  * - CSS Files (.css): Structural layout, positioning, behavioral styles
  * - Design System (styles.ts): Theme-based styles (colors, spacings, typography)
- * 
+ *
  * DESIGN SYSTEM INTEGRATION:
  * - Theme styles: /lib/designSystem/kubit/components/${componentName}/styles.ts
  * - Variants: /lib/designSystem/kubit/components/${componentName}/variants.ts
- * 
+ *
  * RESPONSIVE STRATEGY:
  * - CSS: Static structural responsive behavior (if needed)
  * - Design System: $mediaQueries for theme-based responsive styles
@@ -1117,7 +1117,7 @@ const generateCssTemplate = (componentName, pascalName, hasStates) => {
   justify-content: center;
   box-sizing: border-box;
   position: relative;
-  
+
   /* Add additional structural properties here */
   /* Examples: gap, min-height, overflow, etc. */
 }
@@ -1159,14 +1159,14 @@ const generateCssTemplate = (componentName, pascalName, hasStates) => {
 }
 
 /* === IMPORTANT NOTES === */
-/* 
+/*
  * DO NOT ADD HERE:
  * - Colors (use design system COLORS tokens)
  * - Spacings/margins/padding (use design system SPACINGS tokens)
  * - Typography (use design system typography tokens)
  * - Border colors (use design system BORDERS tokens)
  * - Theme-based responsive styles (use $mediaQueries in styles.ts)
- * 
+ *
  * ADD HERE:
  * - Layout properties (display, position, flexbox, grid)
  * - Structural behavior (cursor, z-index, overflow)
@@ -1195,14 +1195,14 @@ import { ${pascalName}SizeType, ${pascalName}VariantType } from './variants';
 
 /**
  * ${internalPascalName} Design System Styles - Venus Architecture
- * 
+ *
  * This file contains THEME-BASED STYLES for the ${pascalName} component.
  * These styles use design system tokens and handle theming, variants, and responsive behavior.
- * 
+ *
  * INTEGRATION WITH CSS:
  * - CSS file (${internalComponentName}.css): Handles structural layout and positioning
  * - This file: Handles colors, spacings, typography, and theme-based responsive behavior
- * 
+ *
  * RESPONSIVE STRATEGY:
  * - Use $mediaQueries for theme-based responsive styles
  * - Use component-level useActiveBreakpoints for logic-based responsive behavior
@@ -1215,7 +1215,7 @@ const ${internalComponentName}CommonProps = {
   display: 'flex',
   align_items: 'center',
   justify_content: 'center',
-  
+
   // TODO: Replace with actual component-specific styles
   // Examples:
   // border: \`\${BORDERS.border_100} solid transparent\`,
@@ -1279,7 +1279,7 @@ export const ${toUpperSnakeCase(pascalName)} = {
     padding: SPACINGS.spacing_150,
     // Add more small size styling
   },
-  
+
   // =================================================================
   // STYLE VARIANTS - Applied via variant prop
   // =================================================================
@@ -1289,7 +1289,7 @@ export const ${toUpperSnakeCase(pascalName)} = {
     background_color: COLORS.NEUTRAL.color_neutral_bg_250,
     border: \`\${BORDERS.border_100} solid \${COLORS.NEUTRAL.color_neutral_border_200}\`,
     color: COLORS.NEUTRAL.color_neutral_font_50,
-    
+
     // TODO: Add hover, focus, and other interaction states
     // '&:hover': {
     //   background_color: COLORS.NEUTRAL.color_neutral_bg_200,
@@ -1298,7 +1298,7 @@ export const ${toUpperSnakeCase(pascalName)} = {
     //   border_color: COLORS.BRAND.color_brand_bg_100,
     // },
   },
-  
+
   // TODO: Add more variants as needed (PRIMARY, SECONDARY, DANGER, etc.)
   // [${pascalName}VariantType.PRIMARY]: {
   //   ...${internalComponentName}CommonProps,

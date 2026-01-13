@@ -25,6 +25,8 @@ interface TooltipTriggerProps {
   onKeyDown?: KeyboardEventHandler<HTMLElement>;
   onMouseDown?: MouseEventHandler<HTMLElement>;
   onMouseUp?: MouseEventHandler<HTMLElement>;
+  onMouseEnter?: MouseEventHandler<HTMLElement>;
+  onMouseLeave?: MouseEventHandler<HTMLElement>;
 }
 export const TooltipTrigger = ({
   ariaDescribedBy,
@@ -34,6 +36,8 @@ export const TooltipTrigger = ({
   onClick,
   onKeyDown,
   onMouseDown,
+  onMouseEnter,
+  onMouseLeave,
   onMouseUp,
   triggerAsButton,
 }: PropsWithChildren<TooltipTriggerProps>): ReactNode => {
@@ -49,6 +53,12 @@ export const TooltipTrigger = ({
         onClick={onClick}
         onKeyDown={onKeyDown}
         onMouseDown={onMouseDown}
+        onMouseEnter={(event) => {
+          onMouseEnter?.(event);
+        }}
+        onMouseLeave={(event) => {
+          onMouseLeave?.(event);
+        }}
         onMouseUp={onMouseUp}
       >
         {children}
@@ -63,6 +73,8 @@ export const TooltipTrigger = ({
       onClick={onClick}
       onKeyDown={onKeyDown}
       onMouseDown={onMouseDown}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       onMouseUp={onMouseUp}
     >
       {children}

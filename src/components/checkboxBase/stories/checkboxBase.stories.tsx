@@ -35,7 +35,7 @@ const meta = {
     },
   },
   render: ({ ...args }) => <StoryWithHooks {...args} />,
-  tags: ['autodocs', 'forms'],
+  tags: ['forms'],
   title: 'Components/Forms/CheckboxBase',
 } satisfies Meta<typeof Story>;
 

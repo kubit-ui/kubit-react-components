@@ -29,7 +29,7 @@ const meta = {
   argTypes: argtypes(),
   component: Story,
   render: ({ ...args }) => <StoryWithHooks {...args} />,
-  tags: ['autodocs', 'forms'],
+  tags: ['forms'],
   title: 'Components/Forms/InputDecoration',
 } satisfies Meta<typeof Story>;
 

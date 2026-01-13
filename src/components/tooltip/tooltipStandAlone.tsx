@@ -48,6 +48,8 @@ export const TooltipStandAlone = ({
   onTriggerKeyDown,
   onTriggerMouseDown,
   onTriggerMouseUp,
+  onWrapperMouseEnter,
+  onWrapperMouseLeave,
   popover,
   popoverOpen,
   tooltipAriaLabel,
@@ -178,6 +180,8 @@ export const TooltipStandAlone = ({
         onClick={onTriggerClick}
         onKeyDown={onTriggerKeyDown}
         onMouseDown={onTriggerMouseDown}
+        onMouseEnter={onWrapperMouseEnter}
+        onMouseLeave={onWrapperMouseLeave}
         onMouseUp={onTriggerMouseUp}
       >
         {children}

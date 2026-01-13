@@ -13,7 +13,7 @@ const meta = {
       'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/overlay',
     layout: 'centered',
   },
-  tags: ['autodocs', 'resources'],
+  tags: ['resources'],
   title: 'Components/Resources/Overlay',
 } satisfies Meta<typeof Story>;
 

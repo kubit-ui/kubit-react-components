@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import type { ComponentNameProps } from '../types/componentName';
-
 import { ComponentName } from '../componentName';
+import type { ComponentNameProps } from '../types/componentName';
 import { argtypes } from './argtypes';
 
 /**
@@ -37,7 +36,7 @@ const meta = {
   render: ({ ...args }) => {
     return <ComponentName {...args} />;
   },
-  tags: ['autodocs', 'resources'], // Adjust tags based on component type
+  tags: ['resources'], // Adjust tags based on component type
   title: 'Components/Resources/ComponentName', // Adjust path
 } satisfies Meta<typeof ComponentName>;
 

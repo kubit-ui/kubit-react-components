@@ -15,7 +15,7 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  tags: ['autodocs', 'actions'],
+  tags: ['actions'],
   title: 'Components/Forms/Toggle/Controlled',
 } satisfies Meta<typeof ToggleControlledStory>;
 

@@ -13,7 +13,7 @@ const meta = {
       'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/Popover',
     note: popoverScrollBehaviorNotes,
   },
-  tags: ['autodocs', 'resources'],
+  tags: ['resources'],
   title: 'Components/Resources/Popover',
 } satisfies Meta<typeof Story>;
 

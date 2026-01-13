@@ -1,39 +1,161 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { PropsWithChildren } from 'react';
 
 import { Tag } from '@/components/tag/tag';
-import { TableDividerVariantType } from '@/lib/designSystem/kubit/components/tableDivider/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import type { TableDividerProps } from '../types/tableDivider';
-
-import { TableDivider as Story } from '../tableDivider';
+import { TableDivider as TableDividerComponent } from '../tableDivider';
 import { argtypes } from './argtypes';
 
 const meta = {
   argTypes: argtypes(),
-  component: Story,
-  tags: ['autodocs', 'table'],
+  component: TableDividerComponent,
+  tags: ['table', 'table-divider'],
   title: 'Components/Table/TableDivider',
-} satisfies Meta<typeof Story>;
+} satisfies Meta<typeof TableDividerComponent>;
 
 export default meta;
 
-type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
+type StoryType = StoryObj<typeof meta>;
 
-const commonArgs: PropsWithChildren<TableDividerProps> = {
-  children: (
-    <Tag
-      icon={{ icon: ICONS.PLACEHOLDER }}
-      label={{ content: 'LABEL' }}
-      variant="INFORMATIVE"
-    />
-  ),
-  variant: TableDividerVariantType.DEFAULT,
+// Basic divider with tag
+export const Basic: StoryType = {
+  args: {
+    children: (
+      <Tag
+        icon={ICONS.PLACEHOLDER}
+        label="Section Label"
+        variant="INFORMATIVE"
+      />
+    ),
+    variant: 'DEFAULT',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TableDivider variant="DEFAULT">
+  <Tag icon={ICONS.PLACEHOLDER} label="Section Label" variant="INFORMATIVE" />
+</TableDivider>`,
+      },
+    },
+  },
 };
 
-export const TableDivider: Story = {
+// Divider with category tag
+export const WithCategoryTag: StoryType = {
   args: {
-    ...commonArgs,
+    children: <Tag icon={ICONS.FOLDER} label="Electronics" variant="PRIMARY" />,
+    variant: 'DEFAULT',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TableDivider variant="DEFAULT">
+  <Tag icon={ICONS.FOLDER} label="Electronics" variant="PRIMARY" />
+</TableDivider>`,
+      },
+    },
+  },
+};
+
+// Divider with status tag
+export const WithStatusTag: StoryType = {
+  args: {
+    children: (
+      <Tag icon={ICONS.CHECK_CIRCLE} label="Active Items" variant="SUCCESS" />
+    ),
+    variant: 'DEFAULT',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TableDivider variant="DEFAULT">
+  <Tag icon={ICONS.CHECK_CIRCLE} label="Active Items" variant="SUCCESS" />
+</TableDivider>`,
+      },
+    },
+  },
+};
+
+// Divider with warning tag
+export const WithWarningTag: StoryType = {
+  args: {
+    children: (
+      <Tag icon={ICONS.WARNING} label="Pending Review" variant="WARNING" />
+    ),
+    variant: 'DEFAULT',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TableDivider variant="DEFAULT">
+  <Tag icon={ICONS.WARNING} label="Pending Review" variant="WARNING" />
+</TableDivider>`,
+      },
+    },
+  },
+};
+
+// Divider with text only
+export const WithTextOnly: StoryType = {
+  args: {
+    children: (
+      <span style={{ fontSize: '14px', fontWeight: 'bold' }}>
+        Q4 2025 Results
+      </span>
+    ),
+    variant: 'DEFAULT',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TableDivider variant="DEFAULT">
+  <span style={{ fontSize: '14px', fontWeight: 'bold' }}>Q4 2025 Results</span>
+</TableDivider>`,
+      },
+    },
+  },
+};
+
+// Divider with multiple elements
+export const WithMultipleElements: StoryType = {
+  args: {
+    children: (
+      <div style={{ alignItems: 'center', display: 'flex', gap: '8px' }}>
+        <Tag icon={ICONS.CALENDAR} label="January 2026" variant="INFORMATIVE" />
+        <span style={{ color: '#666', fontSize: '12px' }}>15 items</span>
+      </div>
+    ),
+    variant: 'DEFAULT',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TableDivider variant="DEFAULT">
+  <div style={{ alignItems: 'center', display: 'flex', gap: '8px' }}>
+    <Tag icon={ICONS.CALENDAR} label="January 2026" variant="INFORMATIVE" />
+    <span style={{ color: '#666', fontSize: '12px' }}>15 items</span>
+  </div>
+</TableDivider>`,
+      },
+    },
+  },
+};
+
+// Default story matching original structure
+export const TableDivider: StoryType = {
+  args: {
+    children: (
+      <Tag icon={ICONS.PLACEHOLDER} label="LABEL" variant="INFORMATIVE" />
+    ),
+    variant: 'DEFAULT',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TableDivider variant="DEFAULT">
+  <Tag icon={ICONS.PLACEHOLDER} label="LABEL" variant="INFORMATIVE" />
+</TableDivider>`,
+      },
+    },
   },
 };

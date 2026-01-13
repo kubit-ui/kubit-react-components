@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { TagVariants } from '@/lib/designSystem/kubit/components/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
 import { Tag as Story } from '../tag';
@@ -10,9 +9,15 @@ const meta = {
   argTypes: argtypes(),
   component: Story,
   parameters: {
+    docs: {
+      description: {
+        component:
+          'Tag component for displaying labels, statuses, and categories. Supports various semantic variants with optional icons for visual context.',
+      },
+    },
     layout: 'centered',
   },
-  tags: ['autodocs', 'status'],
+  tags: ['status'],
   title: 'Components/Status/Tag',
 } satisfies Meta<typeof Story>;
 
@@ -20,23 +25,179 @@ export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
-const commonArgs = {
-  icon: ICONS.PLACEHOLDER,
-  label: 'LABEL',
-  variant: TagVariants.CODE,
+export const Code: Story = {
+  args: {
+    icon: ICONS.CODE,
+    label: 'Code',
+    variant: 'CODE',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "<Tag variant='CODE' icon={ICONS.CODE} label='Code' />",
+      },
+    },
+  },
+};
+
+export const Deprecated: Story = {
+  args: {
+    icon: ICONS.WARNING,
+    label: 'Deprecated',
+    variant: 'DEPRECATED',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "<Tag variant='DEPRECATED' icon={ICONS.WARNING} label='Deprecated' />",
+      },
+    },
+  },
+};
+
+export const Dormant: Story = {
+  args: {
+    icon: ICONS.CLOCK,
+    label: 'Dormant',
+    variant: 'DORMANT',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "<Tag variant='DORMANT' icon={ICONS.CLOCK} label='Dormant' />",
+      },
+    },
+  },
+};
+
+export const Healthy: Story = {
+  args: {
+    icon: ICONS.CHECK_CIRCLE,
+    label: 'Healthy',
+    variant: 'HEALTHY',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "<Tag variant='HEALTHY' icon={ICONS.CHECK_CIRCLE} label='Healthy' />",
+      },
+    },
+  },
+};
+
+export const Informative: Story = {
+  args: {
+    icon: ICONS.INFO,
+    label: 'Informative',
+    variant: 'INFORMATIVE',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "<Tag variant='INFORMATIVE' icon={ICONS.INFO} label='Informative' />",
+      },
+    },
+  },
+};
+
+export const Issue: Story = {
+  args: {
+    icon: ICONS.ERROR,
+    label: 'Issue',
+    variant: 'ISSUE',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "<Tag variant='ISSUE' icon={ICONS.ERROR} label='Issue' />",
+      },
+    },
+  },
+};
+
+export const WithoutIcon: Story = {
+  args: {
+    label: 'Label Only',
+    variant: 'INFORMATIVE',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "<Tag variant='INFORMATIVE' label='Label Only' />",
+      },
+    },
+  },
+};
+
+export const LongLabel: Story = {
+  args: {
+    icon: ICONS.INFO,
+    label: 'This is a very long label for testing purposes',
+    variant: 'INFORMATIVE',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: "<Tag variant='INFORMATIVE' icon={ICONS.INFO} label='This is a very long label for testing purposes' />",
+      },
+    },
+  },
+};
+
+export const WithAriaLabel: Story = {
+  args: {
+    ['aria-label']: 'Status: Active and healthy',
+    icon: ICONS.CHECK_CIRCLE,
+    label: 'Active',
+    variant: 'HEALTHY',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Tag
+  variant='HEALTHY'
+  icon={ICONS.CHECK_CIRCLE}
+  label='Active'
+  aria-label='Status: Active and healthy'
+/>`,
+      },
+    },
+  },
+};
+
+export const AllVariants: Story = {
+  args: {
+    icon: ICONS.PLACEHOLDER,
+    label: 'LABEL',
+    variant: 'CODE',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<>
+  <Tag variant='CODE' icon={ICONS.CODE} label='Code' />
+  <Tag variant='DEPRECATED' icon={ICONS.WARNING} label='Deprecated' />
+  <Tag variant='DORMANT' icon={ICONS.CLOCK} label='Dormant' />
+  <Tag variant='HEALTHY' icon={ICONS.CHECK_CIRCLE} label='Healthy' />
+  <Tag variant='INFORMATIVE' icon={ICONS.INFO} label='Informative' />
+  <Tag variant='ISSUE' icon={ICONS.ERROR} label='Issue' />
+</>`,
+      },
+    },
+  },
 };
 
 export const Tag: Story = {
   args: {
-    ...commonArgs,
+    icon: ICONS.PLACEHOLDER,
+    label: 'LABEL',
+    variant: 'CODE',
   },
-};
-
-export const TagWithAdditionalClasses: Story = {
-  args: {
-    ...commonArgs,
-    additionalClasses: {
-      label: 'custom-background',
+  parameters: {
+    docs: {
+      source: {
+        code: "<Tag variant='CODE' icon={ICONS.PLACEHOLDER} label='LABEL' />",
+      },
     },
   },
 };

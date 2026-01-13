@@ -52,7 +52,7 @@ const meta = {
       theme: 'information',
     },
   },
-  tags: ['autodocs', 'resources'],
+  tags: ['resources'],
   title: 'Components/Feedback/Snackbar',
 } satisfies Meta<typeof Story>;
 
