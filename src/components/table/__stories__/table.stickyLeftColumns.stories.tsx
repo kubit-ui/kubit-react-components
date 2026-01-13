@@ -1,40 +1,30 @@
 import './css/table.css';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { PropsWithChildren } from 'react';
-
-import { TableVariantType } from '@/lib/designSystem/kubit/components/table/variants';
-import { TableBodyVariantType } from '@/lib/designSystem/kubit/components/tableBody/variants';
-import { TableHeadVariantType } from '@/lib/designSystem/kubit/components/tableHead/variants';
-
-import type { TableProps } from '../types/table';
 
 import { TableBody } from '../../tableBody/tableBody';
 import { TableCell } from '../../tableCell/tableCell';
 import { TableHead } from '../../tableHead/tableHead';
 import { TableRow } from '../../tableRow/tableRow';
-import { Table as Story } from '../table';
+import { Table as TableComponent } from '../table';
 import { argtypes } from './argtypes';
 
 const meta = {
   argTypes: argtypes(),
-  component: Story,
-  tags: ['autodocs', 'table'],
+  component: TableComponent,
+  tags: ['table', 'sticky'],
   title: 'Components/Table/Table/StickyLeftColumns',
-} satisfies Meta<typeof Story>;
+} satisfies Meta<typeof TableComponent>;
 
 export default meta;
 
-type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
+type StoryType = StoryObj<typeof meta>;
 
-const tHeadVariant = TableHeadVariantType.DEFAULT;
-
-const tBodyVariant = TableBodyVariantType.DEFAULT;
-
-const commonArgs: PropsWithChildren<TableProps> = {
-  variant: TableVariantType.DEFAULT,
+const commonArgs = {
+  variant: 'DEFAULT',
 };
-export const TableWithStickyLeftColumns: Story = {
+
+export const TableWithStickyLeftColumns: StoryType = {
   args: {
     ...commonArgs,
     additionalClasses: {
@@ -42,10 +32,9 @@ export const TableWithStickyLeftColumns: Story = {
     },
     ['aria-label']: 'Aria label example',
     autoRightStickyCalc: true,
-
     children: (
       <>
-        <TableHead variant={tHeadVariant}>
+        <TableHead variant="DEFAULT">
           <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
             <TableCell sticky="left" th={true} variant="HEADER_CELL_DEFAULT">
               Header Cell 1
@@ -64,7 +53,7 @@ export const TableWithStickyLeftColumns: Story = {
             </TableCell>
           </TableRow>
         </TableHead>
-        <TableBody variant={tBodyVariant}>
+        <TableBody variant="DEFAULT">
           <TableRow variant="BODY_ROW_DEFAULT">
             <TableCell sticky="left" variant="BODY_CELL_DEFAULT">
               Row 1 - Cell 1
@@ -145,5 +134,34 @@ export const TableWithStickyLeftColumns: Story = {
         </TableBody>
       </>
     ),
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Table
+  variant="DEFAULT"
+  additionalClasses={{
+    container: 'container-over-width',
+  }}
+  aria-label="Aria label example"
+  autoRightStickyCalc={true}
+>
+  <TableHead variant="DEFAULT">
+    <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
+      <TableCell sticky="left" th={true} variant="HEADER_CELL_DEFAULT">Header Cell 1</TableCell>
+      <TableCell sticky="left" th={true} variant="HEADER_CELL_DEFAULT">Header Cell 2</TableCell>
+      <TableCell th={true} variant="HEADER_CELL_DEFAULT">Header Cell 3</TableCell>
+    </TableRow>
+  </TableHead>
+  <TableBody variant="DEFAULT">
+    <TableRow variant="BODY_ROW_DEFAULT">
+      <TableCell sticky="left" variant="BODY_CELL_DEFAULT">Row 1 - Cell 1</TableCell>
+      <TableCell sticky="left" variant="BODY_CELL_DEFAULT">Row 1 - Cell 2</TableCell>
+      <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 3</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>`,
+      },
+    },
   },
 };

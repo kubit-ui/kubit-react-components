@@ -1,50 +1,107 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { useState } from 'react';
+
+import { Button } from '@/components/button/button';
+import {
+  ButtonSizeType,
+  ButtonVariantType,
+} from '@/lib/designSystem/kubit/components/button/variants';
 import { StepperNumberVariantType } from '@/lib/designSystem/kubit/components/stepperNumber/variants';
 import { ICONS } from '@/lib/storybook/assets/icons/icons';
 
-import type { StepperNumberProps } from '../types/stepperNumber';
-
-import { StepperNumber as Story } from '../stepperNumber';
-import { argtypes } from './argtypes';
+import { StepperNumber } from '../stepperNumber';
 
 const meta = {
-  argTypes: argtypes(),
-  component: Story,
-  tags: ['autodocs', 'navigation'],
+  component: StepperNumber,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['navigation', 'stepper', 'progress'],
   title: 'Components/Navigation/StepperNumber',
-} satisfies Meta<typeof Story>;
+} satisfies Meta<typeof StepperNumber>;
 
 export default meta;
 
-type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
+type Story = StoryObj<typeof meta>;
 
-const commonArgs: StepperNumberProps = {
-  completedStepIcon: { icon: ICONS.PLACEHOLDER },
-  currentStep: 0,
-  horizontalOrientationWidth: '5.75rem',
-  orientation: 'vertical',
-  screenReaderCompletedStep: { content: 'COMPLETED' },
-  screenReaderTitle: { content: 'Screen reader title' },
-  steps: [
-    {
-      ['aria-label']: 'User Registration',
-      name: 'User Registration',
+/**
+ * Basic vertical stepper with 3 steps
+ */
+export const Basic: Story = {
+  args: {
+    completedStepIcon: { icon: ICONS.PLACEHOLDER },
+    currentStep: 1,
+    orientation: 'vertical',
+    screenReaderCompletedStep: { content: 'Completed' },
+    screenReaderTitle: { content: 'Process Steps' },
+    steps: [
+      {
+        'aria-label': 'Step 1: Personal Information',
+        name: 'Personal Information',
+      },
+      { 'aria-label': 'Step 2: Address Details', name: 'Address Details' },
+      { 'aria-label': 'Step 3: Review and Submit', name: 'Review & Submit' },
+    ],
+    variant: StepperNumberVariantType.DEFAULT,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<StepperNumber
+  variant="DEFAULT"
+  orientation="vertical"
+  currentStep={1}
+  steps={[
+    { name: 'Personal Information', 'aria-label': 'Step 1: Personal Information' },
+    { name: 'Address Details', 'aria-label': 'Step 2: Address Details' },
+    { name: 'Review & Submit', 'aria-label': 'Step 3: Review and Submit' },
+  ]}
+  completedStepIcon={{ icon: ICONS.PLACEHOLDER }}
+  screenReaderTitle={{ content: 'Process Steps' }}
+  screenReaderCompletedStep={{ content: 'Completed' }}
+/>`,
+      },
     },
-    {
-      ['aria-label']: 'Role Validation',
-      name: 'Role Validation',
-    },
-    {
-      ['aria-label']: 'Tutorial',
-      name: 'Tutorial',
-    },
-  ],
-  variant: StepperNumberVariantType.DEFAULT,
+  },
 };
 
-export const StepperNumber: Story = {
+/**
+ * Horizontal stepper layout
+ */
+export const Horizontal: Story = {
   args: {
-    ...commonArgs,
+    completedStepIcon: { icon: ICONS.PLACEHOLDER },
+    currentStep: 1,
+    horizontalOrientationWidth: '150px',
+    orientation: 'horizontal',
+    screenReaderCompletedStep: { content: 'Completed' },
+    screenReaderTitle: { content: 'Checkout Process' },
+    steps: [
+      { 'aria-label': 'Step 1: Shopping Cart', name: 'Cart' },
+      { 'aria-label': 'Step 2: Shipping Information', name: 'Shipping' },
+      { 'aria-label': 'Step 3: Payment Details', name: 'Payment' },
+      { 'aria-label': 'Step 4: Order Confirmation', name: 'Confirmation' },
+    ],
+    variant: StepperNumberVariantType.DEFAULT,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<StepperNumber
+  variant="DEFAULT"
+  orientation="horizontal"
+  horizontalOrientationWidth="150px"
+  currentStep={1}
+  steps={[
+    { name: 'Cart', 'aria-label': 'Step 1: Shopping Cart' },
+    { name: 'Shipping', 'aria-label': 'Step 2: Shipping Information' },
+    { name: 'Payment', 'aria-label': 'Step 3: Payment Details' },
+    { name: 'Confirmation', 'aria-label': 'Step 4: Order Confirmation' },
+  ]}
+  completedStepIcon={{ icon: ICONS.PLACEHOLDER }}
+/>`,
+      },
+    },
   },
 };

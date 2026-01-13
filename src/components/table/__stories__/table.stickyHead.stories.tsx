@@ -1,55 +1,40 @@
 import './css/table.css';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { PropsWithChildren } from 'react';
-
-import { TableVariantType } from '@/lib/designSystem/kubit/components/table/variants';
-import { TableBodyVariantType } from '@/lib/designSystem/kubit/components/tableBody/variants';
-import { TableFootVariantType } from '@/lib/designSystem/kubit/components/tableFoot/variants';
-import { TableHeadVariantType } from '@/lib/designSystem/kubit/components/tableHead/variants';
-
-import type { TableProps } from '../types/table';
 
 import { TableBody } from '../../tableBody/tableBody';
 import { TableCell } from '../../tableCell/tableCell';
 import { TableFoot } from '../../tableFoot/tableFoot';
 import { TableHead } from '../../tableHead/tableHead';
 import { TableRow } from '../../tableRow/tableRow';
-import { Table as Story } from '../table';
+import { Table as TableComponent } from '../table';
 import { argtypes } from './argtypes';
 
 const meta = {
   argTypes: argtypes(),
-  component: Story,
-  tags: ['autodocs', 'table'],
+  component: TableComponent,
+  tags: ['table', 'sticky'],
   title: 'Components/Table/Table/StickyHead',
-} satisfies Meta<typeof Story>;
+} satisfies Meta<typeof TableComponent>;
 
 export default meta;
 
-type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
+type StoryType = StoryObj<typeof meta>;
 
-const tHeadVariant = TableHeadVariantType.DEFAULT;
-
-const tBodyVariant = TableBodyVariantType.DEFAULT;
-
-const tFootVariant = TableFootVariantType.DEFAULT;
-
-const commonArgs: PropsWithChildren<TableProps> = {
-  variant: TableVariantType.DEFAULT,
+const commonArgs = {
+  variant: 'DEFAULT',
 };
 
-export const TableWithStickyHead: Story = {
+export const TableWithStickyHead: StoryType = {
   args: {
     ...commonArgs,
     additionalClasses: {
       scrollablecontainer: 'scrollablecontainer-max-height',
     },
     ['aria-label']: 'Aria label example',
-
     children: (
       <>
-        <TableHead sticky={true} variant={tHeadVariant}>
+        <TableHead sticky={true} variant="DEFAULT">
           <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
             <TableCell th={true} variant="HEADER_CELL_DEFAULT">
               Header Cell 1
@@ -68,7 +53,7 @@ export const TableWithStickyHead: Story = {
             </TableCell>
           </TableRow>
         </TableHead>
-        <TableBody variant={tBodyVariant}>
+        <TableBody variant="DEFAULT">
           <TableRow variant="BODY_ROW_DEFAULT">
             <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 1</TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 2</TableCell>
@@ -119,7 +104,7 @@ export const TableWithStickyHead: Story = {
             <TableCell variant="BODY_CELL_DEFAULT">Row 7 - Cell 5</TableCell>
           </TableRow>
         </TableBody>
-        <TableFoot variant={tFootVariant}>
+        <TableFoot variant="DEFAULT">
           <TableRow variant="BODY_ROW_DEFAULT">
             <TableCell
               colSpan={4}
@@ -135,5 +120,41 @@ export const TableWithStickyHead: Story = {
         </TableFoot>
       </>
     ),
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Table
+  variant="DEFAULT"
+  additionalClasses={{
+    scrollablecontainer: 'scrollablecontainer-max-height',
+  }}
+  aria-label="Aria label example"
+>
+  <TableHead sticky={true} variant="DEFAULT">
+    <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
+      <TableCell th={true} variant="HEADER_CELL_DEFAULT">Header Cell 1</TableCell>
+      <TableCell th={true} variant="HEADER_CELL_DEFAULT">Header Cell 2</TableCell>
+      <TableCell th={true} variant="HEADER_CELL_DEFAULT">Header Cell 3</TableCell>
+    </TableRow>
+  </TableHead>
+  <TableBody variant="DEFAULT">
+    <TableRow variant="BODY_ROW_DEFAULT">
+      <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 1</TableCell>
+      <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 2</TableCell>
+      <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 3</TableCell>
+    </TableRow>
+  </TableBody>
+  <TableFoot variant="DEFAULT">
+    <TableRow variant="BODY_ROW_DEFAULT">
+      <TableCell colSpan={2} scope="row" textAlign="right" th={true} variant="BODY_CELL_DEFAULT">
+        Summary
+      </TableCell>
+      <TableCell variant="BODY_CELL_DEFAULT">Footer - Cell</TableCell>
+    </TableRow>
+  </TableFoot>
+</Table>`,
+      },
+    },
   },
 };

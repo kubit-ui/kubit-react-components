@@ -743,54 +743,11 @@ export const cssClasses = {
     labeliconcontainer: 'option__labeliconcontainer',
     sublabel: 'option__sublabel',
     sublabelcontainer: 'option__sublabelcontainer',
-    $_code_viewer_subtheme: {
-      option: 'option option--code_viewer_subtheme',
-      label: 'option__label option__label--code_viewer_subtheme',
-    },
-    $_input_dropdown: {
-      option: 'option option--input_dropdown',
-      icon: 'option__icon option__icon--input_dropdown',
-      label: 'option__label option__label--input_dropdown',
-      labeliconcontainer: 'option__labeliconcontainer option__labeliconcontainer--input_dropdown',
-    },
-    $_input_option: {
-      option: 'option option--input_option',
-      icon: 'option__icon option__icon--input_option',
-      label: 'option__label option__label--input_option',
-      labelhighlighted: 'option__labelhighlighted option__labelhighlighted--input_option',
-      labeliconcontainer: 'option__labeliconcontainer option__labeliconcontainer--input_option',
-      sublabel: 'option__sublabel option__sublabel--input_option',
-    },
-    $_input_option_hightlighted: {
-      option: 'option option--input_option_hightlighted',
-      icon: 'option__icon option__icon--input_option_hightlighted',
-      label: 'option__label option__label--input_option_hightlighted',
-      labelhighlighted: 'option__labelhighlighted option__labelhighlighted--input_option_hightlighted',
-      labeliconcontainer: 'option__labeliconcontainer option__labeliconcontainer--input_option_hightlighted',
-      sublabel: 'option__sublabel option__sublabel--input_option_hightlighted',
-    },
-    $_inverted: {
-      option: 'option option--inverted',
-      label: 'option__label option__label--inverted',
-    },
-    $_side_menu_level_1: {
-      option: 'option option--side_menu_level_1',
-      icon: 'option__icon option__icon--side_menu_level_1',
-      label: 'option__label option__label--side_menu_level_1',
-      labeliconcontainer: 'option__labeliconcontainer option__labeliconcontainer--side_menu_level_1',
-    },
-    $_side_menu_level_2: {
-      option: 'option option--side_menu_level_2',
-      label: 'option__label option__label--side_menu_level_2',
-    },
-    $_topbar: {
-      option: 'option option--topbar',
-      label: 'option__label option__label--topbar',
-      labelhighlighted: 'option__labelhighlighted option__labelhighlighted--topbar',
-    },
-    $_topbar_tab: {
-      option: 'option option--topbar_tab',
-      label: 'option__label option__label--topbar_tab',
+    $_default: {
+      option: 'option option--default',
+      icon: 'option__icon option__icon--default',
+      label: 'option__label option__label--default',
+      labeliconcontainer: 'option__labeliconcontainer option__labeliconcontainer--default',
     },
   },
   OVERLAY: {

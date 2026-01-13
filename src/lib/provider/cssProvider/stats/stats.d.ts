@@ -743,54 +743,11 @@ export interface CssClasses {
     labeliconcontainer: string,
     sublabel: string,
     sublabelcontainer: string,
-    $_code_viewer_subtheme: {
-      option: string,
-      label: string,
-    },
-    $_input_dropdown: {
+    $_default: {
       option: string,
       icon: string,
       label: string,
       labeliconcontainer: string,
-    },
-    $_input_option: {
-      option: string,
-      icon: string,
-      label: string,
-      labelhighlighted: string,
-      labeliconcontainer: string,
-      sublabel: string,
-    },
-    $_input_option_hightlighted: {
-      option: string,
-      icon: string,
-      label: string,
-      labelhighlighted: string,
-      labeliconcontainer: string,
-      sublabel: string,
-    },
-    $_inverted: {
-      option: string,
-      label: string,
-    },
-    $_side_menu_level_1: {
-      option: string,
-      icon: string,
-      label: string,
-      labeliconcontainer: string,
-    },
-    $_side_menu_level_2: {
-      option: string,
-      label: string,
-    },
-    $_topbar: {
-      option: string,
-      label: string,
-      labelhighlighted: string,
-    },
-    $_topbar_tab: {
-      option: string,
-      label: string,
     },
   },
   OVERLAY: {

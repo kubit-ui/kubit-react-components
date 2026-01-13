@@ -37,6 +37,7 @@ export const SelectorBoxFileContainerBox = ({
     'data-focus': focus,
     'data-state': state,
   };
+
   return (
     <label
       className={cssClasses?.containerboxcontainer}
