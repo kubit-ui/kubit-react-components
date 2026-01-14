@@ -16,7 +16,6 @@
  *
  * @returns A new object containing only the filtered attributes:
  *   - Includes attributes that start with `aria-` or `data-`.
- *   - Includes attributes that do not contain a hyphen (`-`).
  *   - Excludes all other attributes.
  *   - If `forHtml` is `true`, all values are converted to strings.
  *   - If `forHtml` is `false`, values retain their original types.
@@ -30,17 +29,14 @@ export const pickCustomAttributes = (
     return {};
   }
 
-  return Object.entries(attributes).reduce(
-    (acc, [key, value]) => {
-      if (
-        (key.startsWith('aria-') || key.startsWith('data-')) &&
-        value !== null &&
-        value !== undefined
-      ) {
-        acc[key] = forHtml ? String(value) : value;
-      }
-      return acc;
-    },
-    {} as Record<string, string | boolean>,
+  return Object.fromEntries(
+    Object.entries(attributes)
+      .filter(
+        ([key, value]) =>
+          (key.startsWith('aria-') || key.startsWith('data-')) &&
+          value !== null &&
+          value !== undefined,
+      )
+      .map(([key, value]) => [key, forHtml ? String(value) : value]),
   );
 };

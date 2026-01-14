@@ -1,5 +1,3 @@
-import type { FormatDateType } from '@/lib/utils/date/types/format.types';
-
 import {
   getAddDays,
   getAddMonths,
@@ -16,7 +14,6 @@ import {
 import { formatDate } from '@/lib/utils/date/formatDate';
 import { transformDate } from '@/lib/utils/date/transformDate';
 
-import type { DateFormatOptions } from '../utilsProvider/types/utilsProvider';
 import type { KubitProviderProps } from './types/kubitProvider';
 
 import { defaultGenericComponents } from '../genericComponentsProvider/defaultGenericComponents';
@@ -69,57 +66,30 @@ export const KubitProvider = ({
   return (
     <UtilsProvider
       dateHelpers={{
-        getAddDays: (date: Date, days: number) => {
-          return getAddDays(date, days);
-        },
-        getAddMonths: (date: Date, months: number) => {
-          return getAddMonths(date, months);
-        },
-        getAddYears: (date: Date, years: number) => {
-          return getAddYears(date, years);
-        },
-        getAllMonthName: () => {
-          return getAllMonthNames();
-        },
-        getAllWeekdayName: (
-          weekdayFormat: Intl.DateTimeFormatOptions['weekday'],
-          isSundayFirst: boolean,
+        getAddDays,
+        getAddMonths,
+        getAddYears,
+        getAllMonthName: (
+          monthFormat: Intl.DateTimeFormatOptions['month'],
           locale?: string,
         ) => {
-          return getAllWeekdayNames(weekdayFormat, isSundayFirst, locale);
+          // Filter out numeric formats as getAllMonthNames only supports text formats
+          const format =
+            monthFormat === 'numeric' || monthFormat === '2-digit'
+              ? 'long'
+              : monthFormat || 'long';
+          return getAllMonthNames(format, locale);
         },
-        getSubDays: (date: Date, days: number) => {
-          return getSubDays(date, days);
-        },
-        getSubMonths: (date: Date, months: number) => {
-          return getSubMonths(date, months);
-        },
-        getSubYears: (date: Date, years: number) => {
-          return getSubYears(date, years);
-        },
-        isAfter: (date1: Date, date2: Date) => {
-          return isAfter(date1, date2);
-        },
-        isBefore: (date1: Date, date2: Date) => {
-          return isBefore(date1, date2);
-        },
-        isDatesEqual: (
-          firsDate: string | number | Date,
-          secondDate: string | number | Date,
-        ) => {
-          return isDatesEqual(firsDate, secondDate);
-        },
+        getAllWeekdayName: getAllWeekdayNames,
+        getSubDays,
+        getSubMonths,
+        getSubYears,
+        isAfter,
+        isBefore,
+        isDatesEqual,
       }}
-      formatDate={(
-        date: Date,
-        format: DateFormatOptions | FormatDateType | string,
-        locale?: string,
-      ) => {
-        return formatDate(date, format, locale);
-      }}
-      transformDate={(date: string | number, format: string | undefined) => {
-        return transformDate(date, format);
-      }}
+      formatDate={formatDate}
+      transformDate={transformDate}
       {...utilsConfig}
     >
       <StylesProvider>

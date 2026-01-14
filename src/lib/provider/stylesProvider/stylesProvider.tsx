@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type FC, createContext, useContext, useMemo, useState } from 'react';
 
 import type { RecoverComponentStyles } from '@/lib/types/cssGenerator/cssGenerator';
@@ -99,39 +98,42 @@ const buildMediaQueries = (breakpoints: Breakpoints) => ({
  * </StylesProvider>
  * ```
  */
-//! <-- Review the provider building -->
 export const StylesProvider: FC<StylesProviderProps> = ({
   bernovaProvider,
-  breakpoints: initialBreakpoints = defaultBreakpoints,
+  breakpoints = defaultBreakpoints,
   children,
-  icons: initialIcons = {},
-  illustrations: initialIllustrations = {},
+  icons = {},
+  illustrations = {},
   jsInCss = true,
   linkId = 'kb-styled-provider',
   themeSelected,
 }) => {
-  const classes = [];
-  const breakpoints = initialBreakpoints;
-  const mediaQueries = buildMediaQueries(initialBreakpoints);
-  const icons = initialIcons;
-  const illustrations = initialIllustrations;
+  /**
+   * Pre-computed media queries based on the provided breakpoints.
+   * Memoized to prevent recalculation on every render.
+   */
+  const mediaQueries = useMemo(
+    () => buildMediaQueries(breakpoints),
+    [breakpoints],
+  );
 
   /**
    * Initialize the Bernova CSS provider instance.
    * Uses the provided custom provider or falls back to the default Provider.
    */
   const provider = useMemo(() => {
-    const currentProvider = bernovaProvider || Provider;
-    return new currentProvider({
+    const ProviderClass = bernovaProvider || Provider;
+    return new ProviderClass({
       jsInCss,
       linkId,
     });
-  }, []);
+  }, [bernovaProvider, jsInCss, linkId]);
 
   const [currentTheme, setCurrentTheme] = useState<string | null>(
     themeSelected || provider.themeSelected,
   );
 
+  // Sync provider theme with state
   provider.themeSelected = currentTheme || '';
 
   /**
@@ -141,52 +143,63 @@ export const StylesProvider: FC<StylesProviderProps> = ({
    * @param themeName - The name of the theme to activate
    */
   const changeTheme = (themeName: string): void => {
-    try {
-      provider.themeSelected = themeName;
-      setCurrentTheme(themeName);
-    } catch (error) {
-      // Handle error if theme change fails
-    }
+    provider.themeSelected = themeName;
+    setCurrentTheme(themeName);
   };
 
   /**
    * Retrieves the compiled styles for a specific component and variant.
-   * Provides a safe wrapper around the provider's getComponentStyles method.
+   * Provides a wrapper around the provider's getComponentStyles method.
    *
    * @param params - Parameters for style retrieval
    * @param params.component - The component name
    * @param params.variant - The variant name (optional)
    * @param params.additionalClassNames - Additional CSS classes to merge (optional)
-   * @returns Object containing the component styles, or empty object if retrieval fails
+   * @returns Object containing the component styles
    */
-  const getComponentStyles = ({ additionalClassNames, component, variant }) => {
-    try {
-      return provider.getComponentStyles({
-        additionalClassNames,
-        component,
-        variant: variant || '',
-      });
-    } catch (error) {
-      return {};
-    }
+  const getComponentStyles: RecoverComponentStyles = ({
+    additionalClassNames,
+    component,
+    variant,
+  }) => {
+    return provider.getComponentStyles({
+      additionalClassNames,
+      component,
+      variant: variant || '',
+    });
   };
 
+  /**
+   * Context value memoized to prevent unnecessary re-renders.
+   */
+  const contextValue = useMemo<StylesContextProps>(
+    () => ({
+      breakpoints,
+      changeTheme,
+      classes: [],
+      currentTheme,
+      getComponentStyles,
+      icons,
+      illustrations,
+      mediaQueries,
+      themeClassNames: provider.classNames as unknown as string[],
+      themes: provider.allThemes,
+      themeVariables: provider.variables as unknown as Record<string, string>,
+    }),
+    [
+      breakpoints,
+      currentTheme,
+      icons,
+      illustrations,
+      mediaQueries,
+      provider.classNames,
+      provider.allThemes,
+      provider.variables,
+    ],
+  );
+
   return (
-    <StylesContext.Provider
-      value={{
-        breakpoints,
-        changeTheme,
-        classes,
-        currentTheme,
-        getComponentStyles: getComponentStyles as RecoverComponentStyles,
-        icons,
-        illustrations,
-        mediaQueries,
-        themeClassNames: provider.classNames as any,
-        themes: provider.allThemes,
-        themeVariables: provider.variables as any,
-      }}
-    >
+    <StylesContext.Provider value={contextValue}>
       {children}
     </StylesContext.Provider>
   );
