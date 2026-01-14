@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 
+import { ScreenReaderOnly } from '@/lib/components/screen-reader-only/screenReaderOnly';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
@@ -42,7 +43,7 @@ export const IconBasic = forwardRef<HTMLSpanElement, IconProps>(
           onClick={onClick}
           {...customProps}
         >
-          <screen-reader-only>{screenReaderText}</screen-reader-only>
+          <ScreenReaderOnly>{screenReaderText}</ScreenReaderOnly>
           <IconStandAlone
             icon={icon}
             {...iconProps}

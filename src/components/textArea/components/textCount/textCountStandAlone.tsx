@@ -1,6 +1,7 @@
 import { type AriaAttributes, type ForwardedRef, forwardRef } from 'react';
 
 import { Text } from '@/components/text/text';
+import { ScreenReaderOnly } from '@/lib/components/screen-reader-only/screenReaderOnly';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { TextCountStandAloneProps } from './types/textCount';
@@ -56,9 +57,9 @@ const TextCountStandAloneComponent = (
       }}
       {...customProps}
     >
-      <screen-reader-only key={currentCharacters}>
+      <ScreenReaderOnly key={currentCharacters}>
         {screenReaderText}
-      </screen-reader-only>
+      </ScreenReaderOnly>
       <Text
         additionalClasses={{
           text: cssClasses?.letftext,

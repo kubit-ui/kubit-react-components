@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { ScreenReaderOnly } from '@/lib/components/screen-reader-only/screenReaderOnly';
 import { STATES } from '@/lib/types/states/states';
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
@@ -94,7 +95,7 @@ export const StepperNumberStandAlone = forwardRef<
                 }}
               >
                 {usingScreenReaderTextBuilder && (
-                  <screen-reader-only>
+                  <ScreenReaderOnly>
                     {buildScreenReaderText(
                       index,
                       currentStep,
@@ -103,7 +104,7 @@ export const StepperNumberStandAlone = forwardRef<
                       step.name,
                       isVertical,
                     )}
-                  </screen-reader-only>
+                  </ScreenReaderOnly>
                 )}
                 <span
                   aria-hidden={
@@ -143,7 +144,7 @@ export const StepperNumberStandAlone = forwardRef<
                             customAttributes={customAttributes}
                             {...completedStepIcon}
                           />
-                          <screen-reader-only>{index + 1}</screen-reader-only>
+                          <ScreenReaderOnly>{index + 1}</ScreenReaderOnly>
                         </>
                       ) : (
                         <Text

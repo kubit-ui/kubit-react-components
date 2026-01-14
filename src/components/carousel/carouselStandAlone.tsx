@@ -1,5 +1,7 @@
 import { type ForwardedRef, forwardRef } from 'react';
 
+import { ScreenReaderOnly } from '@/lib/components/screen-reader-only/screenReaderOnly';
+
 import type { ICarouselStandAlone } from './types/carousel';
 
 /**
@@ -64,9 +66,9 @@ const CarouselStandAloneComponent = (
         </div>
       </div>
       {screenReaderOnly && (
-        <screen-reader-only aria-live="off" {...screenReaderOnly}>
+        <ScreenReaderOnly ariaLive="off" {...screenReaderOnly}>
           {screenReaderOnly.content}
-        </screen-reader-only>
+        </ScreenReaderOnly>
       )}
     </div>
   );

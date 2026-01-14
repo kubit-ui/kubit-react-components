@@ -3,7 +3,6 @@ import { type FC, createContext, useContext, useMemo, useState } from 'react';
 
 import type { RecoverComponentStyles } from '@/lib/types/cssGenerator/cssGenerator';
 
-import '../../components/screen-reader-only/screen-reader-only';
 import type {
   Breakpoints,
   StylesContextProps,

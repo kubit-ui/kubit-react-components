@@ -100,7 +100,9 @@ describe('Carousel component', () => {
       />,
     );
 
-    const screenReaderElement = container.querySelector('screen-reader-only');
+    const screenReaderElement = container.querySelector(
+      '.kbt-screen-reader-only',
+    );
     expect(screenReaderElement).toBeInTheDocument();
   });
 

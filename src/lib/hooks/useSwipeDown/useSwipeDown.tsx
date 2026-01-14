@@ -2,10 +2,10 @@ import { useCallback, useRef } from 'react';
 
 const DISTANCE_TO_TRIGGER_CLOSE = 30;
 
-export type UseSwipeDownReturn = {
+export interface UseSwipeDownReturn {
   setPopoverRef: (node: HTMLElement | null) => void;
   setDragIconRef: (node: HTMLElement | null) => void;
-};
+}
 
 /**
  * Hook for handling swipe down gesture to close modals/popovers
@@ -51,6 +51,40 @@ export const useSwipeDown = ({
           return (e as MouseEvent).clientY;
         };
 
+        const onDragEnd = (e: MouseEvent | TouchEvent) => {
+          if (!isDragging.current || !containerRef.current) {
+            return;
+          }
+
+          isDragging.current = false;
+
+          const _currentY = _getEventY(e);
+          const _deltaY = _currentY - startY.current;
+
+          if (_deltaY > DISTANCE_TO_TRIGGER_CLOSE) {
+            handleClose?.();
+          } else {
+            // Reset position if not closing
+            containerRef.current.style.bottom = initialBottom.current;
+          }
+        };
+
+        const onDragMove = (e: MouseEvent | TouchEvent) => {
+          if (!isDragging.current || !containerRef.current) {
+            return;
+          }
+
+          e.preventDefault();
+          const _currentY = _getEventY(e);
+          const _deltaY = _currentY - startY.current;
+
+          // Only allow downward movement (closing gesture)
+          if (_deltaY > 0) {
+            // Use bottom to provide visual feedback during drag
+            containerRef.current.style.bottom = `-${_deltaY}px`;
+          }
+        };
+
         const onDragStart = (e: MouseEvent | TouchEvent) => {
           if (isDragging.current || !containerRef.current) {
             return;
@@ -76,40 +110,6 @@ export const useSwipeDown = ({
           document.addEventListener('touchend', onDragEnd, { passive: false });
         };
 
-        const onDragMove = (e: MouseEvent | TouchEvent) => {
-          if (!isDragging.current || !containerRef.current) {
-            return;
-          }
-
-          e.preventDefault();
-          const _currentY = _getEventY(e);
-          const _deltaY = _currentY - startY.current;
-
-          // Only allow downward movement (closing gesture)
-          if (_deltaY > 0) {
-            // Use bottom to provide visual feedback during drag
-            containerRef.current.style.bottom = `-${_deltaY}px`;
-          }
-        };
-
-        const onDragEnd = (e: MouseEvent | TouchEvent) => {
-          if (!isDragging.current || !containerRef.current) {
-            return;
-          }
-
-          isDragging.current = false;
-
-          const _currentY = _getEventY(e);
-          const _deltaY = _currentY - startY.current;
-
-          if (_deltaY > DISTANCE_TO_TRIGGER_CLOSE) {
-            handleClose?.();
-          } else {
-            // Reset position if not closing
-            containerRef.current.style.bottom = initialBottom.current;
-          }
-        };
-
         // These listeners are added to the specific node (drag icon) because we only want
         // to start dragging when the user interacts with this specific element
         node.addEventListener('mousedown', onDragStart, { passive: false });
@@ -131,5 +131,5 @@ export const useSwipeDown = ({
     [handleClose],
   );
 
-  return { setPopoverRef, setDragIconRef };
+  return { setDragIconRef, setPopoverRef };
 };

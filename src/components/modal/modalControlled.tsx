@@ -8,9 +8,10 @@ import { useScrollEffect } from '@/lib/hooks/useScrollEffect/useScrollEffect';
 import { useSwipeDown } from '@/lib/hooks/useSwipeDown/useSwipeDown';
 import { syncInnerAndForwardedRef } from '@/lib/utils/refs/syncRefs';
 
+import type { ModalControlledProps } from './types/modal';
+
 import { Portal } from '../portal/portal';
 import { ModalStandAlone } from './modalStandAlone';
-import type { ModalControlledProps } from './types/modal';
 
 /**
  * ModalControlled component for displaying overlay dialogs.

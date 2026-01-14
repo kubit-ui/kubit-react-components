@@ -5,7 +5,7 @@ import { useSwipeDown } from '../useSwipeDown';
 const createMockElements = () => {
   const mockPopoverElement = document.createElement('div');
   const mockDragElement = document.createElement('div');
-  return { mockPopoverElement, mockDragElement };
+  return { mockDragElement, mockPopoverElement };
 };
 const captureEventHandlers = () => {
   const eventListeners: Record<string, EventListener> = {};
@@ -31,8 +31,8 @@ const createTouchEvent = (type: string, clientY: number, useTouches = true) => {
   const event = new TouchEvent(type, {
     bubbles: true,
     cancelable: true,
-    touches: useTouches ? [touchData] : [],
     changedTouches: !useTouches ? [touchData] : [],
+    touches: useTouches ? [touchData] : [],
   });
   Object.defineProperty(event, 'preventDefault', {
     value: vi.fn(),
@@ -42,12 +42,12 @@ const createTouchEvent = (type: string, clientY: number, useTouches = true) => {
 };
 
 describe('useSwipeDown', () => {
-  let mockHandleClose: ReturnType<typeof vi.fn>;
+  let mockHandleClose: () => void;
   let mockAddEventListener: ReturnType<typeof vi.fn>;
   let mockRemoveEventListener: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
-    mockHandleClose = vi.fn();
+    mockHandleClose = vi.fn() as () => void;
     mockAddEventListener = vi.fn();
     mockRemoveEventListener = vi.fn();
 
@@ -128,7 +128,7 @@ describe('useSwipeDown', () => {
       const { result } = renderHook(() =>
         useSwipeDown({ handleClose: mockHandleClose }),
       );
-      const { mockPopoverElement, mockDragElement } = createMockElements();
+      const { mockDragElement, mockPopoverElement } = createMockElements();
       const { eventListeners, restore } = captureEventHandlers();
 
       act(() => {
@@ -150,7 +150,7 @@ describe('useSwipeDown', () => {
       const { result } = renderHook(() =>
         useSwipeDown({ handleClose: mockHandleClose }),
       );
-      const { mockPopoverElement, mockDragElement } = createMockElements();
+      const { mockDragElement, mockPopoverElement } = createMockElements();
       const { eventListeners, restore } = captureEventHandlers();
 
       act(() => {
@@ -172,7 +172,7 @@ describe('useSwipeDown', () => {
       const { result } = renderHook(() =>
         useSwipeDown({ handleClose: mockHandleClose }),
       );
-      const { mockPopoverElement, mockDragElement } = createMockElements();
+      const { mockDragElement, mockPopoverElement } = createMockElements();
       const { eventListeners, restore } = captureEventHandlers();
 
       act(() => {
@@ -194,7 +194,7 @@ describe('useSwipeDown', () => {
       const { result } = renderHook(() =>
         useSwipeDown({ handleClose: mockHandleClose }),
       );
-      const { mockPopoverElement, mockDragElement } = createMockElements();
+      const { mockDragElement, mockPopoverElement } = createMockElements();
       const { eventListeners, restore } = captureEventHandlers();
 
       act(() => {
@@ -216,7 +216,7 @@ describe('useSwipeDown', () => {
       const { result } = renderHook(() =>
         useSwipeDown({ handleClose: mockHandleClose }),
       );
-      const { mockPopoverElement, mockDragElement } = createMockElements();
+      const { mockDragElement, mockPopoverElement } = createMockElements();
       const { eventListeners, restore } = captureEventHandlers();
 
       act(() => {
@@ -231,15 +231,15 @@ describe('useSwipeDown', () => {
       act(() => mockDragElement.dispatchEvent(mouseDownEvent));
 
       const mouseMoveEvent = {
-        type: 'mousemove',
         clientY: 150,
         preventDefault: vi.fn(),
+        type: 'mousemove',
       };
       act(() =>
         eventListeners['mousemove']?.(mouseMoveEvent as unknown as MouseEvent),
       );
 
-      const mouseUpEvent = { type: 'mouseup', clientY: 150 };
+      const mouseUpEvent = { clientY: 150, type: 'mouseup' };
       act(() =>
         eventListeners['mouseup']?.(mouseUpEvent as unknown as MouseEvent),
       );

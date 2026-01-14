@@ -3,6 +3,7 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 import { Dot } from '@/components/dot/dot';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
+import { ScreenReaderOnly } from '@/lib/components/screen-reader-only/screenReaderOnly';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 import {
   processIconProp,
@@ -120,9 +121,7 @@ export const BadgeStandAlone = forwardRef<unknown, BadgeStandAloneProps>(
               />
             </span>
           )}
-          <screen-reader-only aria-live="polite">
-            {ariaLiveText}
-          </screen-reader-only>
+          <ScreenReaderOnly ariaLive="polite">{ariaLiveText}</ScreenReaderOnly>
         </button>
       </div>
     );
