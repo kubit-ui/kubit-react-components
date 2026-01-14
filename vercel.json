@@ -1,9 +1,6 @@
 {
-  "installCommand": "pnpm install",
+  "installCommand": "pnpm install --no-frozen-lockfile",
   "buildCommand": "pnpm build",
   "framework": null,
-  "outputDirectory": "bundle",
-  "env": {
-    "NODE_VERSION": "20"
-  }
+  "outputDirectory": "bundle"
 }
