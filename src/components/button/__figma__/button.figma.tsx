@@ -21,10 +21,7 @@ const BUTTON_LINKS = [
 ];
 
 const BUTTON_PROPS = {
-  disabled: figma.enum('state', {
-    Default: false,
-    Disabled: true,
-  }),
+  disabled: figma.boolean('disabled'),
   loading: figma.boolean('loading'),
   size: figma.enum('size', {
     Large: 'LARGE',
