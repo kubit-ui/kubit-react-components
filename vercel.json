@@ -1,6 +1,13 @@
 {
-  "installCommand": "npm install --legacy-peer-deps",
-  "buildCommand": "npm run build",
+  "buildCommand": "pnpm build",
   "framework": null,
-  "outputDirectory": "bundle"
+  "outputDirectory": "bundle",
+  "env": {
+    "ENABLE_EXPERIMENTAL_COREPACK": "1",
+    "NODEJS_FETCH_NATIVE": "0"
+  },
+  "buildEnv": {
+    "ENABLE_EXPERIMENTAL_COREPACK": "1",
+    "NODEJS_FETCH_NATIVE": "0"
+  }
 }
