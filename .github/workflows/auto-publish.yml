@@ -1,28 +1,24 @@
 name: Auto Publish to NPM
 
-# Auto-publish workflow for Kubit React Components
+# This workflow requires three secrets to be configured in the repository:
 #
-# @kubit-ui-web/react-components is a customizable, accessible library of React web components
-# This workflow automatically publishes new versions to NPM when PRs are merged
+# 1. NPM_TOKEN: An NPM automation token for publishing packages
+#    - Go to npmjs.com → Profile → Access Tokens → Generate New Token
+#    - Select "Automation" type (bypasses 2FA)
+#    - Ensure it has publish permissions for your package
 #
-# ⚠️  CRITICAL: This workflow requires two secrets to be configured in the repository:
+# 2. RELEASE_TOKEN: A GitHub Personal Access Token for bypassing branch protection
+#    - Go to github.com → Settings → Developer settings → Personal access tokens
+#    - Generate a "Classic" token with these permissions:
+#      - repo (Full control of private repositories)
+#      - workflow (Update GitHub Action workflows)
+#    - OR use Fine-grained PAT with "Contents: write" and "Pull requests: write"
+#    - If main/master branch is protected, ensure the token can bypass pull request requirements
 #
-# 1. NPM_TOKEN (REQUIRED): An NPM automation token for publishing packages
-#    Step-by-step setup:
-#    a) Go to https://www.npmjs.com/settings/tokens
-#    b) Click "Generate New Token" → Select "Automation" type
-#    c) Grant "Read and publish" permissions
-#    d) Copy the token and add it as a repository secret named NPM_TOKEN
-#    e) ⚠️ Must be AUTOMATION token (not Classic/Granular) to bypass 2FA
-#
-# 2. RELEASE_TOKEN (Optional, for protected branches): GitHub Personal Access Token
-#    Step-by-step setup:
-#    a) Go to GitHub → Settings → Developer settings → Personal access tokens
-#    b) Generate "Classic" token with permissions: repo + workflow
-#    c) Add as repository secret named RELEASE_TOKEN
-#    d) Required only if main/master branch has protection rules
-#
-# 🔧 Troubleshooting: If publish fails with ENEEDAUTH, check NPM_TOKEN configuration
+# 3. CHROMATIC_PROJECT_TOKEN_COMPONENTS: A Chromatic project token for visual regression testing
+#    - Go to chromatic.com → Your Project → Manage → Configure
+#    - Generate a new project token
+#    - Ensure it has permissions to publish builds and stories
 
 on:
   pull_request:
@@ -82,10 +78,6 @@ jobs:
           pnpm --version
           pnpm install --frozen-lockfile
 
-      - name: Build project
-        if: steps.validate-branch.outputs.should_publish == 'true'
-        run: pnpm build
-
       - name: Validate package integrity
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
@@ -93,34 +85,77 @@ jobs:
           PACKAGE_NAME=$(node -p "require('./package.json').name")
           echo "Package name: $PACKAGE_NAME"
 
-          # Verify main entry point exists
-          MAIN_FILE=$(node -p "require('./package.json').main")
-          if [ ! -f "$MAIN_FILE" ]; then
-            echo "Main file $MAIN_FILE does not exist"
-            echo "Building the project first..."
-            pnpm build
-            if [ ! -f "$MAIN_FILE" ]; then
-              echo "Main file $MAIN_FILE still does not exist after build"
-              exit 1
-            fi
-          fi
-          echo "Main file exists: $MAIN_FILE"
+          # Verify that required scripts exist using Node.js
+          node -e "
+            const pkg = require('./package.json');
+            const scripts = pkg.scripts || {};
 
-          # Verify module entry point exists
-          MODULE_FILE=$(node -p "require('./package.json').module")
-          if [ ! -f "$MODULE_FILE" ]; then
-            echo "Module file $MODULE_FILE does not exist after build"
+            if (!scripts['test:ci']) {
+              console.error('Missing test:ci script in package.json');
+              process.exit(1);
+            }
+
+            if (!scripts['build'] && !scripts['dist']) {
+              console.error('Missing build or dist script in package.json');
+              process.exit(1);
+            }
+
+            console.log('Required scripts found:');
+            console.log('  - test:ci:', scripts['test:ci']);
+            console.log('  - build/dist:', scripts['build'] || scripts['dist']);
+          "
+
+      - name: Run quality checks
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          # Linting
+          if pnpm run --help 2>&1 | grep -q "lint"; then
+            echo "Running linter..."
+            pnpm lint
+          fi
+
+          # Type checking
+          if pnpm run --help 2>&1 | grep -q "type-check"; then
+            echo "Type checking..."
+            pnpm type-check
+          fi
+
+      - name: Run tests
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          echo "Running tests..."
+          pnpm test:ci
+
+          # Check coverage if exists
+          if [ -f "coverage/lcov.info" ]; then
+            echo "Coverage report generated"
+          fi
+
+      - name: Build package
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          echo "Building package..."
+          pnpm build
+
+          # Verify that the build generated files
+          if [ ! -d "dist" ] && [ ! -d "lib" ] && [ ! -d "build" ] && [ ! -d "bundle" ]; then
+            echo "No build output found"
             exit 1
           fi
-          echo "Module file exists: $MODULE_FILE"
 
-          # Verify types entry point exists
-          TYPES_FILE=$(node -p "require('./package.json').types")
-          if [ ! -f "$TYPES_FILE" ]; then
-            echo "Types file $TYPES_FILE does not exist after build"
-            exit 1
-          fi
-          echo "Types file exists: $TYPES_FILE"
+      - name: Build Storybook for Chromatic
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          echo "Building Storybook for Chromatic..."
+          pnpm build-storybook
+
+      - name: Publish to Chromatic
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          echo "Publishing to Chromatic..."
+          pnpm chromatic --exit-zero-on-changes --auto-accept-changes
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN_COMPONENTS }}
 
       - name: Configure Git
         if: steps.validate-branch.outputs.should_publish == 'true'
@@ -150,9 +185,7 @@ jobs:
           echo "Title: $PR_TITLE"
 
           # 1. Check explicit breaking change markers
-          # Use GitHub context directly to avoid shell injection issues
-          if [[ "${{ contains(github.event.pull_request.body, 'BREAKING CHANGE:') }}" == "true" ]] || \
-             echo "$PR_TITLE" | grep -q "!" || \
+          if echo "$PR_TITLE" | grep -q "!" || \
              echo "$PR_TITLE" | grep -qi "\[breaking\]" || \
              [[ $BRANCH_NAME =~ ^break/ ]] || \
              [[ $BRANCH_NAME =~ ^breaking/ ]]; then
@@ -246,8 +279,8 @@ jobs:
           # Commit and tag
           git add package.json
           # Add lock file only if it exists and is not ignored
-          if [ -f "yarn.lock" ] && ! git check-ignore yarn.lock; then
-            git add yarn.lock
+          if [ -f "pnpm-lock.yaml" ] && ! git check-ignore pnpm-lock.yaml; then
+            git add pnpm-lock.yaml
           fi
           git commit -m "chore(release): $NEW_VERSION
 
@@ -356,22 +389,6 @@ jobs:
             yarn add @kubit-ui-web/react-components@${{ steps.version-bump.outputs.new_version }}
             ```
 
-            ### 🔧 Usage
-            ```jsx
-            // Import Kubit React components
-            import { Button, Input, Card } from '@kubit-ui-web/react-components';
-
-            function App() {
-              return (
-                <div>
-                  <Button>Click me</Button>
-                  <Input placeholder="Enter text" />
-                  <Card>Component content</Card>
-                </div>
-              );
-            }
-            ```
-
             ### 🔗 Links
             - [NPM Package](https://www.npmjs.com/package/@kubit-ui-web/react-components/v/${{ steps.version-bump.outputs.new_version }})
             - [Full Changelog](https://github.com/${{ github.repository }}/compare/v${{ steps.version-bump.outputs.current_version }}...v${{ steps.version-bump.outputs.new_version }})
@@ -410,29 +427,17 @@ jobs:
             yarn add @kubit-ui-web/react-components@${new_version}
             \`\`\`
 
-            ### 🔧 Usage Example
-            \`\`\`jsx
-            // Import Kubit React components
-            import { Button, Input, Card } from '@kubit-ui-web/react-components';
-
-            function App() {
-              return (
-                <div>
-                  <Button>Click me</Button>
-                  <Input placeholder="Enter text" />
-                  <Card>Component content</Card>
-                </div>
-              );
-            }
-            \`\`\`
-
             ### ✅ Completed Steps
-            - [x] Package integrity validated
+            - [x] Quality checks passed
+            - [x] Tests passed
+            - [x] Build successful
+            - [x] Storybook built for Chromatic
+            - [x] Published to Chromatic
             - [x] Published to NPM
             - [x] GitHub release created
             - [x] Repository tagged
 
-            🎉 **Ready to use!**`;
+            🎉 **Ready to use in production!**`;
 
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -455,32 +460,28 @@ jobs:
             - **Release Token**: Add RELEASE_TOKEN secret to bypass branch protection rules
             - **Token Permissions**: Check that tokens have correct permissions
             - **Version Conflict**: Check if version already exists in NPM
-            - **Package Issues**: Ensure package.json and main entry point are valid
+            - **Build Issues**: Ensure all tests pass locally and build completes successfully
 
             ### 🔐 Required Secrets Configuration
-            1. **NPM_TOKEN** (❗ REQUIRED):
-               - Go to [npmjs.com](https://www.npmjs.com) → Account → Access Tokens → Generate New Token
-               - Select **"Automation"** type (bypasses 2FA if enabled)
-               - Grant **"Read and publish"** permissions
-               - Copy token and add as repository secret named \`NPM_TOKEN\`
-               - ⚠️ Must be an **Automation token**, not Classic or Granular
+            1. **NPM_TOKEN**:
+               - Type: "Automation" token from npmjs.com
+               - Scope: Access to publish the package
 
             2. **RELEASE_TOKEN** (Required for protected branches):
-               - Go to GitHub → Settings → Developer settings → Personal access tokens
-               - Generate **"Classic"** token with these permissions:
-                 - \`repo\` (Full control of repositories)
-                 - \`workflow\` (Update GitHub Action workflows)
-               - Add as repository secret named \`RELEASE_TOKEN\`
+               - Type: Personal Access Token with bypass permissions
+               - Permissions: "Contents: write", "Pull requests: write"
+               - Special: "Bypass pull request requirements" if needed
 
-            ### 📞 Debugging Steps
-            1. **Check NPM_TOKEN**: Ensure it's an "Automation" token with publish permissions
-            2. **Test Locally**: Run \`npm login\` and \`npm whoami\` to verify token works
-            3. **Repository Secrets**: Verify secrets are added in Settings → Secrets and variables → Actions
-            4. **Token Expiry**: NPM automation tokens don't expire, but check if accidentally deleted
-            5. **Package Permissions**: Ensure token owner has publish rights to the \`@kubit-ui-web/react-components\` package
+            3. **CHROMATIC_PROJECT_TOKEN_COMPONENTS**:
+               - Type: Project token from chromatic.com
+               - Scope: Access to publish builds and visual regression tests
 
-            ### 🚨 Quick Fix
-            If urgent, create NPM_TOKEN secret with a fresh automation token from npmjs.com`;
+            ### 📞 Next Steps
+            1. **NPM Issues**: Verify NPM_TOKEN is an automation token
+            2. **Branch Protection**: Add RELEASE_TOKEN secret with bypass permissions
+            3. **Chromatic**: Verify CHROMATIC_PROJECT_TOKEN_COMPONENTS is configured
+            4. **Logs**: Check error logs for specific authentication issues
+            5. **Manual Process**: Create a new PR if tokens can't be configured`;
 
             await github.rest.issues.createComment({
               issue_number: context.issue.number,

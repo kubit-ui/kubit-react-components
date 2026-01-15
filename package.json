@@ -148,7 +148,8 @@
     "pack:analyze": "pnpm pack && tar -tzf *.tgz | head -50 && rm *.tgz",
     "prepublishOnly": "pnpm dist && pnpm pack:size",
     "clean": "rm -rf dist node_modules .pnpm-store",
-    "postinstall": "echo 'postinstall'"
+    "postinstall": "echo 'postinstall'",
+    "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_COMPONENTS"
   },
   "peerDependencies": {
     "react": ">=17.0.0 || >=18.3.1",
@@ -179,6 +180,7 @@
     "@vitest/coverage-v8": "^4.0.17",
     "@vitest/ui": "^4.0.17",
     "bernova": "1.2.0",
+    "chromatic": "^13.3.5",
     "cssnano": "^7.1.2",
     "eslint": "^9.39.2",
     "eslint-config-kubit": "1.2.0",
