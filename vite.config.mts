@@ -478,10 +478,6 @@ export default defineConfig(({ mode }) => ({
       output: [
         // ESM with individual modules
         {
-          assetFileNames: () => {
-            // Prevent CSS file generation
-            return 'assets/[name].[ext]';
-          },
           dir: 'dist/esm',
           entryFileNames: '[name].js',
           exports: 'named',
@@ -493,10 +489,6 @@ export default defineConfig(({ mode }) => ({
         },
         // CJS with individual modules
         {
-          assetFileNames: () => {
-            // Prevent CSS file generation
-            return 'assets/[name].[ext]';
-          },
           dir: 'dist/cjs',
           entryFileNames: '[name].js',
           exports: 'named',
@@ -543,9 +535,9 @@ export default defineConfig(({ mode }) => ({
   },
   // Vite 8: Optimized dependency pre-bundling
   optimizeDeps: {
-    // Force disable for library builds
-    disabled: true,
-    include: ['react', 'react-dom'],
+    include: [],
+    // Disable discovery for library builds
+    noDiscovery: true,
   },
   plugins: [
     react({
