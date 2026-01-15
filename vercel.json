@@ -2,12 +2,10 @@
   "buildCommand": "pnpm build",
   "framework": null,
   "outputDirectory": "bundle",
-  "env": {
-    "ENABLE_EXPERIMENTAL_COREPACK": "1",
-    "NODEJS_FETCH_NATIVE": "0"
-  },
-  "buildEnv": {
-    "ENABLE_EXPERIMENTAL_COREPACK": "1",
-    "NODEJS_FETCH_NATIVE": "0"
+  "build": {
+    "env": {
+      "ENABLE_EXPERIMENTAL_COREPACK": "1",
+      "NODEJS_FETCH_NATIVE": "0"
+    }
   }
 }
