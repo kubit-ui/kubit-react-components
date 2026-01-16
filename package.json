@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/react-components",
-  "version": "2.0.0-beta.34",
+  "version": "2.0.0-beta.35",
   "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
   "author": {
     "name": "Kubit",
@@ -177,7 +177,7 @@
     "@vitejs/plugin-react": "^5.1.2",
     "@vitest/coverage-v8": "^4.0.17",
     "@vitest/ui": "^4.0.17",
-    "bernova": "1.2.1",
+    "bernova": "1.2.2",
     "chromatic": "^13.3.5",
     "cssnano": "^7.1.2",
     "eslint": "^9.39.2",

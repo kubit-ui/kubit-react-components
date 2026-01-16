@@ -3,6 +3,7 @@
     "baseOutDir": "./dist",
     "rootDir": "./src",
     "minifyJS": true,
+    "minifyCSS": true,
     "preventMoveJS": false,
     "preventMoveDTS": false,
     "types": ["cjs", "esm"]
