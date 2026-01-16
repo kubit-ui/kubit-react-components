@@ -1,4 +1,12 @@
 {
+  "compilerOptions": {
+    "baseOutDir": "./dist",
+    "rootDir": "./src",
+    "minifyJS": true,
+    "preventMoveJS": false,
+    "preventMoveDTS": false,
+    "types": ["cjs", "esm"]
+  },
   "provider": {
     "name": "Provider",
     "path": "./src/lib/provider/cssProvider/",

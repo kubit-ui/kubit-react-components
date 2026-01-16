@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/react-components",
-  "version": "2.0.0-beta.32",
+  "version": "2.0.0-beta.33",
   "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
   "author": {
     "name": "Kubit",
@@ -125,7 +125,7 @@
     "storybook": "storybook dev -c .storybook -p 6006",
     "build": "pnpm dist && pnpm build-storybook",
     "prebuild-storybook": "pnpm generate-css",
-    "build-storybook": "storybook build -c .storybook -o bundle --disable-telemetry",
+    "build-storybook": "storybook build -c .storybook -o bundle --disable-telemetry && npx bv-build --types none --prevent-process-js --css bundle --root-dir none --base-out-dir none",
     "generate-css": "bernova --config bernova.config.json",
     "generate:bundle-sizes": "node public/scripts/generate-bundle-sizes.mjs",
     "postdist": "pnpm generate:bundle-sizes",
@@ -135,7 +135,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "predist": "rm -rf dist",
-    "dist": "vite build",
+    "dist": "vite build && npx bv-build --css lib/styles",
     "test": "pnpm lint && pnpm typecheck && vitest --coverage.enabled=true --silent --run",
     "test:ci": "vitest --ui --coverage.enabled=true",
     "test:watch": "vitest --watch",
