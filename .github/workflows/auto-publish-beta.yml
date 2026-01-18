@@ -6,7 +6,6 @@ name: Auto Publish Beta to NPM
 # Required secrets:
 # 1. NPM_TOKEN: NPM automation token for publishing packages
 # 2. RELEASE_TOKEN: GitHub PAT with bypass permissions (optional but recommended)
-# 3. CHROMATIC_PROJECT_TOKEN_COMPONENTS: Chromatic project token for visual testing
 
 on:
   push:
@@ -116,18 +115,6 @@ jobs:
             exit 1
           fi
           echo "✅ Build output generated"
-
-      - name: Build Storybook for Chromatic
-        run: |
-          echo "Building Storybook for Chromatic..."
-          pnpm build-storybook
-
-      - name: Publish to Chromatic
-        run: |
-          echo "Publishing to Chromatic..."
-          pnpm chromatic --exit-zero-on-changes --auto-accept-changes
-        env:
-          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN_COMPONENTS }}
 
       - name: Configure Git
         run: |
@@ -331,7 +318,6 @@ jobs:
 
             ### 🔗 Links
             - [NPM Package](https://www.npmjs.com/package/@kubit-ui-web/react-components/v/${{ steps.version-bump.outputs.new_version }})
-            - [Chromatic Storybook](https://www.chromatic.com/builds?appId=${{ secrets.CHROMATIC_PROJECT_TOKEN_COMPONENTS }})
             - [Full Changelog](https://github.com/${{ github.repository }}/compare/v${{ steps.version-bump.outputs.current_version }}...v${{ steps.version-bump.outputs.new_version }})
 
             ### ✅ Quality Checks
@@ -339,8 +325,6 @@ jobs:
             - [x] Type checking passed
             - [x] Tests passed
             - [x] Build successful
-            - [x] Storybook built
-            - [x] Published to Chromatic
             - [x] Published to NPM with provenance 🔒
 
           draft: false
@@ -381,6 +365,5 @@ jobs:
           echo "  • RELEASE_TOKEN needed for protected branches"
           echo "  • Version already exists in NPM"
           echo "  • Tests or build failures"
-          echo "  • CHROMATIC_PROJECT_TOKEN_COMPONENTS not configured"
           echo ""
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
