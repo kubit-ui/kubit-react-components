@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/react-components",
-  "version": "2.0.0-beta.37",
+  "version": "2.0.0-beta.38",
   "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
   "author": {
     "name": "Kubit",
@@ -24,15 +24,26 @@
   "engines": {
     "node": "22.x"
   },
+  "contributors": [
+    {
+      "name": "Kubit Community",
+      "url": "https://github.com/kubit-ui/kubit-react-components/graphs/contributors"
+    }
+  ],
   "packageManager": "pnpm@10.28.0",
   "keywords": [
     "react",
+    "react-components",
+    "ui-components",
+    "design-system",
+    "component-library",
+    "accessibility",
+    "a11y",
+    "wcag",
     "storybook",
     "typescript",
     "kubit",
-    "kubit-ui",
-    "kubit-react",
-    "kubit-components"
+    "kubit-ui"
   ],
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -184,7 +195,7 @@
     "eslint-config-kubit": "1.2.0",
     "eslint-plugin-storybook": "10.1.11",
     "glob": "^13.0.0",
-    "html-validate": "^10.5.0",
+    "html-validate": "^10.6.0",
     "jsdom": "^27.4.0",
     "postcss": "^8.5.6",
     "prettier": "^3.8.0",
@@ -204,7 +215,8 @@
   },
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
   },
   "bugs": {
     "url": "https://github.com/kubit-ui/kubit-react-components/issues"
