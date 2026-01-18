@@ -32,6 +32,7 @@ permissions:
   pull-requests: write
   packages: write
   actions: read
+  id-token: write # Required for NPM provenance
 
 jobs:
   auto-publish:
@@ -319,28 +320,30 @@ jobs:
       - name: Dry run publish (verification)
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
-          echo "Performing dry run..."
-          npm publish --dry-run --access public
+          echo "Performing dry run with provenance check..."
+          npm publish --dry-run --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish to NPM
+      - name: Publish to NPM with Provenance
         if: steps.validate-branch.outputs.should_publish == 'true'
         id: npm-publish
         run: |
           NEW_VERSION="${{ steps.version-bump.outputs.new_version }}"
           VERSION_TYPE="${{ steps.version-bump.outputs.version_type }}"
 
-          echo "Publishing to NPM..."
+          echo "Publishing to NPM with provenance..."
 
+          # Publish with provenance for supply chain security
           if [[ "$VERSION_TYPE" == "major" ]]; then
-            echo "Publishing MAJOR version $NEW_VERSION"
-            npm publish --access public --tag latest
+            echo "Publishing MAJOR version $NEW_VERSION with provenance"
+            npm publish --access public --tag latest --provenance
           else
-            npm publish --access public --tag latest
+            echo "Publishing version $NEW_VERSION with provenance"
+            npm publish --access public --tag latest --provenance
           fi
 
-          echo "Successfully published to NPM"
+          echo "Successfully published to NPM with provenance attestation"
           echo "published=true" >> $GITHUB_OUTPUT
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -433,11 +436,11 @@ jobs:
             - [x] Build successful
             - [x] Storybook built for Chromatic
             - [x] Published to Chromatic
-            - [x] Published to NPM
+            - [x] Published to NPM **with provenance** 🔒
             - [x] GitHub release created
             - [x] Repository tagged
 
-            🎉 **Ready to use in production!**`;
+            🎉 **Ready to use in production with supply chain security!**`;
 
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
