@@ -34,7 +34,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '25'
+          node-version: '22'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Setup pnpm
@@ -67,7 +67,16 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm --version
-          pnpm install --frozen-lockfile
+
+          # Check if pnpm-lock.yaml exists and install accordingly
+          if [ -f "pnpm-lock.yaml" ]; then
+            echo "pnpm-lock.yaml found - installing with frozen lockfile"
+            pnpm install --frozen-lockfile
+          else
+            echo "No pnpm-lock.yaml found - running fresh install"
+            pnpm install
+            echo "Dependencies installed successfully"
+          fi
 
       - name: Run quality checks
         run: |
