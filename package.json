@@ -18,11 +18,16 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kubit-ui/kubit-react-components.git"
+    "url": "git+https://github.com/kubit-ui/kubit-react-components.git",
+    "directory": "."
   },
   "license": "Apache-2.0",
   "engines": {
     "node": "22.x"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/kubit-ui"
   },
   "contributors": [
     {
@@ -30,7 +35,7 @@
       "url": "https://github.com/kubit-ui/kubit-react-components/graphs/contributors"
     }
   ],
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@10.28.1",
   "keywords": [
     "react",
     "react-components",
@@ -40,10 +45,23 @@
     "accessibility",
     "a11y",
     "wcag",
+    "wcag-2.1",
     "storybook",
     "typescript",
     "kubit",
-    "kubit-ui"
+    "kubit-ui",
+    "ui-library",
+    "frontend",
+    "web-components",
+    "atomic-design",
+    "composable",
+    "customizable",
+    "themeable",
+    "ssr",
+    "server-side-rendering",
+    "tree-shakeable",
+    "esm",
+    "commonjs"
   ],
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -117,7 +135,12 @@
       "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/lib/provider/*/index.js",
       "require": "./dist/cjs/lib/provider/*/index.js"
-    }
+    },
+    "./styles/*": {
+      "import": "./dist/styles/*.css",
+      "require": "./dist/styles/*.css"
+    },
+    "./package.json": "./package.json"
   },
   "typesVersions": {
     "*": {
@@ -148,17 +171,26 @@
     "test": "pnpm lint && pnpm typecheck && vitest --coverage.enabled=true --silent --run",
     "test:ci": "vitest --ui --coverage.enabled=true",
     "test:watch": "vitest --watch",
+    "test:unit": "vitest --run",
     "test:coverage": "vitest --coverage.enabled=true --run",
+    "test:coverage:ui": "vitest --coverage.enabled=true --ui",
     "typecheck": "tsc --noEmit",
     "validate": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm dist",
+    "validate:quick": "pnpm lint && pnpm typecheck",
     "publish-figma": "npx figma connect publish",
     "pack:check": "pnpm pack --dry-run",
     "pack:size": "pnpm pack --dry-run 2>&1 | tail -1",
     "pack:analyze": "pnpm pack && tar -tzf *.tgz | head -50 && rm *.tgz",
+    "pack:verify": "pnpm pack:check && pnpm pack:size",
     "prepublishOnly": "pnpm dist && pnpm pack:size",
+    "prerelease": "pnpm validate && pnpm test",
     "clean": "rm -rf dist node_modules .pnpm-store",
+    "clean:build": "rm -rf dist",
     "postinstall": "echo 'postinstall'",
-    "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_COMPONENTS"
+    "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_COMPONENTS",
+    "size": "pnpm pack:size",
+    "size-limit": "size-limit",
+    "analyze": "pnpm pack:analyze"
   },
   "peerDependencies": {
     "react": ">=17.0.0 || >=18.3.1",
@@ -177,7 +209,7 @@
     "@storybook/react-vite": "^10.1.11",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.1",
+    "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^25.0.9",
@@ -219,7 +251,9 @@
     "provenance": true
   },
   "bugs": {
-    "url": "https://github.com/kubit-ui/kubit-react-components/issues"
+    "url": "https://github.com/kubit-ui/kubit-react-components/issues",
+    "email": "kubit.lab.dev@gmail.com"
   },
-  "homepage": "https://www.kubit-ui.com/"
+  "homepage": "https://www.kubit-ui.com/",
+  "documentation": "https://www.kubit-ui.com"
 }
