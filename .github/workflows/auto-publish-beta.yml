@@ -106,15 +106,10 @@ jobs:
           fi
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         continue-on-error: true
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./__reports__/test-coverage/coverage-final.json,./__reports__/test-coverage/lcov.info
-          flags: beta
-          name: codecov-beta
-          fail_ci_if_error: false
-          verbose: true
 
       - name: Build package
         run: |
