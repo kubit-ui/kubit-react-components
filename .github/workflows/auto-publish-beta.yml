@@ -93,12 +93,28 @@ jobs:
 
       - name: Run tests
         run: |
-          echo "Running tests..."
+          echo "Running tests with coverage..."
           if pnpm run --help 2>&1 | grep -q "test:ci"; then
             pnpm test:ci
           else
             pnpm test
           fi
+
+          # Check coverage if exists
+          if [ -f "coverage/lcov.info" ] || [ -f "__reports__/test-coverage/lcov.info" ]; then
+            echo "Coverage report generated"
+          fi
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        continue-on-error: true
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./__reports__/test-coverage/coverage-final.json,./__reports__/test-coverage/lcov.info
+          flags: beta
+          name: codecov-beta
+          fail_ci_if_error: false
+          verbose: true
 
       - name: Build package
         run: |
