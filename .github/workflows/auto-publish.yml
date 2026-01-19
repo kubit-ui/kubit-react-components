@@ -124,13 +124,25 @@ jobs:
       - name: Run tests
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
-          echo "Running tests..."
+          echo "Running tests with coverage..."
           pnpm test:ci
 
           # Check coverage if exists
-          if [ -f "coverage/lcov.info" ]; then
+          if [ -f "coverage/lcov.info" ] || [ -f "__reports__/test-coverage/lcov.info" ]; then
             echo "Coverage report generated"
           fi
+
+      - name: Upload coverage to Codecov
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        uses: codecov/codecov-action@v4
+        continue-on-error: true
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./__reports__/test-coverage/coverage-final.json,./__reports__/test-coverage/lcov.info
+          flags: production
+          name: codecov-production
+          fail_ci_if_error: false
+          verbose: true
 
       - name: Build package
         if: steps.validate-branch.outputs.should_publish == 'true'

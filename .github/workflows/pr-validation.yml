@@ -91,10 +91,10 @@ jobs:
         id: test-validation
         continue-on-error: true
         run: |
-          echo "Running tests..."
+          echo "Running tests with coverage..."
 
           if pnpm run --help | grep -q "test"; then
-            if pnpm test; then
+            if pnpm run test:coverage; then
               echo "✅ Tests passed"
               echo "tests_valid=true" >> $GITHUB_OUTPUT
             else
