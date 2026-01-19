@@ -20,6 +20,9 @@
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Storybook](https://img.shields.io/badge/Storybook-10.1-FF4785?style=for-the-badge&logo=storybook)](https://storybook.js.org/)
 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](CONTRIBUTING.md)
+[![Coverage](https://img.shields.io/codecov/c/github/kubit-ui/kubit-react-components?style=for-the-badge&logo=codecov)](https://codecov.io/gh/kubit-ui/kubit-react-components)
+
 </div>
 
 <br />
