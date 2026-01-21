@@ -32,12 +32,14 @@ export declare class Provider {
   #themesMediaQueries: typeof cssMediaQueries;
   #linkId: string;
   #jsInCss: boolean;
+  /* Bernova provider methods */
   #linkBuilder: (url: string, id: string) => void;
   #handlerThemes: (data: {
     css: string;
     foreign?: { high?: string[]; low?: string[] };
   }) => void;
   #cleanUpLinks: () => void;
+  /* Bernova provider methods */
 
   constructor(options?: { linkId?: string; jsInCss?: boolean });
 
