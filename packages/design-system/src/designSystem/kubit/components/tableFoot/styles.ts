@@ -1,4 +1,4 @@
-import type { TableFootVariantStyles } from '@/components/tableFoot/types/tableFootTheme';
+import type { TableFootVariantStyles } from '@kubit-ui-web/react-components';
 
 import { TableFootVariantType } from './variants';
 

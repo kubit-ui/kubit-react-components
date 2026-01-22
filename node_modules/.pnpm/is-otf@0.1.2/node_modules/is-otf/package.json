@@ -1,0 +1,37 @@
+{
+  "name": "is-otf",
+  "version": "0.1.2",
+  "description": "Check if a String/Buffer/ArrayBuffer is OTF",
+  "license": "MIT",
+  "repository": "junmer/is-otf",
+  "author": {
+    "name": "junmer"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "font",
+    "OpenType",
+    "OTF",
+    "type",
+    "detect",
+    "check",
+    "is",
+    "string",
+    "str",
+    "buffer"
+  ],
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "dependencies": {
+    "b3b": "0.0.1"
+  }
+}

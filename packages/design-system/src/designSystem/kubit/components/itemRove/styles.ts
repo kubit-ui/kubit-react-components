@@ -1,4 +1,4 @@
-import type { CssLibPropsType } from '@/lib/types/cssGenerator/stylesTypes';
+import type { CssLibPropsType } from '@kubit-ui-web/react-components';
 
 export const ITEM_ROVE: CssLibPropsType = {
   $attributes: {

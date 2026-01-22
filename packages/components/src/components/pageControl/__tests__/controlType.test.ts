@@ -1,7 +1,5 @@
 import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
 
-import { ICONS } from '@/lib/tests/__mocks__/iconMock';
-
 import { isElementOrIconProps } from '../helper/controlType';
 
 describe('isElementOrIconProps', () => {
@@ -31,7 +29,7 @@ describe('isElementOrIconProps', () => {
   });
 
   it('should return true if control has icon property as a valid string', () => {
-    const control: ElementOrIconProps = { icon: ICONS.PLACEHOLDER };
+    const control: ElementOrIconProps = { icon: 'PLACEHOLDER' };
     expect(isElementOrIconProps(control)).toBe(true);
   });
 });

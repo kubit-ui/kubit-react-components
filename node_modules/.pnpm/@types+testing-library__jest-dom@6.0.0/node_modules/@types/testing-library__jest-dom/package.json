@@ -1,0 +1,12 @@
+{
+    "name": "@types/testing-library__jest-dom",
+    "version": "6.0.0",
+    "description": "Stub TypeScript definitions entry for @testing-library/jest-dom, which provides its own types definitions",
+    "main": "",
+    "scripts": {},
+    "license": "MIT",
+    "dependencies": {
+        "@testing-library/jest-dom": "*"
+    },
+    "deprecated": "This is a stub types definition. @testing-library/jest-dom provides its own type definitions, so you do not need this installed."
+}

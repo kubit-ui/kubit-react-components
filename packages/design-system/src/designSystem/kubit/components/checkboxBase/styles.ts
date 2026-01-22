@@ -1,7 +1,7 @@
-import type { ChecboxBaseVariantStyles } from '@/components/checkboxBase/types/checkboxBaseTheme';
+import type { ChecboxBaseVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
-import { STATES } from '@/lib/types/states/states';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
+import { STATES } from '@/types/states/states';
 
 import { CheckboxBaseVariantType } from './variants';
 

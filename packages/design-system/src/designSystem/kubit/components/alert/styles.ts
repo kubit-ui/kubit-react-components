@@ -1,6 +1,6 @@
-import type { AlertVariantStyles } from '@/components/alert/types/alertTheme';
+import type { AlertVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';
 import { TextVariantType } from '../text/variants';

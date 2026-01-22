@@ -11,7 +11,7 @@
     "viteStorybook.config.mts"
   ],
   "compilerOptions": {
-    "noEmit": false,
+    "noEmit": true,
     "sourceMap": false,
     "target": "ES2020",
     "module": "ESNext",
@@ -37,14 +37,17 @@
     "preserveSymlinks": false,
     "jsx": "react-jsx",
     "composite": false,
-    "types": ["vite/client", "vitest/globals", "node", "@testing-library/jest-dom"],
+    "types": ["vite/client", "node"],
     "typeRoots": ["src/lib/types", "node_modules/@types", "node_modules"],
     "removeComments": false,
     "erasableSyntaxOnly": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@kubit-ui-web/react-components": ["../components/src"],
+      "@kubit-ui-web/react-components/*": ["../components/src/*"]
     }
   },
   "include": [
@@ -52,5 +55,8 @@
     "src/**/*.tsx",
     "src/**/*.d.ts",
     "app/src/types/global.d.ts"
+  ],
+  "references": [
+    { "path": "../components" }
   ]
 }

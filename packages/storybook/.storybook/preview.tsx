@@ -5,16 +5,10 @@ import React, { useEffect } from 'react';
 import type { Preview } from '@storybook/react';
 import ReactDOM from 'react-dom';
 
-import '../src/lib/designSystem/kubit/css/kubit.css';
-import { KubitProvider } from '../src/lib/provider/kubitProvider/kubitProvider';
-import { useStylesContext } from '../src/lib/provider/stylesProvider/stylesProvider';
-import '../src/lib/storybook/components/replaceContent/replaceContent';
-import bundleSizesData from './bundle-sizes.json';
-import { BundleSizePanel } from './components/bundleSize/BundleSizePanel';
-import {
-  extractComponentName,
-  getBundleSize,
-} from './components/bundleSize/utils';
+import './kubit.css';
+import { KubitProvider } from '@kubit-ui-web/react-components';
+import { useStylesContext } from '@kubit-ui-web/react-components';
+
 import { Note } from './components/note/note';
 
 const NOTE_PORTAL_ID = 'storybook-note-portal';

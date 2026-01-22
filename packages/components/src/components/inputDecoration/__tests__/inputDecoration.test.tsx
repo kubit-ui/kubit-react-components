@@ -1,7 +1,5 @@
 import { axe } from 'vitest-axe';
 
-import { InputDecorationVariantType } from '@/lib/designSystem/kubit/components/variants';
-import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { render } from '@/lib/tests/render/render';
 
 import type { InputDecorationProps } from '../types/inputDecoration';
@@ -11,13 +9,13 @@ import { InputDecoration } from '../inputDecoration';
 const mockProps: InputDecorationProps = {
   decoration: {
     altText: 'alt text icon',
-    icon: ICONS.PLACEHOLDER,
+    icon: 'PLACEHOLDER',
     onClick: () => {
       return null;
     },
   },
   disabled: true,
-  variant: InputDecorationVariantType.STANDARD,
+  variant: 'STANDARD',
 };
 
 describe('Input Decoration Component', () => {

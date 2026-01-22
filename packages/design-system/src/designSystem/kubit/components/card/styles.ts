@@ -1,6 +1,6 @@
-import type { CardVariantStyles } from '@/components/card/types/cardTheme';
+import type { CardVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';
 import { TextVariantType } from '../text/variants';

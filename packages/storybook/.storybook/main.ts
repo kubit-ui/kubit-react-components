@@ -27,8 +27,9 @@ const config: StorybookConfig = {
   staticDirs: ['./assets'],
 
   stories: [
-    '../src/components/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))',
-    '../.storybook/**/*.@(mdx|stories.@(js|jsx|ts|tjx|tdx|tsx))',
+    '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../stories/**/*.mdx',
+    '../overview/**/*.mdx',
   ],
 
   typescript: {

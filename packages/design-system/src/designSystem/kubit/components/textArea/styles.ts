@@ -1,8 +1,8 @@
-import type { TextAreaVariantStyles } from '@/components/textArea/types/textAreaTheme';
+import type { TextAreaVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
-import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
+import { DEVICE_BREAKPOINTS } from '../../foundations/breakpoints';
 import { PARAGRAPH } from '../../foundations/typography';
 import { TEXT } from '../text/styles';
 import { TextVariantType } from '../text/variants';

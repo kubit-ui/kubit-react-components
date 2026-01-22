@@ -1,6 +1,6 @@
-import type { CarouselVariantStyles } from '@/components/carousel/types/carouselTheme';
+import type { CarouselVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { CarouselVariantType } from './variants';
 

@@ -1,5 +1,4 @@
-import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
-
+import { DEVICE_BREAKPOINTS } from '../../../foundations/breakpoints';
 import { COLORS } from '../../../foundations/colors';
 import { FONT_WEIGHT, PARAGRAPH } from '../../../foundations/typography';
 

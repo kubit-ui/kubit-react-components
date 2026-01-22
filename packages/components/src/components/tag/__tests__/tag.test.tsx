@@ -1,12 +1,11 @@
 import { axe } from 'vitest-axe';
 
-import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { render } from '@/lib/tests/render/render';
 
 import { Tag } from '../tag';
 
 const mockProps = {
-  icon: { icon: ICONS.PLACEHOLDER },
+  icon: { icon: 'PLACEHOLDER' },
   label: { content: 'LABEL' },
   variant: 'HEALTHY',
 };

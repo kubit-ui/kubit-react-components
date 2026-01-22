@@ -1,6 +1,6 @@
-import type { ListOptionsVariantStyles } from '@/components/listOptions/types/listOptionsTheme';
+import type { ListOptionsVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { TEXT } from '../text/styles';
 import { TextVariantType } from '../text/variants';

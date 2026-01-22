@@ -1,6 +1,6 @@
-import type { LinkVariantStyles } from '@/components/link/types/linkTheme';
+import type { LinkVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { LinkVariant } from './variants';
 

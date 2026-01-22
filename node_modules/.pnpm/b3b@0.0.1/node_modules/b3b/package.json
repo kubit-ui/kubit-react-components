@@ -1,0 +1,30 @@
+{
+  "name": "b3b",
+  "version": "0.0.1",
+  "description": "ArrayBuffer / Buffer / base64 convert util",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/junmer/b3b"
+  },
+  "keywords": [
+    "ArrayBuffer",
+    "Buffer",
+    "base64"
+  ],
+  "scripts": {
+    "build": "node build.js"
+  },
+  "author": "junmer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/junmer/b3b/issues"
+  },
+  "homepage": "https://github.com/junmer/b3b",
+  "devDependencies": {
+    "nodoc": "^0.1.1"
+  }
+}

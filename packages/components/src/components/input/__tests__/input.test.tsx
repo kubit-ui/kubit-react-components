@@ -1,8 +1,5 @@
 // import { fireEvent } from '@testing-library/react';
 // import { axe } from 'vitest-axe';
-import { InputVariantType } from '@/lib/designSystem/kubit/components/input/variants';
-import { InputDecorationVariantType } from '@/lib/designSystem/kubit/components/inputDecoration/variants';
-import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { render } from '@/lib/tests/render/render';
 
 import type { InputProps } from '../types/input';
@@ -17,23 +14,23 @@ const mockProps: InputProps = {
   leftDecoration: {
     decoration: {
       altText: 'left icon',
-      icon: ICONS.PLACEHOLDER,
+      icon: 'PLACEHOLDER',
       onClick: vi.fn(),
     },
-    variant: InputDecorationVariantType.STANDARD,
+    variant: 'STANDARD',
   },
   placeholder: 'Placeholder',
   required: true,
   rightDecoration: {
     decoration: {
       altText: 'right icon',
-      icon: ICONS.PLACEHOLDER,
+      icon: 'PLACEHOLDER',
       onClick: vi.fn(),
     },
-    variant: InputDecorationVariantType.STANDARD,
+    variant: 'STANDARD',
   },
   type: 'text',
-  variant: InputVariantType.STANDARD,
+  variant: 'STANDARD',
 };
 
 describe('Input Component', () => {

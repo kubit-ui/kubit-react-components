@@ -1,6 +1,6 @@
-import type { TextCountStylesType } from '@/components/textArea/components/textCount/types/textCountTheme';
+import type { TextCountStylesType } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { TextCountVariantType } from './variants';
 

@@ -2,7 +2,6 @@ import { fireEvent, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import { axe } from 'vitest-axe';
 
-import { ICONS } from '@/lib/storybook/assets/icons/icons';
 import { render } from '@/lib/tests/render/render';
 
 import type { ToggleUncontrolledProps } from '../types/toggle';
@@ -141,8 +140,8 @@ describe('Toggle', () => {
     });
 
     it('should render icons correctly based on state', async () => {
-      const rightIcon = { icon: ICONS.CHECKMARK_THICK };
-      const leftIcon = { icon: ICONS.CLOSE };
+      const rightIcon = { icon: 'CHECKMARK_THICK' };
+      const leftIcon = { icon: 'CLOSE' };
 
       const { container, rerender } = render(
         <ToggleStandalone
@@ -182,8 +181,8 @@ describe('Toggle', () => {
     });
 
     it('should handle icon transitions when disabled', async () => {
-      const rightIcon = { icon: ICONS.CHECKMARK_THICK };
-      const leftIcon = { icon: ICONS.CLOSE };
+      const rightIcon = { icon: 'CHECKMARK_THICK' };
+      const leftIcon = { icon: 'CLOSE' };
 
       const { container } = render(
         <ToggleStandalone
@@ -415,8 +414,8 @@ describe('Toggle', () => {
     });
 
     it('should work with icons in controlled mode', async () => {
-      const rightIcon = { icon: ICONS.CHECKMARK_THICK };
-      const leftIcon = { icon: ICONS.CLOSE };
+      const rightIcon = { icon: 'CHECKMARK_THICK' };
+      const leftIcon = { icon: 'CLOSE' };
 
       const { container } = render(
         <ToggleControlled
@@ -550,8 +549,8 @@ describe('Toggle', () => {
     });
 
     it('should work with icons in uncontrolled mode', async () => {
-      const rightIcon = { icon: ICONS.CHECKMARK_THICK };
-      const leftIcon = { icon: ICONS.CLOSE };
+      const rightIcon = { icon: 'CHECKMARK_THICK' };
+      const leftIcon = { icon: 'CLOSE' };
 
       const { container } = render(
         <ToggleUncontrolled

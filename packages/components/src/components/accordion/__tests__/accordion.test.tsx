@@ -2,7 +2,6 @@ import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 
-import { AccordionVariant } from '@/lib/designSystem/kubit/components/accordion/variants';
 import { render } from '@/lib/tests/render/render';
 
 import { AccordionControlled } from '../accordionControlled';
@@ -11,7 +10,7 @@ import { Accordion } from '../accordionUnControlled';
 describe('Accordion', () => {
   it('should render the accordion with header and content', () => {
     render(
-      <Accordion header="Test Accordion" variant={AccordionVariant.NEUTRAL}>
+      <Accordion header="Test Accordion" variant="NEUTRAL">
         <div>Test Content</div>
       </Accordion>,
     );
@@ -33,7 +32,7 @@ describe('Accordion', () => {
 
   it('should expand and collapse when clicked', () => {
     render(
-      <Accordion header="Test Accordion" variant={AccordionVariant.NEUTRAL}>
+      <Accordion header="Test Accordion" variant="NEUTRAL">
         <div>Test Content</div>
       </Accordion>,
     );
@@ -59,7 +58,7 @@ describe('Accordion', () => {
     render(
       <Accordion
         header="Test Accordion"
-        variant={AccordionVariant.NEUTRAL}
+        variant="NEUTRAL"
         onExpandCollapse={onExpandCollapse}
       >
         <div>Test Content</div>
@@ -86,7 +85,7 @@ describe('Accordion', () => {
       <Accordion
         defaultExpanded={true}
         header="Test Accordion"
-        variant={AccordionVariant.NEUTRAL}
+        variant="NEUTRAL"
       >
         <div>Test Content</div>
       </Accordion>,
@@ -108,7 +107,7 @@ describe('Accordion', () => {
       <AccordionControlled
         expanded={true}
         header="Test Controlled"
-        variant={AccordionVariant.STANDARD}
+        variant="STANDARD"
         onHeaderClick={onHeaderClick}
       >
         <div>Controlled Content</div>
@@ -146,10 +145,7 @@ describe('Accordion', () => {
 
   it('should be accessible with proper ARIA attributes', async () => {
     const { container } = render(
-      <Accordion
-        header="Accessible Accordion"
-        variant={AccordionVariant.NEUTRAL}
-      >
+      <Accordion header="Accessible Accordion" variant="NEUTRAL">
         <div>Accessible Content</div>
       </Accordion>,
     );

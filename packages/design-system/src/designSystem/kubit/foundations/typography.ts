@@ -1,4 +1,4 @@
-import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
+import { DEVICE_BREAKPOINTS } from './breakpoints';
 
 export const FONT_FAMILY = {
   font_family_digit_password_large_square:

@@ -1,6 +1,6 @@
-import type { TableDividerVariantStyles } from '@/components/tableDivider/types/tableDividerTheme';
+import type { TableDividerVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { TableDividerVariantType } from './variants';
 

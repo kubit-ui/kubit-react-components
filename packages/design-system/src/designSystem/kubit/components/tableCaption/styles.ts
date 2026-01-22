@@ -1,4 +1,4 @@
-import type { TableCaptionVariantStyles } from '@/components/tableCaption/types/tableCaptionTheme';
+import type { TableCaptionVariantStyles } from '@kubit-ui-web/react-components';
 
 import { TableCaptionVariantType } from './variants';
 

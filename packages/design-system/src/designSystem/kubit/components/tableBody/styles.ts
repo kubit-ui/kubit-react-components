@@ -1,4 +1,4 @@
-import type { TableBodyVariantStyles } from '@/components/tableBody/types/tableBodyTheme';
+import type { TableBodyVariantStyles } from '@kubit-ui-web/react-components';
 
 import { TableBodyVariantType } from './variants';
 

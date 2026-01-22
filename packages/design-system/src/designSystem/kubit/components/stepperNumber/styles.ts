@@ -1,8 +1,8 @@
-import type { StepperNumberOrientationType } from '@/components/stepperNumber/types/orientation';
-import type { StepperNumberStyles } from '@/components/stepperNumber/types/stepperNumberTheme';
+import type { StepperNumberOrientationType } from '@kubit-ui-web/react-components';
+import type { StepperNumberStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
-import { STATES } from '@/lib/types/states/states';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
+import { STATES } from '@/types/states/states';
 
 import { TEXT } from '../text/styles';
 import { TextVariantType } from '../text/variants';

@@ -1,6 +1,6 @@
-import type { ToggleVariantStyles } from '@/components/toggle/types/toggleTheme';
+import type { ToggleVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { ToggleVariant as ToggleVariantTypes } from './variants';
 

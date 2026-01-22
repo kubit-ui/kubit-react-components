@@ -1,7 +1,6 @@
 import { act } from 'react';
 import { axe } from 'vitest-axe';
 
-import { CarouselVariantType } from '@/lib/designSystem/kubit/components/carousel/variants';
 import { render } from '@/lib/tests/render/render';
 
 import type { ICarousel } from '../types/carousel';
@@ -15,7 +14,7 @@ const mockProps: ICarousel = {
     <div key="e-2">Element 2</div>,
     <div key="e-3">Element 3</div>,
   ],
-  variant: CarouselVariantType.DEFAULT,
+  variant: 'DEFAULT',
 };
 
 // Mock the hooks that are already tested

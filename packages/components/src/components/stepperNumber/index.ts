@@ -1,4 +1,5 @@
 export { StepperNumber } from './stepperNumber';
+export * from './types/orientation';
 export type {
   StepStateProps,
   StepperNumberScreenReaderTextProps,
@@ -6,6 +7,7 @@ export type {
   StepperNumberStandAloneProps,
   StepperNumberProps,
 } from './types/stepperNumber';
+
 export type {
   StepperNumberStyleProps,
   StepperNumberOrientationStyles,

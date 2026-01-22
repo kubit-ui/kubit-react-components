@@ -1,6 +1,6 @@
-import type { TableCellVariantStyles } from '@/components/tableCell/types/tableCellTheme';
+import type { TableCellVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { PARAGRAPH } from '../../foundations/typography';
 import { TableCellVariantType } from './variants';

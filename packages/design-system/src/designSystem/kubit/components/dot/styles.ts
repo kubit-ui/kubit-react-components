@@ -1,6 +1,6 @@
-import type { DotThemeStyles } from '@/components/dot/types/dotTheme';
+import type { DotThemeStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { DotSizeType, DotVariantType } from './variants';
 

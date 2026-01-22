@@ -1,6 +1,6 @@
-import type { ButtonVariantStyles } from '@/components/button/types/buttonTheme';
+import type { ButtonVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { FONT_FAMILY } from '../../foundations/typography';
 import { ButtonSizeType, ButtonVariantType } from './variants';

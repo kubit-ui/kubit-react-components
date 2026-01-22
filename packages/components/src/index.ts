@@ -1,14 +1,9 @@
 // Export all components
 export * from './components';
-
-// Export hooks
-export * from './hooks';
+export * from './lib/components';
 
 // Export providers
-export * from './provider';
+export * from './lib/provider';
 
 // Export types
-export * from './types';
-
-// Export utils
-export * from './utils';
+export * from './lib/types';

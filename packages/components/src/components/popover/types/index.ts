@@ -16,3 +16,5 @@ export type {
   MiddlewareOptions,
   PopoverComponent as PopoverComponent,
 } from './popover';
+
+export type { PopoverStyleProps } from './popoverTheme';

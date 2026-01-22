@@ -1,7 +1,7 @@
-import type { InputBaseVariantStyles } from '@/components/inputBase/types/inputBaseTheme';
+import type { InputBaseVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
-import { STATES } from '@/lib/types/states/states';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
+import { STATES } from '@/types/states/states';
 
 import { InputBaseVariantType } from './variants';
 

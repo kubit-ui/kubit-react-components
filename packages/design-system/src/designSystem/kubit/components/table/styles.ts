@@ -1,6 +1,6 @@
-import type { TableVariantStyles } from '@/components/table/types/tableTheme';
+import type { TableVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { TableVariantType } from './variants';
 

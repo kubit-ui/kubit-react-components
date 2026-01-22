@@ -35,10 +35,24 @@
 
 > **Kubit React Components** is a customizable, accessible library of React web components, designed to enhance your application's user experience with production-ready components.
 
+## 🏗️ Monorepo Structure
+
+This project is organized as a **pnpm workspace monorepo** with three packages:
+
+- **[@kubit-ui-web/react-components](./packages/components)** - React component library (published to npm)
+- **[@kubit-ui-web/design-system](./packages/design-system)** - Design tokens and CSS generation (published to npm)
+- **[@kubit-ui-web/storybook](./packages/storybook)** - Component documentation and demos (deployed to Vercel)
+
+### 📚 Documentation
+
+- **[📖 Complete Monorepo Guide](./MONOREPO_GUIDE.md)** - Full documentation on development, workflows, and architecture
+- **[⚡ Quick Start Commands](./QUICK_START.md)** - Command reference for common tasks
+
 ## 📋 Table of Contents
 
 - [Installation](#installation)
 - [Quick Start](#quick-start)
+- [Development](#development)
 - [Usage](#usage)
 - [Documentation](#documentation)
 - [Storybook](#storybook)
@@ -75,6 +89,29 @@ pnpm add @kubit-ui-web/react-components
 - 🎯 Tree-shakeable: Yes
 - 📘 TypeScript: Full support
 - ⚛️ React: 17+ and 18+
+
+## Development
+
+This monorepo uses **pnpm workspaces**. To start developing:
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build all packages
+pnpm -r build
+
+# Run Storybook (watches components and design-system automatically)
+pnpm --filter @kubit-ui-web/storybook dev
+
+# Run tests for components
+pnpm --filter @kubit-ui-web/react-components test
+
+# Lint all packages
+pnpm -r lint
+```
+
+For detailed development workflows, see the [Monorepo Guide](./MONOREPO_GUIDE.md) or [Quick Start](./QUICK_START.md).
 
 ## Quick Start
 

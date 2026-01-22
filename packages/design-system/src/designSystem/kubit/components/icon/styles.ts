@@ -1,4 +1,4 @@
-import type { IconStyleProps } from '@/components/icon/types/iconThemes';
+import type { IconStyleProps } from '@kubit-ui-web/react-components';
 
 export const ICON: IconStyleProps = {
   $dynamicValues: [

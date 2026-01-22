@@ -1,0 +1,36 @@
+{
+  "name": "is-eot",
+  "version": "1.0.0",
+  "description": "Check if a Buffer/Uint8Array is EOT",
+  "license": "MIT",
+  "repository": "junmer/is-eot",
+  "author": {
+    "name": "junmer"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "font",
+    "font-face",
+    "sfnt",
+    "eot",
+    "type",
+    "detect",
+    "check",
+    "is",
+    "binary",
+    "buffer",
+    "uint8array"
+  ],
+  "devDependencies": {
+    "mocha": "*",
+    "read-chunk": "^1.0.0"
+  }
+}

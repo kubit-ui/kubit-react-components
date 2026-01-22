@@ -1,4 +1,4 @@
-import type { PopoverStyleProps } from '@/components/popover/types/popoverTheme';
+import type { PopoverStyleProps } from '@kubit-ui-web/react-components';
 
 export const POPOVER: PopoverStyleProps = {
   _arrow: {

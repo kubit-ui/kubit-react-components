@@ -1,6 +1,6 @@
-import type { DataTableVariantStyles } from '@/components/dataTable/types/dataTableTheme';
+import type { DataTableVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { TABLE } from '../table/styles';
 import { TableVariantType } from '../table/variants';

@@ -1,4 +1,4 @@
-import { STATES } from '@/lib/types/states/states';
+import { STATES } from '@/types/states/states';
 
 import { BORDERS, RADIUS } from '../../foundations/borders';
 import { COLORS } from '../../foundations/colors';

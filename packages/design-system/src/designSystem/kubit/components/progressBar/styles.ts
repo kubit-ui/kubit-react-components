@@ -1,6 +1,6 @@
-import type { ProgressBarStyles } from '@/components/progressBar/types/progressBarTheme';
+import type { ProgressBarStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { ProgressBarSizeType, ProgressBarVariantType } from './variants';
 

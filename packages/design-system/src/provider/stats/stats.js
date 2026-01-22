@@ -1,6 +1,6 @@
 /* CssThemes */
 export const cssThemes = {
-  'kubit': { css: '../../designSystem/kubit/css/kubit.css', foreign: { before: [],  after: [], }, },
+  'kubit': { css: '../designSystem/kubit/css/kubit.css', foreign: { before: [],  after: [], }, },
 }
 /* CssThemes */
 

@@ -1,7 +1,7 @@
-import type { PaginationVariantStyles } from '@/components/pagination/types/paginationTheme';
+import type { PaginationVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
-import { STATES } from '@/lib/types/states/states';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
+import { STATES } from '@/types/states/states';
 
 import { TextVariantType } from '../text/variants';
 import { PaginationVariantsTheme } from './variants';

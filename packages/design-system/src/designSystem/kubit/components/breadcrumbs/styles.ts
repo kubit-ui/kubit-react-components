@@ -1,6 +1,6 @@
-import type { BreadcrumbsVariantStyles } from '@/components/breadcrumbs/types/breadcrumbsTheme';
+import type { BreadcrumbsVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { BreadcrumbsVariant } from './variants';
 

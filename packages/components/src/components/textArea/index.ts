@@ -1,3 +1,4 @@
+export type * from './components/textCount/types/textCountTheme';
 export { TextArea } from './textArea';
 export type {
   TextAreaCssClasses,

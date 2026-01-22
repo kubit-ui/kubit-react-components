@@ -1,6 +1,6 @@
-import type { ErrorMessageVariantStyles } from '@/lib/components/errorMessage/types/errorMessageTheme';
+import type { ErrorMessageVariantStyles } from '@kubit-ui-web/react-components';
 
-import { cssVars } from '@/lib/designSystem/kubit/css/cssVars';
+import { cssVars } from '@/designSystem/kubit/css/cssVars';
 
 import { TextVariantType } from '../text/variants';
 import { ErrorMessageVariantType } from './variants';
