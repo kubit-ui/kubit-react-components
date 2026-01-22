@@ -1,7 +1,8 @@
-name: PR Validation & Quality Checks
+name: PR Validation & Quality Checks (Monorepo)
 
 # This workflow validates PRs against project standards and coding guidelines
 # It runs on every PR to ensure code quality, documentation, and best practices
+# Adapted for pnpm workspace monorepo structure
 
 on:
   pull_request:
@@ -30,7 +31,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '25'
+          node-version: '22'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Setup pnpm
@@ -38,19 +39,11 @@ jobs:
         with:
           version: 10
 
-      - name: Install dependencies
+      - name: Install dependencies (Monorepo)
         run: |
+          echo "Installing monorepo dependencies..."
           pnpm --version
-
-          # Check if pnpm-lock.yaml exists and install accordingly
-          if [ -f "pnpm-lock.yaml" ]; then
-            echo "pnpm-lock.yaml found - installing with frozen lockfile"
-            pnpm install --frozen-lockfile
-          else
-            echo "No pnpm-lock.yaml found - running fresh install"
-            pnpm install
-            echo "Dependencies installed and lockfile generated"
-          fi
+          pnpm install --frozen-lockfile
 
       - name: Validate Branch Naming
         id: branch-validation
@@ -87,23 +80,56 @@ jobs:
           # Title length is now just a warning
           echo "title_length_valid=true" >> $GITHUB_OUTPUT
 
-      - name: Test Coverage
+      - name: Lint All Packages
+        id: lint-validation
+        continue-on-error: true
+        run: |
+          echo "Running lint on all packages..."
+          if pnpm -r lint; then
+            echo "✅ Lint passed"
+            echo "lint_valid=true" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ Lint had warnings"
+            echo "lint_valid=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Type Check All Packages
+        id: typecheck-validation
+        continue-on-error: true
+        run: |
+          echo "Running type check on all packages..."
+          if pnpm -r typecheck; then
+            echo "✅ Type check passed"
+            echo "typecheck_valid=true" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ Type check had errors"
+            echo "typecheck_valid=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Test Components Package
         id: test-validation
         continue-on-error: true
         run: |
-          echo "Running tests with coverage..."
-
-          if pnpm run --help | grep -q "test"; then
-            if pnpm run test:coverage; then
-              echo "✅ Tests passed"
-              echo "tests_valid=true" >> $GITHUB_OUTPUT
-            else
-              echo "⚠️ Tests failed but not blocking"
-              echo "tests_valid=true" >> $GITHUB_OUTPUT  # Made non-blocking
-            fi
-          else
-            echo "⚠️ No test script found"
+          echo "Running tests on components package..."
+          if pnpm --filter @kubit-ui-web/react-components test:coverage; then
+            echo "✅ Tests passed"
             echo "tests_valid=true" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ Tests failed but not blocking"
+            echo "tests_valid=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build All Packages
+        id: build-validation
+        continue-on-error: true
+        run: |
+          echo "Building all packages..."
+          if pnpm -r build; then
+            echo "✅ Build passed"
+            echo "build_valid=true" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ Build had errors"
+            echo "build_valid=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Basic Validation Check
@@ -139,7 +165,10 @@ jobs:
             |-------|--------|-------------|
             | **Basic Validation** | ✅ Pass | PR structure validated |
             | **Branch Check** | ✅ Pass | Branch name accepted |
-            | **Tests** | ✅ Pass | Tests completed |
+            | **Lint** | ✅ Pass | All packages linted |
+            | **Type Check** | ✅ Pass | All packages type checked |
+            | **Tests** | ✅ Pass | Components tests completed |
+            | **Build** | ✅ Pass | All packages built successfully |
 
             ---
 

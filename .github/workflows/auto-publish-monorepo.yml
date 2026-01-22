@@ -1,0 +1,298 @@
+name: Auto Publish to NPM (Monorepo)
+
+# This workflow publishes packages from the monorepo to NPM
+# It can publish individual packages or all packages based on the PR title
+#
+# PR Title Tags:
+# - [components] or components: - Publish only @kubit-ui-web/react-components
+# - [design-system] or design-system: - Publish only @kubit-ui-web/design-system
+# - [all] or [monorepo] - Publish all packages
+# - No tag - Publish all packages (default)
+#
+# Required secrets:
+# 1. NPM_TOKEN: NPM automation token for publishing packages
+# 2. RELEASE_TOKEN: GitHub PAT with bypass permissions
+# 3. CHROMATIC_PROJECT_TOKEN_COMPONENTS: Chromatic token for Storybook
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+  actions: read
+  id-token: write # Required for NPM provenance
+
+jobs:
+  auto-publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Validate branch and determine publish strategy
+        id: validate-branch
+        run: |
+          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          echo "Branch: $BRANCH_NAME"
+          echo "PR Title: $PR_TITLE"
+
+          # Determine which packages to publish
+          PUBLISH_COMPONENTS=false
+          PUBLISH_DESIGN_SYSTEM=false
+          PUBLISH_ALL=false
+
+          if [[ "$PR_TITLE" =~ \[components\] ]] || [[ "$PR_TITLE" =~ ^components: ]]; then
+            PUBLISH_COMPONENTS=true
+            echo "📦 Publishing: components only"
+          elif [[ "$PR_TITLE" =~ \[design-system\] ]] || [[ "$PR_TITLE" =~ ^design-system: ]]; then
+            PUBLISH_DESIGN_SYSTEM=true
+            echo "📦 Publishing: design-system only"
+          elif [[ "$PR_TITLE" =~ \[all\] ]] || [[ "$PR_TITLE" =~ \[monorepo\] ]]; then
+            PUBLISH_ALL=true
+            PUBLISH_COMPONENTS=true
+            PUBLISH_DESIGN_SYSTEM=true
+            echo "📦 Publishing: all packages"
+          else
+            # Default: publish all for release branches
+            if [[ "$BRANCH_NAME" =~ ^(feat|feature|fix|bugfix|break|breaking|hotfix|chore)/[a-zA-Z0-9._-]+$ ]]; then
+              PUBLISH_ALL=true
+              PUBLISH_COMPONENTS=true
+              PUBLISH_DESIGN_SYSTEM=true
+              echo "📦 Publishing: all packages (default)"
+            else
+              echo "❌ Branch doesn't match release patterns"
+              exit 1
+            fi
+          fi
+
+          echo "should_publish=true" >> "$GITHUB_OUTPUT"
+          echo "publish_components=$PUBLISH_COMPONENTS" >> "$GITHUB_OUTPUT"
+          echo "publish_design_system=$PUBLISH_DESIGN_SYSTEM" >> "$GITHUB_OUTPUT"
+          echo "publish_all=$PUBLISH_ALL" >> "$GITHUB_OUTPUT"
+          echo "branch_name=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Install dependencies
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          echo "Installing monorepo dependencies..."
+          pnpm install --frozen-lockfile
+
+      - name: Run quality checks
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          echo "Running quality checks..."
+          pnpm -r lint
+          pnpm -r typecheck
+
+      - name: Run tests
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          echo "Running tests..."
+          pnpm --filter @kubit-ui-web/react-components test:coverage
+
+      - name: Build all packages
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          echo "Building packages..."
+
+          # Build in dependency order
+          if [[ "${{ steps.validate-branch.outputs.publish_design_system }}" == "true" ]]; then
+            echo "Building @kubit-ui-web/design-system..."
+            pnpm --filter @kubit-ui-web/design-system build
+          fi
+
+          if [[ "${{ steps.validate-branch.outputs.publish_components }}" == "true" ]]; then
+            echo "Building @kubit-ui-web/react-components..."
+            pnpm --filter @kubit-ui-web/react-components build
+          fi
+
+      - name: Build and publish Storybook
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        continue-on-error: true
+        run: |
+          echo "Building Storybook..."
+          pnpm --filter @kubit-ui-web/storybook build
+
+          echo "Publishing to Chromatic..."
+          pnpm --filter @kubit-ui-web/storybook chromatic --exit-zero-on-changes --auto-accept-changes
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN_COMPONENTS }}
+
+      - name: Configure Git
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          git config --local user.email "kubit-bot@github.com"
+          git config --local user.name "Kubit Release Bot"
+
+      - name: Determine version bump
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        id: version-bump
+        run: |
+          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+
+          # Determine version bump type
+          if echo "$PR_TITLE" | grep -q "!" || \
+             echo "$PR_TITLE" | grep -qi "\[breaking\]" || \
+             [[ $BRANCH_NAME =~ ^break/ ]] || \
+             [[ $BRANCH_NAME =~ ^breaking/ ]]; then
+            VERSION_TYPE="major"
+            REASON="Breaking change"
+          elif echo "$PR_TITLE" | grep -Eq "^(feat|feature)(\(.+\))?:" || \
+               [[ $BRANCH_NAME =~ ^feat/ ]] || \
+               [[ $BRANCH_NAME =~ ^feature/ ]]; then
+            VERSION_TYPE="minor"
+            REASON="New feature"
+          else
+            VERSION_TYPE="patch"
+            REASON="Bug fix or maintenance"
+          fi
+
+          echo "Version bump: $VERSION_TYPE ($REASON)"
+          echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
+          echo "reason=$REASON" >> $GITHUB_OUTPUT
+
+      - name: Verify NPM authentication
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        run: |
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "❌ NPM_TOKEN not configured"
+            exit 1
+          fi
+
+          echo "✅ Testing NPM authentication..."
+          npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish packages to NPM
+        if: steps.validate-branch.outputs.should_publish == 'true'
+        id: npm-publish
+        run: |
+          VERSION_TYPE="${{ steps.version-bump.outputs.version_type }}"
+          PUBLISHED_PACKAGES=""
+
+          # Publish design-system first (no dependencies)
+          if [[ "${{ steps.validate-branch.outputs.publish_design_system }}" == "true" ]]; then
+            echo "📦 Publishing @kubit-ui-web/design-system..."
+            cd packages/design-system
+
+            CURRENT=$(node -p "require('./package.json').version")
+            pnpm version $VERSION_TYPE --no-git-tag-version
+            NEW=$(node -p "require('./package.json').version")
+
+            echo "  Version: $CURRENT → $NEW"
+            pnpm publish --no-git-checks --access public --provenance
+
+            PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES @kubit-ui-web/design-system@$NEW"
+            echo "design_system_version=$NEW" >> $GITHUB_OUTPUT
+            cd ../..
+          fi
+
+          # Publish components
+          if [[ "${{ steps.validate-branch.outputs.publish_components }}" == "true" ]]; then
+            echo "📦 Publishing @kubit-ui-web/react-components..."
+            cd packages/components
+
+            CURRENT=$(node -p "require('./package.json').version")
+            pnpm version $VERSION_TYPE --no-git-tag-version
+            NEW=$(node -p "require('./package.json').version")
+
+            echo "  Version: $CURRENT → $NEW"
+            pnpm publish --no-git-checks --access public --provenance
+
+            PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES @kubit-ui-web/react-components@$NEW"
+            echo "components_version=$NEW" >> $GITHUB_OUTPUT
+            cd ../..
+          fi
+
+          echo "published=true" >> $GITHUB_OUTPUT
+          echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Commit version bumps
+        if: steps.npm-publish.outputs.published == 'true'
+        run: |
+          git add packages/*/package.json pnpm-lock.yaml
+          git commit -m "chore(release): bump package versions [skip ci]" || echo "No changes"
+          git push origin HEAD:${{ github.event.pull_request.base.ref }}
+
+      - name: Create GitHub Release
+        if: steps.npm-publish.outputs.published == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.npm-publish.outputs.components_version || steps.npm-publish.outputs.design_system_version }}
+          name: Release ${{ steps.npm-publish.outputs.components_version || steps.npm-publish.outputs.design_system_version }}
+          body: |
+            ## 🚀 Release
+
+            **Type:** ${{ steps.version-bump.outputs.version_type }}
+            **Branch:** `${{ steps.validate-branch.outputs.branch_name }}`
+
+            ### 📦 Published Packages
+            ${{ steps.npm-publish.outputs.packages }}
+
+            ### 📝 Changes
+            - ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})
+
+            ### 🔗 Links
+            - [Components NPM](https://www.npmjs.com/package/@kubit-ui-web/react-components)
+            - [Design System NPM](https://www.npmjs.com/package/@kubit-ui-web/design-system)
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Success notification
+        if: steps.npm-publish.outputs.published == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const packages = '${{ steps.npm-publish.outputs.packages }}';
+            const versionType = '${{ steps.version-bump.outputs.version_type }}';
+            const emoji = versionType === 'major' ? '💥' : versionType === 'minor' ? '✨' : '🐛';
+
+            const comment = `## ${emoji} Auto-publish Successful!
+
+            ### 📦 Published Packages
+            ${packages}
+
+            ### ✅ Completed
+            - Quality checks passed
+            - Tests passed
+            - Builds successful
+            - Published to NPM with provenance 🔒
+            - GitHub release created
+
+            🎉 **Ready to use!**`;
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

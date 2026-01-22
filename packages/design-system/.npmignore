@@ -1,0 +1,44 @@
+# Test files
+**/*.test.*
+**/*.spec.*
+**/__tests__
+**/__mocks__
+**/__fixtures__
+**/tests
+
+# Development files
+**/*.map
+**/.tsbuildinfo
+.DS_Store
+Thumbs.db
+
+# Node modules
+**/node_modules
+
+# Source files (only ship dist and styles)
+src/
+__reports__/
+.storybook/
+
+# Config files
+tsconfig*.json
+vite.config.*
+vitest.config.*
+eslint.config.*
+.prettierrc*
+
+# Git files
+.git/
+.github/
+.gitignore
+
+# CI/CD
+.gitlab-ci.yml
+.travis.yml
+
+# Documentation (keep only essential)
+CONTRIBUTING.md
+
+# Bernova source files (only ship generated output)
+tokens/
+themes/

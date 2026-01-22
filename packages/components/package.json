@@ -1,0 +1,216 @@
+{
+  "name": "@kubit-ui-web/react-components",
+  "version": "2.0.0-beta.43",
+  "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
+  "author": {
+    "name": "Kubit",
+    "email": "kubit@opendigitalservices.com",
+    "url": "https://www.kubit-ui.com/",
+    "organization": "Kubit",
+    "organizationUrl": "https://www.kubit-ui.com/",
+    "role": "Developer",
+    "roleUrl": "https://www.kubit-ui.com/",
+    "social": {
+      "twitter": "https://twitter.com/kubit_ui",
+      "github": "https://github.com/kubit-ui/kubit-react-components"
+    }
+  },
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubit-ui/kubit-react-components.git",
+    "directory": "packages/components"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": "22.x"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/kubit-ui"
+  },
+  "contributors": [
+    {
+      "name": "Kubit Community",
+      "url": "https://github.com/kubit-ui/kubit-react-components/graphs/contributors"
+    }
+  ],
+  "packageManager": "pnpm@10.28.1",
+  "keywords": [
+    "react",
+    "react-components",
+    "ui-components",
+    "design-system",
+    "component-library",
+    "accessibility",
+    "a11y",
+    "wcag",
+    "wcag-2.1",
+    "typescript",
+    "kubit",
+    "kubit-ui",
+    "ui-library",
+    "frontend",
+    "web-components",
+    "atomic-design",
+    "composable",
+    "customizable",
+    "themeable",
+    "ssr",
+    "server-side-rendering",
+    "tree-shakeable",
+    "esm",
+    "commonjs"
+  ],
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "sideEffects": [
+    "*.css",
+    "*.scss",
+    "*.less",
+    "*.sass",
+    "*.styl",
+    "*.svg",
+    "*.ttf",
+    "*.otf",
+    "*.eot",
+    "*.png",
+    "*.jpg",
+    "*.gif",
+    "*.webp",
+    "*.bmp",
+    "*.ico"
+  ],
+  "files": [
+    "dist/cjs",
+    "dist/esm",
+    "dist/types",
+    "package.json",
+    "README.md",
+    "LICENSE.md",
+    "CHANGELOG.md",
+    "!dist/**/*.test.*",
+    "!dist/**/*.test.d.ts",
+    "!dist/**/*.stories.*",
+    "!dist/**/__tests__",
+    "!dist/**/__mocks__",
+    "!dist/**/__fixtures__",
+    "!dist/**/tests",
+    "!dist/**/storybook",
+    "!dist/**/lib/storybook",
+    "!dist/cjs/lib/storybook",
+    "!dist/esm/lib/storybook",
+    "!dist/types/lib/storybook",
+    "!dist/**/.storybook",
+    "!dist/esm/.storybook",
+    "!dist/cjs/.storybook",
+    "!dist/**/node_modules",
+    "!dist/**/.tsbuildinfo",
+    "!dist/**/*.map",
+    "!dist/**/.DS_Store"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./components/*": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/components/*/index.js",
+      "require": "./dist/cjs/components/*/index.js"
+    },
+    "./provider/*": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/lib/provider/*/index.js",
+      "require": "./dist/cjs/lib/provider/*/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ],
+      "dist/*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "predist": "rm -rf dist",
+    "dist": "vite build",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "test": "pnpm lint && pnpm typecheck && vitest --coverage.enabled=true --silent --run",
+    "test:ci": "vitest --ui --coverage.enabled=true",
+    "test:watch": "vitest --watch",
+    "test:unit": "vitest --run",
+    "test:coverage": "vitest --coverage.enabled=true --run",
+    "test:coverage:ui": "vitest --coverage.enabled=true --ui",
+    "typecheck": "tsc --noEmit",
+    "validate": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm dist",
+    "validate:quick": "pnpm lint && pnpm typecheck",
+    "pack:check": "pnpm pack --dry-run",
+    "pack:size": "pnpm pack --dry-run 2>&1 | tail -1",
+    "pack:analyze": "pnpm pack && tar -tzf *.tgz | head -50 && rm *.tgz",
+    "pack:verify": "pnpm pack:check && pnpm pack:size",
+    "clean": "rm -rf dist node_modules",
+    "clean:build": "rm -rf dist",
+    "prepublishOnly": "pnpm dist && pnpm pack:size",
+    "prerelease": "pnpm validate && pnpm test"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0 || >=18.3.1",
+    "react-dom": ">=17.0.0 || >=18.3.1"
+  },
+  "dependencies": {
+    "@floating-ui/dom": "^1.7.4"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "@types/node": "^25.0.9",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/testing-library__jest-dom": "^6.0.0",
+    "@vitejs/plugin-react": "^5.1.2",
+    "@vitest/coverage-v8": "^4.0.17",
+    "@vitest/ui": "^4.0.17",
+    "eslint": "^9.39.2",
+    "eslint-config-kubit": "1.2.0",
+    "glob": "^13.0.0",
+    "html-validate": "^10.6.0",
+    "jsdom": "^27.4.0",
+    "prettier": "^3.8.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "terser": "^5.46.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.53.1",
+    "vite": "^8.0.0-beta.7",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-tsconfig-paths": "^6.0.4",
+    "vitest": "^4.0.17",
+    "vitest-axe": "^0.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
+  },
+  "bugs": {
+    "url": "https://github.com/kubit-ui/kubit-react-components/issues",
+    "email": "kubit.lab.dev@gmail.com"
+  },
+  "homepage": "https://www.kubit-ui.com/",
+  "documentation": "https://www.kubit-ui.com"
+}

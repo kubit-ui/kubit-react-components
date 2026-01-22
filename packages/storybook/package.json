@@ -1,0 +1,47 @@
+{
+  "name": "@kubit-ui-web/storybook",
+  "version": "2.0.0-beta.43",
+  "description": "Kubit Storybook - Component documentation and showcase",
+  "private": true,
+  "packageManager": "pnpm@10.28.1",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "storybook dev -c .storybook -p 6006",
+    "storybook": "storybook dev -c .storybook -p 6006",
+    "build": "storybook build -c .storybook -o dist --disable-telemetry",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules .storybook-cache"
+  },
+  "dependencies": {
+    "@kubit-ui-web/design-system": "workspace:*",
+    "@kubit-ui-web/react-components": "workspace:*",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.2.0",
+    "@storybook/addon-coverage": "^3.0.0",
+    "@storybook/addon-docs": "^10.2.0",
+    "@storybook/addon-links": "^10.2.0",
+    "@storybook/react-vite": "^10.2.0",
+    "@types/node": "^25.0.9",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^5.1.2",
+    "eslint": "^9.39.2",
+    "eslint-config-kubit": "1.2.0",
+    "eslint-plugin-storybook": "10.1.11",
+    "html-validate": "^10.6.0",
+    "storybook": "^10.2.0",
+    "storybook-addon-deep-controls": "^0.10.0",
+    "storybook-addon-pseudo-states": "^10.2.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.53.1",
+    "vite": "^8.0.0-beta.7",
+    "vite-tsconfig-paths": "^6.0.4"
+  }
+}

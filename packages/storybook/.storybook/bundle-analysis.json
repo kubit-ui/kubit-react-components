@@ -1,0 +1,49 @@
+{
+  "cjs": 439827,
+  "components": [
+    {
+      "bytes": 81920,
+      "name": "popover"
+    },
+    {
+      "bytes": 77824,
+      "name": "calendar"
+    },
+    {
+      "bytes": 61440,
+      "name": "dataTable"
+    },
+    {
+      "bytes": 49152,
+      "name": "tooltip"
+    },
+    {
+      "bytes": 49152,
+      "name": "slider"
+    },
+    {
+      "bytes": 49152,
+      "name": "selectorBoxFile"
+    },
+    {
+      "bytes": 49152,
+      "name": "carousel"
+    },
+    {
+      "bytes": 40960,
+      "name": "textArea"
+    },
+    {
+      "bytes": 36864,
+      "name": "checkbox"
+    },
+    {
+      "bytes": 32768,
+      "name": "table"
+    }
+  ],
+  "esm": 411765,
+  "hooks": 15042,
+  "timestamp": "2026-01-04T08:34:10.163Z",
+  "utils": 8382
+}

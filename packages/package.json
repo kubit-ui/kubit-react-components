@@ -1,0 +1,31 @@
+{
+  "name": "@kubit-ui-web/monorepo-root",
+  "version": "2.0.0-beta.43",
+  "private": true,
+  "description": "Kubit React Components Monorepo - Components, Design System, and Storybook",
+  "packageManager": "pnpm@10.28.1",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "build": "pnpm -r --filter='!@kubit-ui-web/storybook' build",
+    "build:components": "pnpm --filter @kubit-ui-web/react-components build",
+    "build:design-system": "pnpm --filter @kubit-ui-web/design-system build",
+    "build:storybook": "pnpm --filter @kubit-ui-web/storybook build",
+    "dev": "pnpm --filter @kubit-ui-web/storybook dev",
+    "storybook": "pnpm --filter @kubit-ui-web/storybook storybook",
+    "test": "pnpm -r test",
+    "test:components": "pnpm --filter @kubit-ui-web/react-components test",
+    "lint": "pnpm -r lint",
+    "lint:fix": "pnpm -r lint:fix",
+    "format": "prettier --write \"packages/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"packages/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "typecheck": "pnpm -r typecheck",
+    "clean": "pnpm -r clean && rm -rf node_modules .pnpm-store",
+    "validate": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm build"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.0",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2"
+  }
+}

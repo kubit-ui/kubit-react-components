@@ -1,0 +1,145 @@
+{
+  "name": "@kubit-ui-web/design-system",
+  "version": "2.0.0-beta.43",
+  "description": "Kubit Design System - CSS-in-JS styles and themes for Kubit components, powered by Bernova",
+  "author": {
+    "name": "Kubit",
+    "email": "kubit@opendigitalservices.com",
+    "url": "https://www.kubit-ui.com/",
+    "organization": "Kubit",
+    "organizationUrl": "https://www.kubit-ui.com/",
+    "role": "Developer",
+    "roleUrl": "https://www.kubit-ui.com/",
+    "social": {
+      "twitter": "https://twitter.com/kubit_ui",
+      "github": "https://github.com/kubit-ui/kubit-react-components"
+    }
+  },
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubit-ui/kubit-react-components.git",
+    "directory": "packages/design-system"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": "22.x"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/kubit-ui"
+  },
+  "contributors": [
+    {
+      "name": "Kubit Community",
+      "url": "https://github.com/kubit-ui/kubit-react-components/graphs/contributors"
+    }
+  ],
+  "packageManager": "pnpm@10.28.1",
+  "keywords": [
+    "design-system",
+    "css-in-js",
+    "themes",
+    "styles",
+    "design-tokens",
+    "bernova",
+    "kubit",
+    "kubit-ui",
+    "typescript",
+    "css",
+    "styling",
+    "theming",
+    "customizable"
+  ],
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
+  "files": [
+    "dist/cjs",
+    "dist/esm",
+    "dist/types",
+    "dist/styles",
+    "package.json",
+    "README.md",
+    "LICENSE.md",
+    "CHANGELOG.md",
+    "!dist/**/*.test.*",
+    "!dist/**/*.test.d.ts",
+    "!dist/**/__tests__",
+    "!dist/**/__mocks__",
+    "!dist/**/.tsbuildinfo",
+    "!dist/**/*.map"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./provider": {
+      "types": "./dist/types/provider/index.d.ts",
+      "import": "./dist/esm/provider/index.js",
+      "require": "./dist/cjs/provider/index.js"
+    },
+    "./styles/*": {
+      "import": "./dist/styles/*.css",
+      "require": "./dist/styles/*.css"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "kubit-design-system": "./dist/cjs/cli.js"
+  },
+  "scripts": {
+    "dev": "pnpm generate-css --watch",
+    "build": "pnpm generate-css && vite build",
+    "predist": "rm -rf dist",
+    "dist": "pnpm generate-css && vite build",
+    "generate-css": "bernova --config bernova.config.json",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "typecheck": "tsc --noEmit",
+    "validate": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm dist",
+    "validate:quick": "pnpm lint && pnpm typecheck",
+    "pack:check": "pnpm pack --dry-run",
+    "pack:size": "pnpm pack --dry-run 2>&1 | tail -1",
+    "pack:analyze": "pnpm pack && tar -tzf *.tgz | head -50 && rm *.tgz",
+    "pack:verify": "pnpm pack:check && pnpm pack:size",
+    "clean": "rm -rf dist node_modules",
+    "clean:build": "rm -rf dist",
+    "prepublishOnly": "pnpm dist && pnpm pack:size",
+    "prerelease": "pnpm validate"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "@types/node": "^25.0.9",
+    "bernova": "1.3.1",
+    "cssnano": "^7.1.2",
+    "eslint": "^9.39.2",
+    "eslint-config-kubit": "1.2.0",
+    "postcss": "^8.5.6",
+    "prettier": "^3.8.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.53.1",
+    "vite": "^8.0.0-beta.7",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
+  },
+  "bugs": {
+    "url": "https://github.com/kubit-ui/kubit-react-components/issues",
+    "email": "kubit.lab.dev@gmail.com"
+  },
+  "homepage": "https://www.kubit-ui.com/",
+  "documentation": "https://www.kubit-ui.com"
+}

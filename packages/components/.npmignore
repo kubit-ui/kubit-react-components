@@ -1,0 +1,51 @@
+# Test files
+**/*.test.*
+**/*.spec.*
+**/__tests__
+**/__mocks__
+**/__fixtures__
+**/tests
+
+# Storybook files (handled in separate storybook package)
+**/*.stories.*
+**/storybook
+**/.storybook
+
+# Development files
+**/*.map
+**/.tsbuildinfo
+.DS_Store
+Thumbs.db
+
+# Node modules
+**/node_modules
+
+# Source files (only ship dist)
+src/
+__reports__/
+
+# Config files
+tsconfig*.json
+vite.config.*
+vitest.config.*
+vitest.setup.*
+eslint.config.*
+.prettierrc*
+.htmlvalidate.json
+
+# Git files
+.git/
+.github/
+.gitignore
+
+# CI/CD
+.gitlab-ci.yml
+.travis.yml
+
+# Documentation (keep only essential)
+CONTRIBUTING.md
+
+# Build artifacts not needed
+dist/**/.storybook
+dist/**/assets
+dist/**/scripts
