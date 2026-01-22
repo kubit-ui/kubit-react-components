@@ -17,5 +17,6 @@ export type {
   DataTableProps,
 } from './types/dataTable';
 export type {
-  DataTableStyleProps, DataTableVariantStyles,
+  DataTableStyleProps,
+  DataTableVariantStyles,
 } from './types/dataTableTheme';

@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/design-system",
-  "version": "2.0.0-beta.43",
+  "version": "2.0.0-alpha.2",
   "description": "Kubit Design System - CSS-in-JS styles and themes for Kubit components, powered by Bernova",
   "author": {
     "name": "Kubit",
@@ -104,7 +104,7 @@
     "build": "pnpm generate-css && vite build",
     "predist": "rm -rf dist",
     "dist": "pnpm generate-css && vite build",
-    "generate-css": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' npx bernova --config bernova.config.json",
+    "generate-css": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' npx bv-build --embed-css",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
@@ -140,8 +140,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org/",
-    "provenance": true
+    "registry": "https://registry.npmjs.org/"
   },
   "bugs": {
     "url": "https://github.com/kubit-ui/kubit-react-components/issues",

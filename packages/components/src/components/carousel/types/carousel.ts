@@ -36,11 +36,10 @@ export interface ICarouselStandAlone extends DataAttributes {
   disabled?: boolean;
 }
 
-export interface ICarousel
-  extends Omit<
-    ICarouselStandAlone,
-    'cssClasses' | 'viewerContainerRef' | 'contentContainerRef'
-  > {
+export interface ICarousel extends Omit<
+  ICarouselStandAlone,
+  'cssClasses' | 'viewerContainerRef' | 'contentContainerRef'
+> {
   ref?: React.Ref<CarouselRefType>;
   variant?: string;
   additionalClasses?: Partial<CarouselCssClasses>;

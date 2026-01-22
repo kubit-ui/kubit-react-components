@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/storybook",
-  "version": "2.0.0-beta.43",
+  "version": "2.0.0-alpha.1",
   "description": "Kubit Storybook - Component documentation and showcase",
   "private": true,
   "packageManager": "pnpm@10.28.1",
@@ -13,7 +13,10 @@
     "build": "storybook build -c .storybook -o dist --disable-telemetry",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,json,css,scss,md,mdx}\"",
+    "format:check": "prettier --check \"./**/*.{ts,tsx,js,jsx,json,css,scss,md,mdx}\"",
     "typecheck": "tsc --noEmit",
+    "validate": "pnpm format:check && pnpm lint && pnpm typecheck",
     "clean": "rm -rf dist node_modules .storybook-cache"
   },
   "dependencies": {
@@ -28,6 +31,7 @@
     "@storybook/addon-docs": "^10.2.0",
     "@storybook/addon-links": "^10.2.0",
     "@storybook/react-vite": "^10.2.0",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^25.0.9",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
@@ -36,13 +40,14 @@
     "eslint-config-kubit": "1.2.0",
     "eslint-plugin-storybook": "10.1.11",
     "html-validate": "^10.6.0",
+    "prettier": "^3.8.0",
+    "prismjs": "^1.29.0",
     "storybook": "^10.2.0",
     "storybook-addon-deep-controls": "^0.10.0",
     "storybook-addon-pseudo-states": "^10.2.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.53.1",
     "vite": "^8.0.0-beta.7",
-    "vite-tsconfig-paths": "^6.0.4",
-    "prismjs": "^1.29.0"
+    "vite-tsconfig-paths": "^6.0.4"
   }
 }

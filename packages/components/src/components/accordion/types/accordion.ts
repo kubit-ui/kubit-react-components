@@ -49,9 +49,9 @@ export interface IAccordionControlled<
 export interface IAccordionUnControlled<
   V = undefined extends string ? unknown : string,
 > extends Omit<
-    IAccordionControlled<V>,
-    'expanded' | 'onHeaderClick' | 'contentId'
-  > {
+  IAccordionControlled<V>,
+  'expanded' | 'onHeaderClick' | 'contentId'
+> {
   /** Default expanded state when component mounts */
   defaultExpanded?: boolean;
   /** Callback fired when accordion state changes */

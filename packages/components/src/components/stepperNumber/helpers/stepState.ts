@@ -1,6 +1,6 @@
 import { STATES } from '@/lib/types/states/states';
 
-import type { Steps, StepStateProps } from '../types/stepperNumber';
+import type { StepStateProps, Steps } from '../types/stepperNumber';
 
 export const mapToStepState = (
   steps: Steps[] | undefined,

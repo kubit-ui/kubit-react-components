@@ -1,3 +1,1 @@
-export type {
-  YearSelectorProps,
-} from './types/yearSelector';
+export type { YearSelectorProps } from './types/yearSelector';

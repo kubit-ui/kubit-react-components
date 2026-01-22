@@ -67,7 +67,10 @@ export const TagStandAlone = forwardRef<HTMLDivElement, TagStandAloneProps>(
         {...customProps}
       >
         <>
-          <ElementOrIcon className={cssClasses?.icon} {...processIconProp(icon)} />
+          <ElementOrIcon
+            className={cssClasses?.icon}
+            {...processIconProp(icon)}
+          />
           <Text
             additionalClasses={{ text: cssClasses?.label }}
             component="span"

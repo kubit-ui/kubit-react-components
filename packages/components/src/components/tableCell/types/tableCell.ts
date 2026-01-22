@@ -15,7 +15,8 @@ type TableCellCssClasses = ComponentSelected<
  * Includes ARIA attributes, data attributes, and optional CSS classes.
  */
 export interface TableCellStandAloneProps
-  extends Pick<AriaAttributes, 'aria-label' | 'aria-labelledby'>,
+  extends
+    Pick<AriaAttributes, 'aria-label' | 'aria-labelledby'>,
     DataAttributes {
   cssClasses?: TableCellCssClasses;
   id?: string;

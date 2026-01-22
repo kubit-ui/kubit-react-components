@@ -7,5 +7,6 @@ export type {
   CalendarProps,
 } from './types/calendar';
 export type {
-  CalendarStyleProps, CalendarVariantStyles,
+  CalendarStyleProps,
+  CalendarVariantStyles,
 } from './types/calendarTheme';

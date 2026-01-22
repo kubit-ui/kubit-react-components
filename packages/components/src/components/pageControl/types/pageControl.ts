@@ -68,12 +68,12 @@ export interface PageControlStandAloneProps extends DataAttributes {
 export interface PageControlProps<
   Variant = undefined extends string ? unknown : string,
 > extends Omit<
-    PageControlStandAloneProps,
-    | 'arrowsControlStyles'
-    | 'dots'
-    | 'firstVisiblePosition'
-    | 'lastVisiblePosition'
-  > {
+  PageControlStandAloneProps,
+  | 'arrowsControlStyles'
+  | 'dots'
+  | 'firstVisiblePosition'
+  | 'lastVisiblePosition'
+> {
   maxDots?: number;
   arrowsControlVariant?: string;
   variant?: Variant;

@@ -33,8 +33,9 @@ export interface TagStandAloneProps extends TagAriaProps, DataAttributes {
  *
  * @template Variant - The type of the variant for the tag component.
  */
-export interface TagProps<Variant = undefined extends string ? unknown : string>
-  extends Omit<TagStandAloneProps, 'cssClasses'> {
+export interface TagProps<
+  Variant = undefined extends string ? unknown : string,
+> extends Omit<TagStandAloneProps, 'cssClasses'> {
   variant?: Variant;
   additionalClasses?: Partial<TagCssClasses>;
 }

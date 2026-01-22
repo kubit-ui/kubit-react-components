@@ -93,7 +93,8 @@ export interface DataTableRowGroupProps extends DataAttributes {
  * Includes ARIA attributes, styles, columns, rows, and configuration options.
  */
 export interface DataTableStandAloneProps
-  extends Pick<AriaAttributes, 'aria-label' | 'aria-labelledby'>,
+  extends
+    Pick<AriaAttributes, 'aria-label' | 'aria-labelledby'>,
     DataAttributes {
   styles?: DataTableStyleProps;
   hasScroll?: boolean;

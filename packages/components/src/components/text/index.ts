@@ -4,6 +4,4 @@ export type {
   TextStandAloneProps,
   TextProps,
 } from './types/text';
-export type {
-  TextVariantStyles,
-} from './types/textTheme';
+export type { TextVariantStyles } from './types/textTheme';

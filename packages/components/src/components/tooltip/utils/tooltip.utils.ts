@@ -19,7 +19,9 @@ export const getAriaDescriptorsBy = ({
   titleId?: string;
   contentId?: string;
 }): string | undefined => {
-  const validIds = [hasTitle && titleId, hasContent && contentId].filter(Boolean);
+  const validIds = [hasTitle && titleId, hasContent && contentId].filter(
+    Boolean,
+  );
 
   return validIds.length > 0 ? validIds.join(' ').trim() : undefined;
 };

@@ -32,13 +32,7 @@
     "validate": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm build",
     "validate:quick": "pnpm lint && pnpm typecheck",
     "clean": "pnpm -r clean && rm -rf node_modules .pnpm-store",
-    "clean:build": "pnpm -r clean:build",
-    "publish:components": "pnpm --filter @kubit-ui-web/react-components publish",
-    "publish:design-system": "pnpm --filter @kubit-ui-web/design-system publish",
-    "publish:all": "pnpm -r --filter=!@kubit-ui-web/storybook publish",
-    "version:components": "pnpm --filter @kubit-ui-web/react-components version",
-    "version:design-system": "pnpm --filter @kubit-ui-web/design-system version",
-    "chromatic": "pnpm --filter @kubit-ui-web/storybook chromatic"
+    "clean:build": "pnpm -r clean:build"
   },
   "devDependencies": {},
   "bugs": {

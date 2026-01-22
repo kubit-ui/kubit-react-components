@@ -58,9 +58,9 @@ export interface InputSignatureControlledProps<
 export interface InputSignatureUnControlledProps<
   Variant = undefined extends string ? unknown : string,
 > extends Omit<
-    InputSignatureControlledProps<Variant>,
-    'onBlurContainer' | 'onClickContainer' | 'setSignatureStyles' | 'canvasRef'
-  > {
+  InputSignatureControlledProps<Variant>,
+  'onBlurContainer' | 'onClickContainer' | 'setSignatureStyles' | 'canvasRef'
+> {
   onChange?: (value: string) => void;
   disabled?: boolean;
   error?: boolean;

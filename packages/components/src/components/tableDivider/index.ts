@@ -3,6 +3,4 @@ export type {
   TableDividerStandAloneProps,
   TableDividerProps,
 } from './types/tableDivider';
-export type {
-  TableDividerVariantStyles,
-} from './types/tableDividerTheme';
+export type { TableDividerVariantStyles } from './types/tableDividerTheme';

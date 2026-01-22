@@ -3,6 +3,4 @@ export type {
   TableHeadStandAloneProps,
   TableHeadProps,
 } from './types/tableHead';
-export type {
-  TableHeadVariantStyles,
-} from './types/tableHeadTheme';
+export type { TableHeadVariantStyles } from './types/tableHeadTheme';

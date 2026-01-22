@@ -72,9 +72,9 @@ export interface LinkStandAloneProps extends LinkAriaProps, DataAttributes {
 export interface LinkProps<
   Variant = undefined extends string ? unknown : string,
 > extends Omit<
-    LinkStandAloneProps,
-    'component' | 'alignCenter' | 'aria-disabled'
-  > {
+  LinkStandAloneProps,
+  'component' | 'alignCenter' | 'aria-disabled'
+> {
   alignCenter?: boolean;
   variant?: Variant;
   textVariant?: string;
@@ -84,8 +84,10 @@ export interface LinkProps<
  * Interface for the standalone LinkAsButton component.
  * Extends the ButtonStandAloneProps interface and includes additional properties for links.
  */
-export interface LinkAsButtonStandAloneProps
-  extends Omit<ButtonStandAloneProps, 'showLoader'> {
+export interface LinkAsButtonStandAloneProps extends Omit<
+  ButtonStandAloneProps,
+  'showLoader'
+> {
   children: string | JSX.Element;
   component?: TextComponentType | GenericLinkType;
   fullWidth?: boolean;

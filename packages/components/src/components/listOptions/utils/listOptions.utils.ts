@@ -21,7 +21,7 @@ export const isSelected = (
     }
     return Boolean(
       selectedValue.toLocaleString().toLocaleLowerCase() ===
-        option.value.toLocaleString().toLocaleLowerCase(),
+      option.value.toLocaleString().toLocaleLowerCase(),
     );
   }
   return false;

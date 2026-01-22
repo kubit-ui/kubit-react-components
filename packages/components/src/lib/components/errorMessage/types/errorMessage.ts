@@ -11,8 +11,10 @@ type ErrorMessageCssClasses = ComponentSelected<
   ComponentsTypesComponents['ERROR_MESSAGE']
 >;
 
-export interface ErrorMessageStandAloneProps
-  extends Pick<AriaAttributes, 'aria-live'> {
+export interface ErrorMessageStandAloneProps extends Pick<
+  AriaAttributes,
+  'aria-live'
+> {
   cssClasses?: ErrorMessageCssClasses;
   show?: boolean;
   message?: CommonTextProps;

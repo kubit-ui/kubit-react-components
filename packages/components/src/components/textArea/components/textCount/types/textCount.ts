@@ -20,8 +20,7 @@ export interface TextCountStyledProps {
  * Includes properties for character count, weights, colors, and CSS classes.
  */
 export interface TextCountStandAloneProps
-  extends TextCountStyledProps,
-    DataAttributes {
+  extends TextCountStyledProps, DataAttributes {
   maxLength: number;
   currentCharacters: number;
   id: string;

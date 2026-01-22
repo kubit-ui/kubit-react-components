@@ -21,8 +21,7 @@ type SkeletonAriaProps = Pick<
  * Includes ARIA attributes, dimensions, animation duration, shape, and CSS classes.
  */
 export interface SkeletonStandAloneProps
-  extends SkeletonAriaProps,
-    DataAttributes {
+  extends SkeletonAriaProps, DataAttributes {
   width?: string;
   height?: string;
   duration?: string;

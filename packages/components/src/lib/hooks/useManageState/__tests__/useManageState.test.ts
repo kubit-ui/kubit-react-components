@@ -1,4 +1,4 @@
-import { waitFor, renderHook } from '@testing-library/react';
+import { renderHook, waitFor } from '@testing-library/react';
 
 import { STATES } from '@/lib/types/states/states';
 

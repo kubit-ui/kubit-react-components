@@ -1,10 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies, consistent-return, no-restricted-imports, @typescript-eslint/no-explicit-any, react/no-danger */
+import React, { type FC, useEffect, useState } from 'react';
+
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-tsx';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/themes/prism-tomorrow.css';
-import React, { type FC, useEffect, useState } from 'react';
 import { addons, types, useStorybookApi } from 'storybook/manager-api';
 
 const ADDON_ID = 'kubit/source-code';
@@ -47,19 +48,31 @@ const SourceCodePanel: FC<SourceCodePanelProps> = ({ active }) => {
         let code: string | undefined;
 
         // 1. Check docs.source.code (most explicit)
-        if (params?.docs?.source?.code && typeof params.docs.source.code === 'string') {
+        if (
+          params?.docs?.source?.code &&
+          typeof params.docs.source.code === 'string'
+        ) {
           code = params.docs.source.code;
         }
         // 2. Check docs.source.originalSource
-        else if (params?.docs?.source?.originalSource && typeof params.docs.source.originalSource === 'string') {
+        else if (
+          params?.docs?.source?.originalSource &&
+          typeof params.docs.source.originalSource === 'string'
+        ) {
           code = params.docs.source.originalSource;
         }
         // 3. Check storySource.source
-        else if (params?.storySource?.source && typeof params.storySource.source === 'string') {
+        else if (
+          params?.storySource?.source &&
+          typeof params.storySource.source === 'string'
+        ) {
           code = params.storySource.source;
         }
         // 4. Try to get from transformSource if it's a function
-        else if (params?.docs?.source?.transform && typeof params.docs.source.transform === 'function') {
+        else if (
+          params?.docs?.source?.transform &&
+          typeof params.docs.source.transform === 'function'
+        ) {
           try {
             code = params.docs.source.transform('', storyData);
           } catch (e) {

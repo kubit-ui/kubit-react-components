@@ -6,6 +6,4 @@ export type {
   InputBaseStandAloneProps,
   InputBaseProps,
 } from './types/inputBase';
-export type {
-  InputBaseVariantStyles,
-} from './types/inputBaseTheme';
+export type { InputBaseVariantStyles } from './types/inputBaseTheme';

@@ -2,11 +2,31 @@ import { type FC, createContext, useContext, useMemo, useState } from 'react';
 
 import type { RecoverComponentStyles } from '@/lib/types/cssGenerator/cssGenerator';
 
+import {
+  getAddDays,
+  getAddMonths,
+  getAddYears,
+  getAllMonthNames,
+  getAllWeekdayNames,
+  getSubDays,
+  getSubMonths,
+  getSubYears,
+  isAfter,
+  isBefore,
+  isDatesEqual,
+} from '@/lib/utils/date/date';
+import { formatDate } from '@/lib/utils/date/formatDate';
+import { transformDate } from '@/lib/utils/date/transformDate';
+
 import type {
   Breakpoints,
   StylesContextProps,
   StylesProviderProps,
 } from './types/stylesProvider';
+
+import { defaultGenericComponents } from '../genericComponentsProvider/defaultGenericComponents';
+import { GenericComponentsProvider } from '../genericComponentsProvider/genericComponentsProvider';
+import { UtilsProvider } from '../utilsProvider/utilsProvider';
 
 /**
  * React Context for styles and theming.
@@ -199,8 +219,35 @@ export const StylesProvider: FC<StylesProviderProps> = ({
   );
 
   return (
-    <StylesContext.Provider value={contextValue}>
-      {children}
-    </StylesContext.Provider>
+    <UtilsProvider
+      dateHelpers={{
+        getAddDays,
+        getAddMonths,
+        getAddYears,
+        getAllMonthName: (monthFormat, locale) => {
+          // Filter out numeric formats as getAllMonthNames only supports text formats
+          const format =
+            monthFormat === 'numeric' || monthFormat === '2-digit'
+              ? 'long'
+              : monthFormat || 'long';
+          return getAllMonthNames(format, locale);
+        },
+        getAllWeekdayName: getAllWeekdayNames,
+        getSubDays,
+        getSubMonths,
+        getSubYears,
+        isAfter,
+        isBefore,
+        isDatesEqual,
+      }}
+      formatDate={formatDate}
+      transformDate={transformDate}
+    >
+      <GenericComponentsProvider value={{ ...defaultGenericComponents }}>
+        <StylesContext.Provider value={contextValue}>
+          {children}
+        </StylesContext.Provider>
+      </GenericComponentsProvider>
+    </UtilsProvider>
   );
 };

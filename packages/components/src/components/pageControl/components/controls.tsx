@@ -35,21 +35,21 @@ export const Controls = ({
   return (
     <>
       {control && !isElementOrIconProps(control) && (
-      <ButtonControlStandAlone
-        {...control}
-        cssPageControlClasses={buttonCssClasses}
-        position={position}
-        {...customProps}
-      />
-)}
-      {isElementOrIconProps(control) && (
-      <div className={arrowCssClasses}>
-        <ArrowControlStandAlone
-          cssArrowControlClasses={cssArrowControlClasses}
+        <ButtonControlStandAlone
           {...control}
+          cssPageControlClasses={buttonCssClasses}
+          position={position}
+          {...customProps}
         />
-      </div>
-)}
+      )}
+      {isElementOrIconProps(control) && (
+        <div className={arrowCssClasses}>
+          <ArrowControlStandAlone
+            cssArrowControlClasses={cssArrowControlClasses}
+            {...control}
+          />
+        </div>
+      )}
     </>
   );
 };

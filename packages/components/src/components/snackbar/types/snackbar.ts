@@ -25,11 +25,10 @@ export interface ISnackbarStandAlone extends DataAttributes, AriaAttributes {
   onBlur?: React.FocusEventHandler<HTMLDivElement>;
 }
 
-export interface ISnackbar
-  extends Omit<
-    ISnackbarStandAlone,
-    'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'
-  > {
+export interface ISnackbar extends Omit<
+  ISnackbarStandAlone,
+  'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'
+> {
   additionalClasses?: SnackbarV2CssClasses;
   closeTimeout?: number;
 }

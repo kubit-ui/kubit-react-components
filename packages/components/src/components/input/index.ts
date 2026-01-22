@@ -5,7 +5,4 @@ export type {
   InputStandAloneProps,
   InputProps,
 } from './types/input';
-export type {
-  InputStyleProps,
-  InputVariantStyles,
-} from './types/inputTheme';
+export type { InputStyleProps, InputVariantStyles } from './types/inputTheme';

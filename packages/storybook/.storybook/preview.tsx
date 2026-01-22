@@ -1,24 +1,33 @@
+import './kubit.css';
 import './storybook.css';
 
 import React, { useEffect } from 'react';
 
+import { Provider } from '@kubit-ui-web/design-system';
+import {
+  GenericComponentsProvider,
+  StylesProvider,
+  UtilsProvider,
+  defaultGenericComponents,
+  formatDate,
+  getAddDays,
+  getAddMonths,
+  getAddYears,
+  getAllMonthNames,
+  getAllWeekdayNames,
+  getSubDays,
+  getSubMonths,
+  getSubYears,
+  isAfter,
+  isBefore,
+  isDatesEqual,
+  transformDate,
+} from '@kubit-ui-web/react-components';
+import { useStylesContext } from '@kubit-ui-web/react-components';
 import type { Preview } from '@storybook/react';
 import ReactDOM from 'react-dom';
 
-import './kubit.css';
-import { StylesProvider, GenericComponentsProvider, UtilsProvider, defaultGenericComponents , getAddDays, getAddMonths, getAddYears, getAllMonthNames, getAllWeekdayNames,
-          getSubDays,
-          getSubMonths,
-          getSubYears,
-          isAfter,
-          isBefore,
-          isDatesEqual, formatDate, transformDate} from '@kubit-ui-web/react-components';
-import { Provider } from '@kubit-ui-web/design-system';
-
-import { useStylesContext } from '@kubit-ui-web/react-components';
-
 import { Note } from './components/note/note';
-
 
 const NOTE_PORTAL_ID = 'storybook-note-portal';
 
@@ -116,41 +125,41 @@ const preview: Preview = {
               notePortal,
             )}
 
-              <GenericComponentsProvider value={{ ...defaultGenericComponents }}>
-      <UtilsProvider
-        dateHelpers={{
-          getAddDays,
-          getAddMonths,
-          getAddYears,
-          getAllMonthName: (
-            monthFormat: Intl.DateTimeFormatOptions['month'],
-            locale?: string,
-          ) => {
-            // Filter out numeric formats as getAllMonthNames only supports text formats
-            const format =
-              monthFormat === 'numeric' || monthFormat === '2-digit'
-                ? 'long'
-                : monthFormat || 'long';
-            return getAllMonthNames(format, locale);
-          },
-          getAllWeekdayName: getAllWeekdayNames,
-          getSubDays,
-          getSubMonths,
-          getSubYears,
-          isAfter,
-          isBefore,
-          isDatesEqual,
-        }}
-        formatDate={formatDate}
-        transformDate={transformDate}
-      >
-        <StylesProvider bernovaProvider={Provider}>
-          <ThemeDecorator theme={context.globals.theme}>
-            <Story />
-          </ThemeDecorator>
-        </StylesProvider>
-      </UtilsProvider>
-    </GenericComponentsProvider>
+          <GenericComponentsProvider value={{ ...defaultGenericComponents }}>
+            <UtilsProvider
+              dateHelpers={{
+                getAddDays,
+                getAddMonths,
+                getAddYears,
+                getAllMonthName: (
+                  monthFormat: Intl.DateTimeFormatOptions['month'],
+                  locale?: string,
+                ) => {
+                  // Filter out numeric formats as getAllMonthNames only supports text formats
+                  const format =
+                    monthFormat === 'numeric' || monthFormat === '2-digit'
+                      ? 'long'
+                      : monthFormat || 'long';
+                  return getAllMonthNames(format, locale);
+                },
+                getAllWeekdayName: getAllWeekdayNames,
+                getSubDays,
+                getSubMonths,
+                getSubYears,
+                isAfter,
+                isBefore,
+                isDatesEqual,
+              }}
+              formatDate={formatDate}
+              transformDate={transformDate}
+            >
+              <StylesProvider bernovaProvider={Provider}>
+                <ThemeDecorator theme={context.globals.theme}>
+                  <Story />
+                </ThemeDecorator>
+              </StylesProvider>
+            </UtilsProvider>
+          </GenericComponentsProvider>
         </>
       );
     },

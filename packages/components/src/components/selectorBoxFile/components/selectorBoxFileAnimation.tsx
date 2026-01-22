@@ -64,33 +64,33 @@ export const SelectorBoxFileAnimation = ({
     >
       {/* Animation containers */}
       {!!topAnimationContainer && (
-      <div
-        {...customAttributesProps}
-        ref={topRef}
-        className={topAnimationContainer}
-      />
-)}
+        <div
+          {...customAttributesProps}
+          ref={topRef}
+          className={topAnimationContainer}
+        />
+      )}
       {!!rightAnimationContainer && (
-      <div
-        {...customAttributesProps}
-        ref={rightRef}
-        className={rightAnimationContainer}
-      />
-)}
+        <div
+          {...customAttributesProps}
+          ref={rightRef}
+          className={rightAnimationContainer}
+        />
+      )}
       {!!bottomAnimationContainer && (
-      <div
-        {...customAttributesProps}
-        ref={bottomRef}
-        className={bottomAnimationContainer}
-      />
-)}
+        <div
+          {...customAttributesProps}
+          ref={bottomRef}
+          className={bottomAnimationContainer}
+        />
+      )}
       {!!leftAnimationContainer && (
-      <div
-        {...customAttributesProps}
-        ref={leftRef}
-        className={leftAnimationContainer}
-      />
-)}
+        <div
+          {...customAttributesProps}
+          ref={leftRef}
+          className={leftAnimationContainer}
+        />
+      )}
       <div
         {...customAttributesProps}
         className={cssClasses.borderanimationcontainer}

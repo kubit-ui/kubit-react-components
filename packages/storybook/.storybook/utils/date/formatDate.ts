@@ -1,8 +1,7 @@
-import type { DateFormatOptions, FormatDateType } from './types/format.types';
-
 import { FORMATTING_TOKENS } from './constants/common.constant';
 import { MACRO_TOKEN_TO_FORMAT_OPTS } from './constants/format.constant';
 import { locale as defaultLocale } from './locale';
+import type { DateFormatOptions, FormatDateType } from './types/format.types';
 import { isValidDate } from './validateDate';
 
 const addZero = (value: number) => `${value < 10 ? '0' : ''}${value}`;

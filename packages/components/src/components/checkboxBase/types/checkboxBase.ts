@@ -30,7 +30,8 @@ type InputHtmlAttributesProps = Pick<
  * Interface for the checkboxBase standalone component
  */
 export interface CheckboxBaseStandAloneProps
-  extends InputActionsProps,
+  extends
+    InputActionsProps,
     DataAttributes,
     InputHtmlAttributesProps,
     CheckboxBaseAriaAttributesProps {

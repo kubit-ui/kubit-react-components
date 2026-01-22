@@ -19,8 +19,7 @@ type ToggleAriaAttributes = Pick<
  * Includes all basic props, ARIA attributes, and event handlers.
  */
 export interface ToggleStandaloneProps
-  extends DataAttributes,
-    ToggleAriaAttributes {
+  extends DataAttributes, ToggleAriaAttributes {
   /** Toggle state (true = active, false = inactive) */
   checked?: boolean;
   /** Component type to render as, defaults to 'button'. Use 'span' or 'div' for decorative toggles */

@@ -13,5 +13,5 @@ interface IUseSnackbarAutoCloseResponse {
 }
 
 export type IUseSnackbarAutoClose = (
-  params: IUseSnackbarAutoCloseParams
+  params: IUseSnackbarAutoCloseParams,
 ) => IUseSnackbarAutoCloseResponse;

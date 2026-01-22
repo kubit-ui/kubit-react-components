@@ -9,10 +9,8 @@ import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 type TableCssClasses = ComponentSelected<ComponentsTypesComponents['TABLE']>;
 
 export interface TableStandAloneProps
-  extends Pick<
-      AriaAttributes,
-      'aria-label' | 'aria-labelledby' | 'aria-hidden'
-    >,
+  extends
+    Pick<AriaAttributes, 'aria-label' | 'aria-labelledby' | 'aria-hidden'>,
     DataAttributes {
   cssClasses?: TableCssClasses;
   hasScrollDisabled?: boolean;

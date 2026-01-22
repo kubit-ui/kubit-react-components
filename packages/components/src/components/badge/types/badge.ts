@@ -26,8 +26,7 @@ type BadgeAriaAttributes = Pick<
  * Includes ARIA attributes, event handlers, and optional properties like dot, icon, and label.
  */
 export interface BadgeStandAloneProps
-  extends BadgeAriaAttributes,
-    DataAttributes {
+  extends BadgeAriaAttributes, DataAttributes {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onBadgeBlur?: React.FocusEventHandler<HTMLButtonElement>;
   dot?: DotProps;
@@ -55,9 +54,9 @@ export interface BadgeProps<
   Variant = undefined extends string ? unknown : string,
   Size = undefined extends string ? unknown : string,
 > extends Omit<
-    BadgeStandAloneProps,
-    'styles' | 'sizeStyles' | 'iconStyles' | 'active'
-  > {
+  BadgeStandAloneProps,
+  'styles' | 'sizeStyles' | 'iconStyles' | 'active'
+> {
   variant?: Variant;
   size?: Size;
   additionalVariantClasses?: Partial<BadgeCssClasses>;

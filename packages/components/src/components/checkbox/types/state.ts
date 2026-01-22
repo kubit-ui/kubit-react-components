@@ -13,4 +13,5 @@ export const CheckboxState = {
 /**
  * Checkbox states as type
  */
-export type CheckboxStateType = (typeof CheckboxState)[keyof typeof CheckboxState];
+export type CheckboxStateType =
+  (typeof CheckboxState)[keyof typeof CheckboxState];

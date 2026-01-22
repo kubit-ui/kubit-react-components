@@ -39,7 +39,8 @@ export type InputBaseActionsType = Pick<
  * Includes additional properties for styling, standard HTML attributes, non-standard attributes, and testing.
  */
 export interface InputBaseStandAloneProps
-  extends InputHTMLAttributes<HTMLInputElement>,
+  extends
+    InputHTMLAttributes<HTMLInputElement>,
     DataAttributes,
     Omit<AriaAttributes, 'aria-invalid'>,
     InputBaseActionsType {

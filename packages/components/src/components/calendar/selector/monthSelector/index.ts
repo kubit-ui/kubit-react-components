@@ -1,3 +1,1 @@
-export type {
-  MonthSelectorProps,
-} from './types/monthSelector';
+export type { MonthSelectorProps } from './types/monthSelector';

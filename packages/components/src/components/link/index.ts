@@ -6,7 +6,4 @@ export type {
   LinkAsButtonStandAloneProps,
   LinkAsButtonProps,
 } from './types/link';
-export type {
-  LinkStylesProps,
-  LinkVariantStyles,
-} from './types/linkTheme';
+export type { LinkStylesProps, LinkVariantStyles } from './types/linkTheme';

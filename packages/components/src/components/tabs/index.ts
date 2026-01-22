@@ -6,7 +6,4 @@ export type {
   TabsProps,
   TabsUnControlledProps,
 } from './types/tabs';
-export type {
-  TabsStyleProps,
-  TabsVariantStyles,
-} from './types/tabsTheme';
+export type { TabsStyleProps, TabsVariantStyles } from './types/tabsTheme';

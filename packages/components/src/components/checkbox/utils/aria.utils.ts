@@ -16,9 +16,11 @@ export const buildAriaDescribedBy = ({
   screenReader,
   screenReaderId,
 }: IBuildAriaDescribedBy): string | undefined => {
-  const ids = [ariaDescribedBy, screenReader && screenReaderId, error && errorMessageId].filter(
-    Boolean
-  );
+  const ids = [
+    ariaDescribedBy,
+    screenReader && screenReaderId,
+    error && errorMessageId,
+  ].filter(Boolean);
 
   return ids.length > 0 ? ids.join(' ').trim() : undefined;
 };

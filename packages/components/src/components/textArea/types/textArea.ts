@@ -26,8 +26,7 @@ export interface TextAreaStyledProps {
  * Includes properties for labels, state, event handlers, and CSS classes.
  */
 export interface TextAreaStandAloneProps
-  extends TextAreaStyledProps,
-    DataAttributes {
+  extends TextAreaStyledProps, DataAttributes {
   cssClasses?: TextAreaCssClasses;
   label: CommonTextProps;
   additionalInfo?: React.ReactNode;
@@ -60,9 +59,9 @@ export interface TextAreaStandAloneProps
 export interface TextAreaProps<
   Variant = undefined extends string ? unknown : string,
 > extends Omit<
-    TextAreaStandAloneProps,
-    'cssClasses' | 'state' | 'onFocus' | 'onBlur'
-  > {
+  TextAreaStandAloneProps,
+  'cssClasses' | 'state' | 'onFocus' | 'onBlur'
+> {
   variant?: Variant;
   disabled?: boolean;
   error?: boolean;

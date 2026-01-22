@@ -8,5 +8,6 @@ export type {
   CheckboxBaseUnControlledProps,
 } from './types/checkboxBase';
 export type {
-  ChecboxBaseStyleProps, ChecboxBaseVariantStyles,
+  ChecboxBaseStyleProps,
+  ChecboxBaseVariantStyles,
 } from './types/checkboxBaseTheme';

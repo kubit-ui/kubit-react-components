@@ -2,12 +2,12 @@ import { getAriaDescriptorsBy } from '../utils/tooltip.utils';
 
 describe('getAriaDescriptorsBy utility', () => {
   it('should return both titleId and contentId when title and content are provided', () => {
-    const result = getAriaDescriptorsBy(
-      {contentId: 'content1',
+    const result = getAriaDescriptorsBy({
+      contentId: 'content1',
       hasContent: true,
       hasTitle: true,
-      titleId: 'title1'}
-    );
+      titleId: 'title1',
+    });
 
     expect(result).toBe('title1 content1');
     expect(document.body).toHTMLValidate();

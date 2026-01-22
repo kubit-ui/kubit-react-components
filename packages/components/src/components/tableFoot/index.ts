@@ -3,6 +3,4 @@ export type {
   TableFootStandAloneProps,
   TableFootProps,
 } from './types/tableFoot';
-export type {
-  TableFootVariantStyles,
-} from './types/tableFootTheme';
+export type { TableFootVariantStyles } from './types/tableFootTheme';

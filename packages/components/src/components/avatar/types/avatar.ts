@@ -30,8 +30,7 @@ type AvatarAriaAttributes = Pick<
  * This component is self-contained and does not depend on external state.
  */
 export interface AvatarStandAloneProps
-  extends AvatarAriaAttributes,
-    DataAttributes {
+  extends AvatarAriaAttributes, DataAttributes {
   dot?: DotProps;
   image?: string;
   icon?: CommonIconProps;
@@ -49,8 +48,10 @@ export interface AvatarStandAloneProps
  * Props for the Avatar component, which extends the standalone avatar with additional options.
  * @template Size - Optional size type for the avatar.
  */
-export interface AvatarProps<Size = string>
-  extends Omit<AvatarStandAloneProps, 'contentType' | 'linkComponent'> {
+export interface AvatarProps<Size = string> extends Omit<
+  AvatarStandAloneProps,
+  'contentType' | 'linkComponent'
+> {
   size?: Size;
   additionalClasses?: Partial<AvatarCssClasses>;
 }

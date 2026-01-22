@@ -1,4 +1,3 @@
-
 export type CssPropsType = {
   scrollbar_width?: string;
   scrollbar_color?: string;
@@ -274,104 +273,386 @@ export type CssPropsType = {
   mask_border_outset?: string;
   mask_border_repeat?: string;
   $content?: string;
-}
+};
 
 export type CssPseudoClassesType = {
-  fullscreen?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  modal?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  picture_in_picture?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  autofill?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  enabled?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  disabled?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  read_only?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  read_write?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  placeholder_shown?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  default?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  checked?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  indeterminate?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  blank?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  valid?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  invalid?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  in_range?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  out_of_range?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  required?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  optional?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  user_valid?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  user_invalid?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  dir?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  lang?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  any_link?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  link?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  visited?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  local_link?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  target?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  target_within?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  scope?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  playing?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  paused?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  current?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  past?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  future?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  root?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  empty?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  nth_child?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  nth_last_child?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  first_child?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  last_child?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  only_child?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  nth_of_type?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  nth_last_of_type?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  first_of_type?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  last_of_type?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  only_of_type?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  active?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  focus?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  focus_visible?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  focus_within?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  hover?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  is?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  not?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  where?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  has?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  nth_col?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  nth_last_col?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  host?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  host_context?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  defined?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_any?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_any_link?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_focusring?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_full_screen?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_full_screen_ancestor?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_full_screen_document?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_full_screen_element?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_full_screen_root?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_placeholder?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_read_only?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_read_write?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_submit_invalid?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_ui_invalid?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  moz_ui_valid?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_any?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_any_link?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_autofill?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_current?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_full_screen?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_full_screen_ancestor?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_full_screen_document?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_full_screen_element?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_full_screen_root?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_input_placeholder?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_read_only?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_read_write?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_scrollbar?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_scrollbar_button?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_scrollbar_thumb?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_scrollbar_track?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_scrollbar_track_piece?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_search_cancel_button?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-  webkit_search_results_button?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
-}
+  fullscreen?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  modal?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  picture_in_picture?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  autofill?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  enabled?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  disabled?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  read_only?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  read_write?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  placeholder_shown?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  default?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  checked?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  indeterminate?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  blank?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  valid?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  invalid?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  in_range?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  out_of_range?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  required?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  optional?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  user_valid?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  user_invalid?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  dir?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  lang?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  any_link?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  link?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  visited?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  local_link?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  target?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  target_within?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  scope?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  playing?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  paused?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  current?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  past?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  future?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  root?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  empty?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  nth_child?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  nth_last_child?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  first_child?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  last_child?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  only_child?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  nth_of_type?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  nth_last_of_type?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  first_of_type?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  last_of_type?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  only_of_type?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  active?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  focus?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  focus_visible?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  focus_within?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  hover?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  is?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  not?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  where?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  has?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  nth_col?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  nth_last_col?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  host?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  host_context?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  defined?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_any?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_any_link?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_focusring?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_full_screen?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_full_screen_ancestor?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_full_screen_document?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_full_screen_element?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_full_screen_root?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_placeholder?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_read_only?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_read_write?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_submit_invalid?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_ui_invalid?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  moz_ui_valid?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_any?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_any_link?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_autofill?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_current?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_full_screen?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_full_screen_ancestor?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_full_screen_document?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_full_screen_element?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_full_screen_root?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_input_placeholder?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_read_only?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_read_write?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_scrollbar?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_scrollbar_button?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_scrollbar_thumb?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_scrollbar_track?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_scrollbar_track_piece?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_search_cancel_button?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+  webkit_search_results_button?:
+    | CssPseudoClassesType
+    | CssPseudoElementsType
+    | (CssLibPropsType & { $target?: string });
+};
 
 export type CssPseudoElementsType = {
   before?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
@@ -382,98 +663,225 @@ export type CssPseudoElementsType = {
   backdrop?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
   placeholder?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
   marker?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  spelling_error?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  grammar_error?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
+  spelling_error?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  grammar_error?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
   cue?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
   cue_region?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
   part?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
   slotted?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  file_selector_button?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
+  file_selector_button?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
   target_text?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
   highlight?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  moz_color_swatch?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  moz_focus_inner?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  moz_list_bullet?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  moz_list_number?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  moz_meter_bar?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  moz_progress_bar?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  moz_range_progress?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  moz_range_thumb?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  moz_range_track?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_inner_spin_button?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_meter_even_less_good_value?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_meter_inner_element?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_meter_optimum_value?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_meter_suboptimum_value?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_progress_bar?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_progress_inner_element?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_progress_value?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_scrollbar?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_scrollbar_button?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_scrollbar_thumb?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_scrollbar_track?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_scrollbar_track_piece?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_search_cancel_button?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_search_results_button?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_slider_runnable_track?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_slider_thumb?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_resizer?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  webkit_input_placeholder?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  placeholder_shown?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
+  moz_color_swatch?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  moz_focus_inner?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  moz_list_bullet?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  moz_list_number?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  moz_meter_bar?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  moz_progress_bar?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  moz_range_progress?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  moz_range_thumb?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  moz_range_track?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_inner_spin_button?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_meter_even_less_good_value?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_meter_inner_element?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_meter_optimum_value?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_meter_suboptimum_value?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_progress_bar?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_progress_inner_element?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_progress_value?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_scrollbar?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_scrollbar_button?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_scrollbar_thumb?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_scrollbar_track?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_scrollbar_track_piece?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_search_cancel_button?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_search_results_button?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_slider_runnable_track?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_slider_thumb?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_resizer?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  webkit_input_placeholder?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  placeholder_shown?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
   autofill?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  progress_value?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
+  progress_value?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
   progress_bar?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  meter_optimum?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  meter_suboptimum?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-  meter_sub_suboptimum?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
-}
+  meter_optimum?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  meter_suboptimum?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+  meter_sub_suboptimum?:
+    | CssPseudoElementsType
+    | CssPseudoClassesType
+    | CssLibPropsType;
+};
 
-export type CssAdvancedSelectorsType = 
- { adjacent?: CssLibPropsType & { $target?: string; }; }
- | { child?: CssLibPropsType & { $target?: string; }; }
- | { descendant?: CssLibPropsType & { $target?: string; }; }
- | { near?: CssLibPropsType & { $target?: string; }; }
- | { concat?: CssLibPropsType & { $target?: string; }; }
- | { column?: CssLibPropsType & { $target?: string; }; }
+export type CssAdvancedSelectorsType =
+  | { adjacent?: CssLibPropsType & { $target?: string } }
+  | { child?: CssLibPropsType & { $target?: string } }
+  | { descendant?: CssLibPropsType & { $target?: string } }
+  | { near?: CssLibPropsType & { $target?: string } }
+  | { concat?: CssLibPropsType & { $target?: string } }
+  | { column?: CssLibPropsType & { $target?: string } };
 
+export type CssMediaQueriesType = CssPropsType & {
+  $type?: string;
+  $values?: { [key: string]: string };
+};
 
-export type CssMediaQueriesType = CssPropsType & { $type?: string; $values?: { [key: string]: string }; }
-
-export type CssForeignType = { [key:string]: { component: object; variant?: string | unknown; name: string; } }
+export type CssForeignType = {
+  [key: string]: {
+    component: object;
+    variant?: string | unknown;
+    name: string;
+  };
+};
 
 export type CssLibPseudoClassesType = {
-  $pseudoClasses?: CssPseudoClassesType 
-}
+  $pseudoClasses?: CssPseudoClassesType;
+};
 
 export type CssLibPseudoElementsType = {
-  $pseudoElements?: CssPseudoElementsType 
-}
+  $pseudoElements?: CssPseudoElementsType;
+};
 
 export type CssDynamicValuesType = {
-  $dynamicValues?: string[]; 
-}
+  $dynamicValues?: string[];
+};
 
 export type CssLibAdvancedSelectorsType = {
-  $advancedSelectors?: CssAdvancedSelectorsType[] 
-}
+  $advancedSelectors?: CssAdvancedSelectorsType[];
+};
 
-export type CssLibAttributesType = { $attributes?: { [key: string]: CssLibPropsType } | { [key: string]: { [key: string]: CssLibPropsType } } }
+export type CssLibAttributesType = {
+  $attributes?:
+    | { [key: string]: CssLibPropsType }
+    | { [key: string]: { [key: string]: CssLibPropsType } };
+};
 
 export type CssLibMediaQueriesType = {
-  $mediaQueries?: {
-    [key: string]: CssMediaQueriesType
-  } | {
-    'mobile'?: CssLibPropsType;
-    'tablet'?: CssLibPropsType;
-    'desktop'?: CssLibPropsType;
-    'large_desktop'?: CssLibPropsType;
-  }
-}
+  $mediaQueries?:
+    | {
+        [key: string]: CssMediaQueriesType;
+      }
+    | {
+        mobile?: CssLibPropsType;
+        tablet?: CssLibPropsType;
+        desktop?: CssLibPropsType;
+        large_desktop?: CssLibPropsType;
+      };
+};
 
 export type CssForeignLibType = {
-  $foreign?: CssForeignType 
-}
+  $foreign?: CssForeignType;
+};
 
-export type CssLibPropsType = CssPropsType & CssLibPseudoClassesType & CssLibPseudoElementsType & CssLibAdvancedSelectorsType & CssDynamicValuesType & CssLibAttributesType & CssLibMediaQueriesType & CssForeignLibType;
-
-  
+export type CssLibPropsType = CssPropsType &
+  CssLibPseudoClassesType &
+  CssLibPseudoElementsType &
+  CssLibAdvancedSelectorsType &
+  CssDynamicValuesType &
+  CssLibAttributesType &
+  CssLibMediaQueriesType &
+  CssForeignLibType;
