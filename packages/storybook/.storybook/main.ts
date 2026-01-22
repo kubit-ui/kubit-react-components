@@ -26,6 +26,7 @@ const config: StorybookConfig = {
 
   staticDirs: ['./assets'],
 
+  // Stories solo desde el package storybook
   stories: [
     '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
     '../stories/**/*.mdx',
@@ -34,6 +35,16 @@ const config: StorybookConfig = {
 
   typescript: {
     reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+      propFilter: (prop) => {
+        if (prop.parent) {
+          return !prop.parent.fileName.includes('node_modules');
+        }
+        return true;
+      },
+    },
   },
 };
 export default config;

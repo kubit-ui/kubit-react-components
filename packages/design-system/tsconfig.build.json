@@ -11,12 +11,13 @@
     "../components/**/*"
   ],
   "compilerOptions": {
-    "noEmit": true,
-    "declaration": false,
-    "declarationMap": false,
+    "noEmit": false,
+    "declaration": true,
+    "declarationMap": true,
     "emitDeclarationOnly": false,
     "suppressExcessPropertyErrors": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "./dist/types"
   },
   "references": []
 }

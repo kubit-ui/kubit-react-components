@@ -53,6 +53,7 @@
   ],
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "sideEffects": [
     "*.css",
     "*.scss"
@@ -60,6 +61,7 @@
   "files": [
     "dist/cjs",
     "dist/esm",
+    "dist/types",
     "dist/styles",
     "package.json",
     "README.md",
@@ -74,14 +76,17 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
     "./provider": {
+      "types": "./dist/types/provider/index.d.ts",
       "import": "./dist/esm/provider/index.js",
       "require": "./dist/cjs/provider/index.js"
     },
     "./provider/Provider": {
+      "types": "./dist/types/provider/Provider.d.ts",
       "import": "./dist/esm/provider/Provider.js",
       "require": "./dist/cjs/provider/Provider.js"
     },

@@ -172,8 +172,24 @@ export default defineConfig(({ mode }) => ({
     // Vite 8 beta: Native tsconfigPaths support coming in resolve.tsconfigPaths
     // For now we keep the plugin until the API is stable
     tsconfigPaths({ projects: ['./tsconfig.build.json'] }),
-    // dts plugin disabled - design-system only exports JS objects, not TypeScript types
-    // Types are already available from the source files
+    // Generate TypeScript declaration files
+    dts({
+      insertTypesEntry: true,
+      outDir: 'dist/types',
+      tsconfigPath: './tsconfig.build.json',
+      include: ['src/**/*'],
+      exclude: [
+        'src/**/*.test.*',
+        'src/**/__mocks__',
+        'src/**/__fixtures__',
+        'src/**/__tests__',
+      ],
+      compilerOptions: {
+        declaration: true,
+        declarationMap: true,
+        emitDeclarationOnly: true,
+      },
+    }),
     removeUnnecessaryFoldersPlugin(),
   ],
   // Vite 8: Improved resolve options

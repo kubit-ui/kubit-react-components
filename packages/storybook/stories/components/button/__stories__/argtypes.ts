@@ -1,8 +1,7 @@
 import type { ArgTypes } from 'storybook/internal/types';
 
 import {
-  ButtonSizeType,
-  ButtonVariantType,
+KUBIT_VARIANTS
 } from '@kubit-ui-web/design-system'
 import { getAdditionalClassesArgTypes } from '@/stories/argtypes/additionalClassesArgTypes';
 import { configArgTypes } from '@/stories/argtypes/argtypes';
@@ -14,6 +13,8 @@ import { getStringtArgTypes } from '@/stories/argtypes/stringArgTypes';
 import { getVariantArgTypes } from '@/stories/argtypes/variantArgtypes';
 import { CATEGORY_CONTROL } from '@/stories/constants/categoryControl';
 import { POSITIONS } from '@kubit-ui-web/react-components';
+
+const { ButtonSizeType, ButtonVariantType } = KUBIT_VARIANTS;
 
 export const argtypes = (): ArgTypes => {
   return {

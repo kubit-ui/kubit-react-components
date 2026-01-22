@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import   {
-  ButtonSizeType,
-  ButtonVariantType,
+import {
+KUBIT_VARIANTS
 } from '@kubit-ui-web/design-system';
 import { ICONS } from '@/stories/assets/icons/icons';
 import { LoaderStory as Loader } from '@/stories/assets/loader/loader';
@@ -24,6 +23,9 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
+
+const { ButtonSizeType, ButtonVariantType } = KUBIT_VARIANTS;
+
 
 /**
  * Primary button - main call-to-action.

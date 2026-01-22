@@ -17,14 +17,17 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "types": ["vite/client", "node"],
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
+      "@/stories": ["./stories"],
+      "@/stories/*": ["./stories/*"],
       "@kubit-ui-web/react-components": ["../components/src"],
       "@kubit-ui-web/react-components/*": ["../components/src/*"],
       "@kubit-ui-web/design-system": ["../design-system/src"],
       "@kubit-ui-web/design-system/*": ["../design-system/src/*"]
     }
   },
-  "include": [".storybook/**/*", "stories/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [".storybook/**/*", "stories/**/*", "overview/**/*"],
+  "exclude": ["node_modules", "dist", ".storybook-cache"]
 }
