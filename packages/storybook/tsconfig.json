@@ -18,7 +18,11 @@
     "jsx": "react-jsx",
     "types": ["vite/client", "node"],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@kubit-ui-web/react-components": ["../components/src"],
+      "@kubit-ui-web/react-components/*": ["../components/src/*"],
+      "@kubit-ui-web/design-system": ["../design-system/src"],
+      "@kubit-ui-web/design-system/*": ["../design-system/src/*"]
     }
   },
   "include": [".storybook/**/*", "stories/**/*"],

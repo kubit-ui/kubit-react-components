@@ -1,6 +1,5 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import eslintFlatConfig from 'eslint-config-kubit';
-import storybook from 'eslint-plugin-storybook';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -42,12 +41,7 @@ export default eslintFlatConfig({
     vi: 'readonly',
     window: 'readonly',
   },
-  ignores: [
-    'src/lib/provider/cssProvider/**/*',
-    'src/lib/types/cssGenerator/**/*',
-    'src/lib/designSystem/kubit/css/cssVars.js',
-    'src/lib/tests/__mocks__/assetMock.js',
-  ],
+  ignores: ['src/provider/**/*'],
   noIndexImportConfig: {
     aliases: {
       '@/components': './src/components/*',

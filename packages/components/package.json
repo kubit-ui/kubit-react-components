@@ -200,7 +200,8 @@
     "vite-plugin-dts": "^4.5.4",
     "vite-tsconfig-paths": "^6.0.4",
     "vitest": "^4.0.17",
-    "vitest-axe": "^0.1.0"
+    "vitest-axe": "^0.1.0",
+    "@kubit-ui-web/design-system": "workspace:*"
   },
   "publishConfig": {
     "access": "public",

@@ -53,7 +53,6 @@
   ],
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
   "sideEffects": [
     "*.css",
     "*.scss"
@@ -61,7 +60,6 @@
   "files": [
     "dist/cjs",
     "dist/esm",
-    "dist/types",
     "dist/styles",
     "package.json",
     "README.md",
@@ -76,14 +74,16 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
     "./provider": {
-      "types": "./dist/types/provider/index.d.ts",
       "import": "./dist/esm/provider/index.js",
       "require": "./dist/cjs/provider/index.js"
+    },
+    "./provider/Provider": {
+      "import": "./dist/esm/provider/Provider.js",
+      "require": "./dist/cjs/provider/Provider.js"
     },
     "./styles/*": {
       "import": "./dist/styles/*.css",
@@ -124,12 +124,14 @@
     "cssnano": "^7.1.2",
     "eslint": "^9.39.2",
     "eslint-config-kubit": "1.2.0",
+    "glob": "^13.0.0",
     "postcss": "^8.5.6",
     "prettier": "^3.8.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.53.1",
     "vite": "^8.0.0-beta.7",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^4.5.4",
+    "vite-tsconfig-paths": "^6.0.4"
   },
   "publishConfig": {
     "access": "public",

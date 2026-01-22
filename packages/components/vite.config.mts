@@ -7,9 +7,6 @@ import postcss from 'postcss';
 import { minify } from 'terser';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-// Vite 8 beta: tsconfigPaths support is coming but not yet in stable API
-// For now we keep using the plugin until the native support is finalized
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 // Constants for array indexing and string slicing
 const EMPTY_LENGTH = 0;
@@ -281,7 +278,8 @@ export default defineConfig(({ mode }) => ({
         unknownGlobalSideEffects: false,
       },
     },
-    sourcemap: mode !== 'production',
+    // Disable sourcemaps to prevent Vite from resolving back to source files
+    sourcemap: false,
     terserOptions: {
       compress: {
         dead_code: true,
@@ -324,9 +322,8 @@ export default defineConfig(({ mode }) => ({
       jsxImportSource: 'react',
       jsxRuntime: 'automatic',
     }),
-    // Vite 8 beta: Native tsconfigPaths support coming in resolve.tsconfigPaths
-    // For now we keep the plugin until the API is stable
-    tsconfigPaths({ projects: ['./tsconfig.build.json'] }),
+    // Don't use tsconfigPaths plugin - it doesn't convert aliases during build
+    // Use resolve.alias instead so Rollup can convert them to relative paths
     dts({
       exclude: [
         'src/**/*.test.*',
@@ -351,6 +348,8 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      '@/components': path.resolve(__dirname, 'src/components'),
+      '@/lib': path.resolve(__dirname, 'src/lib'),
     },
     // Better defaults for library builds
     dedupe: ['react', 'react-dom'],

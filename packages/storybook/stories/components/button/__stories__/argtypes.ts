@@ -3,17 +3,17 @@ import type { ArgTypes } from 'storybook/internal/types';
 import {
   ButtonSizeType,
   ButtonVariantType,
-} from '@/lib/designSystem/kubit/components/variants';
-import { getAdditionalClassesArgTypes } from '@/lib/storybook/argtypes/additionalClassesArgTypes';
-import { configArgTypes } from '@/lib/storybook/argtypes/argtypes';
-import { getBooleanArgTypes } from '@/lib/storybook/argtypes/booleanArgTypes';
-import { getDisabledArgTypes } from '@/lib/storybook/argtypes/disabledArgTypes';
-import { getIconArgTypes } from '@/lib/storybook/argtypes/iconArgTypes';
-import { getSelectorArgTypes } from '@/lib/storybook/argtypes/selectorArgTypes';
-import { getStringtArgTypes } from '@/lib/storybook/argtypes/stringArgTypes';
-import { getVariantArgTypes } from '@/lib/storybook/argtypes/variantArgtypes';
-import { CATEGORY_CONTROL } from '@/lib/storybook/constants/categoryControl';
-import { POSITIONS } from '@/lib/types/positions/positions';
+} from '@kubit-ui-web/design-system'
+import { getAdditionalClassesArgTypes } from '@/stories/argtypes/additionalClassesArgTypes';
+import { configArgTypes } from '@/stories/argtypes/argtypes';
+import { getBooleanArgTypes } from '@/stories/argtypes/booleanArgTypes';
+import { getDisabledArgTypes } from '@/stories/argtypes/disabledArgTypes';
+import { getIconArgTypes } from '@/stories/argtypes/iconArgTypes';
+import { getSelectorArgTypes } from '@/stories/argtypes/selectorArgTypes';
+import { getStringtArgTypes } from '@/stories/argtypes/stringArgTypes';
+import { getVariantArgTypes } from '@/stories/argtypes/variantArgtypes';
+import { CATEGORY_CONTROL } from '@/stories/constants/categoryControl';
+import { POSITIONS } from '@kubit-ui-web/react-components';
 
 export const argtypes = (): ArgTypes => {
   return {

@@ -7,12 +7,16 @@
     "src/**/__tests__",
     "dist",
     "vitest.config.ts",
-    "vite.config.mts"
+    "vite.config.mts",
+    "../components/**/*"
   ],
   "compilerOptions": {
     "noEmit": true,
     "declaration": false,
     "declarationMap": false,
-    "emitDeclarationOnly": false
-  }
+    "emitDeclarationOnly": false,
+    "suppressExcessPropertyErrors": true,
+    "skipLibCheck": true
+  },
+  "references": []
 }

@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import {
+import   {
   ButtonSizeType,
   ButtonVariantType,
-} from '@/lib/designSystem/kubit/components/variants';
-import { ICONS } from '@/lib/storybook/assets/icons/icons';
-import { LoaderStory as Loader } from '@/lib/storybook/assets/loader/loader';
-import { POSITIONS } from '@/lib/types/positions/positions';
+} from '@kubit-ui-web/design-system';
+import { ICONS } from '@/stories/assets/icons/icons';
+import { LoaderStory as Loader } from '@/stories/assets/loader/loader';
+import { POSITIONS } from '@kubit-ui-web/react-components';
 
-import { Button as ButtonStory } from '../button';
+import { Button as ButtonStory } from '@kubit-ui-web/react-components';
 import { argtypes } from './argtypes';
 
 const meta = {
