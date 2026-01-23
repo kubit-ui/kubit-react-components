@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, consistent-return, no-restricted-imports, @typescript-eslint/no-explicit-any, no-console */
-import { type FC, useEffect, useState } from 'react';
+// @ts-ignore - React is used for JSX transformation
+import React, { type FC, useEffect, useState } from 'react';
 
 import { addons, types, useStorybookApi } from 'storybook/manager-api';
 

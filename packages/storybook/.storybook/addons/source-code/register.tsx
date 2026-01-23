@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, consistent-return, no-restricted-imports, @typescript-eslint/no-explicit-any, react/no-danger */
-import { type FC, useEffect, useState } from 'react';
+// @ts-ignore - React is used for JSX transformation
+import React, { type FC, useEffect, useState } from 'react';
 
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
