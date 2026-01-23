@@ -1,11 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies, consistent-return, no-restricted-imports, @typescript-eslint/no-explicit-any, no-console */
-import React, { type FC, useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 
 import { addons, types, useStorybookApi } from 'storybook/manager-api';
 
 import bundleSizesData from '../../bundle-sizes.json';
 import { BundleSizePanel } from '../../components/bundleSize/BundleSizePanel';
-import { extractComponentName } from '../../components/bundleSize/utils';
 
 const ADDON_ID = 'kubit/bundle-size';
 const PANEL_ID = `${ADDON_ID}/panel`;

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 import type { StoryContext } from '@storybook/react-vite';
 
-import bundleSizesData from '../../bundle-sizes.json';
 import { BundleSizePanel } from '../bundleSize/BundleSizePanel';
 import { extractComponentName, getBundleSize } from '../bundleSize/utils';
 

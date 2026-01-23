@@ -1,7 +1,5 @@
 import './introduction.css';
 
-import React from 'react';
-
 import Package from '../../package.json';
 // import Package from '../../package.json';
 import bg from './assets/cover_home.webp';

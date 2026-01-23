@@ -1,6 +1,5 @@
 import figma from '@figma/code-connect';
-
-import { Button } from '../button';
+import { Button } from '@kubit-ui-web/react-components';
 
 const FIGMA_URL =
   'https://www.figma.com/design/d027dSfOwbUvUNQWn7H4ix/Kubit-v.2.0.0--beta-?node-id=4933%3A604';

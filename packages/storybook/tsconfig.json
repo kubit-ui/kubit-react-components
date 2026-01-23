@@ -23,10 +23,6 @@
       "@/*": ["./*"],
       "@/stories": ["./stories"],
       "@/stories/*": ["./stories/*"],
-      "@kubit-ui-web/react-components": ["../components/src"],
-      "@kubit-ui-web/react-components/*": ["../components/src/*"],
-      "@kubit-ui-web/design-system": ["../design-system/src"],
-      "@kubit-ui-web/design-system/*": ["../design-system/src/*"]
     }
   },
   "include": [".storybook/**/*", "stories/**/*", "overview/**/*"],

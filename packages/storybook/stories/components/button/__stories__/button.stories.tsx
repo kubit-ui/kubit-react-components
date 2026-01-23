@@ -94,29 +94,6 @@ export const Small: Story = {
 };
 
 /**
- * Medium size button.
- */
-export const Medium: Story = {
-  args: {
-    children: 'Medium Button',
-    size: ButtonSizeType.MEDIUM,
-    variant: ButtonVariantType.PRIMARY,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Button
-  variant={ButtonVariantType.PRIMARY}
-  size={ButtonSizeType.MEDIUM}
->
-  Medium Button
-</Button>`,
-      },
-    },
-  },
-};
-
-/**
  * Large size button.
  */
 export const Large: Story = {
