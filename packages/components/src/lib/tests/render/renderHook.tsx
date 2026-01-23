@@ -1,4 +1,4 @@
-import { Provider } from '@kubit-ui-web/design-system/provider/Provider';
+import { Provider } from '@kubit-ui-web/design-system/provider';
 import {
   type RenderHookResult,
   renderHook as renderHookrtl,

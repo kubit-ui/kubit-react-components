@@ -3,7 +3,7 @@ import './storybook.css';
 
 import React, { useEffect } from 'react';
 
-import { Provider } from '@kubit-ui-web/design-system';
+import { Provider } from '@kubit-ui-web/design-system/provider';
 import { StylesProvider } from '@kubit-ui-web/react-components';
 import { useStylesContext } from '@kubit-ui-web/react-components';
 import type { Preview } from '@storybook/react';

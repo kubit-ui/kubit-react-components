@@ -1,4 +1,4 @@
-import { Provider } from '@kubit-ui-web/design-system/provider/Provider';
+import { Provider } from '@kubit-ui-web/design-system/provider';
 import { type RenderOptions, render } from '@testing-library/react';
 
 import { StylesProvider } from '@/lib/provider/stylesProvider/stylesProvider';
