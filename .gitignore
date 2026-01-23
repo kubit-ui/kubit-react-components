@@ -3,6 +3,9 @@ node_modules/
 .pnp
 .pnp.js
 
+# Turborepo
+.turbo/
+
 # Testing
 coverage/
 __reports__/

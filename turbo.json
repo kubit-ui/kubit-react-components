@@ -1,0 +1,69 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "tasks": {
+    "build": {
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "build/**", "storybook-static/**"],
+      "env": ["NODE_ENV"]
+    },
+    "//#build": {
+      "dependsOn": [
+        "@kubit-ui-web/design-system#build",
+        "@kubit-ui-web/react-components#build"
+      ]
+    },
+    "@kubit-ui-web/design-system#build": {
+      "outputs": ["dist/**"]
+    },
+    "@kubit-ui-web/react-components#build": {
+      "dependsOn": ["@kubit-ui-web/design-system#build"],
+      "outputs": ["dist/**"]
+    },
+    "@kubit-ui-web/storybook#build": {
+      "dependsOn": [
+        "@kubit-ui-web/design-system#build",
+        "@kubit-ui-web/react-components#build"
+      ],
+      "outputs": ["storybook-static/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "outputs": []
+    },
+    "lint:fix": {
+      "cache": false,
+      "outputs": []
+    },
+    "format": {
+      "cache": false,
+      "outputs": []
+    },
+    "format:check": {
+      "outputs": []
+    },
+    "test": {
+      "outputs": ["coverage/**", "__reports__/**"],
+      "env": ["NODE_ENV"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    },
+    "test:coverage": {
+      "outputs": ["coverage/**", "__reports__/**"],
+      "env": ["NODE_ENV"]
+    },
+    "typecheck": {
+      "outputs": []
+    },
+    "clean": {
+      "cache": false
+    },
+    "clean:build": {
+      "cache": false
+    }
+  }
+}
