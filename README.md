@@ -1,463 +1,327 @@
-<p align="center">
-  <a href="https://kubit-ui.com">
-    <picture>
-      <img src="https://raw.githubusercontent.com/kubit-ui/kubit-react-components/27f3b176bf71555552834d566ebf4b6c0c1b2da5/assets/banner_kubit_readme.png" alt="Kubit React Components" />
-    </picture>
-  </a>
-</p>
+# Kubit React Components
 
-<div align="center">
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Node Version](https://img.shields.io/badge/node-22.x-brightgreen.svg)](https://nodejs.org)
+[![pnpm Version](https://img.shields.io/badge/pnpm-10.28.1-orange.svg)](https://pnpm.io)
 
-[![NPM Version](https://img.shields.io/npm/v/@kubit-ui-web/react-components?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/@kubit-ui-web/react-components)
-[![NPM Downloads](https://img.shields.io/npm/dm/@kubit-ui-web/react-components?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/@kubit-ui-web/react-components)
-[![Bundle Size](https://img.shields.io/bundlephobia/minzip/@kubit-ui-web/react-components?style=for-the-badge&logo=webpack&color=8DD6F9)](https://bundlephobia.com/package/@kubit-ui-web/react-components)
+A professional, production-ready monorepo containing a comprehensive library of customizable and accessible React components, built with TypeScript and modern web standards.
 
-[![License](https://img.shields.io/github/license/kubit-ui/kubit-react-components?style=for-the-badge&color=blue)](./LICENSE.md)
-[![GitHub Stars](https://img.shields.io/github/stars/kubit-ui/kubit-react-components?style=for-the-badge&logo=github&color=yellow)](https://github.com/kubit-ui/kubit-react-components/stargazers)
-[![GitHub Issues](https://img.shields.io/github/issues/kubit-ui/kubit-react-components?style=for-the-badge&logo=github&color=red)](https://github.com/kubit-ui/kubit-react-components/issues)
+## Overview
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![Storybook](https://img.shields.io/badge/Storybook-10.1-FF4785?style=for-the-badge&logo=storybook)](https://storybook.js.org/)
+Kubit React Components is an enterprise-grade design system and component library designed to accelerate UI development while maintaining consistency, accessibility, and performance. This monorepo leverages Turborepo for efficient build orchestration and pnpm workspaces for optimal dependency management.
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](CONTRIBUTING.md)
-[![Coverage](https://img.shields.io/codecov/c/github/kubit-ui/kubit-react-components?style=for-the-badge&logo=codecov)](https://app.codecov.io/gh/kubit-ui/kubit-react-components/)
+## Architecture
 
-</div>
+This monorepo is structured as a collection of interconnected packages, each serving a specific purpose:
 
-<br />
-
----
-
-<br />
-
-# Getting Started
-
-> **Kubit React Components** is a customizable, accessible library of React web components, designed to enhance your application's user experience with production-ready components.
-
-## 🏗️ Monorepo Structure
-
-This project is organized as a **pnpm workspace monorepo** with three packages:
-
-- **[@kubit-ui-web/react-components](./packages/components)** - React component library (published to npm)
-- **[@kubit-ui-web/design-system](./packages/design-system)** - Design tokens and CSS generation (published to npm)
-- **[@kubit-ui-web/storybook](./packages/storybook)** - Component documentation and demos (deployed to Vercel)
-
-### 📚 Documentation
-
-- **[📖 Complete Monorepo Guide](./MONOREPO_GUIDE.md)** - Full documentation on development, workflows, and architecture
-- **[⚡ Quick Start Commands](./QUICK_START.md)** - Command reference for common tasks
-
-## 📋 Table of Contents
-
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Development](#development)
-- [Usage](#usage)
-- [Documentation](#documentation)
-- [Storybook](#storybook)
-- [Features](#features)
-- [Browser Support](#browser-support)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Installation
-
-Install the package using your preferred package manager:
-
-### npm
-
-```bash
-npm install @kubit-ui-web/react-components
+```
+kubit-react-components/
+├── packages/
+│   ├── components/          # React component library
+│   ├── design-system/       # CSS-in-JS styles and themes
+│   └── storybook/          # Interactive documentation
+├── public/                  # Shared assets and utilities
+└── scripts/                # Build and automation scripts
 ```
 
-### yarn
+### Packages
 
-```bash
-yarn add @kubit-ui-web/react-components
-```
+#### `@kubit-ui-web/react-components`
 
-### pnpm
+The core component library containing 50+ production-ready React components:
 
-```bash
-pnpm add @kubit-ui-web/react-components
-```
+**Layout & Structure**
+- Accordion, Card, Modal, Popover, Portal, Tabs
 
-**Package Info:**
+**Navigation**
+- Breadcrumbs, Link, Pagination, PageControl
 
-- 📦 Size: ~235 KB (gzipped)
-- 🎯 Tree-shakeable: Yes
-- 📘 TypeScript: Full support
-- ⚛️ React: 17+ and 18+
+**Data Display**
+- Avatar, Badge, Chip, Dot, Icon, Image, Tag, Skeleton
+- Table, TableBody, TableHead, TableRow, TableCell, TableFoot, TableCaption, TableDivider
+- DataTable, Calendar, Carousel, ProgressBar
 
-## Development
+**Forms & Input**
+- Button, Input, TextArea, Checkbox, RadioButton, Toggle
+- Select, Slider, StepperNumber
+- InputBase, InputDecoration, InputSignature, CheckboxBase
+- Label, Option, ListOptions, SelectorBoxFile, VirtualKeyboard
 
-This monorepo uses **pnpm workspaces**. To start developing:
+**Feedback**
+- Alert, Snackbar, Tooltip
 
-```bash
-# Install dependencies
-pnpm install
+**Typography**
+- Text
 
-# Build all packages
-pnpm -r build
+**Key Features:**
+- Fully accessible (WCAG 2.1 compliant)
+- TypeScript support with comprehensive type definitions
+- Customizable through design tokens
+- Tree-shakeable for optimal bundle size
+- Extensive test coverage
 
-# Run Storybook (watches components and design-system automatically)
-pnpm --filter @kubit-ui-web/storybook dev
+#### `@kubit-ui-web/design-system`
 
-# Run tests for components
-pnpm --filter @kubit-ui-web/react-components test
+A powerful CSS-in-JS design system powered by Bernova, providing:
 
-# Lint all packages
-pnpm -r lint
-```
+- Design tokens for consistent theming
+- Pre-built theme configurations
+- Component-specific style variants
+- CSS utilities and mixins
+- Responsive design patterns
+- Dark mode support
 
-For detailed development workflows, see the [Monorepo Guide](./MONOREPO_GUIDE.md) or [Quick Start](./QUICK_START.md).
+#### `@kubit-ui-web/storybook`
 
-## Quick Start
+Interactive documentation and development environment featuring:
 
-Import and use components in your application:
-
-## Quick Start
-
-Import and use components in your application:
-
-```tsx
-import React from 'react';
-
-import { Button, KubitProvider } from '@kubit-ui-web/react-components';
-import '@kubit-ui-web/react-components/styles/default/default.min.css';
-
-const App = () => {
-  return (
-    <KubitProvider>
-      <Button variant="PRIMARY" size="MEDIUM">
-        Click me
-      </Button>
-    </KubitProvider>
-  );
-};
-
-export default App;
-```
-
-> **Note:** The `KubitProvider` is required to use the components. It provides the theme and other context.
-
-## Usage
-
-### Basic Components
-
-```tsx
-import {
-  Button,
-  Input,
-  KubitProvider,
-  Modal,
-  Tooltip,
-} from '@kubit-ui-web/react-components';
-
-function MyApp() {
-  return (
-    <KubitProvider>
-      <Input label="Email" placeholder="Enter your email" type="email" />
-
-      <Button variant="PRIMARY" onClick={handleClick}>
-        Submit
-      </Button>
-
-      <Tooltip content="Helpful information">
-        <span>Hover me</span>
-      </Tooltip>
-    </KubitProvider>
-  );
-}
-```
-
-### Custom Theme
-
-Customize the theme to match your brand:
-
-```tsx
-import { KubitProvider } from '@kubit-ui-web/react-components';
-
-const customTheme = {
-  colors: {
-    primary: '#your-color',
-    secondary: '#your-secondary',
-  },
-};
-
-function App() {
-  return (
-    <KubitProvider theme={customTheme}>{/* Your components */}</KubitProvider>
-  );
-}
-```
-
-For more information about theme customization, visit [Kubit UI Documentation](https://kubit-ui.com).
-
-## Features
-
-✨ **50+ Production-Ready Components**
-
-- Buttons, Inputs, Modals, Tooltips, and more
-- Fully customizable and themeable
-
-♿ **Accessible by Default**
-
-- WCAG 2.1 AA compliant
-- Keyboard navigation support
-- Screen reader friendly
-
-🎨 **Design System Integration**
-
-- Built with design tokens
-- CSS variables for easy customization
-- Bernova CSS generation
-
-📦 **Developer Experience**
-
-- Full TypeScript support
-- Tree-shakeable exports
-- Comprehensive documentation
-- Rich Storybook examples
-
-🚀 **Performance Optimized**
-
-- Small bundle size (~235 KB gzipped)
-- Code splitting ready
-- Minimal runtime overhead
-
-## Browser Support
-
-| Browser | Version         |
-| ------- | --------------- |
-| Chrome  | Last 2 versions |
-| Firefox | Last 2 versions |
-| Safari  | Last 2 versions |
-| Edge    | Last 2 versions |
-
-## Documentation
-
-You can find comprehensive documentation for all components at:
-
-🌐 **[Kubit UI Website](https://kubit-ui.com)**
-
+- Live component playground
+- Code examples and usage patterns
+- Accessibility testing tools
+- Visual regression testing
 - Component API documentation
-- Interactive examples
 - Design guidelines
-- Migration guides
 
-## Storybook
+## Getting Started
 
-Explore all components interactively in Storybook.
+### Prerequisites
 
-### View Online
+- **Node.js**: v22.x or higher
+- **pnpm**: v10.28.1 (automatically managed via packageManager field)
 
-🎭 **[View Storybook](https://kubit-ui.com/storybook)** - Browse all components online
+### Installation
 
-### Run Locally
+Clone the repository and install dependencies:
 
-To run Storybook locally:
+```bash
+git clone https://github.com/kubit-ui/kubit-react-components.git
+cd kubit-react-components
+pnpm install
+```
 
-1. Clone the repository:
+### Development
 
-   ```bash
-   git clone https://github.com/kubit-ui/kubit-react-components.git
-   cd kubit-react-components
-   ```
+Start the development environment:
 
-2. Install dependencies:
+```bash
+# Start Storybook (recommended for development)
+pnpm dev
 
-   ```bash
-   pnpm install
-   ```
+# Start specific package in development mode
+pnpm dev:components
+pnpm dev:design-system
+```
 
-3. Start Storybook:
-   ```bash
-   pnpm storybook
-   ```
+### Building
 
-This will start the Storybook server at `http://localhost:6006` where you can see all components in action.
+Build all packages:
 
-## Deployment
+```bash
+# Build all publishable packages
+pnpm build
 
-### Deploying Storybook to Vercel
+# Build specific packages
+pnpm build:components
+pnpm build:design-system
+pnpm build:storybook
+```
 
-The Storybook documentation is deployed automatically to Vercel. See the [Deployment Guide](./DEPLOYMENT.md) for complete instructions.
+### Testing
 
-**Quick Deploy:**
-
-1. Import your repository to [Vercel](https://vercel.com)
-2. Configure the project:
-   - **Build Command:** `pnpm build:storybook`
-   - **Output Directory:** `packages/storybook/dist`
-   - **Install Command:** `pnpm install --frozen-lockfile`
-3. Deploy!
-
-The configuration files are already set up:
-- ✅ `vercel.json` - Root configuration
-- ✅ `packages/storybook/vercel.json` - Storybook-specific settings
-- ✅ `.vercelignore` - Optimize build process
-
-
-## Tests
-
-Run the test suite to ensure everything works correctly:
+Run the comprehensive test suite:
 
 ```bash
 # Run all tests
 pnpm test
 
-# Watch mode (for development)
+# Run tests in watch mode
 pnpm test:watch
 
-# Coverage report
+# Generate coverage report
 pnpm test:coverage
 ```
 
-**Test Stack:**
+### Code Quality
 
-- ✅ Vitest - Fast unit testing
-- 🧪 Testing Library - Component testing
-- ♿ vitest-axe - Accessibility testing
+Maintain code quality with built-in linting and formatting:
+
+```bash
+# Lint all packages
+pnpm lint
+
+# Auto-fix linting issues
+pnpm lint:fix
+
+# Format code
+pnpm format
+
+# Check formatting
+pnpm format:check
+
+# Type checking
+pnpm typecheck
+
+# Run all validations
+pnpm validate
+```
+
+## Using in Your Project
+
+### Installing Components
+
+```bash
+npm install @kubit-ui-web/react-components @kubit-ui-web/design-system
+# or
+yarn add @kubit-ui-web/react-components @kubit-ui-web/design-system
+# or
+pnpm add @kubit-ui-web/react-components @kubit-ui-web/design-system
+```
+
+### Basic Usage
+
+```tsx
+import { Button, Input, Modal } from '@kubit-ui-web/react-components';
+import { ThemeProvider } from '@kubit-ui-web/design-system';
+
+function App() {
+  return (
+    <ThemeProvider>
+      <Button variant="primary" size="medium">
+        Click me
+      </Button>
+      <Input placeholder="Enter text..." />
+    </ThemeProvider>
+  );
+}
+```
+
+## Monorepo Structure
+
+### Workspace Configuration
+
+This monorepo uses:
+
+- **Turborepo**: For intelligent build caching and task orchestration
+- **pnpm Workspaces**: For efficient dependency management and package linking
+- **TypeScript**: For type safety across all packages
+- **Vitest**: For fast unit testing
+- **ESLint & Prettier**: For code quality and consistency
+
+### Task Pipeline
+
+The build pipeline is optimized with dependency awareness:
+
+```
+design-system (build) → components (build) → storybook (build)
+```
+
+Turborepo ensures tasks run in the correct order and caches results for faster subsequent builds.
+
+## Scripts Reference
+
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start Storybook development server |
+| `pnpm build` | Build all packages for production |
+| `pnpm test` | Run unit tests |
+| `pnpm test:coverage` | Generate test coverage report |
+| `pnpm lint` | Lint all packages |
+| `pnpm lint:fix` | Auto-fix linting issues |
+| `pnpm format` | Format code with Prettier |
+| `pnpm typecheck` | Type check all packages |
+| `pnpm validate` | Run all quality checks |
+| `pnpm clean` | Remove all node_modules and build artifacts |
 
 ## Contributing
 
-We welcome contributions from the community! Here's how you can help:
+We welcome contributions from the community! This project follows a fork-based contribution model to maintain code quality and security.
 
-### Ways to Contribute
+### How to Contribute
 
-- 🐛 Report bugs
-- 💡 Suggest new features
-- 📝 Improve documentation
-- 🔧 Submit pull requests
-- ⭐ Star the repository
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to your branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-### Contribution Steps
+Please read our [Contributing Guide](./CONTRIBUTING.md) for detailed guidelines.
 
-1. **Fork the Repository**: Click the "Fork" button in the upper right corner of the [repository's page](https://github.com/kubit-ui/kubit-react-components) on GitHub.
+### Development Guidelines
 
-2. **Clone the Repository**: Clone your fork to your local machine.
+- Follow the existing code style and conventions
+- Write tests for new features
+- Update documentation as needed
+- Ensure all tests pass before submitting PR
+- Keep commits atomic and well-described
 
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/kubit-react-components.git
-   cd kubit-react-components
-   ```
+## Documentation
 
-3. **Create a Branch**: Create a new branch for your changes.
+- **Website**: [https://www.kubit-ui.com](https://www.kubit-ui.com)
+- **Storybook**: Interactive component documentation
+- **API Reference**: TypeScript definitions and JSDoc comments
+- **Contributing**: See [CONTRIBUTING.md](./CONTRIBUTING.md)
+- **Code of Conduct**: See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+- **Security**: See [SECURITY.md](./SECURITY.md)
 
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
+## Technology Stack
 
-4. **Install Dependencies**:
+- **React**: UI component framework
+- **TypeScript**: Type-safe development
+- **Bernova**: CSS-in-JS styling engine
+- **Turborepo**: Monorepo build system
+- **pnpm**: Fast, efficient package manager
+- **Vitest**: Lightning-fast unit testing
+- **Storybook**: Component documentation and development
+- **ESLint**: Code linting
+- **Prettier**: Code formatting
 
-   ```bash
-   pnpm install
-   ```
+## Browser Support
 
-5. **Make Changes**: Make your changes and test them thoroughly.
+Kubit React Components supports all modern browsers:
 
-   ```bash
-   pnpm test
-   pnpm lint
-   pnpm typecheck
-   ```
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
 
-6. **Commit Changes**: Use conventional commits for your messages.
+## Accessibility
 
-   ```bash
-   git commit -m "feat: add new component feature"
-   ```
+All components are built with accessibility as a core principle:
 
-   **Commit Types:**
-   - `feat:` - New feature
-   - `fix:` - Bug fix
-   - `docs:` - Documentation changes
-   - `style:` - Code style changes (formatting)
-   - `refactor:` - Code refactoring
-   - `test:` - Adding or updating tests
-   - `chore:` - Maintenance tasks
+- WCAG 2.1 Level AA compliant
+- Keyboard navigation support
+- Screen reader optimized
+- Focus management
+- ARIA attributes
+- Color contrast compliance
 
-7. **Push Changes**: Push your changes to your fork.
+## Performance
 
-   ```bash
-   git push origin feature/your-feature-name
-   ```
+Optimized for production:
 
-8. **Open a Pull Request**: Go to the original repository and click "New pull request". Fill out the PR template with details about your changes.
-
-### Development Commands
-
-```bash
-# Start development server
-pnpm dev
-
-# Run Storybook
-pnpm storybook
-
-# Build library
-pnpm dist
-
-# Run tests
-pnpm test
-
-# Lint code
-pnpm lint
-
-# Type check
-pnpm typecheck
-
-# Check package size
-pnpm pack:size
-```
-
-For more detailed information, please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
-
-## Community & Support
-
-- 💬 [GitHub Discussions](https://github.com/kubit-ui/kubit-react-components/discussions) - Ask questions and share ideas
-- 🐛 [Issue Tracker](https://github.com/kubit-ui/kubit-react-components/issues) - Report bugs and request features
-- 📧 [Email](mailto:kubit@opendigitalservices.com) - Contact the team
-- 🐦 [Twitter](https://twitter.com/kubit_ui) - Follow for updates
-
-## Related Projects
-
-- [Kubit Design System](https://kubit-ui.com) - Complete design system documentation
-- [Kubit Figma Kit](https://figma.com/@kubit) - Design files and components
-
-## Changelog
-
-See [CHANGELOG.md](./CHANGELOG.md) for a list of changes and migration guides.
-
-## Migration Guides
-
-- [v1.x to v2.0.0](./MIGRATION_GUIDE.md) - Complete migration guide for major version
+- Tree-shakeable exports
+- Code splitting ready
+- Minimal bundle size
+- Lazy loading support
+- Optimized re-renders
+- CSS-in-JS with zero runtime overhead
 
 ## License
 
-This project is licensed under the **Apache License 2.0** - see the [LICENSE.md](./LICENSE.md) file for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](./LICENSE) file for details.
 
-```
-Copyright 2025 Kubit
+## Support
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+- **Issues**: [GitHub Issues](https://github.com/kubit-ui/kubit-react-components/issues)
+- **Email**: kubit.lab.dev@gmail.com
+- **Funding**: [Open Collective](https://opencollective.com/kubit-ui)
 
-    http://www.apache.org/licenses/LICENSE-2.0
-```
+## Acknowledgments
+
+Built and maintained by the Kubit team and our amazing community contributors.
+
+Special thanks to all [contributors](https://github.com/kubit-ui/kubit-react-components/graphs/contributors) who have helped shape this project.
 
 ---
 
-<div align="center">
-
-**Made with ❤️ by the Kubit Team**
-
-[![GitHub](https://img.shields.io/badge/GitHub-kubit--ui-181717?style=for-the-badge&logo=github)](https://github.com/kubit-ui/kubit-react-components)
-[![NPM](https://img.shields.io/badge/NPM-%40kubit--ui--web%2Freact--components-CB3837?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@kubit-ui-web/react-components)
-[![Website](https://img.shields.io/badge/Website-kubit--ui.com-4A90E2?style=for-the-badge&logo=google-chrome&logoColor=white)](https://kubit-ui.com)
-
-If you find this project useful, please consider giving it a ⭐️!
-
-</div>
+**Made with dedication by the Kubit team**
