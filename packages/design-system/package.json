@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/design-system",
-  "version": "2.0.0-alpha.8",
+  "version": "2.0.0-alpha.10",
   "description": "Kubit Design System - CSS-in-JS styles and themes for Kubit components, powered by Bernova",
   "author": {
     "name": "Kubit",

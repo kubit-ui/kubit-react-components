@@ -57,12 +57,80 @@ const copyBernovaFilesPlugin = () => {
         fs.writeFileSync(fullPath, content, 'utf-8');
       });
 
-      if (bernovaFiles.size > EMPTY_LENGTH) {
-        // eslint-disable-next-line no-console
-        console.log(
-          `[copy-bernova] ✓ Restored ${bernovaFiles.size} Bernova generated files`,
-        );
+      // Create index.js files for provider entry point
+      const esmIndexPath = path.resolve(
+        __dirname,
+        'dist/esm/provider/index.js',
+      );
+      const cjsIndexPath = path.resolve(
+        __dirname,
+        'dist/cjs/provider/index.js',
+      );
+      const typesIndexPath = path.resolve(
+        __dirname,
+        'dist/types/provider/index.d.ts',
+      );
+
+      // ESM version
+      fs.writeFileSync(
+        esmIndexPath,
+        'export * from "./provider.js";\n',
+        'utf-8',
+      );
+
+      // CJS version
+      fs.writeFileSync(
+        cjsIndexPath,
+        '"use strict";Object.defineProperty(exports,"__esModule",{value:true});var provider=require("./provider.js");Object.keys(provider).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function(){return provider[key];}});});\n',
+        'utf-8',
+      );
+
+      // TypeScript definitions - fix the path to use lowercase
+      fs.writeFileSync(
+        typesIndexPath,
+        'export * from "./provider";\n',
+        'utf-8',
+      );
+
+      // Copy provider.d.ts to types folder
+      const esmProviderDts = path.resolve(
+        __dirname,
+        'dist/esm/provider/provider.d.ts',
+      );
+      const typesProviderDts = path.resolve(
+        __dirname,
+        'dist/types/provider/provider.d.ts',
+      );
+
+      if (fs.existsSync(esmProviderDts)) {
+        fs.copyFileSync(esmProviderDts, typesProviderDts);
       }
+
+      // Copy stats.d.ts to types folder
+      const esmStatsDts = path.resolve(
+        __dirname,
+        'dist/esm/provider/stats/stats.d.ts',
+      );
+      const typesStatsDts = path.resolve(
+        __dirname,
+        'dist/types/provider/stats/stats.d.ts',
+      );
+      const typesStatsDir = path.dirname(typesStatsDts);
+
+      if (!fs.existsSync(typesStatsDir)) {
+        fs.mkdirSync(typesStatsDir, { recursive: true });
+      }
+
+      if (fs.existsSync(esmStatsDts)) {
+        fs.copyFileSync(esmStatsDts, typesStatsDts);
+      }
+
+      const INDEX_FILES_COUNT = 5; // index.js (esm), index.js (cjs), index.d.ts, provider.d.ts, stats.d.ts
+      const filesCount = bernovaFiles.size + INDEX_FILES_COUNT;
+      // eslint-disable-next-line no-console
+      console.log(
+        `[copy-bernova] ✓ Restored ${filesCount} Bernova generated files`,
+      );
     },
     name: 'copy-bernova-files',
   };
@@ -143,15 +211,11 @@ export default defineConfig(({ mode }) => ({
   build: {
     // Improved chunk size warnings with better defaults
     chunkSizeWarningLimit: 1000,
-    // Exclude provider generated files from compilation
-    commonjsOptions: {
-      exclude: [/src\/provider\/Provider\.js$/],
-    },
     cssCodeSplit: false,
     lib: {
       entry: {
         index: path.resolve(__dirname, 'src/index.ts'),
-        provider: path.resolve(__dirname, 'src/provider/index.ts'),
+        // provider is handled separately by Bernova and copyBernovaFilesPlugin
       },
       name: 'KubitDesignSystem',
     },
