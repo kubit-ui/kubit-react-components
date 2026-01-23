@@ -3,16 +3,6 @@ import path from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // Build configuration
-  build: {
-    rollupOptions: {
-      onwarn(warning, warn) {
-        // Ignore PURE annotation warnings from already compiled code
-        if (warning.code === 'INVALID_ANNOTATION') return;
-        warn(warning);
-      },
-    },
-  },
   // Enhanced caching for faster rebuilds
   cacheDir: '../node_modules/.vite-storybook',
   css: {
@@ -28,8 +18,6 @@ export default defineConfig({
       '@kubit-ui-web/design-system',
     ],
     entries: ['../stories/**/*.stories.tsx', '../overview/**/*.mdx'],
-    // Exclude already compiled dist files from optimization
-    exclude: ['@kubit-ui-web/react-components/dist', '@kubit-ui-web/design-system/dist'],
   },
   plugins: [
     react({
