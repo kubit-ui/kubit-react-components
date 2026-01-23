@@ -220,11 +220,11 @@ const removeUnnecessaryFoldersPlugin = () => {
 
 /**
  * Vite configuration for building the library
- * Optimized for Vite 8 with improved build performance
+ * Optimized for production builds with Vite 7 stable
  */
 export default defineConfig(({ mode }) => ({
   build: {
-    // Vite 8: Improved chunk size warnings with better defaults
+    // Improved chunk size warnings with better defaults
     chunkSizeWarningLimit: 1000,
     cssCodeSplit: false,
     lib: {
@@ -232,12 +232,12 @@ export default defineConfig(({ mode }) => ({
       name: 'KubitUI',
     },
     minify: 'terser',
-    // Vite 8: Enhanced module preloading for better performance
+    // Enhanced module preloading for better performance
     modulePreload: {
       polyfill: false, // Disable polyfill for smaller bundles
     },
     outDir: 'dist',
-    // Vite 8: reportCompressedSize default changed to false for faster builds
+    // Report compressed size to see gzipped bundle sizes
     reportCompressedSize: false,
     rollupOptions: {
       external: [
@@ -254,7 +254,7 @@ export default defineConfig(({ mode }) => ({
           entryFileNames: '[name].js',
           exports: 'named',
           format: 'es',
-          // Vite 8: Improved hoisting for smaller bundles
+          // Improved hoisting for smaller bundles
           hoistTransitiveImports: false,
           preserveModules: true,
           preserveModulesRoot: 'src',
@@ -265,13 +265,13 @@ export default defineConfig(({ mode }) => ({
           entryFileNames: '[name].js',
           exports: 'named',
           format: 'cjs',
-          // Vite 8: Improved hoisting for smaller bundles
+          // Improved hoisting for smaller bundles
           hoistTransitiveImports: false,
           preserveModules: true,
           preserveModulesRoot: 'src',
         },
       ],
-      // Vite 8: Enhanced treeshaking with better defaults
+      // Enhanced treeshaking with better defaults
       treeshake: {
         moduleSideEffects: false,
         propertyReadSideEffects: false,
@@ -285,7 +285,7 @@ export default defineConfig(({ mode }) => ({
         dead_code: true,
         drop_console: true,
         drop_debugger: true,
-        // Vite 8: Enhanced compression options
+        // Enhanced compression options
         passes: 2, // Multiple passes for better compression
         pure_funcs: ['console.log', 'console.info', 'console.debug'],
         unsafe_arrows: true, // Convert functions to arrow functions
@@ -297,16 +297,16 @@ export default defineConfig(({ mode }) => ({
       mangle: {
         properties: false, // Don't mangle properties to maintain compatibility
       },
-      // Vite 8: Module optimization
+      // Module optimization
       module: true,
     },
   },
-  // Vite 8: Enhanced caching for faster rebuilds
+  // Enhanced caching for faster rebuilds
   cacheDir: 'node_modules/.vite',
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
   },
-  // Vite 8: Optimized dependency pre-bundling
+  // Optimized dependency pre-bundling
   optimizeDeps: {
     include: [],
     // Disable discovery for library builds
@@ -314,7 +314,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react({
-      // Vite 8: Enhanced React plugin options
+      // Enhanced React plugin options
       babel: {
         babelrc: false,
         configFile: false,
@@ -344,7 +344,7 @@ export default defineConfig(({ mode }) => ({
     removeStorybookPlugin(),
     removeUnnecessaryFoldersPlugin(),
   ],
-  // Vite 8: Improved resolve options
+  // Improved resolve options
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -353,7 +353,5 @@ export default defineConfig(({ mode }) => ({
     },
     // Better defaults for library builds
     dedupe: ['react', 'react-dom'],
-    // Vite 8 (future): Native tsconfig paths support
-    // tsconfigPaths: true, // Coming soon in stable release
   },
 }));

@@ -3,12 +3,12 @@ import path from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // Vite 8: Enhanced caching for faster rebuilds
+  // Enhanced caching for faster rebuilds
   cacheDir: '../node_modules/.vite-storybook',
   css: {
     devSourcemap: true,
   },
-  // Vite 8: Optimized dependency pre-bundling for Storybook
+  // Optimized dependency pre-bundling for Storybook
   optimizeDeps: {
     include: [
       'react',
@@ -21,7 +21,7 @@ export default defineConfig({
   },
   plugins: [
     react({
-      // Vite 8: Enhanced React plugin options
+      // Enhanced React plugin options
       babel: {
         babelrc: false,
         configFile: false,
@@ -35,10 +35,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, '../'),
       '@/stories': path.resolve(__dirname, '../stories'),
     },
-    // Vite 8: Better module resolution
+    // Better module resolution
     dedupe: ['react', 'react-dom'],
   },
-  // Vite 8: Enhanced server configuration for development
+  // Enhanced server configuration for development
   server: {
     fs: {
       // Permitir acceso a los workspaces necesarios

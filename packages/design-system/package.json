@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/design-system",
-  "version": "2.0.0-alpha.6",
+  "version": "2.0.0-alpha.7",
   "description": "Kubit Design System - CSS-in-JS styles and themes for Kubit components, powered by Bernova",
   "author": {
     "name": "Kubit",
@@ -136,7 +136,7 @@
     "prettier": "^3.8.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.53.1",
-    "vite": "^8.0.0-beta.7",
+    "vite": "^7.0.5",
     "vite-plugin-dts": "^4.5.4",
     "vite-tsconfig-paths": "^6.0.4"
   },
