@@ -1,6 +1,6 @@
 {
   "name": "@kubit-ui-web/design-system",
-  "version": "2.0.0-alpha.7",
+  "version": "2.0.0-alpha.8",
   "description": "Kubit Design System - CSS-in-JS styles and themes for Kubit components, powered by Bernova",
   "author": {
     "name": "Kubit",
@@ -87,8 +87,8 @@
     },
     "./provider/Provider": {
       "types": "./dist/types/provider/provider.d.ts",
-      "import": "./dist/esm/provider/Provider.js",
-      "require": "./dist/cjs/provider/Provider.js"
+      "import": "./dist/esm/provider/provider.js",
+      "require": "./dist/cjs/provider/provider.js"
     },
     "./styles/*": {
       "import": "./dist/styles/*.css",
@@ -101,9 +101,9 @@
   },
   "scripts": {
     "dev": "pnpm generate-css --watch",
-    "build": "vite build && pnpm generate-css",
+    "build": "pnpm generate-css && vite build",
     "predist": "rm -rf dist",
-    "dist": "vite build && pnpm generate-css",
+    "dist": "pnpm generate-css && vite build",
     "generate-css": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' npx bv-build --embed-css",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",

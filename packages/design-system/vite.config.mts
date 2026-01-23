@@ -14,6 +14,61 @@ const EMPTY_LENGTH = 0;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
+ * Plugin to copy Bernova generated files without processing them
+ * This ensures Provider.js and stats.js are copied as-is from Bernova output
+ */
+const copyBernovaFilesPlugin = () => {
+  // Store the original files content before Vite processes them
+  const bernovaFiles = new Map<string, string>();
+
+  return {
+    buildStart() {
+      // Save Bernova generated files before Vite processes them
+      const filesToPreserve = [
+        'dist/esm/provider/provider.js',
+        'dist/cjs/provider/provider.js',
+        'dist/esm/provider/stats/stats.js',
+        'dist/cjs/provider/stats/stats.js',
+        'dist/esm/provider/provider.d.ts',
+        'dist/cjs/provider/provider.d.ts',
+        'dist/esm/provider/stats/stats.d.ts',
+        'dist/cjs/provider/stats/stats.d.ts',
+      ];
+
+      filesToPreserve.forEach((file) => {
+        const fullPath = path.resolve(__dirname, file);
+        if (fs.existsSync(fullPath)) {
+          bernovaFiles.set(file, fs.readFileSync(fullPath, 'utf-8'));
+        }
+      });
+    },
+    closeBundle() {
+      // Restore Bernova generated files after Vite build
+      bernovaFiles.forEach((content, file) => {
+        const fullPath = path.resolve(__dirname, file);
+        const dir = path.dirname(fullPath);
+
+        // Ensure directory exists
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true });
+        }
+
+        // Write the original Bernova content back
+        fs.writeFileSync(fullPath, content, 'utf-8');
+      });
+
+      if (bernovaFiles.size > EMPTY_LENGTH) {
+        // eslint-disable-next-line no-console
+        console.log(
+          `[copy-bernova] ✓ Restored ${bernovaFiles.size} Bernova generated files`,
+        );
+      }
+    },
+    name: 'copy-bernova-files',
+  };
+};
+
+/**
  * Plugin to remove unnecessary folders from dist
  * Removes assets, scripts, node_modules, and .DS_Store files
  */
@@ -88,6 +143,10 @@ export default defineConfig(({ mode }) => ({
   build: {
     // Improved chunk size warnings with better defaults
     chunkSizeWarningLimit: 1000,
+    // Exclude provider generated files from compilation
+    commonjsOptions: {
+      exclude: [/src\/provider\/Provider\.js$/],
+    },
     cssCodeSplit: false,
     lib: {
       entry: {
@@ -173,6 +232,8 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     // tsconfigPaths plugin for path resolution
     tsconfigPaths({ projects: ['./tsconfig.build.json'] }),
+    // Copy Bernova generated files without processing
+    copyBernovaFilesPlugin(),
     // Generate TypeScript declaration files
     dts({
       compilerOptions: {
