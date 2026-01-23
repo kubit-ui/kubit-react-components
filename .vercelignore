@@ -1,0 +1,32 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+dist
+.turbo
+.storybook-cache
+
+# Development
+*.log
+.DS_Store
+.env*.local
+
+# Testing
+coverage
+__reports__
+test-results
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Git
+.git
+.github
+
+# Documentation (no necesario para build)
+*.md
+!README.md

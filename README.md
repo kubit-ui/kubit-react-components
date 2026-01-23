@@ -279,6 +279,27 @@ To run Storybook locally:
 
 This will start the Storybook server at `http://localhost:6006` where you can see all components in action.
 
+## Deployment
+
+### Deploying Storybook to Vercel
+
+The Storybook documentation is deployed automatically to Vercel. See the [Deployment Guide](./DEPLOYMENT.md) for complete instructions.
+
+**Quick Deploy:**
+
+1. Import your repository to [Vercel](https://vercel.com)
+2. Configure the project:
+   - **Build Command:** `pnpm build:storybook`
+   - **Output Directory:** `packages/storybook/dist`
+   - **Install Command:** `pnpm install --frozen-lockfile`
+3. Deploy!
+
+The configuration files are already set up:
+- ✅ `vercel.json` - Root configuration
+- ✅ `packages/storybook/vercel.json` - Storybook-specific settings
+- ✅ `.vercelignore` - Optimize build process
+
+
 ## Tests
 
 Run the test suite to ensure everything works correctly:
