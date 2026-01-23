@@ -9,22 +9,12 @@
   "trailingSlash": false,
   "headers": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        {
-          "key": "Content-Security-Policy",
-          "value": "frame-ancestors 'self' https://*.vercel.app https://tu-dominio.com"
-        },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
-      ]
-    }
-  ],
-  "rewrites": [
+      "source": "/iframe.html",
+      "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }]
+    },
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }]
     }
   ]
 }
