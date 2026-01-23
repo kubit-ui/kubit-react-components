@@ -24,7 +24,7 @@
         "@kubit-ui-web/design-system#build",
         "@kubit-ui-web/react-components#build"
       ],
-      "outputs": ["storybook-static/**"]
+      "outputs": ["dist/**"]
     },
     "dev": {
       "cache": false,
