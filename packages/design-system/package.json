@@ -86,7 +86,7 @@
       "require": "./dist/cjs/provider/index.js"
     },
     "./provider/Provider": {
-      "types": "./dist/types/provider/Provider.d.ts",
+      "types": "./dist/types/provider/provider.d.ts",
       "import": "./dist/esm/provider/Provider.js",
       "require": "./dist/cjs/provider/Provider.js"
     },
@@ -101,7 +101,7 @@
   },
   "scripts": {
     "dev": "pnpm generate-css --watch",
-    "build": "pnpm generate-css && vite build",
+    "build": "vite build && pnpm generate-css",
     "predist": "rm -rf dist",
     "dist": "pnpm generate-css && vite build",
     "generate-css": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' npx bv-build --embed-css",
