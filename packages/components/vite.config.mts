@@ -3,8 +3,6 @@ import fs from 'fs';
 import { glob } from 'glob';
 import { fileURLToPath } from 'node:url';
 import path from 'path';
-import postcss from 'postcss';
-import { minify } from 'terser';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
