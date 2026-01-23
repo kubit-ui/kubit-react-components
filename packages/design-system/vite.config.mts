@@ -83,6 +83,8 @@ const removeUnnecessaryFoldersPlugin = () => {
  * Optimized for Vite 8 with improved build performance
  */
 export default defineConfig(({ mode }) => ({
+  // Allow .js files from Bernova to be processed
+  assetsInclude: [],
   build: {
     // Vite 8: Improved chunk size warnings with better defaults
     chunkSizeWarningLimit: 1000,
@@ -174,21 +176,32 @@ export default defineConfig(({ mode }) => ({
     tsconfigPaths({ projects: ['./tsconfig.build.json'] }),
     // Generate TypeScript declaration files
     dts({
-      insertTypesEntry: true,
-      outDir: 'dist/types',
-      tsconfigPath: './tsconfig.build.json',
-      include: ['src/**/*'],
+      compilerOptions: {
+        declaration: true,
+        declarationMap: true,
+        emitDeclarationOnly: true,
+        skipLibCheck: true,
+      },
       exclude: [
         'src/**/*.test.*',
         'src/**/__mocks__',
         'src/**/__fixtures__',
         'src/**/__tests__',
+        'src/**/*.js',
+        'src/**/*.d.ts',
+        'src/provider/Provider.js',
+        'src/provider/Provider.d.ts',
+        'src/provider/stats/**',
+        '../components/**/*',
+        '**/*.test.*',
+        '**/__tests__/**',
+        'node_modules/**',
       ],
-      compilerOptions: {
-        declaration: true,
-        declarationMap: true,
-        emitDeclarationOnly: true,
-      },
+      include: ['src/**/*.ts', 'src/**/*.tsx'],
+      insertTypesEntry: true,
+      outDir: 'dist/types',
+      rollupTypes: false,
+      tsconfigPath: './tsconfig.build.json',
     }),
     removeUnnecessaryFoldersPlugin(),
   ],
@@ -197,6 +210,7 @@ export default defineConfig(({ mode }) => ({
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     // Vite 8 (future): Native tsconfig paths support
     // tsconfigPaths: true, // Coming soon in stable release
   },

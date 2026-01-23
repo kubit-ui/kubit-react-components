@@ -15,7 +15,10 @@
     "declaration": false,
     "declarationMap": false,
     "suppressExcessPropertyErrors": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "references": []
 }
