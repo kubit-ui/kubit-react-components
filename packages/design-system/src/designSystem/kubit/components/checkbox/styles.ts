@@ -3,11 +3,10 @@ import type { ChecboxVariantStyles } from '@kubit-ui-web/react-components';
 import { cssVars } from '@/designSystem/kubit/css/cssVars';
 import { STATES } from '@/types/states/states';
 
-import type { CheckboxVariantType } from './variants';
-
 import { ERROR_MESSAGE } from '../errorMessage/styles';
 import { ErrorMessageVariantType } from '../errorMessage/variants';
 import { TextVariantType } from '../text/variants';
+import type { CheckboxVariantType } from './variants';
 
 type CheckboxVariants = keyof typeof CheckboxVariantType;
 
