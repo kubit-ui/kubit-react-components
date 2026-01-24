@@ -89,7 +89,6 @@ jobs:
           echo "Branch: $BRANCH_NAME"
 
           PUBLISHED=""
-          HAS_PUBLISHED=false
 
           # Function to calculate next beta version
           calc_beta_version() {
@@ -100,53 +99,47 @@ jobs:
               if (betaMatch) {
                 const base = betaMatch[1];
                 const num = parseInt(betaMatch[2]) + 1;
-                console.log(`\${base}-beta.\${num}`);
+                console.log(\`\${base}-beta.\${num}\`);
               } else {
                 const parts = current.split('.').map(Number);
                 parts[0]++;
                 parts[1] = 0;
                 parts[2] = 0;
-                console.log(`\${parts.join('.')}\-beta.1`);
+                console.log(\`\${parts.join('.')}-beta.1\`);
               }
             "
           }
 
-          # Detect changes in design-system
-          if git diff --quiet origin/main -- packages/design-system; then
-            echo "No changes in design-system. Skipping publish."
-          else
-            echo "📦 Publishing @kubit-ui-web/design-system beta..."
-            cd packages/design-system
-            CURRENT=$(node -p "require('./package.json').version")
-            NEW=$(calc_beta_version "$CURRENT")
-            echo "  $CURRENT → $NEW"
-            npm version $NEW --no-git-tag-version
-            pnpm publish --no-git-checks --access public --tag beta --provenance
-            PUBLISHED="$PUBLISHED\n- @kubit-ui-web/design-system@$NEW"
-            echo "design_system_version=$NEW" >> $GITHUB_OUTPUT
-            HAS_PUBLISHED=true
-            cd ../..
-          fi
+          # Publish design-system beta
+          echo "📦 Publishing @kubit-ui-web/design-system beta..."
+          cd packages/design-system
+          CURRENT=$(node -p "require('./package.json').version")
+          NEW=$(calc_beta_version "$CURRENT")
 
-          # Detect changes in react-components
-          if git diff --quiet origin/main -- packages/components; then
-            echo "No changes in react-components. Skipping publish."
-          else
-            echo "📦 Publishing @kubit-ui-web/react-components beta..."
-            cd packages/components
-            CURRENT=$(node -p "require('./package.json').version")
-            NEW=$(calc_beta_version "$CURRENT")
-            echo "  $CURRENT → $NEW"
-            npm version $NEW --no-git-tag-version
-            pnpm publish --no-git-checks --access public --tag beta --provenance
-            PUBLISHED="$PUBLISHED\n- @kubit-ui-web/react-components@$NEW"
-            echo "components_version=$NEW" >> $GITHUB_OUTPUT
-            HAS_PUBLISHED=true
-            cd ../..
-          fi
+          echo "  $CURRENT → $NEW"
+          npm version $NEW --no-git-tag-version
+          pnpm publish --no-git-checks --access public --tag beta --provenance
+
+          PUBLISHED="$PUBLISHED\n- @kubit-ui-web/design-system@$NEW"
+          echo "design_system_version=$NEW" >> $GITHUB_OUTPUT
+          cd ../..
+
+          # Publish components beta
+          echo "📦 Publishing @kubit-ui-web/react-components beta..."
+          cd packages/components
+          CURRENT=$(node -p "require('./package.json').version")
+          NEW=$(calc_beta_version "$CURRENT")
+
+          echo "  $CURRENT → $NEW"
+          npm version $NEW --no-git-tag-version
+          pnpm publish --no-git-checks --access public --tag beta --provenance
+
+          PUBLISHED="$PUBLISHED\n- @kubit-ui-web/react-components@$NEW"
+          echo "components_version=$NEW" >> $GITHUB_OUTPUT
+          cd ../..
 
           echo "published=$PUBLISHED" >> $GITHUB_OUTPUT
-          echo "has_published=$HAS_PUBLISHED" >> $GITHUB_OUTPUT
+          echo "has_published=true" >> $GITHUB_OUTPUT
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -184,73 +177,51 @@ jobs:
             npm install @kubit-ui-web/react-components@${{ steps.beta-publish.outputs.components_version }}
             npm install @kubit-ui-web/design-system@${{ steps.beta-publish.outputs.design_system_version }}
 
-            run: |
-              BRANCH_NAME="${GITHUB_REF#refs/heads/}"
-              echo "Branch: $BRANCH_NAME"
+            # Or install latest betas
+            npm install @kubit-ui-web/react-components@beta
+            npm install @kubit-ui-web/design-system@beta
+            ```
 
-              # Detect base branch for diff
-              BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
-              if [ -z "$BASE_BRANCH" ]; then
-                BASE_BRANCH="main"
-              fi
-              echo "Using base branch: $BASE_BRANCH"
+            ### ✅ Quality Checks
+            - Linting passed
+            - Type checking passed
+            - Tests passed
+            - Builds successful
+            - Published with provenance 🔒
+          draft: false
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-              PUBLISHED=""
-              HAS_PUBLISHED=false
+      - name: Success Summary
+        if: steps.beta-publish.outputs.has_published == 'true'
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "🎉 BETA RELEASE SUCCESSFUL"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "📦 Published Packages:"
+          echo "  - @kubit-ui-web/react-components@${{ steps.beta-publish.outputs.components_version }}"
+          echo "  - @kubit-ui-web/design-system@${{ steps.beta-publish.outputs.design_system_version }}"
+          echo ""
+          echo "🔖 Tag: beta"
+          echo "🌿 Branch: ${{ github.ref_name }}"
+          echo "🔒 Provenance: Enabled"
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-              # Function to calculate next beta version
-              calc_beta_version() {
-                local current=$1
-                node -e "
-                  const current = '$current';
-                  const betaMatch = current.match(/^(\d+\.\d+\.\d+)-beta\.(\d+)$/);
-                  if (betaMatch) {
-                    const base = betaMatch[1];
-                    const num = parseInt(betaMatch[2]) + 1;
-                    console.log(`\${base}-beta.\${num}`);
-                  } else {
-                    const parts = current.split('.').map(Number);
-                    parts[0]++;
-                    parts[1] = 0;
-                    parts[2] = 0;
-                    console.log(`\${parts.join('.')}\-beta.1`);
-                  }
-                "
-              }
-
-              # Detect changes in design-system
-              if git diff --quiet origin/$BASE_BRANCH -- packages/design-system; then
-                echo "No changes in design-system. Skipping publish."
-              else
-                echo "📦 Publishing @kubit-ui-web/design-system beta..."
-                cd packages/design-system
-                CURRENT=$(node -p "require('./package.json').version")
-                NEW=$(calc_beta_version "$CURRENT")
-                echo "  $CURRENT → $NEW"
-                npm version $NEW --no-git-tag-version
-                pnpm publish --no-git-checks --access public --tag beta --provenance
-                PUBLISHED="$PUBLISHED\n- @kubit-ui-web/design-system@$NEW"
-                echo "design_system_version=$NEW" >> $GITHUB_OUTPUT
-                HAS_PUBLISHED=true
-                cd ../..
-              fi
-
-              # Detect changes in react-components
-              if git diff --quiet origin/$BASE_BRANCH -- packages/components; then
-                echo "No changes in react-components. Skipping publish."
-              else
-                echo "� Publishing @kubit-ui-web/react-components beta..."
-                cd packages/components
-                CURRENT=$(node -p "require('./package.json').version")
-                NEW=$(calc_beta_version "$CURRENT")
-                echo "  $CURRENT → $NEW"
-                npm version $NEW --no-git-tag-version
-                pnpm publish --no-git-checks --access public --tag beta --provenance
-                PUBLISHED="$PUBLISHED\n- @kubit-ui-web/react-components@$NEW"
-                echo "components_version=$NEW" >> $GITHUB_OUTPUT
-                HAS_PUBLISHED=true
-                cd ../..
-              fi
-
-              echo "published=$PUBLISHED" >> $GITHUB_OUTPUT
-              echo "has_published=$HAS_PUBLISHED" >> $GITHUB_OUTPUT
+      - name: Failure notification
+        if: failure()
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "❌ BETA RELEASE FAILED"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "🔍 Check logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo ""
+          echo "🔧 Common issues:"
+          echo "  • NPM_TOKEN not configured or invalid"
+          echo "  • Version already exists in NPM"
+          echo "  • Tests or build failures"
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
