@@ -41,7 +41,7 @@ export default eslintFlatConfig({
     vi: 'readonly',
     window: 'readonly',
   },
-  ignores: ['src/provider/**/*'],
+  ignores: ['src/provider/**/*', 'src/**/css/cssVars.js'],
   noIndexImportConfig: {
     aliases: {
       '@/components': './src/components/*',

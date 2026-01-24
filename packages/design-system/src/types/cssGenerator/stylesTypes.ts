@@ -1,5 +1,5 @@
 
-export type CssPropsType = {
+export interface CssPropsType {
   scrollbar_width?: string;
   scrollbar_color?: string;
   scrollbar_gutter?: string;
@@ -276,7 +276,7 @@ export type CssPropsType = {
   $content?: string;
 }
 
-export type CssPseudoClassesType = {
+export interface CssPseudoClassesType {
   fullscreen?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
   modal?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
   picture_in_picture?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
@@ -373,7 +373,7 @@ export type CssPseudoClassesType = {
   webkit_search_results_button?: CssPseudoClassesType | CssPseudoElementsType | CssLibPropsType & { $target?: string; };
 }
 
-export type CssPseudoElementsType = {
+export interface CssPseudoElementsType {
   before?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
   after?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
   first_letter?: CssPseudoElementsType | CssPseudoClassesType | CssLibPropsType;
@@ -439,27 +439,27 @@ export type CssAdvancedSelectorsType =
 
 export type CssMediaQueriesType = CssPropsType & { $type?: string; $values?: { [key: string]: string }; }
 
-export type CssForeignType = { [key:string]: { component: object; variant?: string | unknown; name: string; } }
+export interface CssForeignType { [key:string]: { component: object; variant?: string | unknown; name: string; } }
 
-export type CssLibPseudoClassesType = {
+export interface CssLibPseudoClassesType {
   $pseudoClasses?: CssPseudoClassesType 
 }
 
-export type CssLibPseudoElementsType = {
+export interface CssLibPseudoElementsType {
   $pseudoElements?: CssPseudoElementsType 
 }
 
-export type CssDynamicValuesType = {
+export interface CssDynamicValuesType {
   $dynamicValues?: string[]; 
 }
 
-export type CssLibAdvancedSelectorsType = {
+export interface CssLibAdvancedSelectorsType {
   $advancedSelectors?: CssAdvancedSelectorsType[] 
 }
 
-export type CssLibAttributesType = { $attributes?: { [key: string]: CssLibPropsType } | { [key: string]: { [key: string]: CssLibPropsType } } }
+export interface CssLibAttributesType { $attributes?: { [key: string]: CssLibPropsType } | { [key: string]: { [key: string]: CssLibPropsType } } }
 
-export type CssLibMediaQueriesType = {
+export interface CssLibMediaQueriesType {
   $mediaQueries?: {
     [key: string]: CssMediaQueriesType
   } | {
@@ -470,7 +470,7 @@ export type CssLibMediaQueriesType = {
   }
 }
 
-export type CssForeignLibType = {
+export interface CssForeignLibType {
   $foreign?: CssForeignType 
 }
 
