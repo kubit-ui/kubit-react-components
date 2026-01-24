@@ -1,8 +1,21 @@
 {
-  "name": "@kubit-ui-web/monorepo",
-  "version": "2.0.0-beta.43",
-  "description": "Kubit UI Monorepo - React components and design system",
-  "private": true,
+  "name": "@kubit-ui-web/react-components",
+  "version": "2.0.0-beta.44",
+  "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
+  "author": {
+    "name": "Kubit",
+    "email": "kubit@opendigitalservices.com",
+    "url": "https://www.kubit-ui.com/",
+    "organization": "Kubit",
+    "organizationUrl": "https://www.kubit-ui.com/",
+    "role": "Developer",
+    "roleUrl": "https://www.kubit-ui.com/",
+    "social": {
+      "twitter": "https://twitter.com/kubit_ui",
+      "github": "https://github.com/kubit-ui/kubit-react-components"
+    }
+  },
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kubit-ui/kubit-react-components.git",
