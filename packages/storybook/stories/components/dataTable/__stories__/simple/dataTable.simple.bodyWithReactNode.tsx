@@ -1,7 +1,8 @@
-import { Tag } from '@/components/tag/tag';
-import { DataTableVariantType } from '@/lib/designSystem/kubit/components/dataTable/variants';
+import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
+import type { DataTableProps } from '@kubit-ui-web/react-components';
+import { Tag } from '@kubit-ui-web/react-components';
 
-import type { DataTableProps } from '../../types/dataTable';
+const { DataTableVariantType } = KUBIT_VARIANTS;
 
 export const DataTableSimpleBodyWithReactNodeStory: DataTableProps = {
   columns: [

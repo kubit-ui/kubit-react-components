@@ -1,13 +1,15 @@
 import { useState } from 'react';
 
+import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
 import { ModalControlled as Story } from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { ModalVariantType } from '@/lib/designSystem/kubit/components/variants';
 import { ICONS } from '@/stories/assets/icons/icons';
 import { ReplaceContent } from '@/stories/components/replaceContent/replaceContent';
 
 import { argtypes } from './argtypes';
+
+const { ModalVariantType } = KUBIT_VARIANTS;
 
 const StoryWithHooks = (args) => {
   const [open, setOpen] = useState(false);

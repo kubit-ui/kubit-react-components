@@ -1,7 +1,9 @@
-import { TableDivider as TableDividerComponent } from '@kubit-ui-web/react-components';
+import {
+  TableDivider as TableDividerComponent,
+  Tag,
+} from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Tag } from '@/components/tag/tag';
 import { ICONS } from '@/stories/assets/icons/icons';
 
 import { argtypes } from './argtypes';

@@ -1,7 +1,9 @@
-import { Image as Story } from '@kubit-ui-web/react-components';
+import {
+  type DEVICE_BREAKPOINTS,
+  Image as Story,
+} from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 import { IMAGES } from '@/stories/assets/images/images';
 
 import { argtypes } from './argtypes';

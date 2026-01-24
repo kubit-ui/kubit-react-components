@@ -1,6 +1,7 @@
-import { DataTableVariantType } from '@/lib/designSystem/kubit/components/dataTable/variants';
+import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
+import type { DataTableProps } from '@kubit-ui-web/react-components';
 
-import type { DataTableProps } from '../../types/dataTable';
+const { DataTableVariantType } = KUBIT_VARIANTS;
 
 export const DataTableSimpleHideColumnHeaderContentStory: DataTableProps = {
   columns: [

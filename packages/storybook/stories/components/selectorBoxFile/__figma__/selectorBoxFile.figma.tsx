@@ -1,7 +1,5 @@
 import figma from '@figma/code-connect';
-import { SelectorBoxFile } from '@kubit-ui-web/react-components';
-
-import { STATES } from '@/lib/types/states/states';
+import { STATES, SelectorBoxFile } from '@kubit-ui-web/react-components';
 
 figma.connect(
   SelectorBoxFile,

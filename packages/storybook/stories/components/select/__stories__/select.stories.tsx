@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import {
   SelectControlled,
-  SelectUnControlled,
+  Select as SelectUnControlled,
 } from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 

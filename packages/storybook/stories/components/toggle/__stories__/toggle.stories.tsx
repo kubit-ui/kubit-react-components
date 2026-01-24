@@ -2,13 +2,12 @@ import { useState } from 'react';
 
 import {
   ToggleControlled,
+  type ToggleProps,
   ToggleUncontrolled,
 } from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { ICONS } from '@/stories/assets/icons/icons';
-
-import type { ToggleProps } from '../types/toggle';
 
 const meta = {
   component: ToggleControlled,

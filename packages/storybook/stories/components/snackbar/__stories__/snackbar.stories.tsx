@@ -2,12 +2,14 @@
 import { useEffect, useState } from 'react';
 
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
-import { Snackbar } from '@kubit-ui-web/react-components';
+import {
+  Button,
+  Icon,
+  Snackbar,
+  createSpringAnimation,
+} from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Button } from '@/components/button/button';
-import { createSpringAnimation } from '@/components/popover/animations/spring.animations';
-import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { ICONS } from '@/stories/assets/icons/icons';
 
 const { ButtonSizeType, ButtonVariantType } = KUBIT_VARIANTS;
@@ -211,9 +213,9 @@ export const WithIconAndClose: Story = {
   closeTimeout={5000}
 >
   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-    <ElementOrIcon icon={ICONS.PLACEHOLDER} />
+    <Icon icon={ICONS.PLACEHOLDER} />
     <span>Your changes have been saved</span>
-    <ElementOrIcon icon={ICONS.CLOSE} onClick={handleClose} />
+    <Icon icon={ICONS.CLOSE} onClick={handleClose} />
   </div>
 </Snackbar>`,
       },
@@ -258,14 +260,14 @@ export const WithIconAndClose: Story = {
               padding: '12px 16px',
             }}
           >
-            <ElementOrIcon
+            <Icon
               color="#23779A"
               height="20px"
               icon={ICONS.PLACEHOLDER}
               width="20px"
             />
             <span style={{ flex: 1 }}>Your changes have been saved</span>
-            <ElementOrIcon
+            <Icon
               color="#1A1A1A"
               height="20px"
               icon={ICONS.CLOSE}
@@ -388,7 +390,7 @@ export const Success: Story = {
     background: '#E6F6F6',
     border: '1px solid #28A745'
   }}>
-    <ElementOrIcon icon={ICONS.PLACEHOLDER} color="#28A745" />
+    <Icon icon={ICONS.PLACEHOLDER} color="#28A745" />
     <span>Operation completed successfully</span>
   </div>
 </Snackbar>`,
@@ -434,14 +436,14 @@ export const Success: Story = {
               padding: '12px 16px',
             }}
           >
-            <ElementOrIcon
+            <Icon
               color="#28A745"
               height="20px"
               icon={ICONS.PLACEHOLDER}
               width="20px"
             />
             <span style={{ flex: 1 }}>Operation completed successfully</span>
-            <ElementOrIcon
+            <Icon
               color="#155724"
               height="20px"
               icon={ICONS.CLOSE}
@@ -473,7 +475,7 @@ export const Error: Story = {
     background: '#FEE',
     border: '1px solid #DC3545'
   }}>
-    <ElementOrIcon icon={ICONS.PLACEHOLDER} color="#DC3545" />
+    <Icon icon={ICONS.PLACEHOLDER} color="#DC3545" />
     <div>
       <div>Error</div>
       <div>Failed to save changes</div>
@@ -522,7 +524,7 @@ export const Error: Story = {
               padding: '12px 16px',
             }}
           >
-            <ElementOrIcon
+            <Icon
               color="#DC3545"
               height="20px"
               icon={ICONS.PLACEHOLDER}
@@ -534,7 +536,7 @@ export const Error: Story = {
                 Failed to save changes. Please try again.
               </div>
             </div>
-            <ElementOrIcon
+            <Icon
               color="#721C24"
               height="20px"
               icon={ICONS.CLOSE}
@@ -566,7 +568,7 @@ export const Warning: Story = {
     background: '#FFF3CD',
     border: '1px solid #FFC107'
   }}>
-    <ElementOrIcon icon={ICONS.PLACEHOLDER} color="#FFC107" />
+    <Icon icon={ICONS.PLACEHOLDER} color="#FFC107" />
     <span>Connection unstable. Changes may not be saved.</span>
   </div>
 </Snackbar>`,
@@ -612,7 +614,7 @@ export const Warning: Story = {
               padding: '12px 16px',
             }}
           >
-            <ElementOrIcon
+            <Icon
               color="#FFC107"
               height="20px"
               icon={ICONS.PLACEHOLDER}
@@ -621,7 +623,7 @@ export const Warning: Story = {
             <span style={{ flex: 1 }}>
               Connection unstable. Changes may not be saved.
             </span>
-            <ElementOrIcon
+            <Icon
               color="#856404"
               height="20px"
               icon={ICONS.CLOSE}
@@ -653,7 +655,7 @@ export const Info: Story = {
     background: '#D1ECF1',
     border: '1px solid #17A2B8'
   }}>
-    <ElementOrIcon icon={ICONS.PLACEHOLDER} color="#17A2B8" />
+    <Icon icon={ICONS.PLACEHOLDER} color="#17A2B8" />
     <span>New update available</span>
   </div>
 </Snackbar>`,
@@ -699,14 +701,14 @@ export const Info: Story = {
               padding: '12px 16px',
             }}
           >
-            <ElementOrIcon
+            <Icon
               color="#17A2B8"
               height="20px"
               icon={ICONS.PLACEHOLDER}
               width="20px"
             />
             <span style={{ flex: 1 }}>New update available</span>
-            <ElementOrIcon
+            <Icon
               color="#0C5460"
               height="20px"
               icon={ICONS.CLOSE}
@@ -1108,21 +1110,21 @@ return (
       <>
         <div style={{ display: 'flex', gap: '8px' }}>
           <Button
-            size={ButtonSizeType.MEDIUM}
+            size={ButtonSizeType.SMALL}
             variant={ButtonVariantType.PRIMARY}
             onClick={() => addMessage('First message')}
           >
             Message 1
           </Button>
           <Button
-            size={ButtonSizeType.MEDIUM}
+            size={ButtonSizeType.SMALL}
             variant={ButtonVariantType.PRIMARY}
             onClick={() => addMessage('Second message')}
           >
             Message 2
           </Button>
           <Button
-            size={ButtonSizeType.MEDIUM}
+            size={ButtonSizeType.SMALL}
             variant={ButtonVariantType.PRIMARY}
             onClick={() => addMessage('Third message')}
           >
@@ -1230,7 +1232,7 @@ export const WithLoading: Story = {
               }}
             />
             <span style={{ flex: 1 }}>Processing your request...</span>
-            <ElementOrIcon
+            <Icon
               color="#1A1A1A"
               height="20px"
               icon={ICONS.CLOSE}

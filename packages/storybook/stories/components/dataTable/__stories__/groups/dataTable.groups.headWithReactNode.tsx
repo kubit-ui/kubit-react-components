@@ -1,9 +1,10 @@
-import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { DataTableVariantType } from '@/lib/designSystem/kubit/components/dataTable/variants';
+import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
+import { type DataTableProps, Icon } from '@kubit-ui-web/react-components';
+
 import { ICONS } from '@/stories/assets/icons/icons';
 import { DividerStory } from '@/stories/components/divider/divider';
 
-import type { DataTableProps } from '../../types/dataTable';
+const { DataTableVariantType } = KUBIT_VARIANTS;
 
 export const DataTableGroupsHeadWithReactNodeStory: DataTableProps = {
   columns: [
@@ -25,7 +26,7 @@ export const DataTableGroupsHeadWithReactNodeStory: DataTableProps = {
               }}
             >
               <p>Profile</p>
-              <ElementOrIcon
+              <Icon
                 aria-label="Test icon"
                 height="20px"
                 icon={ICONS.PLACEHOLDER}

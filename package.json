@@ -29,10 +29,23 @@
     "test:watch": "turbo run test:watch --filter=@kubit-ui-web/react-components",
     "test:coverage": "turbo run test:coverage --filter=@kubit-ui-web/react-components",
     "typecheck": "turbo run typecheck",
+    "typecheck:components": "pnpm --filter=@kubit-ui-web/react-components tsc",
+    "typecheck:design-system": "pnpm --filter=@kubit-ui-web/design-system tsc",
+    "typecheck:storybook": "pnpm --filter=@kubit-ui-web/storybook tsc",
     "validate": "turbo run format:check lint typecheck build --filter=!@kubit-ui-web/storybook",
     "validate:quick": "turbo run lint typecheck",
     "clean": "turbo run clean && rm -rf node_modules .pnpm-store",
-    "clean:build": "turbo run clean:build"
+    "clean:build": "turbo run clean:build",
+    "update-deps": "npx npm-check-updates",
+    "update-deps:apply": "npx npm-check-updates -u",
+    "update-deps:components": "pnpm --filter=@kubit-ui-web/react-components exec npx npm-check-updates",
+    "update-deps:components:apply": "pnpm --filter=@kubit-ui-web/react-components exec npx npm-check-updates -u",
+    "update-deps:design-system": "pnpm --filter=@kubit-ui-web/design-system exec npx npm-check-updates",
+    "update-deps:design-system:apply": "pnpm --filter=@kubit-ui-web/design-system exec npx npm-check-updates -u",
+    "update-deps:storybook": "pnpm --filter=@kubit-ui-web/storybook exec npx npm-check-updates",
+    "update-deps:storybook:apply": "pnpm --filter=@kubit-ui-web/storybook exec npx npm-check-updates -u",
+    "update-deps:all": "pnpm update-deps && pnpm update-deps:components && pnpm update-deps:design-system && pnpm update-deps:storybook",
+    "update-deps:all:apply": "pnpm update-deps:apply && pnpm update-deps:components:apply && pnpm update-deps:design-system:apply && pnpm update-deps:storybook:apply"
   },
   "devDependencies": {
     "turbo": "^2.7.5"

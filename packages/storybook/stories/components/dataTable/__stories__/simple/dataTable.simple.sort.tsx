@@ -1,11 +1,15 @@
 import { useState } from 'react';
 
-import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { DataTableVariantType } from '@/lib/designSystem/kubit/components/dataTable/variants';
+import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
+import {
+  DataTable,
+  type DataTableColumnProps,
+  Icon,
+} from '@kubit-ui-web/react-components';
+
 import { ICONS } from '@/stories/assets/icons/icons';
 
-import { DataTable } from '../../dataTable';
-import type { DataTableColumnProps } from '../../types/dataTable';
+const { DataTableVariantType } = KUBIT_VARIANTS;
 
 const DataTableWithHooks = () => {
   const [sort, setSort] = useState({ direction: 'asc', field: 'ref' });
@@ -83,7 +87,7 @@ const DataTableWithHooks = () => {
               onClick={() => handleSort('ref')}
             >
               Ref
-              <ElementOrIcon
+              <Icon
                 aria-label="Test icon"
                 height="20px"
                 icon={
@@ -161,7 +165,7 @@ const DataTableWithHooks = () => {
               onClick={() => handleSort('ref')}
             >
               Ref
-              <ElementOrIcon
+              <Icon
                 aria-label="Test icon"
                 height="20px"
                 icon={sort.direction === 'asc' ? ICONS.CHEVRON_UP : ICONS.CHEVRON_DOWN}
