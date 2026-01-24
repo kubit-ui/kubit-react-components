@@ -1,4 +1,4 @@
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 
 import type { CalendarCssClasses } from '../../types/calendar';
 import type { CalendarStyleProps } from '../../types/calendarTheme';
@@ -35,8 +35,8 @@ export interface SelectorProps {
   ) => void;
   styles?: CalendarStyleProps;
   configCalendar: {
-    leftArrowIcon: ElementOrIconProps;
-    rightArrowIcon: ElementOrIconProps;
+    leftArrowIcon: CommonIconProps;
+    rightArrowIcon: CommonIconProps;
     variantSelectorButton?: string;
     sizeSelectorButton?: string;
   };

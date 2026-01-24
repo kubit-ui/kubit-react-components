@@ -4,6 +4,7 @@ import { Button } from '@/components/button/button';
 import { Text } from '@/components/text/text';
 import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
 import { useUtilsProvider } from '@/lib/provider/utilsProvider/utilsProvider';
+import { processIconProp } from '@/lib/utils/process/processCommonProp';
 
 import type { SelectorProps } from './types/selector';
 
@@ -125,14 +126,14 @@ export const Selector = ({
     event,
   ) => {
     onClickLeftIcon();
-    leftArrowIcon.onClick?.(event);
+    processIconProp(leftArrowIcon).onClick?.(event);
     onLeftIconClick?.(event);
   };
   const handleOnClickRightIcon: MouseEventHandler<HTMLButtonElement> = (
     event,
   ) => {
     onClickRightIcon();
-    rightArrowIcon.onClick?.(event);
+    processIconProp(rightArrowIcon).onClick?.(event);
     onRightIconClick?.(event);
   };
   const customAttributes = {
@@ -156,7 +157,7 @@ export const Selector = ({
           className={cssClasses?.leftarrow}
           customAttributes={customAttributes}
           disabled={iconArrowDisabled(minDate)}
-          {...leftArrowIcon}
+          {...processIconProp(leftArrowIcon)}
           aria-label={undefined}
         />
         {showCustomSelector && (
@@ -202,7 +203,7 @@ export const Selector = ({
           data-testid="next-button"
           disabled={iconArrowDisabled(maxDate)}
           onClick={handleOnClickRightIcon}
-          {...rightArrowIcon}
+          {...processIconProp(rightArrowIcon)}
         />
       </span>
     </div>

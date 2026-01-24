@@ -1,4 +1,4 @@
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
+import type { CommonIconProps } from '@/lib/types/commons/icon';
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
@@ -13,8 +13,8 @@ export type CalendarCssClasses = ComponentSelected<
  * Includes properties for navigation icons and button styles.
  */
 export interface CalendarConfigProps {
-  leftArrowIcon: ElementOrIconProps;
-  rightArrowIcon: ElementOrIconProps;
+  leftArrowIcon: CommonIconProps;
+  rightArrowIcon: CommonIconProps;
   variantSelectorButton?: string;
   sizeSelectorButton?: string;
 }

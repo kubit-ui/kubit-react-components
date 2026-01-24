@@ -26,5 +26,5 @@
     }
   },
   "include": [".storybook/**/*", "stories/**/*", "overview/**/*"],
-  "exclude": ["node_modules", "dist", ".storybook-cache"]
+  "exclude": ["node_modules", "dist", ".storybook-cache", "./stories/components/**/*"]
 }
