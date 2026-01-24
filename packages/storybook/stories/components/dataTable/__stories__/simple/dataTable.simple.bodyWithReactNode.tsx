@@ -1,5 +1,5 @@
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
-import { Tag, type DataTableProps } from '@kubit-ui-web/react-components';
+import { type DataTableProps, Tag } from '@kubit-ui-web/react-components';
 
 const { DataTableVariantType } = KUBIT_VARIANTS;
 

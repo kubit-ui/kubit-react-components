@@ -1,7 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
-import { Button as ButtonStory, POSITIONS } from '@kubit-ui-web/react-components';
+import {
+  Button as ButtonStory,
+  POSITIONS,
+} from '@kubit-ui-web/react-components';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { ICONS } from '@/stories/assets/icons/icons';
 import { LoaderStory as Loader } from '@/stories/assets/loader/loader';

@@ -96,7 +96,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "Running type check on all packages..."
-          if pnpm -r typecheck; then
+          if pnpm turbo typecheck; then
             echo "✅ Type check passed"
             echo "typecheck_valid=true" >> $GITHUB_OUTPUT
           else

@@ -103,7 +103,7 @@ jobs:
         run: |
           echo "Running quality checks..."
           pnpm -r lint
-          pnpm -r typecheck
+          pnpm turbo typecheck
 
       - name: Run tests
         if: steps.validate-branch.outputs.should_publish == 'true'
