@@ -101,10 +101,11 @@ jobs:
       - name: Run quality checks
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
-          echo "Running quality checks..."
+          echo "Running quality checks on publishable packages only..."
           cd packages/components && pnpm exec eslint src
           cd ../design-system && pnpm exec eslint src
-          cd ../.. && pnpm turbo typecheck
+          cd ../..
+          pnpm turbo typecheck --filter=@kubit-ui-web/react-components --filter=@kubit-ui-web/design-system
 
       - name: Run tests
         if: steps.validate-branch.outputs.should_publish == 'true'
