@@ -1,0 +1,69 @@
+{
+  "compilerOptions": {
+    "baseOutDir": "./dist",
+    "rootDir": "./src",
+    "minifyJS": true,
+    "minifyCSS": true,
+    "preventMoveJS": false,
+    "preventMoveDTS": false,
+    "types": ["cjs", "esm"]
+  },
+  "provider": {
+    "name": "Provider",
+    "path": "./src/provider/",
+    "declarationHelp": true
+  },
+  "themes": [
+    {
+      "name": "kubit",
+      "foundations": {
+        "path": "./src/designSystem/kubit/foundations/foundations.ts",
+        "name": "FOUNDATIONS"
+      },
+      "theme": {
+        "path": "./src/designSystem/kubit/components/theme.ts",
+        "name": "KUBIT_STYLES"
+      },
+      "globalStyles": {
+        "path": "./src/designSystem/kubit/globalStyles/globalStyles.ts",
+        "name": "GLOBAL_STYLES"
+      },
+      "mediaQueries": {
+        "path": "./src/designSystem/common/mediaQueries.ts",
+        "name": "MEDIA_QUERIES"
+      },
+      "kbTools": {
+        "path": "./src/designSystem/kubit/css",
+        "declarationHelp": true,
+        "cssVariables": true,
+        "cssClassNames": false
+      },
+      "typesTools": {
+        "stylesTypes": {
+          "name": "stylesTypes",
+          "path": "./src/types/cssGenerator"
+        },
+        "componentsTypes": {
+          "name": "componentsTypes",
+          "path": "./src/types/cssGenerator/kubit"
+        }
+      },
+      "resetCss": true,
+      "stylesPath": "./src/designSystem/kubit/css",
+      "fileName": "kubit",
+      "fonts": {
+        "google": [
+          {
+            "name": "Nunito Sans",
+            "weights": ["300", "400", "600", "700"]
+          },
+          {
+            "name": "Roboto",
+            "weights": ["300", "400", "500", "700"]
+          }
+        ]
+      }
+    }
+  ],
+  "tsconfigPath": "./tsconfig.bernova.json"
+}

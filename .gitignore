@@ -1,59 +1,36 @@
-## IntelliJ files
-/.idea
-*.iml
-/bamboo-specs/.idea
-/bamboo-specs/*.iml
-
-## Build outputs
-dist/
-bundle/
-sample/
-__reports__/
-
-## Dependencies
+# Dependencies
 node_modules/
-*yalc*
+.pnp
+.pnp.js
 
-## Config files
-globalConfig
-localConfig
+# Turborepo
+.turbo/
 
-## Testing
-junit.xml
-.jest-test-results.json
-reports/
+# Testing
 coverage/
+__reports__/
+*.lcov
 
-## Storybook
-/storybook-static
+# Production
+dist/
+build/
+bundle/
 
-## IDE
+# Misc
 .DS_Store
-# Allow .vscode/settings.json for shared editor config
-.vscode/*
-!.vscode/settings.json
-
-## Logs
 *.log
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-## Vim
+# IDE
+.vscode/
+.idea/
 *.swp
 *.swo
+*~
 
-## Environment
-.env
-
-## Package managers
-yarn.lock
-package-lock.json
-.pnpm-store/
-
-## Webpack config
-config/webpack/microfront/config.js
-config/webpack/microfront/config.json
-
-## CLI
-/cli/test-output/**/*.*
-/bamboo-specs/target
-
-pnpm-lock.yaml
+# Storybook
+.storybook-cache/
+storybook-static/

@@ -1,0 +1,222 @@
+name: Auto Publish Beta to NPM (Monorepo)
+
+# This workflow automatically publishes beta versions on push to break/* branches
+# Beta versions follow the pattern: X.Y.Z-beta.N (e.g., 2.0.0-beta.38)
+#
+# Required secrets:
+# 1. NPM_TOKEN: NPM automation token for publishing packages
+# 2. RELEASE_TOKEN: GitHub PAT with bypass permissions (optional)
+
+on:
+  push:
+    branches:
+      - 'break/**'
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+  actions: read
+  id-token: write # Required for NPM provenance
+
+jobs:
+  auto-publish-beta:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: |
+          echo "Installing monorepo dependencies..."
+          pnpm install --frozen-lockfile
+
+      - name: Run quality checks
+        run: |
+          echo "Running quality checks..."
+          pnpm -r lint
+          pnpm -r typecheck
+
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+          pnpm --filter @kubit-ui-web/react-components test:coverage
+
+      - name: Build packages
+        run: |
+          echo "Building all packages..."
+          pnpm -r --filter=!@kubit-ui-web/storybook build
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "kubit-bot@github.com"
+          git config --local user.name "Kubit Release Bot"
+
+      - name: Verify NPM authentication
+        run: |
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "❌ NPM_TOKEN not configured"
+            exit 1
+          fi
+          npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Determine and publish beta versions
+        id: beta-publish
+        run: |
+          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          echo "Branch: $BRANCH_NAME"
+
+          PUBLISHED=""
+
+          # Function to calculate next beta version
+          calc_beta_version() {
+            local current=$1
+            node -e "
+              const current = '$current';
+              const betaMatch = current.match(/^(\d+\.\d+\.\d+)-beta\.(\d+)$/);
+              if (betaMatch) {
+                const base = betaMatch[1];
+                const num = parseInt(betaMatch[2]) + 1;
+                console.log(\`\${base}-beta.\${num}\`);
+              } else {
+                const parts = current.split('.').map(Number);
+                parts[0]++;
+                parts[1] = 0;
+                parts[2] = 0;
+                console.log(\`\${parts.join('.')}-beta.1\`);
+              }
+            "
+          }
+
+          # Publish design-system beta
+          echo "📦 Publishing @kubit-ui-web/design-system beta..."
+          cd packages/design-system
+          CURRENT=$(node -p "require('./package.json').version")
+          NEW=$(calc_beta_version "$CURRENT")
+
+          echo "  $CURRENT → $NEW"
+          npm version $NEW --no-git-tag-version
+          pnpm publish --no-git-checks --access public --tag beta --provenance
+
+          PUBLISHED="$PUBLISHED\n- @kubit-ui-web/design-system@$NEW"
+          echo "design_system_version=$NEW" >> $GITHUB_OUTPUT
+          cd ../..
+
+          # Publish components beta
+          echo "📦 Publishing @kubit-ui-web/react-components beta..."
+          cd packages/components
+          CURRENT=$(node -p "require('./package.json').version")
+          NEW=$(calc_beta_version "$CURRENT")
+
+          echo "  $CURRENT → $NEW"
+          npm version $NEW --no-git-tag-version
+          pnpm publish --no-git-checks --access public --tag beta --provenance
+
+          PUBLISHED="$PUBLISHED\n- @kubit-ui-web/react-components@$NEW"
+          echo "components_version=$NEW" >> $GITHUB_OUTPUT
+          cd ../..
+
+          echo "published=$PUBLISHED" >> $GITHUB_OUTPUT
+          echo "has_published=true" >> $GITHUB_OUTPUT
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Commit version bumps
+        if: steps.beta-publish.outputs.has_published == 'true'
+        run: |
+          git add packages/*/package.json pnpm-lock.yaml
+          git commit -m "chore(beta): bump beta versions [skip ci]" || echo "No changes"
+
+          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          git push origin "$BRANCH_NAME" || echo "Push failed, continuing..."
+
+      - name: Create GitHub Release
+        if: steps.beta-publish.outputs.has_published == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.beta-publish.outputs.components_version }}
+          name: Beta Release v${{ steps.beta-publish.outputs.components_version }}
+          body: |
+            ## 🧪 Beta Release
+
+            **Type:** Beta (experimental)
+            **Branch:** `${{ github.ref_name }}`
+            **Commit:** `${{ github.sha }}`
+
+            ### ⚠️ Beta Notice
+            This is a **beta release** for testing purposes. Not recommended for production.
+
+            ### 📦 Published Packages
+            ${{ steps.beta-publish.outputs.published }}
+
+            ### 📥 Installation
+            ```bash
+            # Install specific versions
+            npm install @kubit-ui-web/react-components@${{ steps.beta-publish.outputs.components_version }}
+            npm install @kubit-ui-web/design-system@${{ steps.beta-publish.outputs.design_system_version }}
+
+            # Or install latest betas
+            npm install @kubit-ui-web/react-components@beta
+            npm install @kubit-ui-web/design-system@beta
+            ```
+
+            ### ✅ Quality Checks
+            - Linting passed
+            - Type checking passed
+            - Tests passed
+            - Builds successful
+            - Published with provenance 🔒
+          draft: false
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Success Summary
+        if: steps.beta-publish.outputs.has_published == 'true'
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "🎉 BETA RELEASE SUCCESSFUL"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "📦 Published Packages:"
+          echo "  - @kubit-ui-web/react-components@${{ steps.beta-publish.outputs.components_version }}"
+          echo "  - @kubit-ui-web/design-system@${{ steps.beta-publish.outputs.design_system_version }}"
+          echo ""
+          echo "🔖 Tag: beta"
+          echo "🌿 Branch: ${{ github.ref_name }}"
+          echo "🔒 Provenance: Enabled"
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+      - name: Failure notification
+        if: failure()
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "❌ BETA RELEASE FAILED"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "🔍 Check logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo ""
+          echo "🔧 Common issues:"
+          echo "  • NPM_TOKEN not configured or invalid"
+          echo "  • Version already exists in NPM"
+          echo "  • Tests or build failures"
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

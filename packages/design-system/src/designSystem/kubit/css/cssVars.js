@@ -1,0 +1,370 @@
+export const cssVars = {
+  borders_border_00: 'var(--borders-border-00)',
+  borders_border_50: 'var(--borders-border-50)',
+  borders_border_100: 'var(--borders-border-100)',
+  borders_border_200: 'var(--borders-border-200)',
+  colors_accent_color_code_50: 'var(--colors-accent-color-code-50)',
+  colors_accent_color_code_100: 'var(--colors-accent-color-code-100)',
+  colors_accent_color_code_150: 'var(--colors-accent-color-code-150)',
+  colors_accent_color_code_200: 'var(--colors-accent-color-code-200)',
+  colors_accent_color_code_250: 'var(--colors-accent-color-code-250)',
+  colors_accent_color_default_bg_50:
+    'var(--colors-accent-color-accent-default-bg-50)',
+  colors_accent_color_default_bg_100:
+    'var(--colors-accent-color-accent-default-bg-100)',
+  colors_accent_color_default_bg_150:
+    'var(--colors-accent-color-accent-default-bg-150)',
+  colors_accent_color_default_border_50:
+    'var(--colors-accent-color-accent-default-border-50)',
+  colors_accent_color_default_border_100:
+    'var(--colors-accent-color-accent-default-border-100)',
+  colors_accent_color_default_border_150:
+    'var(--colors-accent-color-accent-default-border-150)',
+  colors_accent_color_default_font_50:
+    'var(--colors-accent-color-accent-default-font-50)',
+  colors_accent_color_default_font_100:
+    'var(--colors-accent-color-accent-default-font-100)',
+  colors_accent_color_default_font_150:
+    'var(--colors-accent-color-accent-default-font-150)',
+  colors_accent_color_default_icon_50:
+    'var(--colors-accent-color-accent-default-icon-50)',
+  colors_accent_color_default_icon_100:
+    'var(--colors-accent-color-accent-default-icon-100)',
+  colors_accent_color_default_icon_150:
+    'var(--colors-accent-color-accent-default-icon-150)',
+  colors_accent_color_hover_bg_50:
+    'var(--colors-accent-color-accent-hover-bg-50)',
+  colors_accent_color_hover_bg_100:
+    'var(--colors-accent-color-accent-hover-bg-100)',
+  colors_accent_color_hover_bg_150:
+    'var(--colors-accent-color-accent-hover-bg-150)',
+  colors_accent_color_hover_font_200:
+    'var(--colors-accent-color-accent-hover-font-200)',
+  colors_accent_color_hover_icon_150:
+    'var(--colors-accent-color-accent-hover-icon-150)',
+  colors_accent_color_hover_icon_200:
+    'var(--colors-accent-color-accent-hover-icon-200)',
+  colors_accent_color_loading_bg_50:
+    'var(--colors-accent-color-accent-loading-bg-50)',
+  colors_accent_color_loading_bg_100:
+    'var(--colors-accent-color-accent-loading-bg-100)',
+  colors_accent_color_loading_bg_150:
+    'var(--colors-accent-color-accent-loading-bg-150)',
+  colors_accent_color_loading_border_50:
+    'var(--colors-accent-color-accent-loading-border-50)',
+  colors_accent_color_loading_border_100:
+    'var(--colors-accent-color-accent-loading-border-100)',
+  colors_accent_color_loading_icon_50:
+    'var(--colors-accent-color-accent-loading-icon-50)',
+  colors_accent_color_loading_icon_100:
+    'var(--colors-accent-color-accent-loading-icon-100)',
+  colors_accent_color_pressed_bg_50:
+    'var(--colors-accent-color-accent-pressed-bg-50)',
+  colors_accent_color_pressed_bg_150:
+    'var(--colors-accent-color-accent-pressed-bg-150)',
+  colors_accent_color_pressed_font_200:
+    'var(--colors-accent-color-accent-pressed-font-200)',
+  colors_accent_color_pressed_font_250:
+    'var(--colors-accent-color-accent-pressed-font-250)',
+  colors_accent_color_pressed_icon_200:
+    'var(--colors-accent-color-accent-pressed-icon-200)',
+  colors_accent_color_pressed_icon_250:
+    'var(--colors-accent-color-accent-pressed-icon-250)',
+  colors_brand_color_bg_50: 'var(--colors-brand-color-brand-bg-50)',
+  colors_brand_color_border_50: 'var(--colors-brand-color-brand-border-50)',
+  colors_brand_color_border_100: 'var(--colors-brand-color-brand-border-100)',
+  colors_brand_color_font_50: 'var(--colors-brand-color-brand-font-50)',
+  colors_brand_color_font_100: 'var(--colors-brand-color-brand-font-100)',
+  colors_brand_color_icon_50: 'var(--colors-brand-color-brand-icon-50)',
+  colors_decorative_color_50: 'var(--colors-decorative-color-decorative-50)',
+  colors_decorative_color_100: 'var(--colors-decorative-color-decorative-100)',
+  colors_decorative_color_150: 'var(--colors-decorative-color-decorative-150)',
+  colors_decorative_color_200: 'var(--colors-decorative-color-decorative-200)',
+  colors_decorative_color_250: 'var(--colors-decorative-color-decorative-250)',
+  colors_decorative_color_300: 'var(--colors-decorative-color-decorative-300)',
+  colors_decorative_color_350: 'var(--colors-decorative-color-decorative-350)',
+  colors_disabled_color_accentdisabled_bg_50:
+    'var(--colors-disabled-color-accentdisabled-bg-50)',
+  colors_disabled_color_accentdisabled_bg_100:
+    'var(--colors-disabled-color-accentdisabled-bg-100)',
+  colors_disabled_color_accentdisabled_bg_150:
+    'var(--colors-disabled-color-accentdisabled-bg-150)',
+  colors_disabled_color_accentdisabled_border_50:
+    'var(--colors-disabled-color-accentdisabled-border-50)',
+  colors_disabled_color_accentdisabled_border_100:
+    'var(--colors-disabled-color-accentdisabled-border-100)',
+  colors_disabled_color_accentdisabled_border_150:
+    'var(--colors-disabled-color-accentdisabled-border-150)',
+  colors_disabled_color_accentdisabled_font_50:
+    'var(--colors-disabled-color-accentdisabled-font-50)',
+  colors_disabled_color_accentdisabled_font_100:
+    'var(--colors-disabled-color-accentdisabled-font-100)',
+  colors_disabled_color_accentdisabled_font_150:
+    'var(--colors-disabled-color-accentdisabled-font-150)',
+  colors_disabled_color_accentdisabled_icon_50:
+    'var(--colors-disabled-color-accentdisabled-icon-50)',
+  colors_disabled_color_accentdisabled_icon_100:
+    'var(--colors-disabled-color-accentdisabled-icon-100)',
+  colors_disabled_color_accentdisabled_icon_150:
+    'var(--colors-disabled-color-accentdisabled-icon-150)',
+  colors_feedback_color_error_bg_50:
+    'var(--colors-feedback-color-feedback-error-bg-50)',
+  colors_feedback_color_error_bg_100:
+    'var(--colors-feedback-color-feedback-error-bg-100)',
+  colors_feedback_color_error_border_50:
+    'var(--colors-feedback-color-feedback-error-border-50)',
+  colors_feedback_color_error_icon_50:
+    'var(--colors-feedback-color-feedback-error-icon-50)',
+  colors_feedback_color_feedbackerror_bg_150:
+    'var(--colors-feedback-color-feedbackerror-bg-150)',
+  colors_feedback_color_feedbackerror_border_100:
+    'var(--colors-feedback-color-feedbackerror-border-100)',
+  colors_feedback_color_feedbackerror_font_50:
+    'var(--colors-feedback-color-feedbackerror-font-50)',
+  colors_feedback_color_feedbackerror_icon_100:
+    'var(--colors-feedback-color-feedbackerror-icon-100)',
+  colors_feedback_color_feedbackinfo_border_100:
+    'var(--colors-feedback-color-feedbackinfo-border-100)',
+  colors_feedback_color_feedbackinfo_icon_50:
+    'var(--colors-feedback-color-feedbackinfo-icon-50)',
+  colors_feedback_color_feedbacksuccess_border_100:
+    'var(--colors-feedback-color-feedbacksuccess-border-100)',
+  colors_feedback_color_feedbacksuccess_font_50:
+    'var(--colors-feedback-color-feedbacksuccess-font-50)',
+  colors_feedback_color_feedbacksuccess_icon_100:
+    'var(--colors-feedback-color-feedbacksuccess-icon-100)',
+  colors_feedback_color_feedbackwarning_border_100:
+    'var(--colors-feedback-color-feedbackwarning-border-100)',
+  colors_feedback_color_info_bg_50:
+    'var(--colors-feedback-color-feedback-info-bg-50)',
+  colors_feedback_color_info_bg_100:
+    'var(--colors-feedback-color-feedback-info-bg-100)',
+  colors_feedback_color_info_bg_150:
+    'var(--colors-feedback-color-feedback-info-bg-150)',
+  colors_feedback_color_info_border_50:
+    'var(--colors-feedback-color-feedback-info-border-50)',
+  colors_feedback_color_success_bg_50:
+    'var(--colors-feedback-color-feedback-success-bg-50)',
+  colors_feedback_color_success_bg_100:
+    'var(--colors-feedback-color-feedback-success-bg-100)',
+  colors_feedback_color_success_bg_150:
+    'var(--colors-feedback-color-feedback-success-bg-150)',
+  colors_feedback_color_success_border_50:
+    'var(--colors-feedback-color-feedback-success-border-50)',
+  colors_feedback_color_success_icon_50:
+    'var(--colors-feedback-color-feedback-success-icon-50)',
+  colors_feedback_color_warning_bg_50:
+    'var(--colors-feedback-color-feedback-warning-bg-50)',
+  colors_feedback_color_warning_bg_100:
+    'var(--colors-feedback-color-feedback-warning-bg-100)',
+  colors_feedback_color_warning_bg_150:
+    'var(--colors-feedback-color-feedback-warning-bg-150)',
+  colors_feedback_color_warning_border_50:
+    'var(--colors-feedback-color-feedback-warning-border-50)',
+  colors_feedback_color_warning_icon_50:
+    'var(--colors-feedback-color-feedback-warning-icon-50)',
+  colors_hover_color_accent_bg_50:
+    'var(--colors-hover-color-accent-hover-bg-50)',
+  colors_keyboard_focus_color_accentkeyboardfocus_border_50:
+    'var(--colors-keyboard-focus-color-accentkeyboardfocus-border-50)',
+  colors_keyboard_focus_color_accentkeyboardfocus_border_100:
+    'var(--colors-keyboard-focus-color-accentkeyboardfocus-border-100)',
+  colors_neutral_color_bg_50: 'var(--colors-neutral-color-neutral-bg-50)',
+  colors_neutral_color_bg_100: 'var(--colors-neutral-color-neutral-bg-100)',
+  colors_neutral_color_bg_150: 'var(--colors-neutral-color-neutral-bg-150)',
+  colors_neutral_color_bg_200: 'var(--colors-neutral-color-neutral-bg-200)',
+  colors_neutral_color_bg_250: 'var(--colors-neutral-color-neutral-bg-250)',
+  colors_neutral_color_border_50:
+    'var(--colors-neutral-color-neutral-border-50)',
+  colors_neutral_color_border_100:
+    'var(--colors-neutral-color-neutral-border-100)',
+  colors_neutral_color_border_150:
+    'var(--colors-neutral-color-neutral-border-150)',
+  colors_neutral_color_border_200:
+    'var(--colors-neutral-color-neutral-border-200)',
+  colors_neutral_color_border_250:
+    'var(--colors-neutral-color-neutral-border-250)',
+  colors_neutral_color_font_50: 'var(--colors-neutral-color-neutral-font-50)',
+  colors_neutral_color_font_100: 'var(--colors-neutral-color-neutral-font-100)',
+  colors_neutral_color_font_150: 'var(--colors-neutral-color-neutral-font-150)',
+  colors_neutral_color_font_200: 'var(--colors-neutral-color-neutral-font-200)',
+  colors_neutral_color_font_250: 'var(--colors-neutral-color-neutral-font-250)',
+  colors_neutral_color_icon_50: 'var(--colors-neutral-color-neutral-icon-50)',
+  colors_neutral_color_icon_100: 'var(--colors-neutral-color-neutral-icon-100)',
+  colors_neutral_color_icon_150: 'var(--colors-neutral-color-neutral-icon-150)',
+  colors_neutral_color_icon_200: 'var(--colors-neutral-color-neutral-icon-200)',
+  colors_neutral_color_icon_250: 'var(--colors-neutral-color-neutral-icon-250)',
+  colors_pressed_color_accent_bg_50:
+    'var(--colors-pressed-color-accent-pressed-bg-50)',
+  colors_pressed_color_accent_bg_100:
+    'var(--colors-pressed-color-accent-pressed-bg-100)',
+  colors_pressed_color_accent_bg_200:
+    'var(--colors-pressed-color-accent-pressed-bg-200)',
+  colors_pressed_color_accent_border_50:
+    'var(--colors-pressed-color-accent-pressed-border-50)',
+  colors_pressed_color_accent_font_50:
+    'var(--colors-pressed-color-accent-pressed-font-50)',
+  colors_pressed_color_accent_font_100:
+    'var(--colors-pressed-color-accent-pressed-font-100)',
+  colors_pressed_color_accent_font_150:
+    'var(--colors-pressed-color-accent-pressed-font-150)',
+  colors_pressed_color_accent_icon_50:
+    'var(--colors-pressed-color-accent-pressed-icon-50)',
+  colors_pressed_color_accent_icon_100:
+    'var(--colors-pressed-color-accent-pressed-icon-100)',
+  colors_pressed_color_accent_icon_150:
+    'var(--colors-pressed-color-accent-pressed-icon-150)',
+  colors_pressed_color_accent_icon_250:
+    'var(--colors-pressed-color-accent-pressed-icon-250)',
+  colors_secondary_color_bg_50: 'var(--colors-secondary-color-secondary-bg-50)',
+  colors_secondary_color_bg_100:
+    'var(--colors-secondary-color-secondary-bg-100)',
+  colors_secondary_color_bg_150:
+    'var(--colors-secondary-color-secondary-bg-150)',
+  colors_secondary_color_bg_200:
+    'var(--colors-secondary-color-secondary-bg-200)',
+  colors_secondary_color_bg_250:
+    'var(--colors-secondary-color-secondary-bg-250)',
+  colors_secondary_color_border_50:
+    'var(--colors-secondary-color-secondary-border-50)',
+  colors_secondary_color_border_100:
+    'var(--colors-secondary-color-secondary-border-100)',
+  colors_secondary_color_border_150:
+    'var(--colors-secondary-color-secondary-border-150)',
+  colors_secondary_color_font_50:
+    'var(--colors-secondary-color-secondary-font-50)',
+  colors_secondary_color_font_100:
+    'var(--colors-secondary-color-secondary-font-100)',
+  colors_secondary_color_font_150:
+    'var(--colors-secondary-color-secondary-font-150)',
+  colors_secondary_color_icon_50:
+    'var(--colors-secondary-color-secondary-icon-50)',
+  colors_secondary_color_icon_100:
+    'var(--colors-secondary-color-secondary-icon-100)',
+  colors_secondary_color_icon_150:
+    'var(--colors-secondary-color-secondary-icon-150)',
+  font_size_body_50: 'var(--font-size-font-body-50)',
+  font_size_body_100: 'var(--font-size-font-body-100)',
+  font_size_body_150: 'var(--font-size-font-body-150)',
+  font_size_body_200: 'var(--font-size-font-body-200)',
+  font_size_heading_50: 'var(--font-size-font-heading-50)',
+  font_size_heading_100: 'var(--font-size-font-heading-100)',
+  font_size_heading_150: 'var(--font-size-font-heading-150)',
+  font_size_heading_200: 'var(--font-size-font-heading-200)',
+  font_size_heading_250: 'var(--font-size-font-heading-250)',
+  font_weight_000: 'var(--font-weight-font-weight-000)',
+  font_weight_300: 'var(--font-weight-font-weight-300)',
+  font_weight_400: 'var(--font-weight-font-weight-400)',
+  font_weight_500: 'var(--font-weight-font-weight-500)',
+  font_weight_600: 'var(--font-weight-font-weight-600)',
+  line_height_50: 'var(--line-height-line-height-50)',
+  line_height_100: 'var(--line-height-line-height-100)',
+  line_height_150: 'var(--line-height-line-height-150)',
+  line_height_200: 'var(--line-height-line-height-200)',
+  line_height_250: 'var(--line-height-line-height-250)',
+  line_height_300: 'var(--line-height-line-height-300)',
+  radius_00: 'var(--radius-radius-00)',
+  radius_25: 'var(--radius-radius-25)',
+  radius_50: 'var(--radius-radius-50)',
+  radius_75: 'var(--radius-radius-75)',
+  radius_100: 'var(--radius-radius-100)',
+  radius_circle: 'var(--radius-radius-circle)',
+  shadow_10: 'var(--shadow-shadow-10)',
+  sizes_max_size_image: 'var(--sizes-max-size-image)',
+  sizes_size_25: 'var(--sizes-size-25)',
+  sizes_size_25_number_px: 'var(--sizes-size-25-number-px)',
+  sizes_size_50: 'var(--sizes-size-50)',
+  sizes_size_50_number_px: 'var(--sizes-size-50-number-px)',
+  sizes_size_100: 'var(--sizes-size-100)',
+  sizes_size_100_number_px: 'var(--sizes-size-100-number-px)',
+  sizes_size_150: 'var(--sizes-size-150)',
+  sizes_size_150_number_px: 'var(--sizes-size-150-number-px)',
+  sizes_size_200: 'var(--sizes-size-200)',
+  sizes_size_200_number_px: 'var(--sizes-size-200-number-px)',
+  sizes_size_250: 'var(--sizes-size-250)',
+  sizes_size_250_number_px: 'var(--sizes-size-250-number-px)',
+  sizes_size_300: 'var(--sizes-size-300)',
+  sizes_size_300_number_px: 'var(--sizes-size-300-number-px)',
+  sizes_size_350: 'var(--sizes-size-350)',
+  sizes_size_350_number_px: 'var(--sizes-size-350-number-px)',
+  sizes_size_400: 'var(--sizes-size-400)',
+  sizes_size_400_number_px: 'var(--sizes-size-400-number-px)',
+  sizes_size_450: 'var(--sizes-size-450)',
+  sizes_size_450_number_px: 'var(--sizes-size-450-number-px)',
+  sizes_size_500: 'var(--sizes-size-500)',
+  sizes_size_500_number_px: 'var(--sizes-size-500-number-px)',
+  sizes_size_550: 'var(--sizes-size-550)',
+  sizes_size_550_number_px: 'var(--sizes-size-550-number-px)',
+  sizes_size_anchors_menu: 'var(--sizes-size-anchors-menu)',
+  sizes_size_anchors_menu_number_px: 'var(--sizes-size-anchors-menu-number-px)',
+  sizes_size_cover: 'var(--sizes-size-cover)',
+  sizes_size_cover_mobile_tablet: 'var(--sizes-size-cover-mobile-tablet)',
+  sizes_size_cover_number_px: 'var(--sizes-size-cover-number-px)',
+  sizes_size_cover_with_tab_number_pxs:
+    'var(--sizes-size-cover-with-tab-number-pxs)',
+  sizes_size_cover_with_tabs: 'var(--sizes-size-cover-with-tabs)',
+  sizes_size_cover_with_tabs_mobile_tablet:
+    'var(--sizes-size-cover-with-tabs-mobile-tablet)',
+  sizes_size_header: 'var(--sizes-size-header)',
+  sizes_size_header_number_px: 'var(--sizes-size-header-number-px)',
+  sizes_size_menu_top_px: 'var(--sizes-size-menu-top-size-px)',
+  sizes_size_menu_top_search: 'var(--sizes-size-menu-top-search)',
+  sizes_size_modal_icon: 'var(--sizes-size-modal-icon)',
+  sizes_size_side_menu_desktop: 'var(--sizes-size-side-menu-desktop)',
+  sizes_size_side_menu_desktop_number_px:
+    'var(--sizes-size-side-menu-desktop-number-px)',
+  sizes_size_side_menu_mobile: 'var(--sizes-size-side-menu-mobile)',
+  sizes_size_side_menu_mobile_number_px:
+    'var(--sizes-size-side-menu-mobile-number-px)',
+  sizes_size_side_menu_tablet: 'var(--sizes-size-side-menu-tablet)',
+  sizes_size_side_menu_tablet_number_px:
+    'var(--sizes-size-side-menu-tablet-number-px)',
+  spacings_spacing_0: 'var(--spacings-spacing-0)',
+  spacings_spacing_5_percent: 'var(--spacings-spacing-5-percent)',
+  spacings_spacing_10_percent: 'var(--spacings-spacing-10-percent)',
+  spacings_spacing_20_percent: 'var(--spacings-spacing-20-percent)',
+  spacings_spacing_25: 'var(--spacings-spacing-25)',
+  spacings_spacing_25_percent: 'var(--spacings-spacing-25-percent)',
+  spacings_spacing_30_percent: 'var(--spacings-spacing-30-percent)',
+  spacings_spacing_50: 'var(--spacings-spacing-50)',
+  spacings_spacing_50_percent: 'var(--spacings-spacing-50-percent)',
+  spacings_spacing_70_percent: 'var(--spacings-spacing-70-percent)',
+  spacings_spacing_100: 'var(--spacings-spacing-100)',
+  spacings_spacing_100_percent: 'var(--spacings-spacing-100-percent)',
+  spacings_spacing_100_px: 'var(--spacings-spacing-100-px)',
+  spacings_spacing_100_vh: 'var(--spacings-spacing-100-vh)',
+  spacings_spacing_100_vw: 'var(--spacings-spacing-100-vw)',
+  spacings_spacing_150: 'var(--spacings-spacing-150)',
+  spacings_spacing_180_px: 'var(--spacings-spacing-180-px)',
+  spacings_spacing_200: 'var(--spacings-spacing-200)',
+  spacings_spacing_250: 'var(--spacings-spacing-250)',
+  spacings_spacing_300: 'var(--spacings-spacing-300)',
+  spacings_spacing_350: 'var(--spacings-spacing-350)',
+  spacings_spacing_400: 'var(--spacings-spacing-400)',
+  spacings_spacing_450: 'var(--spacings-spacing-450)',
+  spacings_spacing_475: 'var(--spacings-spacing-475)',
+  spacings_spacing_500: 'var(--spacings-spacing-500)',
+  spacings_spacing_550: 'var(--spacings-spacing-550)',
+  spacings_spacing_600: 'var(--spacings-spacing-600)',
+  spacings_spacing_650: 'var(--spacings-spacing-650)',
+  spacings_spacing_675: 'var(--spacings-spacing-675)',
+  spacings_spacing_700: 'var(--spacings-spacing-700)',
+  spacings_spacing_740: 'var(--spacings-spacing-740)',
+  spacings_spacing_750: 'var(--spacings-spacing-750)',
+  spacings_spacing_800: 'var(--spacings-spacing-800)',
+  text_align_center: 'var(--text-align-center)',
+  text_align_left: 'var(--text-align-left)',
+  text_align_right: 'var(--text-align-right)',
+  z_index_auto: 'var(--z-index-auto)',
+  z_index_floating: 'var(--z-index-floating)',
+  z_index_intern_1: 'var(--z-index-intern-1)',
+  z_index_intern_2: 'var(--z-index-intern-2)',
+  z_index_intern_3: 'var(--z-index-intern-3)',
+  z_index_modal: 'var(--z-index-modal)',
+  z_index_overlay: 'var(--z-index-overlay)',
+  z_index_popup: 'var(--z-index-popup)',
+  z_index_spinner: 'var(--z-index-spinner)',
+  z_index_sticky: 'var(--z-index-sticky)',
+  z_index_toast: 'var(--z-index-toast)',
+  z_index_top_of_the_world: 'var(--z-index-top-of-the-world)',
+};

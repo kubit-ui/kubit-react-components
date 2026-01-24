@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "src/**/*.test.*",
+    "src/**/__mocks__",
+    "src/**/__fixtures__",
+    "src/**/__tests__",
+    "dist",
+    "vitest.config.ts",
+    "vite.config.mts",
+    "../components/**/*"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+    "suppressExcessPropertyErrors": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "references": []
+}

@@ -1,0 +1,8 @@
+dist/
+node_modules/
+plop-templates/
+public/
+vendor/
+.eslintrc.js
+tsconfig.json
+tsconfig.cli.json
