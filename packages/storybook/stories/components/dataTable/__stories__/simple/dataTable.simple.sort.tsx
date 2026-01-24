@@ -1,11 +1,10 @@
-import { useState } from 'react';
-
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
 import {
   DataTable,
   type DataTableColumnProps,
   Icon,
 } from '@kubit-ui-web/react-components';
+import { useState } from 'react';
 
 import { ICONS } from '@/stories/assets/icons/icons';
 

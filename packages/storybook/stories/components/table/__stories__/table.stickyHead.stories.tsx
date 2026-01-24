@@ -1,5 +1,7 @@
 import './css/table.css';
 
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import {
   TableBody,
   TableCell,
@@ -8,7 +10,6 @@ import {
   TableHead,
   TableRow,
 } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { argtypes } from './argtypes';
 

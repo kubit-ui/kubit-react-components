@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
 import { Chip as Story } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
 
 import { ICONS } from '@/stories/assets/icons/icons';
 
 import type { ChipProps } from '../types/chip';
+
 import { argtypes } from './argtypes';
 
 const { ChipVariantType } = KUBIT_VARIANTS;

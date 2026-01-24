@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import bundleSizesData from '../../bundle-sizes.json';
 
 interface BundleSizeInfo {

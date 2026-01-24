@@ -1,6 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
 import { Alert as Story } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { argtypes } from './argtypes';
 

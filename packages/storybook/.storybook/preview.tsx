@@ -1,12 +1,13 @@
 import './kubit.css';
 import './storybook.css';
 
-import React, { useEffect } from 'react';
+import type { Preview } from '@storybook/react';
 
 import { Provider } from '@kubit-ui-web/design-system/provider';
 import { StylesProvider } from '@kubit-ui-web/react-components';
 import { useStylesContext } from '@kubit-ui-web/react-components';
-import type { Preview } from '@storybook/react';
+// eslint-disable-next-line no-restricted-imports
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Note } from './components/note/note';

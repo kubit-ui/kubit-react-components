@@ -1,12 +1,13 @@
-import { type ReactNode, useCallback, useMemo, useRef, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
 import { Carousel as Story } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react';
+import { type ReactNode, useCallback, useMemo, useRef, useState } from 'react';
 
 import { Note } from '@/stories/components/note/note';
 
 import type { CarouselRefType, ICarousel } from '../types/carousel';
+
 import { argtypes } from './argtypes';
 
 const { CarouselVariantType } = KUBIT_VARIANTS;

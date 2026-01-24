@@ -10,6 +10,7 @@ export default defineConfig({
   },
   // Optimized dependency pre-bundling for Storybook
   optimizeDeps: {
+    entries: ['../stories/**/*.stories.tsx', '../overview/**/*.mdx'],
     include: [
       'react',
       'react-dom',
@@ -17,7 +18,6 @@ export default defineConfig({
       '@kubit-ui-web/react-components',
       '@kubit-ui-web/design-system',
     ],
-    entries: ['../stories/**/*.stories.tsx', '../overview/**/*.mdx'],
   },
   plugins: [
     react({
@@ -41,8 +41,6 @@ export default defineConfig({
   // Enhanced server configuration for development
   server: {
     fs: {
-      // Permitir acceso a los workspaces necesarios
-      strict: true,
       allow: [
         // Storybook package
         path.resolve(__dirname, '../'),
@@ -53,6 +51,8 @@ export default defineConfig({
         // Root node_modules
         path.resolve(__dirname, '../../../node_modules'),
       ],
+      // Permitir acceso a los workspaces necesarios
+      strict: true,
     },
   },
 });

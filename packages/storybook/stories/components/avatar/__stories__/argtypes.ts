@@ -1,5 +1,6 @@
-import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
 import type { ArgTypes } from 'storybook/internal/types';
+
+import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
 
 import { getAdditionalClassesArgTypes } from '@/stories/argtypes/additionalClassesArgTypes';
 import { configArgTypes } from '@/stories/argtypes/argtypes';
@@ -14,7 +15,7 @@ import { IMAGES } from '@/stories/assets/images/images';
 import { CATEGORY_CONTROL } from '@/stories/constants/categoryControl';
 import { objectFlip } from '@/stories/utils/utils';
 
-const { DotSizeType, DotVariantType, AvatarSize } = KUBIT_VARIANTS;
+const { AvatarSize, DotSizeType, DotVariantType } = KUBIT_VARIANTS;
 
 export const argtypes = (): ArgTypes => {
   return {

@@ -1,4 +1,5 @@
 // ./storybook/manager.ts
+/* eslint-disable import/no-extraneous-dependencies */
 import { addons } from 'storybook/manager-api';
 import { create } from 'storybook/theming';
 

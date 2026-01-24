@@ -1,8 +1,10 @@
-import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
-import { Dot as Story } from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
+import { Dot as Story } from '@kubit-ui-web/react-components';
+
 import type { DotProps } from '../types/dot';
+
 import { argtypes } from './argtypes';
 
 const { DotSizeType, DotVariantType } = KUBIT_VARIANTS;

@@ -1,10 +1,10 @@
-import { useRef } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import {
   InputSignature,
   type InputSignatureCustomHandle,
 } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useRef } from 'react';
 
 import { argtypes } from './argTypes';
 
@@ -218,7 +218,7 @@ const handleClear = () => {
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <InputSignatureUnControlled ref={signatureRef} {...args} />
+        <InputSignature ref={signatureRef} {...args} />
         <button
           style={{
             background: '#007bff',

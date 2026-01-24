@@ -1,5 +1,6 @@
-import { Text as Story } from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { Text as Story } from '@kubit-ui-web/react-components';
 
 import { argtypes } from './argtypes';
 

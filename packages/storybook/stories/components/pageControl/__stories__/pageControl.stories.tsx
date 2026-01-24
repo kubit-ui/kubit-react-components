@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import {
   PageControl as PageControlComponent,
   type PageControlControlProps,
 } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
 
 import { ICONS } from '@/stories/assets/icons/icons';
 

@@ -1,5 +1,6 @@
-import { InputDecoration as Story } from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { InputDecoration as Story } from '@kubit-ui-web/react-components';
 
 import { Link } from '@/components/link/link';
 import { LinkVariant } from '@/lib/designSystem/kubit/components/variants';

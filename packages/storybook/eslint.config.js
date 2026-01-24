@@ -1,4 +1,5 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+/* eslint-disable import/no-extraneous-dependencies */
 import eslintFlatConfig from 'eslint-config-kubit';
 import storybook from 'eslint-plugin-storybook';
 import path from 'path';
@@ -47,6 +48,9 @@ export default eslintFlatConfig({
     'src/lib/types/cssGenerator/**/*',
     'src/lib/designSystem/kubit/css/cssVars.js',
     'src/lib/tests/__mocks__/assetMock.js',
+    'dist/**/*',
+    '.storybook-cache/**/*',
+    '**/*.json',
   ],
   noIndexImportConfig: {
     aliases: {
@@ -56,6 +60,29 @@ export default eslintFlatConfig({
     },
   },
   overrides: [
+    {
+      files: ['.storybook/**/*.{js,jsx,ts,tsx,mts}'],
+      rules: {
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        'consistent-return': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        'no-duplicate-imports': 'off',
+        'no-restricted-imports': 'off',
+        'no-undef': 'off',
+        'react/jsx-no-useless-fragment': 'off',
+        'react/no-array-index-key': 'off',
+      },
+    },
+    {
+      files: ['*.{js,mjs,ts,mts}'],
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        'no-undef': 'off',
+      },
+    },
     {
       files: ['**/*.{js,jsx,ts,tsx}'],
       rules: {

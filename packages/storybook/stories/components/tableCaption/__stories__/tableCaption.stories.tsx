@@ -1,5 +1,6 @@
-import { TableCaption as TableCaptionComponent } from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { TableCaption as TableCaptionComponent } from '@kubit-ui-web/react-components';
 
 import { argtypes } from './argtypes';
 

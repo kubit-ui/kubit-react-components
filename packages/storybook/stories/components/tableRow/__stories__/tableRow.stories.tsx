@@ -1,8 +1,9 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import {
   TableCell,
   TableRow as TableRowComponent,
 } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { argtypes } from './argtypes';
 

@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import {
   SelectControlled,
   Select as SelectUnControlled,
 } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
 
 const meta: Meta<typeof SelectUnControlled> = {
   argTypes: {

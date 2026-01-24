@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies, consistent-return, no-restricted-imports, @typescript-eslint/no-explicit-any, no-console */
+/* eslint-disable import/no-extraneous-dependencies, no-restricted-imports, no-console */
 // @ts-ignore - React is used for JSX transformation
 import React, { type FC, useEffect, useState } from 'react';
-
 import { addons, types, useStorybookApi } from 'storybook/manager-api';
 
 import bundleSizesData from '../../bundle-sizes.json';

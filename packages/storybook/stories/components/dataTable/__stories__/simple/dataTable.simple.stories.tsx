@@ -1,5 +1,6 @@
-import { DataTable } from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { DataTable } from '@kubit-ui-web/react-components';
 
 import { argtypes } from '../argtypes';
 import { DataTableSimpleActiveRowsStory } from './dataTable.simple.activeRows';

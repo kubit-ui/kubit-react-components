@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
 import { ProgressBar as ProgressBarComponent } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react';
+import { useEffect, useState } from 'react';
 
 const { ProgressBarSizeType, ProgressBarVariantType } = KUBIT_VARIANTS;
 

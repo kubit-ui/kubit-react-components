@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Pagination as PaginationComponent } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
 
 import { ICONS } from '@/stories/assets/icons/icons';
 
 import type { PaginationButtonControlProps } from '../types/pagination';
+
 import { argtypes } from './argtypes';
 
 const meta = {

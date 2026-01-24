@@ -1,5 +1,6 @@
 import './note.css';
 
+// eslint-disable-next-line no-restricted-imports
 import React from 'react';
 
 type NoteVariant = 'information' | 'success' | 'warning' | 'error';

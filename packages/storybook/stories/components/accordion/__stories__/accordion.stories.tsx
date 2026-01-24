@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
 import {
   AccordionControlled,
   Accordion as AccordionUnControlled,
 } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
 
 import { argtypes } from './argtypes';
 

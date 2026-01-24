@@ -1,5 +1,6 @@
-import { Icon as Story } from '@kubit-ui-web/react-components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import { Icon as Story } from '@kubit-ui-web/react-components';
 
 import { ICONS } from '@/stories/assets/icons/icons';
 

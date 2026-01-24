@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { RadioButton } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
 
 const meta: Meta<typeof RadioButton> = {
   argTypes: {

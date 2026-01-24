@@ -1,6 +1,7 @@
+import type { ArgTypes } from 'storybook/internal/types';
+
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
 import { POSITIONS } from '@kubit-ui-web/react-components';
-import type { ArgTypes } from 'storybook/internal/types';
 
 import { getAdditionalClassesArgTypes } from '@/stories/argtypes/additionalClassesArgTypes';
 import { configArgTypes } from '@/stories/argtypes/argtypes';
