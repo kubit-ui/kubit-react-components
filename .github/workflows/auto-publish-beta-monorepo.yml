@@ -44,10 +44,10 @@ jobs:
           echo "Installing monorepo dependencies..."
           pnpm install --frozen-lockfile
 
-        - name: Build design-system first
-          run: |
-            echo "Building @kubit-ui-web/design-system..."
-            pnpm --filter @kubit-ui-web/design-system build
+      - name: Build design-system first
+        run: |
+          echo "Building @kubit-ui-web/design-system..."
+          pnpm --filter @kubit-ui-web/design-system build
 
       - name: Run quality checks
         run: |
