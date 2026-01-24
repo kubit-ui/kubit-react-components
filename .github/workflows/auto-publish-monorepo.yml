@@ -102,9 +102,9 @@ jobs:
         if: steps.validate-branch.outputs.should_publish == 'true'
         run: |
           echo "Running quality checks..."
-          pnpm --filter @kubit-ui-web/react-components lint
-          pnpm --filter @kubit-ui-web/design-system lint
-          pnpm turbo typecheck
+          cd packages/components && pnpm exec eslint src
+          cd ../design-system && pnpm exec eslint src
+          cd ../.. && pnpm turbo typecheck
 
       - name: Run tests
         if: steps.validate-branch.outputs.should_publish == 'true'
