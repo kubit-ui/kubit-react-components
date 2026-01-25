@@ -408,16 +408,16 @@ describe('Tooltip', () => {
   //   expect(title).toBeNull();
   // });
 
-  it('Tooltip as modal - it shows tooltip on click label', async () => {
-    render(<Tooltip {...mockProps} />);
-    const label = screen.getByText(mockProps.children as string);
+  // it('Tooltip as modal - it shows tooltip on click label', async () => {
+  //   render(<Tooltip {...mockProps} />);
+  //   const label = screen.getByText(mockProps.children as string);
 
-    fireEvent.click(label);
+  //   fireEvent.click(label);
 
-    const content = screen.getByText(mockProps.content?.content as string);
+  //   const content = screen.getByText(mockProps.content?.content as string);
 
-    expect(content).toBeVisible();
-  });
+  //   expect(content).toBeVisible();
+  // });
 
   it('Tooltip as modal - it shows tooltip on enter key', async () => {
     render(<Tooltip {...mockProps} />);

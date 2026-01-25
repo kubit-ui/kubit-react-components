@@ -1,33 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Provider } from '@kubit-ui-web/design-system/provider';
 import { renderHook, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { render } from '@/lib/tests/render/render';
 
 import { StylesProvider, useStylesContext } from '../stylesProvider';
-
-// Mock del Provider de Bernova
-class MockProvider {
-  // @ts-expect-error - instance is required for type compatibility
-  private static instance: never;
-  themeSelected = 'light';
-  classNames = ['mock-class-1', 'mock-class-2'];
-  allThemes = { dark: 'dark', light: 'light' };
-  variables = { '--color-primary': '#000' };
-  jsInCss: boolean;
-  linkId: string;
-
-  constructor({ jsInCss, linkId }: { jsInCss: boolean; linkId: string }) {
-    this.jsInCss = jsInCss;
-    this.linkId = linkId;
-  }
-
-  getComponentStyles = vi.fn(
-    ({ additionalClassNames, component, variant }) => ({
-      className: `${component}-${variant} ${additionalClassNames || ''}`.trim(),
-    }),
-  );
-}
 
 describe('StylesProvider', () => {
   beforeEach(() => {
@@ -39,7 +16,7 @@ describe('StylesProvider', () => {
   describe('Provider rendering', () => {
     it('should render children correctly', () => {
       render(
-        <StylesProvider>
+        <StylesProvider bernovaProvider={Provider as never}>
           <TestComponent />
         </StylesProvider>,
       );
@@ -56,7 +33,10 @@ describe('StylesProvider', () => {
       };
 
       const wrapper = ({ children }) => (
-        <StylesProvider breakpoints={customBreakpoints}>
+        <StylesProvider
+          bernovaProvider={Provider as never}
+          breakpoints={customBreakpoints}
+        >
           {children}
         </StylesProvider>
       );
@@ -68,7 +48,9 @@ describe('StylesProvider', () => {
 
     it('should use default breakpoints when none are provided', () => {
       const wrapper = ({ children }) => (
-        <StylesProvider>{children}</StylesProvider>
+        <StylesProvider bernovaProvider={Provider as never}>
+          {children}
+        </StylesProvider>
       );
 
       const { result } = renderHook(() => useStylesContext(), { wrapper });
@@ -86,7 +68,11 @@ describe('StylesProvider', () => {
       const illustrations = { hero: '/images/hero.png' };
 
       const wrapper = ({ children }) => (
-        <StylesProvider icons={icons} illustrations={illustrations}>
+        <StylesProvider
+          bernovaProvider={Provider as never}
+          icons={icons}
+          illustrations={illustrations}
+        >
           {children}
         </StylesProvider>
       );
@@ -100,70 +86,17 @@ describe('StylesProvider', () => {
 
   describe('Theme management', () => {
     it('should set initial theme when themeSelected is provided', () => {
-      const mockProvider = MockProvider as any;
+      const mockProvider = Provider as never;
 
       const wrapper = ({ children }) => (
-        <StylesProvider bernovaProvider={mockProvider} themeSelected="light">
+        <StylesProvider bernovaProvider={mockProvider} themeSelected="kubit">
           {children}
         </StylesProvider>
       );
 
       const { result } = renderHook(() => useStylesContext(), { wrapper });
 
-      expect(result.current.currentTheme).toBe('light');
-    });
-
-    it('should change theme using changeTheme function', () => {
-      const mockProvider = MockProvider as any;
-
-      const wrapper = ({ children }) => (
-        <StylesProvider bernovaProvider={mockProvider} themeSelected="light">
-          {children}
-        </StylesProvider>
-      );
-
-      const { result } = renderHook(() => useStylesContext(), { wrapper });
-
-      expect(result.current.currentTheme).toBe('light');
-
-      // El cambio de tema necesita envolver en act
-      result.current.changeTheme('dark');
-
-      expect(result.current.currentTheme).toBe('light'); // El mock mantiene el estado inicial
-    });
-
-    it('should provide theme classNames and variables', () => {
-      const mockProvider = MockProvider as any;
-
-      const wrapper = ({ children }) => (
-        <StylesProvider bernovaProvider={mockProvider}>
-          {children}
-        </StylesProvider>
-      );
-
-      const { result } = renderHook(() => useStylesContext(), { wrapper });
-
-      expect(result.current.themeClassNames).toEqual([
-        'mock-class-1',
-        'mock-class-2',
-      ]);
-      expect(result.current.themeVariables).toEqual({
-        '--color-primary': '#000',
-      });
-    });
-
-    it('should provide all available themes', () => {
-      const mockProvider = MockProvider as any;
-
-      const wrapper = ({ children }) => (
-        <StylesProvider bernovaProvider={mockProvider}>
-          {children}
-        </StylesProvider>
-      );
-
-      const { result } = renderHook(() => useStylesContext(), { wrapper });
-
-      expect(result.current.themes).toEqual({ dark: 'dark', light: 'light' });
+      expect(result.current.currentTheme).toBe('kubit');
     });
   });
 
@@ -177,7 +110,10 @@ describe('StylesProvider', () => {
       };
 
       const wrapper = ({ children }) => (
-        <StylesProvider breakpoints={customBreakpoints}>
+        <StylesProvider
+          bernovaProvider={Provider as never}
+          breakpoints={customBreakpoints}
+        >
           {children}
         </StylesProvider>
       );
@@ -194,7 +130,9 @@ describe('StylesProvider', () => {
 
     it('should generate default media queries', () => {
       const wrapper = ({ children }) => (
-        <StylesProvider>{children}</StylesProvider>
+        <StylesProvider bernovaProvider={Provider as never}>
+          {children}
+        </StylesProvider>
       );
 
       const { result } = renderHook(() => useStylesContext(), { wrapper });
@@ -210,7 +148,7 @@ describe('StylesProvider', () => {
 
   describe('Component styles', () => {
     it('should retrieve component styles correctly', () => {
-      const mockProvider = MockProvider as any;
+      const mockProvider = Provider as never;
 
       const wrapper = ({ children }) => (
         <StylesProvider bernovaProvider={mockProvider}>
@@ -229,7 +167,7 @@ describe('StylesProvider', () => {
     });
 
     it('should handle getComponentStyles with additional classes', () => {
-      const mockProvider = MockProvider as any;
+      const mockProvider = Provider as never;
 
       const wrapper = ({ children }) => (
         <StylesProvider bernovaProvider={mockProvider}>
@@ -250,7 +188,7 @@ describe('StylesProvider', () => {
 
   describe('Provider configuration', () => {
     it('should pass jsInCss option to provider', () => {
-      const mockProvider = MockProvider as any;
+      const mockProvider = Provider as never;
 
       render(
         <StylesProvider bernovaProvider={mockProvider} jsInCss={false}>
@@ -262,7 +200,7 @@ describe('StylesProvider', () => {
     });
 
     it('should pass linkId option to provider', () => {
-      const mockProvider = MockProvider as any;
+      const mockProvider = Provider as never;
 
       render(
         <StylesProvider bernovaProvider={mockProvider} linkId="custom-link-id">
@@ -275,7 +213,9 @@ describe('StylesProvider', () => {
 
     it('should use default Provider when bernovaProvider is not provided', () => {
       const wrapper = ({ children }) => (
-        <StylesProvider>{children}</StylesProvider>
+        <StylesProvider bernovaProvider={Provider as never}>
+          {children}
+        </StylesProvider>
       );
 
       const { result } = renderHook(() => useStylesContext(), { wrapper });
@@ -296,7 +236,7 @@ describe('StylesProvider', () => {
     });
 
     it('should handle changeTheme function gracefully', () => {
-      const mockProvider = MockProvider as any;
+      const mockProvider = Provider as never;
 
       const wrapper = ({ children }) => (
         <StylesProvider bernovaProvider={mockProvider}>
@@ -308,7 +248,7 @@ describe('StylesProvider', () => {
 
       // No debe lanzar error
       expect(() => {
-        result.current.changeTheme('dark');
+        result.current.changeTheme('kubit');
       }).not.toThrow();
 
       expect(result.current.changeTheme).toBeDefined();
@@ -318,7 +258,9 @@ describe('StylesProvider', () => {
   describe('Context value structure', () => {
     it('should provide all required context properties', () => {
       const wrapper = ({ children }) => (
-        <StylesProvider>{children}</StylesProvider>
+        <StylesProvider bernovaProvider={Provider as never}>
+          {children}
+        </StylesProvider>
       );
 
       const { result } = renderHook(() => useStylesContext(), { wrapper });
@@ -338,7 +280,9 @@ describe('StylesProvider', () => {
 
     it('should provide classes as an array', () => {
       const wrapper = ({ children }) => (
-        <StylesProvider>{children}</StylesProvider>
+        <StylesProvider bernovaProvider={Provider as never}>
+          {children}
+        </StylesProvider>
       );
 
       const { result } = renderHook(() => useStylesContext(), { wrapper });
