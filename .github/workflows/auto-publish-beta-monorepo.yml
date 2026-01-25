@@ -57,10 +57,10 @@ jobs:
           cd ../..
           pnpm turbo typecheck --filter=@kubit-ui-web/react-components --filter=@kubit-ui-web/design-system
 
-      # - name: Run tests
-      #   run: |
-      #     echo "Running tests..."
-      #     pnpm --filter @kubit-ui-web/react-components test:coverage
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+          pnpm --filter @kubit-ui-web/react-components test:coverage
 
       - name: Build packages
         run: |

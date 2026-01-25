@@ -1,6 +1,6 @@
-import { act, renderHook } from '@testing-library/react';
+import { act } from '@testing-library/react';
 
-import { StylesProvider } from '@/lib/provider/stylesProvider/stylesProvider';
+import { renderHook } from '@/lib/tests/render/renderHook';
 import { windowMatchMedia } from '@/lib/tests/windowMatchMedia/windowMatchMedia';
 
 import { useTabs } from '../useTabs';
@@ -8,10 +8,6 @@ import { useTabs } from '../useTabs';
 let tabsLength;
 let numTabsInView;
 let selectedTab;
-
-const wrapper = ({ children }) => {
-  return <StylesProvider>{children}</StylesProvider>;
-};
 
 describe('useTabs Hook', () => {
   beforeEach(() => {
@@ -21,11 +17,8 @@ describe('useTabs Hook', () => {
   });
 
   it('calls handleClickIcon first next position and then previous position again', () => {
-    const { result } = renderHook(
-      () => useTabs({ numTabsInView, selectedTab, tabsLength }),
-      {
-        wrapper,
-      },
+    const { result } = renderHook(() =>
+      useTabs({ numTabsInView, selectedTab, tabsLength }),
     );
 
     act(() => {
@@ -43,11 +36,8 @@ describe('useTabs Hook', () => {
 
   it('calls handleClickTab', () => {
     window.matchMedia = windowMatchMedia('onlyMobile');
-    const { result } = renderHook(
-      () => useTabs({ numTabsInView, selectedTab, tabsLength }),
-      {
-        wrapper,
-      },
+    const { result } = renderHook(() =>
+      useTabs({ numTabsInView, selectedTab, tabsLength }),
     );
 
     act(() => {
