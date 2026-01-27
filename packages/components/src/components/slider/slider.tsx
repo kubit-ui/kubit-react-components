@@ -27,6 +27,7 @@ import {
   calcValueByOffset,
   calculateChange,
   equalsRangeValues,
+  focusThumb,
   getOffset,
   getScale,
 } from './utils/slider.utils';
@@ -121,6 +122,15 @@ export const Slider = forwardRef(
 
     // Debounce callback to avoid calling onChange too many times
     const timeoutOnChange = useRef<number | NodeJS.Timeout>();
+
+    // Focus the thumb after handleChange to ensure the activePointer is set
+    // Also active thumb could change during move in range mode
+    focusThumb({
+      container: containerRef.current,
+      currentActivePointer: activePointer.current,
+      range,
+    });
+
     const onChangeDebounce = useCallback(
       (val: number | number[]) => {
         if (!onChange) {

@@ -470,3 +470,29 @@ export const calcDefaultValue = ({
     value: valueToScale,
   });
 };
+
+export const focusThumb = ({
+  container,
+  currentActivePointer,
+  range,
+}: {
+  container: HTMLDivElement | null;
+  range: boolean;
+  currentActivePointer: string;
+}): void => {
+  if (!container) {
+    return;
+  }
+  let thumb: null | Element = null;
+  if (range) {
+    const [leftThumb, rightThumb] = Array.from(
+      container.querySelectorAll('[role="slider"]'),
+    );
+    thumb = currentActivePointer === 'left' ? leftThumb : rightThumb;
+  } else {
+    thumb = container.querySelector('[role="slider"]');
+  }
+  if (thumb instanceof HTMLElement && document.activeElement !== thumb) {
+    thumb.focus();
+  }
+};
