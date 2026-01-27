@@ -59,6 +59,7 @@ jobs:
       - name: Run tests
         run: |
           echo "Running tests..."
+          rm -rf packages/components/__reports__/test-coverage/.tmp || true
           pnpm --filter @kubit-ui-web/react-components test:coverage
 
       - name: Build packages
