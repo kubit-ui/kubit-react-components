@@ -35,6 +35,8 @@
     "build:design-system": "turbo run build --filter=@kubit-ui-web/design-system",
     "build:storybook": "turbo run build --filter=@kubit-ui-web/storybook",
     "lint": "turbo run lint",
+    "lint:components": "turbo run lint --filter=@kubit-ui-web/react-components",
+    "lint:design-system": "turbo run lint --filter=@kubit-ui-web/design-system",
     "lint:fix": "turbo run lint:fix",
     "format": "turbo run format",
     "format:check": "turbo run format:check",

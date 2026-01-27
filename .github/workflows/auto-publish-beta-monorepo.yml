@@ -47,14 +47,13 @@ jobs:
       - name: Build design-system first
         run: |
           echo "Building @kubit-ui-web/design-system..."
-          pnpm --filter @kubit-ui-web/design-system build
+          pnpm build:design-system
 
       - name: Run quality checks
         run: |
           echo "Running quality checks on publishable packages only..."
-          cd packages/components && pnpm exec eslint src
-          cd ../design-system && pnpm exec eslint src
-          cd ../..
+          pnpm lint:components
+          pnpm lint:design-system
           pnpm turbo typecheck --filter=@kubit-ui-web/react-components --filter=@kubit-ui-web/design-system
 
       - name: Run tests
@@ -65,7 +64,7 @@ jobs:
       - name: Build packages
         run: |
           echo "Building all packages..."
-          pnpm -r --filter=!@kubit-ui-web/storybook build
+          pnpm build
 
       - name: Configure Git
         run: |
