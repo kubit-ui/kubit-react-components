@@ -2,6 +2,18 @@ import '@testing-library/jest-dom/vitest';
 import 'html-validate/vitest';
 import { beforeAll, vi } from 'vitest';
 
+// Suppress CSS parsing warnings from jsdom
+// eslint-disable-next-line no-console
+const originalConsoleError = console.error;
+// eslint-disable-next-line no-console
+console.error = (...args: unknown[]) => {
+  const message = args[0]?.toString() || '';
+  if (message.includes('Could not parse CSS stylesheet')) {
+    return;
+  }
+  originalConsoleError(...args);
+};
+
 // Mock de ResizeObserver para todos los tests
 class MockResizeObserver {
   callback: ResizeObserverCallback;

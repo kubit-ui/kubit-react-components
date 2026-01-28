@@ -49,92 +49,135 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
-      - name: Validate branch and determine publish strategy
-        id: validate-branch
+      - name: Get pnpm store directory
+        shell: bash
         run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Setup Turbo cache
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Detect changed packages
+        id: changes
+        run: |
+          echo "Detecting changes in packages compared to PR base..."
+
+          # Get the base branch from the PR (usually main)
+          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+          echo "Base branch: $BASE_BRANCH"
+
+          # Fetch base branch for comparison
+          git fetch origin $BASE_BRANCH
+          BASE_REF="origin/$BASE_BRANCH"
+
+          # Get PR info
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           PR_TITLE="${{ github.event.pull_request.title }}"
           echo "Branch: $BRANCH_NAME"
           echo "PR Title: $PR_TITLE"
 
-          # Determine which packages to publish
-          PUBLISH_COMPONENTS=false
-          PUBLISH_DESIGN_SYSTEM=false
-          PUBLISH_ALL=false
+          # Check for changes in each package
+          DESIGN_SYSTEM_CHANGED=false
+          COMPONENTS_CHANGED=false
 
-          if [[ "$PR_TITLE" =~ \[components\] ]] || [[ "$PR_TITLE" =~ ^components: ]]; then
-            PUBLISH_COMPONENTS=true
-            echo "📦 Publishing: components only"
-          elif [[ "$PR_TITLE" =~ \[design-system\] ]] || [[ "$PR_TITLE" =~ ^design-system: ]]; then
-            PUBLISH_DESIGN_SYSTEM=true
-            echo "📦 Publishing: design-system only"
-          elif [[ "$PR_TITLE" =~ \[all\] ]] || [[ "$PR_TITLE" =~ \[monorepo\] ]]; then
-            PUBLISH_ALL=true
-            PUBLISH_COMPONENTS=true
-            PUBLISH_DESIGN_SYSTEM=true
-            echo "📦 Publishing: all packages"
+          if git diff --name-only HEAD $BASE_REF | grep -q "^packages/design-system/"; then
+            DESIGN_SYSTEM_CHANGED=true
+            echo "✅ Changes detected in design-system"
           else
-            # Default: publish all for release branches
-            if [[ "$BRANCH_NAME" =~ ^(feat|feature|fix|bugfix|break|breaking|hotfix|chore)/[a-zA-Z0-9._-]+$ ]]; then
-              PUBLISH_ALL=true
-              PUBLISH_COMPONENTS=true
-              PUBLISH_DESIGN_SYSTEM=true
-              echo "📦 Publishing: all packages (default)"
-            else
-              echo "❌ Branch doesn't match release patterns"
-              exit 1
-            fi
+            echo "⏭️  No changes in design-system"
           fi
 
-          echo "should_publish=true" >> "$GITHUB_OUTPUT"
+          if git diff --name-only HEAD $BASE_REF | grep -q "^packages/components/"; then
+            COMPONENTS_CHANGED=true
+            echo "✅ Changes detected in react-components"
+          else
+            echo "⏭️  No changes in react-components"
+          fi
+
+          # Determine publish strategy
+          PUBLISH_COMPONENTS=false
+          PUBLISH_DESIGN_SYSTEM=false
+
+          # Check PR title for explicit package selection
+          if [[ "$PR_TITLE" =~ \[components\] ]] || [[ "$PR_TITLE" =~ ^components: ]]; then
+            PUBLISH_COMPONENTS=$COMPONENTS_CHANGED
+            echo "📦 Publishing: components only (if changed)"
+          elif [[ "$PR_TITLE" =~ \[design-system\] ]] || [[ "$PR_TITLE" =~ ^design-system: ]]; then
+            PUBLISH_DESIGN_SYSTEM=$DESIGN_SYSTEM_CHANGED
+            echo "📦 Publishing: design-system only (if changed)"
+          else
+            # Default: publish packages that have changes
+            PUBLISH_COMPONENTS=$COMPONENTS_CHANGED
+            PUBLISH_DESIGN_SYSTEM=$DESIGN_SYSTEM_CHANGED
+            echo "📦 Publishing: packages with changes"
+          fi
+
+          # Validate branch pattern
+          if [[ ! "$BRANCH_NAME" =~ ^(feat|feature|fix|bugfix|break|breaking|hotfix|chore)/[a-zA-Z0-9._/-]+$ ]]; then
+            echo "⚠️  Branch doesn't match release patterns, but continuing..."
+          fi
+
+          # Determine if we should publish anything
+          SHOULD_PUBLISH=false
+          if [ "$PUBLISH_COMPONENTS" = "true" ] || [ "$PUBLISH_DESIGN_SYSTEM" = "true" ]; then
+            SHOULD_PUBLISH=true
+          fi
+
+          echo "should_publish=$SHOULD_PUBLISH" >> "$GITHUB_OUTPUT"
           echo "publish_components=$PUBLISH_COMPONENTS" >> "$GITHUB_OUTPUT"
           echo "publish_design_system=$PUBLISH_DESIGN_SYSTEM" >> "$GITHUB_OUTPUT"
-          echo "publish_all=$PUBLISH_ALL" >> "$GITHUB_OUTPUT"
+          echo "design_system_changed=$DESIGN_SYSTEM_CHANGED" >> "$GITHUB_OUTPUT"
+          echo "components_changed=$COMPONENTS_CHANGED" >> "$GITHUB_OUTPUT"
           echo "branch_name=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
 
+          if [ "$SHOULD_PUBLISH" = "false" ]; then
+            echo "⏭️  No changes detected in publishable packages, skipping publish"
+          fi
+
       - name: Install dependencies
-        if: steps.validate-branch.outputs.should_publish == 'true'
+        if: steps.changes.outputs.should_publish == 'true'
         run: |
           echo "Installing monorepo dependencies..."
           pnpm install --frozen-lockfile
 
       - name: Run quality checks
-        if: steps.validate-branch.outputs.should_publish == 'true'
+        if: steps.changes.outputs.should_publish == 'true'
         run: |
-          echo "Running quality checks on publishable packages only..."
-          cd packages/components && pnpm exec eslint src
-          cd ../design-system && pnpm exec eslint src
-          cd ../..
-          pnpm turbo typecheck --filter=@kubit-ui-web/react-components --filter=@kubit-ui-web/design-system
+          echo "Running quality checks with Turbo..."
+          pnpm lint --filter=@kubit-ui-web/react-components --filter=@kubit-ui-web/design-system
+          pnpm typecheck --filter=@kubit-ui-web/react-components --filter=@kubit-ui-web/design-system
 
       - name: Run tests
-        if: steps.validate-branch.outputs.should_publish == 'true'
+        if: steps.changes.outputs.should_publish == 'true'
         run: |
-          echo "Running tests..."
-          pnpm --filter @kubit-ui-web/react-components test:coverage
+          echo "Running tests with Turbo..."
+          pnpm test
 
-      - name: Build all packages
-        if: steps.validate-branch.outputs.should_publish == 'true'
+      - name: Build packages
+        if: steps.changes.outputs.should_publish == 'true'
         run: |
-          echo "Building packages..."
-
-          # Build in dependency order
-          if [[ "${{ steps.validate-branch.outputs.publish_design_system }}" == "true" ]]; then
-            echo "Building @kubit-ui-web/design-system..."
-            pnpm --filter @kubit-ui-web/design-system build
-          fi
-
-          if [[ "${{ steps.validate-branch.outputs.publish_components }}" == "true" ]]; then
-            echo "Building @kubit-ui-web/react-components..."
-            pnpm --filter @kubit-ui-web/react-components build
-          fi
+          echo "Building packages with Turbo..."
+          pnpm build
 
       - name: Build and publish Storybook
-        if: steps.validate-branch.outputs.should_publish == 'true'
+        if: steps.changes.outputs.should_publish == 'true'
         continue-on-error: true
         run: |
-          echo "Building Storybook..."
-          pnpm --filter @kubit-ui-web/storybook build
+          echo "Building Storybook with Turbo..."
+          pnpm build:storybook
 
           echo "Publishing to Chromatic..."
           pnpm --filter @kubit-ui-web/storybook chromatic --exit-zero-on-changes --auto-accept-changes
@@ -142,13 +185,13 @@ jobs:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN_COMPONENTS }}
 
       - name: Configure Git
-        if: steps.validate-branch.outputs.should_publish == 'true'
+        if: steps.changes.outputs.should_publish == 'true'
         run: |
           git config --local user.email "kubit-bot@github.com"
           git config --local user.name "Kubit Release Bot"
 
       - name: Determine version bump
-        if: steps.validate-branch.outputs.should_publish == 'true'
+        if: steps.changes.outputs.should_publish == 'true'
         id: version-bump
         run: |
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
@@ -176,7 +219,7 @@ jobs:
           echo "reason=$REASON" >> $GITHUB_OUTPUT
 
       - name: Verify NPM authentication
-        if: steps.validate-branch.outputs.should_publish == 'true'
+        if: steps.changes.outputs.should_publish == 'true'
         run: |
           if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
             echo "❌ NPM_TOKEN not configured"
@@ -189,14 +232,15 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish packages to NPM
-        if: steps.validate-branch.outputs.should_publish == 'true'
+        if: steps.changes.outputs.should_publish == 'true'
         id: npm-publish
         run: |
           VERSION_TYPE="${{ steps.version-bump.outputs.version_type }}"
           PUBLISHED_PACKAGES=""
+          HAS_PUBLISHED=false
 
-          # Publish design-system first (no dependencies)
-          if [[ "${{ steps.validate-branch.outputs.publish_design_system }}" == "true" ]]; then
+          # Publish design-system first (no dependencies) if changed
+          if [[ "${{ steps.changes.outputs.publish_design_system }}" == "true" ]]; then
             echo "📦 Publishing @kubit-ui-web/design-system..."
             cd packages/design-system
 
@@ -209,11 +253,14 @@ jobs:
 
             PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES @kubit-ui-web/design-system@$NEW"
             echo "design_system_version=$NEW" >> $GITHUB_OUTPUT
+            HAS_PUBLISHED=true
             cd ../..
+          else
+            echo "⏭️  Skipping design-system (no changes)"
           fi
 
-          # Publish components
-          if [[ "${{ steps.validate-branch.outputs.publish_components }}" == "true" ]]; then
+          # Publish components if changed
+          if [[ "${{ steps.changes.outputs.publish_components }}" == "true" ]]; then
             echo "📦 Publishing @kubit-ui-web/react-components..."
             cd packages/components
 
@@ -226,10 +273,13 @@ jobs:
 
             PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES @kubit-ui-web/react-components@$NEW"
             echo "components_version=$NEW" >> $GITHUB_OUTPUT
+            HAS_PUBLISHED=true
             cd ../..
+          else
+            echo "⏭️  Skipping react-components (no changes)"
           fi
 
-          echo "published=true" >> $GITHUB_OUTPUT
+          echo "published=$HAS_PUBLISHED" >> $GITHUB_OUTPUT
           echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -251,10 +301,14 @@ jobs:
             ## 🚀 Release
 
             **Type:** ${{ steps.version-bump.outputs.version_type }}
-            **Branch:** `${{ steps.validate-branch.outputs.branch_name }}`
+            **Branch:** `${{ steps.changes.outputs.branch_name }}`
 
             ### 📦 Published Packages
             ${{ steps.npm-publish.outputs.packages }}
+
+            ### 📊 Changes Detected
+            - Design System: ${{ steps.changes.outputs.design_system_changed == 'true' && '✅ Changed' || '⏭️ No changes' }}
+            - React Components: ${{ steps.changes.outputs.components_changed == 'true' && '✅ Changed' || '⏭️ No changes' }}
 
             ### 📝 Changes
             - ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})
@@ -284,11 +338,33 @@ jobs:
             ### ✅ Completed
             - Quality checks passed
             - Tests passed
-            - Builds successful
+            - Builds successful (with Turbo cache ⚡)
             - Published to NPM with provenance 🔒
             - GitHub release created
 
             🎉 **Ready to use!**`;
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+      - name: No changes notification
+        if: steps.changes.outputs.should_publish == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = `## ⏭️ No Changes Detected
+
+            No changes were detected in publishable packages compared to \`main\`.
+
+            ### 📊 Change Detection
+            - **Design System**: No changes
+            - **React Components**: No changes
+
+            Skipping publish. If you expected a publish, ensure your changes are in the correct package directories.`;
 
             await github.rest.issues.createComment({
               issue_number: context.issue.number,

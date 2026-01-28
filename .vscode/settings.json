@@ -80,5 +80,50 @@
   // Files
   "files.eol": "\n",
   "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+  "files.exclude": {
+    "**/.turbo": true,
+    "**/.tsbuildinfo": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/coverage": true,
+    "**/__reports__": true
+  },
+
+  // Search
+  "search.exclude": {
+    "**/.turbo": true,
+    "**/.tsbuildinfo": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/coverage": true,
+    "**/__reports__": true,
+    "**/pnpm-lock.yaml": true,
+    "**/.storybook-cache": true,
+    "**/storybook-static": true
+  },
+
+  // TypeScript - Monorepo support
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+
+  // Turbo
+  "turbo.useLocalTurbo": true,
+
+  // NPM
+  "npm.packageManager": "pnpm",
+
+  // Terminal
+  "terminal.integrated.env.osx": {
+    "NODE_ENV": "development"
+  },
+  "terminal.integrated.env.linux": {
+    "NODE_ENV": "development"
+  },
+  "terminal.integrated.env.windows": {
+    "NODE_ENV": "development"
+  }
 }

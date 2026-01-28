@@ -2,14 +2,23 @@
 node_modules/
 .pnp
 .pnp.js
+.pnpm-store/
 
 # Turborepo
 .turbo/
+.turbo-cache/
+dependency-graph.html
+dependency-graph.dot
+
+# TypeScript
+*.tsbuildinfo
+.tsbuildinfo
 
 # Testing
 coverage/
 __reports__/
 *.lcov
+.vitest/
 
 # Production
 dist/
@@ -19,13 +28,19 @@ bundle/
 # Misc
 .DS_Store
 *.log
+*.log.*
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# IDE
-.vscode/
+# IDE - Allow shared configs but ignore personal settings
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
 .idea/
 *.swp
 *.swo
@@ -34,3 +49,8 @@ bundle/
 # Storybook
 .storybook-cache/
 storybook-static/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

@@ -2,57 +2,118 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-  // Enhanced caching for faster rebuilds
-  cacheDir: '../node_modules/.vite-storybook',
-  css: {
-    devSourcemap: true,
-  },
-  // Optimized dependency pre-bundling for Storybook
-  optimizeDeps: {
-    entries: ['../stories/**/*.stories.tsx', '../overview/**/*.mdx'],
-    include: [
-      'react',
-      'react-dom',
-      'react/jsx-runtime',
-      '@kubit-ui-web/react-components',
-      '@kubit-ui-web/design-system',
+export default defineConfig(({ mode }) => {
+  const isDev = mode === 'development';
+
+  // eslint-disable-next-line no-console
+  console.log(`[Vite Config] Mode: ${mode}, isDev: ${isDev}`);
+
+  return {
+    // Enhanced caching for faster rebuilds
+    cacheDir: '../node_modules/.vite-storybook',
+    css: {
+      devSourcemap: true,
+    },
+    // Optimized dependency pre-bundling for Storybook
+    optimizeDeps: {
+      entries: ['../stories/**/*.stories.tsx', '../overview/**/*.mdx'],
+      // In development, exclude workspace packages to use source files directly
+      exclude: isDev
+        ? ['@kubit-ui-web/react-components', '@kubit-ui-web/design-system']
+        : [],
+      include: ['react', 'react-dom', 'react/jsx-runtime', '@floating-ui/dom'],
+    },
+    plugins: [
+      react({
+        // Enhanced React plugin options
+        babel: {
+          babelrc: false,
+          configFile: false,
+        },
+        jsxImportSource: 'react',
+        jsxRuntime: 'automatic',
+      }),
     ],
-  },
-  plugins: [
-    react({
-      // Enhanced React plugin options
-      babel: {
-        babelrc: false,
-        configFile: false,
-      },
-      jsxImportSource: 'react',
-      jsxRuntime: 'automatic',
-    }),
-  ],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, '../'),
-      '@/stories': path.resolve(__dirname, '../stories'),
-    },
-    // Better module resolution
-    dedupe: ['react', 'react-dom'],
-  },
-  // Enhanced server configuration for development
-  server: {
-    fs: {
-      allow: [
-        // Storybook package
-        path.resolve(__dirname, '../'),
-        // Components package (built dist)
-        path.resolve(__dirname, '../../components'),
-        // Design system package (built dist)
-        path.resolve(__dirname, '../../design-system'),
-        // Root node_modules
-        path.resolve(__dirname, '../../../node_modules'),
+    resolve: {
+      alias: [
+        // In development, configure internal components aliases FIRST (more specific)
+        ...(isDev
+          ? [
+              {
+                find: /^@\/components/,
+                replacement: path.resolve(
+                  __dirname,
+                  '../../components/src/components',
+                ),
+              },
+              {
+                find: /^@\/lib/,
+                replacement: path.resolve(
+                  __dirname,
+                  '../../components/src/lib',
+                ),
+              },
+              {
+                find: '@kubit-ui-web/design-system',
+                replacement: path.resolve(__dirname, '../../design-system/src'),
+              },
+              {
+                find: '@kubit-ui-web/react-components',
+                replacement: path.resolve(__dirname, '../../components/src'),
+              },
+            ]
+          : []),
+        // Alias de Storybook (menos específicos, van después)
+        {
+          find: '@/stories',
+          replacement: path.resolve(__dirname, '../stories'),
+        },
+        {
+          find: '@',
+          replacement: path.resolve(__dirname, '../'),
+        },
       ],
-      // Permitir acceso a los workspaces necesarios
-      strict: true,
+      // Better module resolution
+      dedupe: ['react', 'react-dom'],
+      // Extensions to resolve
+      extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json'],
     },
-  },
+    // Enhanced server configuration for development
+    server: {
+      fs: {
+        allow: [
+          // Storybook package
+          path.resolve(__dirname, '../'),
+          // Components package SOURCE (not dist)
+          path.resolve(__dirname, '../../components/src'),
+          path.resolve(__dirname, '../../components'),
+          // Design system package SOURCE (not dist)
+          path.resolve(__dirname, '../../design-system/src'),
+          path.resolve(__dirname, '../../design-system'),
+          // Root node_modules
+          path.resolve(__dirname, '../../../node_modules'),
+          // Monorepo root
+          path.resolve(__dirname, '../../..'),
+        ],
+        // Allow access to necessary workspaces
+        strict: false,
+      },
+      // Optimize HMR
+      hmr: {
+        overlay: true,
+      },
+      // Optimized watch for monorepo
+      watch: {
+        // Ignore node_modules except workspace packages
+        ignored: [
+          '**/node_modules/**',
+          '!**/node_modules/@kubit-ui-web/**',
+          '**/dist/**',
+          '**/.git/**',
+        ],
+        // Use polling if there are issues with file watchers
+        // usePolling: false,
+      },
+    },
+  };
 });

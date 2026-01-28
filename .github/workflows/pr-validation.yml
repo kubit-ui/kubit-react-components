@@ -37,6 +37,27 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Setup Turbo cache
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
       - name: Install dependencies (Monorepo)
         run: |
           echo "Installing monorepo dependencies..."
@@ -82,8 +103,8 @@ jobs:
         id: lint-validation
         continue-on-error: true
         run: |
-          echo "Running lint on all packages..."
-          if pnpm -r lint; then
+          echo "Running lint on all packages with Turbo..."
+          if pnpm lint; then
             echo "✅ Lint passed"
             echo "lint_valid=true" >> $GITHUB_OUTPUT
           else
@@ -95,8 +116,8 @@ jobs:
         id: typecheck-validation
         continue-on-error: true
         run: |
-          echo "Running type check on all packages..."
-          if pnpm turbo typecheck; then
+          echo "Running type check on all packages with Turbo..."
+          if pnpm typecheck; then
             echo "✅ Type check passed"
             echo "typecheck_valid=true" >> $GITHUB_OUTPUT
           else
@@ -108,8 +129,8 @@ jobs:
         id: test-validation
         continue-on-error: true
         run: |
-          echo "Running tests on components package..."
-          if pnpm --filter @kubit-ui-web/react-components test:coverage; then
+          echo "Running tests on components package with Turbo..."
+          if pnpm test; then
             echo "✅ Tests passed"
             echo "tests_valid=true" >> $GITHUB_OUTPUT
           else
@@ -121,8 +142,8 @@ jobs:
         id: build-validation
         continue-on-error: true
         run: |
-          echo "Building all packages..."
-          if pnpm -r build; then
+          echo "Building all packages with Turbo..."
+          if pnpm build; then
             echo "✅ Build passed"
             echo "build_valid=true" >> $GITHUB_OUTPUT
           else

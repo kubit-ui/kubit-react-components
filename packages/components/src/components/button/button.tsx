@@ -5,9 +5,8 @@ import { useManageState } from '@/lib/hooks/useManageState/useManageState';
 import { STATES } from '@/lib/types/states/states';
 import { processIconProp } from '@/lib/utils/process/processCommonProp';
 
-import type { ButtonProps } from './types/button';
-
 import { ButtonStandAlone } from './buttonStandAlone';
+import type { ButtonProps } from './types/button';
 
 /**
  * Generic button component for triggering actions or submitting forms.
