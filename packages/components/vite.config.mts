@@ -218,7 +218,8 @@ const removeUnnecessaryFoldersPlugin = () => {
 
 /**
  * Vite configuration for building the library
- * Optimized for production builds with Vite 7 stable
+ * Optimized for production builds with Vite 8 Beta (Rolldown-powered)
+ * Rolldown provides 10-30x faster builds than Rollup with native Rust performance
  */
 export default defineConfig(({ mode }) => ({
   build: {
@@ -229,14 +230,15 @@ export default defineConfig(({ mode }) => ({
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'KubitUI',
     },
-    minify: 'terser',
+    // Rolldown uses Oxc minifier (faster than terser)
+    minify: true,
     // Enhanced module preloading for better performance
     modulePreload: {
       polyfill: false, // Disable polyfill for smaller bundles
     },
     outDir: 'dist',
     // Report compressed size to see gzipped bundle sizes
-    reportCompressedSize: false,
+    reportCompressedSize: true,
     rollupOptions: {
       external: [
         'react',
@@ -269,7 +271,7 @@ export default defineConfig(({ mode }) => ({
           preserveModulesRoot: 'src',
         },
       ],
-      // Enhanced treeshaking with better defaults
+      // Enhanced treeshaking with better defaults (Rolldown + Oxc semantic analysis)
       treeshake: {
         moduleSideEffects: false,
         propertyReadSideEffects: false,
@@ -278,33 +280,13 @@ export default defineConfig(({ mode }) => ({
     },
     // Disable sourcemaps to prevent Vite from resolving back to source files
     sourcemap: false,
-    terserOptions: {
-      compress: {
-        dead_code: true,
-        drop_console: true,
-        drop_debugger: true,
-        // Enhanced compression options
-        passes: 2, // Multiple passes for better compression
-        pure_funcs: ['console.log', 'console.info', 'console.debug'],
-        unsafe_arrows: true, // Convert functions to arrow functions
-        unsafe_methods: true, // Optimize method calls
-      },
-      format: {
-        comments: false,
-      },
-      mangle: {
-        properties: false, // Don't mangle properties to maintain compatibility
-      },
-      // Module optimization
-      module: true,
-    },
   },
-  // Enhanced caching for faster rebuilds
+  // Enhanced caching for faster rebuilds (Rolldown module-level persistent cache)
   cacheDir: 'node_modules/.vite',
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
   },
-  // Optimized dependency pre-bundling
+  // Optimized dependency pre-bundling with Rolldown
   optimizeDeps: {
     include: [],
     // Disable discovery for library builds
@@ -312,7 +294,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react({
-      // Enhanced React plugin options
+      // Enhanced React plugin options for Vite 8
       babel: {
         babelrc: false,
         configFile: false,
@@ -320,8 +302,6 @@ export default defineConfig(({ mode }) => ({
       jsxImportSource: 'react',
       jsxRuntime: 'automatic',
     }),
-    // Don't use tsconfigPaths plugin - it doesn't convert aliases during build
-    // Use resolve.alias instead so Rollup can convert them to relative paths
     dts({
       exclude: [
         'src/**/*.test.*',
@@ -342,7 +322,7 @@ export default defineConfig(({ mode }) => ({
     removeStorybookPlugin(),
     removeUnnecessaryFoldersPlugin(),
   ],
-  // Improved resolve options
+  // Improved resolve options with native tsconfig paths support (Vite 8)
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -351,5 +331,7 @@ export default defineConfig(({ mode }) => ({
     },
     // Better defaults for library builds
     dedupe: ['react', 'react-dom'],
+    // Enable native tsconfig paths support (Vite 8 feature)
+    tsconfigPaths: true,
   },
 }));

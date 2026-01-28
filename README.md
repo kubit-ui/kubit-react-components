@@ -3,8 +3,12 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Node Version](https://img.shields.io/badge/node-22.x-brightgreen.svg)](https://nodejs.org)
 [![pnpm Version](https://img.shields.io/badge/pnpm-10.28.1-orange.svg)](https://pnpm.io)
+[![Vite](https://img.shields.io/badge/Vite-8.0.0--beta.10-646CFF.svg?logo=vite)](https://vite.dev)
+[![Rolldown](https://img.shields.io/badge/Rolldown-Powered-FF6B35.svg)](https://rolldown.rs)
 
 A professional, production-ready monorepo containing a comprehensive library of customizable and accessible React components, built with TypeScript and modern web standards.
+
+> **⚡ Powered by Vite 8 + Rolldown**: This project uses Vite 8 Beta with Rolldown, the next-generation Rust-powered bundler that delivers **10-30x faster builds** than traditional bundlers.
 
 ## Overview
 

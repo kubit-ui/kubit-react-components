@@ -2,19 +2,24 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vite';
 
+/**
+ * Vite configuration for Storybook
+ * Optimized for Vite 8 Beta (Rolldown-powered)
+ * Rolldown provides 10-30x faster builds and improved HMR performance
+ */
 export default defineConfig(({ mode }) => {
   const isDev = mode === 'development';
 
   // eslint-disable-next-line no-console
-  console.log(`[Vite Config] Mode: ${mode}, isDev: ${isDev}`);
+  console.log(`[Vite 8 Rolldown Config] Mode: ${mode}, isDev: ${isDev}`);
 
   return {
-    // Enhanced caching for faster rebuilds
+    // Enhanced caching for faster rebuilds (Rolldown module-level persistent cache)
     cacheDir: '../node_modules/.vite-storybook',
     css: {
       devSourcemap: true,
     },
-    // Optimized dependency pre-bundling for Storybook
+    // Optimized dependency pre-bundling for Storybook with Rolldown
     optimizeDeps: {
       entries: ['../stories/**/*.stories.tsx', '../overview/**/*.mdx'],
       // In development, exclude workspace packages to use source files directly
@@ -22,10 +27,12 @@ export default defineConfig(({ mode }) => {
         ? ['@kubit-ui-web/react-components', '@kubit-ui-web/design-system']
         : [],
       include: ['react', 'react-dom', 'react/jsx-runtime', '@floating-ui/dom'],
+      // Disable discovery for better performance
+      noDiscovery: false,
     },
     plugins: [
       react({
-        // Enhanced React plugin options
+        // Enhanced React plugin options for Vite 8
         babel: {
           babelrc: false,
           configFile: false,
@@ -77,8 +84,10 @@ export default defineConfig(({ mode }) => {
       dedupe: ['react', 'react-dom'],
       // Extensions to resolve
       extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json'],
+      // Enable native tsconfig paths support (Vite 8 feature)
+      tsconfigPaths: true,
     },
-    // Enhanced server configuration for development
+    // Enhanced server configuration for development with Rolldown HMR
     server: {
       fs: {
         allow: [
@@ -98,7 +107,7 @@ export default defineConfig(({ mode }) => {
         // Allow access to necessary workspaces
         strict: false,
       },
-      // Optimize HMR
+      // Optimize HMR (Rolldown provides faster HMR)
       hmr: {
         overlay: true,
       },

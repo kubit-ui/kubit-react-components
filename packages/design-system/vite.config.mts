@@ -4,9 +4,6 @@ import { fileURLToPath } from 'node:url';
 import path from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-// Vite 8 beta: tsconfigPaths support is coming but not yet in stable API
-// For now we keep using the plugin until the native support is finalized
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 // Constants for array indexing
 const EMPTY_LENGTH = 0;
@@ -203,7 +200,8 @@ const removeUnnecessaryFoldersPlugin = () => {
 
 /**
  * Vite configuration for building the design system library
- * Optimized for production builds with Vite 7 stable
+ * Optimized for production builds with Vite 8 Beta (Rolldown-powered)
+ * Rolldown provides 10-30x faster builds than Rollup with native Rust performance
  */
 export default defineConfig(({ mode }) => ({
   // Allow .js files from Bernova to be processed
@@ -219,7 +217,8 @@ export default defineConfig(({ mode }) => ({
       },
       name: 'KubitDesignSystem',
     },
-    minify: 'terser',
+    // Rolldown uses Oxc minifier (faster than terser)
+    minify: true,
     // Enhanced module preloading for better performance
     modulePreload: {
       polyfill: false, // Disable polyfill for smaller bundles
@@ -253,7 +252,7 @@ export default defineConfig(({ mode }) => ({
           preserveModulesRoot: 'src',
         },
       ],
-      // Enhanced treeshaking with better defaults
+      // Enhanced treeshaking with better defaults (Rolldown + Oxc semantic analysis)
       treeshake: {
         moduleSideEffects: false,
         propertyReadSideEffects: false,
@@ -261,41 +260,19 @@ export default defineConfig(({ mode }) => ({
       },
     },
     sourcemap: mode !== 'production',
-    terserOptions: {
-      compress: {
-        dead_code: true,
-        drop_console: true,
-        drop_debugger: true,
-        // Enhanced compression options
-        passes: 2, // Multiple passes for better compression
-        pure_funcs: ['console.log', 'console.info', 'console.debug'],
-        unsafe_arrows: true, // Convert functions to arrow functions
-        unsafe_methods: true, // Optimize method calls
-      },
-      format: {
-        comments: false,
-      },
-      mangle: {
-        properties: false, // Don't mangle properties to maintain compatibility
-      },
-      // Module optimization
-      module: true,
-    },
   },
-  // Enhanced caching for faster rebuilds
+  // Enhanced caching for faster rebuilds (Rolldown module-level persistent cache)
   cacheDir: 'node_modules/.vite',
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
   },
-  // Optimized dependency pre-bundling
+  // Optimized dependency pre-bundling with Rolldown
   optimizeDeps: {
     include: [],
     // Disable discovery for library builds
     noDiscovery: true,
   },
   plugins: [
-    // tsconfigPaths plugin for path resolution
-    tsconfigPaths({ projects: ['./tsconfig.build.json'] }),
     // Copy Bernova generated files without processing
     copyBernovaFilesPlugin(),
     // Generate TypeScript declaration files
@@ -329,11 +306,13 @@ export default defineConfig(({ mode }) => ({
     }),
     removeUnnecessaryFoldersPlugin(),
   ],
-  // Improved resolve options
+  // Improved resolve options with native tsconfig paths support (Vite 8)
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    // Enable native tsconfig paths support (Vite 8 feature)
+    tsconfigPaths: true,
   },
 }));
