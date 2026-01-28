@@ -35,7 +35,7 @@
       "url": "https://github.com/kubit-ui/kubit-react-components/graphs/contributors"
     }
   ],
-  "packageManager": "pnpm@10.28.1",
+  "packageManager": "pnpm@10.28.2",
   "keywords": [
     "react",
     "react-components",
@@ -170,7 +170,7 @@
     "react-dom": ">=17.0.0 || >=18.3.1"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.7.4"
+    "@floating-ui/dom": "^1.7.5"
   },
   "devDependencies": {
     "@kubit-ui-web/design-system": "workspace:*",
@@ -189,7 +189,6 @@
     "eslint": "^9.39.2",
     "eslint-config-kubit": "1.2.0",
     "glob": "^13.0.0",
-    "happy-dom": "^20.3.7",
     "html-validate": "^10.7.0",
     "jsdom": "^27.4.0",
     "prettier": "^3.8.1",
@@ -197,7 +196,7 @@
     "react-dom": "18.3.1",
     "terser": "^5.46.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.53.1",
+    "typescript-eslint": "^8.54.0",
     "vite": "^7.3.1",
     "vite-plugin-dts": "^4.5.4",
     "vite-tsconfig-paths": "^6.0.5",
