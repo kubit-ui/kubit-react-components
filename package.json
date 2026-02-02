@@ -73,7 +73,7 @@
     "update-deps:all:apply": "pnpm update-deps:apply && pnpm update-deps:components:apply && pnpm update-deps:design-system:apply && pnpm update-deps:storybook:apply"
   },
   "devDependencies": {
-    "turbo": "^2.7.5"
+    "turbo": "^2.8.1"
   },
   "bugs": {
     "url": "https://github.com/kubit-ui/kubit-react-components/issues",
