@@ -239,16 +239,60 @@ jobs:
           PUBLISHED_PACKAGES=""
           HAS_PUBLISHED=false
 
+          # Function to calculate stable version from beta
+          calc_stable_version() {
+            local current=$1
+            local version_type=$2
+            node -e "
+              const current = '$current';
+              const versionType = '$version_type';
+
+              // Check if current version is a beta
+              const betaMatch = current.match(/^(\d+)\.(\d+)\.(\d+)-beta\.\d+$/);
+
+              if (betaMatch) {
+                // Remove beta suffix and use the base version
+                const major = parseInt(betaMatch[1]);
+                const minor = parseInt(betaMatch[2]);
+                const patch = parseInt(betaMatch[3]);
+
+                // For breaking changes from break/ branches, the version is already correct
+                // Just remove the beta suffix
+                if (versionType === 'major') {
+                  console.log(\`\${major}.\${minor}.\${patch}\`);
+                } else if (versionType === 'minor') {
+                  console.log(\`\${major}.\${minor}.\${patch}\`);
+                } else {
+                  console.log(\`\${major}.\${minor}.\${patch}\`);
+                }
+              } else {
+                // Not a beta version, use standard semver bump
+                const parts = current.split('.').map(Number);
+                if (versionType === 'major') {
+                  parts[0]++;
+                  parts[1] = 0;
+                  parts[2] = 0;
+                } else if (versionType === 'minor') {
+                  parts[1]++;
+                  parts[2] = 0;
+                } else {
+                  parts[2]++;
+                }
+                console.log(parts.join('.'));
+              }
+            "
+          }
+
           # Publish design-system first (no dependencies) if changed
           if [[ "${{ steps.changes.outputs.publish_design_system }}" == "true" ]]; then
             echo "📦 Publishing @kubit-ui-web/design-system..."
             cd packages/design-system
 
             CURRENT=$(node -p "require('./package.json').version")
-            pnpm version $VERSION_TYPE --no-git-tag-version
-            NEW=$(node -p "require('./package.json').version")
+            NEW=$(calc_stable_version "$CURRENT" "$VERSION_TYPE")
 
             echo "  Version: $CURRENT → $NEW"
+            npm version $NEW --no-git-tag-version
             pnpm publish --no-git-checks --access public --provenance
 
             PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES @kubit-ui-web/design-system@$NEW"
@@ -265,10 +309,10 @@ jobs:
             cd packages/components
 
             CURRENT=$(node -p "require('./package.json').version")
-            pnpm version $VERSION_TYPE --no-git-tag-version
-            NEW=$(node -p "require('./package.json').version")
+            NEW=$(calc_stable_version "$CURRENT" "$VERSION_TYPE")
 
             echo "  Version: $CURRENT → $NEW"
+            npm version $NEW --no-git-tag-version
             pnpm publish --no-git-checks --access public --provenance
 
             PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES @kubit-ui-web/react-components@$NEW"
