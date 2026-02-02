@@ -148,6 +148,55 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Determine version bump per package
+        if: steps.changes.outputs.should_publish == 'true'
+        id: version-bump
+        run: |
+          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+
+          # Fetch main branch for comparison
+          git fetch origin main
+          BASE_REF="origin/main"
+
+          # Function to determine version bump for a package based on its commits
+          # Note: In beta, breaking changes are treated as MINOR since betas are experimental
+          determine_package_version() {
+            local package_path=$1
+            local package_name=$2
+
+            echo "🔍 Analyzing commits for $package_name..."
+
+            # Get commits that affected this package
+            local commits=$(git log --oneline HEAD...$BASE_REF --reverse -- "$package_path")
+
+            # Check for features or breaking changes (both treated as minor in beta)
+            if echo "$commits" | grep -qE "(BREAKING CHANGE|!:|^[a-f0-9]+ (feat|feature)(\(.+\))?:)" || \
+               [[ $BRANCH_NAME =~ ^break/ ]] || \
+               [[ $BRANCH_NAME =~ ^breaking/ ]] || \
+               [[ $BRANCH_NAME =~ ^feat/ ]] || \
+               [[ $BRANCH_NAME =~ ^feature/ ]]; then
+              echo "minor"
+              return
+            fi
+
+            # Default to patch
+            echo "patch"
+          }
+
+          # Determine version for design-system
+          if [[ "${{ steps.changes.outputs.design_system_changed }}" == "true" ]]; then
+            DESIGN_SYSTEM_VERSION_TYPE=$(determine_package_version "packages/design-system" "design-system")
+            echo "design_system_version_type=$DESIGN_SYSTEM_VERSION_TYPE" >> $GITHUB_OUTPUT
+            echo "📦 design-system: $DESIGN_SYSTEM_VERSION_TYPE"
+          fi
+
+          # Determine version for components
+          if [[ "${{ steps.changes.outputs.components_changed }}" == "true" ]]; then
+            COMPONENTS_VERSION_TYPE=$(determine_package_version "packages/components" "components")
+            echo "components_version_type=$COMPONENTS_VERSION_TYPE" >> $GITHUB_OUTPUT
+            echo "📦 react-components: $COMPONENTS_VERSION_TYPE"
+          fi
+
       - name: Determine and publish beta versions
         if: steps.changes.outputs.should_publish == 'true'
         id: beta-publish
@@ -158,21 +207,37 @@ jobs:
           PUBLISHED=""
           HAS_PUBLISHED=false
 
-          # Function to calculate next beta version
+          # Function to calculate next beta version based on version type
+          # Note: In beta, only 'minor' and 'patch' are used (breaking changes = minor)
           calc_beta_version() {
             local current=$1
+            local version_type=$2
             node -e "
               const current = '$current';
-              const betaMatch = current.match(/^(\d+\.\d+\.\d+)-beta\.(\d+)$/);
+              const versionType = '$version_type';
+              const betaMatch = current.match(/^(\d+)\.(\d+)\.(\d+)-beta\.(\d+)$/);
+
               if (betaMatch) {
-                const base = betaMatch[1];
-                const num = parseInt(betaMatch[2]) + 1;
-                console.log(\`\${base}-beta.\${num}\`);
+                // Already a beta version - just increment beta number
+                const major = parseInt(betaMatch[1]);
+                const minor = parseInt(betaMatch[2]);
+                const patch = parseInt(betaMatch[3]);
+                const betaNum = parseInt(betaMatch[4]);
+
+                console.log(\`\${major}.\${minor}.\${patch}-beta.\${betaNum + 1}\`);
               } else {
+                // Not a beta version, create new beta based on version type
+                // In beta workflow: only 'minor' or 'patch' (no 'major')
                 const parts = current.split('.').map(Number);
-                parts[0]++;
-                parts[1] = 0;
-                parts[2] = 0;
+
+                if (versionType === 'minor') {
+                  parts[1]++;
+                  parts[2] = 0;
+                } else {
+                  // patch
+                  parts[2]++;
+                }
+
                 console.log(\`\${parts.join('.')}-beta.1\`);
               }
             "
@@ -180,12 +245,13 @@ jobs:
 
           # Publish design-system beta if changed
           if [ "${{ steps.changes.outputs.design_system_changed }}" = "true" ]; then
-            echo "📦 Publishing @kubit-ui-web/design-system beta..."
+            DESIGN_SYSTEM_VERSION_TYPE="${{ steps.version-bump.outputs.design_system_version_type }}"
+            echo "📦 Publishing @kubit-ui-web/design-system beta (bump: $DESIGN_SYSTEM_VERSION_TYPE)..."
             cd packages/design-system
             CURRENT=$(node -p "require('./package.json').version")
-            NEW=$(calc_beta_version "$CURRENT")
+            NEW=$(calc_beta_version "$CURRENT" "$DESIGN_SYSTEM_VERSION_TYPE")
 
-            echo "  $CURRENT → $NEW"
+            echo "  $CURRENT → $NEW ($DESIGN_SYSTEM_VERSION_TYPE)"
             npm version $NEW --no-git-tag-version
             pnpm publish --no-git-checks --access public --tag beta --provenance
 
@@ -199,12 +265,13 @@ jobs:
 
           # Publish components beta if changed
           if [ "${{ steps.changes.outputs.components_changed }}" = "true" ]; then
-            echo "📦 Publishing @kubit-ui-web/react-components beta..."
+            COMPONENTS_VERSION_TYPE="${{ steps.version-bump.outputs.components_version_type }}"
+            echo "📦 Publishing @kubit-ui-web/react-components beta (bump: $COMPONENTS_VERSION_TYPE)..."
             cd packages/components
             CURRENT=$(node -p "require('./package.json').version")
-            NEW=$(calc_beta_version "$CURRENT")
+            NEW=$(calc_beta_version "$CURRENT" "$COMPONENTS_VERSION_TYPE")
 
-            echo "  $CURRENT → $NEW"
+            echo "  $CURRENT → $NEW ($COMPONENTS_VERSION_TYPE)"
             npm version $NEW --no-git-tag-version
             pnpm publish --no-git-checks --access public --tag beta --provenance
 
@@ -249,6 +316,10 @@ jobs:
             ### 📦 Published Packages
             ${{ steps.beta-publish.outputs.published }}
 
+            ### 📊 Version Bumps
+            - Design System: ${{ steps.changes.outputs.design_system_changed == 'true' && format('✅ {0}', steps.version-bump.outputs.design_system_version_type) || '⏭️ No changes' }}
+            - React Components: ${{ steps.changes.outputs.components_changed == 'true' && format('✅ {0}', steps.version-bump.outputs.components_version_type) || '⏭️ No changes' }}
+
             ### 📥 Installation
             ```bash
             # Install specific versions
@@ -280,10 +351,10 @@ jobs:
           echo ""
           echo "📦 Published Packages:"
           if [ "${{ steps.changes.outputs.design_system_changed }}" = "true" ]; then
-            echo "  - @kubit-ui-web/design-system@${{ steps.beta-publish.outputs.design_system_version }}"
+            echo "  - @kubit-ui-web/design-system@${{ steps.beta-publish.outputs.design_system_version }} (${{ steps.version-bump.outputs.design_system_version_type }})"
           fi
           if [ "${{ steps.changes.outputs.components_changed }}" = "true" ]; then
-            echo "  - @kubit-ui-web/react-components@${{ steps.beta-publish.outputs.components_version }}"
+            echo "  - @kubit-ui-web/react-components@${{ steps.beta-publish.outputs.components_version }} (${{ steps.version-bump.outputs.components_version_type }})"
           fi
           echo ""
           echo "🔖 Tag: beta"

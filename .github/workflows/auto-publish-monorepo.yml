@@ -190,33 +190,76 @@ jobs:
           git config --local user.email "kubit-bot@github.com"
           git config --local user.name "Kubit Release Bot"
 
-      - name: Determine version bump
+      - name: Determine version bump per package
         if: steps.changes.outputs.should_publish == 'true'
         id: version-bump
         run: |
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           PR_TITLE="${{ github.event.pull_request.title }}"
+          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
 
-          # Determine version bump type
-          if echo "$PR_TITLE" | grep -q "!" || \
-             echo "$PR_TITLE" | grep -qi "\[breaking\]" || \
-             [[ $BRANCH_NAME =~ ^break/ ]] || \
-             [[ $BRANCH_NAME =~ ^breaking/ ]]; then
-            VERSION_TYPE="major"
-            REASON="Breaking change"
-          elif echo "$PR_TITLE" | grep -Eq "^(feat|feature)(\(.+\))?:" || \
+          # Fetch base branch for comparison
+          git fetch origin $BASE_BRANCH
+          BASE_REF="origin/$BASE_BRANCH"
+
+          # Function to determine version bump for a package based on its commits
+          determine_package_version() {
+            local package_path=$1
+            local package_name=$2
+
+            echo "🔍 Analyzing commits for $package_name..."
+
+            # Get commits that affected this package
+            local commits=$(git log --oneline HEAD...$BASE_REF --reverse -- "$package_path")
+
+            # Check for breaking changes
+            if echo "$commits" | grep -qE "(BREAKING CHANGE|!:)" || \
+               echo "$PR_TITLE" | grep -q "!" || \
+               echo "$PR_TITLE" | grep -qi "\[breaking\]" || \
+               [[ $BRANCH_NAME =~ ^break/ ]] || \
+               [[ $BRANCH_NAME =~ ^breaking/ ]]; then
+              echo "major"
+              return
+            fi
+
+            # Check for features (minor)
+            if echo "$commits" | grep -qE "^[a-f0-9]+ (feat|feature)(\(.+\))?:" || \
+               echo "$PR_TITLE" | grep -Eq "^(feat|feature)(\($package_name\))?:" || \
                [[ $BRANCH_NAME =~ ^feat/ ]] || \
                [[ $BRANCH_NAME =~ ^feature/ ]]; then
-            VERSION_TYPE="minor"
-            REASON="New feature"
-          else
-            VERSION_TYPE="patch"
-            REASON="Bug fix or maintenance"
+              echo "minor"
+              return
+            fi
+
+            # Default to patch
+            echo "patch"
+          }
+
+          # Determine version for design-system
+          if [[ "${{ steps.changes.outputs.design_system_changed }}" == "true" ]]; then
+            DESIGN_SYSTEM_VERSION_TYPE=$(determine_package_version "packages/design-system" "design-system")
+            echo "design_system_version_type=$DESIGN_SYSTEM_VERSION_TYPE" >> $GITHUB_OUTPUT
+            echo "📦 design-system: $DESIGN_SYSTEM_VERSION_TYPE"
           fi
 
-          echo "Version bump: $VERSION_TYPE ($REASON)"
+          # Determine version for components
+          if [[ "${{ steps.changes.outputs.components_changed }}" == "true" ]]; then
+            COMPONENTS_VERSION_TYPE=$(determine_package_version "packages/components" "components")
+            echo "components_version_type=$COMPONENTS_VERSION_TYPE" >> $GITHUB_OUTPUT
+            echo "📦 react-components: $COMPONENTS_VERSION_TYPE"
+          fi
+
+          # Keep backward compatibility - use the highest version type for global reference
+          if [[ "$DESIGN_SYSTEM_VERSION_TYPE" == "major" ]] || [[ "$COMPONENTS_VERSION_TYPE" == "major" ]]; then
+            VERSION_TYPE="major"
+          elif [[ "$DESIGN_SYSTEM_VERSION_TYPE" == "minor" ]] || [[ "$COMPONENTS_VERSION_TYPE" == "minor" ]]; then
+            VERSION_TYPE="minor"
+          else
+            VERSION_TYPE="patch"
+          fi
+
           echo "version_type=$VERSION_TYPE" >> $GITHUB_OUTPUT
-          echo "reason=$REASON" >> $GITHUB_OUTPUT
+          echo "reason=Per-package versioning" >> $GITHUB_OUTPUT
 
       - name: Verify NPM authentication
         if: steps.changes.outputs.should_publish == 'true'
@@ -235,7 +278,6 @@ jobs:
         if: steps.changes.outputs.should_publish == 'true'
         id: npm-publish
         run: |
-          VERSION_TYPE="${{ steps.version-bump.outputs.version_type }}"
           PUBLISHED_PACKAGES=""
           HAS_PUBLISHED=false
 
@@ -285,13 +327,14 @@ jobs:
 
           # Publish design-system first (no dependencies) if changed
           if [[ "${{ steps.changes.outputs.publish_design_system }}" == "true" ]]; then
-            echo "📦 Publishing @kubit-ui-web/design-system..."
+            DESIGN_SYSTEM_VERSION_TYPE="${{ steps.version-bump.outputs.design_system_version_type }}"
+            echo "📦 Publishing @kubit-ui-web/design-system (bump: $DESIGN_SYSTEM_VERSION_TYPE)..."
             cd packages/design-system
 
             CURRENT=$(node -p "require('./package.json').version")
-            NEW=$(calc_stable_version "$CURRENT" "$VERSION_TYPE")
+            NEW=$(calc_stable_version "$CURRENT" "$DESIGN_SYSTEM_VERSION_TYPE")
 
-            echo "  Version: $CURRENT → $NEW"
+            echo "  Version: $CURRENT → $NEW ($DESIGN_SYSTEM_VERSION_TYPE)"
             npm version $NEW --no-git-tag-version
             pnpm publish --no-git-checks --access public --provenance
 
@@ -305,13 +348,14 @@ jobs:
 
           # Publish components if changed
           if [[ "${{ steps.changes.outputs.publish_components }}" == "true" ]]; then
-            echo "📦 Publishing @kubit-ui-web/react-components..."
+            COMPONENTS_VERSION_TYPE="${{ steps.version-bump.outputs.components_version_type }}"
+            echo "📦 Publishing @kubit-ui-web/react-components (bump: $COMPONENTS_VERSION_TYPE)..."
             cd packages/components
 
             CURRENT=$(node -p "require('./package.json').version")
-            NEW=$(calc_stable_version "$CURRENT" "$VERSION_TYPE")
+            NEW=$(calc_stable_version "$CURRENT" "$COMPONENTS_VERSION_TYPE")
 
-            echo "  Version: $CURRENT → $NEW"
+            echo "  Version: $CURRENT → $NEW ($COMPONENTS_VERSION_TYPE)"
             npm version $NEW --no-git-tag-version
             pnpm publish --no-git-checks --access public --provenance
 
@@ -344,15 +388,14 @@ jobs:
           body: |
             ## 🚀 Release
 
-            **Type:** ${{ steps.version-bump.outputs.version_type }}
             **Branch:** `${{ steps.changes.outputs.branch_name }}`
 
             ### 📦 Published Packages
             ${{ steps.npm-publish.outputs.packages }}
 
-            ### 📊 Changes Detected
-            - Design System: ${{ steps.changes.outputs.design_system_changed == 'true' && '✅ Changed' || '⏭️ No changes' }}
-            - React Components: ${{ steps.changes.outputs.components_changed == 'true' && '✅ Changed' || '⏭️ No changes' }}
+            ### 📊 Version Bumps
+            - Design System: ${{ steps.changes.outputs.design_system_changed == 'true' && format('✅ {0}', steps.version-bump.outputs.design_system_version_type) || '⏭️ No changes' }}
+            - React Components: ${{ steps.changes.outputs.components_changed == 'true' && format('✅ {0}', steps.version-bump.outputs.components_version_type) || '⏭️ No changes' }}
 
             ### 📝 Changes
             - ${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})
