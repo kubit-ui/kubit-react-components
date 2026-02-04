@@ -224,7 +224,7 @@ jobs:
       - name: Publish canary to NPM
         run: |
           echo "🚀 Publishing canary to NPM..."
-          pnpm changeset:publish --tag canary
+          pnpm changeset:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

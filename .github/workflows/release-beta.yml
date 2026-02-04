@@ -196,7 +196,7 @@ jobs:
       - name: Publish beta to NPM
         run: |
           echo "🚀 Publishing beta to NPM..."
-          pnpm changeset:publish --tag beta
+          pnpm changeset:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
