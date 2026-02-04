@@ -70,9 +70,14 @@
     "update-deps:storybook": "pnpm --filter=@kubit-ui-web/storybook exec npx npm-check-updates",
     "update-deps:storybook:apply": "pnpm --filter=@kubit-ui-web/storybook exec npx npm-check-updates -u",
     "update-deps:all": "pnpm update-deps && pnpm update-deps:components && pnpm update-deps:design-system && pnpm update-deps:storybook",
-    "update-deps:all:apply": "pnpm update-deps:apply && pnpm update-deps:components:apply && pnpm update-deps:design-system:apply && pnpm update-deps:storybook:apply"
+    "update-deps:all:apply": "pnpm update-deps:apply && pnpm update-deps:components:apply && pnpm update-deps:design-system:apply && pnpm update-deps:storybook:apply",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "pnpm build && changeset publish",
+    "changeset:status": "changeset status --verbose"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "turbo": "^2.8.1"
   },
   "bugs": {

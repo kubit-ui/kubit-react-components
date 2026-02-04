@@ -238,25 +238,109 @@ Turborepo ensures tasks run in the correct order and caches results for faster s
 
 ## Contributing
 
-We welcome contributions from the community! This project follows a fork-based contribution model to maintain code quality and security.
+We welcome contributions to **Kubit React Components**! This is a **monorepo** managed with **[Changesets](https://github.com/changesets/changesets)** for automated version management and publishing.
 
-### How to Contribute
+### 📦 Monorepo Packages
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to your branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- **`@kubit-ui-web/react-components`** - React component library
+- **`@kubit-ui-web/design-system`** - CSS-in-JS styles and themes
+- **`@kubit-ui-web/storybook`** - Component documentation (private)
 
-Please read our [Contributing Guide](./CONTRIBUTING.md) for detailed guidelines.
+### Quick Start for Contributors
 
-### Development Guidelines
+1. **Fork the repository** on GitHub
+2. **Clone your fork** locally
+3. **Install dependencies**: `pnpm install`
+4. **Create a branch** with proper naming: `<type>/<description>`
+5. **Make changes** with scoped commits: `<type>(<scope>): <description>`
+6. **Push to your fork** and open a Pull Request
 
-- Follow the existing code style and conventions
-- Write tests for new features
-- Update documentation as needed
-- Ensure all tests pass before submitting PR
-- Keep commits atomic and well-described
+### Branch Naming (Required)
+
+Your branch name determines the version bump type:
+
+| Branch Pattern | Version Bump | Example |
+|----------------|--------------|---------|
+| `feat/` or `feature/` | **MINOR** (2.0.0 → 2.1.0) | `feat/tooltip-component` |
+| `fix/` or `bugfix/` | **PATCH** (2.0.0 → 2.0.1) | `fix/button-styling` |
+| `break/` or `breaking/` | **MAJOR** (2.0.0 → 3.0.0) | `break/api-redesign` |
+| `docs/`, `chore/`, `refactor/`, `test/` | **PATCH** | `docs/update-readme` |
+
+### Commit Format (Required)
+
+**CRITICAL:** Commits must include a **scope** to indicate which package is affected:
+
+```
+<type>(<scope>): <description>
+```
+
+**Scopes:**
+- `components` - Changes to `@kubit-ui-web/react-components`
+- `design-system` - Changes to `@kubit-ui-web/design-system`
+- `storybook` - Changes to `@kubit-ui-web/storybook` (docs only)
+- `all` or `monorepo` - Changes affecting multiple packages
+- No scope - Defaults to all packages (not recommended)
+
+**Examples:**
+
+```sh
+# Adding a new component
+git commit -m "feat(components): add Tooltip component with accessibility"
+
+# Fixing design system bug
+git commit -m "fix(design-system): resolve button hover color issue"
+
+# Breaking change
+git commit -m "feat(components)!: redesign Modal API"
+
+# Changes affecting both packages
+git commit -m "feat(all): add dark mode support"
+
+# Documentation
+git commit -m "docs(components): add Button usage examples"
+```
+
+### PR Title Format (Required)
+
+Your PR title must follow the same format:
+
+```
+<type>(<scope>): <description>
+```
+
+**Examples:**
+- ✅ `feat(components): add Tooltip component`
+- ✅ `fix(design-system): resolve button styling`
+- ✅ `feat(all): add dark mode support`
+- ❌ `Added new component` (missing type and scope)
+- ❌ `fix: button issue` (missing scope)
+
+### Automated Workflow
+
+When you open a PR:
+1. **Automated validation** checks branch name, PR title, tests, and code quality
+2. **Bot comments** with validation results and expected version bump
+3. **On merge**:
+   - Changeset is auto-generated based on your scope
+   - Version is bumped in affected package(s)
+   - CHANGELOG is updated
+   - Package(s) are built and published to NPM
+   - GitHub Release is created
+   - PR comment confirms published version(s)
+
+**No manual changeset needed - it's all automatic!** 🚀
+
+### PR Validation Checks
+
+✅ Branch naming follows conventions
+✅ PR title follows conventional commits with scope
+✅ TypeScript type checking passes
+✅ All tests pass (components)
+✅ Linting passes
+✅ No `console.log` in production code
+✅ TODOs reference GitHub issues
+
+For detailed contributing guidelines, see [CONTRIBUTING-CHANGESETS.md](./CONTRIBUTING-CHANGESETS.md).
 
 ## Documentation
 
