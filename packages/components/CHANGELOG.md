@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.50
+
+### Major Changes
+
+- Npm release with changesets (#57)
+
 ## 2.0.0-beta.49
 
 ### Major Changes
