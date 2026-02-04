@@ -118,9 +118,10 @@ jobs:
 
           while IFS= read -r commit; do
             # Extract scope from commit message: type(scope): message
-            # Match pattern like "feat(scope):" but not "(#123)"
-            if [[ "$commit" =~ ^[a-z]+\(([^)]+)\): ]]; then
-              SCOPE="${BASH_REMATCH[1]}"
+            # Use grep to extract scope safely (avoids bash regex issues with PR numbers)
+            SCOPE=$(echo "$commit" | grep -oP '^[a-z]+\(\K[^)]+(?=\):)' || echo "")
+
+            if [ -n "$SCOPE" ]; then
               echo "Found scope in commit: $SCOPE"
 
               case "$SCOPE" in
