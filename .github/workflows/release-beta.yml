@@ -74,7 +74,7 @@ jobs:
         run: |
           echo "📝 Analyzing last commit..."
 
-          # Get last commit message
+          # Get last commit message (only first line/subject)
           COMMIT_MSG=$(git log -1 --pretty=format:"%s")
           echo "Commit: $COMMIT_MSG"
 
@@ -82,9 +82,10 @@ jobs:
           PACKAGES=""
 
           # Extract scope from commit message: type(scope): message
-          # Match pattern like "feat(scope):" but not "(#123)"
-          if [[ "$COMMIT_MSG" =~ ^[a-z]+\(([^)]+)\): ]]; then
-            SCOPE="${BASH_REMATCH[1]}"
+          # Use grep to extract scope safely
+          SCOPE=$(echo "$COMMIT_MSG" | grep -oP '^[a-z]+\(\K[^)]+(?=\):)' || echo "")
+
+          if [ -n "$SCOPE" ]; then
             echo "Found scope in commit: $SCOPE"
 
             case "$SCOPE" in
