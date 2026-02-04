@@ -75,52 +75,89 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Detect version bump type and affected packages
+      - name: Detect version bump type and affected packages from commits
         id: detect
         run: |
-          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
-          PR_TITLE="${{ github.event.pull_request.title }}"
-          PR_BODY="${{ github.event.pull_request.body }}"
+          BASE_REF="origin/${{ github.event.pull_request.base.ref }}"
 
-          echo "Branch: $BRANCH_NAME"
-          echo "PR Title: $PR_TITLE"
+          echo "📝 Analyzing commits in this PR..."
 
-          # Detect version bump type from branch name
+          # Get all commit messages in the PR
+          COMMITS=$(git log --pretty=format:"%s" $BASE_REF..HEAD)
+          echo "Commits:"
+          echo "$COMMITS"
+          echo ""
+
+          # Detect version bump type from commits
           BUMP_TYPE="patch"
-          if [[ "$BRANCH_NAME" =~ ^(feat|feature)/ ]] || [[ "$PR_TITLE" =~ ^feat ]]; then
-            BUMP_TYPE="minor"
-          elif [[ "$BRANCH_NAME" =~ ^(break|breaking)/ ]] || [[ "$PR_TITLE" =~ ^(break|breaking|feat!) ]] || [[ "$PR_BODY" =~ BREAKING\ CHANGE ]]; then
+          HAS_FEAT=false
+          HAS_BREAKING=false
+
+          while IFS= read -r commit; do
+            if [[ "$commit" =~ ^(break|breaking|feat!) ]] || [[ "$commit" =~ BREAKING\ CHANGE ]]; then
+              HAS_BREAKING=true
+            elif [[ "$commit" =~ ^feat ]]; then
+              HAS_FEAT=true
+            fi
+          done <<< "$COMMITS"
+
+          if [ "$HAS_BREAKING" = true ]; then
             BUMP_TYPE="major"
+          elif [ "$HAS_FEAT" = true ]; then
+            BUMP_TYPE="minor"
           fi
 
           echo "bump_type=$BUMP_TYPE" >> $GITHUB_OUTPUT
           echo "📦 Version bump type: $BUMP_TYPE"
 
-          # Detect affected packages from commit scope or PR title
+          # Detect affected packages from commit scopes
+          COMPONENTS_AFFECTED=false
+          DESIGN_SYSTEM_AFFECTED=false
+          STORYBOOK_AFFECTED=false
+          ALL_AFFECTED=false
+
+          while IFS= read -r commit; do
+            # Extract scope from commit message: type(scope): message
+            if [[ "$commit" =~ \(([^)]+)\) ]]; then
+              SCOPE="${BASH_REMATCH[1]}"
+              echo "Found scope in commit: $SCOPE"
+
+              case "$SCOPE" in
+                components)
+                  COMPONENTS_AFFECTED=true
+                  ;;
+                design-system)
+                  DESIGN_SYSTEM_AFFECTED=true
+                  ;;
+                storybook)
+                  STORYBOOK_AFFECTED=true
+                  ;;
+                all|monorepo)
+                  ALL_AFFECTED=true
+                  ;;
+              esac
+            fi
+          done <<< "$COMMITS"
+
+          # Build packages list
           PACKAGES=""
 
-          # Check PR title for scope
-          if [[ "$PR_TITLE" =~ \(([^)]+)\) ]]; then
-            SCOPE="${BASH_REMATCH[1]}"
-            echo "Detected scope from PR title: $SCOPE"
-
-            case "$SCOPE" in
-              components)
-                PACKAGES="@kubit-ui-web/react-components"
-                ;;
-              design-system)
-                PACKAGES="@kubit-ui-web/design-system"
-                ;;
-              all|monorepo)
-                PACKAGES="@kubit-ui-web/react-components @kubit-ui-web/design-system"
-                ;;
-            esac
+          if [ "$ALL_AFFECTED" = true ]; then
+            PACKAGES="@kubit-ui-web/react-components @kubit-ui-web/design-system"
+            echo "📦 Scope 'all' detected - publishing all packages"
+          else
+            if [ "$COMPONENTS_AFFECTED" = true ]; then
+              PACKAGES="$PACKAGES @kubit-ui-web/react-components"
+            fi
+            if [ "$DESIGN_SYSTEM_AFFECTED" = true ]; then
+              PACKAGES="$PACKAGES @kubit-ui-web/design-system"
+            fi
+            # Note: storybook is private and won't be published
           fi
 
-          # If no scope in PR title, check for file changes
+          # If no scopes found, detect from file changes
           if [ -z "$PACKAGES" ]; then
-            echo "No scope in PR title, detecting from file changes..."
-            BASE_REF="origin/${{ github.event.pull_request.base.ref }}"
+            echo "⚠️ No scopes found in commits, detecting from file changes..."
 
             COMPONENTS_CHANGED=false
             DESIGN_SYSTEM_CHANGED=false
@@ -141,6 +178,9 @@ jobs:
               PACKAGES="@kubit-ui-web/design-system"
             fi
           fi
+
+          # Trim leading/trailing spaces
+          PACKAGES=$(echo "$PACKAGES" | xargs)
 
           if [ -z "$PACKAGES" ]; then
             echo "⚠️ No packages detected for release"
