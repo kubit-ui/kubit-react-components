@@ -81,7 +81,9 @@ jobs:
           # Detect affected packages from commit scope
           PACKAGES=""
 
-          if [[ "$COMMIT_MSG" =~ \(([^)]+)\) ]]; then
+          # Extract scope from commit message: type(scope): message
+          # Match pattern like "feat(scope):" but not "(#123)"
+          if [[ "$COMMIT_MSG" =~ ^[a-z]+\(([^)]+)\): ]]; then
             SCOPE="${BASH_REMATCH[1]}"
             echo "Found scope in commit: $SCOPE"
 

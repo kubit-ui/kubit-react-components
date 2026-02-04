@@ -84,10 +84,11 @@ jobs:
           echo "Branch: $BRANCH_NAME"
           echo "Commit: $COMMIT_MSG"
 
-          # Try to extract scope from commit message
+          # Extract scope from commit message: type(scope): message
+          # Match pattern like "feat(scope):" but not "(#123)"
           PACKAGES=""
 
-          if [[ "$COMMIT_MSG" =~ \(([^)]+)\) ]]; then
+          if [[ "$COMMIT_MSG" =~ ^[a-z]+\(([^)]+)\): ]]; then
             SCOPE="${BASH_REMATCH[1]}"
             echo "Detected scope from commit: $SCOPE"
 
