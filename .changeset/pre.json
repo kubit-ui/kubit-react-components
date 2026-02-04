@@ -1,0 +1,12 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@kubit-ui-web/react-components": "2.0.0-beta.48",
+    "@kubit-ui-web/design-system": "2.0.0-beta.5",
+    "@kubit-ui-web/storybook": "2.0.0-alpha.1"
+  },
+  "changesets": [
+    "beta-1770197504"
+  ]
+}

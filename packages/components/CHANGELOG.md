@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.49
+
+### Major Changes
+
+- Include changesets workflow (#55)
+
 ## 2.0.0-beta.48
 
 ### Major Changes
