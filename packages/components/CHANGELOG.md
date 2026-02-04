@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.51
+
+### Major Changes
+
+- Modify changelog showing links (#58)
+
 ## 2.0.0-beta.50
 
 ### Major Changes

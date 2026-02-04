@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.8
+
+### Major Changes
+
+- Modify changelog showing links (#58)
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.51
+
 ## 2.0.0-beta.7
 
 ### Major Changes
