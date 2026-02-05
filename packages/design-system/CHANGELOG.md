@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.9
+
+### Major Changes
+
+- Include provider export (#59)
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.51
+
 ## 2.0.0-beta.8
 
 ### Major Changes
