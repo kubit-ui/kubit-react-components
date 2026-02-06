@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.10
+
+### Major Changes
+
+- Generate css build (#60)
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.51
+
 ## 2.0.0-beta.9
 
 ### Major Changes

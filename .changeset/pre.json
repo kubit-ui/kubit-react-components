@@ -1,15 +1,16 @@
 {
-  "mode": "exit",
+  "mode": "pre",
   "tag": "beta",
   "initialVersions": {
     "@kubit-ui-web/react-components": "2.0.0-beta.51",
-    "@kubit-ui-web/design-system": "2.0.0-beta.8",
+    "@kubit-ui-web/design-system": "2.0.0-beta.9",
     "@kubit-ui-web/storybook": "2.0.0-alpha.1"
   },
   "changesets": [
     "beta-1770197504",
     "beta-1770198306",
     "beta-1770215683",
-    "beta-1770291845"
+    "beta-1770291845",
+    "beta-1770379321"
   ]
 }
