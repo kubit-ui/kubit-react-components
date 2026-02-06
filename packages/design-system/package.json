@@ -101,9 +101,9 @@
   },
   "scripts": {
     "dev": "pnpm generate-css --watch",
-    "build": "pnpm generate-css && vite build",
+    "build": "vite build && pnpm generate-css",
     "predist": "rm -rf dist",
-    "dist": "pnpm generate-css && vite build",
+    "dist": " vite build && pnpm generate-css",
     "generate-css": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' npx bv-build --embed-css",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
