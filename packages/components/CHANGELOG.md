@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.52
+
+### Major Changes
+
+- Create isOnlyDesktop (#61)
+
 ## 2.0.0-beta.51
 
 ### Major Changes
