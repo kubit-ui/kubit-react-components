@@ -13,10 +13,10 @@ describe('useActiveBreakpoints', () => {
   const baseReturn = {
     device: undefined,
     isDesktop: false,
-    isDesktopOrLargeDesktop: false,
     isLargeDesktop: false,
     isMobile: false,
     isMobileOrTablet: true,
+    isOnlyDesktop: false,
     isTablet: false,
   };
 
@@ -29,8 +29,8 @@ describe('useActiveBreakpoints', () => {
       ...baseReturn,
       device: DEVICE_BREAKPOINTS.DESKTOP,
       isDesktop: true,
-      isDesktopOrLargeDesktop: true,
       isMobileOrTablet: false,
+      isOnlyDesktop: true,
     });
     expect(document.body).toHTMLValidate();
   });
@@ -56,8 +56,8 @@ describe('useActiveBreakpoints', () => {
     expect(result.current).toEqual({
       ...baseReturn,
       device: DEVICE_BREAKPOINTS.TABLET,
-      isDesktopOrLargeDesktop: false,
       isMobileOrTablet: true,
+      isOnlyDesktop: false,
       isTablet: true,
     });
     expect(document.body).toHTMLValidate();
@@ -71,9 +71,10 @@ describe('useActiveBreakpoints', () => {
     expect(result.current).toEqual({
       ...baseReturn,
       device: DEVICE_BREAKPOINTS.LARGE_DESKTOP,
-      isDesktopOrLargeDesktop: true,
+      isDesktop: true,
       isLargeDesktop: true,
       isMobileOrTablet: false,
+      isOnlyDesktop: false,
     });
     expect(document.body).toHTMLValidate();
   });

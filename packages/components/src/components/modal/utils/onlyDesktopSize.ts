@@ -7,7 +7,5 @@ export const onlyDesktopSize = (
   device: DeviceBreakpointsType,
   value?: string,
 ): string | undefined => {
-  return DeviceBreakpointsTypeUtils.isDesktopOrLargeDesktop(device)
-    ? value
-    : undefined;
+  return DeviceBreakpointsTypeUtils.isDesktop(device) ? value : undefined;
 };

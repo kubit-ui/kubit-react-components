@@ -29,13 +29,7 @@ export const DeviceBreakpointsTypeUtils = {
    * Returns true if the device is a desktop device.
    */
   isDesktop: (device: DeviceBreakpointsType): boolean =>
-    device === DEVICE_BREAKPOINTS.DESKTOP,
-
-  /**
-   * Returns true if the device is either desktop or large desktop.
-   */
-  isDesktopOrLargeDesktop: (device: DeviceBreakpointsType): boolean =>
-    DeviceBreakpointsTypeUtils.isDesktop(device) ||
+    device === DEVICE_BREAKPOINTS.DESKTOP ||
     DeviceBreakpointsTypeUtils.isLargeDesktop(device),
 
   /**
@@ -56,6 +50,12 @@ export const DeviceBreakpointsTypeUtils = {
   isMobileOrTablet: (device: DeviceBreakpointsType): boolean =>
     DeviceBreakpointsTypeUtils.isMobile(device) ||
     DeviceBreakpointsTypeUtils.isTablet(device),
+
+  /**
+   * Returns true if the device is either desktop or large desktop.
+   */
+  isOnlyDesktop: (device: DeviceBreakpointsType): boolean =>
+    device === DEVICE_BREAKPOINTS.DESKTOP,
 
   /**
    * Returns true if the device is a tablet device.

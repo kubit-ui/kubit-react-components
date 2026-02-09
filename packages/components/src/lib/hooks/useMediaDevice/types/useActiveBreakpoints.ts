@@ -6,6 +6,6 @@ export interface useActiveBreakpointsReturn {
   isMobileOrTablet: boolean;
   isDesktop: boolean;
   isLargeDesktop: boolean;
-  isDesktopOrLargeDesktop: boolean;
+  isOnlyDesktop: boolean;
   device: DeviceBreakpointsType;
 }
