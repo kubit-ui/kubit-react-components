@@ -1,6 +1,6 @@
 import './skeleton.css';
 
-import { type CSSProperties, forwardRef } from 'react';
+import { type CSSProperties, forwardRef, useMemo } from 'react';
 
 import { classNames } from '@/lib/utils/classNames/classNames';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
@@ -28,16 +28,26 @@ export const SkeletonStandAlone = forwardRef<
 >(
   (
     {
+      borderRadius = '',
       cssClasses,
       cssShapeClasses,
       duration = '1.2s',
-      height,
-      width,
+      height = '20px',
+      width = '100%',
       ...props
     }: SkeletonStandAloneProps,
     ref,
   ): JSX.Element => {
     const customProps = pickCustomAttributes(props);
+
+    const dynamicVars = useMemo(() => {
+      return cssClasses?.dynamic_values({
+        $skeletonBorderRadius: borderRadius,
+        $skeletonDuration: duration,
+        $skeletonHeight: height,
+        $skeletonWidth: width,
+      }).object;
+    }, [height, width, borderRadius, duration]);
 
     return (
       <div
@@ -48,13 +58,7 @@ export const SkeletonStandAlone = forwardRef<
           cssShapeClasses?.skeleton,
         )}
         data-testid="skeleton"
-        style={
-          {
-            '--skeleton-duration': duration,
-            '--skeleton-height': height,
-            '--skeleton-width': width,
-          } as CSSProperties
-        }
+        style={dynamicVars}
         {...customProps}
       />
     );

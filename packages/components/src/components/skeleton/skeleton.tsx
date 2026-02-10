@@ -2,9 +2,8 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import type { SkeletonProps } from './types/skeleton';
-
 import { SkeletonStandAlone } from './skeletonStandAlone';
+import type { SkeletonProps } from './types/skeleton';
 
 /**
  * Skeleton component for displaying loading placeholders.
@@ -32,10 +31,12 @@ export const Skeleton = forwardRef(
     ref: ForwardedRef<HTMLDivElement> | undefined | null,
   ): JSX.Element => {
     const cssClasses = useClassName({
+      additionalClassNames: additionalClasses,
       component: 'SKELETON',
       variant: variant,
     });
     const cssShapeClasses = useClassName({
+      additionalClassNames: additionalShapeClasses,
       component: 'SKELETON',
       variant: shapeVariant,
     });

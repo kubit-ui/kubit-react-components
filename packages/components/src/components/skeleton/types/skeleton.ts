@@ -24,6 +24,7 @@ export interface SkeletonStandAloneProps
   extends SkeletonAriaProps, DataAttributes {
   width?: string;
   height?: string;
+  borderRadius?: string;
   duration?: string;
   cssClasses?: SkeletonCssClasses;
   shapeVariant?: string;
@@ -40,6 +41,6 @@ export interface SkeletonProps<
   Variant = undefined extends string ? unknown : string,
 > extends SkeletonStandAloneProps {
   variant?: Variant;
-  additionalClasses?: string;
-  additionalShapeClasses?: string;
+  additionalClasses?: Partial<SkeletonCssClasses>;
+  additionalShapeClasses?: Partial<SkeletonCssClasses>;
 }
