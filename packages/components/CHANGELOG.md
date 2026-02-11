@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.53
+
+### Major Changes
+
+- Include borderRadius prop to skeleton (#62)
+
 ## 2.0.0-beta.52
 
 ### Major Changes
