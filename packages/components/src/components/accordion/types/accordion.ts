@@ -1,10 +1,10 @@
-import type {
-  ComponentSelected,
-  ComponentsTypesComponents,
-} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+import type { ComponentSelected } from '@/lib/types/cssGenerator/kubit/componentsTypes';
+
+import type { RemoveUnderscorePrefix } from '../../../lib/types/removeUnderscore/removeUnderscore';
+import type { AccordionStyleProps } from './accordionTheme';
 
 type AccordionCssClasses = ComponentSelected<
-  ComponentsTypesComponents['ACCORDION']
+  RemoveUnderscorePrefix<AccordionStyleProps>
 >;
 /**
  * Base interface for Accordion component

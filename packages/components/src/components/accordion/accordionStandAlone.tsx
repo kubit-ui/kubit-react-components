@@ -4,7 +4,6 @@ import { CustomComponent } from '@/lib/components/customComponent/customComponen
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { IAccordionStandAlone } from './types/accordion';
-
 import { STATE } from './types/state';
 
 /**
