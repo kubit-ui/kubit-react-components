@@ -7,3 +7,6 @@ ignoredBuiltDependencies:
 
 onlyBuiltDependencies:
   - esbuild
+
+overrides:
+  eslint-config-kubit: link:../eslint-config-kubit

@@ -27,8 +27,8 @@ export const calcFirstLastVisiblePosition = ({
   isBullet,
   pages,
 }: CalcFirstLastVisiblePositionType): CalcFirstLastVisiblePositionResultType => {
-  let firstVisiblePosition = 0;
-  let lastVisiblePosition = firstVisiblePosition + dots - 1;
+  let firstVisiblePosition: number;
+  let lastVisiblePosition: number;
   // On lines pagination (!isBullet), we do not use forth and back logic
   if (!isBullet || direction === 'forth') {
     if (currentPosition - dots < 0) {

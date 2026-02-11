@@ -483,7 +483,7 @@ export const focusThumb = ({
   if (!container) {
     return;
   }
-  let thumb: null | Element = null;
+  let thumb: null | Element;
   if (range) {
     const [leftThumb, rightThumb] = Array.from(
       container.querySelectorAll('[role="slider"]'),
