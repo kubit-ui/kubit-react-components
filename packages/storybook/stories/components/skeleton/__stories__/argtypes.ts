@@ -1,6 +1,5 @@
-import type { ArgTypes } from 'storybook/internal/types';
-
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
+import type { ArgTypes } from 'storybook/internal/types';
 
 import { configArgTypes } from '@/stories/argtypes/argtypes';
 import { getSelectorArgTypes } from '@/stories/argtypes/selectorArgTypes';
@@ -13,6 +12,11 @@ const { SkeletonShapeVariant } = KUBIT_VARIANTS;
 export const argtypes = (): ArgTypes => {
   return {
     ...configArgTypes,
+    borderRadius: getStringtArgTypes({
+      category: CATEGORY_CONTROL.MODIFIERS,
+      keyName: 'borderRadius',
+      name: 'skeleton',
+    }),
     duration: getStringtArgTypes({
       category: CATEGORY_CONTROL.MODIFIERS,
       keyName: 'duration',

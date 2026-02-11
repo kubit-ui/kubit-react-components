@@ -726,6 +726,12 @@ export type ComponentsTypesComponents = {
     $_default: {
       skeleton: string;
     };
+    dynamic_values: (styles: {
+      $skeletonWidth: string;
+      $skeletonHeight: string;
+      $skeletonBorderRadius: string;
+      $skeletonDuration: string;
+    }) => { string: string; object: object };
   };
   SLIDER: {
     slider: string;
