@@ -17,7 +17,7 @@ export const buildstepsNumber = (
   let startWith: Array<string | number> = [];
   let endWith: Array<string | number> = [];
   let beforeCounters: Array<number> = [];
-  let afterCounters: Array<number> = [];
+  let afterCounters: Array<number>;
 
   // Current position is selected page. Have in mind that currentStep is 0 based
   let currentPosition = currentStep + 1;

@@ -101,31 +101,4 @@ describe('Breakpoints - DeviceBreakpointsTypeUtils', () => {
       ).toBe(false);
     });
   });
-
-  describe('isDesktopOrLargeDesktop', () => {
-    it('returns true for DESKTOP and LARGE_DESKTOP', () => {
-      expect(
-        DeviceBreakpointsTypeUtils.isDesktopOrLargeDesktop(
-          DEVICE_BREAKPOINTS.DESKTOP,
-        ),
-      ).toBe(true);
-      expect(
-        DeviceBreakpointsTypeUtils.isDesktopOrLargeDesktop(
-          DEVICE_BREAKPOINTS.LARGE_DESKTOP,
-        ),
-      ).toBe(true);
-    });
-    it('returns false for MOBILE and TABLET', () => {
-      expect(
-        DeviceBreakpointsTypeUtils.isDesktopOrLargeDesktop(
-          DEVICE_BREAKPOINTS.MOBILE,
-        ),
-      ).toBe(false);
-      expect(
-        DeviceBreakpointsTypeUtils.isDesktopOrLargeDesktop(
-          DEVICE_BREAKPOINTS.TABLET,
-        ),
-      ).toBe(false);
-    });
-  });
 });

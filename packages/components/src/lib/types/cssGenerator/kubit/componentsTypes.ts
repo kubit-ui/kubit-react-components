@@ -66,54 +66,16 @@ export type ComponentsTypesComponents = {
     header: string;
     headerbutton: string;
     innercontent: string;
-    $_neutral: {
-      accordion: string;
-    };
-    $_standard: {
-      accordion: string;
-    };
   };
   ALERT: {
     container: string;
     contentcontainer: string;
     description: string;
-    $_error: {
-      alert: string;
-      container: string;
-    };
-    $_informative: {
-      alert: string;
-      container: string;
-    };
-    $_success: {
-      alert: string;
-      container: string;
-    };
-    $_warning: {
-      alert: string;
-      container: string;
-    };
   };
   AVATAR: {
     avatar: string;
     dot: string;
     icon: string;
-    $_large: {
-      avatar: string;
-      icon: string;
-    };
-    $_medium: {
-      avatar: string;
-      icon: string;
-    };
-    $_small: {
-      avatar: string;
-      icon: string;
-    };
-    $_extra_large: {
-      avatar: string;
-      icon: string;
-    };
   };
   BADGE: {
     badge: string;
@@ -124,22 +86,6 @@ export type ComponentsTypesComponents = {
     label: string;
     labelcontainer: string;
     labelicon: string;
-    $_default: {
-      badge: string;
-      icon: string;
-    };
-    $_alternative: {
-      badge: string;
-      icon: string;
-      label: string;
-      labelicon: string;
-    };
-    $_primary: {
-      badge: string;
-      icon: string;
-      label: string;
-      labelicon: string;
-    };
   };
   BREADCRUMBS: {
     breadcrumbs: string;
@@ -149,48 +95,11 @@ export type ComponentsTypesComponents = {
     lastonecrumb: string;
     link: string;
     linkcontainer: string;
-    $_alternative: {
-      breadcrumbs: string;
-      icondivider: string;
-      lastonecrumb: string;
-      link: string;
-    };
-    $_default: {
-      breadcrumbs: string;
-      lastonecrumb: string;
-      link: string;
-    };
   };
   BUTTON: {
     button: string;
     icon: string;
     loader: string;
-    $_large: {
-      button: string;
-      icon: string;
-    };
-    $_small: {
-      button: string;
-      icon: string;
-    };
-    $_alternative: {
-      button: string;
-    };
-    $_ghost_alt: {
-      button: string;
-    };
-    $_ghost_primary: {
-      button: string;
-    };
-    $_ghost_secondary: {
-      button: string;
-    };
-    $_primary: {
-      button: string;
-    };
-    $_secondary: {
-      button: string;
-    };
     dynamic_values: (styles: { $alignText: string }) => {
       string: string;
       object: object;
@@ -238,20 +147,11 @@ export type ComponentsTypesComponents = {
     content: string;
     footer: string;
     header: string;
-    $_default: {
-      card: string;
-      content: string;
-      footer: string;
-      header: string;
-    };
   };
   CAROUSEL: {
     carousel: string;
     content: string;
     viewer: string;
-    $_default: {
-      carousel: string;
-    };
   };
   CHECKBOX: {
     checkbox: string;
@@ -269,9 +169,6 @@ export type ComponentsTypesComponents = {
     icon: string;
     iconcontainer: string;
     input: string;
-    $_default: {
-      checkbox_base: string;
-    };
   };
   CHIP: {
     chip: string;
@@ -285,17 +182,6 @@ export type ComponentsTypesComponents = {
     rangeitemseparator: string;
     rangeitemtext: string;
     rangeitemwrapper: string;
-    $_default: {
-      chip: string;
-      closeicon: string;
-      errorcontainer: string;
-      erroricon: string;
-      errormessage: string;
-      label: string;
-      lefticon: string;
-      rangeitemseparator: string;
-      rangeitemtext: string;
-    };
   };
   DATA_TABLE: {
     data_table: string;
@@ -305,9 +191,6 @@ export type ComponentsTypesComponents = {
     rightboxshadow: string;
     rightboxshadowcontainer: string;
     scrollablecontainer: string;
-    $_default: {
-      data_table: string;
-    };
     row_group_table: {
       container: string;
       headboxshadow: string;
@@ -373,32 +256,11 @@ export type ComponentsTypesComponents = {
   };
   DOT: {
     dot: string;
-    $_big: {
-      dot: string;
-    };
-    $_medium: {
-      dot: string;
-    };
-    $_small: {
-      dot: string;
-    };
-    $_alternative: {
-      dot: string;
-    };
-    $_with_border: {
-      dot: string;
-    };
-    $_without_border: {
-      dot: string;
-    };
   };
   ERROR_MESSAGE: {
     error_message: string;
     icon: string;
     typography: string;
-    $_default: {
-      error_message: string;
-    };
   };
   ICON: {
     button: string;
@@ -415,15 +277,6 @@ export type ComponentsTypesComponents = {
   INPUT: {
     input: string;
     inputandlabelcontainer: string;
-    $_filled: {
-      input: string;
-    };
-    $_outlined: {
-      input: string;
-    };
-    $_standard: {
-      input: string;
-    };
     input_base: {
       input_base: string;
     };
@@ -438,31 +291,16 @@ export type ComponentsTypesComponents = {
   };
   INPUT_BASE: {
     input_base: string;
-    $_filled: {
-      input_base: string;
-    };
-    $_outlined: {
-      input_base: string;
-    };
-    $_standard: {
-      input_base: string;
-    };
   };
   INPUT_DECORATION: {
     input_decoration: string;
     decoration: string;
-    $_standard: {
-      input_decoration: string;
-    };
   };
   INPUT_SIGNATURE: {
     input_signature: string;
     canvas: string;
     placeholdercontainer: string;
     placeholdertext: string;
-    $_default: {
-      input_signature: string;
-    };
   };
   ITEM_ROVE: {
     item_rove: string;
@@ -472,30 +310,6 @@ export type ComponentsTypesComponents = {
     childrencontainer: string;
     icon: string;
     labelandiconcontainer: string;
-    $_inline_primary: {
-      link: string;
-      icon: string;
-    };
-    $_inline_secondary: {
-      link: string;
-      icon: string;
-    };
-    $_inline_secondary_alt: {
-      link: string;
-      icon: string;
-    };
-    $_navigation_primary: {
-      link: string;
-      icon: string;
-    };
-    $_navigation_secondary: {
-      link: string;
-      icon: string;
-    };
-    $_navigation_secondary_alt: {
-      link: string;
-      icon: string;
-    };
   };
   LINK_AS_BUTTON: {
     link_as_button: string;
@@ -505,11 +319,6 @@ export type ComponentsTypesComponents = {
     optionscontainer: string;
     title: string;
     titlecontainer: string;
-    $_default: {
-      list_options: string;
-      title: string;
-      titlecontainer: string;
-    };
   };
   MODAL: {
     modal: string;
@@ -524,9 +333,6 @@ export type ComponentsTypesComponents = {
     title: string;
     titlecontainer: string;
     titlehiddencontainer: string;
-    $_default: {
-      modal: string;
-    };
   };
   OPTION: {
     option: string;
@@ -538,21 +344,9 @@ export type ComponentsTypesComponents = {
     labeliconcontainer: string;
     sublabel: string;
     sublabelcontainer: string;
-    $_default: {
-      option: string;
-      icon: string;
-      label: string;
-      labeliconcontainer: string;
-    };
   };
   OVERLAY: {
     overlay: string;
-    $_default: {
-      overlay: string;
-    };
-    $_secondary: {
-      overlay: string;
-    };
   };
   PAGE_CONTROL: {
     page_control: string;
@@ -563,15 +357,6 @@ export type ComponentsTypesComponents = {
     pagedot: string;
     rightarrowcontrolcontainer: string;
     rightbuttoncontrol: string;
-    $_default: {
-      page_control: string;
-      icon: string;
-    };
-    $_bullets: {
-      page_control: string;
-      dotscontainer: string;
-      pagedot: string;
-    };
   };
   PAGINATION: {
     pagination: string;
@@ -580,12 +365,6 @@ export type ComponentsTypesComponents = {
     pagescontainer: string;
     paginationleftarrowicon: string;
     paginationrightarrowicon: string;
-    $_default: {
-      pagination: string;
-      page: string;
-      paginationleftarrowicon: string;
-      paginationrightarrowicon: string;
-    };
   };
   POPOVER: {
     popover: string;
@@ -596,19 +375,6 @@ export type ComponentsTypesComponents = {
     bar: string;
     barcontainer: string;
     progressbar: string;
-    $_medium: {
-      progress_bar: string;
-      bar: string;
-      progressbar: string;
-    };
-    $_small: {
-      progress_bar: string;
-      bar: string;
-      progressbar: string;
-    };
-    $_default: {
-      progress_bar: string;
-    };
   };
   RADIO_BUTTON: {
     radio_button: string;
@@ -623,11 +389,6 @@ export type ComponentsTypesComponents = {
     rowcontainer: string;
     speciallabel: string;
     sublabel: string;
-    $_default: {
-      radio_button: string;
-      errormessage: string;
-      sublabel: string;
-    };
     tooltip: {
       arrowcontainer: string;
       arrowposition: string;
@@ -653,42 +414,6 @@ export type ComponentsTypesComponents = {
     labelclosed: string;
     labelopened: string;
     listoptionscontainer: string;
-    $_default: {
-      select: string;
-      buttonorlinkcontainer: string;
-      iconclosed: string;
-      iconopened: string;
-      labelclosed: string;
-      labelopened: string;
-      listoptionscontainer: string;
-    };
-    $_side_menu: {
-      select: string;
-      buttonorlinkcontainer: string;
-      iconclosed: string;
-      iconopened: string;
-      labelclosed: string;
-      labelopened: string;
-      listoptionscontainer: string;
-    };
-    $_topbar: {
-      select: string;
-      buttonorlinkcontainer: string;
-      iconclosed: string;
-      iconopened: string;
-      labelclosed: string;
-      labelopened: string;
-      listoptionscontainer: string;
-    };
-    $_topbar_tab: {
-      select: string;
-      buttonorlinkcontainer: string;
-      iconclosed: string;
-      iconopened: string;
-      labelclosed: string;
-      labelopened: string;
-      listoptionscontainer: string;
-    };
   };
   SELECTOR_BOX_FILE: {
     selector_box_file: string;
@@ -708,24 +433,9 @@ export type ComponentsTypesComponents = {
     leftanimationcontainer: string;
     rightanimationcontainer: string;
     topanimationcontainer: string;
-    $_default: {
-      selector_box_file: string;
-    };
   };
   SKELETON: {
     skeleton: string;
-    $_circle: {
-      skeleton: string;
-    };
-    $_square: {
-      skeleton: string;
-    };
-    $_alternative: {
-      skeleton: string;
-    };
-    $_default: {
-      skeleton: string;
-    };
     dynamic_values: (styles: {
       $skeletonWidth: string;
       $skeletonHeight: string;
@@ -752,15 +462,6 @@ export type ComponentsTypesComponents = {
     thumbicon: string;
     tracksthumbscontainer: string;
     tracksthumbsinnercontainer: string;
-    $_primary: {
-      slider: string;
-      activetrack: string;
-      inactivetrack: string;
-      thumb: string;
-    };
-    $_test_no_thumb_exceeds_track: {
-      slider: string;
-    };
     decrement_button_size: {
       icon: string;
       button: string;
@@ -789,26 +490,7 @@ export type ComponentsTypesComponents = {
     };
   };
   SNACKBAR: {
-    $_error: {
-      snackbar: string;
-      container: string;
-    };
-    $_container: {
-      snackbar: string;
-    };
     container: string;
-    $_primary: {
-      snackbar: string;
-      container: string;
-    };
-    $_success: {
-      snackbar: string;
-      container: string;
-    };
-    $_warning: {
-      snackbar: string;
-      container: string;
-    };
   };
   STEPPER_NUMBER: {
     stepper_number: string;
@@ -820,23 +502,6 @@ export type ComponentsTypesComponents = {
     stepindex: string;
     stepname: string;
     stepnamecontainer: string;
-    $_horizontal: {
-      stepper_number: string;
-      stepindex: string;
-    };
-    $_default: {
-      stepper_number: string;
-      iconselected: string;
-      stepbar: string;
-      stepcircle: string;
-      stepindex: string;
-    };
-    $_vertical: {
-      stepper_number: string;
-      stepcontainer: string;
-      stepname: string;
-      stepnamecontainer: string;
-    };
   };
   TABLE: {
     table: string;
@@ -847,33 +512,15 @@ export type ComponentsTypesComponents = {
     rightboxshadow: string;
     rightboxshadowcontainer: string;
     scrollablecontainer: string;
-    $_default: {
-      table: string;
-    };
   };
   TABLE_BODY: {
     table_body: string;
-    $_default: {
-      table_body: string;
-    };
   };
   TABLE_CAPTION: {
     table_caption: string;
-    $_default: {
-      table_caption: string;
-    };
   };
   TABLE_CELL: {
     table_cell: string;
-    $_body_cell_default: {
-      table_cell: string;
-    };
-    $_header_cell_default: {
-      table_cell: string;
-    };
-    $_header_cell_secondary: {
-      table_cell: string;
-    };
     dynamic_values: (styles: {
       $tdWidth: string;
       $tdHeight: string;
@@ -891,33 +538,15 @@ export type ComponentsTypesComponents = {
   };
   TABLE_DIVIDER: {
     table_divider: string;
-    $_default: {
-      table_divider: string;
-    };
   };
   TABLE_FOOT: {
     table_foot: string;
-    $_default: {
-      table_foot: string;
-    };
   };
   TABLE_HEAD: {
     table_head: string;
-    $_default: {
-      table_head: string;
-    };
   };
   TABLE_ROW: {
     table_row: string;
-    $_body_row_default: {
-      table_row: string;
-    };
-    $_header_row_default: {
-      table_row: string;
-    };
-    $_header_row_secondary: {
-      table_row: string;
-    };
   };
   TABS: {
     tabs: string;
@@ -932,39 +561,14 @@ export type ComponentsTypesComponents = {
     tabbutton: string;
     tabbuttonscontainer: string;
     tabcontainer: string;
-    $_default: {
-      tabs: string;
-    };
   };
   TAG: {
     tag: string;
     icon: string;
     label: string;
-    $_code: {
-      tag: string;
-      label: string;
-    };
-    $_deprecated: {
-      tag: string;
-    };
-    $_dormant: {
-      tag: string;
-    };
-    $_healthy: {
-      tag: string;
-    };
-    $_informative: {
-      tag: string;
-    };
-    $_issue: {
-      tag: string;
-    };
   };
   TEXT: {
     text: string;
-    $_default: {
-      text: string;
-    };
     $_heading_display_1_expanded: {
       text: string;
     };
@@ -1010,33 +614,6 @@ export type ComponentsTypesComponents = {
     $_main_heading_h4_expanded: {
       text: string;
     };
-    $_paragraph_caption_expanded: {
-      text: string;
-    };
-    $_paragraph_caption_extended: {
-      text: string;
-    };
-    $_paragraph_large_expanded: {
-      text: string;
-    };
-    $_paragraph_large_extended: {
-      text: string;
-    };
-    $_paragraph_medium_expanded: {
-      text: string;
-    };
-    $_paragraph_medium_extended: {
-      text: string;
-    };
-    $_paragraph_medium_mono: {
-      text: string;
-    };
-    $_paragraph_small_expanded: {
-      text: string;
-    };
-    $_paragraph_small_extended: {
-      text: string;
-    };
   };
   TEXT_AREA: {
     text_area: string;
@@ -1056,29 +633,17 @@ export type ComponentsTypesComponents = {
     textarea: string;
     title: string;
     titlecontainer: string;
-    $_default: {
-      text_area: string;
-    };
   };
   TEXT_COUNT: {
     text_count: string;
     letftext: string;
     righttext: string;
-    $_default: {
-      text_count: string;
-      letftext: string;
-      righttext: string;
-    };
   };
   TOGGLE: {
     icon: string;
     iconwrapper: string;
     thumb: string;
     track: string;
-    $_regular: {
-      toggle: string;
-      track: string;
-    };
   };
   TOOLTIP: {
     arrow: string;
@@ -1091,16 +656,6 @@ export type ComponentsTypesComponents = {
     tooltipasmodal: string;
     tooltipexternalcontainer: string;
     tooltipinternalcontainer: string;
-    $_default: {
-      tooltip: string;
-      arrowcontainer: string;
-      arrowposition: string;
-      arrowsize: string;
-      paragraph: string;
-      paragraphcontainer: string;
-      tooltipexternalcontainer: string;
-      tooltipinternalcontainer: string;
-    };
     popover: {
       arrow: string;
       popover: string;
@@ -1113,10 +668,5 @@ export type ComponentsTypesComponents = {
     digitwrapper: string;
     iconcontainer: string;
     removebutton: string;
-    $_default: {
-      virtual_keyboard: string;
-      digitbuttons: string;
-      digittext: string;
-    };
   };
 };

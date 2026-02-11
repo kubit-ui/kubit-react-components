@@ -85,5 +85,8 @@
     "email": "kubit.lab.dev@gmail.com"
   },
   "homepage": "https://www.kubit-ui.com/",
-  "documentation": "https://www.kubit-ui.com"
+  "documentation": "https://www.kubit-ui.com",
+  "dependencies": {
+    "eslint-config-kubit": "link:../eslint-config-kubit"
+  }
 }

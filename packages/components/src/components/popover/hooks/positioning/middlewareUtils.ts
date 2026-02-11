@@ -154,7 +154,7 @@ export const getMiddlewareStack = ({
   arrowElement?: HTMLElement | null;
   hideWhenDetached?: boolean;
 }): Middleware[] => {
-  let middlewareStack: Middleware[] = [];
+  let middlewareStack: Middleware[];
 
   // If custom middlewares are provided, use them instead of defaults
   if (customMiddlewares?.length) {
