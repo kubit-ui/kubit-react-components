@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.13
+
+### Major Changes
+
+- Update dependencies and include bernova types (#64)
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.54
+
 ## 2.0.0-beta.12
 
 ### Major Changes

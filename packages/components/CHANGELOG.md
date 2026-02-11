@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.54
+
+### Major Changes
+
+- Update dependencies and include bernova types (#64)
+
 ## 2.0.0-beta.53
 
 ### Major Changes
