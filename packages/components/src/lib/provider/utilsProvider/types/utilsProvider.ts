@@ -2,6 +2,59 @@ import type { ReactElement } from 'react';
 
 import type { FormatDateType } from '@/lib/utils/date/types/format.types';
 
+export type dateHelpers = {
+  /** Subtracts a specified number of days from a date */
+  getSubDays: (date: Date, amount: number) => Date;
+  /** Subtracts a specified number of months from a date */
+  getSubMonths: (date: Date, amount: number) => Date;
+  /** Subtracts a specified number of years from a date */
+  getSubYears: (date: Date, amount: number) => Date;
+  /** Adds a specified number of months to a date */
+  getAddMonths: (date: Date, amount: number) => Date;
+  /** Adds a specified number of days to a date */
+  getAddDays: (date: Date, amount: number) => Date;
+  /** Adds a specified number of years to a date */
+  getAddYears: (date: Date, years: number) => Date;
+  /**
+   * Gets all month names in the specified format and locale.
+   * @param monthFormat - Format for month names ('long', 'short', 'narrow')
+   * @param locale - Optional locale string
+   * @returns Array of month names
+   */
+  getAllMonthName: (
+    monthFormat: Intl.DateTimeFormatOptions['month'],
+    locale?: string,
+  ) => Array<string>;
+  /**
+   * Gets all weekday names in the specified format and locale.
+   * @param weekdayFormat - Format for weekday names ('long', 'short', 'narrow')
+   * @param isSundayFirst - Whether Sunday should be the first day of the week
+   * @param locale - Optional locale string
+   * @returns Array of weekday names
+   */
+  getAllWeekdayName: (
+    weekdayFormat: Intl.DateTimeFormatOptions['weekday'],
+    isSundayFirst: boolean,
+    locale?: string,
+  ) => Array<string>;
+  /** Checks if the first date is before the second date */
+  isBefore: (date1: Date, date2: Date) => boolean;
+  /** Checks if the first date is after the second date */
+  isAfter: (date1: Date, date2: Date) => boolean;
+  /**
+   * Checks if two dates are equal.
+   * @param firstDate - First date to compare
+   * @param secondDate - Second date to compare
+   * @param shouldCompareTime - Whether to include time in comparison
+   * @returns True if dates are equal
+   */
+  isDatesEqual: (
+    firstDate: Date | number | string,
+    secondDate: Date | number | string,
+    shouldCompareTime: boolean,
+  ) => boolean;
+};
+
 /**
  * Context type for utility functions and configurations.
  * Provides date manipulation, formatting, and asset management utilities.
@@ -48,58 +101,7 @@ export interface UtilsContextType {
   /**
    * Collection of date manipulation and comparison utilities.
    */
-  dateHelpers: {
-    /** Subtracts a specified number of days from a date */
-    getSubDays: (date: Date, amount: number) => Date;
-    /** Subtracts a specified number of months from a date */
-    getSubMonths: (date: Date, amount: number) => Date;
-    /** Subtracts a specified number of years from a date */
-    getSubYears: (date: Date, amount: number) => Date;
-    /** Adds a specified number of months to a date */
-    getAddMonths: (date: Date, amount: number) => Date;
-    /** Adds a specified number of days to a date */
-    getAddDays: (date: Date, amount: number) => Date;
-    /** Adds a specified number of years to a date */
-    getAddYears: (date: Date, years: number) => Date;
-    /**
-     * Gets all month names in the specified format and locale.
-     * @param monthFormat - Format for month names ('long', 'short', 'narrow')
-     * @param locale - Optional locale string
-     * @returns Array of month names
-     */
-    getAllMonthName: (
-      monthFormat: Intl.DateTimeFormatOptions['month'],
-      locale?: string,
-    ) => Array<string>;
-    /**
-     * Gets all weekday names in the specified format and locale.
-     * @param weekdayFormat - Format for weekday names ('long', 'short', 'narrow')
-     * @param isSundayFirst - Whether Sunday should be the first day of the week
-     * @param locale - Optional locale string
-     * @returns Array of weekday names
-     */
-    getAllWeekdayName: (
-      weekdayFormat: Intl.DateTimeFormatOptions['weekday'],
-      isSundayFirst: boolean,
-      locale?: string,
-    ) => Array<string>;
-    /** Checks if the first date is before the second date */
-    isBefore: (date1: Date, date2: Date) => boolean;
-    /** Checks if the first date is after the second date */
-    isAfter: (date1: Date, date2: Date) => boolean;
-    /**
-     * Checks if two dates are equal.
-     * @param firstDate - First date to compare
-     * @param secondDate - Second date to compare
-     * @param shouldCompareTime - Whether to include time in comparison
-     * @returns True if dates are equal
-     */
-    isDatesEqual: (
-      firstDate: Date | number | string,
-      secondDate: Date | number | string,
-      shouldCompareTime: boolean,
-    ) => boolean;
-  };
+  dateHelpers: dateHelpers;
 }
 
 /**
