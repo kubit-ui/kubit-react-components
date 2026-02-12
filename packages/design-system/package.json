@@ -124,6 +124,11 @@
   "peerDependencies": {
     "@kubit-ui-web/react-components": "workspace:*"
   },
+  "peerDependenciesMeta": {
+    "@kubit-ui-web/react-components": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^25.2.3",
