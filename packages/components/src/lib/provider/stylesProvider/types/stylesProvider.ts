@@ -1,5 +1,8 @@
 import type { RecoverComponentStyles } from '@/lib/types/cssGenerator/cssGenerator';
 
+import { GenericComponentsType } from '../../genericComponentsProvider/types/genericComponentsProvider';
+import { dateHelpers } from '../../utilsProvider/types/utilsProvider';
+
 /**
  * Defines responsive breakpoints in pixels for different screen sizes.
  * Used for creating media queries and responsive layouts.
@@ -43,6 +46,10 @@ export interface StylesProviderProps {
 
   /** Whether to inject CSS directly into JavaScript. Default: true */
   jsInCss?: boolean;
+
+  genericComponents?: GenericComponentsType;
+
+  dateHelpers?: dateHelpers;
 }
 
 /**
