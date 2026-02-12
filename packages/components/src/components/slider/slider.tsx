@@ -12,9 +12,8 @@ import {
 
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 
-import type { SliderOffsetBoundariesProps, SliderProps } from './types/slider';
-
 import { SliderStandAlone } from './sliderStandAlone';
+import type { SliderOffsetBoundariesProps, SliderProps } from './types/slider';
 import {
   calcNewValueAfterKeyPress,
   decrementValue,
@@ -121,7 +120,9 @@ export const Slider = forwardRef(
       });
 
     // Debounce callback to avoid calling onChange too many times
-    const timeoutOnChange = useRef<number | NodeJS.Timeout>();
+    const timeoutOnChange = useRef<number | NodeJS.Timeout | undefined>(
+      undefined,
+    );
 
     // Focus the thumb after handleChange to ensure the activePointer is set
     // Also active thumb could change during move in range mode

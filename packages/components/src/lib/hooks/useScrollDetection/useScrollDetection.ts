@@ -43,7 +43,7 @@ export const useScrollDetection = ({
   autoFocus = false,
 }: UseScrollDetectionParamsType = {}): UseScrollDetectionReturnType => {
   const [hasScroll, setHasScroll] = useState(false);
-  const resizeObserverRef = useRef<ResizeObserver>();
+  const resizeObserverRef = useRef<ResizeObserver | undefined>(undefined);
   const hasFocusedRef = useRef(false);
 
   /**

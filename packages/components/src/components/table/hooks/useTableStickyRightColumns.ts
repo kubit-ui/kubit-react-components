@@ -6,7 +6,7 @@ import {
 } from '../../../lib/utils/scroll/hasScroll';
 
 interface UseTableStickyRightColumnsParamsType {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
   disabled?: boolean;
 }
 

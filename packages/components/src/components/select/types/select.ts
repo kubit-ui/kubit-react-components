@@ -48,13 +48,13 @@ export interface SelectStandAloneProps extends DataAttributes {
   listOptions: SelectListOptionsProps;
   optionSelected?: string;
   onOptionClick: (value: string) => void;
-  listOptionsRef: RefObject<HTMLDivElement>;
+  listOptionsRef: RefObject<HTMLDivElement | null>;
   closePopoverOnScroll?: boolean;
   openAndCloseOnHover?: boolean;
   url?: string;
   urlTarget?: HTMLAttributeAnchorTarget;
   component: 'button' | GenericLinkType;
-  buttonOrLinkRef?: RefObject<HTMLButtonElement>;
+  buttonOrLinkRef?: RefObject<HTMLButtonElement | null>;
   onFocus?: FocusEventHandler<HTMLDivElement>;
   onBlur?: FocusEventHandler<HTMLDivElement>;
   onKeyDown?: KeyboardEventHandler<HTMLDivElement>;

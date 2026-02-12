@@ -5,7 +5,6 @@ import type {
   UseContentVisibilityParamsType,
   UseContentVisibilityReturnType,
 } from './types/useContentVisibility';
-
 import { isContentVisibleEnough } from './utils/contentVisibility';
 
 /**
@@ -68,8 +67,12 @@ export const useContentVisibility = ({
 }: UseContentVisibilityParamsType): UseContentVisibilityReturnType => {
   const containerRef = useRef<HTMLElement | null | undefined>(null);
   const contentRef = useRef<HTMLElement | null | undefined>(null);
-  const resizeContentObserverRef = useRef<ResizeObserver>();
-  const resizeContainerObserverRef = useRef<ResizeObserver>();
+  const resizeContentObserverRef = useRef<ResizeObserver | undefined>(
+    undefined,
+  );
+  const resizeContainerObserverRef = useRef<ResizeObserver | undefined>(
+    undefined,
+  );
   const isContentVisibleRef = useRef<boolean | undefined>(undefined);
 
   const handleContentVisible = useCallback(() => {

@@ -4,9 +4,9 @@ import type {
 } from '../../types/carousel';
 
 export interface IUseCarouselParams {
-  rootContainerRef: React.RefObject<HTMLDivElement>;
-  viewerContainerRef: React.RefObject<HTMLDivElement>;
-  contentContainerRef: React.RefObject<HTMLDivElement>;
+  rootContainerRef: React.RefObject<HTMLDivElement | null>;
+  viewerContainerRef: React.RefObject<HTMLDivElement | null>;
+  contentContainerRef: React.RefObject<HTMLDivElement | null>;
   circular?: boolean;
   centerMode?: boolean;
   extraPadding?: number;

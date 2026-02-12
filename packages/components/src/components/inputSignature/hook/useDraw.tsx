@@ -23,8 +23,9 @@ function isImageDataEqual(a: ImageData, b: ImageData) {
 
 export const useDraw = (onChange?: (value: string) => void): ReturnType => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const context =
-    useRef<CanvasRenderingContext2D>() as React.MutableRefObject<CanvasRenderingContext2D>;
+  const context = useRef<CanvasRenderingContext2D | null>(
+    null,
+  ) as React.MutableRefObject<CanvasRenderingContext2D>;
   const isDrawing = useRef<boolean>(false);
   const isFilled = useRef<boolean>(false);
   const signatureStylesRef = useRef<InputSignatureLineStyles>({

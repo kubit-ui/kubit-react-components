@@ -42,7 +42,7 @@ import type { UseRoveFocusProps } from './types/useRoveFocus';
  *        The movement logic for the "Page Up" key. Can be a number or a custom function.
  * @param {number} props.size - The total number of focusable elements in the list.
  *
- * @returns {[number, Dispatch<SetStateAction<number>>, React.RefObject<HTMLElement>]}
+ * @returns {[number, Dispatch<SetStateAction<number>>, React.RefObject<HTMLElement | null>]}
  *          A tuple containing:
  *          - `currentFocus`: The index of the currently focused element.
  *          - `setCurrentFocus`: A state setter function to manually update the focused index.
@@ -68,10 +68,10 @@ export const useRoveFocus = ({
 }: UseRoveFocusProps): [
   number,
   Dispatch<SetStateAction<number>>,
-  React.RefObject<HTMLElement>,
+  React.RefObject<HTMLElement | null>,
 ] => {
   const [currentFocus, setCurrentFocus] = useState(currentFocusSelected);
-  const listEl = useRef<HTMLElement>(null);
+  const listEl = useRef<HTMLElement | null>(null);
 
   const moveDown = (e: KeyboardEvent) => {
     if (keyDownMove !== null) {

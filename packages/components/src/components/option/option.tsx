@@ -11,9 +11,8 @@ import {
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useGenericComponents } from '@/lib/provider/genericComponentsProvider/genericComponentsProvider';
 
-import type { OptionProps } from './types/option';
-
 import { OptionStandAlone } from './optionStandAlone';
+import type { OptionProps } from './types/option';
 
 /**
  * Option component for rendering selectable list items.
@@ -52,7 +51,7 @@ export const Option = forwardRef(
     });
 
     const { LINK: genericLinkComponent } = useGenericComponents();
-    const innerRef = useRef<HTMLElement>();
+    const innerRef = useRef<HTMLElement | null>(null);
     const [hover, setHover] = useState(false);
     const [focused, setFocused] = useState(false);
 

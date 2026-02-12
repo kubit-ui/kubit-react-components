@@ -1,5 +1,5 @@
 export interface IUseCarouselKeyNavigationParams {
-  rootContainerRef: React.RefObject<HTMLDivElement>;
+  rootContainerRef: React.RefObject<HTMLDivElement | null>;
   allowShiftRef: React.MutableRefObject<boolean>;
   circular: boolean;
   numPagesRef: React.MutableRefObject<number>;

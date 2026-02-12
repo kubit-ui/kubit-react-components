@@ -3,7 +3,6 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useScrollBlock } from '@/lib/hooks/useScrollBlock/useScrollBlock';
 
 import type { IUseCarouselSwipe } from './types/useCarouselSwipe';
-
 import calcUtils from './utils/calc.utils';
 import CONSTANTS from './utils/constants';
 
@@ -25,7 +24,7 @@ export const useCarouselSwipe: IUseCarouselSwipe = ({
   const isDragging = useRef(false);
   const isHorizontalDragging = useRef(false);
   const isVerticalDragging = useRef(false);
-  const posInitial = useRef<number | undefined>();
+  const posInitial = useRef<number | undefined>(undefined);
   const posX1 = useRef(0);
   const posX2 = useRef(0);
   const posXInitial = useRef(0);

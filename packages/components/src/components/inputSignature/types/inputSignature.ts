@@ -26,7 +26,7 @@ export interface InputSignatureCustomHandle {
  */
 export interface InputSignatureStandAloneProps extends DataAttributes {
   state: InputSignatureState;
-  canvasRef: React.RefObject<HTMLCanvasElement>;
+  canvasRef: React.RefObject<HTMLCanvasElement | null>;
   placeholder: CommonTextProps;
   errorText?: CommonTextProps;
   onClickContainer: (e: React.MouseEvent<HTMLDivElement>) => void;
