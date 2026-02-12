@@ -5,7 +5,7 @@ import type { CommonTextProps } from '@/lib/types/commons/text';
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
-} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+} from '@/lib/types/cssGenerator/componentsTypes';
 
 type ErrorMessageCssClasses = ComponentSelected<
   ComponentsTypesComponents['ERROR_MESSAGE']

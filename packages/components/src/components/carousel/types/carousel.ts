@@ -2,7 +2,7 @@ import type { ScreenReaderOnlyProps } from '@/lib/components/screen-reader-only/
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
-} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+} from '@/lib/types/cssGenerator/componentsTypes';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
 export const CAROUSEL_BUILD_SCREEN_READER_CURRENT_PAGE_KEY = '{{currentPage}}';

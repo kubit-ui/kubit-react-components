@@ -4,7 +4,7 @@ import type { IPopover } from '@/components/popover/types/popover';
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
-} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+} from '@/lib/types/cssGenerator/componentsTypes';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
 export type SnackbarPopover = Omit<IPopover, 'children' | 'open'>;

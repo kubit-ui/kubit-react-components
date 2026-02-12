@@ -3,7 +3,7 @@ import type { AriaAttributes, ReactNode } from 'react';
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
-} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+} from '@/lib/types/cssGenerator/componentsTypes';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
 import type { TableProps } from '../../table/types/table';

@@ -7,7 +7,7 @@ import type {
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
-} from '@/lib/types/cssGenerator/kubit/componentsTypes';
+} from '@/lib/types/cssGenerator/componentsTypes';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
 type TableRowCssClasses = ComponentSelected<

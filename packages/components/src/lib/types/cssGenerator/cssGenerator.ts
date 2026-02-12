@@ -1,7 +1,7 @@
 import type {
   ComponentsTypesAvailableComponents,
   ComponentsTypesComponents,
-} from './kubit/componentsTypes';
+} from './componentsTypes';
 
 export type ComponentsTypesComponentsNames = {
   [K in keyof ComponentsTypesComponents]: K;
