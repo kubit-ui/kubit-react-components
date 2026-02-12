@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.55
+
+### Major Changes
+
+- Move files and improve cssTypes declaration
+
 ## 2.0.0-beta.54
 
 ### Major Changes
