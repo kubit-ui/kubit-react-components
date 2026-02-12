@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.15
+
+### Major Changes
+
+- Update to react 19 (#68)
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.56
+
 ## 2.0.0-beta.14
 
 ### Patch Changes

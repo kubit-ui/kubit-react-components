@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.56
+
+### Major Changes
+
+- Update to react 19 (#68)
+
 ## 2.0.0-beta.55
 
 ### Major Changes
