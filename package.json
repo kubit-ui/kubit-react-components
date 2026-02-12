@@ -21,10 +21,10 @@
     "url": "git+https://github.com/kubit-ui/kubit-react-components.git",
     "directory": "."
   },
+  "license": "Apache-2.0",
   "engines": {
     "node": "22.x"
   },
-  "license": "Apache-2.0",
   "packageManager": "pnpm@10.29.3",
   "pnpm": {
     "overrides": {
