@@ -1,6 +1,6 @@
 export interface IUseCarouselSwipeParams {
-  viewerContainerRef: React.RefObject<HTMLDivElement>;
-  contentContainerRef: React.RefObject<HTMLDivElement>;
+  viewerContainerRef: React.RefObject<HTMLDivElement | null>;
+  contentContainerRef: React.RefObject<HTMLDivElement | null>;
   allowShiftRef: React.MutableRefObject<boolean>;
   circular: boolean;
   extraPadding: number;

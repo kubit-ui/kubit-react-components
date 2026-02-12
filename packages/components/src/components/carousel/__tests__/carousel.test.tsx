@@ -1,12 +1,12 @@
 import { act } from 'react';
+
 import { axe } from 'vitest-axe';
 
 import { render } from '@/lib/tests/render/render';
 
-import type { ICarousel } from '../types/carousel';
-
 import { Carousel } from '../carousel';
 import { useCarousel } from '../hooks/useCarousel';
+import type { ICarousel } from '../types/carousel';
 
 const mockProps: ICarousel = {
   elements: [
@@ -28,7 +28,7 @@ const mockUseCarousel = vi.mocked(useCarousel);
 
 describe('Carousel component', () => {
   it('Should render carousel component', async () => {
-    const { container } = render(<Carousel {...mockProps} ref={() => ({})} />);
+    const { container } = render(<Carousel {...mockProps} ref={() => {}} />);
 
     const results = await axe(container);
     expect(container).toHTMLValidate({
@@ -43,7 +43,7 @@ describe('Carousel component', () => {
     render(
       <Carousel
         {...mockProps}
-        ref={() => ({})}
+        ref={() => {}}
         numElementsPerPage={mockProps.elements.length + 2}
       />,
     );
@@ -59,7 +59,7 @@ describe('Carousel component', () => {
     render(
       <Carousel
         {...mockProps}
-        ref={() => ({})}
+        ref={() => {}}
         allowModifySliceWidth={true}
         numElementsPerPage={0}
       />,
@@ -76,7 +76,7 @@ describe('Carousel component', () => {
     render(
       <Carousel
         {...mockProps}
-        ref={() => ({})}
+        ref={() => {}}
         allowModifySliceWidth={true}
         autoFitContainer={true}
         numElementsPerPage={5}

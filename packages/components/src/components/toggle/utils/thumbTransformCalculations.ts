@@ -33,9 +33,9 @@ interface UseToggleTransformProps {
   /** Current toggle state (true = ON, false = OFF) */
   checked: boolean;
   /** Ref to the track element (component controlled) */
-  trackRef: React.RefObject<HTMLButtonElement>;
+  trackRef: React.RefObject<HTMLButtonElement | null>;
   /** Ref to the thumb element (component controlled) */
-  thumbRef: React.RefObject<HTMLDivElement>;
+  thumbRef: React.RefObject<HTMLDivElement | null>;
 }
 
 /**

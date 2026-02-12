@@ -3,7 +3,7 @@ import { type RefObject, useCallback, useRef, useState } from 'react';
 import { hasScroll as checkHasScroll } from '../../../lib/utils/scroll/hasScroll';
 
 interface UseTooltipContentScrollParamsType {
-  tooltipRef: RefObject<HTMLDivElement>;
+  tooltipRef: RefObject<HTMLDivElement | null>;
 }
 
 interface UseTooltipContentScrollReturnType {
@@ -21,7 +21,7 @@ export const useTooltipContentScroll = ({
   tooltipRef,
 }: UseTooltipContentScrollParamsType): UseTooltipContentScrollReturnType => {
   const [contentHasScroll, setContentHasScroll] = useState(false);
-  const resizeObserverRef = useRef<ResizeObserver>();
+  const resizeObserverRef = useRef<ResizeObserver | undefined>(undefined);
 
   const contentRefHandler = useCallback(
     (innerContentElement: HTMLDivElement | null) => {

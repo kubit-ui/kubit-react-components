@@ -6,7 +6,7 @@ import {
 } from '../../../lib/utils/scroll/hasScroll';
 
 interface UseDataTableStickyRightColumnsParamsType {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
 }
 
 type UseDataTableStickyRightColumnsReturnType = object;

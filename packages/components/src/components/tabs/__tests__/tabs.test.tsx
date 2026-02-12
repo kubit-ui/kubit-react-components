@@ -8,11 +8,10 @@ import { render } from '@/lib/tests/render/render';
 import { windowMatchMedia } from '@/lib/tests/windowMatchMedia/windowMatchMedia';
 import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 
-import type { TabsUnControlledProps } from '../types/tabs';
-
 import * as UseTabsUtils from '../hooks/useTabs/useTabs';
 import { TabsControlled } from '../tabsControlled';
 import { TabsUnControlled } from '../tabsUnControlled';
+import type { TabsUnControlledProps } from '../types/tabs';
 
 const tabs = [
   { content: 'Tab 1' },
@@ -129,7 +128,7 @@ describe('Tabs component', () => {
         focus: 0,
         handleClickIcon: () => ({}),
         handleClickTab: () => ({}),
-        listEl: { current: null } as RefObject<HTMLLIElement>,
+        listEl: { current: null } as unknown as RefObject<HTMLLIElement>,
         position: 0,
       };
     });

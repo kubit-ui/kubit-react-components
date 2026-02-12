@@ -3,7 +3,7 @@ import { type RefObject, useEffect } from 'react';
 import { hasHorizontalScroll } from '../../../lib/utils/scroll/hasScroll';
 
 interface UseDataTableStickyLeftColumnsParamsType {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
 }
 
 type UseDataTableStickyLeftColumnsReturnType = object;

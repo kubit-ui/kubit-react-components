@@ -12,7 +12,7 @@ interface IUsePopoverLifecycleParams {
 export interface IUsePopoverLifecycleResponse {
   isClosing: boolean;
   isVisible: boolean;
-  popoverRef: React.RefObject<HTMLElement>;
+  popoverRef: React.RefObject<HTMLElement | null>;
   handleInnerRef: (node: HTMLElement | null) => void;
 }
 

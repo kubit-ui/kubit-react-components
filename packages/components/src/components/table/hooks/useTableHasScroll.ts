@@ -3,7 +3,7 @@ import { type RefObject, useEffect, useState } from 'react';
 import { hasScroll as checkHasSroll } from '../../../lib/utils/scroll/hasScroll';
 
 interface UseTableHasScrollParamsType {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
   disabled?: boolean;
 }
 

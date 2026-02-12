@@ -1,7 +1,7 @@
 import { type RefObject, useEffect, useRef } from 'react';
 
 interface UseAccordionContentOverflowParamsType {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
   expanded: boolean;
 }
 

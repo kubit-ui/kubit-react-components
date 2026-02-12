@@ -69,7 +69,7 @@ export interface SliderStandAloneProps extends DataAttributes {
   hover: boolean;
   pressed: boolean;
   activePointer: React.MutableRefObject<string>;
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   onMouseDown: React.MouseEventHandler<HTMLDivElement>;
   onChange: (event: MouseEvent | React.TouchEvent | React.MouseEvent) => void;
   onTouchStart: React.TouchEventHandler<HTMLDivElement>;

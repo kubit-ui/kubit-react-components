@@ -17,7 +17,7 @@ interface ReturnType {
   handleClickIcon: (isNextPosition: boolean) => void;
   focus: number;
   handleClickTab: (newFocus: number) => void;
-  listEl: React.RefObject<HTMLElement>;
+  listEl: React.RefObject<HTMLElement | null>;
 }
 
 /**

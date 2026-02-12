@@ -23,8 +23,8 @@ export type CarouselScreenReaderOnlyType = Omit<
 
 export interface ICarouselStandAlone extends DataAttributes {
   cssClasses?: CarouselCssClasses;
-  viewerContainerRef: React.RefObject<HTMLDivElement>;
-  contentContainerRef: React.RefObject<HTMLDivElement>;
+  viewerContainerRef: React.RefObject<HTMLDivElement | null>;
+  contentContainerRef: React.RefObject<HTMLDivElement | null>;
   elements: JSX.Element[];
   screenReaderOnly?: CarouselScreenReaderOnlyType;
   allowModifySliceWidth?: boolean;

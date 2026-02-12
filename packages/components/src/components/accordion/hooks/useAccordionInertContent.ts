@@ -1,7 +1,7 @@
 import { type RefObject, useEffect } from 'react';
 
 interface UseAccordionInertContentParamsType {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
   expanded: boolean;
 }
 

@@ -1,7 +1,7 @@
 import { type RefObject, useEffect } from 'react';
 
 interface UseTableShadowParamsType {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
   headBoxShadow?: string;
   leftBoxShadow?: string;
   rightBoxShadow?: string;
