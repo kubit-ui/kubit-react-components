@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.57
+
+### Major Changes
+
+- Improve stylesprovider props (#69)
+
 ## 2.0.0-beta.56
 
 ### Major Changes
