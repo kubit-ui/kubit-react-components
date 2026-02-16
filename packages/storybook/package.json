@@ -41,7 +41,7 @@
     "eslint": "^10.0.0",
     "eslint-config-kubit": "2.0.2",
     "eslint-plugin-storybook": "10.2.8",
-    "html-validate": "^10.7.0",
+    "html-validate": "^10.8.0",
     "prettier": "^3.8.1",
     "prismjs": "^1.30.0",
     "storybook": "^10.2.8",

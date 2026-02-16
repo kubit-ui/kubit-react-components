@@ -84,7 +84,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
-    "turbo": "^2.8.7"
+    "turbo": "^2.8.9"
   },
   "bugs": {
     "url": "https://github.com/kubit-ui/kubit-react-components/issues",
