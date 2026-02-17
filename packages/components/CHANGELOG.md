@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.58
+
+### Major Changes
+
+- Fix tsc errors and improve implementation
+
 ## 2.0.0-beta.57
 
 ### Major Changes

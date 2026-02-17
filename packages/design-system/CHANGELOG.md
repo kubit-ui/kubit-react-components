@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.17
+
+### Major Changes
+
+- Fix tsc errors and improve implementation
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.58
+
 ## 2.0.0-beta.16
 
 ### Patch Changes
