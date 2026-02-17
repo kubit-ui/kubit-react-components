@@ -1,0 +1,1 @@
+export default {'kubit':{css:'src/designSystem/kubit/css/kubit.css',foreign:{before:[],after:[]}}}

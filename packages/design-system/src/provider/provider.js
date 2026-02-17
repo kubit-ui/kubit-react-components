@@ -27,7 +27,8 @@ export class Provider {
       linkElement.rel = 'stylesheet';
       document.head.appendChild(linkElement);
     }
-    const href = new URL(url, import.meta.url).href;
+    const baseUrl = document.location.origin;
+    const href = new URL(url, baseUrl).href;
     linkElement.href = href;
   };
   #handlerThemes = (data) => {

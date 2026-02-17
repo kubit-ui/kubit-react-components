@@ -20,7 +20,7 @@ export const TAG: TagVariantStyles<TagVariants> = {
     overflow: 'hidden',
     text_overflow: 'ellipsis',
     white_space: 'nowrap',
-    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED],
+    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED].$mediaQueries.desktop,
   },
   align_items: 'center',
   display: 'flex',

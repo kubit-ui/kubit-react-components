@@ -55,7 +55,7 @@ export const BADGE: BadgeStylesType<VariantType, SizeVariantType> = {
       color: cssVars.colors_neutral_color_icon_250,
     },
     _label: {
-      ...TEXT[TextVariantType.PARAGRAPH_CAPTION_EXTENDED],
+      ...TEXT[TextVariantType.PARAGRAPH_CAPTION_EXTENDED].$mediaQueries.desktop,
       color: cssVars.colors_neutral_color_font_250,
       font_weight: cssVars.font_weight_400,
     },
@@ -86,7 +86,7 @@ export const BADGE: BadgeStylesType<VariantType, SizeVariantType> = {
       color: cssVars.colors_neutral_color_icon_50,
     },
     _label: {
-      ...TEXT[TextVariantType.PARAGRAPH_CAPTION_EXTENDED],
+      ...TEXT[TextVariantType.PARAGRAPH_CAPTION_EXTENDED].$mediaQueries.desktop,
       $pseudoClasses: {
         active: {
           color: cssVars.colors_neutral_color_font_50,

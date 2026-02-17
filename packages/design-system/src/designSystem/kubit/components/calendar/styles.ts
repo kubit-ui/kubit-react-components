@@ -42,7 +42,7 @@ export const CALENDAR: CalendarVariantStyles<CalendarVariants> = {
     },
   },
   _backText: {
-    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED],
+    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED].$mediaQueries.desktop,
     color: cssVars.colors_disabled_color_accentdisabled_icon_100,
     font_weight: cssVars.font_weight_400,
   },
@@ -51,7 +51,7 @@ export const CALENDAR: CalendarVariantStyles<CalendarVariants> = {
   },
   _daysList: {
     color: cssVars.colors_neutral_color_font_50,
-    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED],
+    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED].$mediaQueries.desktop,
     $attributes: {
       'data-state': {
         [STATES.CURRENT_DAY]: {

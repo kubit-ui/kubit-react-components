@@ -25,7 +25,7 @@ export const ALERT: AlertVariantStyles<AlertVariants> = {
     padding: cssVars.spacings_spacing_0,
   },
   _description: {
-    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED],
+    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED].$mediaQueries.desktop,
     color: cssVars.colors_neutral_color_font_150,
     font_weight: cssVars.font_weight_400,
     word_break: 'break-word',

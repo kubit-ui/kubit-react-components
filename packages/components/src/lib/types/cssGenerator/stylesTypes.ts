@@ -1,3 +1,5 @@
-import type { CssGeneratorType as CssGeneratorTypeInterface } from 'bernova/interfaces';
+import type { CssLibPropsType as CssGeneratorTypeInterface } from 'bernova/interfaces';
 
-export type CssLibPropsType = CssGeneratorTypeInterface<''>;
+export type CssLibPropsType = CssGeneratorTypeInterface<any> & {
+  $dynamicValues?: string[];
+};

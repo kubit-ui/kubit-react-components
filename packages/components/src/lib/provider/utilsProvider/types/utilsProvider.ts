@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 
 import type { FormatDateType } from '@/lib/utils/date/types/format.types';
 
-export type dateHelpers = {
+export interface dateHelpers {
   /** Subtracts a specified number of days from a date */
   getSubDays: (date: Date, amount: number) => Date;
   /** Subtracts a specified number of months from a date */
@@ -53,7 +53,7 @@ export type dateHelpers = {
     secondDate: Date | number | string,
     shouldCompareTime: boolean,
   ) => boolean;
-};
+}
 
 /**
  * Context type for utility functions and configurations.

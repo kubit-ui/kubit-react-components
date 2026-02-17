@@ -5,6 +5,7 @@ import type {
   UseContentVisibilityParamsType,
   UseContentVisibilityReturnType,
 } from './types/useContentVisibility';
+
 import { isContentVisibleEnough } from './utils/contentVisibility';
 
 /**

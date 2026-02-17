@@ -17,6 +17,7 @@ import type {
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
 import type { IPopover } from '../../popover/types/popover';
+
 import { type TooltipAlignType } from './tooltipAlign';
 
 export type TooltipCssClasses = ComponentSelected<

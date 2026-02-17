@@ -82,7 +82,7 @@ export const RADIO_BUTTON: RadioButtonVariantStyles<RadioButtonVariants> = {
     grid_area: '1 / 2',
   },
   _label: {
-    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED],
+    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED].$mediaQueries.desktop,
     color: cssVars.colors_neutral_color_font_50,
     font_weight: cssVars.font_weight_600,
   },
@@ -105,7 +105,7 @@ export const RADIO_BUTTON: RadioButtonVariantStyles<RadioButtonVariants> = {
     padding_top: cssVars.spacings_spacing_0,
   },
   _sublabel: {
-    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED],
+    ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXTENDED].$mediaQueries.desktop,
     font_weight: cssVars.font_weight_400,
   },
   appearance: 'none',

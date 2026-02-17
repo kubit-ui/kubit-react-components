@@ -21,6 +21,8 @@
     "alwaysStrict": false,
     "suppressImplicitAnyIndexErrors": true,
     "suppressExcessPropertyErrors": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*", "../components/src/*"],

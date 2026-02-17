@@ -1,12 +1,4 @@
-export type ComponentsTypesAvailableComponents = 'ACCORDION' | 'ALERT' | 'AVATAR' | 'BADGE' | 'BREADCRUMBS' | 'BUTTON' | 'CALENDAR' | 'CARD' | 'CAROUSEL' | 'CHECKBOX' | 'CHECKBOX_BASE' | 'CHIP' | 'DATA_TABLE' | 'DOT' | 'ERROR_MESSAGE' | 'ICON' | 'INPUT' | 'INPUT_BASE' | 'INPUT_DECORATION' | 'INPUT_SIGNATURE' | 'ITEM_ROVE' | 'LINK' | 'LINK_AS_BUTTON' | 'LIST_OPTIONS' | 'MODAL' | 'OPTION' | 'OVERLAY' | 'PAGE_CONTROL' | 'PAGINATION' | 'POPOVER' | 'PROGRESS_BAR' | 'RADIO_BUTTON' | 'SELECT' | 'SELECTOR_BOX_FILE' | 'SKELETON' | 'SLIDER' | 'SNACKBAR' | 'STEPPER_NUMBER' | 'TABLE' | 'TABLE_BODY' | 'TABLE_CAPTION' | 'TABLE_CELL' | 'TABLE_DIVIDER' | 'TABLE_FOOT' | 'TABLE_HEAD' | 'TABLE_ROW' | 'TABS' | 'TAG' | 'TEXT' | 'TEXT_AREA' | 'TEXT_COUNT' | 'TOGGLE' | 'TOOLTIP' | 'VIRTUAL_KEYBOARD'
-
-type NonVariablesKeys<T> = {
-  [K in keyof T]: K extends `$${string}` ? never : K;
-}[keyof T];
-export type ComponentSelected<T> = Pick<T, NonVariablesKeys<T>>;
-    
-export interface ComponentsTypesComponents {
-  ACCORDION: {
+export interface kubitCssClassNames {'kubit':{  ACCORDION: {
     accordion: string,
     content: string,
     header: string,
@@ -1038,4 +1030,4 @@ export interface ComponentsTypesComponents {
       digittext: string,
     },
   },
-}
+}}

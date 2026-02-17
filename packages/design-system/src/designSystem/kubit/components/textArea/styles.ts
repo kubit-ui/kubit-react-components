@@ -24,12 +24,12 @@ export const TEXT_AREA: TextAreaVariantStyles<TextAreaVariants> = {
     display: 'flex',
   },
   _counterLeft: {
-    ...TEXT[TextVariantType.DEFAULT],
+    ...TEXT[TextVariantType.DEFAULT].$mediaQueries.desktop,
     font_weight: cssVars.font_weight_400,
     padding: cssVars.spacings_spacing_0,
   },
   _counterRight: {
-    ...TEXT[TextVariantType.DEFAULT],
+    ...TEXT[TextVariantType.DEFAULT].$mediaQueries.desktop,
     font_weight: cssVars.font_weight_400,
     padding: cssVars.spacings_spacing_0,
   },
@@ -45,11 +45,11 @@ export const TEXT_AREA: TextAreaVariantStyles<TextAreaVariants> = {
     width: cssVars.spacings_spacing_100,
   },
   _errorMessage: {
-    ...TEXT[TextVariantType.DEFAULT],
+    ...TEXT[TextVariantType.DEFAULT].$mediaQueries.desktop,
     font_weight: cssVars.font_weight_400,
   },
   _helpMessage: {
-    ...TEXT[TextVariantType.DEFAULT],
+    ...TEXT[TextVariantType.DEFAULT].$mediaQueries.desktop,
     font_weight: cssVars.font_weight_400,
   },
   _helpMessageErrorContainer: {
@@ -57,7 +57,7 @@ export const TEXT_AREA: TextAreaVariantStyles<TextAreaVariants> = {
     flex_direction: 'column',
   },
   _label: {
-    ...TEXT[TextVariantType.DEFAULT],
+    ...TEXT[TextVariantType.DEFAULT].$mediaQueries.desktop,
     font_weight: cssVars.font_weight_400,
   },
   _labelAndAdditionalInfoContainer: {
@@ -73,7 +73,7 @@ export const TEXT_AREA: TextAreaVariantStyles<TextAreaVariants> = {
     padding: `${cssVars.spacings_spacing_100} ${cssVars.spacings_spacing_50}`,
   },
   _required: {
-    ...TEXT[TextVariantType.DEFAULT],
+    ...TEXT[TextVariantType.DEFAULT].$mediaQueries.desktop,
     font_weight: cssVars.font_weight_400,
   },
   _textArea: {
@@ -92,7 +92,7 @@ export const TEXT_AREA: TextAreaVariantStyles<TextAreaVariants> = {
     resize: 'none',
   },
   _title: {
-    ...TEXT[TextVariantType.DEFAULT],
+    ...TEXT[TextVariantType.DEFAULT].$mediaQueries.desktop,
     font_weight: cssVars.font_weight_400,
   },
   _titleContainer: {

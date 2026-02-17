@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useScrollBlock } from '@/lib/hooks/useScrollBlock/useScrollBlock';
 
 import type { IUseCarouselSwipe } from './types/useCarouselSwipe';
+
 import calcUtils from './utils/calc.utils';
 import CONSTANTS from './utils/constants';
 

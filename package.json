@@ -28,8 +28,7 @@
   "packageManager": "pnpm@10.29.3",
   "pnpm": {
     "overrides": {
-      "eslint-plugin-react-hooks": "7.1.0-canary-272441a9-20260209",
-      "zod-validation-error": "^3.4.0"
+      "eslint-plugin-react-hooks": "^5.1.0"
     }
   },
   "scripts": {

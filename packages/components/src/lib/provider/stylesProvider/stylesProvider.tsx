@@ -1,6 +1,7 @@
 import { type FC, createContext, useContext, useMemo, useState } from 'react';
 
 import type { RecoverComponentStyles } from '@/lib/types/cssGenerator/cssGenerator';
+
 import {
   getAddDays,
   getAddMonths,
@@ -17,14 +18,15 @@ import {
 import { formatDate } from '@/lib/utils/date/formatDate';
 import { transformDate } from '@/lib/utils/date/transformDate';
 
-import { defaultGenericComponents } from '../genericComponentsProvider/defaultGenericComponents';
-import { GenericComponentsProvider } from '../genericComponentsProvider/genericComponentsProvider';
-import { UtilsProvider } from '../utilsProvider/utilsProvider';
 import type {
   Breakpoints,
   StylesContextProps,
   StylesProviderProps,
 } from './types/stylesProvider';
+
+import { defaultGenericComponents } from '../genericComponentsProvider/defaultGenericComponents';
+import { GenericComponentsProvider } from '../genericComponentsProvider/genericComponentsProvider';
+import { UtilsProvider } from '../utilsProvider/utilsProvider';
 
 /**
  * React Context for styles and theming.
@@ -118,13 +120,13 @@ export const StylesProvider: FC<StylesProviderProps> = ({
   bernovaProvider = {},
   breakpoints = defaultBreakpoints,
   children,
+  dateHelpers,
+  genericComponents,
   icons = {},
   illustrations = {},
   jsInCss = true,
   linkId = 'kb-styled-provider',
   themeSelected,
-  genericComponents,
-  dateHelpers,
 }) => {
   /**
    * Pre-computed media queries based on the provided breakpoints.

@@ -1,12 +1,12 @@
 import { act } from 'react';
-
 import { axe } from 'vitest-axe';
 
 import { render } from '@/lib/tests/render/render';
 
+import type { ICarousel } from '../types/carousel';
+
 import { Carousel } from '../carousel';
 import { useCarousel } from '../hooks/useCarousel';
-import type { ICarousel } from '../types/carousel';
 
 const mockProps: ICarousel = {
   elements: [

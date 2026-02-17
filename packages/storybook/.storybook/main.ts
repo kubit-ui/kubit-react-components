@@ -29,8 +29,7 @@ const config: StorybookConfig = {
   // Stories solo desde el package storybook
   stories: [
     '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-    '../stories/**/*.mdx',
-    '../overview/**/*.mdx',
+    './overview/**/*.mdx',
   ],
 
   typescript: {

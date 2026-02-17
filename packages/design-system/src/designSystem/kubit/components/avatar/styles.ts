@@ -58,7 +58,8 @@ export const AVATAR: AvatarSizeStyles<SizeVariantType> = {
       },
       ['data-content-type']: {
         [AvatarContent.WITH_INITIALS]: {
-          ...TEXT[TextVariantType.PARAGRAPH_CAPTION_EXTENDED],
+          ...TEXT[TextVariantType.PARAGRAPH_CAPTION_EXTENDED].$mediaQueries
+            .desktop,
           font_weight: cssVars.font_weight_600,
           text_align: cssVars.text_align_center,
         },

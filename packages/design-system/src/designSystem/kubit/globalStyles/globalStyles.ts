@@ -1,4 +1,5 @@
 import { FONT_FAMILY } from '../foundations/typography';
+import { UTILITY_CLASSES } from './utilityClasses';
 
 export const GLOBAL_STYLES = [
   {
@@ -55,4 +56,5 @@ export const GLOBAL_STYLES = [
     },
     targets: '.kbt-global-focus',
   },
+  ...UTILITY_CLASSES,
 ];

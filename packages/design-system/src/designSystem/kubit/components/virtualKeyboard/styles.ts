@@ -24,7 +24,7 @@ export const VIRTUAL_KEYBOARD: VirtualKeyboardVariantStyles<VirtualKeyboardVaria
       align_items: 'center',
       display: 'flex',
       justify_content: 'center',
-      ...TEXT[TextVariantType.PARAGRAPH_MEDIUM_EXPANDED],
+      ...TEXT[TextVariantType.PARAGRAPH_MEDIUM_EXPANDED].$mediaQueries.desktop,
     },
     _digitWrapper: {
       $advancedSelectors: [

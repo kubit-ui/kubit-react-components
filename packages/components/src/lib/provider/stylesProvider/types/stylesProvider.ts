@@ -1,7 +1,7 @@
 import type { RecoverComponentStyles } from '@/lib/types/cssGenerator/cssGenerator';
 
-import { GenericComponentsType } from '../../genericComponentsProvider/types/genericComponentsProvider';
-import { dateHelpers } from '../../utilsProvider/types/utilsProvider';
+import type { GenericComponentsType } from '../../genericComponentsProvider/types/genericComponentsProvider';
+import type { dateHelpers } from '../../utilsProvider/types/utilsProvider';
 
 /**
  * Defines responsive breakpoints in pixels for different screen sizes.

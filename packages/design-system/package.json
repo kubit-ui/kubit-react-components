@@ -119,7 +119,8 @@
     "clean": "rm -rf dist node_modules",
     "clean:build": "rm -rf dist",
     "prepublishOnly": "pnpm dist && pnpm pack:size",
-    "prerelease": "pnpm validate"
+    "prerelease": "pnpm validate",
+    "bernova:no-check": "TS_NODE_TRANSPILE_ONLY=true npx bernova"
   },
   "peerDependencies": {
     "@kubit-ui-web/react-components": "workspace:*"
@@ -132,15 +133,15 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^25.2.3",
-    "bernova": "1.5.2",
+    "bernova": "1.5.4",
     "cssnano": "^7.1.2",
     "eslint": "^10.0.0",
     "eslint-config-kubit": "2.0.2",
-    "glob": "^13.0.3",
+    "glob": "^13.0.4",
     "postcss": "^8.5.6",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.55.0",
+    "typescript-eslint": "^8.56.0",
     "vite": "8.0.0-beta.10",
     "vite-plugin-dts": "^4.5.4"
   },
