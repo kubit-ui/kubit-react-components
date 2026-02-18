@@ -35,7 +35,7 @@
       "url": "https://github.com/kubit-ui/kubit-react-components/graphs/contributors"
     }
   ],
-  "packageManager": "pnpm@10.29.3",
+  "packageManager": "pnpm@10.30.0",
   "keywords": [
     "react",
     "react-components",
@@ -189,7 +189,7 @@
     "bernova": "1.5.4",
     "eslint": "^10.0.0",
     "eslint-config-kubit": "2.0.2",
-    "glob": "^13.0.4",
+    "glob": "^13.0.5",
     "html-validate": "^10.8.0",
     "jsdom": "^28.1.0",
     "prettier": "^3.8.1",

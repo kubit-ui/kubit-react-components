@@ -3,7 +3,7 @@
   "version": "2.0.0-alpha.1",
   "description": "Kubit Storybook - Component documentation and showcase",
   "private": true,
-  "packageManager": "pnpm@10.29.3",
+  "packageManager": "pnpm@10.30.0",
   "engines": {
     "node": "22.x"
   },

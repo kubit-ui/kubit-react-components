@@ -5,7 +5,7 @@ type NonVariablesKeys<T> = {
 }[keyof T];
 export type ComponentSelected<T> = Pick<T, NonVariablesKeys<T>>;
     
-export interface ComponentsTypesComponents {
+export type ComponentsTypesComponents = {
   ACCORDION: {
     accordion: string,
     content: string,

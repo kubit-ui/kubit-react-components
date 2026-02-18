@@ -73,8 +73,8 @@ importers:
         specifier: 2.0.2
         version: 2.0.2(eslint@10.0.0)(prettier@3.8.1)(typescript@5.9.3)
       glob:
-        specifier: ^13.0.4
-        version: 13.0.4
+        specifier: ^13.0.5
+        version: 13.0.5
       html-validate:
         specifier: ^10.8.0
         version: 10.8.0(vitest@4.0.18)
@@ -3553,6 +3553,10 @@ packages:
 
   glob@13.0.4:
     resolution: {integrity: sha512-KACie1EOs9BIOMtenFaxwmYODWA3/fTfGSUnLhMJpXRntu1g+uL/Xvub5f8SCTppvo9q62Qy4LeOoUiaL54G5A==}
+    engines: {node: 20 || >=22}
+
+  glob@13.0.5:
+    resolution: {integrity: sha512-BzXxZg24Ibra1pbQ/zE7Kys4Ua1ks7Bn6pKLkVPZ9FZe4JQS6/Q7ef3LG1H+k7lUf5l4T3PLSyYyYJVYUvfgTw==}
     engines: {node: 20 || >=22}
 
   glob@7.2.3:
@@ -7154,7 +7158,7 @@ snapshots:
 
   '@joshwooding/vite-plugin-react-docgen-typescript@0.6.4(typescript@5.9.3)(vite@8.0.0-beta.10(@types/node@25.2.3)(esbuild@0.27.3)(terser@5.46.0))':
     dependencies:
-      glob: 13.0.4
+      glob: 13.0.5
       react-docgen-typescript: 2.4.0(typescript@5.9.3)
       vite: 8.0.0-beta.10(@types/node@25.2.3)(esbuild@0.27.3)(terser@5.46.0)
     optionalDependencies:
@@ -9449,6 +9453,12 @@ snapshots:
       path-scurry: 2.0.1
 
   glob@13.0.4:
+    dependencies:
+      minimatch: 10.2.1
+      minipass: 7.1.2
+      path-scurry: 2.0.1
+
+  glob@13.0.5:
     dependencies:
       minimatch: 10.2.1
       minipass: 7.1.2

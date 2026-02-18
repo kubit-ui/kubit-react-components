@@ -32,7 +32,7 @@
         "path": "./src/designSystem/common/mediaQueries.ts",
         "name": "MEDIA_QUERIES"
       },
-      "kbTools": {
+      "bvTools": {
         "path": "./src/designSystem/kubit/css",
         "declarationHelp": true,
         "cssVariables": true,
