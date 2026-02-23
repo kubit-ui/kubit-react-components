@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.59
+
+### Major Changes
+
+- Update dependencies and include new cssvars exports
+
 ## 2.0.0-beta.58
 
 ### Major Changes

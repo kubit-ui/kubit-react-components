@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.18
+
+### Major Changes
+
+- Update dependencies and include new cssvars exports
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.59
+
 ## 2.0.0-beta.17
 
 ### Major Changes
