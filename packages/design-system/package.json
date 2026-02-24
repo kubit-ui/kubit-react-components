@@ -133,7 +133,7 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^25.3.0",
-    "bernova": "1.5.4",
+    "bernova": "1.6.0",
     "cssnano": "^7.1.2",
     "eslint": "^10.0.1",
     "eslint-config-kubit": "2.0.2",

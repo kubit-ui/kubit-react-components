@@ -122,8 +122,8 @@ importers:
         specifier: ^25.3.0
         version: 25.3.0
       bernova:
-        specifier: 1.5.4
-        version: 1.5.4(@types/node@25.3.0)
+        specifier: 1.6.0
+        version: 1.6.0(@types/node@25.3.0)
       cssnano:
         specifier: ^7.1.2
         version: 7.1.2(postcss@8.5.6)
@@ -2564,6 +2564,11 @@ packages:
 
   bernova@1.5.4:
     resolution: {integrity: sha512-CeExjBvmYIp8jMsuh1PgTEPbzT7gjrD0MbFMYH7d19vN4BnzQ012QhVdH2UHBFtJqQ3Fvy/u3xYMoOvkTnXNoQ==}
+    engines: {node: '>=20.0.0', pnpm: '>=10.0.0'}
+    hasBin: true
+
+  bernova@1.6.0:
+    resolution: {integrity: sha512-XNOtZ9jPBnDZ3cN3+bAbEU8ZpAL6hZWjwjeN5C5bCOVVaD4tecD7oLwOOfR0Zg7JLo74xSg0Ac+/wmFClRNhqA==}
     engines: {node: '>=20.0.0', pnpm: '>=10.0.0'}
     hasBin: true
 
@@ -8294,6 +8299,26 @@ snapshots:
   baseline-browser-mapping@2.9.19: {}
 
   bernova@1.5.4(@types/node@25.3.0):
+    dependencies:
+      '@babel/core': 7.29.0
+      '@babel/preset-env': 7.29.0(@babel/core@7.29.0)
+      autoprefixer: 10.4.24(postcss@8.5.6)
+      cssnano: 7.1.2(postcss@8.5.6)
+      ora: 9.3.0
+      postcss: 8.5.6
+      postcss-font-magician: 4.0.0(postcss@8.5.6)
+      postcss-preset-env: 10.6.1(postcss@8.5.6)
+      terser: 5.46.0
+      ts-node: 10.9.2(@types/node@25.3.0)(typescript@5.9.3)
+      tsconfig-paths: 4.2.0
+      typescript: 5.9.3
+    transitivePeerDependencies:
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - supports-color
+
+  bernova@1.6.0(@types/node@25.3.0):
     dependencies:
       '@babel/core': 7.29.0
       '@babel/preset-env': 7.29.0(@babel/core@7.29.0)
