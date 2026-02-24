@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.60
+
+### Major Changes
+
+- Include globalStyles on styles provider context
+
 ## 2.0.0-beta.59
 
 ### Major Changes
