@@ -201,6 +201,7 @@ export const StylesProvider: FC<StylesProviderProps> = ({
       classes: [],
       currentTheme,
       getComponentStyles,
+      globalStyles: provider.globalStyles,
       icons,
       illustrations,
       mediaQueries,
@@ -217,6 +218,7 @@ export const StylesProvider: FC<StylesProviderProps> = ({
       provider.classNames,
       provider.allThemes,
       provider.variables,
+      provider.globalStyles,
     ],
   );
 

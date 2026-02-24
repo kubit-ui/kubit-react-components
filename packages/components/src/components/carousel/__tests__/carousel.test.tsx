@@ -28,7 +28,14 @@ const mockUseCarousel = vi.mocked(useCarousel);
 
 describe('Carousel component', () => {
   it('Should render carousel component', async () => {
-    const { container } = render(<Carousel {...mockProps} ref={() => {}} />);
+    const { container } = render(
+      <Carousel
+        {...mockProps}
+        ref={() => {
+          // empty
+        }}
+      />,
+    );
 
     const results = await axe(container);
     expect(container).toHTMLValidate({
@@ -43,7 +50,9 @@ describe('Carousel component', () => {
     render(
       <Carousel
         {...mockProps}
-        ref={() => {}}
+        ref={() => {
+          // empty
+        }}
         numElementsPerPage={mockProps.elements.length + 2}
       />,
     );
@@ -59,7 +68,9 @@ describe('Carousel component', () => {
     render(
       <Carousel
         {...mockProps}
-        ref={() => {}}
+        ref={() => {
+          // empty
+        }}
         allowModifySliceWidth={true}
         numElementsPerPage={0}
       />,
@@ -76,7 +87,9 @@ describe('Carousel component', () => {
     render(
       <Carousel
         {...mockProps}
-        ref={() => {}}
+        ref={() => {
+          // empty
+        }}
         allowModifySliceWidth={true}
         autoFitContainer={true}
         numElementsPerPage={5}
