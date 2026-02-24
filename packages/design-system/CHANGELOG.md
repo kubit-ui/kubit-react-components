@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.19
+
+### Major Changes
+
+- Merge branch 'feat/improve-bernova-integration' into break/2.0.0-venus-version
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.59
+
 ## 2.0.0-beta.18
 
 ### Major Changes
