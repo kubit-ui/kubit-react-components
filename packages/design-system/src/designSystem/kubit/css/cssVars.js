@@ -218,4 +218,4 @@ export const cssVars = {
   z_index_sticky: 'var(--z-index-sticky)',
   z_index_toast: 'var(--z-index-toast)',
   z_index_top_of_the_world: 'var(--z-index-top-of-the-world)',
-};
+}
