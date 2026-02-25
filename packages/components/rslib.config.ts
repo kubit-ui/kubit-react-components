@@ -4,28 +4,71 @@ import { defineConfig } from '@rslib/core';
 export default defineConfig({
   lib: [
     {
-      format: 'esm',
       bundle: false,
+      dts: {
+        bundle: false,
+        distPath: './dist/types',
+      },
+      format: 'esm',
       output: {
         distPath: {
           root: './dist/esm',
         },
       },
-      dts: {
-        bundle: false,
-        distPath: './dist/types',
-      },
     },
     {
-      format: 'cjs',
       bundle: false,
+      dts: false,
+      format: 'cjs',
       output: {
         distPath: {
           root: './dist/cjs',
         },
       },
-      dts: false,
     },
+  ],
+  output: {
+    cleanDistPath: true,
+    externals: {
+      '@floating-ui/dom': '@floating-ui/dom',
+      react: 'react',
+      'react-dom': 'react-dom',
+      'react/jsx-dev-runtime': 'react/jsx-dev-runtime',
+      'react/jsx-runtime': 'react/jsx-runtime',
+    },
+    minify: {
+      css: false,
+      js: true,
+      jsOptions: {
+        minimizerOptions: {
+          compress: {
+            dead_code: true,
+            defaults: false,
+            directives: false,
+            drop_debugger: true,
+            passes: 2,
+            pure_funcs: ['console.log', 'console.debug'],
+            toplevel: true,
+            unused: true,
+          },
+          format: {
+            comments: 'some',
+            preserve_annotations: true,
+          },
+          mangle: true,
+          minify: true,
+        },
+      },
+    },
+    sourceMap: false,
+    target: 'web',
+  },
+  plugins: [
+    pluginReact({
+      swcReactOptions: {
+        runtime: 'automatic',
+      },
+    }),
   ],
   source: {
     entry: {
@@ -41,24 +84,4 @@ export default defineConfig({
       ],
     },
   },
-  output: {
-    target: 'web',
-    minify: true,
-    sourceMap: false,
-    cleanDistPath: true,
-    externals: {
-      react: 'react',
-      'react-dom': 'react-dom',
-      'react/jsx-runtime': 'react/jsx-runtime',
-      'react/jsx-dev-runtime': 'react/jsx-dev-runtime',
-      '@floating-ui/dom': '@floating-ui/dom',
-    },
-  },
-  plugins: [
-    pluginReact({
-      swcReactOptions: {
-        runtime: 'automatic',
-      },
-    }),
-  ],
 });
