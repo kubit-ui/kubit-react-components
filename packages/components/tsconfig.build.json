@@ -11,7 +11,7 @@
     "dist",
     "vitest.config.ts",
     "vitest.setup.ts",
-    "vite.config.mts",
+    "rslib.config.ts",
     ".storybook"
   ],
   "compilerOptions": {
