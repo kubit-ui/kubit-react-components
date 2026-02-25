@@ -52,7 +52,7 @@ export default defineConfig({
             unused: true,
           },
           format: {
-            comments: 'some',
+            comments: false,
             preserve_annotations: true,
           },
           mangle: true,
