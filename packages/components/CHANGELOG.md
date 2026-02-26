@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.64
+
+### Major Changes
+
+- Migrate to rslib
+
 ## 2.0.0-beta.63
 
 ### Major Changes
