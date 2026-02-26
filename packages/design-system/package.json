@@ -101,9 +101,9 @@
   },
   "scripts": {
     "dev": "rslib build --watch",
-    "build": "rslib build && pnpm generate-css",
+    "build": "rm -rf dist && pnpm generate-css && rslib build",
     "predist": "rm -rf dist",
-    "dist": "rslib build && pnpm generate-css",
+    "dist": "pnpm generate-css && rslib build",
     "generate-css": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' npx bv-build --embed-css",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
