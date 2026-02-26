@@ -6,8 +6,7 @@
     "src/**/__fixtures__",
     "src/**/__tests__",
     "dist",
-    "vitest.config.ts",
-    "vite.config.mts",
+    "rslib.config.ts",
     "../components/**/*"
   ],
   "compilerOptions": {

@@ -35,7 +35,7 @@
       "url": "https://github.com/kubit-ui/kubit-react-components/graphs/contributors"
     }
   ],
-  "packageManager": "pnpm@10.30.1",
+  "packageManager": "pnpm@10.30.2",
   "keywords": [
     "react",
     "react-components",
@@ -181,14 +181,14 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "@types/node": "^25.3.0",
+    "@types/node": "^25.3.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/testing-library__jest-dom": "^6.0.0",
     "@vitest/coverage-v8": "^4.0.18",
     "@vitest/ui": "^4.0.18",
-    "bernova": "1.5.4",
-    "eslint": "^10.0.1",
+    "bernova": "1.6.0",
+    "eslint": "^10.0.2",
     "eslint-config-kubit": "2.0.2",
     "glob": "^13.0.6",
     "html-validate": "^10.9.0",
@@ -197,7 +197,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.0",
+    "typescript-eslint": "^8.56.1",
     "vitest": "^4.0.18",
     "vitest-axe": "^0.1.0"
   },

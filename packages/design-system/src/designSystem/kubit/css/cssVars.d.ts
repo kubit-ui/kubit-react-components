@@ -183,8 +183,10 @@ export declare const cssVars: {
   spacings_spacing_0: string;
   spacings_spacing_25: string;
   spacings_spacing_50: string;
+  spacings_spacing_50_percent: string;
   spacings_spacing_100: string;
   spacings_spacing_100_percent: string;
+  spacings_spacing_100_vh: string;
   spacings_spacing_100_vw: string;
   spacings_spacing_150: string;
   spacings_spacing_200: string;
