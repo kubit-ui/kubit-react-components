@@ -14,7 +14,8 @@ export default defineConfig({
       output: {
         copy: [
           {
-            from: 'src/**/*.css',
+            context: 'src',
+            from: '**/*.css',
           },
         ],
         distPath: {
@@ -29,7 +30,8 @@ export default defineConfig({
       output: {
         copy: [
           {
-            from: 'src/**/*.css',
+            context: 'src',
+            from: '**/*.css',
           },
         ],
         distPath: {
@@ -48,7 +50,7 @@ export default defineConfig({
       'react/jsx-runtime': 'react/jsx-runtime',
     },
     minify: {
-      css: false,
+      css: true,
       js: true,
       jsOptions: {
         minimizerOptions: {
@@ -84,18 +86,18 @@ export default defineConfig({
   source: {
     entry: {
       index: [
-        './src/**/*.{ts,tsx}',
-        '!./src/**/*.test.*',
-        '!./src/**/*.spec.*',
-        '!./src/**/*.stories.*',
-        '!./src/**/__tests__/**',
-        '!./src/**/__mocks__/**',
-        '!./src/**/__fixtures__/**',
-        '!./src/**/tests/**',
-        '!./src/**/storybook/**',
-        '!./src/lib/storybook/**',
-        '!./src/lib/tests/**',
-        '!./src/lib/provider/__tests__/**',
+        'src/**/*.{ts,tsx}',
+        '!src/**/*.test.*',
+        '!src/**/*.spec.*',
+        '!src/**/*.stories.*',
+        '!src/**/__tests__/**',
+        '!src/**/__mocks__/**',
+        '!src/**/__fixtures__/**',
+        '!src/**/tests/**',
+        '!src/**/storybook/**',
+        '!src/lib/storybook/**',
+        '!src/lib/tests/**',
+        '!src/lib/provider/__tests__/**',
       ],
     },
   },
