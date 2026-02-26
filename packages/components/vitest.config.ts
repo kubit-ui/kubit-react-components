@@ -25,7 +25,7 @@ export default defineConfig({
         'src/**/constants/**',
         'vitest.setup.ts',
         'vitest.config.ts',
-        'vite.config.mts',
+        'rslib.config.ts',
       ],
       provider: 'v8',
       reporter: ['text', 'json', 'lcov', 'html'],

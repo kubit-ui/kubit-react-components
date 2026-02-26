@@ -8,7 +8,7 @@
     "src/**/*.tsx",
     "src/**/*.d.ts",
     "src/**/*.js",
-    "vite.config.mts",
+    "rslib.config.ts",
     "eslint.config.js",
     "bernova.config.json"
   ],

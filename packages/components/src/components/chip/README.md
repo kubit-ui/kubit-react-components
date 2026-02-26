@@ -142,7 +142,7 @@ function TagList() {
   const [tags, setTags] = useState([
     { id: 1, label: 'React' },
     { id: 2, label: 'TypeScript' },
-    { id: 3, label: 'Vite' },
+    { id: 3, label: 'Rslib' },
   ]);
 
   const removeTag = (id: number) => {

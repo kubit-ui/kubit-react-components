@@ -7,8 +7,7 @@
     "dist",
     "vitest.config.ts",
     "vitest.setup.ts",
-    "vite.config.mts",
-    "viteStorybook.config.mts"
+    "rslib.config.ts"
   ],
   "compilerOptions": {
     "sourceMap": false,
@@ -36,7 +35,7 @@
     "preserveSymlinks": false,
     "jsx": "react-jsx",
     "composite": true, // ← Habilitar para permitir referencias de otros proyectos
-    "types": ["vite/client", "vitest/globals", "node", "@testing-library/jest-dom"],
+    "types": ["vitest/globals", "node", "@testing-library/jest-dom"],
     "typeRoots": ["src/lib/types", "node_modules/@types", "node_modules"],
     "removeComments": false,
     "erasableSyntaxOnly": true,
