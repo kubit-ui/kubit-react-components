@@ -60,7 +60,8 @@
     "server-side-rendering",
     "tree-shakeable",
     "esm",
-    "commonjs"
+    "commonjs",
+    "rslib"
   ],
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
