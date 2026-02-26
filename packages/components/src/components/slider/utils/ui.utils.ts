@@ -1,7 +1,5 @@
-import {
-  type DeviceBreakpointsType,
-  DeviceBreakpointsTypeUtils,
-} from '@/lib/types/breakpoints/breakpoints';
+import { type DeviceBreakpointsType } from '@/lib/types/breakpoints/breakpoints';
+import { DeviceBreakpointsTypeUtils } from '@/lib/utils/deviceBreakpointsTypeUtils/deviceBreakpointsTypeUtils';
 
 import type { SliderTooltipProps } from '../types/slider';
 

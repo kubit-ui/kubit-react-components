@@ -20,7 +20,7 @@
     "module": "ESNext",
     "lib": ["DOM", "ES2020", "ES2021"],
     "declaration": true,
-    "declarationMap": true,
+    "declarationMap": false,
     "emitDeclarationOnly": true, // Solo genera .d.ts para referencias
     "outDir": "./dist/types",
     "rootDir": "./src",

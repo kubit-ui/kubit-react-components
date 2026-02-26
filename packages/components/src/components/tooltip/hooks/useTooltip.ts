@@ -8,11 +8,11 @@ import {
   useState,
 } from 'react';
 
+import { DEVICE_BREAKPOINTS } from '@/lib/constants/breakpoints/breakpoints';
 import { useClassName } from '@/lib/hooks/useClassName/useClassName';
 import { useClickOutside } from '@/lib/hooks/useClickOutside/useClickOutside';
 import { useEscPressed } from '@/lib/hooks/useEscPressed/useEscPressed';
 import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
-import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 import { POSITIONS } from '@/lib/types/positions/positions';
 
 import type { TooltipCssClasses } from '../types/tooltip';

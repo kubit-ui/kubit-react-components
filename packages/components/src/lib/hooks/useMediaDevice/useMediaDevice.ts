@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import { DEVICE_BREAKPOINTS } from '@/lib/constants/breakpoints/breakpoints';
 import { useStylesContext } from '@/lib/provider/stylesProvider/stylesProvider';
-import {
-  DEVICE_BREAKPOINTS,
-  type DeviceBreakpointsType,
-} from '@/lib/types/breakpoints/breakpoints';
+import { type DeviceBreakpointsType } from '@/lib/types/breakpoints/breakpoints';
 
 /**
  * A custom React hook to determine and track the current media device type (e.g., mobile, tablet, desktop) based on CSS media queries.

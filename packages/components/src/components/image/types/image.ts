@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 
+import type { DEVICE_BREAKPOINTS } from '@/lib/constants/breakpoints/breakpoints';
 import type { GenericImageType } from '@/lib/provider/genericComponentsProvider/types/genericComponentsProvider';
-import type { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
 import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
 
 import type { PictureSourceProps } from './pictureSource';

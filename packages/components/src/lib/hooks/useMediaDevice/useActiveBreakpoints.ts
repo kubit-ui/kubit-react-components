@@ -1,4 +1,4 @@
-import { DeviceBreakpointsTypeUtils } from '@/lib/types/breakpoints/breakpoints';
+import { DeviceBreakpointsTypeUtils } from '@/lib/utils/deviceBreakpointsTypeUtils/deviceBreakpointsTypeUtils';
 
 import type { useActiveBreakpointsReturn } from './types/useActiveBreakpoints';
 

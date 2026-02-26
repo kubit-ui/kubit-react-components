@@ -3,7 +3,7 @@ import './image.css';
 
 import { type CSSProperties, forwardRef } from 'react';
 
-import { DEVICE_BREAKPOINTS } from '@/lib/types/breakpoints/breakpoints';
+import { DEVICE_BREAKPOINTS } from '@/lib/constants/breakpoints/breakpoints';
 import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
 
 import type { ImageStandAloneProps } from './types/image';
