@@ -118,14 +118,14 @@
       "require": "./dist/cjs/index.js"
     },
     "./components/*": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/types/components/*/index.d.ts",
       "import": "./dist/esm/components/*/index.mjs",
       "require": "./dist/cjs/components/*/index.js"
     },
-    "./provider/*": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/esm/lib/provider/*/index.mjs",
-      "require": "./dist/cjs/lib/provider/*/index.js"
+    "./lib/*": {
+      "types": "./dist/types/lib/*/index.d.ts",
+      "import": "./dist/esm/lib/*/index.mjs",
+      "require": "./dist/cjs/lib/*/index.js"
     },
     "./package.json": "./package.json"
   },
