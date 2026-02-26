@@ -1,5 +1,12 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.26
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.66
+
 ## 2.0.0-beta.25
 
 ### Patch Changes
