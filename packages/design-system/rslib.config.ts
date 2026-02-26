@@ -94,17 +94,17 @@ export default defineConfig({
   source: {
     entry: {
       index: [
-        './src/**/*.{ts,tsx}',
+        './src/**/*.{ts,tsx,js}',
         '!./src/**/*.test.*',
         '!./src/**/__tests__',
         '!./src/**/__mocks__',
         '!./src/**/__fixtures__',
-        '!./src/provider/**',
+        '!./src/provider/provider.js',
+        '!./src/provider/stats/**',
         '!./src/types/**',
         '!./src/designSystem/common/**',
         '!./src/designSystem/kubit/foundations/**',
         '!./src/designSystem/kubit/globalStyles/**',
-        '!./src/designSystem/kubit/index.js',
         '!./src/designSystem/kubit/components/**/styles.*',
       ],
     },

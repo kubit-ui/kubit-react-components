@@ -6,11 +6,17 @@ export default defineConfig({
     {
       bundle: false,
       dts: {
+        abortOnError: false,
         bundle: false,
         distPath: './dist/types',
       },
       format: 'esm',
       output: {
+        copy: [
+          {
+            from: 'src/**/*.css',
+          },
+        ],
         distPath: {
           root: './dist/esm',
         },
@@ -21,6 +27,11 @@ export default defineConfig({
       dts: false,
       format: 'cjs',
       output: {
+        copy: [
+          {
+            from: 'src/**/*.css',
+          },
+        ],
         distPath: {
           root: './dist/cjs',
         },
@@ -75,12 +86,16 @@ export default defineConfig({
       index: [
         './src/**/*.{ts,tsx}',
         '!./src/**/*.test.*',
+        '!./src/**/*.spec.*',
         '!./src/**/*.stories.*',
-        '!./src/**/__tests__',
-        '!./src/**/__mocks__',
-        '!./src/**/__fixtures__',
-        '!./src/**/storybook',
+        '!./src/**/__tests__/**',
+        '!./src/**/__mocks__/**',
+        '!./src/**/__fixtures__/**',
+        '!./src/**/tests/**',
+        '!./src/**/storybook/**',
         '!./src/lib/storybook/**',
+        '!./src/lib/tests/**',
+        '!./src/lib/provider/__tests__/**',
       ],
     },
   },

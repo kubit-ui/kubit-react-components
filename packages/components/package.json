@@ -141,9 +141,10 @@
   },
   "scripts": {
     "dev": "rslib build --watch",
-    "build": "rslib build",
+    "build": "rslib build && pnpm postbuild",
+    "postbuild": "find src -name '*.css' -type f | while read file; do target_esm=\"dist/esm/${file#src/}\"; target_cjs=\"dist/cjs/${file#src/}\"; mkdir -p \"$(dirname \"$target_esm\")\" \"$(dirname \"$target_cjs\")\"; cp \"$file\" \"$target_esm\"; cp \"$file\" \"$target_cjs\"; done",
     "predist": "rm -rf dist",
-    "dist": "rslib build",
+    "dist": "rslib build && pnpm postbuild",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
