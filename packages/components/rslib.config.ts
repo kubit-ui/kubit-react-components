@@ -98,6 +98,7 @@ export default defineConfig({
         '!src/lib/storybook/**',
         '!src/lib/tests/**',
         '!src/lib/provider/__tests__/**',
+        '!src/**/types/**',
       ],
     },
   },
