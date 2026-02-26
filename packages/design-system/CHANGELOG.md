@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.22
+
+### Major Changes
+
+- Migrate to rslib
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.62
+
 ## 2.0.0-beta.21
 
 ### Major Changes
