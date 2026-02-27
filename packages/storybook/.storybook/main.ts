@@ -1,4 +1,10 @@
+import { mergeRsbuildConfig, rspack } from '@rsbuild/core';
+import { dirname, resolve } from 'path';
 import type { StorybookConfig } from 'storybook-react-rsbuild';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const config: StorybookConfig = {
   addons: [
@@ -18,6 +24,35 @@ const config: StorybookConfig = {
     name: 'storybook-react-rsbuild',
     options: {},
   },
+
+  rsbuildFinal: (rsbuildConfig) =>
+    mergeRsbuildConfig(rsbuildConfig, {
+      tools: {
+        rspack: {
+          plugins: [
+            new rspack.NormalModuleReplacementPlugin(
+              /^@\/lib\/designSystem(.*)$/,
+              (resource) => {
+                resource.request = resource.request.replace(
+                  /^@\/lib\/designSystem/,
+                  resolve(__dirname, '../../design-system/src/designSystem'),
+                );
+              },
+            ),
+          ],
+          resolve: {
+            alias: {
+              '@/components': resolve(
+                __dirname,
+                '../../components/src/components',
+              ),
+              '@/lib': resolve(__dirname, '../../components/src/lib'),
+              '@/stories': resolve(__dirname, '../stories'),
+            },
+          },
+        },
+      },
+    }),
 
   staticDirs: ['./assets'],
 
