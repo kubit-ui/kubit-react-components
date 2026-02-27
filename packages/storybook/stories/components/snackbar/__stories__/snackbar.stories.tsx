@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
 import {

@@ -4,7 +4,7 @@ import {
   InputSignature,
   type InputSignatureCustomHandle,
 } from '@kubit-ui-web/react-components';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { argtypes } from './argTypes';
 

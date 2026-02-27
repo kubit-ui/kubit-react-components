@@ -35,7 +35,7 @@
       "url": "https://github.com/kubit-ui/kubit-react-components/graphs/contributors"
     }
   ],
-  "packageManager": "pnpm@10.30.2",
+  "packageManager": "pnpm@10.30.3",
   "keywords": [
     "react",
     "react-components",
@@ -182,7 +182,7 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "@types/node": "^25.3.1",
+    "@types/node": "^25.3.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/testing-library__jest-dom": "^6.0.0",

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Pagination as PaginationComponent } from '@kubit-ui-web/react-components';
 import { useState } from 'react';

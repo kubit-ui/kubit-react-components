@@ -17,12 +17,13 @@
     "isolatedModules": true,
     "resolveJsonModule": true,
     "jsx": "react-jsx",
-    "types": ["vite/client", "node"],
+    "types": ["node"],
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
       "@/stories": ["./stories"],
-      "@/stories/*": ["./stories/*"],
+      "@/stories/*": ["./stories/*"]
     }
   },
   "include": [".storybook/**/*", "stories/**/*", "overview/**/*"],

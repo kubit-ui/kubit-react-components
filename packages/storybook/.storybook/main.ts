@@ -1,10 +1,9 @@
-import type { StorybookConfig } from '@storybook/react-vite';
+import type { StorybookConfig } from 'storybook-react-rsbuild';
 
 const config: StorybookConfig = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-a11y',
-    '@storybook/addon-coverage',
     '@storybook/addon-docs',
     'storybook-addon-deep-controls',
     'storybook-addon-pseudo-states',
@@ -16,12 +15,8 @@ const config: StorybookConfig = {
   },
 
   framework: {
-    name: '@storybook/react-vite',
-    options: {
-      builder: {
-        viteConfigPath: '.storybook/viteStorybook.config.mts',
-      },
-    },
+    name: 'storybook-react-rsbuild',
+    options: {},
   },
 
   staticDirs: ['./assets'],
