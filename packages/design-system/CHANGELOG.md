@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.29
+
+### Major Changes
+
+- Merge branch 'feat/fix-rsstorybook-build' into break/2.0.0-venus-version
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.69
+
 ## 2.0.0-beta.28
 
 ### Major Changes
