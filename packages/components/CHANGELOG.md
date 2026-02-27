@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.68
+
+### Major Changes
+
+- Include rsstorybook
+
 ## 2.0.0-beta.67
 
 ### Major Changes

@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.28
+
+### Major Changes
+
+- Include rsstorybook
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.68
+
 ## 2.0.0-beta.27
 
 ### Patch Changes
