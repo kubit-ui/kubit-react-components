@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.30
+
+### Major Changes
+
+- Clean project
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.70
+
 ## 2.0.0-beta.29
 
 ### Major Changes

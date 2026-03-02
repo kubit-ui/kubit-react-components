@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.70
+
+### Major Changes
+
+- Clean project
+
 ## 2.0.0-beta.69
 
 ### Major Changes
