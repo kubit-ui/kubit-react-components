@@ -27,6 +27,7 @@ bundle/
 
 # Misc
 .DS_Store
+**/.DS_Store
 *.log
 *.log.*
 .env.local
@@ -36,7 +37,7 @@ bundle/
 
 # IDE - Allow shared configs but ignore personal settings
 .vscode/*
-!.vscode/settings.json
+!.vscode/settings.json.example
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
