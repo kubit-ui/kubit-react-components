@@ -31,7 +31,12 @@ vitest.config.*
 vitest.setup.*
 eslint.config.*
 .prettierrc*
+.prettierignore
 .htmlvalidate.json
+.editorconfig
+.npmrc
+.yarnrc
+rslib.config.*
 
 # Git files
 .git/

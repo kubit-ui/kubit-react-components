@@ -63,7 +63,7 @@
       "persistent": true
     },
     "lint": {
-      "dependsOn": ["^build"],
+      "dependsOn": [],
       "inputs": [
         "src/**/*.{ts,tsx,js,jsx}",
         "stories/**/*.{ts,tsx,js,jsx}",
@@ -76,7 +76,7 @@
       "outputs": []
     },
     "lint:fix": {
-      "dependsOn": ["^build"],
+      "dependsOn": [],
       "inputs": [
         "src/**/*.{ts,tsx,js,jsx}",
         "stories/**/*.{ts,tsx,js,jsx}",
@@ -142,7 +142,7 @@
       "env": ["NODE_ENV"]
     },
     "typecheck": {
-      "dependsOn": ["^build"],
+      "dependsOn": [],
       "inputs": [
         "src/**/*.{ts,tsx}",
         "stories/**/*.{ts,tsx}",
@@ -153,7 +153,7 @@
       "outputs": ["*.tsbuildinfo"]
     },
     "@kubit-ui-web/react-components#typecheck": {
-      "dependsOn": ["^build"],
+      "dependsOn": [],
       "inputs": [
         "src/**/*.{ts,tsx}",
         "tsconfig.json",

@@ -41,8 +41,8 @@ pnpm add @kubit-ui-web/react-components @kubit-ui-web/design-system
 
 This package requires the following peer dependencies:
 
-- `react` >= 17.0.0 || >= 18.3.1
-- `react-dom` >= 17.0.0 || >= 18.3.1
+- `react` ^18.3.0 || ^19.0.0
+- `react-dom` ^18.3.0 || ^19.0.0
 
 ## Quick Start
 

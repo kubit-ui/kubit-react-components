@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Node Version](https://img.shields.io/badge/node-22.x-brightgreen.svg)](https://nodejs.org)
-[![pnpm Version](https://img.shields.io/badge/pnpm-10.28.1-orange.svg)](https://pnpm.io)
+[![pnpm Version](https://img.shields.io/badge/pnpm-10.30.3-orange.svg)](https://pnpm.io)
 [![Vite](https://img.shields.io/badge/Vite-8.0.0--beta.10-646CFF.svg?logo=vite)](https://vite.dev)
 [![Rolldown](https://img.shields.io/badge/Rolldown-Powered-FF6B35.svg)](https://rolldown.rs)
 
@@ -24,8 +24,8 @@ kubit-react-components/
 │   ├── components/          # React component library
 │   ├── design-system/       # CSS-in-JS styles and themes
 │   └── storybook/          # Interactive documentation
-├── public/                  # Shared assets and utilities
-└── scripts/                # Build and automation scripts
+├── scripts/                # Build and automation scripts
+└── docs/                   # Documentation and assets
 ```
 
 ### Packages

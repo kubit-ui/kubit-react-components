@@ -26,6 +26,12 @@ vite.config.*
 vitest.config.*
 eslint.config.*
 .prettierrc*
+.prettierignore
+.editorconfig
+.npmrc
+.yarnrc
+rslib.config.*
+bernova.config.*
 
 # Git files
 .git/
