@@ -14,7 +14,7 @@ export type SnackbarV2CssClasses = ComponentSelected<
 >;
 
 export interface ISnackbarStandAlone extends DataAttributes, AriaAttributes {
-  cssClasses?: SnackbarV2CssClasses;
+  cssVariantClasses?: SnackbarV2CssClasses;
   popover?: SnackbarPopover;
   open?: boolean;
   children?: React.ReactNode;
@@ -25,10 +25,16 @@ export interface ISnackbarStandAlone extends DataAttributes, AriaAttributes {
   onBlur?: React.FocusEventHandler<HTMLDivElement>;
 }
 
-export interface ISnackbar extends Omit<
+export interface ISnackbar<
+  Variant = undefined extends string | unknown
+    ? string | undefined
+    : string | unknown,
+> extends Omit<
   ISnackbarStandAlone,
-  'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur'
+  'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur' | 'cssVariantClasses'
 > {
+  variant?: Variant;
+  additionalVariantClasses?: Partial<SnackbarV2CssClasses>;
   additionalClasses?: SnackbarV2CssClasses;
   closeTimeout?: number;
 }

@@ -25,7 +25,7 @@ import { Popover } from '../popover/popover';
 const SnackbarStandAloneComponent = (
   {
     children,
-    cssClasses,
+    cssVariantClasses,
     onClose,
     open,
     popover,
@@ -44,7 +44,7 @@ const SnackbarStandAloneComponent = (
     >
       <div
         ref={ref}
-        className={classNames(cssClasses?.container)}
+        className={classNames(cssVariantClasses?.container)}
         data-testid="snackbar"
         {...props}
       >
