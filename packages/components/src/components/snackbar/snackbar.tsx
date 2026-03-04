@@ -31,12 +31,20 @@ import { SnackbarStandAlone } from './snackbarStandAlone';
  * ```
  */
 const SnackbarComponent = (
-  { additionalClasses, closeTimeout, open = false, ...props }: ISnackbar,
+  {
+    additionalClasses,
+    additionalVariantClasses,
+    closeTimeout,
+    open = false,
+    variant,
+    ...props
+  }: ISnackbar,
   ref: ForwardedRef<HTMLDivElement> | undefined | null,
 ): JSX.Element => {
-  const cssClasses = useClassName({
+  const cssVariantClasses = useClassName({
     additionalClassNames: additionalClasses,
     component: 'SNACKBAR',
+    variant: variant,
   });
 
   const innerRef = useRef<HTMLDivElement>(null);
@@ -53,7 +61,7 @@ const SnackbarComponent = (
     <SnackbarStandAlone
       {...props}
       ref={innerRef}
-      cssClasses={cssClasses}
+      cssVariantClasses={cssVariantClasses}
       open={open}
       onBlur={handleBlur}
       onFocus={handleFocus}

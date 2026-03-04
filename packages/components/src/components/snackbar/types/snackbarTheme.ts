@@ -4,4 +4,9 @@ export interface SnackbarStyleProps extends CssLibPropsType {
   _container?: CssLibPropsType;
 }
 
-export type SnackBarStyles = SnackbarStyleProps;
+export type SnackbarVariantStyles<Variant extends string> = {
+  [key in Variant]: SnackbarStyleProps;
+};
+
+export type SnackBarStyles<Variant extends string = string> =
+  SnackbarStyleProps & SnackbarVariantStyles<Variant>;

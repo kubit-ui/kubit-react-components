@@ -35,7 +35,7 @@
       "url": "https://github.com/kubit-ui/kubit-react-components/graphs/contributors"
     }
   ],
-  "packageManager": "pnpm@10.30.2",
+  "packageManager": "pnpm@10.30.3",
   "keywords": [
     "design-system",
     "css-in-js",
@@ -132,13 +132,13 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "@types/node": "^25.3.1",
+    "@types/node": "^25.3.3",
     "bernova": "1.6.0",
     "cssnano": "^7.1.2",
     "eslint": "^10.0.2",
     "eslint-config-kubit": "2.0.2",
     "glob": "^13.0.6",
-    "postcss": "^8.5.6",
+    "postcss": "^8.5.8",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1",
