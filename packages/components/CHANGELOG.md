@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.72
+
+### Major Changes
+
+- Merge branch 'feat/new-prop-variant-to-snackbar' into break/2.0.0-venus-version
+
 ## 2.0.0-beta.71
 
 ### Major Changes
