@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from "react";
 
-import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
-import { useRoveFocus } from '@/lib/hooks/useRoveFocus/useRoveFocus';
+import { useActiveBreakpoints } from "@/lib/hooks/useMediaDevice/useActiveBreakpoints";
+import { useRoveFocus } from "@/lib/hooks/useRoveFocus/useRoveFocus";
 
-import { keyLeftMove } from '../../utils/keyMove/keLeftMove';
-import { keyRightMove } from '../../utils/keyMove/keyRightMove';
+import { keyLeftMove } from "../../utils/keyMove/keLeftMove";
+import { keyRightMove } from "../../utils/keyMove/keyRightMove";
 
 interface ParamsType {
   tabsLength: number;
@@ -56,14 +56,30 @@ export const useTabs = ({
 
   const [focus, setFocus, listEl] = useRoveFocus(roveFocusProps);
 
+  const isFirstMount = useRef(true);
+
   useEffect(() => {
     if (listEl.current && isMobile) {
       const widthListOption = listEl?.current?.clientWidth / numTabsInView;
       const translate = widthListOption * position;
       listEl.current.style.transform = `translate(-${translate}px)`;
     }
-    setFocus(position);
   }, [position, device]);
+
+  useEffect(() => {
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      return;
+    }
+    if (listEl.current) {
+      const elementWithTabIndexZero = listEl.current.querySelector(
+        '[tabindex="0"]',
+      ) as HTMLElement;
+      if (elementWithTabIndexZero) {
+        elementWithTabIndexZero.focus({ preventScroll: true });
+      }
+    }
+  }, [listEl, focus]);
 
   const handlePositionUpdate = (positionVisible) =>
     setPosition((prevPos) => {
@@ -83,7 +99,9 @@ export const useTabs = ({
   }, [selectedTab]);
 
   const handleClickIcon = (isNextPosition: boolean) => {
-    setPosition(isNextPosition ? position + 1 : position - 1);
+    const newPosition = isNextPosition ? position + 1 : position - 1;
+    setPosition(newPosition);
+    setFocus(newPosition);
   };
 
   const handleClickTab = (newFocus: number) => {

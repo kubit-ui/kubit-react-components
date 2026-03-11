@@ -1,18 +1,18 @@
-import type { TabsVariantStyles } from '@kubit-ui-web/react-components';
+import type { TabsVariantStyles } from "@kubit-ui-web/react-components";
 
-import { cssVars } from '@/designSystem/kubit/css/cssVars';
-import { STATES } from '@/types/states/states';
+import { cssVars } from "@/designSystem/kubit/css/cssVars";
+import { STATES } from "@/types/states/states";
 
-import { TEXT } from '../text/styles';
-import { TextVariantType } from '../text/variants';
-import { TabsVariantType } from './variants';
+import { TEXT } from "../text/styles";
+import { TextVariantType } from "../text/variants";
+import { TabsVariantType } from "./variants";
 
 type TabsVariants = keyof typeof TabsVariantType;
 
 export const TABS: TabsVariantStyles<TabsVariants> = {
   _arrowIconContainer: {
     $attributes: {
-      'data-position': {
+      "data-position": {
         LEFT: {
           left: cssVars.spacings_spacing_0,
         },
@@ -24,7 +24,7 @@ export const TABS: TabsVariantStyles<TabsVariants> = {
     $mediaQueries: {
       mobile: {
         background_color: cssVars.colors_accent_color_default_bg_50,
-        display: 'flex',
+        display: "flex",
       },
     },
     $pseudoClasses: {
@@ -37,22 +37,22 @@ export const TABS: TabsVariantStyles<TabsVariants> = {
         },
       },
     },
-    align_items: 'center',
-    cursor: 'pointer',
-    display: 'none',
+    align_items: "center",
+    cursor: "pointer",
+    display: "none",
     height: cssVars.spacings_spacing_100_percent,
-    justify_content: 'center',
-    position: 'absolute',
+    justify_content: "center",
+    position: "absolute",
     z_index: cssVars.z_index_intern_2,
   },
   _container: {
     $mediaQueries: {
       mobile: {
-        overflow: 'hidden',
+        overflow: "hidden",
       },
     },
-    display: 'flex',
-    position: 'relative',
+    display: "flex",
+    position: "relative",
   },
   _contentContainer: {
     padding: cssVars.spacings_spacing_0,
@@ -62,9 +62,9 @@ export const TABS: TabsVariantStyles<TabsVariants> = {
   },
   _icon: {
     $attributes: {
-      'data-disabled': {
+      "data-disabled": {
         color: cssVars.colors_disabled_color_accentdisabled_icon_100,
-        cursor: 'not-allowed',
+        cursor: "not-allowed",
       },
     },
     color: cssVars.colors_neutral_color_icon_250,
@@ -73,12 +73,12 @@ export const TABS: TabsVariantStyles<TabsVariants> = {
   },
   _label: {
     $attributes: {
-      'data-hidden': {
+      "data-hidden": {
         true: {
-          display: 'none',
+          display: "none",
         },
       },
-      'data-state': {
+      "data-state": {
         [STATES.SELECTED]: {
           color: cssVars.colors_neutral_color_font_50,
         },
@@ -88,78 +88,78 @@ export const TABS: TabsVariantStyles<TabsVariants> = {
       },
     },
     ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXPANDED],
-    display: ' -webkit-box',
+    display: " -webkit-box",
     font_weight: cssVars.font_weight_600,
-    overflow: 'hidden',
-    text_overflow: 'ellipsis',
-    white_space: 'normal',
+    overflow: "hidden",
+    text_overflow: "ellipsis",
+    white_space: "normal",
   },
   _lastTabButton: {
     margin: cssVars.spacings_spacing_0,
   },
   _oneTabContainer: {
     background_color: cssVars.colors_neutral_color_bg_250,
-    border_style: 'solid',
+    border_style: "solid",
     border_top_color: cssVars.colors_brand_color_border_50,
     border_top_width: cssVars.sizes_size_25,
-    cursor: 'default',
-    display: 'flex',
-    justify_content: 'center',
+    cursor: "default",
+    display: "flex",
+    justify_content: "center",
     padding: `${cssVars.spacings_spacing_250} ${cssVars.spacings_spacing_500}`,
     width: cssVars.spacings_spacing_100_percent,
   },
   _tabButton: {
+    background_color: cssVars.colors_neutral_color_bg_50,
+    cursor: "pointer",
+    padding: `${cssVars.spacings_spacing_250} ${cssVars.spacings_spacing_500}`,
+    width: cssVars.spacings_spacing_100_percent,
     $attributes: {
-      'data-state': {
+      "data-state": {
         [STATES.EMPTY]: {
-          min_height: '3rem',
+          min_height: "3rem",
           padding: cssVars.spacings_spacing_0,
         },
         [STATES.SELECTED]: {
           background_color: cssVars.colors_neutral_color_bg_250,
           border_bottom_color: cssVars.colors_brand_color_border_50,
           border_bottom_width: cssVars.sizes_size_25,
-          border_style: 'solid',
-          cursor: 'default',
+          border_style: "solid",
+          cursor: "default",
         },
         [STATES.UNSELECTED]: {
           background_color: cssVars.colors_neutral_color_bg_50,
-          color: '#FFF',
+          color: "#FFF",
         },
       },
     },
-    background_color: cssVars.colors_neutral_color_bg_50,
-    cursor: 'pointer',
-    padding: `${cssVars.spacings_spacing_250} ${cssVars.spacings_spacing_500}`,
-    width: cssVars.spacings_spacing_100_percent,
-  },
-  _tabButtonsContainer: {
-    $mediaQueries: {
-      mobile: {
-        transition: '0.2s linear',
-      },
-    },
-    display: 'flex',
-    width: cssVars.spacings_spacing_100_percent,
-  },
-  _tabContainer: {
     $mediaQueries: {
       mobile: {
         $pseudoClasses: {
           has: {
-            $target: ':focus-visible',
+            $target: ":focus-visible",
             focus: {
-              box_shadow: 'none',
-              outline_style: 'none',
+              box_shadow: "none",
+              outline_style: "none",
             },
             focus_visible: {
-              box_shadow: 'none',
-              outline_style: 'none',
+              box_shadow: "none",
+              outline_style: "none",
             },
           },
         },
       },
     },
+  },
+  _tabButtonsContainer: {
+    $mediaQueries: {
+      mobile: {
+        transition: "0.2s linear",
+      },
+    },
+    display: "flex",
+    width: cssVars.spacings_spacing_100_percent,
+  },
+  _tabContainer: {
     padding: cssVars.spacings_spacing_0,
   },
   padding: cssVars.spacings_spacing_0,

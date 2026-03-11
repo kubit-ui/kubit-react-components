@@ -1,17 +1,16 @@
-import { type RefObject, forwardRef, useId } from 'react';
+import { type RefObject, forwardRef, useId } from "react";
 
-import { Text } from '@/components/text/text';
-import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { ItemRove } from '@/lib/components/itemRove/itemRove';
-import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
-import { STATES } from '@/lib/types/states/states';
-import { classNames } from '@/lib/utils/classNames/classNames';
-import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processTextProp } from '@/lib/utils/process/processCommonProp';
+import { Text } from "@/components/text/text";
+import { ElementOrIcon } from "@/lib/components/elementOrIcon/elementOrIcon";
+import { useActiveBreakpoints } from "@/lib/hooks/useMediaDevice/useActiveBreakpoints";
+import { STATES } from "@/lib/types/states/states";
+import { classNames } from "@/lib/utils/classNames/classNames";
+import { pickCustomAttributes } from "@/lib/utils/pickCustomAttributes/pickCustomAttributes";
+import { processTextProp } from "@/lib/utils/process/processCommonProp";
 
-import type { TabsStandAloneProps } from './types/tabs';
+import type { TabsStandAloneProps } from "./types/tabs";
 
-import { useTabs } from './hooks/useTabs/useTabs';
+import { useTabs } from "./hooks/useTabs/useTabs";
 
 /**
  * Standalone tabs component for displaying tabbed navigation interfaces.
@@ -55,7 +54,7 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
     const { isMobile } = useActiveBreakpoints();
 
     const reactId = useId();
-    const BASE_ID = `tabs-${reactId.replace(/:/g, '')}`;
+    const BASE_ID = `tabs-${reactId.replace(/:/g, "")}`;
     const TAB_LIST_ID = `${BASE_ID}-tab-list`;
     const TAB_PANEL_ID = `${BASE_ID}-tab-panel`;
     const tabsLength = tabs?.length ?? 0;
@@ -70,11 +69,11 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
 
     const disabledIconLeft = position === 0;
     const disabledIconRight = position >= tabsLength - numTabsInView;
-    const dataTestId = props['data-testid'] || 'tabs';
+    const dataTestId = props["data-testid"] || "tabs";
     const customProps = pickCustomAttributes(props);
 
-    const buildIcon = (direction: 'left' | 'right') => {
-      const isLeft = direction === 'left';
+    const buildIcon = (direction: "left" | "right") => {
+      const isLeft = direction === "left";
       const disabled = isLeft ? disabledIconLeft : disabledIconRight;
       const handleClick = () => {
         if (!disabled) {
@@ -86,7 +85,7 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
         <button
           aria-label={isLeft ? leftControlAriaLabel : rightControlAriaLabel}
           className={cssClasses?.arrowiconcontainer}
-          data-position={isLeft ? 'left' : 'right'}
+          data-position={isLeft ? "left" : "right"}
           data-testid={`${dataTestId}-icon-${direction}`}
           disabled={disabled}
           tabIndex={0}
@@ -95,8 +94,8 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
         >
           <ElementOrIcon
             className={cssClasses?.icon}
-            customAttributes={{ 'data-disabled': disabled }}
-            data-position={isLeft ? 'left' : 'right'}
+            customAttributes={{ "data-disabled": disabled }}
+            data-position={isLeft ? "left" : "right"}
             {...(isLeft ? leftIcon : rightIcon)}
           />
         </button>
@@ -105,7 +104,7 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
 
     const buildTabContent = () => {
       const commonTokens = {
-        role: 'tabpanel',
+        role: "tabpanel",
         tabIndex: allowFocusTabPanel ? 0 : -1,
       };
 
@@ -130,7 +129,7 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
           aria-labelledby={`${BASE_ID}-tab-${index}`}
           className={cssClasses?.contentcontainer}
           id={`${TAB_PANEL_ID}-${index}`}
-          style={{ display: selectedTab === index ? 'block' : 'none' }}
+          style={{ display: selectedTab === index ? "block" : "none" }}
           {...commonTokens}
         >
           {cont}
@@ -146,7 +145,7 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
         {...customProps}
       >
         <div className={cssClasses?.container}>
-          {buildIcon('left')}
+          {buildIcon("left")}
           <div
             ref={listEl as RefObject<HTMLDivElement>}
             className={cssClasses?.tabbuttonscontainer}
@@ -158,45 +157,40 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
               const stateTab = isSelected ? STATES.SELECTED : STATES.UNSELECTED;
               const positionVisibleInView =
                 index >= position && index < position + numTabsInView;
-              const customAttributes = { 'data-state': stateTab };
+              const customAttributes = { "data-state": stateTab };
 
               return (
-                <div
-                  key={`${dataTestId}-tab-${index.toString()}`}
-                  className={cssClasses?.tabcontainer}
-                  data-testid={`${dataTestId}-tab-${index}`}
-                  {...pickCustomAttributes(customAttributes)}
-                  style={{
-                    minWidth: isMobile
-                      ? `calc(100% / ${numTabsInView})`
-                      : 'auto',
-                    width: autoWidth ? 'auto' : `calc(100% / ${tabsLength})`,
-                  }}
-                >
+                <>
                   {tabsLength > 1 ? (
-                    <ItemRove
-                      checkIsFirstTime
-                      preventScrollOnFocus
-                      ariaDisabled={
+                    <button
+                      key={`${dataTestId}-tab-${index.toString()}`}
+                      data-testid={`${dataTestId}-tab-${index}`}
+                      {...pickCustomAttributes(customAttributes)}
+                      style={{
+                        minWidth: isMobile
+                          ? `calc(100% / ${numTabsInView})`
+                          : "auto",
+                        width: autoWidth
+                          ? "auto"
+                          : `calc(100% / ${tabsLength})`,
+                      }}
+                      aria-disabled={
                         (isMobile && !positionVisibleInView) || tab.disabled
                       }
-                      ariaSelected={isSelected}
-                      asElement="button"
-                      classNames={classNames(cssClasses?.tabbutton, {
+                      aria-selected={isSelected}
+                      className={classNames(cssClasses?.tabbutton, {
                         [`${cssClasses?.firsttabbutton}`]: index === 0,
                         [`${cssClasses?.lasttabbutton}`]:
                           index === tabsLength - 1,
                       })}
-                      customAttributes={customAttributes}
                       disabled={
                         (isMobile && !positionVisibleInView) || tab.disabled
                       }
-                      focus={focus === index}
+                      tabIndex={focus === index ? 0 : -1}
                       id={`${BASE_ID}-tab-${index}`}
-                      index={index}
                       role="tab"
                       type="button"
-                      onSelectItem={() => {
+                      onClick={() => {
                         onSelectTab?.(index);
                         handleClickTab(index);
                       }}
@@ -208,7 +202,7 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
                         data-hidden={!!hideLabelForSingleTab}
                         {...processTextProp(tab)}
                       />
-                    </ItemRove>
+                    </button>
                   ) : (
                     <div
                       className={classNames(cssClasses?.onetabcontainer, {
@@ -226,11 +220,11 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
                       </Text>
                     </div>
                   )}
-                </div>
+                </>
               );
             })}
           </div>
-          {buildIcon('right')}
+          {buildIcon("right")}
         </div>
         {buildTabContent()}
       </div>

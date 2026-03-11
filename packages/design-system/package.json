@@ -104,7 +104,7 @@
     "build": "rm -rf dist && pnpm generate-css && rslib build",
     "predist": "rm -rf dist",
     "dist": "pnpm generate-css && rslib build",
-    "generate-css": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' npx bv-build --embed-css",
+    "generate-css": "npx bv-build --embed-css",
     "lint": "oxlint src",
     "lint:fix": "oxlint src --fix",
     "format": "oxfmt src",
@@ -120,7 +120,7 @@
     "clean:build": "rm -rf dist",
     "prepublishOnly": "pnpm dist && pnpm pack:size",
     "prerelease": "pnpm validate",
-    "bernova:no-check": "TS_NODE_TRANSPILE_ONLY=true npx bernova"
+    "bernova:no-check": "npx bernova"
   },
   "peerDependencies": {
     "@kubit-ui-web/react-components": "workspace:*"
