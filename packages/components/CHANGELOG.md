@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.73
+
+### Major Changes
+
+- Include oxlint and oxfmt
+
 ## 2.0.0-beta.72
 
 ### Major Changes

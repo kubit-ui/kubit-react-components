@@ -1,5 +1,16 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.33
+
+### Major Changes
+
+- Include oxlint and oxfmt
+
+### Patch Changes
+
+- Updated dependencies
+  - @kubit-ui-web/react-components@2.0.0-beta.73
+
 ## 2.0.0-beta.32
 
 ### Major Changes
