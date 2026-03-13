@@ -32,11 +32,11 @@ export const TableHeadStandAlone = forwardRef<
     return (
       <CustomComponent
         ref={ref}
+        data-table-head
         className={cssClasses?.table_head}
         component={component}
         data-hidden={hidden}
         data-sticky={sticky}
-        data-table-head={true}
         data-testid="table-head"
         id={id}
         {...customProps}

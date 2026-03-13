@@ -7,12 +7,12 @@ figma.connect(
   {
     example: () => (
       <Calendar
+        open
         configCalendar={{
           leftArrowIcon: { icon: 'ICON' },
           rightArrowIcon: { icon: 'ICON' },
         }}
         minDate={new Date()}
-        open={true}
       />
     ),
     imports: ['import { Calendar } from "@kubit-ui-web/react-components";'],

@@ -65,21 +65,21 @@ export const DataTableStandAlone = forwardRef<
         {...customProps}
       >
         <div
+          data-datatable-scrollable-container
           aria-label={hasScroll ? props['aria-label'] : undefined}
           aria-labelledby={hasScroll ? props['aria-labelledby'] : undefined}
           className={cssClasses?.scrollablecontainer}
-          data-datatable-scrollable-container={true}
           role={hasScroll ? 'region' : undefined}
           {...(hasScroll ? { tabIndex: 0 } : {})}
         >
           <Table
+            disableShadowEffects
+            hasScrollDisabled
             additionalClasses={cssClasses?.table}
             aria-hidden={usingRowGroups ? true : undefined}
             autoLeftStickyCalc={false}
             autoRightStickyCalc={false}
             component={usingRowGroups ? 'div' : undefined}
-            disableShadowEffects={true}
-            hasScrollDisabled={true}
             sticky={stickyHead}
             {...applyZIndexToWrapper({
               tableConfig: config?.table,
@@ -132,11 +132,11 @@ export const DataTableStandAlone = forwardRef<
                   </TableDivider>
                 )}
                 <Table
+                  disableShadowEffects
+                  hasScrollDisabled
                   additionalClasses={cssClasses?.row_group_table}
                   autoLeftStickyCalc={false}
                   autoRightStickyCalc={false}
-                  disableShadowEffects={true}
-                  hasScrollDisabled={true}
                   {...applyPositionToWrapper({
                     position: 'static',
                     tableConfig: rowGroup.config?.table,
@@ -159,12 +159,12 @@ export const DataTableStandAlone = forwardRef<
                     {...rowGroup.config?.tableBody}
                   >
                     <DataTableRows
+                      isRowGroup
                       activeRows={activeRows}
                       columns={columns}
                       cssClasses={cssClasses}
                       hoverable={hoverable}
                       hoverableRows={hoverableRows}
-                      isRowGroup={true}
                       nonHoverableRows={nonHoverableRows}
                       rows={rowGroup.rows}
                       usingRowGroups={usingRowGroups}
@@ -177,13 +177,13 @@ export const DataTableStandAlone = forwardRef<
         </div>
         {/* This is the left border shadow, it needs to be an independent element in order to the inner scroll content do not hide it */}
         <div
+          data-datatable-left-shadow
           className={cssClasses?.leftboxshadowcontainer}
-          data-datatable-left-shadow={true}
         />
         {/* This is the sticky border shadow, it needs to be an independent element in order to be shown on the dividers and have a right-2-left shadow */}
         <div
+          data-datatable-right-shadow
           className={cssClasses?.rightboxshadowcontainer}
-          data-datatable-right-shadow={true}
         />
       </div>
     );

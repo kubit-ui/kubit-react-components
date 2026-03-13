@@ -40,11 +40,11 @@ export const TableStandAlone = forwardRef<
       >
         {/* Display table, by default does not allow scroll, that's why we need to add a wrapper */}
         <div
+          data-table-scrollable-container
           aria-hidden={props['aria-hidden']}
           aria-label={hasScroll ? props['aria-label'] : undefined}
           aria-labelledby={hasScroll ? props['aria-labelledby'] : undefined}
           className={cssClasses?.scrollablecontainer}
-          data-table-scrollable-container={true}
           data-testid={`${dataTestId}-scrollable-container`}
           role={hasScroll ? 'region' : undefined}
           style={{ overflow: hasScrollDisabled ? 'visible' : 'auto' }}
@@ -61,13 +61,13 @@ export const TableStandAlone = forwardRef<
         </div>
         {/* This is the left border shadow, it needs to be an independent element in order to the inner scroll content do not hide it */}
         <div
+          data-table-left-shadow
           className={cssClasses?.leftboxshadowcontainer}
-          data-table-left-shadow={true}
         />
         {/* This is the sticky border shadow, it needs to be an independent element in order to have a right-2-left shadow */}
         <div
+          data-table-right-shadow
           className={cssClasses?.rightboxshadowcontainer}
-          data-table-right-shadow={true}
         />
       </div>
     );

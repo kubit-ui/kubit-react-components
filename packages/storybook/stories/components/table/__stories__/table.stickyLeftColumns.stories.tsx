@@ -39,19 +39,19 @@ export const TableWithStickyLeftColumns: StoryType = {
       <>
         <TableHead variant="DEFAULT">
           <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
-            <TableCell sticky="left" th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th sticky="left" variant="HEADER_CELL_DEFAULT">
               Header Cell 1
             </TableCell>
-            <TableCell sticky="left" th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th sticky="left" variant="HEADER_CELL_DEFAULT">
               Header Cell 2
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 3
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 4
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 5
             </TableCell>
           </TableRow>
@@ -68,7 +68,7 @@ export const TableWithStickyLeftColumns: StoryType = {
             <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 4</TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 5</TableCell>
           </TableRow>
-          <TableRow active={true} variant="BODY_ROW_DEFAULT">
+          <TableRow active variant="BODY_ROW_DEFAULT">
             <TableCell sticky="left" variant="BODY_CELL_DEFAULT">
               Row 2 - Cell 1
             </TableCell>

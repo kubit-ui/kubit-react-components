@@ -218,8 +218,8 @@ const totalPages = 20;
       >
         <PageControlComponent
           {...args}
+          isBullet
           currentPosition={currentPage}
-          isBullet={true}
           leftControl={leftControl}
           maxDots={7}
           pages={totalPages}
@@ -1196,8 +1196,8 @@ const images = Array.from({ length: 8 }, (_, i) => \`Photo \${i + 1}\`);
         </div>
         <PageControlComponent
           {...args}
+          isBullet
           currentPosition={currentImage}
-          isBullet={true}
           leftControl={leftControl}
           maxDots={5}
           pages={images.length}

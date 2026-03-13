@@ -76,7 +76,7 @@ describe('Checkbox Component - Comprehensive Test Suite', () => {
 
     describe('States', () => {
       it('reflects checked state when provided', () => {
-        render(<CheckboxControlled {...mockProps} checked={true} />);
+        render(<CheckboxControlled {...mockProps} checked />);
         const checkbox = screen.getByRole('checkbox');
         expect(checkbox).toBeChecked();
       });
@@ -88,14 +88,14 @@ describe('Checkbox Component - Comprehensive Test Suite', () => {
       });
 
       it('reflects disabled state when provided', () => {
-        render(<CheckboxControlled {...mockProps} disabled={true} />);
+        render(<CheckboxControlled {...mockProps} disabled />);
         const checkbox = screen.getByRole('checkbox');
         expect(checkbox).toBeDisabled();
       });
 
       it('shows error state when error prop is true', () => {
         const errorMessage = 'Error text';
-        render(<CheckboxControlled {...mockProps} error={true} />);
+        render(<CheckboxControlled {...mockProps} error />);
         expect(screen.getByText(errorMessage)).toBeInTheDocument();
       });
 
@@ -125,7 +125,7 @@ describe('Checkbox Component - Comprehensive Test Suite', () => {
         render(
           <CheckboxControlled
             {...mockProps}
-            disabled={true}
+            disabled
             onChange={handleChange}
           />,
         );
@@ -204,14 +204,14 @@ describe('Checkbox Component - Comprehensive Test Suite', () => {
       });
 
       it('has proper ARIA attributes when in error state', () => {
-        render(<CheckboxControlled {...mockProps} error={true} />);
+        render(<CheckboxControlled {...mockProps} error />);
         const checkbox = screen.getByRole('checkbox');
         // Error state should be properly communicated
         expect(checkbox).toBeInTheDocument();
       });
 
       it('has proper ARIA attributes when disabled', () => {
-        render(<CheckboxControlled {...mockProps} disabled={true} />);
+        render(<CheckboxControlled {...mockProps} disabled />);
         const checkbox = screen.getByRole('checkbox');
         expect(checkbox).toHaveAttribute('disabled');
       });
@@ -260,7 +260,7 @@ describe('Checkbox Component - Comprehensive Test Suite', () => {
         render(
           <CheckboxControlled
             {...mockProps}
-            error={true}
+            error
             errorMessage={undefined}
           />,
         );
@@ -292,7 +292,7 @@ describe('Checkbox Component - Comprehensive Test Suite', () => {
       });
 
       it('renders with initial checked state when provided', () => {
-        render(<Checkbox checked={true} {...mockProps} />);
+        render(<Checkbox checked {...mockProps} />);
         const checkbox = screen.getByRole('checkbox');
         expect(checkbox).toBeChecked();
       });
@@ -347,7 +347,7 @@ describe('Checkbox Component - Comprehensive Test Suite', () => {
       });
 
       it('does not toggle when disabled', () => {
-        render(<Checkbox {...mockProps} disabled={true} />);
+        render(<Checkbox {...mockProps} disabled />);
         const checkbox = screen.getByRole('checkbox');
 
         expect(checkbox).not.toBeChecked();

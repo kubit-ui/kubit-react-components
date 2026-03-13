@@ -31,14 +31,14 @@ describe('Checkbox', () => {
     });
 
     it('reflects disabled state when provided', () => {
-      render(<CheckboxControlled {...mockProps} disabled={true} />);
+      render(<CheckboxControlled {...mockProps} disabled />);
       const checkbox = screen.getByRole('checkbox');
       expect(checkbox).toBeDisabled();
     });
 
     it('shows error state when error prop is true', () => {
       const errorMessage = 'Error text';
-      render(<CheckboxControlled {...mockProps} error={true} />);
+      render(<CheckboxControlled {...mockProps} error />);
       expect(screen.getByText(errorMessage)).toBeInTheDocument();
     });
 
@@ -88,7 +88,7 @@ describe('Checkbox', () => {
     });
 
     it('starts with initial checked state when provided', () => {
-      render(<Checkbox checked={true} {...mockProps} />);
+      render(<Checkbox checked {...mockProps} />);
       const checkbox = screen.getByRole('checkbox');
       expect(checkbox).toBeChecked();
     });

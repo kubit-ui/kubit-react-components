@@ -662,7 +662,7 @@ export const WithCloseOnScroll: Story = {
           Open the select and scroll the page - it will close automatically
         </p>
         <SelectUnControlled
-          closePopoverOnScroll={true}
+          closePopoverOnScroll
           icon={{ altText: 'Toggle', icon: 'chevron-down' }}
           label="Select with auto-close"
           listOptions={{

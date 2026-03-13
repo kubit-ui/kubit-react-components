@@ -1,0 +1,19 @@
+{
+  "semi": true,
+  "single_quote": true,
+  "trailing_comma": "all",
+  "print_width": 80,
+  "tab_width": 2,
+  "use_tabs": false,
+  "bracket_spacing": true,
+  "arrow_parens": "always",
+  "jsx_single_quote": false,
+  "end_of_line": "lf",
+  "ignore": [
+    "dist",
+    "node_modules",
+    "coverage",
+    ".storybook-cache",
+    "storybook-static"
+  ]
+}

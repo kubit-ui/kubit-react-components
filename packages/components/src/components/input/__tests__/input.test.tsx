@@ -71,14 +71,14 @@ describe('Input Component', () => {
   });
 
   it('Should handle disabled state', () => {
-    const { getByTestId } = render(<Input {...mockProps} disabled={true} />);
+    const { getByTestId } = render(<Input {...mockProps} disabled />);
     const input = getByTestId('input-base');
     expect(input).toBeInTheDocument();
     expect(input).toBeDisabled();
   });
 
   it('Should handle error state', () => {
-    const { getByTestId } = render(<Input {...mockProps} error={true} />);
+    const { getByTestId } = render(<Input {...mockProps} error />);
     const input = getByTestId('input-base');
     expect(input).toHaveAttribute('data-state', 'ERROR_FILLED');
   });

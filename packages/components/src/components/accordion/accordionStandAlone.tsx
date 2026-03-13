@@ -77,15 +77,15 @@ export const AccordionStandAlone = forwardRef<
             </button>
           </CustomComponent>
           <div
+            data-kbt-accordion-content
             className={cssClasses?.content}
-            data-kbt-accordion-content={true}
             data-testid={`${dataTestId}-content`}
             id={contentId}
             {...customAttributesProps}
           >
             <div
+              data-kbt-accordion-content-inner
               className={cssClasses?.innercontent}
-              data-kbt-accordion-content-inner={true}
               {...customAttributesProps}
             >
               {children}

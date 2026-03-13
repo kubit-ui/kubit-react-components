@@ -19,11 +19,6 @@
     "pnpm": ">=10.28.1"
   },
   "packageManager": "pnpm@10.30.3",
-  "pnpm": {
-    "overrides": {
-      "eslint-plugin-react-hooks": "^5.1.0"
-    }
-  },
   "scripts": {
     "dev": "turbo run dev --filter=@kubit-ui-web/storybook",
     "dev:components": "turbo run dev --filter=@kubit-ui-web/react-components",

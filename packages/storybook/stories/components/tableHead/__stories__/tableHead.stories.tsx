@@ -24,13 +24,13 @@ export const Basic: StoryType = {
   args: {
     children: (
       <TableRow variant="HEAD_ROW_DEFAULT">
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Name
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Email
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Role
         </TableCell>
       </TableRow>
@@ -63,29 +63,29 @@ export const WithAlignedColumns: StoryType = {
   args: {
     children: (
       <TableRow variant="HEAD_ROW_DEFAULT">
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Product
         </TableCell>
         <TableCell
+          th
           scope="col"
           textAlign="center"
-          th={true}
           variant="HEADER_CELL_DEFAULT"
         >
           Status
         </TableCell>
         <TableCell
+          th
           scope="col"
           textAlign="right"
-          th={true}
           variant="HEADER_CELL_DEFAULT"
         >
           Price
         </TableCell>
         <TableCell
+          th
           scope="col"
           textAlign="right"
-          th={true}
           variant="HEADER_CELL_DEFAULT"
         >
           Quantity
@@ -125,30 +125,30 @@ export const WithMultipleRows: StoryType = {
       <>
         <TableRow variant="HEAD_ROW_DEFAULT">
           <TableCell
+            th
             rowSpan={2}
             scope="col"
-            th={true}
             variant="HEADER_CELL_DEFAULT"
           >
             Product
           </TableCell>
           <TableCell
+            th
             colSpan={3}
             scope="colgroup"
-            th={true}
             variant="HEADER_CELL_DEFAULT"
           >
             Sales Data
           </TableCell>
         </TableRow>
         <TableRow variant="HEAD_ROW_DEFAULT">
-          <TableCell scope="col" th={true} variant="HEADER_CELL_SECONDARY">
+          <TableCell th scope="col" variant="HEADER_CELL_SECONDARY">
             Q1
           </TableCell>
-          <TableCell scope="col" th={true} variant="HEADER_CELL_SECONDARY">
+          <TableCell th scope="col" variant="HEADER_CELL_SECONDARY">
             Q2
           </TableCell>
-          <TableCell scope="col" th={true} variant="HEADER_CELL_SECONDARY">
+          <TableCell th scope="col" variant="HEADER_CELL_SECONDARY">
             Q3
           </TableCell>
         </TableRow>
@@ -190,16 +190,16 @@ export const StickyHeader: StoryType = {
   args: {
     children: (
       <TableRow variant="HEAD_ROW_DEFAULT">
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Column 1
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Column 2
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Column 3
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Column 4
         </TableCell>
       </TableRow>
@@ -236,13 +236,13 @@ export const HiddenHeader: StoryType = {
   args: {
     children: (
       <TableRow variant="HEAD_ROW_DEFAULT">
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Column 1
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Column 2
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Column 3
         </TableCell>
       </TableRow>
@@ -277,32 +277,32 @@ export const WithCustomWidths: StoryType = {
     children: (
       <TableRow variant="HEAD_ROW_DEFAULT">
         <TableCell
+          th
           scope="col"
-          th={true}
           variant="HEADER_CELL_DEFAULT"
           width="40%"
         >
           Description
         </TableCell>
         <TableCell
+          th
           scope="col"
-          th={true}
           variant="HEADER_CELL_DEFAULT"
           width="20%"
         >
           Status
         </TableCell>
         <TableCell
+          th
           scope="col"
-          th={true}
           variant="HEADER_CELL_DEFAULT"
           width="20%"
         >
           Date
         </TableCell>
         <TableCell
+          th
           scope="col"
-          th={true}
           variant="HEADER_CELL_DEFAULT"
           width="20%"
         >
@@ -341,19 +341,19 @@ export const TableHead: StoryType = {
   args: {
     children: (
       <TableRow variant="HEAD_ROW_DEFAULT">
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Cell 1
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Cell 2
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Cell 3
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Cell 4
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Cell 5
         </TableCell>
       </TableRow>

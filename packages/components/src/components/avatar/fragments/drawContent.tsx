@@ -45,12 +45,12 @@ export const DrawContent = ({
     )}
     {contentType === 'with-initials' && (
       <Text
+        aria-hidden
         additionalClasses={
           {
             // text: cssClasses?.initials,
           }
         }
-        aria-hidden={true}
         component="span"
         customAttributes={customAttributes}
         {...processTextProp(initials, maxLengthInitials)}

@@ -218,6 +218,7 @@ export const SliderStandAlone = forwardRef<
                     }}
                   />
                   <SliderThumbStandAlone
+                    rightThumb
                     ariaDescribedBy={buildAriaDescribedBy([
                       {
                         helperText: leftHelperText,
@@ -239,7 +240,6 @@ export const SliderStandAlone = forwardRef<
                     max={max}
                     min={value[0] + step}
                     pressed={isActive(pressed, activePointer.current, 'right')}
-                    rightThumb={true}
                     state={state}
                     style={{ right: `${offsetRight}%` }}
                     tooltip={rightTooltip}

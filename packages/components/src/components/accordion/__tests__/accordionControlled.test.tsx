@@ -28,8 +28,8 @@ describe('AccordionControlled', () => {
     render(
       <AccordionControlled
         {...mockProps}
+        expanded
         dataTestId="accordion-test"
-        expanded={true}
       />,
     );
 
@@ -90,8 +90,8 @@ describe('AccordionControlled', () => {
     rerender(
       <AccordionControlled
         {...mockProps}
+        expanded
         dataTestId="accordion-test"
-        expanded={true}
       />,
     );
     accordion = screen.getByTestId('accordion-test');
@@ -142,8 +142,8 @@ describe('AccordionControlled', () => {
     rerender(
       <AccordionControlled
         {...mockProps}
+        expanded
         dataTestId="accordion-test"
-        expanded={true}
       />,
     );
     expect(accordion).toBeDefined();
@@ -168,8 +168,8 @@ describe('AccordionControlled', () => {
       rerender(
         <AccordionControlled
           {...mockProps}
+          expanded
           dataTestId="accordion-test"
-          expanded={true}
         />,
       );
       const accordion = screen.getByTestId('accordion-test');

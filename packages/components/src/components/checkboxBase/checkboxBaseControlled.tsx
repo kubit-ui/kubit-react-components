@@ -49,8 +49,8 @@ export const CheckboxBaseControlled = forwardRef(
     return (
       <CheckboxBaseStandAlone
         ref={ref}
+        required
         cssClasses={cssClasses}
-        required={true}
         {...props}
         aria-invalid={error}
         data-state={state}

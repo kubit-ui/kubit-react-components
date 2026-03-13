@@ -37,21 +37,21 @@ export const TableWithStickyHead: StoryType = {
     ['aria-label']: 'Aria label example',
     children: (
       <>
-        <TableHead sticky={true} variant="DEFAULT">
+        <TableHead sticky variant="DEFAULT">
           <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 1
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 2
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 3
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 4
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 5
             </TableCell>
           </TableRow>
@@ -64,7 +64,7 @@ export const TableWithStickyHead: StoryType = {
             <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 4</TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 5</TableCell>
           </TableRow>
-          <TableRow active={true} variant="BODY_ROW_DEFAULT">
+          <TableRow active variant="BODY_ROW_DEFAULT">
             <TableCell variant="BODY_CELL_DEFAULT">Row 2 - Cell 1</TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">Row 2 - Cell 2</TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">Row 2 - Cell 3</TableCell>
@@ -110,10 +110,10 @@ export const TableWithStickyHead: StoryType = {
         <TableFoot variant="DEFAULT">
           <TableRow variant="BODY_ROW_DEFAULT">
             <TableCell
+              th
               colSpan={4}
               scope="row"
               textAlign="right"
-              th={true}
               variant="BODY_CELL_DEFAULT"
             >
               Summary

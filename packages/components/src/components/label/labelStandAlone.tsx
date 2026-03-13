@@ -61,10 +61,10 @@ export const LabelStandAlone = forwardRef<
         {children}
         {required && (
           <Text
+            aria-hidden
             additionalClasses={{
               text: asteriskCssClasses,
             }}
-            aria-hidden={true}
             color={asteriskColor}
             component="span"
             data-testid={`${dataTestId}Required`}

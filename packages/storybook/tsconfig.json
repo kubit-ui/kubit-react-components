@@ -18,7 +18,6 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "types": ["node"],
-    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],

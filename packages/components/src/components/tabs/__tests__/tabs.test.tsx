@@ -150,14 +150,14 @@ describe('Tabs component', () => {
   });
 
   it('does not render content when unMountContent is true and selectedTab is undefined', () => {
-    render(<TabsUnControlled {...mockProps} unMountContent={true} />);
+    render(<TabsUnControlled {...mockProps} unMountContent />);
     expect(screen.queryByText('Tab 1 content')).toBeNull();
     expect(screen.queryByText('Tab 2 content')).toBeNull();
     expect(screen.queryByText('Tab 3 content')).toBeNull();
     expect(document.body).toHTMLValidate();
   });
 
-  it('renders all tabs with correct display style when unMountContent is false ', () => {
+  it('renders all tabs with correct display style when unMountContent is false', () => {
     const { container } = render(
       <TabsControlled
         {...mockProps}

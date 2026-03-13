@@ -15,7 +15,7 @@ export const OverlayStandAlone = forwardRef<
       className={cssClasses?.overlay}
       data-testid="overlay"
       {...props}
-      {...customProps}
+      
       {...customProps}
     />
   );

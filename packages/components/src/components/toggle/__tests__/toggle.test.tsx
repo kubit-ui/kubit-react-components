@@ -117,9 +117,9 @@ describe('Toggle', () => {
 
       render(
         <ToggleStandalone
+          disabled
           aria-label="Test toggle"
           checked={false}
-          disabled={true}
           onClick={mockOnClick}
         />,
       );
@@ -164,8 +164,8 @@ describe('Toggle', () => {
       // Change to active state
       rerender(
         <ToggleStandalone
+          checked
           aria-label="Toggle with icons"
-          checked={true}
           leftIcon={leftIcon}
           rightIcon={rightIcon}
         />,
@@ -186,9 +186,9 @@ describe('Toggle', () => {
 
       const { container } = render(
         <ToggleStandalone
+          checked
+          disabled
           aria-label="Disabled toggle with icons"
-          checked={true}
-          disabled={true}
           leftIcon={leftIcon}
           rightIcon={rightIcon}
         />,
@@ -257,8 +257,8 @@ describe('Toggle', () => {
       it('should render as decorative div when component="div"', () => {
         render(
           <ToggleStandalone
+            checked
             aria-label="Test toggle"
-            checked={true}
             component="div"
           />,
         );
@@ -356,7 +356,7 @@ describe('Toggle', () => {
       let toggle = screen.getByRole('switch');
       expect(toggle).toHaveAttribute('aria-checked', 'false');
 
-      rerender(<ToggleControlled {...controlledProps} checked={true} />);
+      rerender(<ToggleControlled {...controlledProps} checked />);
 
       toggle = screen.getByRole('switch');
       expect(toggle).toHaveAttribute('aria-checked', 'true');
@@ -375,7 +375,7 @@ describe('Toggle', () => {
       mockOnToggle.mockClear();
 
       // Test with checked=true
-      rerender(<ToggleControlled {...controlledProps} checked={true} />);
+      rerender(<ToggleControlled {...controlledProps} checked />);
       fireEvent.click(toggle);
 
       expect(mockOnToggle).toHaveBeenCalledWith(false);
@@ -401,7 +401,7 @@ describe('Toggle', () => {
     });
 
     it('should not call onToggle when disabled', () => {
-      render(<ToggleControlled {...controlledProps} disabled={true} />);
+      render(<ToggleControlled {...controlledProps} disabled />);
 
       const toggle = screen.getByRole('switch');
       expect(toggle).toBeDisabled();
@@ -471,7 +471,7 @@ describe('Toggle', () => {
 
     it('should use defaultChecked correctly', () => {
       render(
-        <ToggleUncontrolled {...uncontrolledProps} defaultChecked={true} />,
+        <ToggleUncontrolled {...uncontrolledProps} defaultChecked />,
       );
 
       const toggle = screen.getByRole('switch');
@@ -520,7 +520,7 @@ describe('Toggle', () => {
       render(
         <ToggleUncontrolled
           {...uncontrolledProps}
-          disabled={true}
+          disabled
           onToggle={mockOnToggle}
         />,
       );

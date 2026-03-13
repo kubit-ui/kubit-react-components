@@ -35,11 +35,11 @@ export const ModalHeader = ({
   const { isMobileOrTablet } = useActiveBreakpoints();
 
   return (
-    <div className={cssClasses?.headercontainer} data-modal-header={true}>
+    <div data-modal-header className={cssClasses?.headercontainer}>
       {isMobileOrTablet && !blocked && !!dragIcon && (
         <div
+          data-modal-draggable-icon
           className={cssClasses?.dragiconcontainer}
-          data-modal-draggable-icon={true}
         >
           <ElementOrIcon
             className={cssClasses?.dragicon}

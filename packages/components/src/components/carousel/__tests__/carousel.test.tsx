@@ -71,7 +71,7 @@ describe('Carousel component', () => {
         ref={() => {
           // empty
         }}
-        allowModifySliceWidth={true}
+        allowModifySliceWidth
         numElementsPerPage={0}
       />,
     );
@@ -90,8 +90,8 @@ describe('Carousel component', () => {
         ref={() => {
           // empty
         }}
-        allowModifySliceWidth={true}
-        autoFitContainer={true}
+        allowModifySliceWidth
+        autoFitContainer
         numElementsPerPage={5}
       />,
     );

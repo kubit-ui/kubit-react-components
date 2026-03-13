@@ -28,9 +28,9 @@ export const TableDividerStandAlone = forwardRef<
   return (
     <CustomComponent
       ref={ref}
+      data-table-divider
       className={cssClasses?.table_divider}
       component={component}
-      data-table-divider={true}
       data-testid="table-divider"
       id={id}
       {...customProps}

@@ -399,15 +399,15 @@ export const AllStates: Story = {
           onToggle={setChecked}
         />
         <ToggleControlled
+          disabled
           aria-label="Disabled unchecked"
           checked={false}
-          disabled={true}
           variant="REGULAR"
         />
         <ToggleControlled
+          checked
+          disabled
           aria-label="Disabled checked"
-          checked={true}
-          disabled={true}
           variant="REGULAR"
         />
       </div>

@@ -68,9 +68,7 @@
         "src/**/*.{ts,tsx,js,jsx}",
         "stories/**/*.{ts,tsx,js,jsx}",
         ".storybook/**/*.{ts,tsx,js,jsx}",
-        "eslint.config.js",
-        "eslint.config.mjs",
-        ".eslintrc*",
+        ".oxlintrc.json",
         "package.json"
       ],
       "outputs": []
@@ -81,9 +79,7 @@
         "src/**/*.{ts,tsx,js,jsx}",
         "stories/**/*.{ts,tsx,js,jsx}",
         ".storybook/**/*.{ts,tsx,js,jsx}",
-        "eslint.config.js",
-        "eslint.config.mjs",
-        ".eslintrc*",
+        ".oxlintrc.json",
         "package.json"
       ],
       "cache": false,
@@ -94,8 +90,7 @@
         "src/**",
         "stories/**",
         ".storybook/**",
-        ".prettierrc*",
-        "prettier.config.*",
+        ".oxfmtrc.json",
         "package.json"
       ],
       "cache": false,
@@ -106,8 +101,7 @@
         "src/**",
         "stories/**",
         ".storybook/**",
-        ".prettierrc*",
-        "prettier.config.*",
+        ".oxfmtrc.json",
         "package.json"
       ],
       "outputs": []

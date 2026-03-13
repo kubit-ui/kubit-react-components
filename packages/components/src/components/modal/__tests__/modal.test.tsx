@@ -160,7 +160,7 @@ describe('Modal component', () => {
   });
 
   it('Should stop propague the event, when the escape has been pressed from the modal', async () => {
-    render(<Modal {...mockProps} blocked={true} />);
+    render(<Modal {...mockProps} blocked />);
 
     const modal = screen.getByTestId('modal');
 

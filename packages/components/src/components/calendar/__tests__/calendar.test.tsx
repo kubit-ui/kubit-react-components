@@ -39,7 +39,7 @@ describe('Calendar', () => {
   });
 
   it('Calendar with Range Component', async () => {
-    const { container } = render(<Calendar hasRange={true} {...mockProps} />);
+    const { container } = render(<Calendar hasRange {...mockProps} />);
 
     const calendar = screen.getByTestId('calendar');
     expect(calendar).not.toBeNull();
@@ -52,7 +52,7 @@ describe('Calendar', () => {
   it('Calendar with selected Date Component', async () => {
     const { container } = render(
       <Calendar
-        hasRange={true}
+        hasRange
         selectedDate={new Date(2023, 0, 15)}
         {...mockProps}
       />,
@@ -69,7 +69,7 @@ describe('Calendar', () => {
   it('Calendar with secondSelectedDate', async () => {
     const { container } = render(
       <Calendar
-        hasRange={true}
+        hasRange
         secondSelectedDate={new Date(2023, 0, 20)}
         selectedDate={new Date(2023, 0, 15)}
         {...mockProps}

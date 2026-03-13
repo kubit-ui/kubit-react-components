@@ -36,19 +36,19 @@ export const Basic: StoryType = {
         <TableCaption variant="DEFAULT">Sales Report Summary</TableCaption>
         <TableHead variant="DEFAULT">
           <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Product
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Category
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Price
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Stock
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Status
             </TableCell>
           </TableRow>
@@ -61,7 +61,7 @@ export const Basic: StoryType = {
             <TableCell variant="BODY_CELL_DEFAULT">45</TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">Available</TableCell>
           </TableRow>
-          <TableRow active={true} variant="BODY_ROW_DEFAULT">
+          <TableRow active variant="BODY_ROW_DEFAULT">
             <TableCell variant="BODY_CELL_DEFAULT">Mouse</TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">Accessories</TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">$29</TableCell>
@@ -93,10 +93,10 @@ export const Basic: StoryType = {
         <TableFoot variant="DEFAULT">
           <TableRow variant="BODY_ROW_DEFAULT">
             <TableCell
+              th
               colSpan={3}
               scope="row"
               textAlign="right"
-              th={true}
               variant="BODY_CELL_DEFAULT"
             >
               Total Items
@@ -160,13 +160,13 @@ export const WithoutCaption: StoryType = {
       <>
         <TableHead variant="DEFAULT">
           <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Name
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Email
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Role
             </TableCell>
           </TableRow>
@@ -219,23 +219,23 @@ export const WithHiddenColumn: StoryType = {
         <TableCaption variant="DEFAULT">User Management</TableCaption>
         <TableHead variant="DEFAULT">
           <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
-            <TableCell hidden={true} th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell hidden th variant="HEADER_CELL_DEFAULT">
               ID
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Username
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Email
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Status
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody variant="DEFAULT">
           <TableRow variant="BODY_ROW_DEFAULT">
-            <TableCell hidden={true} variant="BODY_CELL_DEFAULT">
+            <TableCell hidden variant="BODY_CELL_DEFAULT">
               001
             </TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">johndoe</TableCell>
@@ -243,7 +243,7 @@ export const WithHiddenColumn: StoryType = {
             <TableCell variant="BODY_CELL_DEFAULT">Active</TableCell>
           </TableRow>
           <TableRow variant="BODY_ROW_DEFAULT">
-            <TableCell hidden={true} variant="BODY_CELL_DEFAULT">
+            <TableCell hidden variant="BODY_CELL_DEFAULT">
               002
             </TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">janesmith</TableCell>
@@ -290,19 +290,19 @@ export const Table: StoryType = {
         <TableCaption variant="DEFAULT">Caption Example</TableCaption>
         <TableHead variant="DEFAULT">
           <TableRow hoverable={false} variant="HEADER_ROW_DEFAULT">
-            <TableCell hidden={true} th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell hidden th variant="HEADER_CELL_DEFAULT">
               Header Cell 1
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 2
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 3
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 4
             </TableCell>
-            <TableCell th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th variant="HEADER_CELL_DEFAULT">
               Header Cell 5
             </TableCell>
           </TableRow>
@@ -315,7 +315,7 @@ export const Table: StoryType = {
             <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 4</TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 5</TableCell>
           </TableRow>
-          <TableRow active={true} variant="BODY_ROW_DEFAULT">
+          <TableRow active variant="BODY_ROW_DEFAULT">
             <TableCell variant="BODY_CELL_DEFAULT">Row 2 - Cell 1</TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">Row 2 - Cell 2</TableCell>
             <TableCell variant="BODY_CELL_DEFAULT">Row 2 - Cell 3</TableCell>
@@ -361,10 +361,10 @@ export const Table: StoryType = {
         <TableFoot variant="DEFAULT">
           <TableRow variant="BODY_ROW_DEFAULT">
             <TableCell
+              th
               colSpan={4}
               scope="row"
               textAlign="right"
-              th={true}
               variant="BODY_CELL_DEFAULT"
             >
               Summary

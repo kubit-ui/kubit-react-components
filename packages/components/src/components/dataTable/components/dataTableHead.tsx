@@ -63,6 +63,7 @@ export const DataTableHead = ({
                 // Do not apply width and minWidth when using row groups
                 // They will be applied in the display grid of the row
                 key={column.field}
+                th
                 additionalClasses={cssClasses?.table_head_cell}
                 alignItems={rowConfig?.cellsAlignItems}
                 component={usingRowGroups ? 'div' : undefined}
@@ -73,7 +74,6 @@ export const DataTableHead = ({
                 scope="col"
                 sticky={column.sticky}
                 textAlign={column.textAlign}
-                th={true}
                 verticalAlign={rowConfig?.cellsVerticalAlign}
                 width={usingRowGroups ? undefined : column.width}
                 {...cellConfig}
@@ -93,6 +93,7 @@ export const DataTableHead = ({
               // Do not apply width and minWidth when using row groups
               // They will be applied in the display grid of the row
               key={column.field}
+              th
               additionalClasses={cssClasses?.table_head_cell}
               alignItems={rowConfig?.cellsAlignItems}
               component={usingRowGroups ? 'div' : undefined}
@@ -103,7 +104,6 @@ export const DataTableHead = ({
               scope="col"
               sticky={column.sticky}
               textAlign={column.textAlign}
-              th={true}
               verticalAlign={rowConfig?.cellsVerticalAlign}
               width={usingRowGroups ? undefined : column.width}
               {...cellConfig}

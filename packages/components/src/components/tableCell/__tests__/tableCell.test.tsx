@@ -11,7 +11,7 @@ describe('Table Cell', () => {
       <table>
         <thead>
           <tr>
-            <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+            <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
               Header Cell
             </TableCell>
           </tr>
@@ -37,7 +37,7 @@ describe('Table Cell', () => {
 
   it('When hidden child will be wrapper in a element to respect the size of the element', async () => {
     render(
-      <TableCell component="div" hidden={true} variant="BODY_CELL_DEFAULT">
+      <TableCell hidden component="div" variant="BODY_CELL_DEFAULT">
         Cell
       </TableCell>,
     );

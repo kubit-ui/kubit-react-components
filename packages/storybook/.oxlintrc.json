@@ -1,0 +1,53 @@
+{
+  "$schema": "../../node_modules/oxlint/configuration_schema.json",
+  "extends": ["../../node_modules/@kubit-ui-web/eslint-plugin-kubit/oxlint/recommended.json"],
+  "jsPlugins": [
+    { "name": "kubit", "specifier": "@kubit-ui-web/eslint-plugin-kubit" }
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "globals": {
+    "describe": "readonly",
+    "expect": "readonly",
+    "it": "readonly",
+    "test": "readonly",
+    "vi": "readonly"
+  },
+  "rules": {
+    "complexity": "off",
+    "no-undef": "off",
+    "no-console": "off",
+    "no-alert": "off",
+    "typescript/no-non-null-assertion": "warn",
+    "typescript/no-explicit-any": "off",
+    "typescript/ban-ts-comment": "off",
+    "typescript/no-empty-function": "off",
+    "typescript/no-magic-numbers": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "react/no-array-index-key": "off",
+    "react/jsx-no-undef": "warn",
+    "kubit/no-index-import": "off",
+    "no-duplicate-imports": "off",
+    "kubit/no-inline-styles": "off",
+    "kubit/no-public-field-interface": "off",
+    "kubit/no-multi-comp": "warn",
+    "react-hooks/rules-of-hooks": "off",
+    "kubit/enforce-named-exports": [
+      "error",
+      {
+        "allowInFiles": [".stories.", ".storybook/"]
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "coverage",
+    "*.config.*",
+    ".storybook-cache",
+    "storybook-static"
+  ]
+}

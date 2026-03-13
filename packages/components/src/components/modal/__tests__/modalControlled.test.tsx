@@ -43,7 +43,7 @@ describe('ModalControlled', () => {
   });
 
   it('should handle disableFocusableContent prop', () => {
-    render(<ModalControlled {...mockProps} disableFocusableContent={true} />);
+    render(<ModalControlled {...mockProps} disableFocusableContent />);
     const content = screen.getByText('Modal content');
     expect(content).toBeDefined();
   });

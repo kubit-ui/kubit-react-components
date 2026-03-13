@@ -40,7 +40,7 @@ export const SliderScaleStandAlone = ({
     if (spanRef.current) {
       setWidth(`${spanRef.current.offsetWidth}px`);
     }
-  }, [spanRef.current]);
+  }, []);
 
   if (!showScale) {
     return null;

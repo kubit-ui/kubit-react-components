@@ -48,7 +48,7 @@ describe('Slider - Mouse interactions', () => {
     const { getAllByRole } = render(
       <SliderStandAlone
         {...mockSliderStandAlone}
-        range={true}
+        range
         setHover={setHover}
       />,
     );
@@ -63,7 +63,7 @@ describe('Slider - Mouse interactions', () => {
     const { getAllByRole } = render(
       <SliderStandAlone
         {...mockSliderStandAlone}
-        range={true}
+        range
         setHover={setHover}
       />,
     );

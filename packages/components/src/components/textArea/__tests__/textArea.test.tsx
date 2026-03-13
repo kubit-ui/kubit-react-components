@@ -49,7 +49,7 @@ describe('TextArea component', () => {
   });
 
   it('when error, errorMessage should be shown', () => {
-    const { container } = render(<TextArea {...mockProps} error={true} />);
+    const { container } = render(<TextArea {...mockProps} error />);
     const errorMessage = screen.getByText(
       processTextProp(mockProps.errorMessage).children as string,
     );
@@ -63,7 +63,7 @@ describe('TextArea component', () => {
 
   it('when disabled, no error should be shown', () => {
     const { container } = render(
-      <TextArea {...mockProps} disabled={true} error={true} />,
+      <TextArea {...mockProps} disabled error />,
     );
     const errorMessage = screen.queryByText(
       processTextProp(mockProps.errorMessage).children as string,
@@ -78,7 +78,7 @@ describe('TextArea component', () => {
 
   it('when disabled, it can have a value', () => {
     const { container } = render(
-      <TextArea {...mockProps} disabled={true} value="textArea" />,
+      <TextArea {...mockProps} disabled value="textArea" />,
     );
     const textArea = screen.getByText('textArea');
     expect(textArea).not.toBeNull();

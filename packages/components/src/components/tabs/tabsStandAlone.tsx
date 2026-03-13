@@ -175,12 +175,13 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
                 >
                   {tabsLength > 1 ? (
                     <ItemRove
+                      checkIsFirstTime
+                      preventScrollOnFocus
                       ariaDisabled={
                         (isMobile && !positionVisibleInView) || tab.disabled
                       }
                       ariaSelected={isSelected}
                       asElement="button"
-                      checkIsFirstTime={true}
                       classNames={classNames(cssClasses?.tabbutton, {
                         [`${cssClasses?.firsttabbutton}`]: index === 0,
                         [`${cssClasses?.lasttabbutton}`]:
@@ -193,7 +194,6 @@ export const TabsStandAlone = forwardRef<HTMLDivElement, TabsStandAloneProps>(
                       focus={focus === index}
                       id={`${BASE_ID}-tab-${index}`}
                       index={index}
-                      preventScrollOnFocus={true}
                       role="tab"
                       type="button"
                       onSelectItem={() => {

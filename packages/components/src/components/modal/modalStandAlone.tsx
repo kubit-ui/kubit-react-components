@@ -108,6 +108,7 @@ export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(
             titleIdFinal={titleIdFinal}
           />
           <div
+            data-modal-content
             aria-label={
               contentHasScroll ? contentScrollArias?.['aria-label'] : undefined
             }
@@ -117,7 +118,6 @@ export const ModalStandAlone = forwardRef<HTMLDivElement, ModalStandAloneProps>(
                 : undefined
             }
             className={cssClasses?.content}
-            data-modal-content={true}
             data-testid={`${dataTestId}-content`}
             role={contentHasScroll ? 'region' : undefined}
             style={{

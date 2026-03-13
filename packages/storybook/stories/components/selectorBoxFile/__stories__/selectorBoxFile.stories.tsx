@@ -1041,10 +1041,10 @@ export const AllStates: Story = {
         <div>
           <h3 style={{ marginBottom: '12px' }}>Success State</h3>
           <SelectorBoxFile
+            success
             containerBoxStateContent={baseContent}
             fileExtension={['pdf']}
             filename="document.pdf"
-            success={true}
             variant="DEFAULT"
           />
         </div>
@@ -1052,8 +1052,8 @@ export const AllStates: Story = {
         <div>
           <h3 style={{ marginBottom: '12px' }}>Error State</h3>
           <SelectorBoxFile
+            error
             containerBoxStateContent={baseContent}
-            error={true}
             errorFileExtensionMessage="Invalid file type"
             fileExtension={['pdf']}
             filename="image.jpg"
@@ -1064,10 +1064,10 @@ export const AllStates: Story = {
         <div>
           <h3 style={{ marginBottom: '12px' }}>Loading State</h3>
           <SelectorBoxFile
+            loading
             containerBoxStateContent={baseContent}
             fileExtension={['pdf']}
             filename="uploading.pdf"
-            loading={true}
             percentage={65}
             variant="DEFAULT"
           />
@@ -1076,8 +1076,8 @@ export const AllStates: Story = {
         <div>
           <h3 style={{ marginBottom: '12px' }}>Disabled State</h3>
           <SelectorBoxFile
+            disabled
             containerBoxStateContent={baseContent}
-            disabled={true}
             fileExtension={['pdf']}
             variant="DEFAULT"
           />

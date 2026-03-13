@@ -138,10 +138,10 @@ describe('DataTableRows', () => {
     renderWithTable(
       <DataTableRows
         {...mockProps}
+        usingRowGroups
         activeRows={['row1']}
         columns={columns}
         rows={rows}
-        usingRowGroups={true}
       />,
     );
 

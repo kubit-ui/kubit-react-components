@@ -72,7 +72,7 @@ describe('Icon Component', () => {
   });
   it('Return an icon complex', async () => {
     const { container, getByRole } = render(
-      <IconBasic {...mockProps} complex={true} />,
+      <IconBasic {...mockProps} complex />,
     );
 
     const iconComplex = getByRole('img');

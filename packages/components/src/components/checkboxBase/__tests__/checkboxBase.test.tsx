@@ -22,7 +22,7 @@ describe('CheckboxBase', () => {
 
   test('renders with correct checked state', () => {
     const { getByRole } = render(
-      <CheckboxBase {...mockProps} checked={true} />,
+      <CheckboxBase {...mockProps} checked />,
     );
 
     const checkbox = getByRole('checkbox');
@@ -31,7 +31,7 @@ describe('CheckboxBase', () => {
 
   test('renders with disabled state', () => {
     const { getByRole } = render(
-      <CheckboxBase {...mockProps} disabled={true} />,
+      <CheckboxBase {...mockProps} disabled />,
     );
 
     const checkbox = getByRole('checkbox');
@@ -39,7 +39,7 @@ describe('CheckboxBase', () => {
   });
 
   test('renders with error state', () => {
-    const { getByRole } = render(<CheckboxBase {...mockProps} error={true} />);
+    const { getByRole } = render(<CheckboxBase {...mockProps} error />);
 
     const checkbox = getByRole('checkbox');
     expect(checkbox).toHaveAttribute('aria-invalid', 'true');

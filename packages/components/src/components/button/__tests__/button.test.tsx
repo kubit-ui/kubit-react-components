@@ -118,7 +118,7 @@ describe('Button component', () => {
 
   it('Should render Button with loading state', async () => {
     const { container } = render(
-      <Button {...mockProps} loader={<div>Loading...</div>} loading={true}>
+      <Button {...mockProps} loading loader={<div>Loading...</div>}>
         {children}
       </Button>,
     );
@@ -148,7 +148,7 @@ describe('Button component', () => {
 
   it('Should render Button with fullWidth', async () => {
     const { container } = render(
-      <Button {...mockProps} fullWidth={true}>
+      <Button {...mockProps} fullWidth>
         {children}
       </Button>,
     );
@@ -192,7 +192,7 @@ describe('Button component', () => {
 
   it('Should render Button with disabled state', async () => {
     const { container } = render(
-      <Button {...mockProps} disabled={true}>
+      <Button {...mockProps} disabled>
         {children}
       </Button>,
     );

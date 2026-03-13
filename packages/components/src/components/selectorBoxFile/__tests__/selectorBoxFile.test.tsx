@@ -59,6 +59,7 @@ describe('SelectorBoxFile', () => {
     const { container } = render(
       <SelectorBoxFile
         {...mockProps}
+        loading
         containerBoxStateContent={{
           ...mockProps.containerBoxStateContent,
           [STATES.LOADING]: {
@@ -70,7 +71,6 @@ describe('SelectorBoxFile', () => {
             },
           },
         }}
-        loading={true}
       />,
     );
 
@@ -85,7 +85,7 @@ describe('SelectorBoxFile', () => {
   });
 
   it('May have loading state', () => {
-    render(<SelectorBoxFile {...mockProps} loading={true} />);
+    render(<SelectorBoxFile {...mockProps} loading />);
     const inputFile = screen.getByLabelText(
       new RegExp(
         mockProps.containerBoxStateContent[STATES.LOADING].actionText.content,
@@ -95,7 +95,7 @@ describe('SelectorBoxFile', () => {
   });
 
   it('May have success state', () => {
-    render(<SelectorBoxFile {...mockProps} success={true} />);
+    render(<SelectorBoxFile {...mockProps} success />);
     const inputFile = screen.getByLabelText(
       new RegExp(
         mockProps.containerBoxStateContent[STATES.SUCCESS].actionText.content,
@@ -105,7 +105,7 @@ describe('SelectorBoxFile', () => {
   });
 
   it('May have error state', () => {
-    render(<SelectorBoxFile {...mockProps} error={true} />);
+    render(<SelectorBoxFile {...mockProps} error />);
     const inputFile = screen.getByLabelText(
       new RegExp(
         mockProps.containerBoxStateContent[STATES.ERROR].actionText.content,
@@ -115,7 +115,7 @@ describe('SelectorBoxFile', () => {
   });
 
   it('May have disabled state', () => {
-    render(<SelectorBoxFile {...mockProps} disabled={true} />);
+    render(<SelectorBoxFile {...mockProps} disabled />);
     const inputFile = screen.getByLabelText(
       new RegExp(
         mockProps.containerBoxStateContent[STATES.DISABLED].actionText.content,

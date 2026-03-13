@@ -140,9 +140,9 @@ describe('Selector component', () => {
     const { container } = render(
       <Selector
         {...mockProps}
+        showMonthSelector
         setShowMonthSelector={setShowMonthSelector}
         setShowYearSelector={setShowYearSelector}
-        showMonthSelector={true}
       />,
     );
 

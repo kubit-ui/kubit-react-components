@@ -138,13 +138,13 @@ export const SelectStandAlone = forwardRef<
         </CustomComponent>
         {!!popover && (
           <Popover
+            disableAutoFocusFirstDescendant
+            disableAutoFocusFirstDescendantAfterClose
+            disableTrapFocus
             anchorElement={buttonOrLinkRef?.current}
             component="div"
-            disableAutoFocusFirstDescendant={true}
-            disableAutoFocusFirstDescendantAfterClose={true}
             disableClickOverlayClose={false}
             disableEscapeClose={false}
-            disableTrapFocus={true}
             id={ariaControls}
             open={open}
             placement="bottom"

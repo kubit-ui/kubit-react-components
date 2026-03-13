@@ -123,10 +123,10 @@ describe('Option component', () => {
     render(
       <Option
         {...mockProps}
+        multiSelect
+        selected
         checkedIcon={{ icon: 'CHECK' }}
         data-testid="optionTestId"
-        multiSelect={true}
-        selected={true}
       />,
     );
     const iconChecked = screen.getByTestId('icon');
@@ -161,7 +161,7 @@ describe('Option component', () => {
     const option = screen.getByText(mockProps.label);
     expect(option).not.toHaveFocus();
 
-    rerender(<Option {...mockProps} focus={true} />);
+    rerender(<Option {...mockProps} focus />);
     // Component should attempt to focus on update
     expect(option).toBeDefined();
   });

@@ -26,6 +26,7 @@ describe('CrumbStandAlone', () => {
   it('renderiza el último crumb como texto', () => {
     const { getByText } = render(
       <CrumbStandAlone
+        lastCrumb
         crumb={crumb}
         cssClasses={{
           ...mockCssProps,
@@ -33,7 +34,6 @@ describe('CrumbStandAlone', () => {
         }}
         data-testid="crumb"
         dividerIcon={{ icon: '' }}
-        lastCrumb={true}
         link={{}}
       />,
     );

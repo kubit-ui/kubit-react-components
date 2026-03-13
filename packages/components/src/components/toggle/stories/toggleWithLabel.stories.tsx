@@ -417,17 +417,17 @@ export const DisabledState: Story = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <ToggleWithLabel
+          disabled
           checked={false}
           description="This toggle is disabled in the unchecked state"
-          disabled={true}
           label="Disabled unchecked"
           variant={ToggleVariant.REGULAR}
           onToggle={setChecked}
         />
         <ToggleWithLabel
-          checked={true}
+          checked
+          disabled
           description="This toggle is disabled in the checked state"
-          disabled={true}
           label="Disabled checked"
           variant={ToggleVariant.REGULAR}
           onToggle={setChecked}

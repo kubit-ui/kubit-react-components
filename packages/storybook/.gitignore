@@ -31,3 +31,5 @@ bundle/
 # Storybook
 .storybook-cache/
 storybook-static/
+
+.npmrc

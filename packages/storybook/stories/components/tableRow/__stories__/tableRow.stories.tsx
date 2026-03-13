@@ -23,13 +23,13 @@ export const HeaderRowDefault: StoryType = {
   args: {
     children: (
       <>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Name
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Email
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_DEFAULT">
+        <TableCell th scope="col" variant="HEADER_CELL_DEFAULT">
           Role
         </TableCell>
       </>
@@ -60,16 +60,16 @@ export const HeaderRowSecondary: StoryType = {
   args: {
     children: (
       <>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_SECONDARY">
+        <TableCell th scope="col" variant="HEADER_CELL_SECONDARY">
           Q1
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_SECONDARY">
+        <TableCell th scope="col" variant="HEADER_CELL_SECONDARY">
           Q2
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_SECONDARY">
+        <TableCell th scope="col" variant="HEADER_CELL_SECONDARY">
           Q3
         </TableCell>
-        <TableCell scope="col" th={true} variant="HEADER_CELL_SECONDARY">
+        <TableCell th scope="col" variant="HEADER_CELL_SECONDARY">
           Q4
         </TableCell>
       </>

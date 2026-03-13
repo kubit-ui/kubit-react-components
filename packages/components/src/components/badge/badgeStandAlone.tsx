@@ -89,7 +89,7 @@ export const BadgeStandAlone = forwardRef<unknown, BadgeStandAloneProps>(
         >
           <span className={cssVariantClasses?.dotcontainer}>
             {!!dot && !!hasDot && (
-              <span aria-hidden={true} className={cssVariantClasses?.dot}>
+              <span aria-hidden className={cssVariantClasses?.dot}>
                 <Dot {...dot} />
               </span>
             )}
@@ -101,7 +101,7 @@ export const BadgeStandAlone = forwardRef<unknown, BadgeStandAloneProps>(
           </span>
           {!!label && (
             <span
-              aria-hidden={true}
+              aria-hidden
               className={cssVariantClasses?.labelcontainer}
             >
               <Text

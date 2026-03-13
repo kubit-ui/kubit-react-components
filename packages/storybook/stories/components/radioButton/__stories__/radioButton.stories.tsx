@@ -953,7 +953,7 @@ export const AllStates: Story = {
               variant="DEFAULT"
             />
             <RadioButton
-              checked={true}
+              checked
               label={{ content: 'Checked' }}
               name="states-2"
               value="checked"
@@ -966,16 +966,16 @@ export const AllStates: Story = {
           <h4 style={{ marginBottom: '12px' }}>Disabled States</h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <RadioButton
+              disabled
               checked={false}
-              disabled={true}
               label={{ content: 'Disabled Unchecked' }}
               name="states-3"
               value="disabled-unchecked"
               variant="DEFAULT"
             />
             <RadioButton
-              checked={true}
-              disabled={true}
+              checked
+              disabled
               label={{ content: 'Disabled Checked' }}
               name="states-4"
               value="disabled-checked"
@@ -996,7 +996,7 @@ export const AllStates: Story = {
               variant="DEFAULT"
             />
             <RadioButton
-              checked={true}
+              checked
               label={{ content: 'With Subtitle Checked' }}
               name="states-6"
               subTitle="Additional information text"
@@ -1010,8 +1010,8 @@ export const AllStates: Story = {
           <h4 style={{ marginBottom: '12px' }}>Error States</h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <RadioButton
+              error
               checked={false}
-              error={true}
               errorMessage="This field is required"
               label={{ content: 'With Error' }}
               name="states-7"
@@ -1019,8 +1019,8 @@ export const AllStates: Story = {
               variant="DEFAULT"
             />
             <RadioButton
+              error
               checked={false}
-              error={true}
               errorIcon={{ altText: 'Error', icon: 'error' }}
               errorMessage="Selection required"
               label={{ content: 'With Error Icon' }}

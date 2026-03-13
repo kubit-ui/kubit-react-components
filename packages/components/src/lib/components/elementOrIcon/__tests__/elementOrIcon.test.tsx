@@ -17,7 +17,7 @@ describe('Icon Component', () => {
   it('Passing isBasic=true It should render IconBasic', async () => {
     const mockOnClick = vi.fn();
     const { container, getByRole } = render(
-      <ElementOrIcon {...mockProps} basic={true} onClick={mockOnClick} />,
+      <ElementOrIcon {...mockProps} basic onClick={mockOnClick} />,
     );
 
     const icon = getByRole('button');

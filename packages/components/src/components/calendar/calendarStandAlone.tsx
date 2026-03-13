@@ -66,8 +66,8 @@ const CalendarStandAloneComponent = (
   return (
     <div
       ref={ref}
+      data-calendar
       className={cssClasses?.calendar}
-      data-calendar={true}
       data-testid={dataTestId}
       id={id}
       {...customProps}

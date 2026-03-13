@@ -78,12 +78,12 @@ describe('ModalUnControlled', () => {
 
     expect(screen.queryByText('Modal uncontrolled content')).toBeNull();
 
-    rerender(<ModalUnControlled {...mockProps} open={true} />);
+    rerender(<ModalUnControlled {...mockProps} open />);
     expect(screen.getByText('Modal uncontrolled content')).toBeDefined();
   });
 
   it('should handle Escape key when blocked', () => {
-    render(<ModalUnControlled {...mockProps} blocked={true} />);
+    render(<ModalUnControlled {...mockProps} blocked />);
 
     const modalContent = screen.getByText('Modal uncontrolled content');
     expect(modalContent).toBeDefined();
@@ -140,8 +140,8 @@ describe('ModalUnControlled', () => {
 
     rerender(
       <ModalUnControlled
+        open
         content="Test content"
-        open={true}
         variant="DEFAULT"
       />,
     );
@@ -167,7 +167,7 @@ describe('ModalUnControlled', () => {
   });
 
   it('should render with disableFocusableContent', () => {
-    render(<ModalUnControlled {...mockProps} disableFocusableContent={true} />);
+    render(<ModalUnControlled {...mockProps} disableFocusableContent />);
 
     expect(screen.getByText('Modal uncontrolled content')).toBeDefined();
   });

@@ -40,7 +40,7 @@ describe('Table', () => {
     expect(results.violations).toHaveLength(0);
   });
 
-  it('When scrollable, its container should have a role region focusable with  tabIndex of 0 ', () => {
+  it('When scrollable, its container should have a role region focusable with  tabIndex of 0', () => {
     vi.spyOn(hooks, 'useTableHasScroll').mockReturnValueOnce({
       hasScroll: true,
     });

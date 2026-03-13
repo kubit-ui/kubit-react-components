@@ -83,7 +83,7 @@ describe('Accordion', () => {
   it('should render in expanded state when defaultExpanded is true', () => {
     render(
       <Accordion
-        defaultExpanded={true}
+        defaultExpanded
         header="Test Accordion"
         variant="NEUTRAL"
       >
@@ -105,7 +105,7 @@ describe('Accordion', () => {
     const onHeaderClick = vi.fn();
     const { container } = render(
       <AccordionControlled
-        expanded={true}
+        expanded
         header="Test Controlled"
         variant="STANDARD"
         onHeaderClick={onHeaderClick}

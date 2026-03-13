@@ -61,10 +61,10 @@ const TextCountStandAloneComponent = (
         {screenReaderText}
       </ScreenReaderOnly>
       <Text
+        aria-hidden
         additionalClasses={{
           text: cssClasses?.letftext,
         }}
-        aria-hidden={true}
         color={leftColor}
         component="span"
         variant={textVariant}
@@ -73,10 +73,10 @@ const TextCountStandAloneComponent = (
         {currentCharacters}
       </Text>
       <Text
+        aria-hidden
         additionalClasses={{
           text: cssClasses?.righttext,
         }}
-        aria-hidden={true}
         color={rightColor}
         component="span"
         variant={textVariant}

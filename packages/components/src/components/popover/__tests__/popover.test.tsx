@@ -199,8 +199,8 @@ describe('Popover component', () => {
           <button>external</button>
           <Popover
             {...mockProps}
+            disableRestoreFocusAfterClose
             disableAutoFocusFirstDescendantAfterClose={false}
-            disableRestoreFocusAfterClose={true}
             open={open}
             onClose={() => setOpen(false)}
           />

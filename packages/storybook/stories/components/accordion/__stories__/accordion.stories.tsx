@@ -273,7 +273,7 @@ export const NestedAccordions = {
   },
   render: (): JSX.Element => (
     <AccordionUnControlled
-      defaultExpanded={true}
+      defaultExpanded
       header="Main Category"
       variant={AccordionVariant.NEUTRAL}
     >

@@ -294,8 +294,8 @@ export const ScrollBehaviorDemo = (
 
         <Popover
           {...args}
+          disableAnimations
           anchorElement={selectRef.current}
-          disableAnimations={true}
           middlewares={[
             size({
               apply({ elements, rects }) {

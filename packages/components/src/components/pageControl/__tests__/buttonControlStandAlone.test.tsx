@@ -30,7 +30,7 @@ describe('ButtonControlStandAlone', () => {
   });
 
   it('renders correctly with disabled prop', () => {
-    const { getByRole } = render(<ButtonControlStandAlone disabled={true} />);
+    const { getByRole } = render(<ButtonControlStandAlone disabled />);
     const button = getByRole('button');
     expect(button).toBeDisabled();
   });

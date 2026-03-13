@@ -47,11 +47,11 @@ export const TableRowStandAlone = forwardRef<
     return (
       <CustomComponent
         ref={ref}
+        data-table-row
         className={cssClasses?.table_row}
         component={component}
         data-active={active}
         data-hoverable={hoverable}
-        data-table-row={true}
         data-testid="table-row"
         id={id}
         onClick={onClick}

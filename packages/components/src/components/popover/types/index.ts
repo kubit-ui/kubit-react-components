@@ -1,5 +1,5 @@
 export type {
-  PopoverAnimationTimingFunction as PopoverAnimationTimingFunction,
+  PopoverAnimationTimingFunction,
   AnimationConfigType as PopoverAnimationConfigTypes,
   AnimationType as PopoverAnimationTypes,
 } from './animation';
@@ -11,10 +11,10 @@ export {
 } from './animation';
 
 export type {
-  IPopover as IPopover,
+  IPopover,
   ArrowStyles,
   MiddlewareOptions,
-  PopoverComponent as PopoverComponent,
+  PopoverComponent,
 } from './popover';
 
 export type { PopoverStyleProps } from './popoverTheme';

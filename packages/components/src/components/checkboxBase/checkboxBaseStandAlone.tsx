@@ -50,8 +50,8 @@ export const CheckboxBaseStandAlone = forwardRef(
           data-state={props['data-state']}
         >
           <ElementOrIcon
+            complex
             className={cssClasses?.icon}
-            complex={true}
             data-state={props['data-state']}
             {...processIconProp(checkedIcon)}
           />

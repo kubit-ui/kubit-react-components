@@ -20,8 +20,8 @@ export const HiddenDataTableHead = ({
 }: HiddenDataTableHeadProps): JSX.Element => {
   return (
     <TableHead
+      hidden
       additionalClasses={cssClasses?.row_group_table_head}
-      hidden={true}
     >
       <TableRow additionalClasses={cssClasses?.row_group_table_head_row}>
         {columns?.map((column) => {
@@ -41,9 +41,9 @@ export const HiddenDataTableHead = ({
           return (
             <TableCell
               key={column.field}
+              th
               additionalClasses={cssClasses?.row_group_table_head_cell}
               scope="col"
-              th={true}
             >
               {value}
             </TableCell>

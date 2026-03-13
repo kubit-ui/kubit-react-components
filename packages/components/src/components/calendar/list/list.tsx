@@ -266,7 +266,7 @@ export const List = ({
           ) : (
             <td
               key={`day${dayIndex + WEEK_DAYS * index}${dayFormatted}`}
-              aria-hidden={true}
+              aria-hidden
               aria-label="empty day"
               className={cssClasses?.listelementempty}
               style={{

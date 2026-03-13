@@ -56,7 +56,7 @@ describe('Tooltip', () => {
   });
 
   it('Tooltip - will not open if disabled', () => {
-    render(<Tooltip {...mockProps} disabled={true} tooltipAsModal={false} />);
+    render(<Tooltip {...mockProps} disabled tooltipAsModal={false} />);
     const label = screen.getByText(mockProps.children as string);
 
     fireEvent.mouseEnter(label);
@@ -252,7 +252,7 @@ describe('Tooltip', () => {
   // });
 
   it('Tooltip - onClick in the label will open / close the tooltip in desktop if configured as modal', () => {
-    render(<Tooltip {...mockProps} tooltipAsModal={true} />);
+    render(<Tooltip {...mockProps} tooltipAsModal />);
     const label = screen.getByText(mockProps.children as string);
 
     fireEvent.click(label);
@@ -435,8 +435,8 @@ describe('Tooltip', () => {
     render(
       <Tooltip
         {...mockProps}
+        tooltipAsModal
         tooltipAriaLabel={externalArialLabel}
-        tooltipAsModal={true}
       />,
     );
     const label = screen.getByText(mockProps.children as string);

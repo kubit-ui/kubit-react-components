@@ -51,7 +51,7 @@ describe('useManageState Hook', () => {
     expect(document.body).toHTMLValidate();
   });
 
-  it('useManageState with active state ', async () => {
+  it('useManageState with active state', async () => {
     const { rerender, result } = renderHook(useManageState, {
       initialProps: {
         active: false,

@@ -23,7 +23,7 @@ const mockControlledVerticalProps: StepperNumberProps = {
 };
 
 describe('StepperNumber component', () => {
-  it('Should display the right number of element ', async () => {
+  it('Should display the right number of element', async () => {
     const { container, getByTestId } = render(
       <StepperNumber {...mockProps} currentStep={0} />,
     );

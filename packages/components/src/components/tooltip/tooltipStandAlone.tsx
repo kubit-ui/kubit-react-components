@@ -75,7 +75,7 @@ export const TooltipStandAlone = ({
   if (disabled) {
     return (
       <div className="kbt-tooltip" data-testid={dataTestId}>
-        <TooltipTrigger childrenAsButton={childrenAsButton} disabled={true}>
+        <TooltipTrigger disabled childrenAsButton={childrenAsButton}>
           {children}
         </TooltipTrigger>
       </div>
@@ -190,6 +190,7 @@ export const TooltipStandAlone = ({
         Tooltip
       ) : (
         <Popover
+          disableAutoFocusFirstDescendantAfterClose
           additionalClasses={
             cssClasses?.popover
               ? {
@@ -202,7 +203,6 @@ export const TooltipStandAlone = ({
           aria-labelledby={undefined}
           aria-modal={tooltipAsModal || undefined}
           component="div"
-          disableAutoFocusFirstDescendantAfterClose={true}
           disableTrapFocus={false}
           open={popoverOpen}
           preventCloseOnClickElements={[labelRef?.current]}

@@ -1,0 +1,40 @@
+# pnpm configuration for kubit-react-components monorepo
+# https://pnpm.io/npmrc
+
+# Store configuration
+store-dir=~/.pnpm-store
+
+# Hoisting configuration
+hoist=true
+hoist-pattern[]=*
+
+# Public hoist pattern for tools that need to be accessible
+public-hoist-pattern[]=*eslint*
+public-hoist-pattern[]=@types/*
+
+# Strict peer dependencies
+strict-peer-dependencies=false
+auto-install-peers=true
+
+# Performance optimizations
+package-import-method=hardlink
+
+# Lockfile configuration
+lockfile=true
+frozen-lockfile=false
+
+# Registry configuration
+registry=https://registry.npmjs.org/
+
+# Resolution mode
+resolution-mode=highest
+
+# Node linker - hoisted required for OxLint jsPlugins (Rust resolver can't follow pnpm symlinks)
+node-linker=hoisted
+
+# Enable dedupe
+dedupe-peer-dependents=true
+
+# Save exact versions
+save-exact=false
+save-prefix=^

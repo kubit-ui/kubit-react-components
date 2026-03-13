@@ -83,7 +83,7 @@ export const WithActiveRow: StoryType = {
           <TableCell variant="BODY_CELL_DEFAULT">john@example.com</TableCell>
           <TableCell variant="BODY_CELL_DEFAULT">Admin</TableCell>
         </TableRow>
-        <TableRow active={true} variant="BODY_ROW_DEFAULT">
+        <TableRow active variant="BODY_ROW_DEFAULT">
           <TableCell variant="BODY_CELL_DEFAULT">User 2</TableCell>
           <TableCell variant="BODY_CELL_DEFAULT">jane@example.com</TableCell>
           <TableCell variant="BODY_CELL_DEFAULT">Editor</TableCell>
@@ -199,7 +199,7 @@ export const TableBody: StoryType = {
           <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 4</TableCell>
           <TableCell variant="BODY_CELL_DEFAULT">Row 1 - Cell 5</TableCell>
         </TableRow>
-        <TableRow active={true} variant="BODY_ROW_DEFAULT">
+        <TableRow active variant="BODY_ROW_DEFAULT">
           <TableCell variant="BODY_CELL_DEFAULT">Row 2 - Cell 1</TableCell>
           <TableCell variant="BODY_CELL_DEFAULT">Row 2 - Cell 2</TableCell>
           <TableCell variant="BODY_CELL_DEFAULT">Row 2 - Cell 3</TableCell>

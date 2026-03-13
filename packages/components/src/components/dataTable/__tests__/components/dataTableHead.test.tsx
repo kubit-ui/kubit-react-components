@@ -30,8 +30,8 @@ describe('DataTableHead', () => {
     render(
       <DataTableHead
         {...mockProps}
+        usingRowGroups
         tableHeadConfig={{ 'data-testid': 'thead-id' }}
-        usingRowGroups={true}
       />,
     );
 
@@ -64,7 +64,7 @@ describe('DataTableHead', () => {
 
     // When using row groups, the component uses CSS Grid, not HTML table structure
     render(
-      <DataTableHead {...mockProps} columns={columns} usingRowGroups={true} />,
+      <DataTableHead {...mockProps} usingRowGroups columns={columns} />,
     );
 
     const header1 = screen.getByText('Header 1');
@@ -115,7 +115,7 @@ describe('DataTableHead', () => {
 
     // When using row groups, the component uses CSS Grid, not HTML table structure
     render(
-      <DataTableHead {...mockProps} columns={columns} usingRowGroups={true} />,
+      <DataTableHead {...mockProps} usingRowGroups columns={columns} />,
     );
 
     const header1 = screen.getByTestId('tableCellHeader1');
