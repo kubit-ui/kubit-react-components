@@ -16,12 +16,6 @@
       "outputs": ["dist/**", ".next/**", "!.next/cache/**", "build/**", "storybook-static/**"],
       "env": ["NODE_ENV"]
     },
-    "//#build": {
-      "dependsOn": [
-        "@kubit-ui-web/design-system#build",
-        "@kubit-ui-web/react-components#build"
-      ]
-    },
     "@kubit-ui-web/design-system#build": {
       "dependsOn": ["^build"],
       "inputs": [
