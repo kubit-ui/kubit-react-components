@@ -41,7 +41,7 @@
     "jsx": "react-jsx",
     "composite": true, // ← Habilitar para permitir referencias de otros proyectos
     "types": ["vitest/globals", "node", "@testing-library/jest-dom"],
-    "typeRoots": ["src/lib/types", "node_modules/@types", "node_modules"],
+    "typeRoots": ["src/lib/types", "node_modules/@types", "../../node_modules/@types", "node_modules"],
     "removeComments": false,
     "erasableSyntaxOnly": true,
     "experimentalDecorators": true,
