@@ -131,8 +131,8 @@
   },
   "devDependencies": {
     "@kubit-ui-web/eslint-plugin-kubit": "^0.0.5",
-    "@rslib/core": "^0.19.6",
-    "@types/node": "^25.3.3",
+    "@rslib/core": "^0.20.0",
+    "@types/node": "^25.5.0",
     "bernova": "1.6.0",
     "cssnano": "^7.1.2",
     "glob": "^13.0.6",

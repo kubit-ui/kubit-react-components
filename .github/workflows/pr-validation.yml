@@ -65,6 +65,20 @@ jobs:
           yarn --version
           yarn install --immutable
 
+      - name: Check workspace constraints
+        id: constraints-check
+        continue-on-error: true
+        run: |
+          echo "🔍 Checking workspace constraints..."
+          if yarn constraints; then
+            echo "✅ All workspace constraints pass"
+            echo "constraints_valid=true" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ Workspace constraint violations detected"
+            echo "constraints_valid=false" >> $GITHUB_OUTPUT
+            echo "Run 'yarn constraints --fix' locally to auto-fix"
+          fi
+
       - name: Validate Branch Naming
         id: branch-validation
         continue-on-error: true
@@ -183,6 +197,7 @@ jobs:
 
             | Check | Status | Description |
             |-------|--------|-------------|
+            | **Constraints** | ${'${{ steps.constraints-check.outputs.constraints_valid }}' === 'true' ? '✅ Pass' : '❌ Fail'} | Workspace dependency consistency |
             | **Basic Validation** | ✅ Pass | PR structure validated |
             | **Branch Check** | ✅ Pass | Branch name accepted |
             | **Lint** | ✅ Pass | All packages linted |

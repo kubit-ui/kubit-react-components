@@ -394,6 +394,39 @@ yarn lint               # Linting
 yarn test               # Tests
 yarn format:check       # Format checking
 yarn build              # Build packages
+yarn constraints        # Check workspace consistency
+```
+
+### Workspace Constraints
+
+This monorepo uses **Yarn Berry Constraints** (`yarn.config.cjs`) to enforce consistency across workspaces:
+
+- **Shared dependencies** must use the same version range across all packages
+- **Required metadata** (`packageManager`, `engines.node`) must be present
+- **Public packages** must have `publishConfig` with correct registry
+- **Workspace references** must use `workspace:*` protocol
+
+```sh
+# Check for constraint violations
+yarn constraints
+
+# Auto-fix violations
+yarn constraints --fix
+```
+
+### Focused Development
+
+When working on a single package, you can speed up installs by only fetching that workspace's dependencies:
+
+```sh
+# Install only components + its workspace deps
+yarn focus:components
+
+# Install only design-system + its workspace deps
+yarn focus:design-system
+
+# Install only storybook + its workspace deps
+yarn focus:storybook
 ```
 
 ---

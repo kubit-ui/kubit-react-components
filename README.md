@@ -235,6 +235,13 @@ Turborepo ensures tasks run in the correct order and caches results for faster s
 | `yarn typecheck` | Type check all packages |
 | `yarn validate` | Run all quality checks |
 | `yarn clean` | Remove all node_modules and build artifacts |
+| `yarn constraints` | Check workspace dependency consistency |
+| `yarn constraints:fix` | Auto-fix constraint violations |
+| `yarn focus:components` | Install only components workspace deps |
+| `yarn focus:design-system` | Install only design-system workspace deps |
+| `yarn focus:storybook` | Install only storybook workspace deps |
+| `yarn foreach:clean` | Clean all workspaces in parallel |
+| `yarn info:workspaces` | List all workspace packages |
 
 ## Contributing
 

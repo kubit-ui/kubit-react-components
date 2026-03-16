@@ -47,7 +47,14 @@
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:publish": "yarn build && changeset publish",
-    "changeset:status": "changeset status --verbose"
+    "changeset:status": "changeset status --verbose",
+    "constraints": "yarn constraints",
+    "constraints:fix": "yarn constraints --fix",
+    "focus:components": "yarn workspaces focus @kubit-ui-web/react-components",
+    "focus:design-system": "yarn workspaces focus @kubit-ui-web/design-system",
+    "focus:storybook": "yarn workspaces focus @kubit-ui-web/storybook",
+    "info:workspaces": "yarn workspaces list",
+    "foreach:clean": "yarn workspaces foreach --all --parallel run clean"
   },
   "dependenciesMeta": {
     "bernova": {

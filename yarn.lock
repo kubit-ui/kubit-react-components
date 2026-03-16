@@ -2872,8 +2872,8 @@ __metadata:
   resolution: "@kubit-ui-web/design-system@workspace:packages/design-system"
   dependencies:
     "@kubit-ui-web/eslint-plugin-kubit": "npm:^0.0.5"
-    "@rslib/core": "npm:^0.19.6"
-    "@types/node": "npm:^25.3.3"
+    "@rslib/core": "npm:^0.20.0"
+    "@types/node": "npm:^25.5.0"
     bernova: "npm:1.6.0"
     cssnano: "npm:^7.1.2"
     glob: "npm:^13.0.6"
@@ -2926,6 +2926,11 @@ __metadata:
   dependencies:
     "@changesets/cli": "npm:^2.29.8"
     turbo: "npm:^2.8.9"
+  dependenciesMeta:
+    bernova:
+      built: false
+    unrs-resolver:
+      built: false
   languageName: unknown
   linkType: soft
 
@@ -2978,10 +2983,10 @@ __metadata:
     "@storybook/addon-docs": "npm:^10.2.15"
     "@storybook/addon-links": "npm:^10.2.15"
     "@storybook/react": "npm:^10.2.15"
-    "@types/node": "npm:^25.3.3"
+    "@types/node": "npm:^25.5.0"
     "@types/react": "npm:^19.2.14"
     "@types/react-dom": "npm:^19.2.3"
-    html-validate: "npm:^10.11.0"
+    html-validate: "npm:^10.11.1"
     oxfmt: "npm:^0.39.0"
     oxlint: "npm:^1.54.0"
     prismjs: "npm:^1.30.0"
@@ -3626,7 +3631,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rsbuild/core@npm:^1.7.3, @rsbuild/core@npm:~1.7.3":
+"@rsbuild/core@npm:^1.7.3":
   version: 1.7.3
   resolution: "@rsbuild/core@npm:1.7.3"
   dependencies:
@@ -3670,26 +3675,6 @@ __metadata:
     "@rsbuild/core":
       optional: true
   checksum: 10c0/426e13cbdb11277c4cd7aa641a2d136bc988c2a6fb1c6eb413a23cabcec5209022797c5940470d8565245621ec82fcfa3f2940f4060e9c6fcb1a662ec154f5a4
-  languageName: node
-  linkType: hard
-
-"@rslib/core@npm:^0.19.6":
-  version: 0.19.6
-  resolution: "@rslib/core@npm:0.19.6"
-  dependencies:
-    "@rsbuild/core": "npm:~1.7.3"
-    rsbuild-plugin-dts: "npm:0.19.6"
-  peerDependencies:
-    "@microsoft/api-extractor": ^7
-    typescript: ^5
-  peerDependenciesMeta:
-    "@microsoft/api-extractor":
-      optional: true
-    typescript:
-      optional: true
-  bin:
-    rslib: bin/rslib.js
-  checksum: 10c0/9359da1d84881877bc73ad35b134a88bcfb7a89c663f019e8646843d3567465b39d64c1fd1edf0a9df60a2bd6590d588a05ae0d4b3ada18980947f7de4abde2d
   languageName: node
   linkType: hard
 
@@ -4379,7 +4364,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^25.3.3, @types/node@npm:^25.5.0":
+"@types/node@npm:^25.5.0":
   version: 25.5.0
   resolution: "@types/node@npm:25.5.0"
   dependencies:
@@ -7751,7 +7736,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-validate@npm:^10.11.0, html-validate@npm:^10.11.1":
+"html-validate@npm:^10.11.1":
   version: 10.11.2
   resolution: "html-validate@npm:10.11.2"
   dependencies:
@@ -11115,27 +11100,6 @@ __metadata:
   version: 0.8.0
   resolution: "rrweb-cssom@npm:0.8.0"
   checksum: 10c0/56f2bfd56733adb92c0b56e274c43f864b8dd48784d6fe946ef5ff8d438234015e59ad837fc2ad54714b6421384141c1add4eb569e72054e350d1f8a50b8ac7b
-  languageName: node
-  linkType: hard
-
-"rsbuild-plugin-dts@npm:0.19.6":
-  version: 0.19.6
-  resolution: "rsbuild-plugin-dts@npm:0.19.6"
-  dependencies:
-    "@ast-grep/napi": "npm:0.37.0"
-  peerDependencies:
-    "@microsoft/api-extractor": ^7
-    "@rsbuild/core": 1.x
-    "@typescript/native-preview": 7.x
-    typescript: ^5
-  peerDependenciesMeta:
-    "@microsoft/api-extractor":
-      optional: true
-    "@typescript/native-preview":
-      optional: true
-    typescript:
-      optional: true
-  checksum: 10c0/fcf5eb3a1ce57aa042ea3411b2aa1d00c708abb619548041de945227afc8655e460dd32509c3e604d82a32704d61d1c1e81d54a22625c88e50fc152653980c48
   languageName: node
   linkType: hard
 

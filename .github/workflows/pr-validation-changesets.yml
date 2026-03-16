@@ -68,6 +68,20 @@ jobs:
           yarn --version
           yarn install --immutable
 
+      - name: Check workspace constraints
+        id: constraints-check
+        continue-on-error: true
+        run: |
+          echo "🔍 Checking workspace constraints..."
+          if yarn constraints; then
+            echo "✅ All workspace constraints pass"
+            echo "constraints_valid=true" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ Workspace constraint violations detected"
+            echo "constraints_valid=false" >> $GITHUB_OUTPUT
+            echo "Run 'yarn constraints --fix' locally to auto-fix"
+          fi
+
       - name: Validate Branch Naming
         id: branch-validation
         continue-on-error: true
@@ -309,6 +323,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const constraintsValid = '${{ steps.constraints-check.outputs.constraints_valid }}' === 'true';
             const branchValid = '${{ steps.branch-validation.outputs.branch_valid }}' === 'true';
             const titleValid = '${{ steps.pr-title-validation.outputs.title_valid }}' === 'true';
             const scopeValid = '${{ steps.pr-title-validation.outputs.scope_valid }}' === 'true';
@@ -326,7 +341,7 @@ jobs:
             const bumpType = '${{ steps.version-detection.outputs.bump_type }}';
             const scope = '${{ steps.pr-title-validation.outputs.scope }}';
 
-            const allPassed = branchValid && titleValid && scopeValid &&
+            const allPassed = constraintsValid && branchValid && titleValid && scopeValid &&
               (!componentsAffected || (typecheckComponents && testComponents && lintComponents)) &&
               (!designSystemAffected || (typecheckDesignSystem && lintDesignSystem)) &&
               consoleCheck && todoCheck;
@@ -351,6 +366,7 @@ jobs:
             comment += '\n### ✅ Validation Results\n\n';
             comment += '| Check | Status | Description |\n';
             comment += '|-------|--------|-------------|\n';
+            comment += `| Constraints | ${constraintsValid ? '✅ Pass' : '❌ Fail'} | Workspace dependency consistency |\n`;
             comment += `| Branch Naming | ${branchValid ? '✅ Pass' : '❌ Fail'} | Must follow \`type/description\` |\n`;
             comment += `| PR Title | ${titleValid ? '✅ Pass' : '❌ Fail'} | Must follow conventional commits |\n`;
             comment += `| Scope | ${scopeValid ? '✅ Pass' : '⚠️ Warning'} | Should specify package scope |\n`;
