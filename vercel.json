@@ -7,9 +7,9 @@
     "enabled": true,
     "autoAlias": true
   },
-  "buildCommand": "yarn build:storybook",
-  "devCommand": "yarn dev",
-  "installCommand": "yarn install --immutable",
+  "buildCommand": "corepack yarn build:storybook",
+  "devCommand": "corepack yarn dev",
+  "installCommand": "corepack yarn install --immutable",
   "framework": null,
   "outputDirectory": "packages/storybook/dist",
   "cleanUrls": true,
