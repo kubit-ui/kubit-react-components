@@ -43,21 +43,22 @@ jobs:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Enable Corepack
+        run: corepack enable
 
-      - name: Get pnpm store directory
+      - name: Get Yarn cache directory
+        id: yarn-cache
         shell: bash
         run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+          echo "CACHE_DIR=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
 
-      - name: Setup pnpm cache
+      - name: Setup Yarn cache
         uses: actions/cache@v4
         with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: ${{ steps.yarn-cache.outputs.CACHE_DIR }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            ${{ runner.os }}-yarn-
 
       - name: Setup Turbo cache
         uses: actions/cache@v4
@@ -69,9 +70,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          echo "Installing dependencies with pnpm..."
-          pnpm --version
-          pnpm install --frozen-lockfile
+          echo "Installing dependencies with yarn..."
+          yarn --version
+          yarn install --immutable
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -225,7 +226,7 @@ jobs:
         if: steps.detect.outputs.packages != ''
         run: |
           echo "📦 Updating version and changelog..."
-          pnpm changeset:version
+          yarn changeset:version
 
           # Configure git
           git config --global user.name "github-actions[bot]"
@@ -244,7 +245,7 @@ jobs:
         if: steps.detect.outputs.packages != ''
         run: |
           echo "🏗️ Building packages..."
-          pnpm build
+          yarn build
         env:
           NODE_ENV: production
 
@@ -252,7 +253,7 @@ jobs:
         if: steps.detect.outputs.packages != ''
         run: |
           echo "🚀 Publishing to NPM..."
-          pnpm changeset:publish
+          yarn changeset:publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

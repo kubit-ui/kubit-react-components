@@ -15,7 +15,6 @@
       "github": "https://github.com/kubit-ui/kubit-react-components"
     }
   },
-  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kubit-ui/kubit-react-components.git",
@@ -35,7 +34,7 @@
       "url": "https://github.com/kubit-ui/kubit-react-components/graphs/contributors"
     }
   ],
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "yarn@4.9.1",
   "keywords": [
     "design-system",
     "css-in-js",
@@ -101,25 +100,25 @@
   },
   "scripts": {
     "dev": "rslib build --watch",
-    "build": "rm -rf dist && pnpm generate-css && rslib build",
+    "build": "rm -rf dist && yarn generate-css && rslib build",
     "predist": "rm -rf dist",
-    "dist": "pnpm generate-css && rslib build",
+    "dist": "yarn generate-css && rslib build",
     "generate-css": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' npx bv-build --embed-css",
     "lint": "oxlint src",
     "lint:fix": "oxlint src --fix",
     "format": "oxfmt src",
     "format:check": "oxfmt --check src",
     "typecheck": "tsc --noEmit",
-    "validate": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm dist",
-    "validate:quick": "pnpm lint && pnpm typecheck",
-    "pack:check": "pnpm pack --dry-run",
-    "pack:size": "pnpm pack --dry-run 2>&1 | tail -1",
-    "pack:analyze": "pnpm pack && tar -tzf *.tgz | head -50 && rm *.tgz",
-    "pack:verify": "pnpm pack:check && pnpm pack:size",
+    "validate": "yarn format:check && yarn lint && yarn typecheck && yarn dist",
+    "validate:quick": "yarn lint && yarn typecheck",
+    "pack:check": "yarn pack --dry-run",
+    "pack:size": "yarn pack --dry-run 2>&1 | tail -1",
+    "pack:analyze": "yarn pack && tar -tzf *.tgz | head -50 && rm *.tgz",
+    "pack:verify": "yarn pack:check && yarn pack:size",
     "clean": "rm -rf dist node_modules",
     "clean:build": "rm -rf dist",
-    "prepublishOnly": "pnpm dist && pnpm pack:size",
-    "prerelease": "pnpm validate",
+    "prepublishOnly": "yarn dist && yarn pack:size",
+    "prerelease": "yarn validate",
     "bernova:no-check": "TS_NODE_TRANSPILE_ONLY=true npx bernova"
   },
   "peerDependencies": {
@@ -132,15 +131,15 @@
   },
   "devDependencies": {
     "@kubit-ui-web/eslint-plugin-kubit": "^0.0.5",
+    "@rslib/core": "^0.19.6",
     "@types/node": "^25.3.3",
     "bernova": "1.6.0",
     "cssnano": "^7.1.2",
-    "oxlint": "^1.54.0",
-    "oxfmt": "^0.39.0",
     "glob": "^13.0.6",
+    "oxfmt": "^0.39.0",
+    "oxlint": "^1.54.0",
     "postcss": "^8.5.8",
-    "typescript": "^5.9.3",
-    "@rslib/core": "^0.19.6"
+    "typescript": "^5.9.3"
   },
   "publishConfig": {
     "access": "public",

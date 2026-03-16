@@ -43,14 +43,14 @@ git fetch upstream
 
 ### 4. Install Dependencies
 
-This monorepo uses **pnpm** and **Turbo** for workspace management:
+This monorepo uses **Yarn** and **Turbo** for workspace management:
 
 ```sh
-# Install pnpm if you don't have it
-npm install -g pnpm
+# Enable Corepack (includes Yarn)
+corepack enable
 
 # Install dependencies
-pnpm install
+yarn install
 ```
 
 ### 5. Create a Feature Branch
@@ -94,22 +94,22 @@ cd packages/storybook
 
 ```sh
 # Run Storybook for development
-pnpm dev
+yarn dev
 
 # Build all packages
-pnpm build
+yarn build
 
 # Run tests (components only)
-pnpm test
+yarn test
 
 # Run type checking
-pnpm typecheck
+yarn typecheck
 
 # Run linting
-pnpm lint
+yarn lint
 
 # Format code
-pnpm format
+yarn format
 ```
 
 ### 7. Commit Your Changes
@@ -386,14 +386,14 @@ When you open a PR, automated checks will validate:
 
 ```sh
 # Run all checks before pushing
-pnpm validate
+yarn validate
 
 # Or run individual checks
-pnpm typecheck          # Type checking
-pnpm lint               # Linting
-pnpm test               # Tests
-pnpm format:check       # Format checking
-pnpm build              # Build packages
+yarn typecheck          # Type checking
+yarn lint               # Linting
+yarn test               # Tests
+yarn format:check       # Format checking
+yarn build              # Build packages
 ```
 
 ---
@@ -403,14 +403,14 @@ pnpm build              # Build packages
 Before contributing, ensure you have:
 
 - **Node.js**: v22.x or higher
-- **pnpm**: v10.x or higher
+- **Yarn**: v4.x or higher (via Corepack)
 - **Git**: Latest version
 
 Check your versions:
 
 ```sh
 node --version  # Should show v22.x.x
-pnpm --version  # Should show 10.x.x
+yarn --version  # Should show 4.x.x
 ```
 
 ---

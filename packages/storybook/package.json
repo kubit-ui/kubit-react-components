@@ -3,7 +3,7 @@
   "version": "2.0.0-alpha.1",
   "description": "Kubit Storybook - Component documentation and showcase",
   "private": true,
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "yarn@4.9.1",
   "engines": {
     "node": "22.x"
   },
@@ -16,7 +16,7 @@
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
     "typecheck": "tsc --noEmit",
-    "validate": "pnpm format:check && pnpm lint && pnpm typecheck",
+    "validate": "yarn format:check && yarn lint && yarn typecheck",
     "clean": "rm -rf dist node_modules .storybook-cache"
   },
   "dependencies": {
@@ -27,18 +27,18 @@
   },
   "devDependencies": {
     "@figma/code-connect": "^1.4.1",
+    "@kubit-ui-web/eslint-plugin-kubit": "^0.0.5",
     "@rsbuild/core": "^1.7.3",
     "@storybook/addon-a11y": "^10.2.15",
     "@storybook/addon-docs": "^10.2.15",
     "@storybook/addon-links": "^10.2.15",
     "@storybook/react": "^10.2.15",
-    "@kubit-ui-web/eslint-plugin-kubit": "^0.0.5",
     "@types/node": "^25.3.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "oxlint": "^1.54.0",
-    "oxfmt": "^0.39.0",
     "html-validate": "^10.11.0",
+    "oxfmt": "^0.39.0",
+    "oxlint": "^1.54.0",
     "prismjs": "^1.30.0",
     "storybook": "^10.2.15",
     "storybook-addon-deep-controls": "^0.10.0",

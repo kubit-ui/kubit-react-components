@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Node Version](https://img.shields.io/badge/node-22.x-brightgreen.svg)](https://nodejs.org)
-[![pnpm Version](https://img.shields.io/badge/pnpm-10.30.3-orange.svg)](https://pnpm.io)
+[![Yarn Version](https://img.shields.io/badge/yarn-4.9.1-2C8EBB.svg)](https://yarnpkg.com)
 [![Vite](https://img.shields.io/badge/Vite-8.0.0--beta.10-646CFF.svg?logo=vite)](https://vite.dev)
 [![Rolldown](https://img.shields.io/badge/Rolldown-Powered-FF6B35.svg)](https://rolldown.rs)
 
@@ -12,7 +12,7 @@ A professional, production-ready monorepo containing a comprehensive library of 
 
 ## Overview
 
-Kubit React Components is an enterprise-grade design system and component library designed to accelerate UI development while maintaining consistency, accessibility, and performance. This monorepo leverages Turborepo for efficient build orchestration and pnpm workspaces for optimal dependency management.
+Kubit React Components is an enterprise-grade design system and component library designed to accelerate UI development while maintaining consistency, accessibility, and performance. This monorepo leverages Turborepo for efficient build orchestration and Yarn workspaces for optimal dependency management.
 
 ## Architecture
 
@@ -91,7 +91,7 @@ Interactive documentation and development environment featuring:
 ### Prerequisites
 
 - **Node.js**: v22.x or higher
-- **pnpm**: v10.28.1 (automatically managed via packageManager field)
+- **Yarn**: v4.9.1 (automatically managed via Corepack)
 
 ### Installation
 
@@ -100,7 +100,7 @@ Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/kubit-ui/kubit-react-components.git
 cd kubit-react-components
-pnpm install
+yarn install
 ```
 
 ### Development
@@ -109,11 +109,11 @@ Start the development environment:
 
 ```bash
 # Start Storybook (recommended for development)
-pnpm dev
+yarn dev
 
 # Start specific package in development mode
-pnpm dev:components
-pnpm dev:design-system
+yarn dev:components
+yarn dev:design-system
 ```
 
 ### Building
@@ -122,12 +122,12 @@ Build all packages:
 
 ```bash
 # Build all publishable packages
-pnpm build
+yarn build
 
 # Build specific packages
-pnpm build:components
-pnpm build:design-system
-pnpm build:storybook
+yarn build:components
+yarn build:design-system
+yarn build:storybook
 ```
 
 ### Testing
@@ -136,13 +136,13 @@ Run the comprehensive test suite:
 
 ```bash
 # Run all tests
-pnpm test
+yarn test
 
 # Run tests in watch mode
-pnpm test:watch
+yarn test:watch
 
 # Generate coverage report
-pnpm test:coverage
+yarn test:coverage
 ```
 
 ### Code Quality
@@ -151,22 +151,22 @@ Maintain code quality with built-in linting and formatting:
 
 ```bash
 # Lint all packages
-pnpm lint
+yarn lint
 
 # Auto-fix linting issues
-pnpm lint:fix
+yarn lint:fix
 
 # Format code
-pnpm format
+yarn format
 
 # Check formatting
-pnpm format:check
+yarn format:check
 
 # Type checking
-pnpm typecheck
+yarn typecheck
 
 # Run all validations
-pnpm validate
+yarn validate
 ```
 
 ## Using in Your Project
@@ -178,7 +178,7 @@ npm install @kubit-ui-web/react-components @kubit-ui-web/design-system
 # or
 yarn add @kubit-ui-web/react-components @kubit-ui-web/design-system
 # or
-pnpm add @kubit-ui-web/react-components @kubit-ui-web/design-system
+yarn add @kubit-ui-web/react-components @kubit-ui-web/design-system
 ```
 
 ### Basic Usage
@@ -206,7 +206,7 @@ function App() {
 This monorepo uses:
 
 - **Turborepo**: For intelligent build caching and task orchestration
-- **pnpm Workspaces**: For efficient dependency management and package linking
+- **Yarn Workspaces**: For efficient dependency management and package linking
 - **TypeScript**: For type safety across all packages
 - **Vitest**: For fast unit testing
 - **ESLint & Prettier**: For code quality and consistency
@@ -225,16 +225,16 @@ Turborepo ensures tasks run in the correct order and caches results for faster s
 
 | Command | Description |
 |---------|-------------|
-| `pnpm dev` | Start Storybook development server |
-| `pnpm build` | Build all packages for production |
-| `pnpm test` | Run unit tests |
-| `pnpm test:coverage` | Generate test coverage report |
-| `pnpm lint` | Lint all packages |
-| `pnpm lint:fix` | Auto-fix linting issues |
-| `pnpm format` | Format code with Prettier |
-| `pnpm typecheck` | Type check all packages |
-| `pnpm validate` | Run all quality checks |
-| `pnpm clean` | Remove all node_modules and build artifacts |
+| `yarn dev` | Start Storybook development server |
+| `yarn build` | Build all packages for production |
+| `yarn test` | Run unit tests |
+| `yarn test:coverage` | Generate test coverage report |
+| `yarn lint` | Lint all packages |
+| `yarn lint:fix` | Auto-fix linting issues |
+| `yarn format` | Format code with Prettier |
+| `yarn typecheck` | Type check all packages |
+| `yarn validate` | Run all quality checks |
+| `yarn clean` | Remove all node_modules and build artifacts |
 
 ## Contributing
 
@@ -250,7 +250,7 @@ We welcome contributions to **Kubit React Components**! This is a **monorepo** m
 
 1. **Fork the repository** on GitHub
 2. **Clone your fork** locally
-3. **Install dependencies**: `pnpm install`
+3. **Install dependencies**: `yarn install`
 4. **Create a branch** with proper naming: `<type>/<description>`
 5. **Make changes** with scoped commits: `<type>(<scope>): <description>`
 6. **Push to your fork** and open a Pull Request
@@ -357,7 +357,7 @@ For detailed contributing guidelines, see [CONTRIBUTING-CHANGESETS.md](./CONTRIB
 - **TypeScript**: Type-safe development
 - **Bernova**: CSS-in-JS styling engine
 - **Turborepo**: Monorepo build system
-- **pnpm**: Fast, efficient package manager
+- **Yarn**: Fast, efficient package manager
 - **Vitest**: Lightning-fast unit testing
 - **Storybook**: Component documentation and development
 - **ESLint**: Code linting
