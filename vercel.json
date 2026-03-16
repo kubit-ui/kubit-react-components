@@ -7,9 +7,9 @@
     "enabled": true,
     "autoAlias": true
   },
-  "buildCommand": "pnpm build:storybook",
-  "devCommand": "pnpm dev",
-  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "yarn build:storybook",
+  "devCommand": "yarn dev",
+  "installCommand": "yarn install --immutable",
   "framework": null,
   "outputDirectory": "packages/storybook/dist",
   "cleanUrls": true,

@@ -103,7 +103,7 @@
     "build": "rm -rf dist && yarn generate-css && rslib build",
     "predist": "rm -rf dist",
     "dist": "yarn generate-css && rslib build",
-    "generate-css": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' npx bv-build --embed-css",
+    "generate-css": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' yarn exec bv-build --embed-css",
     "lint": "oxlint src",
     "lint:fix": "oxlint src --fix",
     "format": "oxfmt src",
@@ -119,7 +119,7 @@
     "clean:build": "rm -rf dist",
     "prepublishOnly": "yarn dist && yarn pack:size",
     "prerelease": "yarn validate",
-    "bernova:no-check": "TS_NODE_TRANSPILE_ONLY=true npx bernova"
+    "bernova:no-check": "TS_NODE_TRANSPILE_ONLY=true yarn exec bernova"
   },
   "peerDependencies": {
     "@kubit-ui-web/react-components": "workspace:*"

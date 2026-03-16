@@ -49,6 +49,14 @@
     "changeset:publish": "yarn build && changeset publish",
     "changeset:status": "changeset status --verbose"
   },
+  "dependenciesMeta": {
+    "bernova": {
+      "built": false
+    },
+    "unrs-resolver": {
+      "built": false
+    }
+  },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
     "turbo": "^2.8.9"
