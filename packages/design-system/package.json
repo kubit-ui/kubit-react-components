@@ -121,14 +121,6 @@
     "prerelease": "yarn validate",
     "bernova:no-check": "TS_NODE_TRANSPILE_ONLY=true yarn exec bernova"
   },
-  "peerDependencies": {
-    "@kubit-ui-web/react-components": "workspace:*"
-  },
-  "peerDependenciesMeta": {
-    "@kubit-ui-web/react-components": {
-      "optional": true
-    }
-  },
   "devDependencies": {
     "@kubit-ui-web/eslint-plugin-kubit": "^0.0.5",
     "@rslib/core": "^0.20.0",

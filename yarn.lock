@@ -2881,11 +2881,6 @@ __metadata:
     oxlint: "npm:^1.54.0"
     postcss: "npm:^8.5.8"
     typescript: "npm:^5.9.3"
-  peerDependencies:
-    "@kubit-ui-web/react-components": "workspace:*"
-  peerDependenciesMeta:
-    "@kubit-ui-web/react-components":
-      optional: true
   bin:
     kubit-design-system: ./dist/cjs/cli.js
   languageName: unknown
