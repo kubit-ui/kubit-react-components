@@ -1,5 +1,19 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.74
+
+### Major Changes
+
+- Use heredoc delimiter for multi-line commit messages in GITHUB_OUTPUT
+
+  Multi-line commit messages (with body/bullet points) broke the
+  release workflows because 'echo message=' passes
+  each line as a separate file command. Lines starting with '- '
+  trigger 'Invalid format' errors in GitHub Actions.
+
+  Fix: use heredoc syntax (message<<EOF / EOF) which safely handles
+  multi-line values in /home/runner/work/\_temp/\_runner_file_commands/set_output_8d453e61-483b-4570-8b34-aa1b86bc6a42.
+
 ## 2.0.0-beta.73
 
 ### Major Changes
