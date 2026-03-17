@@ -28,6 +28,7 @@
     "dev:design-system": "turbo run dev --filter=@kubit-ui-web/design-system",
     "build": "turbo run build --filter=!@kubit-ui-web/storybook",
     "build:all": "turbo run build",
+    "build:storybook": "turbo run build --filter=@kubit-ui-web/storybook",
     "lint": "turbo run lint --continue",
     "lint:fix": "turbo run lint:fix --continue",
     "format": "turbo run format --continue",
