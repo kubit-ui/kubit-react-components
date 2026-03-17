@@ -80,7 +80,7 @@ jobs:
         id: detect
         run: |
           BRANCH_NAME="${{ github.ref_name }}"
-          COMMIT_MSG=$(git log -1 --pretty=%B)
+          COMMIT_MSG=$(git log -1 --pretty=format:"%s")
 
           echo "Branch: $BRANCH_NAME"
           echo "Commit: $COMMIT_MSG"
@@ -142,10 +142,11 @@ jobs:
       - name: Get commit info
         id: commit
         run: |
-          COMMIT_MSG=$(git log -1 --pretty=%B)
           COMMIT_SHA=$(git rev-parse --short HEAD)
 
-          echo "message=$COMMIT_MSG" >> $GITHUB_OUTPUT
+          echo "message<<EOF" >> $GITHUB_OUTPUT
+          git log -1 --pretty=%B >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
           echo "sha=$COMMIT_SHA" >> $GITHUB_OUTPUT
 
       - name: Create canary changeset

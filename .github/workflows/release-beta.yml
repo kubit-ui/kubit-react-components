@@ -137,9 +137,10 @@ jobs:
       - name: Get latest commit message
         id: commit
         run: |
-          COMMIT_MSG=$(git log -1 --pretty=%B)
-          echo "message=$COMMIT_MSG" >> $GITHUB_OUTPUT
-          echo "Commit message: $COMMIT_MSG"
+          echo "message<<EOF" >> $GITHUB_OUTPUT
+          git log -1 --pretty=%B >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "Commit message: $(git log -1 --pretty=format:"%s")"
 
       - name: Create beta changeset
         run: |
