@@ -446,6 +446,33 @@ node --version  # Should show v22.x.x
 yarn --version  # Should show 4.x.x
 ```
 
+### Private Registry (optional)
+
+This repo uses the public npm registry by default. If your organization requires a **private registry** (JFrog Artifactory, Nexus, GitHub Packages, etc.), you can override it globally via environment variables — no need to modify any files.
+
+1. Add to your `~/.zshrc` (or `~/.bashrc`):
+
+```sh
+export YARN_NPM_REGISTRY_SERVER="https://your-org.example.com/your-npm-registry/"
+export YARN_NPM_ALWAYS_AUTH=true
+export YARN_ENABLE_STRICT_SSL=false
+```
+
+2. Reload your shell:
+
+```sh
+source ~/.zshrc
+```
+
+3. Verify:
+
+```sh
+yarn config get npmRegistryServer
+# Should show your private registry URL
+```
+
+This applies globally to all Yarn Berry projects. See `.env.example` for reference.
+
 ---
 
 ## Important Notes for Contributors
