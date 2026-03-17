@@ -37,21 +37,22 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Enable Corepack
+        run: corepack enable
 
-      - name: Get pnpm store directory
+      - name: Get Yarn cache directory
+        id: yarn-cache
         shell: bash
         run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+          echo "CACHE_DIR=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
 
-      - name: Setup pnpm cache
+      - name: Setup Yarn cache
         uses: actions/cache@v4
         with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: ${{ steps.yarn-cache.outputs.CACHE_DIR }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            ${{ runner.os }}-yarn-
 
       - name: Setup Turbo cache
         uses: actions/cache@v4
@@ -64,8 +65,22 @@ jobs:
       - name: Install dependencies
         run: |
           echo "Installing monorepo dependencies..."
-          pnpm --version
-          pnpm install --frozen-lockfile
+          yarn --version
+          yarn install --immutable
+
+      - name: Check workspace constraints
+        id: constraints-check
+        continue-on-error: true
+        run: |
+          echo "🔍 Checking workspace constraints..."
+          if yarn constraints; then
+            echo "✅ All workspace constraints pass"
+            echo "constraints_valid=true" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ Workspace constraint violations detected"
+            echo "constraints_valid=false" >> $GITHUB_OUTPUT
+            echo "Run 'yarn constraints --fix' locally to auto-fix"
+          fi
 
       - name: Validate Branch Naming
         id: branch-validation
@@ -228,7 +243,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "🔍 Running TypeScript check for components..."
-          pnpm typecheck:components
+          yarn typecheck:components
           echo "typecheck_components=true" >> $GITHUB_OUTPUT
 
       - name: TypeScript Check (Design System)
@@ -237,7 +252,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "🔍 Running TypeScript check for design-system..."
-          pnpm typecheck:design-system
+          yarn typecheck:design-system
           echo "typecheck_design_system=true" >> $GITHUB_OUTPUT
 
       - name: Run Tests (Components)
@@ -246,7 +261,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "🧪 Running tests for components..."
-          pnpm test
+          yarn test
           echo "test_components=true" >> $GITHUB_OUTPUT
 
       - name: Lint Check (Components)
@@ -255,7 +270,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "🔍 Running lint for components..."
-          pnpm lint:components
+          yarn lint:components
           echo "lint_components=true" >> $GITHUB_OUTPUT
 
       - name: Lint Check (Design System)
@@ -264,7 +279,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "🔍 Running lint for design-system..."
-          pnpm lint:design-system
+          yarn lint:design-system
           echo "lint_design_system=true" >> $GITHUB_OUTPUT
 
       - name: Check for console.log
@@ -308,6 +323,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const constraintsValid = '${{ steps.constraints-check.outputs.constraints_valid }}' === 'true';
             const branchValid = '${{ steps.branch-validation.outputs.branch_valid }}' === 'true';
             const titleValid = '${{ steps.pr-title-validation.outputs.title_valid }}' === 'true';
             const scopeValid = '${{ steps.pr-title-validation.outputs.scope_valid }}' === 'true';
@@ -325,7 +341,7 @@ jobs:
             const bumpType = '${{ steps.version-detection.outputs.bump_type }}';
             const scope = '${{ steps.pr-title-validation.outputs.scope }}';
 
-            const allPassed = branchValid && titleValid && scopeValid &&
+            const allPassed = constraintsValid && branchValid && titleValid && scopeValid &&
               (!componentsAffected || (typecheckComponents && testComponents && lintComponents)) &&
               (!designSystemAffected || (typecheckDesignSystem && lintDesignSystem)) &&
               consoleCheck && todoCheck;
@@ -350,6 +366,7 @@ jobs:
             comment += '\n### ✅ Validation Results\n\n';
             comment += '| Check | Status | Description |\n';
             comment += '|-------|--------|-------------|\n';
+            comment += `| Constraints | ${constraintsValid ? '✅ Pass' : '❌ Fail'} | Workspace dependency consistency |\n`;
             comment += `| Branch Naming | ${branchValid ? '✅ Pass' : '❌ Fail'} | Must follow \`type/description\` |\n`;
             comment += `| PR Title | ${titleValid ? '✅ Pass' : '❌ Fail'} | Must follow conventional commits |\n`;
             comment += `| Scope | ${scopeValid ? '✅ Pass' : '⚠️ Warning'} | Should specify package scope |\n`;

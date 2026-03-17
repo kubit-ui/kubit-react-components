@@ -2,7 +2,18 @@
 node_modules/
 .pnp
 .pnp.js
-.pnpm-store/
+
+# Lock files (keep yarn.lock)
+package-lock.json
+pnpm-lock.yaml
+
+# Yarn Berry
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # Turborepo
 .turbo/
@@ -56,5 +67,3 @@ storybook-static/
 *.temp
 .cache/
 
-
-.npmrc

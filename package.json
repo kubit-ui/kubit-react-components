@@ -1,5 +1,5 @@
 {
-  "name": "@kubit-ui-web/react-components",
+  "name": "@kubit-ui-web/monorepo",
   "version": "2.0.0-beta.44",
   "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
   "author": {
@@ -7,7 +7,7 @@
     "email": "kubit@opendigitalservices.com",
     "url": "https://www.kubit-ui.com/"
   },
-  "private": false,
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kubit-ui/kubit-react-components.git",
@@ -15,16 +15,20 @@
   },
   "license": "Apache-2.0",
   "engines": {
-    "node": "22.x",
-    "pnpm": ">=10.28.1"
+    "node": ">=22.0.0 <25.0.0",
+    "yarn": ">=4.0.0"
   },
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "yarn@4.9.1",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "turbo run dev --filter=@kubit-ui-web/storybook",
     "dev:components": "turbo run dev --filter=@kubit-ui-web/react-components",
     "dev:design-system": "turbo run dev --filter=@kubit-ui-web/design-system",
     "build": "turbo run build --filter=!@kubit-ui-web/storybook",
     "build:all": "turbo run build",
+    "build:storybook": "turbo run build --filter=@kubit-ui-web/storybook",
     "lint": "turbo run lint --continue",
     "lint:fix": "turbo run lint:fix --continue",
     "format": "turbo run format --continue",
@@ -38,13 +42,28 @@
     "validate:ci": "turbo run format:check lint typecheck test build --filter=!@kubit-ui-web/storybook --continue",
     "validate:all": "turbo run validate --continue",
     "validate:affected": "turbo run validate --filter=[HEAD^1]",
-    "clean": "turbo run clean && rm -rf node_modules .pnpm-store",
+    "clean": "turbo run clean && rm -rf node_modules",
     "clean:build": "turbo run clean:build",
     "clean:cache": "turbo daemon clean && rm -rf .turbo",
     "changeset": "changeset",
     "changeset:version": "changeset version",
-    "changeset:publish": "pnpm build && changeset publish",
-    "changeset:status": "changeset status --verbose"
+    "changeset:publish": "yarn build && changeset publish",
+    "changeset:status": "changeset status --verbose",
+    "constraints": "yarn constraints",
+    "constraints:fix": "yarn constraints --fix",
+    "focus:components": "yarn workspaces focus @kubit-ui-web/react-components",
+    "focus:design-system": "yarn workspaces focus @kubit-ui-web/design-system",
+    "focus:storybook": "yarn workspaces focus @kubit-ui-web/storybook",
+    "info:workspaces": "yarn workspaces list",
+    "foreach:clean": "yarn workspaces foreach --all --parallel run clean"
+  },
+  "dependenciesMeta": {
+    "bernova": {
+      "built": false
+    },
+    "unrs-resolver": {
+      "built": false
+    }
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",

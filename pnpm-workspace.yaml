@@ -1,9 +1,0 @@
-packages:
-  - packages/*
-
-ignoredBuiltDependencies:
-  - bernova
-  - unrs-resolver
-
-onlyBuiltDependencies:
-  - esbuild
