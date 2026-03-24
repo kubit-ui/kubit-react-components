@@ -122,16 +122,16 @@
     "bernova:no-check": "TS_NODE_TRANSPILE_ONLY=true yarn exec bernova"
   },
   "devDependencies": {
-    "@kubit-ui-web/eslint-plugin-kubit": "^0.0.5",
+    "@kubit-ui-web/eslint-plugin-kubit": "^0.0.9",
     "@rslib/core": "^0.20.0",
     "@types/node": "^25.5.0",
-    "bernova": "1.6.0",
-    "cssnano": "^7.1.2",
+    "bernova": "1.7.6",
+    "cssnano": "^7.1.3",
     "glob": "^13.0.6",
-    "oxfmt": "^0.39.0",
-    "oxlint": "^1.54.0",
+    "oxfmt": "^0.42.0",
+    "oxlint": "^1.57.0",
     "postcss": "^8.5.8",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "publishConfig": {
     "access": "public",
