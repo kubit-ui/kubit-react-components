@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.75
+
+### Major Changes
+
+- Update dependencies
+
 ## 2.0.0-beta.74
 
 ### Major Changes

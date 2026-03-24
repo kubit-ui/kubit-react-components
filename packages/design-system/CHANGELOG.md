@@ -1,5 +1,11 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.35
+
+### Major Changes
+
+- Update dependencies
+
 ## 2.0.0-beta.34
 
 ### Major Changes
