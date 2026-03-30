@@ -1,5 +1,11 @@
 # @kubit-ui-web/design-system
 
+## 2.0.0-beta.36
+
+### Major Changes
+
+- Updated popover and tooltip components (#74)
+
 ## 2.0.0-beta.35
 
 ### Major Changes

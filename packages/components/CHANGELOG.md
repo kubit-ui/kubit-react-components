@@ -1,5 +1,11 @@
 # @kubit-ui-web/react-components
 
+## 2.0.0-beta.76
+
+### Major Changes
+
+- Updated popover and tooltip components (#74)
+
 ## 2.0.0-beta.75
 
 ### Major Changes
