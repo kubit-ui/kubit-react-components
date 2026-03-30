@@ -1,37 +1,20 @@
-import './styles/index.css';
+import "./styles/index.css";
 
-import { forwardRef } from 'react';
+import { forwardRef } from "react";
 
-import { CustomComponent } from '@/lib/components/customComponent/customComponent';
-import { classNames } from '@/lib/utils/classNames/classNames';
-import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+import { CustomComponent } from "@/lib/components/customComponent/customComponent";
+import { classNames } from "@/lib/utils/classNames/classNames";
+import { pickCustomAttributes } from "@/lib/utils/pickCustomAttributes/pickCustomAttributes";
 
-import type { IPopoverStandAlone } from './types/popover';
+import type { IPopoverStandAlone } from "./types/popover";
+import { getArrowBorderStyles } from "./utils/styling.utils";
 
-import { getArrowBorderStyles } from './utils/styling.utils';
-
-/**
- * Standalone popover component for displaying floating content relative to an anchor element.
- *
- * This component renders a positioned popover with optional arrow pointer.
- * It supports custom positioning, styling, and animation states.
- *
- * @example
- * ```tsx
- * <PopoverStandAlone
- *   anchorElement={buttonRef.current}
- *   open={true}
- * >
- *   Popover content
- * </PopoverStandAlone>
- * ```
- */
 const PopoverStandAloneComponent = (
   {
     anchorElement,
     arrowStyles,
     children,
-    component = 'div',
+    component = "div",
     cssClasses,
     disableAnimations,
     id,
@@ -40,7 +23,7 @@ const PopoverStandAloneComponent = (
     overlay,
     placement,
     popoverContainerRef,
-    zIndex = 'auto',
+    zIndex = "auto",
     ...props
   }: IPopoverStandAlone,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null,
@@ -49,7 +32,7 @@ const PopoverStandAloneComponent = (
     string,
     string
   >;
-  const { ['data-testid']: dataTestId = 'popover', ...restCustomAttributes } =
+  const { ["data-testid"]: dataTestId = "popover", ...restCustomAttributes } =
     customAttributes;
 
   return (
@@ -69,7 +52,8 @@ const PopoverStandAloneComponent = (
             data-kbt-has-arrow={!!arrowStyles}
             data-kbt-id="popover"
             data-kbt-placement={placement}
-            style={{ zIndex: zIndex || 'auto' }}
+            data-kbt-strategy={props.strategy}
+            style={{ zIndex: zIndex || "auto" }}
           >
             {!!arrowStyles && (
               <div
@@ -78,10 +62,8 @@ const PopoverStandAloneComponent = (
                 data-kbt-id="popover-arrow"
                 data-kbt-placement={placement}
                 style={{
-                  ...(placement
-                    ? getArrowBorderStyles(placement, arrowStyles)
-                    : {}),
-                  zIndex: typeof zIndex === 'number' ? zIndex + 1 : zIndex,
+                  ...getArrowBorderStyles(placement, arrowStyles),
+                  zIndex: typeof zIndex === "number" ? zIndex + 1 : zIndex,
                 }}
               />
             )}

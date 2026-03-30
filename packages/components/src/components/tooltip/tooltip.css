@@ -1,54 +1,35 @@
 .kbt-tooltip {
-  display: inline-block;
+  position: relative;
 }
 
-.kbt-tooltip__trigger-wrapper {
+.kbt-tooltip__trigger {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
   border: none;
   background: none;
-  min-height: 1.5rem;
-  min-width: 1.5rem;
+  cursor: pointer;
+  min-height: 1.5rem; /* accessible min-size */
+  min-width: 1.5rem; /* accessible min-size */
 }
 
-.kbt-tooltip__external-container {
-  display: flex;
+.kbt-tooltip__hover-bridge-container {
+  pointer-events: auto;
 }
 
-.kbt-tooltip__paragraph {
-  word-break: break-word;
+.kbt-tooltip__main-content {
+  position: relative;
 }
 
-.kbt-tooltip__inner-content {
-  overflow-y: auto;
+.kbt-tooltip__main-content--mobile {
+  width: var(--100dvw, 100vw);
 }
 
-.kbt-tooltip__arrow {
-  position: absolute;
-}
-
-.kbt-tooltip__arrow--top {
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.kbt-tooltip__arrow--right {
-  top: 50%;
-  left: 100%;
-  transform: translateY(-50%);
-}
-
-.kbt-tooltip__arrow--bottom {
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.kbt-tooltip__arrow--left {
-  top: 50%;
-  right: 100%;
-  transform: translateY(-50%);
+.kbt-tooltip__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

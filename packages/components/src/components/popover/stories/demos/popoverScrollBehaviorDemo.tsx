@@ -1,4 +1,3 @@
-import { flip, size } from '@floating-ui/dom';
 import {
   type CSSProperties,
   type ComponentProps,
@@ -7,6 +6,8 @@ import {
   useRef,
   useState,
 } from 'react';
+
+import { flip, size } from '@floating-ui/dom';
 
 import { Text } from '@/components/text/text';
 import {
@@ -97,7 +98,10 @@ interface ContentSectionProps {
 
 const ContentSection: FC<ContentSectionProps> = ({ children, title }) => (
   <div>
-    <Text variant={TextVariantType.PARAGRAPH_MEDIUM_EXTENDED} weight={600}>
+    <Text
+      style={{ fontWeight: 600 }}
+      variant={TextVariantType.PARAGRAPH_MEDIUM_EXTENDED}
+    >
       {title}
     </Text>
     <div
@@ -233,7 +237,10 @@ export const ScrollBehaviorDemo = (
     >
       {/* Header section */}
       <div>
-        <Text variant={TextVariantType.PARAGRAPH_MEDIUM_EXTENDED} weight={700}>
+        <Text
+          style={{ fontWeight: 700 }}
+          variant={TextVariantType.PARAGRAPH_MEDIUM_EXTENDED}
+        >
           Popover Scroll Behavior Demo
         </Text>
         <Text variant={TextVariantType.PARAGRAPH_SMALL_EXTENDED}>
@@ -264,7 +271,10 @@ export const ScrollBehaviorDemo = (
           padding: `${STYLES.SPACING.xlarge} 0`,
         }}
       >
-        <Text variant={TextVariantType.PARAGRAPH_MEDIUM_EXTENDED} weight={600}>
+        <Text
+          style={{ fontWeight: 600 }}
+          variant={TextVariantType.PARAGRAPH_MEDIUM_EXTENDED}
+        >
           Select a color (the dropdown will reposition on scroll)
         </Text>
         <div
@@ -294,8 +304,8 @@ export const ScrollBehaviorDemo = (
 
         <Popover
           {...args}
-          disableAnimations
           anchorElement={selectRef.current}
+          disableAnimations={true}
           middlewares={[
             size({
               apply({ elements, rects }) {

@@ -1,14 +1,12 @@
-import type { ArgTypes } from 'storybook/internal/types';
+import type { ArgTypes } from "storybook/internal/types";
 
-import { KUBIT_VARIANTS } from '@kubit-ui-web/design-system';
+import { KUBIT_VARIANTS } from "@kubit-ui-web/design-system";
 
-import { configArgTypes } from '@/stories/argtypes/argtypes';
-import { getBooleanArgTypes } from '@/stories/argtypes/booleanArgTypes';
-import { getDisabledArgTypes } from '@/stories/argtypes/disabledArgTypes';
-import { getSelectorArgTypes } from '@/stories/argtypes/selectorArgTypes';
-import { getStringtArgTypes } from '@/stories/argtypes/stringArgTypes';
-import { getVariantArgTypes } from '@/stories/argtypes/variantArgtypes';
-import { CATEGORY_CONTROL } from '@/stories/constants/categoryControl';
+import { configArgTypes } from "@/stories/argtypes/argtypes";
+import { getBooleanArgTypes } from "@/stories/argtypes/booleanArgTypes";
+import { getDisabledArgTypes } from "@/stories/argtypes/disabledArgTypes";
+import { getVariantArgTypes } from "@/stories/argtypes/variantArgtypes";
+import { CATEGORY_CONTROL } from "@/stories/constants/categoryControl";
 
 const { TooltipVariantType } = KUBIT_VARIANTS;
 
@@ -16,58 +14,64 @@ export const argtypes = (): ArgTypes => {
   return {
     ...configArgTypes,
     ...getDisabledArgTypes([
-      'onOpenClose',
-      'content',
-      'contentScrollArias',
-      'popover',
+      "additionalClasses",
+      "arrowStyles",
+      "triggerHandlers",
     ]),
-    align: getSelectorArgTypes({
-      category: CATEGORY_CONTROL.MODIFIERS,
-      keyName: 'align',
-      name: 'tooltip',
-      options: {
-        bottom: 'bottom',
-        left: 'left',
-        right: 'right',
-        top: 'top',
+    asButton: getBooleanArgTypes({
+      descriptionName: "tooltip",
+      name: "asButton",
+      subCategory: CATEGORY_CONTROL.MODIFIERS,
+    }),
+    children: {
+      description:
+        "The trigger element that activates the tooltip on hover/focus",
+      type: { name: "other", value: "ReactNode", required: true },
+      control: false,
+      table: {
+        type: { summary: "ReactNode" },
+        category: CATEGORY_CONTROL.CONTENT,
       },
-    }),
-    children: getStringtArgTypes({
-      category: CATEGORY_CONTROL.CONTENT,
-      keyName: 'children',
-      name: 'tooltip',
-    }),
-    childrenAsButton: getBooleanArgTypes({
-      descriptionName: 'tooltip',
-      name: 'childrenAsButton',
-      subCategory: CATEGORY_CONTROL.MODIFIERS,
-    }),
-    disabled: getBooleanArgTypes({
-      descriptionName: 'tooltip',
-      name: 'disabled',
-      subCategory: CATEGORY_CONTROL.MODIFIERS,
-    }),
-    tooltipAriaLabel: getStringtArgTypes({
-      category: CATEGORY_CONTROL.ACCESIBILITY,
-      keyName: 'tooltipAriaLabel',
-      name: 'tooltip',
-    }),
-    tooltipAsModal: getBooleanArgTypes({
-      descriptionName: 'tooltip',
-      name: 'tooltipAsModal',
-      subCategory: CATEGORY_CONTROL.MODIFIERS,
-    }),
+    },
+    mainContent: {
+      description:
+        "Main content configuration for the tooltip, including the content to display",
+      type: { name: "object", value: {}, required: true },
+      control: { type: "object" },
+      table: {
+        type: { summary: "TooltipMainContentType" },
+        category: CATEGORY_CONTROL.CONTENT,
+      },
+    },
+    onToggle: {
+      description: "Callback fired when the tooltip open state changes",
+      type: { name: "function" },
+      control: false,
+      table: {
+        type: { summary: "(open: boolean) => void" },
+        category: CATEGORY_CONTROL.FUNCTIONS,
+      },
+    },
+    popover: {
+      description: "Configuration object for the underlying Popover component",
+      type: { name: "object", value: {} },
+      control: { type: "object" },
+      table: {
+        type: { summary: "TooltipPopover" },
+        category: CATEGORY_CONTROL.MODIFIERS,
+      },
+    },
     variant: {
       ...getVariantArgTypes({
-        name: 'tooltip',
+        name: "tooltip",
         variants: { ...TooltipVariantType },
       }),
       table: {
         ...getVariantArgTypes({
-          name: 'tooltip',
+          name: "tooltip",
           variants: { ...TooltipVariantType },
         }).table,
-        category: 'MODIFIERS',
+        category: CATEGORY_CONTROL.MODIFIERS,
       },
     },
   };

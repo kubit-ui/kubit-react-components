@@ -1,219 +1,168 @@
-import './tooltip.css';
+import "./tooltip.css";
 
-import { useId } from 'react';
+import { forwardRef, useMemo } from "react";
 
-import { Text } from '@/components/text/text';
-import { useActiveBreakpoints } from '@/lib/hooks/useMediaDevice/useActiveBreakpoints';
-import { POSITIONS } from '@/lib/types/positions/positions';
-import { classNames } from '@/lib/utils/classNames/classNames';
-import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
-import { processTextProp } from '@/lib/utils/process/processCommonProp';
+import { classNames } from "@/lib/utils/classNames/classNames";
+import { pickCustomAttributes } from "@/lib/utils/pickCustomAttributes/pickCustomAttributes";
 
-import type { TooltipStandAloneProps } from './types/tooltip';
-
-import { Popover } from '../popover/popover';
-import { TooltipTrigger } from './components/tooltipTrigger';
-import { getAriaDescriptorsBy } from './utils/tooltip.utils';
+import { Popover } from "../popover/popover";
+import { TriggerElement } from "./components/triggerElement";
+import type { ITooltipStandAlone } from "./types/tooltip";
+import { getMainContentAccessibility } from "./utils/accessibility.utils";
 
 /**
- * Standalone tooltip component for displaying contextual help text.
+ * @accessibility Mobile uses role="dialog" instead of role="tooltip" because:
  *
- * This component renders a tooltip with content only.
- * It supports multiple positions and responsive behavior.
+ * Role differences:
+ * - role="tooltip": Designed for hover/focus, non-modal, auto-dismisses, cannot contain interactive elements
+ * - role="dialog": Supports modal behavior, traps focus, requires user action to dismiss, can contain interactive content
  *
- * @example
- * ```tsx
- * <TooltipStandAlone
- *   content={{ content: "This is helpful information" }}
- *   align="top"
- * />
- * ```
+ * Why dialog for mobile:
+ * - Touch devices lack hover/focus interactions that tooltips require
+ * - Content opens as a modal-like overlay requiring explicit user dismissal (tap outside/overlay)
+ * - Dialog provides better screen reader announcements for this modal behavior
+ * - Enables proper focus trapping and aria-modal support
+ * - Allows scrollable or interactive content within the tooltip
+ *
+ * @see https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
+ * @see https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
  */
-export const TooltipStandAlone = ({
-  align,
-  children,
-  childrenAsButton = true,
-  content,
-  contentHasScroll,
-  contentRef,
-  contentScrollArias,
-  cssClasses,
-  disabled,
-  labelRef,
-  mediaDevice,
-  onPopoverCloseInternally,
-  onTooltipFocus,
-  onTooltipKeyDown,
-  onTriggerClick,
-  onTriggerKeyDown,
-  onTriggerMouseDown,
-  onTriggerMouseUp,
-  onWrapperMouseEnter,
-  onWrapperMouseLeave,
-  popover,
-  popoverOpen,
-  tooltipAriaLabel,
-  tooltipAsModal,
-  tooltipRef,
-  triggerAsButton,
-  ...props
-}: TooltipStandAloneProps): JSX.Element => {
-  const dataTestId = props['data-testid'] || 'tooltip';
-  const customProps = pickCustomAttributes(props);
-  const reactId = useId();
-  // Sanitize React's useId output (e.g., ":r0:") to be valid HTML ID
-  const uniqueId = `tooltip-${reactId.replace(/:/g, '')}`;
-  const contentId = `${uniqueId}-content`;
+const TooltipStandAloneComponent = (
+  {
+    arrowStyles,
+    children,
+    contentHasScroll,
+    cssClasses,
+    isMobile,
+    mainContent,
+    open,
+    popover,
+    tooltipId,
+    triggerHandlers,
+    triggerRef,
+    onMouseEnter,
+    onMouseLeave,
+    ...props
+  }: ITooltipStandAlone,
+  ref: React.ForwardedRef<HTMLDivElement>,
+): JSX.Element => {
+  const customAttributes = pickCustomAttributes(props) as Record<
+    string,
+    string
+  >;
 
-  const processedContent = processTextProp(content);
-
-  const isTextContent = typeof processedContent.children === 'string';
-
-  const { isDesktop, isTablet } = useActiveBreakpoints();
-  const isDesktopOrTablet = isDesktop || isTablet;
-
-  if (disabled) {
-    return (
-      <div className="kbt-tooltip" data-testid={dataTestId}>
-        <TooltipTrigger disabled childrenAsButton={childrenAsButton}>
-          {children}
-        </TooltipTrigger>
-      </div>
-    );
-  }
-
-  const ariaDescriptorsBy = getAriaDescriptorsBy({
-    contentId,
-    hasContent: !!content,
-    hasTitle: false,
-    titleId: '',
-  });
-
-  const customAttributes = {
-    'data-align': align || POSITIONS.TOP,
-  };
-  const customAttributesProps = pickCustomAttributes(customAttributes);
-
-  const Tooltip = (
-    <div
-      ref={tooltipRef}
-      aria-label={isDesktopOrTablet ? tooltipAriaLabel : undefined}
-      aria-labelledby={isDesktopOrTablet ? undefined : undefined}
-      aria-modal={isDesktopOrTablet && tooltipAsModal ? true : undefined}
-      className={classNames(
-        'kbt-tooltip__external-container',
-        cssClasses?.tooltipexternalcontainer,
-      )}
-      data-testid={`${dataTestId}-content`}
-      id={uniqueId}
-      role={
-        isDesktopOrTablet ? (tooltipAsModal ? 'dialog' : 'tooltip') : undefined
-      }
-      {...(isDesktopOrTablet && {
-        onFocus: onTooltipFocus,
-        onKeyDown: onTooltipKeyDown,
-      })}
-      {...customProps}
-    >
-      <div className={cssClasses?.tooltipinternalcontainer}>
-        {/* Content */}
-        <div
-          ref={contentRef}
-          aria-label={
-            contentHasScroll ? contentScrollArias?.['aria-label'] : undefined
-          }
-          aria-labelledby={
-            contentHasScroll
-              ? contentScrollArias?.['aria-labelledby']
-              : undefined
-          }
-          className="kbt-tooltip__inner-content"
-          role={contentHasScroll ? 'region' : undefined}
-          {...(contentHasScroll && { tabIndex: 0 })}
-        >
-          {!!content && (
-            <div
-              className={classNames(
-                'kbt-tooltip__paragraph',
-                cssClasses?.paragraphcontainer,
-              )}
-              id={contentId}
-            >
-              {isTextContent ? (
-                <Text
-                  additionalClasses={{ text: cssClasses?.paragraph }}
-                  {...processedContent}
-                />
-              ) : (
-                processedContent.children
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Arrow */}
-      <div
-        {...customAttributesProps}
-        className={classNames(
-          'kbt-tooltip__arrow',
-          cssClasses?.arrowsize,
-          cssClasses?.tooltipalignstyles,
-          cssClasses?.arrowcontainer,
-        )}
-      >
-        <div className={cssClasses?.arrow} />
-      </div>
-    </div>
+  const mainContentAccessibility = getMainContentAccessibility(
+    mainContent,
+    contentHasScroll,
   );
+  const popoverConfiguration = useMemo(() => {
+    if (isMobile) {
+      const preventCloseElements = popover?.overlay
+        ? undefined
+        : [triggerRef.current];
+
+      return {
+        ["aria-describedby"]: tooltipId,
+        ["aria-modal"]: true,
+        disableScrollBackground: true,
+        overlay: (
+          <div
+            className={classNames("kbt-tooltip__overlay", cssClasses?.overlay)}
+          />
+        ),
+        placement: "bottom" as const,
+        preventCloseOnClickElements: preventCloseElements,
+        role: "dialog",
+        additionalClasses: cssClasses?.popover,
+        ...popover,
+        middlewareOptions: undefined, // Disable middleware for mobile to ensure consistent behavior
+      };
+    }
+
+    return {
+      arrowStyles,
+      disableAnimations: true,
+      disableAutoFocusFirstDescendant: true,
+      disableRestoreFocusAfterClose: true,
+      role: "tooltip",
+      additionalClasses: cssClasses?.popover,
+      ...popover,
+      middlewareOptions: {
+        enableFlip: true,
+        hideWhenDetached: true,
+        // Important: offsetDistance [0, 0] is required because HoverBridgeContainer's padding handles
+        // the visual gap and hover bridge. Without this, the default would add arrowSize as offset,
+        // causing double-spacing. This also enables correct arrow positioning within the padding area.
+        offsetDistance: [0, 0] as [number, number],
+        ...popover?.middlewareOptions,
+      },
+    };
+  }, [isMobile, popover, tooltipId, arrowStyles, triggerRef, cssClasses]);
 
   return (
-    <div ref={labelRef} className="kbt-tooltip" data-testid={dataTestId}>
-      <TooltipTrigger
-        ariaDescribedBy={
-          !tooltipAsModal && (isDesktopOrTablet || popoverOpen)
-            ? ariaDescriptorsBy
-            : undefined
-        }
-        childrenAsButton={childrenAsButton}
-        triggerAsButton={triggerAsButton}
-        onClick={onTriggerClick}
-        onKeyDown={onTriggerKeyDown}
-        onMouseDown={onTriggerMouseDown}
-        onMouseEnter={onWrapperMouseEnter}
-        onMouseLeave={onWrapperMouseLeave}
-        onMouseUp={onTriggerMouseUp}
+    <div
+      ref={ref}
+      className="kbt-tooltip"
+      data-testid="tooltip"
+      role="presentation"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      {...customAttributes}
+    >
+      <TriggerElement
+        ref={triggerRef as React.RefObject<HTMLElement>}
+        asButton={props.asButton}
+        cssClasses={cssClasses}
+        isMobile={isMobile}
+        open={open}
+        tooltipId={tooltipId}
+        {...triggerHandlers}
       >
         {children}
-      </TooltipTrigger>
-      {isDesktopOrTablet ? (
-        Tooltip
-      ) : (
-        <Popover
-          disableAutoFocusFirstDescendantAfterClose
-          additionalClasses={
-            cssClasses?.popover
-              ? {
-                  arrow: '',
-                  popover: cssClasses.popover.popover || '',
-                }
-              : undefined
-          }
-          aria-label={popover?.['aria-label'] || tooltipAriaLabel}
-          aria-labelledby={undefined}
-          aria-modal={tooltipAsModal || undefined}
-          component="div"
-          disableTrapFocus={false}
-          open={popoverOpen}
-          preventCloseOnClickElements={[labelRef?.current]}
-          role={tooltipAsModal ? 'dialog' : 'tooltip'}
-          strategy="absolute"
-          onClose={onPopoverCloseInternally}
-          {...popover}
-        >
-          {Tooltip}
-        </Popover>
-      )}
+      </TriggerElement>
+      <Popover
+        anchorElement={isMobile ? undefined : triggerRef?.current}
+        {...popoverConfiguration}
+        open={open}
+      >
+        {!isMobile ? (
+          <div
+            className={classNames(
+              "kbt-tooltip__hover-bridge-container",
+              cssClasses?.hoverbridgecontainer,
+            )}
+          >
+            <div
+              ref={props.contentRef as React.RefObject<HTMLDivElement>}
+              data-kbt-tooltip-content
+              className={classNames(
+                "kbt-tooltip__main-content",
+                cssClasses?.maincontent,
+              )}
+              id={tooltipId}
+              {...mainContentAccessibility}
+            >
+              {mainContent?.content}
+            </div>
+          </div>
+        ) : (
+          <div
+            ref={props.contentRef as React.RefObject<HTMLDivElement>}
+            data-kbt-tooltip-content
+            className={classNames(
+              "kbt-tooltip__main-content",
+              "kbt-tooltip__main-content--mobile",
+              cssClasses?.maincontent,
+            )}
+            id={tooltipId}
+            {...mainContentAccessibility}
+          >
+            {mainContent?.content}
+          </div>
+        )}
+      </Popover>
     </div>
   );
 };
+
+export const TooltipStandAlone = forwardRef(TooltipStandAloneComponent);

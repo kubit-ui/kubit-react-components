@@ -1,18 +1,19 @@
+import type { AriaAttributes } from "react";
+
 import type {
   Middleware as FloatingMiddleware,
   Placement,
   Strategy,
-} from '@floating-ui/dom';
-import type { AriaAttributes } from 'react';
+} from "@floating-ui/dom";
 
 import type {
   ComponentSelected,
   ComponentsTypesComponents,
-} from '@/lib/types/cssGenerator/componentsTypes';
-import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
+} from "@/lib/types/cssGenerator/componentsTypes";
+import type { DataAttributes } from "@/lib/types/dataAttributes/dataAttributes";
 
 type PopoverCssClasses = ComponentSelected<
-  ComponentsTypesComponents['POPOVER']
+  ComponentsTypesComponents["POPOVER"]
 >;
 
 /**
@@ -22,9 +23,10 @@ export interface MiddlewareOptions {
   offsetDistance?: [number, number];
   edgePadding?: number;
   hideWhenDetached?: boolean;
+  enableFlip?: boolean;
 }
 
-export type PopoverComponent = 'div' | 'dialog' | 'span';
+export type PopoverComponent = "div" | "dialog" | "span";
 
 /**
  * Control styling of the arrow in the popover (measures in pixels)
@@ -33,11 +35,12 @@ export interface ArrowStyles {
   size: number;
   backgroundColor: string;
   border?: string;
+  padding?: number;
 }
 
 export type PopoverAriaAttributes = Pick<
   AriaAttributes,
-  'aria-label' | 'aria-modal' | 'aria-description' | 'aria-labelledby'
+  "aria-label" | "aria-modal" | "aria-description" | "aria-labelledby"
 >;
 
 /**
@@ -64,12 +67,13 @@ export type PopoverAriaAttributes = Pick<
  * @property popoverContainerRef - Ref object to access the popover container element
  */
 export interface IPopoverStandAlone
-  extends DataAttributes, PopoverAriaAttributes {
+  extends DataAttributes,
+    PopoverAriaAttributes {
+  children: React.ReactNode;
+  placement?: Placement;
   cssClasses?: PopoverCssClasses;
   component?: PopoverComponent;
-  placement?: Placement;
   role?: string;
-  children: React.ReactNode;
   zIndex?: string | number;
   id?: string;
   overlay?: React.ReactNode;
@@ -110,10 +114,11 @@ export interface IPopoverStandAlone
  * @property animationConfig - Custom animation configuration for entrance/exit effects
  * @property open - Controls the visibility state of the popover
  */
-export interface IPopover extends Omit<
-  IPopoverStandAlone,
-  'isClosing' | 'isVisible' | 'anchorElement'
-> {
+export interface IPopover
+  extends Omit<
+    IPopoverStandAlone,
+    "isClosing" | "isVisible" | "anchorElement"
+  > {
   additionalClasses?: PopoverCssClasses;
   middlewares?: Array<FloatingMiddleware>;
   preventScrollOnCloseFocus?: boolean;

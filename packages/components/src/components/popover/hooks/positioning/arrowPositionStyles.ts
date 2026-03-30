@@ -96,6 +96,7 @@ export const positionArrow = (
   computedPlacement: Placement,
   offsetDistance: [number, number] | undefined,
   arrowSize: number,
+  arrowPadding?: number,
 ): void => {
   if (!hasArrow || !middlewareData.arrow || !arrowElement) {
     return;
@@ -105,7 +106,11 @@ export const positionArrow = (
 
   // Calculate arrow offset
   let arrowOffset = `-${Math.floor(arrowSize / 2)}px`;
-  if (offsetDistance && offsetDistance[0] !== undefined) {
+
+  if (arrowPadding !== undefined) {
+    // arrowPadding controls arrow offset explicitly (e.g., for HoverBridgeContainer padding)
+    arrowOffset = `${arrowPadding - Math.floor(arrowSize / 2)}px`;
+  } else if (offsetDistance && offsetDistance[0] !== undefined) {
     arrowOffset = `${-Math.abs(offsetDistance[0] / 4)}px`;
   }
 

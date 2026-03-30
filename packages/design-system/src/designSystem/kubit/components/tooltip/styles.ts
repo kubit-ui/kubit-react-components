@@ -1,112 +1,53 @@
-import { RADIUS } from '../../foundations/borders';
-import { COLORS } from '../../foundations/colors';
-import { SHADOW } from '../../foundations/shadow';
-import { SPACINGS } from '../../foundations/spacings';
-import { FONT_WEIGHT, TEXT_ALIGN } from '../../foundations/typography';
-import { Z_INDEX } from '../../foundations/zIndex';
-import { POPOVER } from '../popover/styles';
-import { TEXT } from '../text/styles';
-import { TextVariantType } from '../text/variants';
-import { TooltipVariantType } from './variants';
+import { cssVars } from "@/designSystem/kubit/css/cssVars";
+
+import { TooltipVariant } from "./variants";
 
 export const TOOLTIP = {
-  $foreign: {
-    popover: {
-      component: POPOVER,
-      name: 'popover',
-    },
-  },
-  $mediaQueries: {
-    mobile: {
-      [TooltipVariantType.DEFAULT]: {
-        _arrowContainer: {
-          display: 'none',
-        },
-        _tooltipInternalContainer: {
-          border_radius: RADIUS.radius_50,
-          max_height: '30rem',
-          max_width: 'none',
-          padding: SPACINGS.spacing_300,
-          width: 'max-content',
-        },
-      },
-    },
-    tablet: {
-      [TooltipVariantType.DEFAULT]: {
-        _paragraph: {
-          color: COLORS.NEUTRAL.color_neutral_font_50,
-        },
+  _popover: {
+    z_index: cssVars.z_index_popup,
+    $mediaQueries: {
+      mobile: {
+        z_index: cssVars.z_index_modal,
       },
     },
   },
-  _arrow: {
-    margin: SPACINGS.spacing_0,
+  _overlay: {
+    position: "fixed",
+    top: "0",
+    left: "0",
+    width: cssVars.spacings_spacing_100_percent,
+    height: cssVars.spacings_spacing_100_percent,
+    opacity: "0.7",
+    background_color: "#D9D9D9",
   },
-  _arrowContainer: {
-    margin: SPACINGS.spacing_0,
+  _hoverBridgeContainer: {
+    padding: cssVars.spacings_spacing_150,
+    pointer_events: "auto",
   },
-  _arrowPosition: {
-    margin: SPACINGS.spacing_0,
-  },
-  _arrowSize: {
-    margin: SPACINGS.spacing_0,
-  },
-  _paragraph: {
-    margin: SPACINGS.spacing_0,
-  },
-  _paragraphContainer: {
-    margin: SPACINGS.spacing_0,
-  },
-  _tooltipAlignStyles: {
-    margin: SPACINGS.spacing_0,
-  },
-  _tooltipAsModal: {
-    margin: SPACINGS.spacing_0,
-  },
-  _tooltipExternalContainer: {
-    margin: SPACINGS.spacing_0,
-  },
-  _tooltipInternalContainer: {
-    margin: SPACINGS.spacing_0,
-  },
-
-  [TooltipVariantType.DEFAULT]: {
-    _arrowContainer: {
-      background_color: COLORS.NEUTRAL.color_neutral_bg_150,
+  [TooltipVariant.REGULAR]: {
+    _mainContent: {
+      padding: cssVars.spacings_spacing_300,
+      border_radius: "16px",
+      background: cssVars.colors_neutral_color_bg_150,
+      border: `${cssVars.borders_border_00} solid ${cssVars.colors_neutral_color_border_50}`,
+      box_shadow: cssVars.shadow_10,
+      $mediaQueries: {
+        mobile: {
+          padding: cssVars.spacings_spacing_0,
+          border_radius: "16px 16px 0 0",
+          background: cssVars.colors_neutral_color_bg_250,
+          border: "none",
+          box_shadow: "none",
+          width: "var(--100dvw, 100vw)",
+        },
+      },
     },
-    _arrowPosition: {
-      top: '10px',
-    },
-    _arrowSize: {
-      height: '10px',
-      width: '10px',
-    },
-    _paragraph: {
-      font_weight: FONT_WEIGHT.font_weight_400,
-      text_align: TEXT_ALIGN.left,
-      ...TEXT[TextVariantType.PARAGRAPH_SMALL_EXPANDED],
-      color: COLORS.NEUTRAL.color_neutral_font_250,
-    },
-    _paragraphContainer: {
-      flex_direction: 'column',
-    },
-    _tooltipExternalContainer: {
-      box_sizing: 'border-box',
-      display: 'none',
-      padding: SPACINGS.spacing_250,
-      position: 'absolute',
-      z_index: Z_INDEX.OVERLAY,
-    },
-    _tooltipInternalContainer: {
-      background_color: COLORS.NEUTRAL.color_neutral_bg_150,
-      border_radius: RADIUS.radius_50,
-      box_shadow: SHADOW.shadow_10,
-      display: 'flex',
-      flex_direction: 'column',
-      max_height: '30rem',
-      max_width: '20rem',
-      padding: SPACINGS.spacing_300,
-      width: 'max-content',
+    _arrowElement: {
+      size: 8,
+      backgroundColor: cssVars.colors_neutral_color_bg_150,
+      border: `${cssVars.borders_border_00} solid ${cssVars.colors_neutral_color_border_50}`,
+      // Must match with hoverBridgeContainer padding to create the visual gap and capture hover events
+      padding: 8,
     },
   },
 };

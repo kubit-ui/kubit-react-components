@@ -1,3 +1,3 @@
-export const TooltipVariantType = {
-  DEFAULT: 'DEFAULT',
+export const TooltipVariant = {
+  REGULAR: "REGULAR",
 } as const;

@@ -1,5 +1,4 @@
 import type { ArrowStyles } from '../types/popover';
-
 import { getPlacementDirection } from './placement.utils';
 
 /**
@@ -28,7 +27,7 @@ const ARROW_BORDER_CONFIG = {
  * Helper function to get arrow styles
  */
 export const getArrowBorderStyles = (
-  placement: string,
+  placement?: string,
   arrowStyles?: ArrowStyles,
 ): React.CSSProperties => {
   if (!arrowStyles) {

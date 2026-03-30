@@ -1,6 +1,5 @@
 import {
   type Middleware,
-  type Placement,
   arrow,
   flip,
   hide,
@@ -8,7 +7,10 @@ import {
   shift,
 } from '@floating-ui/dom';
 
-import { getPlacementDirection } from '../../utils/placement.utils';
+import {
+  type BodyDirection,
+  getPlacementDirection,
+} from '../../utils/placement.utils';
 
 /**
     },
@@ -19,8 +21,8 @@ import { getPlacementDirection } from '../../utils/placement.utils';
  * Creates middlewares for body anchor positioning
  */
 const createBodyAnchorMiddlewares = (
-  placement: Placement | undefined,
   edgePadding: number,
+  placement?: BodyDirection,
 ): Middleware[] => {
   const bodyDirection = getPlacementDirection(placement);
   const middlewares: Middleware[] = [];
@@ -57,12 +59,13 @@ const createBodyAnchorMiddlewares = (
  */
 const createElementAnchorMiddlewares = (
   mainAxisOffset: number,
-  offsetDistance: [number, number] | undefined,
   edgePadding: number,
+  offsetDistance?: [number, number],
+  enableFlip?: boolean,
 ): Middleware[] => {
   const middlewares: Middleware[] = [];
 
-  // Standard element as anchor - use offset + flip
+  // Standard element as anchor - use offset + flip + shift
   middlewares.push(
     offset({
       crossAxis: offsetDistance?.[1] || 0,
@@ -70,18 +73,31 @@ const createElementAnchorMiddlewares = (
     }),
   );
 
-  // Add flip middleware to automatically change position when necessary
-  middlewares.push(
-    flip({
-      // Provide fallback positions for better positioning
-      fallbackAxisSideDirection: 'start',
-      padding: edgePadding,
-    }),
-  );
+  // Add flip middleware only if enabled (to automatically change position when necessary)
+  if (enableFlip) {
+    middlewares.push(
+      flip({
+        // Specify explicit fallback placements to prevent infinite loops
+        // This prevents floating-ui from trying all possible positions rapidly
+        fallbackPlacements: ['top', 'bottom', 'right', 'left'],
+        fallbackAxisSideDirection: 'start',
+        // Use fallbackStrategy 'initialPlacement' to prefer staying close to the original position
+        fallbackStrategy: 'initialPlacement',
+        padding: edgePadding,
+      }),
+    );
+  }
 
   // Add shift to keep element in viewport
   middlewares.push(
     shift({
+      // Limit shift to prevent excessive movement that can trigger re-flips
+      limiter: {
+        fn: ({ placement, x, y }) => {
+          // Limit maximum shift to prevent position oscillation
+          return { placement, x, y };
+        },
+      },
       padding: edgePadding,
     }),
   );
@@ -139,6 +155,7 @@ export const getMiddlewareStack = ({
   arrowElement,
   customMiddlewares,
   edgePadding,
+  enableFlip,
   hideWhenDetached,
   isBodyAnchor,
   mainAxisOffset,
@@ -148,11 +165,12 @@ export const getMiddlewareStack = ({
   isBodyAnchor: boolean;
   edgePadding: number;
   mainAxisOffset: number;
-  placement?: Placement;
+  placement?: BodyDirection;
   offsetDistance?: [number, number];
   customMiddlewares?: Array<Middleware>;
   arrowElement?: HTMLElement | null;
   hideWhenDetached?: boolean;
+  enableFlip?: boolean;
 }): Middleware[] => {
   let middlewareStack: Middleware[];
 
@@ -162,12 +180,13 @@ export const getMiddlewareStack = ({
   } else {
     // Add positioning middleware based on anchor type
     if (isBodyAnchor) {
-      middlewareStack = createBodyAnchorMiddlewares(placement, edgePadding);
+      middlewareStack = createBodyAnchorMiddlewares(edgePadding, placement);
     } else {
       middlewareStack = createElementAnchorMiddlewares(
         mainAxisOffset,
-        offsetDistance,
         edgePadding,
+        offsetDistance,
+        enableFlip,
       );
     }
   }
@@ -192,7 +211,7 @@ export const calculateMainAxisOffset = ({
   hasArrow,
   offsetDistance,
 }: {
-  offsetDistance: [number, number] | undefined;
+  offsetDistance?: [number, number];
   hasArrow: boolean;
   arrowSize: number;
 }): number => {

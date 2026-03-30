@@ -1,53 +1,53 @@
-import type { SliderVariantStyles } from '@kubit-ui-web/react-components';
+import type { SliderVariantStyles } from "@kubit-ui-web/react-components";
 
-import { cssVars } from '@/designSystem/kubit/css/cssVars';
-import { STATES } from '@/types/states/states';
+import { cssVars } from "@/designSystem/kubit/css/cssVars";
+import { STATES } from "@/types/states/states";
 
-import { BUTTON } from '../button/styles';
-import { ButtonSizeType, ButtonVariantType } from '../button/variants';
-import { TEXT } from '../text/styles';
-import { TextVariantType } from '../text/variants';
-import { TOOLTIP } from '../tooltip/styles';
-import { TooltipVariantType } from '../tooltip/variants';
-import { SliderVariantType } from './variants';
+import { BUTTON } from "../button/styles";
+import { ButtonSizeType, ButtonVariantType } from "../button/variants";
+import { TEXT } from "../text/styles";
+import { TextVariantType } from "../text/variants";
+import { TOOLTIP } from "../tooltip/styles";
+import { TooltipVariant } from "../tooltip/variants";
+import { SliderVariantType } from "./variants";
 
 type SliderVariants = keyof typeof SliderVariantType;
 
 export const SLIDER: SliderVariantStyles<SliderVariants> = {
   $attributes: {
-    'data-state': {
+    "data-state": {
       [STATES.DISABLED]: {
-        cursor: 'default',
+        cursor: "default",
       },
       [STATES.HOVER]: {
-        cursor: 'grab',
+        cursor: "grab",
       },
       [STATES.PRESSED]: {
-        cursor: 'grabbing',
+        cursor: "grabbing",
       },
     },
   },
   $foreign: {
     decrement_button_size: {
       component: BUTTON,
-      name: 'button',
+      name: "button",
       variant: ButtonSizeType.SMALL,
     },
     decrement_button_variant: {
       component: BUTTON,
-      name: 'button',
+      name: "button",
       variant: ButtonVariantType.PRIMARY,
     },
     tooltip: {
       component: TOOLTIP,
-      name: 'tooltip',
-      variant: TooltipVariantType.DEFAULT,
+      name: "tooltip",
+      variant: TooltipVariant.REGULAR,
     },
   },
   _activeTrack: {
     border_radius: cssVars.radius_100,
     height: cssVars.spacings_spacing_100,
-    position: 'absolute',
+    position: "absolute",
     top: `calc(-1 * ${cssVars.spacings_spacing_100} / 2)`,
   },
   _buttonsTracksContainer: {
@@ -58,8 +58,8 @@ export const SLIDER: SliderVariantStyles<SliderVariants> = {
     color: cssVars.colors_neutral_color_bg_50,
   },
   _helperTextContainer: {
-    display: 'flex',
-    justify_content: 'space-between',
+    display: "flex",
+    justify_content: "space-between",
     margin_top: cssVars.spacings_spacing_200,
   },
   _helperTextLeftContainer: {
@@ -73,7 +73,7 @@ export const SLIDER: SliderVariantStyles<SliderVariants> = {
   _inactiveTrack: {
     border_radius: cssVars.radius_100,
     height: cssVars.spacings_spacing_100,
-    position: 'absolute',
+    position: "absolute",
     top: `calc(-1 * ${cssVars.spacings_spacing_100} / 2)`,
   },
   _innerThumbTooltip: {
@@ -92,37 +92,37 @@ export const SLIDER: SliderVariantStyles<SliderVariants> = {
   },
   _scaleContainer: {
     height: cssVars.spacings_spacing_100,
-    position: 'relative',
+    position: "relative",
     width: cssVars.spacings_spacing_100_percent,
   },
   _scaleOption: {
     background_color: cssVars.colors_neutral_color_bg_100,
     height: cssVars.spacings_spacing_100_percent,
-    position: 'absolute',
-    width: '0.0625rem',
+    position: "absolute",
+    width: "0.0625rem",
   },
   _thumb: {
     $attributes: {
-      'data-position': {
+      "data-position": {
         RIGHT: {
-          transform: 'translate(50%, -50%)',
+          transform: "translate(50%, -50%)",
         },
       },
     },
-    align_items: 'center',
+    align_items: "center",
     border_color: cssVars.colors_neutral_color_border_250,
     border_radius: cssVars.spacings_spacing_50_percent,
-    border_style: 'solid',
+    border_style: "solid",
     border_width: cssVars.borders_border_200,
-    box_sizing: 'border-box',
-    display: 'flex',
+    box_sizing: "border-box",
+    display: "flex",
     height: cssVars.spacings_spacing_400,
-    justify_content: 'center',
-    overflow: 'visible',
-    pointer_events: 'inherit',
-    position: 'absolute',
+    justify_content: "center",
+    overflow: "visible",
+    pointer_events: "inherit",
+    position: "absolute",
     top: cssVars.spacings_spacing_50_percent,
-    transform: 'translate(-50%, -50%)',
+    transform: "translate(-50%, -50%)",
     width: cssVars.spacings_spacing_400,
   },
   _thumbIcon: {
@@ -132,22 +132,22 @@ export const SLIDER: SliderVariantStyles<SliderVariants> = {
     height: cssVars.spacings_spacing_100,
     margin_bottom: cssVars.spacings_spacing_50,
     margin_top: cssVars.spacings_spacing_100,
-    position: 'relative',
+    position: "relative",
     width: cssVars.spacings_spacing_100_percent,
   },
   _tracksThumbsInnerContainer: {
     background_color: cssVars.colors_neutral_color_bg_100,
-    bottom: '0px',
-    left: '0px',
-    position: 'absolute',
-    right: '0px',
+    bottom: "0px",
+    left: "0px",
+    position: "absolute",
+    right: "0px",
     top: `calc(${cssVars.spacings_spacing_100} / 2)`,
   },
-  cursor: 'default',
+  cursor: "default",
   [SliderVariantType.PRIMARY]: {
     _activeTrack: {
       $attributes: {
-        'data-state': {
+        "data-state": {
           [STATES.DISABLED]: {
             background_color:
               cssVars.colors_disabled_color_accentdisabled_border_50,
@@ -164,7 +164,7 @@ export const SLIDER: SliderVariantStyles<SliderVariants> = {
     },
     _inactiveTrack: {
       $attributes: {
-        'data-state': {
+        "data-state": {
           [STATES.DISABLED]: {
             background_color:
               cssVars.colors_disabled_color_accentdisabled_border_100,
@@ -181,7 +181,7 @@ export const SLIDER: SliderVariantStyles<SliderVariants> = {
     },
     _thumb: {
       $attributes: {
-        'data-state': {
+        "data-state": {
           [STATES.DISABLED]: {
             background_color:
               cssVars.colors_disabled_color_accentdisabled_bg_50,
