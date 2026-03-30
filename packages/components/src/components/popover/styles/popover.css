@@ -4,186 +4,206 @@
  */
 
 /* Import all animation keyframes */
-@import './keyframes.css';
+@import "./keyframes.css";
+
+/**
+ * Initial positioning for anchor-element-based popovers.
+ * This ensures the element has a defined position BEFORE floating-ui calculates
+ * the final coordinates, preventing:
+ * - Browser auto-scroll when element is inserted into scrollable containers
+ * - Visual flash/repositioning when floating-ui calculates final position
+ */
+[data-kbt-id="popover"][data-kbt-strategy="absolute"] {
+  position: absolute;
+  visibility: hidden;
+}
+
+[data-kbt-id="popover"][data-kbt-strategy="fixed"] {
+  position: fixed;
+  visibility: hidden;
+}
 
 /* Popover Animation Styles */
 /* ============================================= */
 
 /* Base animation properties - ALWAYS applied (even with disableAnimations=true) */
 /* This allows additionalClasses to work properly */
-[data-kbt-id='popover'][data-kbt-placement] {
-  animation-duration: 500ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+[data-kbt-id="popover"][data-kbt-placement] {
+  animation-duration: var(--animation-duration, 500ms);
+  animation-timing-function: var(
+    --animation-timing-function,
+    cubic-bezier(0.16, 1, 0.3, 1)
+  );
   animation-fill-mode: forwards;
   animation-iteration-count: 1;
 }
 
 /* Opening animations based on placement - ONLY when animations are enabled */
-[data-kbt-id='popover'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  --animation-prefix: 'popover-enter-';
+  --animation-prefix: "popover-enter-";
 }
 
-[data-kbt-id='popover'][data-kbt-placement='center'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="center"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-enter-center;
+  animation-name: var(--animation-name, popover-enter-center);
 }
 
-[data-kbt-id='popover'][data-kbt-placement^='top'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement^="top"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
   animation-name: var(--animation-name, popover-enter-top);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='top-start'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="top-start"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-enter-top-start;
+  animation-name: var(--animation-name, popover-enter-top-start);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='top-end'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="top-end"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-enter-top-end;
+  animation-name: var(--animation-name, popover-enter-top-end);
 }
 
-[data-kbt-id='popover'][data-kbt-placement^='bottom'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement^="bottom"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
   animation-name: var(--animation-name, popover-enter-bottom);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='bottom-start'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="bottom-start"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-enter-bottom-start;
+  animation-name: var(--animation-name, popover-enter-bottom-start);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='bottom-end'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="bottom-end"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-enter-bottom-end;
+  animation-name: var(--animation-name, popover-enter-bottom-end);
 }
 
-[data-kbt-id='popover'][data-kbt-placement^='left'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement^="left"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
   animation-name: var(--animation-name, popover-enter-left);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='left-start'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="left-start"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-enter-left-start;
+  animation-name: var(--animation-name, popover-enter-left-start);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='left-end'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="left-end"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-enter-left-end;
+  animation-name: var(--animation-name, popover-enter-left-end);
 }
 
-[data-kbt-id='popover'][data-kbt-placement^='right'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement^="right"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
   animation-name: var(--animation-name, popover-enter-right);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='right-start'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="right-start"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-enter-right-start;
+  animation-name: var(--animation-name, popover-enter-right-start);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='right-end'][data-kbt-closing='false']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="right-end"][data-kbt-closing="false"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-enter-right-end;
+  animation-name: var(--animation-name, popover-enter-right-end);
 }
 
 /* Closing animations based on placement - ONLY when animations are enabled */
-[data-kbt-id='popover'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  --animation-prefix: 'popover-exit-';
+  --animation-prefix: "popover-exit-";
 }
 
-[data-kbt-id='popover'][data-kbt-placement='center'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="center"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-exit-center;
+  animation-name: var(--exit-animation-name, popover-exit-center);
 }
 
-[data-kbt-id='popover'][data-kbt-placement^='top'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement^="top"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
   animation-name: var(--exit-animation-name, popover-exit-top);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='top-start'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="top-start"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-exit-top-start;
+  animation-name: var(--exit-animation-name, popover-exit-top-start);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='top-end'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="top-end"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-exit-top-end;
+  animation-name: var(--exit-animation-name, popover-exit-top-end);
 }
 
-[data-kbt-id='popover'][data-kbt-placement^='bottom'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement^="bottom"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
   animation-name: var(--exit-animation-name, popover-exit-bottom);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='bottom-start'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="bottom-start"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-exit-bottom-start;
+  animation-name: var(--exit-animation-name, popover-exit-bottom-start);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='bottom-end'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="bottom-end"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-exit-bottom-end;
+  animation-name: var(--exit-animation-name, popover-exit-bottom-end);
 }
 
-[data-kbt-id='popover'][data-kbt-placement^='left'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement^="left"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
   animation-name: var(--exit-animation-name, popover-exit-left);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='left-start'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="left-start"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-exit-left-start;
+  animation-name: var(--exit-animation-name, popover-exit-left-start);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='left-end'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="left-end"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-exit-left-end;
+  animation-name: var(--exit-animation-name, popover-exit-left-end);
 }
 
-[data-kbt-id='popover'][data-kbt-placement^='right'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement^="right"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
   animation-name: var(--exit-animation-name, popover-exit-right);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='right-start'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="right-start"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-exit-right-start;
+  animation-name: var(--exit-animation-name, popover-exit-right-start);
 }
 
-[data-kbt-id='popover'][data-kbt-placement='right-end'][data-kbt-closing='true']:not(
-    [data-kbt-disable-animations='true']
+[data-kbt-id="popover"][data-kbt-placement="right-end"][data-kbt-closing="true"]:not(
+    [data-kbt-disable-animations="true"]
   ) {
-  animation-name: popover-exit-right-end;
+  animation-name: var(--exit-animation-name, popover-exit-right-end);
 }

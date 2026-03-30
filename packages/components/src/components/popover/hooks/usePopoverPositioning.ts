@@ -1,3 +1,9 @@
+/**
+ * Specialized hook to handle everything related to popover positioning,
+ * including middlewares, position styles and arrows.
+ */
+import { type RefObject, useCallback, useEffect, useRef } from 'react';
+
 import {
   type Middleware,
   type MiddlewareData,
@@ -6,16 +12,8 @@ import {
   autoUpdate,
   computePosition as computePositionFloating,
 } from '@floating-ui/dom';
-/**
- * Specialized hook to handle everything related to popover positioning,
- * including middlewares, position styles and arrows.
- */
-import { type RefObject, useCallback, useEffect, useRef } from 'react';
 
 import type { BodyDirection } from '../utils/placement.utils';
-import type { PositioningValues } from './positioning/types';
-import type { IUsePopoverPositioning } from './types/usePopoverPositioning';
-
 import { positionArrow } from './positioning/arrowPositionStyles';
 import {
   calculateMainAxisOffset,
@@ -23,6 +21,8 @@ import {
 } from './positioning/middlewareUtils';
 import { determinePositioningConfig } from './positioning/positionCalculation';
 import { applyPositionStyles } from './positioning/positionStyles';
+import type { PositioningValues } from './positioning/types';
+import type { IUsePopoverPositioning } from './types/usePopoverPositioning';
 
 /**
  * Hook that handles popover positioning and its related components
@@ -33,13 +33,17 @@ export const usePopoverPositioning: IUsePopoverPositioning = ({
   isVisible,
   middlewareOptions = {},
   middlewares = [],
-  placement,
+  placement: placementProp,
   ref,
   strategy,
 }) => {
+  // Normalize placement: 'top' for element anchors, 'center' for body anchor
+  const placement = placementProp ?? (anchorElement ? 'top' : 'center');
+
   // Default values for middleware options
   const {
     edgePadding = 0,
+    enableFlip,
     hideWhenDetached,
     offsetDistance,
   } = middlewareOptions;
@@ -181,6 +185,7 @@ export const usePopoverPositioning: IUsePopoverPositioning = ({
         computedPlacement,
         currentOffsetDistance,
         arrowSize,
+        arrowStyles?.padding,
       );
 
       // Invoke callback if provided
@@ -192,13 +197,13 @@ export const usePopoverPositioning: IUsePopoverPositioning = ({
   // Helper to prepare positioning data
   const preparePositioningData = useCallback(
     (
-      currentOffsetDistance: [number, number] | undefined,
       arrowSize: number,
       isBodyAnchor: boolean,
       currentEdgePadding: number,
-      currentPlacement: Placement | undefined,
       currentMiddlewares: Middleware[],
       currentMiddlewareOptions: { hideWhenDetached?: boolean },
+      currentPlacement?: BodyDirection,
+      currentOffsetDistance?: [number, number],
     ) => {
       const mainAxisOffset = calculateMainAxisOffset({
         arrowSize,
@@ -210,6 +215,7 @@ export const usePopoverPositioning: IUsePopoverPositioning = ({
         arrowElement,
         customMiddlewares: currentMiddlewares,
         edgePadding: currentEdgePadding,
+        enableFlip,
         hideWhenDetached: currentMiddlewareOptions?.hideWhenDetached,
         isBodyAnchor,
         mainAxisOffset,
@@ -227,18 +233,18 @@ export const usePopoverPositioning: IUsePopoverPositioning = ({
       currentRef: RefObject<HTMLElement | null>,
       middlewareData: MiddlewareData,
       isBodyAnchor: boolean,
-      currentPlacement: BodyDirection | undefined,
       x: number,
       y: number,
       currentStrategy: Strategy,
       currentEdgePadding: number,
       arrowElement: Element | null,
       computedPlacement: Placement,
-      currentOffsetDistance: [number, number] | undefined,
       arrowSize: number,
-      currentOnPositioned: (() => void) | undefined,
       customMiddlewares: Middleware[] = [],
       middlewareStack: Middleware[] = [],
+      currentPlacement?: BodyDirection,
+      currentOffsetDistance?: [number, number],
+      currentOnPositioned?: () => void,
     ) => {
       const shouldHide =
         middlewareData.hide?.referenceHidden || middlewareData.hide?.escaped;
@@ -247,6 +253,9 @@ export const usePopoverPositioning: IUsePopoverPositioning = ({
       if (currentRef.current) {
         currentRef.current.style.opacity = shouldHide ? '0' : '';
         currentRef.current.style.pointerEvents = shouldHide ? 'none' : '';
+        // Ensure visibility is restored even when shouldHide is true
+        // to remove the initial CSS visibility:hidden used to prevent scroll jumps
+        currentRef.current.style.visibility = shouldHide ? 'hidden' : 'visible';
       }
 
       // Apply positioning styles only if popover should be visible
@@ -305,13 +314,13 @@ export const usePopoverPositioning: IUsePopoverPositioning = ({
 
     // Prepare positioning data
     const { arrowElement, middlewareStack } = preparePositioningData(
-      currentOffsetDistance,
       arrowSize,
       isBodyAnchor,
       currentEdgePadding,
-      currentPlacement,
       currentMiddlewares,
       currentMiddlewareOptions || {},
+      currentPlacement,
+      currentOffsetDistance,
     );
 
     // Get positioning configuration
@@ -343,18 +352,18 @@ export const usePopoverPositioning: IUsePopoverPositioning = ({
       currentRef,
       middlewareData,
       isBodyAnchor,
-      actualPlacement,
       x,
       y,
       currentStrategy,
       currentEdgePadding,
       arrowElement,
       computedPlacement,
-      currentOffsetDistance,
       arrowSize,
-      currentOnPositioned,
       currentMiddlewares,
       middlewareStack,
+      actualPlacement,
+      currentOffsetDistance,
+      currentOnPositioned,
     );
   }, []);
 

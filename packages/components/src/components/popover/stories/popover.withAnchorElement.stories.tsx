@@ -131,8 +131,8 @@ const StoryWithHooks = (args) => {
       <Story
         ref={popoverRef}
         {...args}
-        disableAnimations
         anchorElement={anchorElRef?.current}
+        disableAnimations={true}
         middlewareOptions={{ hideWhenDetached }}
         middlewares={customMiddlewares}
         open={isReady} // Only show popover when button is available

@@ -12,5 +12,5 @@ interface IUsePopoverInteractionsResponse {
 }
 
 export type IUsePopoverInteractions = (
-  params: IUsePopoverInteractionsParams,
+  params: IUsePopoverInteractionsParams
 ) => IUsePopoverInteractionsResponse;

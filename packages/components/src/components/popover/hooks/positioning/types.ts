@@ -1,6 +1,7 @@
-import type { Middleware, Placement, Strategy } from '@floating-ui/dom';
+import type { Middleware, Strategy } from '@floating-ui/dom';
 
 import type { ArrowStyles } from '../../types/popover';
+import type { BodyDirection } from '../../utils/placement.utils';
 
 /**
  * Options for positioning middlewares
@@ -12,11 +13,13 @@ import type { ArrowStyles } from '../../types/popover';
  * @property {[number, number]} [offsetDistance] - Optional offset distance of the popover from the anchor [main axis, cross axis] in pixels
  * @property {number} [edgePadding] - Optional padding for flip and shift middlewares to ensure popover stays within viewport bounds
  * @property {boolean} [hideWhenDetached] - Whether to hide the popover when the anchor element is not visible due to scrolling or being outside the viewport
+ * @property {boolean} [enableFlip] - Whether to enable automatic repositioning (flip) when there isn't enough space. Default: true
  */
 export interface PositioningMiddlewareOptions {
   offsetDistance?: [number, number];
   edgePadding?: number;
   hideWhenDetached?: boolean;
+  enableFlip?: boolean;
 }
 
 /**
@@ -24,7 +27,7 @@ export interface PositioningMiddlewareOptions {
  */
 export interface PositioningValues {
   anchorElement?: HTMLElement | null;
-  placement?: Placement;
+  placement?: BodyDirection;
   middlewareOptions: PositioningMiddlewareOptions;
   middlewares: Array<Middleware>;
   strategy: Strategy;

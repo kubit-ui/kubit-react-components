@@ -90,6 +90,7 @@ describe('middlewareUtils', () => {
       const elementResult = getMiddlewareStack({
         arrowElement: mockArrowElement,
         edgePadding: 8,
+        enableFlip: true,
         isBodyAnchor: false,
         mainAxisOffset: 10,
         placement: 'bottom',

@@ -1,13 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import {
-  type DEVICE_BREAKPOINTS,
-  Image as Story,
-} from '@kubit-ui-web/react-components';
+import { Image as Story } from "@kubit-ui-web/react-components";
 
-import { IMAGES } from '@/stories/assets/images/images';
+import { IMAGES } from "@/stories/assets/images/images";
 
-import { argtypes } from './argtypes';
+import { argtypes } from "./argtypes";
+
+import { DEVICE_BREAKPOINTS } from "@/lib/constants/breakpoints/breakpoints";
 
 const meta = {
   argTypes: argtypes(),
@@ -15,21 +14,21 @@ const meta = {
 
   parameters: {
     githubUrl:
-      'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/image',
+      "https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/image",
     note: {
       text: [
-        'To use the Image component, provide the `images` prop with different sources for various breakpoints.',
-        'DEFAULT: { src: image_url },',
+        "To use the Image component, provide the `images` prop with different sources for various breakpoints.",
+        "DEFAULT: { src: image_url },",
         'MOBILE: { media: "(max-width: 600px)", src: image_url, width: "200" },',
         'TABLET: { media: "(min-width: 600px)", src: image_url, width: "500" },',
         'DESKTOP: { media: "(min-width: 900px)", src: image_url, width: "600" },',
         'LARGE_DESKTOP: { media: "(min-width:1400px)", src: image_url },',
       ],
-      variant: 'information',
+      variant: "information",
     },
   },
-  tags: ['resources'],
-  title: 'Components/Resources/Image',
+  tags: ["resources"],
+  title: "Components/Resources/Image",
 } satisfies Meta<typeof Story>;
 
 export default meta;
@@ -37,35 +36,35 @@ export default meta;
 type Story = StoryObj<typeof meta> & { args: { themeArgs?: object } };
 
 const commonArgs = {
-  alt: 'Image alt text',
+  alt: "Image alt text",
   images: {
     DEFAULT: { src: IMAGES.IMAGE_1 },
     [DEVICE_BREAKPOINTS.DESKTOP]: {
-      media: '(min-width: 900px)',
+      media: "(min-width: 900px)",
       src: IMAGES.IMAGE_1,
-      width: '600',
+      width: "600",
     },
     [DEVICE_BREAKPOINTS.LARGE_DESKTOP]: {
-      media: '(min-width:1400px)',
+      media: "(min-width:1400px)",
       src: IMAGES.IMAGE_1,
     },
     [DEVICE_BREAKPOINTS.MOBILE]: {
-      media: '(max-width: 600px)',
+      media: "(max-width: 600px)",
       src: IMAGES.IMAGE_3,
-      width: '200',
+      width: "200",
     },
     [DEVICE_BREAKPOINTS.TABLET]: {
-      media: '(min-width: 600px)',
+      media: "(min-width: 600px)",
       src: IMAGES.IMAGE_2,
-      width: '500',
+      width: "500",
     },
   },
-  title: 'Image title',
+  title: "Image title",
 };
 
 export const Basic: Story = {
   args: {
-    alt: 'Basic image',
+    alt: "Basic image",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
@@ -124,8 +123,8 @@ export const Responsive: Story = {
 
 export const WithCaption: Story = {
   args: {
-    alt: 'Image with caption',
-    caption: 'This is an image caption providing additional context',
+    alt: "Image with caption",
+    caption: "This is an image caption providing additional context",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
@@ -147,7 +146,7 @@ export const WithCaption: Story = {
 
 export const WithAspectRatio: Story = {
   args: {
-    alt: 'Image with 16:9 aspect ratio',
+    alt: "Image with 16:9 aspect ratio",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
@@ -170,7 +169,7 @@ export const WithAspectRatio: Story = {
 
 export const SquareAspectRatio: Story = {
   args: {
-    alt: 'Square image 1:1',
+    alt: "Square image 1:1",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
@@ -193,8 +192,8 @@ export const SquareAspectRatio: Story = {
 
 export const WithBorderRadius: Story = {
   args: {
-    alt: 'Image with rounded corners',
-    borderRadius: '16px',
+    alt: "Image with rounded corners",
+    borderRadius: "16px",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
@@ -216,15 +215,15 @@ export const WithBorderRadius: Story = {
 
 export const CircularImage: Story = {
   args: {
-    alt: 'Circular profile image',
-    borderRadius: '50%',
-    height: '200px',
+    alt: "Circular profile image",
+    borderRadius: "50%",
+    height: "200px",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
-    objectFit: 'cover',
+    objectFit: "cover",
     ratio: 1,
-    width: '200px',
+    width: "200px",
   },
   parameters: {
     docs: {
@@ -247,13 +246,13 @@ export const CircularImage: Story = {
 
 export const WithObjectFitCover: Story = {
   args: {
-    alt: 'Image with object-fit cover',
-    height: '300px',
+    alt: "Image with object-fit cover",
+    height: "300px",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
-    objectFit: 'cover',
-    width: '100%',
+    objectFit: "cover",
+    width: "100%",
   },
   parameters: {
     docs: {
@@ -274,13 +273,13 @@ export const WithObjectFitCover: Story = {
 
 export const WithObjectFitContain: Story = {
   args: {
-    alt: 'Image with object-fit contain',
-    height: '300px',
+    alt: "Image with object-fit contain",
+    height: "300px",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
-    objectFit: 'contain',
-    width: '100%',
+    objectFit: "contain",
+    width: "100%",
   },
   parameters: {
     docs: {
@@ -301,12 +300,12 @@ export const WithObjectFitContain: Story = {
 
 export const WithCustomDimensions: Story = {
   args: {
-    alt: 'Image with custom dimensions',
-    height: '400px',
+    alt: "Image with custom dimensions",
+    height: "400px",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
-    width: '600px',
+    width: "600px",
   },
   parameters: {
     docs: {
@@ -326,11 +325,11 @@ export const WithCustomDimensions: Story = {
 
 export const EagerLoading: Story = {
   args: {
-    alt: 'Image with eager loading',
+    alt: "Image with eager loading",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
-    loading: 'eager',
+    loading: "eager",
   },
   parameters: {
     docs: {
@@ -349,11 +348,11 @@ export const EagerLoading: Story = {
 
 export const LazyLoading: Story = {
   args: {
-    alt: 'Image with lazy loading',
+    alt: "Image with lazy loading",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
-    loading: 'lazy',
+    loading: "lazy",
   },
   parameters: {
     docs: {
@@ -372,32 +371,32 @@ export const LazyLoading: Story = {
 
 export const CompleteExample: Story = {
   args: {
-    alt: 'Complete example with all features',
-    borderRadius: '12px',
-    caption: 'Beautiful landscape - Photo credit: Jane Doe',
-    height: '400px',
+    alt: "Complete example with all features",
+    borderRadius: "12px",
+    caption: "Beautiful landscape - Photo credit: Jane Doe",
+    height: "400px",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
       [DEVICE_BREAKPOINTS.DESKTOP]: {
-        media: '(min-width: 900px)',
+        media: "(min-width: 900px)",
         src: IMAGES.IMAGE_1,
-        width: '800',
+        width: "800",
       },
       [DEVICE_BREAKPOINTS.MOBILE]: {
-        media: '(max-width: 600px)',
+        media: "(max-width: 600px)",
         src: IMAGES.IMAGE_3,
-        width: '400',
+        width: "400",
       },
       [DEVICE_BREAKPOINTS.TABLET]: {
-        media: '(min-width: 600px)',
+        media: "(min-width: 600px)",
         src: IMAGES.IMAGE_2,
-        width: '600',
+        width: "600",
       },
     },
-    loading: 'lazy',
-    objectFit: 'cover',
+    loading: "lazy",
+    objectFit: "cover",
     ratio: 16 / 9,
-    title: 'Landscape image',
+    title: "Landscape image",
   },
   parameters: {
     docs: {
@@ -437,15 +436,15 @@ export const CompleteExample: Story = {
 
 export const ProductImage: Story = {
   args: {
-    alt: 'Product showcase',
-    borderRadius: '8px',
-    height: '300px',
+    alt: "Product showcase",
+    borderRadius: "8px",
+    height: "300px",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
-    objectFit: 'cover',
+    objectFit: "cover",
     ratio: 1,
-    width: '300px',
+    width: "300px",
   },
   parameters: {
     docs: {
@@ -468,30 +467,30 @@ export const ProductImage: Story = {
 
 export const HeroImage: Story = {
   args: {
-    alt: 'Hero banner',
-    height: '500px',
+    alt: "Hero banner",
+    height: "500px",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
       [DEVICE_BREAKPOINTS.DESKTOP]: {
-        media: '(min-width: 900px)',
+        media: "(min-width: 900px)",
         src: IMAGES.IMAGE_1,
-        width: '1920',
+        width: "1920",
       },
       [DEVICE_BREAKPOINTS.MOBILE]: {
-        media: '(max-width: 600px)',
+        media: "(max-width: 600px)",
         src: IMAGES.IMAGE_3,
-        width: '600',
+        width: "600",
       },
       [DEVICE_BREAKPOINTS.TABLET]: {
-        media: '(min-width: 600px)',
+        media: "(min-width: 600px)",
         src: IMAGES.IMAGE_2,
-        width: '1200',
+        width: "1200",
       },
     },
-    loading: 'eager',
-    objectFit: 'cover',
+    loading: "eager",
+    objectFit: "cover",
     ratio: 21 / 9,
-    width: '100%',
+    width: "100%",
   },
   parameters: {
     docs: {
@@ -529,7 +528,7 @@ export const HeroImage: Story = {
 
 export const ThumbnailGallery: Story = {
   args: {
-    alt: 'Gallery image',
+    alt: "Gallery image",
     images: {
       DEFAULT: { src: IMAGES.IMAGE_1 },
     },
@@ -572,9 +571,9 @@ export const ThumbnailGallery: Story = {
   render: () => (
     <div
       style={{
-        display: 'grid',
-        gap: '16px',
-        gridTemplateColumns: 'repeat(3, 1fr)',
+        display: "grid",
+        gap: "16px",
+        gridTemplateColumns: "repeat(3, 1fr)",
       }}
     >
       <Story

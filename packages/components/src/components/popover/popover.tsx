@@ -1,19 +1,14 @@
-import { forwardRef } from 'react';
+import { forwardRef } from "react";
 
-import { useClassName } from '@/lib/hooks/useClassName/useClassName';
-import { useTrapFocus } from '@/lib/hooks/useTrapFocus/useTrapFocus';
+import { useClassName } from "@/lib/hooks/useClassName/useClassName";
+import { useTrapFocus } from "@/lib/hooks/useTrapFocus/useTrapFocus";
 
-import type { IPopover } from './types/popover';
+import { usePopoverInteractions } from "./hooks/usePopoverInteractions";
+import { usePopoverLifecycle } from "./hooks/usePopoverLifecycle";
+import { usePopoverPositioning } from "./hooks/usePopoverPositioning";
+import { PopoverStandAlone } from "./popoverStandAlone";
+import type { IPopover } from "./types/popover";
 
-import { usePopoverInteractions } from './hooks/usePopoverInteractions';
-import { usePopoverLifecycle } from './hooks/usePopoverLifecycle';
-import { usePopoverPositioning } from './hooks/usePopoverPositioning';
-import { PopoverStandAlone } from './popoverStandAlone';
-
-/**
- * Controlled version of the Popover component with advanced positioning.
- * This component manages positioning logic, focus, interactions, and animations.
- */
 const PopoverComponent = (
   {
     additionalClasses,
@@ -34,7 +29,7 @@ const PopoverComponent = (
     popoverContainerRef,
     preventCloseOnClickElements = [],
     preventScrollOnCloseFocus = false,
-    strategy = 'absolute',
+    strategy = "absolute",
     ...props
   }: IPopover,
   ref: React.ForwardedRef<HTMLDivElement> | undefined | null,
@@ -42,10 +37,9 @@ const PopoverComponent = (
   const _disableAnimations = disableAnimations || !!anchorElement;
   const cssClasses = useClassName({
     additionalClassNames: additionalClasses,
-    component: 'POPOVER',
+    component: "POPOVER",
   });
 
-  // Reference management
   const { handleInnerRef, isClosing, isVisible, popoverRef } =
     usePopoverLifecycle({
       animationExitDuration,
@@ -59,13 +53,11 @@ const PopoverComponent = (
       preventScrollOnCloseFocus,
     });
 
-  // Configure trap focus
   useTrapFocus({
     ref: popoverRef,
     trapFocus: !disableTrapFocus && isVisible,
   });
 
-  // Configure user interactions
   usePopoverInteractions({
     disableClickOverlayClose,
     disableEscapeClose,
@@ -75,7 +67,6 @@ const PopoverComponent = (
     preventCloseOnClickElements,
   });
 
-  // Configure positioning
   usePopoverPositioning({
     anchorElement,
     arrowStyles: props.arrowStyles,
@@ -87,7 +78,6 @@ const PopoverComponent = (
     strategy,
   });
 
-  // Render the popover
   return (
     <PopoverStandAlone
       ref={ref}

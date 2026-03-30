@@ -19,9 +19,7 @@ vi.mock('@/utils/keyboard/keyboard', () => ({
 const mockOnClose = vi.fn();
 
 // Mock refs for testing
-const createMockRef = <T>(
-  initialValue: T | null = null,
-): RefObject<T | null> => ({
+const createMockRef = <T>(initialValue: T | null = null): RefObject<T> => ({
   current: initialValue,
 });
 

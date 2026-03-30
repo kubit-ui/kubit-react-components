@@ -39,6 +39,14 @@ export const popoverWithAnchorElementNotes = {
       prop for enhanced user experience with configurable entrance and exit
       effects.
     </span>,
+    <span key="note-6">
+      - <strong>Middleware behavior:</strong> The replacement pattern is
+      standard in floating-ui and gives full control: if you provide custom
+      middlewares, you are responsible for all of them. Use{' '}
+      <strong>middlewareOptions</strong> (offsetDistance, edgePadding,
+      hideWhenDetached, enableFlip) to modify built-in middleware behavior
+      without losing defaults.
+    </span>,
   ],
   theme: 'information',
 };

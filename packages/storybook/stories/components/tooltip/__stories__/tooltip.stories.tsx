@@ -1,11 +1,30 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import React, { useEffect, useRef, useState } from "react";
 
-import {
-  type POSITIONS,
-  Tooltip as Story,
-} from '@kubit-ui-web/react-components';
+import type { Meta, StoryObj } from "@storybook/react";
+
+import { Tooltip as Story } from "@kubit-ui-web/react-components";
+
+import { TooltipVariant } from "@/lib/designSystem/kubit/components/variants";
+
+import { argtypes } from "./argtypes";
+import { tooltipNotes } from "./notes";
+
+const useIsMobile = (breakpoint = 768) => {
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.innerWidth < breakpoint,
+  );
+  useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    setIsMobile(mql.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, [breakpoint]);
+  return isMobile;
+};
 
 const meta = {
+  argTypes: argtypes(),
   component: Story,
   parameters: {
     docs: {
@@ -30,328 +49,157 @@ const meta = {
       },
     },
     figmaUrl:
-      'https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3922-25713&mode=dev',
+      "https://www.figma.com/file/EYQkbENTFO5r8muvXlPoOy/Kubit-v.1.0.0?type=design&node-id=3922-25713&mode=dev",
     githubUrl:
-      'https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/tooltip',
-    layout: 'centered',
+      "https://github.com/kubit-ui/kubit-react-components/tree/main/src/components/tooltip",
+    layout: "centered",
+    note: tooltipNotes,
   },
-  tags: ['autodocs'],
-  title: 'Components/Feedback/Tooltip',
+  tags: ["autodocs"],
+  title: "Components/Feedback/Tooltip",
 } satisfies Meta<typeof Story>;
 
 export default meta;
 
 type StoryType = StoryObj<typeof meta>;
 
-export const BasicTop: StoryType = {
-  args: {
-    align: POSITIONS.TOP,
-    children: 'Hover me',
-    content: { content: 'Tooltip content' },
-    variant: 'DEFAULT',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Basic tooltip positioned at the top of the trigger element.',
-      },
-      source: {
-        code: `<TooltipUnControlled
-  variant='DEFAULT'
-  align={POSITIONS.TOP}
-  content={{ content: 'Tooltip content' }}
->
-  Hover me
-</TooltipUnControlled>`,
-      },
-    },
-  },
-};
+const StoryWithHooks = (args: React.ComponentProps<typeof Story>) => {
+  const [hideWhenDetached, setHideWhenDetached] = useState(true);
+  const [enableFlip, setEnableFlip] = useState(true);
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
-export const BasicBottom: StoryType = {
-  args: {
-    align: POSITIONS.BOTTOM,
-    children: 'Hover me',
-    content: { content: 'Bottom tooltip' },
-    variant: 'DEFAULT',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Tooltip positioned at the bottom.',
-      },
-      source: {
-        code: `<TooltipUnControlled
-  variant='DEFAULT'
-  align={POSITIONS.BOTTOM}
-  content={{ content: 'Bottom tooltip' }}
->
-  Hover me
-</TooltipUnControlled>`,
-      },
-    },
-  },
-};
+  // Handler to toggle hideWhenDetached behavior
+  const handleHideWhenDetachedChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setHideWhenDetached(event.target.checked);
+  };
 
-export const BasicLeft: StoryType = {
-  args: {
-    align: POSITIONS.LEFT,
-    children: 'Hover me',
-    content: { content: 'Left tooltip' },
-    variant: 'DEFAULT',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Tooltip positioned on the left side.',
-      },
-      source: {
-        code: `<TooltipUnControlled
-  variant='DEFAULT'
-  align={POSITIONS.LEFT}
-  content={{ content: 'Left tooltip' }}
->
-  Hover me
-</TooltipUnControlled>`,
-      },
-    },
-  },
-};
+  // Handler to toggle flip behavior
+  const handleFlipChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEnableFlip(event.target.checked);
+  };
 
-export const BasicRight: StoryType = {
-  args: {
-    align: POSITIONS.RIGHT,
-    children: 'Hover me',
-    content: { content: 'Right tooltip' },
-    variant: 'DEFAULT',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Tooltip positioned on the right side.',
-      },
-      source: {
-        code: `<TooltipUnControlled
-  variant='DEFAULT'
-  align={POSITIONS.RIGHT}
-  content={{ content: 'Right tooltip' }}
->
-  Hover me
-</TooltipUnControlled>`,
-      },
-    },
-  },
-};
+  return (
+    <div
+      style={{
+        alignItems: "center",
+        border: "1px solid #ccc",
+        boxSizing: "border-box",
+        display: "flex",
+        flexDirection: "column",
+        height: isMobile ? "auto" : "600px",
+        justifyContent: "center",
+        overflow: "auto",
+        padding: "20px",
+        width: "100%",
+      }}
+    >
+      <div style={{ marginBottom: "2px" }}>
+        <label>
+          <input
+            checked={enableFlip}
+            style={{ marginRight: "2px" }}
+            type="checkbox"
+            onChange={handleFlipChange}
+          />
+          Enable automatic repositioning (flip)
+        </label>
+        <p style={{ color: "#666", fontSize: "12px", margin: "4px 0 0 0" }}>
+          When disabled, tooltip stays in the selected position even if it
+          overflows
+        </p>
+        <label style={{ display: "block", marginTop: "4px" }}>
+          <input
+            checked={hideWhenDetached}
+            style={{ marginRight: "8px" }}
+            type="checkbox"
+            onChange={handleHideWhenDetachedChange}
+          />
+          Hide when anchor is not visible (hideWhenDetached)
+        </label>
+        <p style={{ color: "#666", fontSize: "12px", margin: "4px 0 0 0" }}>
+          When enabled, tooltip hides automatically when its anchor element is
+          scrolled out of view
+        </p>
+      </div>
 
-export const WithLongContent: StoryType = {
-  args: {
-    align: POSITIONS.TOP,
-    children: 'Hover for long content',
-    content: {
-      content:
-        'This is a longer tooltip content that demonstrates how the tooltip handles multiple lines of text and wraps appropriately.',
-    },
-    variant: 'DEFAULT',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Tooltip with longer text content that wraps to multiple lines.',
-      },
-      source: {
-        code: `<TooltipUnControlled
-  variant='DEFAULT'
-  align={POSITIONS.TOP}
-  content={{
-    content: 'This is a longer tooltip content that demonstrates how the tooltip handles multiple lines of text.'
-  }}
->
-  Hover for long content
-</TooltipUnControlled>`,
-      },
-    },
-  },
-};
+      {!isMobile && <div style={{ height: "200px" }} />}
 
-export const WithScrollableContent: StoryType = {
-  args: {
-    align: POSITIONS.TOP,
-    children: 'Hover for scrollable content',
-    content: {
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    },
-    contentScrollArias: {
-      'aria-label': 'Tooltip content scroll',
-    },
-    variant: 'DEFAULT',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Tooltip with scrollable content for very long text.',
-      },
-      source: {
-        code: `<TooltipUnControlled
-  variant='DEFAULT'
-  align={POSITIONS.TOP}
-  content={{
-    content: 'Very long content...'
-  }}
-  contentScrollArias={{ 'aria-label': 'Tooltip content scroll' }}
->
-  Hover for scrollable content
-</TooltipUnControlled>`,
-      },
-    },
-  },
-};
+      <Story
+        ref={tooltipRef}
+        {...args}
+        arrowStyles={{
+          backgroundColor: "#767676",
+          border: "1px solid #e0e0e0",
+          padding: 8,
+          size: 8,
+        }}
+        mainContent={{
+          content: (
+            <div
+              style={{
+                color: isMobile ? "#000" : "white",
+                padding: isMobile ? "24px" : "0px",
+              }}
+            >
+              <strong>Tooltip Content</strong>
+              <p style={{ fontSize: "14px", margin: "8px 0 0 0" }}>
+                This is an example tooltip with helpful information.
+              </p>
+              {isMobile && (
+                <>
+                  <p style={{ fontSize: "14px", margin: "16px 0 0 0" }}>
+                    <strong>Additional mobile content:</strong> In mobile view,
+                    the tooltip appears as a bottom sheet with a light
+                    background. This expanded content helps demonstrate the
+                    full-screen behavior and improved readability.
+                  </p>
+                  <ul
+                    style={{
+                      fontSize: "14px",
+                      margin: "8px 0 0 0",
+                      paddingLeft: "20px",
+                    }}
+                  >
+                    <li>Tap outside to dismiss</li>
+                    <li>Press ESC key to close</li>
+                    <li>Click on the trigger button again to toggle</li>
+                  </ul>
+                </>
+              )}
+            </div>
+          ),
+        }}
+        popover={{
+          middlewareOptions: {
+            enableFlip,
+            hideWhenDetached,
+          },
+        }}
+      >
+        <span
+          style={{
+            background: "#e0e0e0",
+            borderRadius: "4px",
+            padding: "8px",
+          }}
+        >
+          {isMobile ? "Tap me" : "Hover me"}
+        </span>
+      </Story>
 
-export const WithTriggerAsButton: StoryType = {
-  args: {
-    align: POSITIONS.TOP,
-    children: 'Button trigger',
-    content: { content: 'Tooltip on button' },
-    triggerAsButton: {
-      'aria-label': 'Tooltip trigger button',
-    },
-    variant: 'DEFAULT',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Tooltip with trigger element styled as a button with proper ARIA attributes.',
-      },
-      source: {
-        code: `<TooltipUnControlled
-  variant='DEFAULT'
-  align={POSITIONS.TOP}
-  content={{ content: 'Tooltip on button' }}
-  triggerAsButton={{ 'aria-label': 'Tooltip trigger button' }}
->
-  Button trigger
-</TooltipUnControlled>`,
-      },
-    },
-  },
-};
-
-export const AsModal: StoryType = {
-  args: {
-    align: POSITIONS.TOP,
-    children: 'Hover for modal',
-    content: { content: 'This tooltip behaves as a modal' },
-    tooltipAsModal: true,
-    variant: 'DEFAULT',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Tooltip configured to behave as a modal with focus trap.',
-      },
-      source: {
-        code: `<TooltipUnControlled
-  variant='DEFAULT'
-  align={POSITIONS.TOP}
-  content={{ content: 'This tooltip behaves as a modal' }}
-  tooltipAsModal={true}
->
-  Hover for modal
-</TooltipUnControlled>`,
-      },
-    },
-  },
-};
-
-export const Disabled: StoryType = {
-  args: {
-    align: POSITIONS.TOP,
-    children: 'Disabled tooltip',
-    content: { content: 'This will not show' },
-    disabled: true,
-    variant: 'DEFAULT',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Tooltip in disabled state will not appear on hover.',
-      },
-      source: {
-        code: `<TooltipUnControlled
-  variant='DEFAULT'
-  align={POSITIONS.TOP}
-  content={{ content: 'This will not show' }}
-  disabled={true}
->
-  Disabled tooltip
-</TooltipUnControlled>`,
-      },
-    },
-  },
-};
-
-export const WithCallback: StoryType = {
-  args: {
-    align: POSITIONS.TOP,
-    children: 'Hover me',
-    content: { content: 'Tooltip with callback' },
-    onOpenClose: (open: boolean) => {
-      // eslint-disable-next-line no-console
-      console.log('Tooltip open:', open);
-    },
-    variant: 'DEFAULT',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Tooltip with callback to track open/close state.',
-      },
-      source: {
-        code: `<TooltipUnControlled
-  variant='DEFAULT'
-  align={POSITIONS.TOP}
-  content={{ content: 'Tooltip with callback' }}
-  onOpenClose={(open) => console.log('Tooltip open:', open)}
->
-  Hover me
-</TooltipUnControlled>`,
-      },
-    },
-  },
+      {!isMobile && <div style={{ height: "1500px" }} />}
+    </div>
+  );
 };
 
 export const Tooltip: StoryType = {
   args: {
-    align: POSITIONS.TOP,
-    children: 'Hover me',
-    content: { content: 'Tooltip content' },
-    contentScrollArias: {
-      'aria-label': 'Tooltip content scroll',
-    },
-    tooltipAsModal: false,
-    triggerAsButton: {
-      'aria-label': 'Tooltip trigger',
-    },
-    variant: 'DEFAULT',
+    children: "",
+    mainContent: { content: "" },
+    variant: TooltipVariant.REGULAR,
   },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Complete tooltip example with all features.',
-      },
-      source: {
-        code: `<TooltipUnControlled
-  variant='DEFAULT'
-  align={POSITIONS.TOP}
-  content={{ content: 'Tooltip content' }}
-  contentScrollArias={{ 'aria-label': 'Tooltip content scroll' }}
-  triggerAsButton={{ 'aria-label': 'Tooltip trigger' }}
-  tooltipAsModal={false}
->
-  Hover me
-</TooltipUnControlled>`,
-      },
-    },
-  },
+  render: ({ ...args }) => <StoryWithHooks {...args} />,
 };

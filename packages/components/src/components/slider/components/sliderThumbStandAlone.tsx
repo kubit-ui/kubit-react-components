@@ -1,17 +1,17 @@
-import type { CSSProperties, KeyboardEventHandler } from 'react';
+import type { CSSProperties, KeyboardEventHandler } from "react";
 
-import type { ElementOrIconProps } from '@/lib/components/elementOrIcon/types/elementOrIcon';
-import type { DataAttributes } from '@/lib/types/dataAttributes/dataAttributes';
+import type { ElementOrIconProps } from "@/lib/components/elementOrIcon/types/elementOrIcon";
+import type { DataAttributes } from "@/lib/types/dataAttributes/dataAttributes";
 
-import { TooltipUnControlled as Tooltip } from '@/components/tooltip/tooltipUnControlled';
-import { ElementOrIcon } from '@/lib/components/elementOrIcon/elementOrIcon';
-import { useMediaDevice } from '@/lib/hooks/useMediaDevice/useMediaDevice';
-import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+import { TooltipUnControlled as Tooltip } from "@/components/tooltip/tooltipUnControlled";
+import { ElementOrIcon } from "@/lib/components/elementOrIcon/elementOrIcon";
+import { useMediaDevice } from "@/lib/hooks/useMediaDevice/useMediaDevice";
+import { pickCustomAttributes } from "@/lib/utils/pickCustomAttributes/pickCustomAttributes";
 
-import type { SliderCssClasses, SliderTooltipProps } from '../types/slider';
+import type { SliderCssClasses, SliderTooltipProps } from "../types/slider";
 
-import { type SliderStateType } from '../types/state';
-import { isTooltipVisible } from '../utils/ui.utils';
+import { type SliderStateType } from "../types/state";
+import { isTooltipVisible } from "../utils/ui.utils";
 
 /**
  * Standalone slider thumb component for the draggable handle.
@@ -78,7 +78,7 @@ export const SliderThumbStandAlone = ({
   rightThumb,
   style,
   tooltip,
-  tooltipAlign = 'top',
+  tooltipAlign = "top",
   value,
   ...props
 }: SliderThumbStandAloneProps): JSX.Element | null => {
@@ -100,7 +100,7 @@ export const SliderThumbStandAlone = ({
         className={cssClasses?.thumb}
         data-disabled={disabled}
         data-hover={hover}
-        data-position={rightThumb ? 'right' : undefined}
+        data-position={rightThumb ? "right" : undefined}
         data-pressed={pressed}
         role="slider"
         style={style}
@@ -129,10 +129,11 @@ export const SliderThumbStandAlone = ({
     >
       <Tooltip
         additionalClasses={cssClasses?.tooltip}
-        align={tooltipAlign}
-        childrenAsButton={false}
-        content={{ content: tooltip?.content }}
-        tooltipAsModal={false}
+        asButton={false}
+        mainContent={{ content: tooltip?.content }}
+        popover={{
+          placement: tooltipAlign as "top" | "bottom" | "left" | "right",
+        }}
       >
         <div
           aria-describedby={ariaDescribedBy}
