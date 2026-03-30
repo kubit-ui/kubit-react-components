@@ -1,0 +1,409 @@
+name: PR Validation with Changesets (Monorepo)
+
+# This workflow validates PRs for the monorepo with automatic package detection
+# It checks:
+# - Branch naming conventions
+# - PR title format (conventional commits with scope)
+# - Detects affected packages from scope: (components), (design-system), (all)
+# - Runs tests and type checking for affected packages only
+# - Code quality checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches:
+      - main
+      - master
+      - develop
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  pr-validation:
+    runs-on: ubuntu-latest
+    name: Validate PR Standards (Monorepo)
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Get Yarn cache directory
+        id: yarn-cache
+        shell: bash
+        run: |
+          echo "CACHE_DIR=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+
+      - name: Setup Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarn-cache.outputs.CACHE_DIR }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Setup Turbo cache
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Install dependencies
+        run: |
+          echo "Installing monorepo dependencies..."
+          yarn --version
+          yarn install --immutable
+
+      - name: Check workspace constraints
+        id: constraints-check
+        continue-on-error: true
+        run: |
+          echo "🔍 Checking workspace constraints..."
+          if yarn constraints; then
+            echo "✅ All workspace constraints pass"
+            echo "constraints_valid=true" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ Workspace constraint violations detected"
+            echo "constraints_valid=false" >> $GITHUB_OUTPUT
+            echo "Run 'yarn constraints --fix' locally to auto-fix"
+          fi
+
+      - name: Validate Branch Naming
+        id: branch-validation
+        continue-on-error: true
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          echo "Branch name: $BRANCH_NAME"
+
+          VALID_PATTERNS=(
+            "^(feat|feature)/.*"
+            "^(fix|bugfix)/.*"
+            "^(break|breaking)/.*"
+            "^hotfix/.*"
+            "^chore/.*"
+            "^docs/.*"
+            "^style/.*"
+            "^refactor/.*"
+            "^test/.*"
+          )
+
+          BRANCH_VALID=false
+          for pattern in "${VALID_PATTERNS[@]}"; do
+            if [[ "$BRANCH_NAME" =~ $pattern ]]; then
+              BRANCH_VALID=true
+              break
+            fi
+          done
+
+          if [ "$BRANCH_VALID" = true ]; then
+            echo "✅ Branch name follows conventions"
+            echo "branch_valid=true" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Branch name must follow pattern: type/description"
+            echo "   Valid types: feat, fix, break, hotfix, chore, docs, style, refactor, test"
+            echo "branch_valid=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Validate PR Title and Detect Scope
+        id: pr-title-validation
+        continue-on-error: true
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          echo "PR Title: $PR_TITLE"
+
+          # Check conventional commits format with scope
+          if [[ "$PR_TITLE" =~ ^(feat|fix|docs|style|refactor|perf|test|chore|build|ci|break|breaking)(\(([^)]+)\))?!?:\ .+ ]]; then
+            echo "✅ PR title follows conventional commits format"
+            echo "title_valid=true" >> $GITHUB_OUTPUT
+
+            # Extract scope
+            if [[ "$PR_TITLE" =~ \(([^)]+)\) ]]; then
+              SCOPE="${BASH_REMATCH[1]}"
+              echo "📦 Detected scope: $SCOPE"
+              echo "scope=$SCOPE" >> $GITHUB_OUTPUT
+
+              # Validate scope for monorepo
+              case "$SCOPE" in
+                components|design-system|storybook|all|monorepo)
+                  echo "✅ Valid monorepo scope: $SCOPE"
+                  echo "scope_valid=true" >> $GITHUB_OUTPUT
+                  ;;
+                *)
+                  echo "⚠️ Scope '$SCOPE' is not a standard package scope"
+                  echo "   Recommended scopes: components, design-system, storybook, all"
+                  echo "scope_valid=false" >> $GITHUB_OUTPUT
+                  ;;
+              esac
+            else
+              echo "⚠️ No scope specified in PR title - will default to ALL packages"
+              echo "   Recommended format: type(scope): description"
+              echo "   Scopes: components, design-system, all"
+              echo "   Without scope: publishes all packages"
+              echo "scope=" >> $GITHUB_OUTPUT
+              echo "scope_valid=true" >> $GITHUB_OUTPUT  # Allow no scope (defaults to all)
+            fi
+          else
+            echo "❌ PR title must follow conventional commits format"
+            echo "   Format: type(scope): description"
+            echo "   Example: feat(components): add new button variant"
+            echo "title_valid=false" >> $GITHUB_OUTPUT
+            echo "scope_valid=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+          # Check title length
+          TITLE_LENGTH=${#PR_TITLE}
+          if [ $TITLE_LENGTH -gt 72 ]; then
+            echo "⚠️ PR title is $TITLE_LENGTH characters (recommended: ≤72)"
+            echo "title_length_valid=false" >> $GITHUB_OUTPUT
+          else
+            echo "✅ PR title length is appropriate"
+            echo "title_length_valid=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Detect Affected Packages
+        id: detect-packages
+        run: |
+          SCOPE="${{ steps.pr-title-validation.outputs.scope }}"
+          BASE_REF="origin/${{ github.base_ref }}"
+
+          COMPONENTS_AFFECTED=false
+          DESIGN_SYSTEM_AFFECTED=false
+
+          # If scope is specified, use it
+          if [ -n "$SCOPE" ]; then
+            case "$SCOPE" in
+              components)
+                COMPONENTS_AFFECTED=true
+                ;;
+              design-system)
+                DESIGN_SYSTEM_AFFECTED=true
+                ;;
+              all|monorepo)
+                COMPONENTS_AFFECTED=true
+                DESIGN_SYSTEM_AFFECTED=true
+                ;;
+            esac
+          else
+            # Fallback: detect from file changes
+            echo "No scope specified, detecting from file changes..."
+
+            if git diff --name-only HEAD $BASE_REF | grep -q "^packages/components/"; then
+              COMPONENTS_AFFECTED=true
+            fi
+
+            if git diff --name-only HEAD $BASE_REF | grep -q "^packages/design-system/"; then
+              DESIGN_SYSTEM_AFFECTED=true
+            fi
+          fi
+
+          echo "components_affected=$COMPONENTS_AFFECTED" >> $GITHUB_OUTPUT
+          echo "design_system_affected=$DESIGN_SYSTEM_AFFECTED" >> $GITHUB_OUTPUT
+
+          echo "📦 Affected packages:"
+          echo "   - components: $COMPONENTS_AFFECTED"
+          echo "   - design-system: $DESIGN_SYSTEM_AFFECTED"
+
+      - name: Detect Version Bump Type
+        id: version-detection
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          PR_BODY="${{ github.event.pull_request.body }}"
+
+          BUMP_TYPE="patch"
+
+          if [[ "$BRANCH_NAME" =~ ^(feat|feature)/ ]] || [[ "$PR_TITLE" =~ ^feat ]]; then
+            BUMP_TYPE="minor"
+          elif [[ "$BRANCH_NAME" =~ ^(break|breaking)/ ]] || [[ "$PR_TITLE" =~ ^(break|breaking|feat!) ]] || [[ "$PR_BODY" =~ BREAKING\ CHANGE ]]; then
+            BUMP_TYPE="major"
+          fi
+
+          echo "bump_type=$BUMP_TYPE" >> $GITHUB_OUTPUT
+          echo "📊 Expected version bump: $BUMP_TYPE"
+
+      - name: TypeScript Check (Components)
+        if: steps.detect-packages.outputs.components_affected == 'true'
+        id: typecheck-components
+        continue-on-error: true
+        run: |
+          echo "🔍 Running TypeScript check for components..."
+          yarn typecheck:components
+          echo "typecheck_components=true" >> $GITHUB_OUTPUT
+
+      - name: TypeScript Check (Design System)
+        if: steps.detect-packages.outputs.design_system_affected == 'true'
+        id: typecheck-design-system
+        continue-on-error: true
+        run: |
+          echo "🔍 Running TypeScript check for design-system..."
+          yarn typecheck:design-system
+          echo "typecheck_design_system=true" >> $GITHUB_OUTPUT
+
+      - name: Run Tests (Components)
+        if: steps.detect-packages.outputs.components_affected == 'true'
+        id: test-components
+        continue-on-error: true
+        run: |
+          echo "🧪 Running tests for components..."
+          yarn test
+          echo "test_components=true" >> $GITHUB_OUTPUT
+
+      - name: Lint Check (Components)
+        if: steps.detect-packages.outputs.components_affected == 'true'
+        id: lint-components
+        continue-on-error: true
+        run: |
+          echo "🔍 Running lint for components..."
+          yarn lint:components
+          echo "lint_components=true" >> $GITHUB_OUTPUT
+
+      - name: Lint Check (Design System)
+        if: steps.detect-packages.outputs.design_system_affected == 'true'
+        id: lint-design-system
+        continue-on-error: true
+        run: |
+          echo "🔍 Running lint for design-system..."
+          yarn lint:design-system
+          echo "lint_design_system=true" >> $GITHUB_OUTPUT
+
+      - name: Check for console.log
+        id: console-check
+        continue-on-error: true
+        run: |
+          echo "🔍 Checking for console.log statements..."
+
+          CONSOLE_LOGS=$(git diff origin/${{ github.base_ref }}...HEAD -- '*.ts' '*.tsx' '*.js' '*.jsx' | grep -E '^\+.*console\.(log|debug|info|warn|error)' | grep -v '// eslint-disable' || true)
+
+          if [ -n "$CONSOLE_LOGS" ]; then
+            echo "⚠️ Found console.log statements in diff:"
+            echo "$CONSOLE_LOGS"
+            echo "console_check=false" >> $GITHUB_OUTPUT
+          else
+            echo "✅ No console.log statements found"
+            echo "console_check=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check TODOs
+        id: todo-check
+        continue-on-error: true
+        run: |
+          echo "🔍 Checking for TODOs without issue references..."
+
+          TODOS=$(git diff origin/${{ github.base_ref }}...HEAD -- '*.ts' '*.tsx' '*.js' '*.jsx' | grep -E '^\+.*TODO' | grep -v '#[0-9]' || true)
+
+          if [ -n "$TODOS" ]; then
+            echo "⚠️ Found TODOs without issue references:"
+            echo "$TODOS"
+            echo "   TODOs should reference an issue: // TODO: #123"
+            echo "todo_check=false" >> $GITHUB_OUTPUT
+          else
+            echo "✅ All TODOs have issue references"
+            echo "todo_check=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate Validation Report
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const constraintsValid = '${{ steps.constraints-check.outputs.constraints_valid }}' === 'true';
+            const branchValid = '${{ steps.branch-validation.outputs.branch_valid }}' === 'true';
+            const titleValid = '${{ steps.pr-title-validation.outputs.title_valid }}' === 'true';
+            const scopeValid = '${{ steps.pr-title-validation.outputs.scope_valid }}' === 'true';
+            const titleLengthValid = '${{ steps.pr-title-validation.outputs.title_length_valid }}' === 'true';
+            const typecheckComponents = '${{ steps.typecheck-components.outputs.typecheck_components }}' === 'true';
+            const typecheckDesignSystem = '${{ steps.typecheck-design-system.outputs.typecheck_design_system }}' === 'true';
+            const testComponents = '${{ steps.test-components.outputs.test_components }}' === 'true';
+            const lintComponents = '${{ steps.lint-components.outputs.lint_components }}' === 'true';
+            const lintDesignSystem = '${{ steps.lint-design-system.outputs.lint_design_system }}' === 'true';
+            const consoleCheck = '${{ steps.console-check.outputs.console_check }}' === 'true';
+            const todoCheck = '${{ steps.todo-check.outputs.todo_check }}' === 'true';
+
+            const componentsAffected = '${{ steps.detect-packages.outputs.components_affected }}' === 'true';
+            const designSystemAffected = '${{ steps.detect-packages.outputs.design_system_affected }}' === 'true';
+            const bumpType = '${{ steps.version-detection.outputs.bump_type }}';
+            const scope = '${{ steps.pr-title-validation.outputs.scope }}';
+
+            const allPassed = constraintsValid && branchValid && titleValid && scopeValid &&
+              (!componentsAffected || (typecheckComponents && testComponents && lintComponents)) &&
+              (!designSystemAffected || (typecheckDesignSystem && lintDesignSystem)) &&
+              consoleCheck && todoCheck;
+
+            let comment = '## 🔍 PR Validation Report (Monorepo)\n\n';
+            comment += `**Status:** ${allPassed ? '✅ PASSED' : '❌ FAILED'}\n`;
+            comment += `**Branch:** \`${{ github.head_ref }}\`\n`;
+            comment += `**Scope:** \`${scope || 'not specified (defaults to ALL packages)'}\`\n`;
+            comment += `**Expected Version Bump:** \`${bumpType}\`\n\n`;
+
+            comment += '### 📦 Affected Packages\n\n';
+            if (!scope && !componentsAffected && !designSystemAffected) {
+              comment += '- ⚠️ No scope specified - will publish **ALL packages**\n';
+              comment += '- `@kubit-ui-web/react-components`\n';
+              comment += '- `@kubit-ui-web/design-system`\n';
+            } else {
+              if (componentsAffected) comment += '- ✅ `@kubit-ui-web/react-components`\n';
+              if (designSystemAffected) comment += '- ✅ `@kubit-ui-web/design-system`\n';
+              if (!componentsAffected && !designSystemAffected) comment += '- ⚠️ No packages detected\n';
+            }
+
+            comment += '\n### ✅ Validation Results\n\n';
+            comment += '| Check | Status | Description |\n';
+            comment += '|-------|--------|-------------|\n';
+            comment += `| Constraints | ${constraintsValid ? '✅ Pass' : '❌ Fail'} | Workspace dependency consistency |\n`;
+            comment += `| Branch Naming | ${branchValid ? '✅ Pass' : '❌ Fail'} | Must follow \`type/description\` |\n`;
+            comment += `| PR Title | ${titleValid ? '✅ Pass' : '❌ Fail'} | Must follow conventional commits |\n`;
+            comment += `| Scope | ${scopeValid ? '✅ Pass' : '⚠️ Warning'} | Should specify package scope |\n`;
+            comment += `| Title Length | ${titleLengthValid ? '✅ Pass' : '⚠️ Warning'} | Should be ≤72 characters |\n`;
+
+            if (componentsAffected) {
+              comment += `| TypeScript (components) | ${typecheckComponents ? '✅ Pass' : '❌ Fail'} | Type checking validation |\n`;
+              comment += `| Tests (components) | ${testComponents ? '✅ Pass' : '❌ Fail'} | All tests must pass |\n`;
+              comment += `| Lint (components) | ${lintComponents ? '✅ Pass' : '❌ Fail'} | Code style validation |\n`;
+            }
+
+            if (designSystemAffected) {
+              comment += `| TypeScript (design-system) | ${typecheckDesignSystem ? '✅ Pass' : '❌ Fail'} | Type checking validation |\n`;
+              comment += `| Lint (design-system) | ${lintDesignSystem ? '✅ Pass' : '❌ Fail'} | Code style validation |\n`;
+            }
+
+            comment += `| Code Quality | ${consoleCheck ? '✅ Pass' : '⚠️ Warning'} | No console.log in production |\n`;
+            comment += `| TODOs | ${todoCheck ? '✅ Pass' : '⚠️ Warning'} | TODOs should reference issues |\n`;
+
+            comment += '\n### 🎯 Next Steps\n\n';
+            if (allPassed) {
+              comment += 'This PR is ready for review - all validation checks passed!\n\n';
+              comment += '### 📝 Automatic Release\n\n';
+              comment += 'When your PR is merged:\n';
+              comment += `- Version will be bumped (\`${bumpType}\`)\n`;
+              comment += '- CHANGELOG will be updated automatically\n';
+              if (componentsAffected) comment += '- `@kubit-ui-web/react-components` will be published to NPM\n';
+              if (designSystemAffected) comment += '- `@kubit-ui-web/design-system` will be published to NPM\n';
+              comment += '- You\'ll get a comment with the published versions\n\n';
+              comment += 'No manual changeset needed - it\'s all automatic! 🚀\n';
+            } else {
+              comment += 'Please fix the failing checks before this PR can be merged.\n';
+            }
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

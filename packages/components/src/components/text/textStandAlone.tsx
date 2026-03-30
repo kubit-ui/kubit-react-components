@@ -1,0 +1,112 @@
+import './text.css';
+
+import { forwardRef } from 'react';
+
+import { classNames } from '@/lib/utils/classNames/classNames';
+import { pickCustomAttributes } from '@/lib/utils/pickCustomAttributes/pickCustomAttributes';
+
+import type { TextStandAloneProps } from './types/text';
+
+import { CustomComponent } from '../../lib/components/customComponent/customComponent';
+
+/**
+ * Standalone text component for rendering customizable text elements.
+ *
+ * This component renders text with customizable HTML element type (p, span, h1, etc.),
+ * color, weight, alignment, and other typographic properties.
+ *
+ * @example
+ * ```tsx
+ * <TextStandAlone
+ *   component="h1"
+ *   color="primary"
+ *   weight="bold"
+ * >
+ *   Heading text
+ * </TextStandAlone>
+ * ```
+ */
+export const TextStandAlone = forwardRef<
+  HTMLParagraphElement,
+  TextStandAloneProps
+>(
+  (
+    {
+      align,
+      children,
+      color,
+      component,
+      cssClasses,
+      cursor,
+      customAttributes,
+      decoration,
+      disabled,
+      display,
+      draggable,
+      filter,
+      htmlFor,
+      id,
+      maxTruncatedLines,
+      onClick,
+      role,
+      target,
+      textSizeAdjust,
+      textWrap,
+      transform,
+      truncate,
+      weight,
+      wordBreak,
+      wordWrap,
+      ...props
+    },
+    ref,
+  ): JSX.Element => {
+    const customProps = pickCustomAttributes({
+      ...props,
+      ...customAttributes,
+    });
+    const className = classNames(
+      'kbt-text',
+      cssClasses?.text,
+      {
+        'kbt-text--disabled': disabled ?? false,
+      },
+      {
+        'kbt-text--truncate': truncate || !!maxTruncatedLines,
+      },
+    );
+
+    const style = {
+      color: color,
+      cursor: cursor,
+      display: display,
+      filter: filter,
+      fontWeight: weight,
+      textAlign: align,
+      textDecoration: decoration,
+      textSizeAdjust: textSizeAdjust,
+      textTransform: transform,
+      textWrap: textWrap,
+      wordBreak: wordBreak,
+      wordWrap: wordWrap,
+    };
+    return (
+      <CustomComponent
+        ref={ref}
+        className={className}
+        component={component}
+        data-testid="text"
+        draggable={draggable}
+        htmlFor={htmlFor}
+        id={id}
+        role={role}
+        style={style}
+        target={target}
+        onClick={onClick}
+        {...customProps}
+      >
+        {children}
+      </CustomComponent>
+    );
+  },
+);

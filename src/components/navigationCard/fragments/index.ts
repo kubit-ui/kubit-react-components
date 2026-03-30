@@ -1,1 +1,0 @@
-export { NavigationCardInfo } from './navigationCardInfo';

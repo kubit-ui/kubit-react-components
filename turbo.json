@@ -1,0 +1,178 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "globalDependencies": ["**/.env.*local"],
+  "globalEnv": ["NODE_ENV", "CI"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**",
+        "package.json",
+        "tsconfig.json",
+        "vite.config.ts",
+        "vite.config.mts"
+      ],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "build/**", "storybook-static/**"],
+      "env": ["NODE_ENV"]
+    },
+    "@kubit-ui-web/design-system#build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**",
+        "package.json",
+        "tsconfig.json",
+        "vite.config.mts",
+        "bernova.config.ts"
+      ],
+      "outputs": ["dist/**"]
+    },
+    "@kubit-ui-web/react-components#build": {
+      "dependsOn": ["@kubit-ui-web/design-system#build"],
+      "inputs": [
+        "src/**",
+        "package.json",
+        "tsconfig.json",
+        "vite.config.ts",
+        "vitest.config.ts"
+      ],
+      "outputs": ["dist/**"]
+    },
+    "@kubit-ui-web/storybook#build": {
+      "dependsOn": [
+        "@kubit-ui-web/design-system#build",
+        "@kubit-ui-web/react-components#build"
+      ],
+      "inputs": [
+        "stories/**",
+        ".storybook/**",
+        "package.json",
+        "tsconfig.json"
+      ],
+      "outputs": ["dist/**", "storybook-static/**"]
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": [],
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx}",
+        "stories/**/*.{ts,tsx,js,jsx}",
+        ".storybook/**/*.{ts,tsx,js,jsx}",
+        ".oxlintrc.json",
+        "package.json"
+      ],
+      "outputs": []
+    },
+    "lint:fix": {
+      "dependsOn": [],
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx}",
+        "stories/**/*.{ts,tsx,js,jsx}",
+        ".storybook/**/*.{ts,tsx,js,jsx}",
+        ".oxlintrc.json",
+        "package.json"
+      ],
+      "cache": false,
+      "outputs": []
+    },
+    "format": {
+      "inputs": [
+        "src/**",
+        "stories/**",
+        ".storybook/**",
+        ".oxfmtrc.json",
+        "package.json"
+      ],
+      "cache": false,
+      "outputs": []
+    },
+    "format:check": {
+      "inputs": [
+        "src/**",
+        "stories/**",
+        ".storybook/**",
+        ".oxfmtrc.json",
+        "package.json"
+      ],
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**/*.{ts,tsx}",
+        "src/**/__tests__/**",
+        "vitest.config.ts",
+        "package.json",
+        "tsconfig.json"
+      ],
+      "outputs": ["coverage/**", "__reports__/**"],
+      "env": ["NODE_ENV"]
+    },
+    "test:watch": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "test:coverage": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**/*.{ts,tsx}",
+        "src/**/__tests__/**",
+        "vitest.config.ts",
+        "package.json",
+        "tsconfig.json"
+      ],
+      "outputs": ["coverage/**", "__reports__/**"],
+      "env": ["NODE_ENV"]
+    },
+    "typecheck": {
+      "dependsOn": [],
+      "inputs": [
+        "src/**/*.{ts,tsx}",
+        "stories/**/*.{ts,tsx}",
+        ".storybook/**/*.{ts,tsx}",
+        "tsconfig.json",
+        "package.json"
+      ],
+      "outputs": ["*.tsbuildinfo"]
+    },
+    "@kubit-ui-web/react-components#typecheck": {
+      "dependsOn": [],
+      "inputs": [
+        "src/**/*.{ts,tsx}",
+        "tsconfig.json",
+        "package.json"
+      ],
+      "outputs": ["*.tsbuildinfo"]
+    },
+    "@kubit-ui-web/design-system#typecheck": {
+      "dependsOn": ["@kubit-ui-web/react-components#build"],
+      "inputs": [
+        "src/**/*.{ts,tsx}",
+        "tsconfig.json",
+        "package.json"
+      ],
+      "outputs": ["*.tsbuildinfo"]
+    },
+    "@kubit-ui-web/storybook#typecheck": {
+      "dependsOn": ["@kubit-ui-web/react-components#build"],
+      "inputs": [
+        "stories/**/*.{ts,tsx}",
+        ".storybook/**/*.{ts,tsx}",
+        "tsconfig.json",
+        "package.json"
+      ],
+      "outputs": ["*.tsbuildinfo"]
+    },
+    "clean": {
+      "cache": false
+    },
+    "clean:build": {
+      "cache": false
+    }
+  }
+}

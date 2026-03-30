@@ -1,0 +1,59 @@
+{
+  "exclude": [
+    "src/**/__mocks__",
+    "src/**/__fixtures__",
+    "src/**/__stories__",
+    "src/**/__tests__",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx",
+    "src/**/stories",
+    "dist",
+    "vitest.config.ts",
+    "vitest.setup.ts",
+    "rslib.config.ts"
+  ],
+  "compilerOptions": {
+    "sourceMap": false,
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["DOM", "ES2020", "ES2021"],
+    "declaration": true,
+    "declarationMap": false,
+    "emitDeclarationOnly": true, // Solo genera .d.ts para referencias
+    "outDir": "./dist/types",
+    "rootDir": "./src",
+    "strict": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
+    "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "preserveSymlinks": false,
+    "jsx": "react-jsx",
+    "composite": true, // ← Habilitar para permitir referencias de otros proyectos
+    "types": ["vitest/globals", "node", "@testing-library/jest-dom"],
+    "typeRoots": ["src/lib/types", "node_modules/@types", "../../node_modules/@types", "node_modules", "../../node_modules"],
+    "removeComments": false,
+    "erasableSyntaxOnly": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.d.ts",
+    "app/src/types/global.d.ts"
+  ]
+}

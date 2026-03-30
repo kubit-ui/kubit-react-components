@@ -1,274 +1,422 @@
-<p align="center">
-  <a href="https://kubit-ui.com">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./assets/banner_kubit_readme.png">
-      <img src="./assets/banner_kubit_readme.png" width="70%">
-    </picture>
-  </a>
-</p>
+# Kubit React Components
 
-<div align='center'>
-  
-<a href='#'>
-<img src='./assets/version.png' width="150px">
-</a>
-  
-<a href='#'>
-<img src='./assets/license.png' width="230px">
-</a>
-  
-</div>
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Node Version](https://img.shields.io/badge/node-22.x-brightgreen.svg)](https://nodejs.org)
+[![Yarn Version](https://img.shields.io/badge/yarn-4.9.1-2C8EBB.svg)](https://yarnpkg.com)
+[![Vite](https://img.shields.io/badge/Vite-8.0.0--beta.10-646CFF.svg?logo=vite)](https://vite.dev)
+[![Rolldown](https://img.shields.io/badge/Rolldown-Powered-FF6B35.svg)](https://rolldown.rs)
 
-<br />
+A professional, production-ready monorepo containing a comprehensive library of customizable and accessible React components, built with TypeScript and modern web standards.
 
----
+> **⚡ Powered by Vite 8 + Rolldown**: This project uses Vite 8 Beta with Rolldown, the next-generation Rust-powered bundler that delivers **10-30x faster builds** than traditional bundlers.
 
-<br />
+## Overview
 
-# Getting Started
+Kubit React Components is an enterprise-grade design system and component library designed to accelerate UI development while maintaining consistency, accessibility, and performance. This monorepo leverages Turborepo for efficient build orchestration and Yarn workspaces for optimal dependency management.
 
-## Installation
+## Architecture
 
-To install the package, run the following command:
+This monorepo is structured as a collection of interconnected packages, each serving a specific purpose:
 
-### npm
-
-```bash
-npm install @kubit-ui-web/react-components
+```
+kubit-react-components/
+├── packages/
+│   ├── components/          # React component library
+│   ├── design-system/       # CSS-in-JS styles and themes
+│   └── storybook/          # Interactive documentation
+├── scripts/                # Build and automation scripts
+└── docs/                   # Documentation and assets
 ```
 
-### yarn
+### Packages
+
+#### `@kubit-ui-web/react-components`
+
+The core component library containing 50+ production-ready React components:
+
+**Layout & Structure**
+- Accordion, Card, Modal, Popover, Portal, Tabs
+
+**Navigation**
+- Breadcrumbs, Link, Pagination, PageControl
+
+**Data Display**
+- Avatar, Badge, Chip, Dot, Icon, Image, Tag, Skeleton
+- Table, TableBody, TableHead, TableRow, TableCell, TableFoot, TableCaption, TableDivider
+- DataTable, Calendar, Carousel, ProgressBar
+
+**Forms & Input**
+- Button, Input, TextArea, Checkbox, RadioButton, Toggle
+- Select, Slider, StepperNumber
+- InputBase, InputDecoration, InputSignature, CheckboxBase
+- Label, Option, ListOptions, SelectorBoxFile, VirtualKeyboard
+
+**Feedback**
+- Alert, Snackbar, Tooltip
+
+**Typography**
+- Text
+
+**Key Features:**
+- Fully accessible (WCAG 2.1 compliant)
+- TypeScript support with comprehensive type definitions
+- Customizable through design tokens
+- Tree-shakeable for optimal bundle size
+- Extensive test coverage
+
+#### `@kubit-ui-web/design-system`
+
+A powerful CSS-in-JS design system powered by Bernova, providing:
+
+- Design tokens for consistent theming
+- Pre-built theme configurations
+- Component-specific style variants
+- CSS utilities and mixins
+- Responsive design patterns
+- Dark mode support
+
+#### `@kubit-ui-web/storybook`
+
+Interactive documentation and development environment featuring:
+
+- Live component playground
+- Code examples and usage patterns
+- Accessibility testing tools
+- Visual regression testing
+- Component API documentation
+- Design guidelines
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js**: v22.x or higher
+- **Yarn**: v4.9.1 (automatically managed via Corepack)
+
+### Installation
+
+Clone the repository and install dependencies:
 
 ```bash
-yarn add @kubit-ui-web/react-components
+git clone https://github.com/kubit-ui/kubit-react-components.git
+cd kubit-react-components
+yarn install
 ```
 
-This will install the package and its dependencies. Now you can import the components and use them in your application.
+### Development
 
-## Usage
+Start the development environment:
 
-To use the components, import them from the package and use them in your application.
+```bash
+# Start Storybook (recommended for development)
+yarn dev
+
+# Start specific package in development mode
+yarn dev:components
+yarn dev:design-system
+```
+
+### Building
+
+Build all packages:
+
+```bash
+# Build all publishable packages
+yarn build
+
+# Build specific packages
+yarn build:components
+yarn build:design-system
+yarn build:storybook
+```
+
+### Testing
+
+Run the comprehensive test suite:
+
+```bash
+# Run all tests
+yarn test
+
+# Run tests in watch mode
+yarn test:watch
+
+# Generate coverage report
+yarn test:coverage
+```
+
+### Code Quality
+
+Maintain code quality with built-in linting and formatting:
+
+```bash
+# Lint all packages
+yarn lint
+
+# Auto-fix linting issues
+yarn lint:fix
+
+# Format code
+yarn format
+
+# Check formatting
+yarn format:check
+
+# Type checking
+yarn typecheck
+
+# Run all validations
+yarn validate
+```
+
+## Using in Your Project
+
+### Installing Components
+
+```bash
+npm install @kubit-ui-web/react-components @kubit-ui-web/design-system
+# or
+yarn add @kubit-ui-web/react-components @kubit-ui-web/design-system
+# or
+yarn add @kubit-ui-web/react-components @kubit-ui-web/design-system
+```
+
+### Basic Usage
 
 ```tsx
-import { Button, KubitProvider } from '@kubit-ui-web/react-components';
-import React from 'react';
+import { Button, Input, Modal } from '@kubit-ui-web/react-components';
+import { ThemeProvider } from '@kubit-ui-web/design-system';
 
-const App = () => {
+function App() {
   return (
-    <KubitProvider>
-      <Button variant="PRIMARY" size="MEDIUM">
+    <ThemeProvider>
+      <Button variant="primary" size="medium">
         Click me
       </Button>
-    </KubitProvider>
+      <Input placeholder="Enter text..." />
+    </ThemeProvider>
   );
-};
-
-export default App;
+}
 ```
 
-This will render the button with the default styles and functionality.
+## Monorepo Structure
 
-> Note: The `KubitProvider` is required to use the components. It provides the theme and other context to the components.
+### Workspace Configuration
 
-You can foud more information about change the theme and other options in the [Customize theme](https://kubit-ui.com)
+This monorepo uses:
 
-## Documentation
+- **Turborepo**: For intelligent build caching and task orchestration
+- **Yarn Workspaces**: For efficient dependency management and package linking
+- **TypeScript**: For type safety across all packages
+- **Vitest**: For fast unit testing
+- **ESLint & Prettier**: For code quality and consistency
 
-You can find the documentation for the web components in the [Kubit UI website](https://kubit-ui.com)
+### Task Pipeline
 
-## Storybook
+The build pipeline is optimized with dependency awareness:
 
-To run the storybook, first of all clone the repository and install the dependencies. Then run the following command:
-
-```bash
-npm run storybook
-
-yarn storybook
+```
+design-system (build) → components (build) → storybook (build)
 ```
 
-This will start the storybook server and you can see the components in action.
+Turborepo ensures tasks run in the correct order and caches results for faster subsequent builds.
 
-## Tests
+## Scripts Reference
 
-To run the tests, you can use the following command:
-
-```bash
-npm run test
-
-yarn test
-```
-
-This will run the tests and show the results in the terminal.
+| Command | Description |
+|---------|-------------|
+| `yarn dev` | Start Storybook development server |
+| `yarn build` | Build all packages for production |
+| `yarn test` | Run unit tests |
+| `yarn test:coverage` | Generate test coverage report |
+| `yarn lint` | Lint all packages |
+| `yarn lint:fix` | Auto-fix linting issues |
+| `yarn format` | Format code with Prettier |
+| `yarn typecheck` | Type check all packages |
+| `yarn validate` | Run all quality checks |
+| `yarn clean` | Remove all node_modules and build artifacts |
+| `yarn constraints` | Check workspace dependency consistency |
+| `yarn constraints:fix` | Auto-fix constraint violations |
+| `yarn focus:components` | Install only components workspace deps |
+| `yarn focus:design-system` | Install only design-system workspace deps |
+| `yarn focus:storybook` | Install only storybook workspace deps |
+| `yarn foreach:clean` | Clean all workspaces in parallel |
+| `yarn info:workspaces` | List all workspace packages |
 
 ## Contributing
 
-We are open to contributions. If you want to contribute to the project, please follow the steps below:
+We welcome contributions to **Kubit React Components**! This is a **monorepo** managed with **[Changesets](https://github.com/changesets/changesets)** for automated version management and publishing.
 
-### Development Workflow
+### 📦 Monorepo Packages
 
-1. **Fork the Repository**: Click the "Fork" button in the upper right corner of the repository's page on GitHub. This will create a copy of the repository in your account.
+- **`@kubit-ui-web/react-components`** - React component library
+- **`@kubit-ui-web/design-system`** - CSS-in-JS styles and themes
+- **`@kubit-ui-web/storybook`** - Component documentation (private)
 
-2. **Clone the Repository**: Use `git clone` to clone the repository to your local machine.
+### Quick Start for Contributors
 
-   ```sh
-   git clone https://github.com/your-username/kubit-react-components.git
-   ```
+1. **Fork the repository** on GitHub
+2. **Clone your fork** locally
+3. **Install dependencies**: `yarn install`
+4. **Create a branch** with proper naming: `<type>/<description>`
+5. **Make changes** with scoped commits: `<type>(<scope>): <description>`
+6. **Push to your fork** and open a Pull Request
 
-3. **Create a Branch**: Use proper branch naming conventions for automatic version detection.
+### Branch Naming (Required)
 
-   ```sh
-   git checkout -b <branch-type>/<branch-name>
-   ```
+Your branch name determines the version bump type:
 
-4. **Make Changes**: Make any necessary changes to the codebase and **test** the changes thoroughly.
+| Branch Pattern | Version Bump | Example |
+|----------------|--------------|---------|
+| `feat/` or `feature/` | **MINOR** (2.0.0 → 2.1.0) | `feat/tooltip-component` |
+| `fix/` or `bugfix/` | **PATCH** (2.0.0 → 2.0.1) | `fix/button-styling` |
+| `break/` or `breaking/` | **MAJOR** (2.0.0 → 3.0.0) | `break/api-redesign` |
+| `docs/`, `chore/`, `refactor/`, `test/` | **PATCH** | `docs/update-readme` |
 
-5. **Commit Changes**: Use conventional commit messages when possible.
+### Commit Format (Required)
 
-   ```sh
-   git commit -m "feat: add new component feature"
-   ```
+**CRITICAL:** Commits must include a **scope** to indicate which package is affected:
 
-6. **Push Changes**: Use `git push` to push your changes to your forked repository.
+```
+<type>(<scope>): <description>
+```
 
-   ```sh
-   git push origin <branch-name>
-   ```
+**Scopes:**
+- `components` - Changes to `@kubit-ui-web/react-components`
+- `design-system` - Changes to `@kubit-ui-web/design-system`
+- `storybook` - Changes to `@kubit-ui-web/storybook` (docs only)
+- `all` or `monorepo` - Changes affecting multiple packages
+- No scope - Defaults to all packages (not recommended)
 
-7. **Open a Pull Request**: Go to the original repository on GitHub and click the "New pull request" button. Fill out the form with details about your changes and submit the pull request.
+**Examples:**
 
-### Branch Naming & Automatic Publishing
-
-This repository uses an **automatic publishing system** that determines the version bump based on your branch name and PR content. When your PR is merged, the package will be automatically published to NPM.
-
-#### Branch Naming Patterns
-
-Use these branch prefixes to ensure automatic publishing works correctly:
-
-| Branch Pattern | Version Bump | Example | Description |
-|----------------|--------------|---------|-------------|
-| `feat/` or `feature/` | **MINOR** | `feat/add-tooltip` | New features or enhancements |
-| `fix/` or `bugfix/` | **PATCH** | `fix/button-hover-state` | Bug fixes |
-| `break/` or `breaking/` | **MAJOR** | `break/remove-old-api` | Breaking changes |
-| `hotfix/` | **PATCH** | `hotfix/critical-security-fix` | Urgent fixes |
-| `chore/` | **PATCH** | `chore/update-dependencies` | Maintenance tasks |
-
-#### Advanced Version Detection
-
-The system also analyzes your **PR title** and **description** for more precise version detection:
-
-##### MAJOR (Breaking Changes)
-- `BREAKING CHANGE:` in PR description
-- `!` in PR title (e.g., `feat!: redesign button API`)
-- `[breaking]` tag in PR title
-- Conventional commits with `!` (e.g., `feat(api)!: change interface`)
-
-##### MINOR (New Features)
-- PR titles starting with `feat:` or `feature:`
-- `[feature]` tag in PR title
-- Conventional commits like `feat(ui): add dark mode`
-
-##### PATCH (Bug Fixes & Others)
-- PR titles starting with `fix:` or `bugfix:`
-- All other changes (default behavior)
-- Conventional commits like `fix(button): hover state`
-
-#### Examples
-
-**Adding a new feature:**
 ```sh
-git checkout -b feat/dark-mode-support
-# Make your changes
-git commit -m "feat(theme): add dark mode support for all components"
-# Create PR with title: "feat(theme): add dark mode support"
-# Result: MINOR version bump (e.g., 1.0.0 → 1.1.0)
+# Adding a new component
+git commit -m "feat(components): add Tooltip component with accessibility"
+
+# Fixing design system bug
+git commit -m "fix(design-system): resolve button hover color issue"
+
+# Breaking change
+git commit -m "feat(components)!: redesign Modal API"
+
+# Changes affecting both packages
+git commit -m "feat(all): add dark mode support"
+
+# Documentation
+git commit -m "docs(components): add Button usage examples"
 ```
 
-**Fixing a bug:**
-```sh
-git checkout -b fix/button-accessibility
-# Make your changes  
-git commit -m "fix(button): improve keyboard navigation"
-# Create PR with title: "fix(button): improve keyboard navigation"
-# Result: PATCH version bump (e.g., 1.0.0 → 1.0.1)
+### PR Title Format (Required)
+
+Your PR title must follow the same format:
+
+```
+<type>(<scope>): <description>
 ```
 
-**Breaking changes:**
-```sh
-git checkout -b break/remove-deprecated-props
-# Make your changes
-git commit -m "feat!: remove deprecated size prop from Button"
-# Create PR with title: "feat!: remove deprecated size prop"
-# PR description: "BREAKING CHANGE: The 'size' prop has been removed..."
-# Result: MAJOR version bump (e.g., 1.0.0 → 2.0.0)
-```
+**Examples:**
+- ✅ `feat(components): add Tooltip component`
+- ✅ `fix(design-system): resolve button styling`
+- ✅ `feat(all): add dark mode support`
+- ❌ `Added new component` (missing type and scope)
+- ❌ `fix: button issue` (missing scope)
 
-### Quality Assurance
+### Automated Workflow
 
-Before publishing, the system automatically runs:
+When you open a PR:
+1. **Automated validation** checks branch name, PR title, tests, and code quality
+2. **Bot comments** with validation results and expected version bump
+3. **On merge**:
+   - Changeset is auto-generated based on your scope
+   - Version is bumped in affected package(s)
+   - CHANGELOG is updated
+   - Package(s) are built and published to NPM
+   - GitHub Release is created
+   - PR comment confirms published version(s)
 
-- ✅ **Linting** - Code style validation
-- ✅ **Type Checking** - TypeScript validation  
-- ✅ **Tests** - Full test suite execution
-- ✅ **Build** - Package compilation
-- ✅ **Integration Tests** - Component functionality validation
+**No manual changeset needed - it's all automatic!** 🚀
 
-### Publishing Process
+### PR Validation Checks
 
-When your PR is merged:
+✅ Branch naming follows conventions
+✅ PR title follows conventional commits with scope
+✅ TypeScript type checking passes
+✅ All tests pass (components)
+✅ Linting passes
+✅ No `console.log` in production code
+✅ TODOs reference GitHub issues
 
-1. **Automatic Analysis** - System analyzes branch name, PR title, and description
-2. **Version Calculation** - Determines MAJOR/MINOR/PATCH version bump
-3. **Quality Checks** - Runs all tests and validations
-4. **NPM Publication** - Publishes to NPM with appropriate version
-5. **GitHub Release** - Creates GitHub release with changelog
-6. **Notifications** - Posts success/failure status in PR comments
+For detailed contributing guidelines, see [CONTRIBUTING-CHANGESETS.md](./CONTRIBUTING-CHANGESETS.md).
 
-### Manual Override
+## Documentation
 
-If you need to override the automatic version detection, you can:
+- **Website**: [https://www.kubit-ui.com](https://www.kubit-ui.com)
+- **Storybook**: Interactive component documentation
+- **API Reference**: TypeScript definitions and JSDoc comments
+- **Contributing**: See [CONTRIBUTING.md](./CONTRIBUTING.md)
+- **Code of Conduct**: See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+- **Security**: See [SECURITY.md](./SECURITY.md)
 
-1. Use explicit markers in your PR description:
-   ```
-   BREAKING CHANGE: This removes the old authentication API
-   ```
+## Technology Stack
 
-2. Use conventional commit format in PR title:
-   ```
-   feat!: redesign component API structure
-   ```
+- **React**: UI component framework
+- **TypeScript**: Type-safe development
+- **Bernova**: CSS-in-JS styling engine
+- **Turborepo**: Monorepo build system
+- **Yarn**: Fast, efficient package manager
+- **Vitest**: Lightning-fast unit testing
+- **Storybook**: Component documentation and development
+- **ESLint**: Code linting
+- **Prettier**: Code formatting
 
-3. Add tags to PR title:
-   ```
-   [breaking] Update component props interface
-   ```
+## Browser Support
 
-### Testing Your Changes
+Kubit React Components supports all modern browsers:
 
-Before submitting a PR, make sure to:
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
 
-```bash
-# Install dependencies
-yarn install
+## Accessibility
 
-# Run linter
-yarn lint
+All components are built with accessibility as a core principle:
 
-# Run type checking
-yarn type-check
+- WCAG 2.1 Level AA compliant
+- Keyboard navigation support
+- Screen reader optimized
+- Focus management
+- ARIA attributes
+- Color contrast compliance
 
-# Run tests
-yarn test
+## Performance
 
-# Build the package
-yarn build
-```
+Optimized for production:
 
-### Getting Help
+- Tree-shakeable exports
+- Code splitting ready
+- Minimal bundle size
+- Lazy loading support
+- Optimized re-renders
+- CSS-in-JS with zero runtime overhead
 
-If you have questions about contributing or the automatic publishing system:
+## License
 
-- Check existing [GitHub Issues](https://github.com/kubit-ui/kubit-react-components/issues)
-- Review [GitHub Discussions](https://github.com/kubit-ui/kubit-react-components/discussions)
-- Read the full `CONTRIBUTING.md` file
+This project is licensed under the Apache License 2.0 - see the [LICENSE](./LICENSE) file for details.
 
-Once your pull request has been submitted, a maintainer will review your changes and provide feedback. If everything looks good, your pull request will be merged and your changes will be automatically published to NPM!
+## Support
+
+- **Issues**: [GitHub Issues](https://github.com/kubit-ui/kubit-react-components/issues)
+- **Email**: kubit.lab.dev@gmail.com
+- **Funding**: [Open Collective](https://opencollective.com/kubit-ui)
+
+## Acknowledgments
+
+Built and maintained by the Kubit team and our amazing community contributors.
+
+Special thanks to all [contributors](https://github.com/kubit-ui/kubit-react-components/graphs/contributors) who have helped shape this project.
+
+---
+
+**Made with dedication by the Kubit team**

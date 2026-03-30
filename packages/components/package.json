@@ -1,0 +1,204 @@
+{
+  "name": "@kubit-ui-web/react-components",
+  "version": "2.0.0-beta.76",
+  "description": "Kubit React Components is a customizable, accessible library of React web components, designed to enhance your application's user experience",
+  "author": {
+    "name": "Kubit",
+    "email": "kubit@opendigitalservices.com",
+    "url": "https://www.kubit-ui.com/",
+    "organization": "Kubit",
+    "organizationUrl": "https://www.kubit-ui.com/",
+    "role": "Developer",
+    "roleUrl": "https://www.kubit-ui.com/",
+    "social": {
+      "twitter": "https://twitter.com/kubit_ui",
+      "github": "https://github.com/kubit-ui/kubit-react-components"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubit-ui/kubit-react-components.git",
+    "directory": "packages/components"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": "22.x"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/kubit-ui"
+  },
+  "contributors": [
+    {
+      "name": "Kubit Community",
+      "url": "https://github.com/kubit-ui/kubit-react-components/graphs/contributors"
+    }
+  ],
+  "packageManager": "yarn@4.9.1",
+  "keywords": [
+    "react",
+    "react-components",
+    "ui-components",
+    "design-system",
+    "component-library",
+    "accessibility",
+    "a11y",
+    "wcag",
+    "wcag-2.1",
+    "typescript",
+    "kubit",
+    "kubit-ui",
+    "ui-library",
+    "frontend",
+    "web-components",
+    "atomic-design",
+    "composable",
+    "customizable",
+    "themeable",
+    "ssr",
+    "server-side-rendering",
+    "tree-shakeable",
+    "esm",
+    "commonjs",
+    "rslib"
+  ],
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "sideEffects": [
+    "*.css",
+    "*.scss",
+    "*.less",
+    "*.sass",
+    "*.styl",
+    "*.svg",
+    "*.ttf",
+    "*.otf",
+    "*.eot",
+    "*.png",
+    "*.jpg",
+    "*.gif",
+    "*.webp",
+    "*.bmp",
+    "*.ico"
+  ],
+  "files": [
+    "dist/cjs",
+    "dist/esm",
+    "dist/types",
+    "package.json",
+    "README.md",
+    "LICENSE.md",
+    "CHANGELOG.md",
+    "!dist/**/*.test.*",
+    "!dist/**/*.test.d.ts",
+    "!dist/**/*.stories.*",
+    "!dist/**/__tests__",
+    "!dist/**/__mocks__",
+    "!dist/**/__fixtures__",
+    "!dist/**/tests",
+    "!dist/**/storybook",
+    "!dist/**/lib/storybook",
+    "!dist/cjs/lib/storybook",
+    "!dist/esm/lib/storybook",
+    "!dist/types/lib/storybook",
+    "!dist/**/.storybook",
+    "!dist/esm/.storybook",
+    "!dist/cjs/.storybook",
+    "!dist/**/node_modules",
+    "!dist/**/.tsbuildinfo",
+    "!dist/**/*.map",
+    "!dist/**/.DS_Store"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js"
+    },
+    "./components/*": {
+      "types": "./dist/types/components/*/index.d.ts",
+      "import": "./dist/esm/components/*/index.mjs",
+      "require": "./dist/cjs/components/*/index.js"
+    },
+    "./lib/*": {
+      "types": "./dist/types/lib/*/index.d.ts",
+      "import": "./dist/esm/lib/*/index.mjs",
+      "require": "./dist/cjs/lib/*/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/esm/index.d.ts"
+      ],
+      "dist/*": [
+        "dist/esm/index.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "rslib build --watch",
+    "build": "rslib build",
+    "lint": "oxlint src",
+    "lint:fix": "oxlint src --fix",
+    "format": "oxfmt src",
+    "format:check": "oxfmt --check src",
+    "test": "vitest --coverage.enabled=true --silent --run",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage.enabled=true --run",
+    "test:coverage:ui": "vitest --coverage.enabled=true --ui",
+    "typecheck": "tsc --noEmit",
+    "validate": "yarn format:check && yarn lint && yarn typecheck && yarn build",
+    "validate:quick": "yarn lint && yarn typecheck",
+    "clean": "rm -rf dist node_modules",
+    "clean:build": "rm -rf dist",
+    "prepublishOnly": "yarn build",
+    "prerelease": "yarn validate && yarn test"
+  },
+  "peerDependencies": {
+    "react": "^18.3.0 || ^19.0.0",
+    "react-dom": "^18.3.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@floating-ui/dom": "^1.7.6"
+  },
+  "devDependencies": {
+    "@kubit-ui-web/design-system": "workspace:*",
+    "@kubit-ui-web/eslint-plugin-kubit": "^0.0.9",
+    "@rsbuild/plugin-react": "^1.4.6",
+    "@rslib/core": "^0.20.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/testing-library__jest-dom": "^6.0.0",
+    "@vitest/coverage-v8": "^4.1.1",
+    "@vitest/ui": "^4.1.1",
+    "bernova": "1.7.6",
+    "glob": "^13.0.6",
+    "html-validate": "^10.11.2",
+    "jsdom": "^29.0.1",
+    "oxfmt": "^0.42.0",
+    "oxlint": "^1.57.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.1",
+    "vitest-axe": "^0.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bugs": {
+    "url": "https://github.com/kubit-ui/kubit-react-components/issues",
+    "email": "kubit.lab.dev@gmail.com"
+  },
+  "homepage": "https://www.kubit-ui.com/",
+  "documentation": "https://www.kubit-ui.com"
+}

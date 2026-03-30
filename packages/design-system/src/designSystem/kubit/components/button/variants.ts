@@ -1,0 +1,15 @@
+export const ButtonVariantType = {
+  ALTERNATIVE: 'ALTERNATIVE',
+  GHOST_ALT: 'GHOST_ALT',
+  GHOST_PRIMARY: 'GHOST_PRIMARY',
+  GHOST_SECONDARY: 'GHOST_SECONDARY',
+  PRIMARY: 'PRIMARY',
+  SECONDARY: 'SECONDARY',
+} as const;
+
+export const ButtonSizeType = {
+  EXTRA_EXTRA_SMALL: 'EXTRA_EXTRA_SMALL',
+  EXTRA_SMALL: 'EXTRA_SMALL',
+  LARGE: 'LARGE',
+  SMALL: 'SMALL',
+} as const;

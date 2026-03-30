@@ -1,8 +1,0 @@
-{
-  "extends": ["html-validate:recommended"],
-
-  "rules": {
-    "attribute-boolean-style": "off",
-    "no-deprecated-attr": "off"
-  }
-}

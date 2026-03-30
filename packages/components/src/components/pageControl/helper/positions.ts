@@ -1,0 +1,51 @@
+import type { PageControlDirectionType } from '../types/pageControlStates';
+
+export const getPositionWithIn = (
+  currentPosition: number,
+  pages: number,
+): number => {
+  return Math.max(0, Math.min(currentPosition, pages - 1));
+};
+
+interface CalcFirstLastVisiblePositionType {
+  isBullet: boolean;
+  direction: PageControlDirectionType;
+  currentPosition: number;
+  pages: number;
+  dots: number;
+}
+
+interface CalcFirstLastVisiblePositionResultType {
+  firstVisiblePosition: number;
+  lastVisiblePosition: number;
+}
+
+export const calcFirstLastVisiblePosition = ({
+  currentPosition,
+  direction,
+  dots,
+  isBullet,
+  pages,
+}: CalcFirstLastVisiblePositionType): CalcFirstLastVisiblePositionResultType => {
+  let firstVisiblePosition: number;
+  let lastVisiblePosition: number;
+  // On lines pagination (!isBullet), we do not use forth and back logic
+  if (!isBullet || direction === 'forth') {
+    if (currentPosition - dots < 0) {
+      firstVisiblePosition = 0;
+      lastVisiblePosition = firstVisiblePosition + dots - 1;
+    } else {
+      lastVisiblePosition = currentPosition;
+      firstVisiblePosition = lastVisiblePosition - (dots - 1);
+    }
+  } else {
+    if (pages - dots <= currentPosition) {
+      lastVisiblePosition = pages - 1;
+      firstVisiblePosition = lastVisiblePosition - (dots - 1);
+    } else {
+      firstVisiblePosition = currentPosition;
+      lastVisiblePosition = firstVisiblePosition + dots - 1;
+    }
+  }
+  return { firstVisiblePosition, lastVisiblePosition };
+};

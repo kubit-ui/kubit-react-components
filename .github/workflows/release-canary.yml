@@ -1,0 +1,325 @@
+name: Release Canary with Changesets (Monorepo)
+
+# This workflow publishes canary versions on push to develop/next branches
+# Canary versions follow the pattern: X.Y.Z-canary.SHA (e.g., 1.2.3-canary.abc1234)
+# Uses Changesets for version management with automatic package detection
+#
+# Use cases:
+# - Quick testing of features before beta
+# - Continuous deployment from develop branch
+# - Preview releases for stakeholders
+#
+# Required secrets:
+# 1. NPM_TOKEN: NPM automation token for publishing packages
+# 2. RELEASE_TOKEN: GitHub PAT with bypass permissions
+
+on:
+  push:
+    branches:
+      - develop
+      - next
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+  actions: read
+  id-token: write # Required for NPM provenance
+
+jobs:
+  release-canary:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Get Yarn cache directory
+        id: yarn-cache
+        shell: bash
+        run: |
+          echo "CACHE_DIR=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+
+      - name: Setup Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarn-cache.outputs.CACHE_DIR }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Setup Turbo cache
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Install dependencies
+        run: |
+          echo "Installing dependencies with yarn..."
+          yarn --version
+          yarn install --immutable
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Detect affected packages from commit
+        id: detect
+        run: |
+          BRANCH_NAME="${{ github.ref_name }}"
+          COMMIT_MSG=$(git log -1 --pretty=format:"%s")
+
+          echo "Branch: $BRANCH_NAME"
+          echo "Commit: $COMMIT_MSG"
+
+          # Extract scope from commit message: type(scope): message
+          # Use grep to extract scope safely (avoids bash regex issues with PR numbers)
+          PACKAGES=""
+
+          SCOPE=$(echo "$COMMIT_MSG" | grep -oP '^[a-z]+\(\K[^)]+(?=\):)' || echo "")
+
+          if [ -n "$SCOPE" ]; then
+            echo "Detected scope from commit: $SCOPE"
+
+            case "$SCOPE" in
+              components)
+                PACKAGES="@kubit-ui-web/react-components"
+                ;;
+              design-system)
+                PACKAGES="@kubit-ui-web/design-system"
+                ;;
+              all|monorepo)
+                PACKAGES="@kubit-ui-web/react-components @kubit-ui-web/design-system"
+                ;;
+            esac
+          fi
+
+          # If no scope, detect from file changes
+          if [ -z "$PACKAGES" ]; then
+            echo "No scope in commit, detecting from file changes..."
+
+            COMPONENTS_CHANGED=false
+            DESIGN_SYSTEM_CHANGED=false
+
+            if git diff --name-only HEAD~1 HEAD | grep -q "^packages/components/"; then
+              COMPONENTS_CHANGED=true
+            fi
+
+            if git diff --name-only HEAD~1 HEAD | grep -q "^packages/design-system/"; then
+              DESIGN_SYSTEM_CHANGED=true
+            fi
+
+            if [ "$COMPONENTS_CHANGED" = true ] && [ "$DESIGN_SYSTEM_CHANGED" = true ]; then
+              PACKAGES="@kubit-ui-web/react-components @kubit-ui-web/design-system"
+            elif [ "$COMPONENTS_CHANGED" = true ]; then
+              PACKAGES="@kubit-ui-web/react-components"
+            elif [ "$DESIGN_SYSTEM_CHANGED" = true ]; then
+              PACKAGES="@kubit-ui-web/design-system"
+            fi
+          fi
+
+          if [ -z "$PACKAGES" ]; then
+            echo "⚠️ No packages detected, defaulting to all packages"
+            PACKAGES="@kubit-ui-web/react-components @kubit-ui-web/design-system"
+          fi
+
+          echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
+          echo "📦 Packages to release: $PACKAGES"
+
+      - name: Get commit info
+        id: commit
+        run: |
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+
+          echo "message<<EOF" >> $GITHUB_OUTPUT
+          git log -1 --pretty=%B >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "sha=$COMMIT_SHA" >> $GITHUB_OUTPUT
+
+      - name: Create canary changeset
+        run: |
+          PACKAGES="${{ steps.detect.outputs.packages }}"
+          COMMIT_MSG="${{ steps.commit.outputs.message }}"
+          COMMIT_SHA="${{ steps.commit.outputs.sha }}"
+
+          # Clean commit message for changeset summary
+          SUMMARY=$(echo "$COMMIT_MSG" | sed -E 's/^(feat|fix|docs|style|refactor|perf|test|chore|build|ci|break|breaking)(\([^)]+\))?!?:\s*//')
+
+          # Create changeset file
+          CHANGESET_ID=$(date +%s)
+          CHANGESET_FILE=".changeset/canary-$CHANGESET_ID.md"
+
+          echo "---" > $CHANGESET_FILE
+          for PKG in $PACKAGES; do
+            echo "\"$PKG\": patch" >> $CHANGESET_FILE
+          done
+          echo "---" >> $CHANGESET_FILE
+          echo "" >> $CHANGESET_FILE
+          echo "$SUMMARY (canary.$COMMIT_SHA)" >> $CHANGESET_FILE
+
+          echo "✅ Created canary changeset:"
+          cat $CHANGESET_FILE
+
+      - name: Enter prerelease mode
+        run: |
+          echo "📦 Checking prerelease mode status..."
+
+          # Check if already in pre mode
+          if [ -f ".changeset/pre.json" ]; then
+            echo "⚠️ Already in prerelease mode, exiting first..."
+            yarn changeset pre exit
+
+            # Commit the exit
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git add .
+            if ! git diff --staged --quiet; then
+              git commit -m "chore: exit prerelease mode [skip ci]"
+            fi
+          fi
+
+          echo "📦 Entering canary prerelease mode..."
+          yarn changeset pre enter canary
+
+      - name: Version packages
+        run: |
+          echo "📦 Versioning packages for canary..."
+          yarn changeset:version
+
+          # Append commit SHA to canary version
+          COMMIT_SHA="${{ steps.commit.outputs.sha }}"
+          PACKAGES="${{ steps.detect.outputs.packages }}"
+
+          for PKG in $PACKAGES; do
+            if [[ "$PKG" == *"react-components"* ]]; then
+              PKG_DIR="packages/components"
+            elif [[ "$PKG" == *"design-system"* ]]; then
+              PKG_DIR="packages/design-system"
+            fi
+
+            # Update version to include commit SHA
+            node -e "
+              const fs = require('fs');
+              const pkg = JSON.parse(fs.readFileSync('$PKG_DIR/package.json', 'utf8'));
+              pkg.version = pkg.version.replace(/-canary\.\d+/, '-canary.$COMMIT_SHA');
+              fs.writeFileSync('$PKG_DIR/package.json', JSON.stringify(pkg, null, 2) + '\n');
+            "
+          done
+
+          # Configure git
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Commit version changes
+          git add .
+          if git diff --staged --quiet; then
+            echo "No version changes to commit"
+          else
+            git commit -m "chore: version packages for canary [skip ci]"
+            git push origin ${{ github.ref_name }}
+          fi
+
+      - name: Build packages
+        run: |
+          echo "🏗️ Building packages..."
+          yarn build
+        env:
+          NODE_ENV: production
+
+      - name: Publish canary to NPM
+        run: |
+          echo "🚀 Publishing canary to NPM..."
+          yarn changeset:publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Exit prerelease mode
+        run: |
+          echo "📦 Exiting canary prerelease mode..."
+          yarn changeset pre exit
+
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: exit canary prerelease mode [skip ci]"
+            git push origin ${{ github.ref_name }}
+          fi
+
+      - name: Get published versions
+        id: versions
+        run: |
+          PACKAGES="${{ steps.detect.outputs.packages }}"
+
+          for PKG in $PACKAGES; do
+            if [[ "$PKG" == *"react-components"* ]]; then
+              PKG_DIR="packages/components"
+              PKG_NAME="react-components"
+            elif [[ "$PKG" == *"design-system"* ]]; then
+              PKG_DIR="packages/design-system"
+              PKG_NAME="design-system"
+            fi
+
+            VERSION=$(node -p "require('./$PKG_DIR/package.json').version")
+            echo "$PKG_NAME=$VERSION" >> $GITHUB_OUTPUT
+            echo "📦 Published $PKG_NAME@$VERSION"
+          done
+
+      - name: Create summary
+        run: |
+          PACKAGES="${{ steps.detect.outputs.packages }}"
+          COMMIT_SHA="${{ steps.commit.outputs.sha }}"
+
+          echo "## 🚀 Canary Release Published" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** \`$COMMIT_SHA\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Package | Version | NPM Link |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|---------|----------|" >> $GITHUB_STEP_SUMMARY
+
+          for PKG in $PACKAGES; do
+            if [[ "$PKG" == *"react-components"* ]]; then
+              PKG_DIR="packages/components"
+              PKG_NAME="react-components"
+            elif [[ "$PKG" == *"design-system"* ]]; then
+              PKG_DIR="packages/design-system"
+              PKG_NAME="design-system"
+            fi
+
+            VERSION=$(node -p "require('./$PKG_DIR/package.json').version")
+            NPM_LINK="https://www.npmjs.com/package/$PKG/v/$VERSION"
+
+            echo "| $PKG_NAME | \`$VERSION\` | [View on NPM]($NPM_LINK) |" >> $GITHUB_STEP_SUMMARY
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Install canary version:" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`sh" >> $GITHUB_STEP_SUMMARY
+
+          for PKG in $PACKAGES; do
+            if [[ "$PKG" == *"react-components"* ]]; then
+              PKG_DIR="packages/components"
+            elif [[ "$PKG" == *"design-system"* ]]; then
+              PKG_DIR="packages/design-system"
+            fi
+
+            VERSION=$(node -p "require('./$PKG_DIR/package.json').version")
+            echo "yarn add $PKG@$VERSION" >> $GITHUB_STEP_SUMMARY
+          done
+
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY

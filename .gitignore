@@ -1,41 +1,69 @@
-## IntelliJ files
-/.idea
-*.iml
-/bamboo-specs/.idea
-/bamboo-specs/*.iml
-
-/__reports__/**/*.*
-junit.xml
-
-/dist
-/yarn-error.log
-/yarn.lock
-/sample
-/__reports__
-/node_modules/
-/dist/
-/bundle/
-/junit.xml
-/globalConfig
-/localConfig
-/cli/test-output/**/*.*
-/.vscode/
-.DS_Store
-*.log
-/bamboo-specs/target
-junit.xml
-
-/config/webpack/microfront/config.js
-/config/webpack/microfront/config.json
-
-/package-lock.json
-/*yalc*
+# Dependencies
 node_modules/
+.pnp
+.pnp.js
 
-/storybook-static
+# Lock files (keep yarn.lock)
+package-lock.json
+pnpm-lock.yaml
 
-/.jest-test-results.json
+# Yarn Berry
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
-## vim files
+# Turborepo
+.turbo/
+.turbo-cache/
+dependency-graph.html
+dependency-graph.dot
+
+# TypeScript
+*.tsbuildinfo
+.tsbuildinfo
+
+# Testing
+coverage/
+__reports__/
+*.lcov
+.vitest/
+
+# Production
+dist/
+build/
+bundle/
+
+# Misc
+.DS_Store
+**/.DS_Store
+*.log
+*.log.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE - Allow shared configs but ignore personal settings
+.vscode/*
+!.vscode/settings.json.example
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+.idea/
 *.swp
 *.swo
+*~
+
+# Storybook
+.storybook-cache/
+storybook-static/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+

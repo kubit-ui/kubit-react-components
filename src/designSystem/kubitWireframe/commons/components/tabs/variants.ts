@@ -1,4 +1,0 @@
-export enum TabsVariantType {
-  DEFAULT = 'DEFAULT',
-  FUNCTIONALITIES_MODULE = 'FUNCTIONALITIES_MODULE',
-}

@@ -1,0 +1,35 @@
+{
+  "$schema": "../../node_modules/oxlint/configuration_schema.json",
+  "extends": [
+    "../../node_modules/@kubit-ui-web/eslint-plugin-kubit/oxlint/base.json",
+    "../../node_modules/@kubit-ui-web/eslint-plugin-kubit/oxlint/typescript.json"
+  ],
+  "jsPlugins": [
+    { "name": "kubit", "specifier": "@kubit-ui-web/eslint-plugin-kubit" }
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "globals": {
+    "describe": "readonly",
+    "expect": "readonly",
+    "it": "readonly",
+    "test": "readonly",
+    "vi": "readonly"
+  },
+  "rules": {
+    "kubit/enforce-named-exports": "error",
+    "kubit/no-public-field-interface": "warn",
+    "kubit/no-relative-import-paths": "warn"
+  },
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "coverage",
+    "*.config.*",
+    "src/provider",
+    "src/**/css/cssVars.js"
+  ]
+}

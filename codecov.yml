@@ -1,0 +1,59 @@
+# Codecov configuration for @kubit-ui-web/react-components
+# https://docs.codecov.com/docs/codecov-yaml
+
+# Coverage configuration
+coverage:
+  precision: 2
+  round: down
+  range: '70...100'
+
+  status:
+    project:
+      default:
+        target: 80%
+        threshold: 2%
+        if_ci_failed: error
+
+    patch:
+      default:
+        target: 80%
+        threshold: 5%
+        if_ci_failed: error
+
+# Comment configuration
+comment:
+  layout: 'reach,diff,flags,tree,reach'
+  behavior: default
+  require_changes: false
+  require_base: no
+  require_head: yes
+
+# Ignore patterns
+ignore:
+  - '**/*.test.ts'
+  - '**/*.test.tsx'
+  - '**/*.stories.tsx'
+  - '**/*.stories.ts'
+  - '**/tests/**'
+  - '**/__tests__/**'
+  - '**/__mocks__/**'
+  - '**/__fixtures__/**'
+  - '.storybook/**'
+  - 'bundle/**'
+  - 'public/**'
+  - '**/node_modules/**'
+  - 'vite.config.mts'
+  - 'vitest.config.ts'
+  - 'vitest.setup.ts'
+  - 'eslint.config.js'
+
+# Flags for different test types
+flags:
+  production:
+    paths:
+      - src/
+    carryforward: true
+  beta:
+    paths:
+      - src/
+    carryforward: true

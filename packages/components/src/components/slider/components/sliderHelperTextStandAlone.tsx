@@ -1,0 +1,71 @@
+import { Text } from '@/components/text/text';
+
+import type { SliderCssClasses } from '../types/slider';
+
+interface SliderHelperTextStandAloneProps {
+  leftHelperText?: string;
+  leftHelperTextId?: string;
+  rightHelperText?: string;
+  rightHelperTextId?: string;
+  cssClasses?: SliderCssClasses;
+  customAttributes?: Record<string, string>;
+}
+
+/**
+ * Standalone slider helper text component for displaying descriptive text.
+ *
+ * This component renders helper text on the left or right side of the slider
+ * to provide additional context or instructions.
+ *
+ * @example
+ * ```tsx
+ * <SliderHelperTextStandAlone
+ *   leftHelperText="Min"
+ *   rightHelperText="Max"
+ * />
+ * ```
+ */
+export const SliderHelperTextStandAlone = ({
+  cssClasses,
+  customAttributes,
+  leftHelperText,
+  leftHelperTextId,
+  rightHelperText,
+  rightHelperTextId,
+}: SliderHelperTextStandAloneProps): JSX.Element | null => {
+  if (!leftHelperText && !rightHelperText) {
+    return null;
+  }
+  return (
+    <div className={cssClasses?.helpertextcontainer}>
+      {!!leftHelperText && (
+        <div className={cssClasses?.helpertextleftcontainer}>
+          <Text
+            additionalClasses={{
+              text: cssClasses?.helpertext,
+            }}
+            component="span"
+            customAttributes={customAttributes}
+            id={leftHelperTextId}
+          >
+            {leftHelperText}
+          </Text>
+        </div>
+      )}
+      {!!rightHelperText && (
+        <div className={cssClasses?.helpertextrightcontainer}>
+          <Text
+            additionalClasses={{
+              text: cssClasses?.helpertext,
+            }}
+            component="span"
+            customAttributes={customAttributes}
+            id={rightHelperTextId}
+          >
+            {rightHelperText}
+          </Text>
+        </div>
+      )}
+    </div>
+  );
+};

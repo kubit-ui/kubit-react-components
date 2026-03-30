@@ -1,0 +1,170 @@
+import type { CSSProperties, KeyboardEventHandler } from "react";
+
+import type { ElementOrIconProps } from "@/lib/components/elementOrIcon/types/elementOrIcon";
+import type { DataAttributes } from "@/lib/types/dataAttributes/dataAttributes";
+
+import { TooltipUnControlled as Tooltip } from "@/components/tooltip/tooltipUnControlled";
+import { ElementOrIcon } from "@/lib/components/elementOrIcon/elementOrIcon";
+import { useMediaDevice } from "@/lib/hooks/useMediaDevice/useMediaDevice";
+import { pickCustomAttributes } from "@/lib/utils/pickCustomAttributes/pickCustomAttributes";
+
+import type { SliderCssClasses, SliderTooltipProps } from "../types/slider";
+
+import { type SliderStateType } from "../types/state";
+import { isTooltipVisible } from "../utils/ui.utils";
+
+/**
+ * Standalone slider thumb component for the draggable handle.
+ *
+ * This component renders the movable thumb/handle on the slider track with
+ * optional tooltip display showing the current value.
+ *
+ * @example
+ * ```tsx
+ * <SliderThumbStandAlone
+ *   value={50}
+ *   min={0}
+ *   max={100}
+ *   disabled={false}
+ * />
+ * ```
+ */
+interface SliderThumbStandAloneProps extends DataAttributes {
+  state: SliderStateType;
+  style?: CSSProperties;
+  rightThumb?: boolean;
+  disabled: boolean;
+  pressed: boolean;
+  hover: boolean;
+  max: number;
+  min: number;
+  value: number;
+  tooltip?: SliderTooltipProps;
+  onMouseOver: () => void;
+  onMouseOut: () => void;
+  onTouchStart?: () => void;
+  onFocus?: () => void;
+  onKeyDown: KeyboardEventHandler<HTMLElement>;
+  icon?: ElementOrIconProps;
+  ariaLabel?: string;
+  ariaLabelBy?: string;
+  ariaDescribedBy?: string;
+  cssClasses?: SliderCssClasses;
+  customAttributes?: Record<string, string>;
+  tooltipAlign?: string;
+}
+
+/**
+ * @description
+ * SliderThumbStandAlone component is used to display a thumb for the slider.
+ */
+export const SliderThumbStandAlone = ({
+  ariaDescribedBy,
+  ariaLabel,
+  ariaLabelBy,
+  cssClasses,
+  customAttributes,
+  disabled,
+  hover,
+  icon,
+  max,
+  min,
+  onFocus,
+  onKeyDown,
+  onMouseOut,
+  onMouseOver,
+  onTouchStart,
+  pressed,
+  rightThumb,
+  style,
+  tooltip,
+  tooltipAlign = "top",
+  value,
+  ...props
+}: SliderThumbStandAloneProps): JSX.Element | null => {
+  const device = useMediaDevice();
+
+  const customProps = pickCustomAttributes({ ...props, ...customAttributes });
+  const customAttributesProps = pickCustomAttributes(customAttributes);
+
+  if (!isTooltipVisible(tooltip, pressed, device) || !cssClasses?.tooltip) {
+    return (
+      <div
+        aria-describedby={ariaDescribedBy}
+        aria-disabled={disabled}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelBy}
+        aria-valuemax={max}
+        aria-valuemin={min}
+        aria-valuenow={value}
+        className={cssClasses?.thumb}
+        data-disabled={disabled}
+        data-hover={hover}
+        data-position={rightThumb ? "right" : undefined}
+        data-pressed={pressed}
+        role="slider"
+        style={style}
+        tabIndex={0}
+        onBlur={onMouseOut}
+        onFocus={onFocus}
+        onKeyDown={onKeyDown}
+        onMouseOut={onMouseOut}
+        onMouseOver={onMouseOver}
+        onTouchStart={onTouchStart}
+        {...customProps}
+      >
+        <ElementOrIcon className={cssClasses?.thumbicon} {...icon} />
+      </div>
+    );
+  }
+  return (
+    <div
+      data-disabled={disabled}
+      data-hover={hover}
+      data-pressed={pressed}
+      role="presentation"
+      style={style}
+      {...customProps}
+      className={cssClasses?.thumb}
+    >
+      <Tooltip
+        additionalClasses={cssClasses?.tooltip}
+        asButton={false}
+        mainContent={{ content: tooltip?.content }}
+        popover={{
+          placement: tooltipAlign as "top" | "bottom" | "left" | "right",
+        }}
+      >
+        <div
+          aria-describedby={ariaDescribedBy}
+          aria-disabled={disabled}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelBy}
+          aria-valuemax={max}
+          aria-valuemin={min}
+          aria-valuenow={value}
+          className={cssClasses.innerthumbtooltip}
+          data-disabled={disabled}
+          data-hover={hover}
+          data-pressed={pressed}
+          role="slider"
+          tabIndex={0}
+          onBlur={onMouseOut}
+          onFocus={onFocus}
+          onKeyDown={onKeyDown}
+          onMouseOut={onMouseOut}
+          onMouseOver={onMouseOver}
+          onTouchStart={onTouchStart}
+          {...customAttributesProps}
+        >
+          <ElementOrIcon
+            className={
+              rightThumb ? cssClasses?.rightthumbicon : cssClasses?.thumbicon
+            }
+            {...icon}
+          />
+        </div>
+      </Tooltip>
+    </div>
+  );
+};

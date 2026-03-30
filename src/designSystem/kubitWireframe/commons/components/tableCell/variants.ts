@@ -1,4 +1,0 @@
-export enum TableCellVariantType {
-  HEADER_CELL_DEFAULT = 'HEADER_CELL_DEFAULT',
-  BODY_CELL_DEFAULT = 'BODY_CELL_DEFAULT',
-}

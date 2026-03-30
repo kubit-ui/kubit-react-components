@@ -1,4 +1,0 @@
-export enum SliderVariantType {
-  PRIMARY = 'PRIMARY',
-  TEST_NO_THUMB_EXCEEDS_TRACK = 'TEST_NO_THUMB_EXCEEDS_TRACK',
-}

@@ -1,0 +1,14 @@
+.kbt-text {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.kbt-text--disabled {
+  pointer-events: none;
+}
+
+.kbt-text--truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

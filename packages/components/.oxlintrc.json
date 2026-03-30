@@ -1,0 +1,58 @@
+{
+  "$schema": "../../node_modules/oxlint/configuration_schema.json",
+  "extends": ["../../node_modules/@kubit-ui-web/eslint-plugin-kubit/oxlint/recommended.json"],
+  "jsPlugins": [
+    { "name": "kubit", "specifier": "@kubit-ui-web/eslint-plugin-kubit" }
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "globals": {
+    "afterAll": "readonly",
+    "afterEach": "readonly",
+    "beforeAll": "readonly",
+    "beforeEach": "readonly",
+    "describe": "readonly",
+    "expect": "readonly",
+    "it": "readonly",
+    "test": "readonly",
+    "vi": "readonly"
+  },
+  "rules": {
+    "complexity": "off",
+    "react/no-array-index-key": "warn",
+    "jsx-a11y/role-has-required-aria-props": "warn",
+    "kubit/no-public-field-interface": "off",
+    "kubit/no-inline-styles": "off",
+    "kubit/no-multi-comp": "off",
+    "kubit/no-relative-import-paths": "off",
+    "kubit/no-index-import": [
+      "error",
+      {
+        "aliases": {
+          "@/components": "./src/components/*",
+          "@/lib": "./src/lib/*",
+          "@/styles": "./src/styles/*"
+        }
+      }
+    ],
+    "kubit/enforce-named-exports": [
+      "warn",
+      {
+        "allowInFiles": [".stories.", ".test.", ".spec."]
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "coverage",
+    "*.config.*",
+    "src/lib/provider/cssProvider",
+    "src/lib/types/cssGenerator",
+    "src/lib/designSystem/kubit/css/cssVars.js",
+    "src/lib/tests/__mocks__/assetMock.js"
+  ]
+}

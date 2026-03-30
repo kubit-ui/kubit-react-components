@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "src/**/*.test.*",
+    "src/**/__mocks__",
+    "src/**/__fixtures__",
+    "src/**/__tests__",
+    "src/**/__stories__",
+    "src/**/storybook",
+    "src/**/stories",
+    "dist",
+    "vitest.config.ts",
+    "vitest.setup.ts",
+    "rslib.config.ts",
+    ".storybook"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+    "emitDeclarationOnly": false
+  }
+}

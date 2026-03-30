@@ -1,0 +1,10 @@
+/**
+ * Popover Styles Index
+ * Imports all popover-related CSS files
+ */
+
+/* Core popover styles and animations */
+@import './popover.css';
+
+/* Arrow positioning and styling */
+@import './popover-arrow.css';

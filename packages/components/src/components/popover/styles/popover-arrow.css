@@ -1,0 +1,42 @@
+/* ============================================= */
+/* Popover Arrow Styles */
+/* ============================================= */
+
+/* Arrow base styles */
+[data-kbt-id='popover-arrow'] {
+  position: absolute;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+/* Arrow positioning based on placement */
+[data-kbt-id='popover-arrow'][data-kbt-placement^='top'] {
+  bottom: calc(-1 * var(--arrow-size, 8px) / 2);
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+[data-kbt-id='popover-arrow'][data-kbt-placement^='bottom'] {
+  top: calc(-1 * var(--arrow-size, 8px) / 2);
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+[data-kbt-id='popover-arrow'][data-kbt-placement^='left'] {
+  right: calc(-1 * var(--arrow-size, 8px) / 2);
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+[data-kbt-id='popover-arrow'][data-kbt-placement^='right'] {
+  left: calc(-1 * var(--arrow-size, 8px) / 2);
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Center placement arrow - default to bottom position */
+[data-kbt-id='popover-arrow'][data-kbt-placement='center'] {
+  top: calc(-1 * var(--arrow-size, 8px) / 2);
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}

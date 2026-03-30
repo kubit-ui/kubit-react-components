@@ -1,0 +1,17 @@
+# PNPM Configuration for @kubit-ui-web/design-system
+# https://pnpm.io/npmrc
+
+# === Publishing ===
+# Public access for npm registry
+access=public
+
+# === Peer Dependencies ===
+# Automatically install peer dependencies
+auto-install-peers=true
+
+# Don't fail on peer dependency conflicts
+strict-peer-dependencies=false
+
+# === Performance ===
+# Disable side effects cache
+side-effects-cache=false

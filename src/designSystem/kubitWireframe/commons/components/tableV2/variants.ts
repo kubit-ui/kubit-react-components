@@ -1,4 +1,0 @@
-export enum TableV2VariantType {
-  DEFAULT = 'DEFAULT',
-  DEFAULT_WITHOUT_SHADOW = 'DEFAULT_WITHOUT_SHADOW',
-}

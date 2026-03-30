@@ -1,0 +1,90 @@
+import { calcFirstLastVisiblePosition } from '../helper/positions';
+
+describe('Page Control Position', () => {
+  it('No bullet. When currentPosition < dots, then firstVisiblePosition = 1 and lastVisiblePosition depends on firstVisiblePosition', () => {
+    const currentPosition = 1;
+    const dots = 5;
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'forth',
+        dots,
+        isBullet: false,
+        pages: 10,
+      });
+    expect(firstVisiblePosition).toBe(0);
+    expect(lastVisiblePosition).toBe(firstVisiblePosition + dots - 1);
+  });
+  it('No bullet. When position >= dots, then lastVisiblePosition = currentPosition and firstVisiblePosition depends on lastVisiblePosition', () => {
+    const currentPosition = 5;
+    const dots = 5;
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'forth',
+        dots,
+        isBullet: false,
+        pages: 10,
+      });
+    expect(lastVisiblePosition).toBe(currentPosition);
+    expect(firstVisiblePosition).toBe(lastVisiblePosition - (dots - 1));
+  });
+  it('Bullet. When direction FORTH and currentPosition < dots, then firstVisiblePosition = 1 and lastVisiblePosition depends on firstVisiblePosition', () => {
+    const currentPosition = 1;
+    const dots = 5;
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'forth',
+        dots,
+        isBullet: true,
+        pages: 10,
+      });
+    expect(firstVisiblePosition).toBe(0);
+    expect(lastVisiblePosition).toBe(firstVisiblePosition + dots - 1);
+  });
+  it('Bullet. When direction FORTH and position >= dots, then lastVisiblePosition = currentPosition and firstVisiblePosition depends on lastVisiblePosition', () => {
+    const currentPosition = 5;
+    const dots = 5;
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'forth',
+        dots,
+        isBullet: true,
+        pages: 10,
+      });
+    expect(lastVisiblePosition).toBe(currentPosition);
+    expect(firstVisiblePosition).toBe(lastVisiblePosition - (dots - 1));
+  });
+  it('Bullet. When direction BACK and pages - dots <= currentPosition, then lastVisiblePosition = pages - 1 and firstVisiblePosition depends on lastVisiblePosition', () => {
+    const currentPosition = 8;
+    const dots = 5;
+    const pages = 10;
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'back',
+        dots,
+        isBullet: true,
+        pages,
+      });
+    expect(lastVisiblePosition).toBe(pages - 1);
+    expect(firstVisiblePosition).toBe(lastVisiblePosition - (dots - 1));
+  });
+  it('Bullet. When direction BACK and pages - dots > currentPosition, then firstVisiblePosition = currentPosition and lastVisiblePosition depends on firstVisiblePosition', () => {
+    const currentPosition = 4;
+    const dots = 5;
+    const pages = 10;
+    const { firstVisiblePosition, lastVisiblePosition } =
+      calcFirstLastVisiblePosition({
+        currentPosition,
+        direction: 'back',
+        dots,
+        isBullet: true,
+        pages,
+      });
+    expect(firstVisiblePosition).toBe(currentPosition);
+    expect(lastVisiblePosition).toBe(firstVisiblePosition + dots - 1);
+  });
+});

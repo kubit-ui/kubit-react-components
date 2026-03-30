@@ -1,0 +1,38 @@
+{
+  "recommendations": [
+    // Essential
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+
+    // TypeScript
+    "yoavbls.pretty-ts-errors",
+    "usernamehw.errorlens",
+
+    // Monorepo & Build Tools
+    "haydenbleasel.turbo-console-log",
+
+    // Testing
+    "vitest.explorer",
+
+    // Git
+    "eamodio.gitlens",
+
+    // Utilities
+    "christian-kohler.path-intellisense",
+    "visualstudioexptteam.vscodeintellicode",
+    "streetsidesoftware.code-spell-checker",
+
+    // React
+    "dsznajder.es7-react-js-snippets",
+
+    // Markdown
+    "yzhang.markdown-all-in-one",
+
+    // Package Management
+    "christian-kohler.npm-intellisense"
+  ],
+  "unwantedRecommendations": [
+    "hookyqr.beautify",
+    "ms-vscode.vscode-typescript-tslint-plugin"
+  ]
+}

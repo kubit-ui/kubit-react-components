@@ -1,4 +1,0 @@
-export enum PillSelectorType {
-  SELECTOR_SIMPLE = 'SELECTOR_SIMPLE',
-  SELECTOR_MULTIPLE = 'SELECTOR_MULTIPLE',
-}
